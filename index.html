@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческий SEO Аудит — factor-prodazh.ru · Март 2026</title>
+<style>
+:root {
+  --bg:#080d16; --card:#0f1824; --card2:#162030; --border:#1c2e45;
+  --text:#dde4f0; --muted:#5a7090;
+  --bofu:#22c55e; --mofu:#3b82f6; --tofu:#f59e0b; --skip:#ef4444; --accent:#6366f1;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6;}
+
+/* ── LAYOUT ────────────────────────────────────────────────────────── */
+.container{max-width:1080px;margin:0 auto;padding:28px 20px;}
+.header{background:linear-gradient(135deg,#0d1525 0%,#0f1a35 100%);border-bottom:1px solid var(--border);padding:28px 0;}
+.header .container{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;}
+.h-left h1{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.3px;}
+.h-left .sub{font-size:13px;color:var(--muted);margin-top:4px;}
+.methodology-badge{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#a5b4fc;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;}
+
+/* ── HEALTH BANNER ─────────────────────────────────────────────────── */
+.health-banner{display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0;}
+.grade-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;border:3px solid var(--tofu);color:var(--tofu);background:rgba(245,158,11,.08);flex-shrink:0;}
+.health-stat{text-align:center;padding:0 12px;border-left:1px solid var(--border);}
+.health-stat .val{font-size:26px;font-weight:800;}
+.health-stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+
+/* ── FUNNEL CARDS ──────────────────────────────────────────────────── */
+.funnel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+.funnel-card{border-radius:10px;padding:18px;border:1px solid;}
+.funnel-bofu{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.25);}
+.funnel-mofu{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.25);}
+.funnel-tofu{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.25);}
+.funnel-skip{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.25);}
+.funnel-tag{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.funnel-bofu .funnel-tag{color:var(--bofu);}
+.funnel-mofu .funnel-tag{color:var(--mofu);}
+.funnel-tofu .funnel-tag{color:var(--tofu);}
+.funnel-skip .funnel-tag{color:var(--skip);}
+.funnel-count{font-size:32px;font-weight:900;color:#fff;}
+.funnel-traffic{font-size:12px;margin-top:4px;}
+.funnel-bofu .funnel-traffic{color:var(--bofu);}
+.funnel-mofu .funnel-traffic{color:var(--mofu);}
+.funnel-tofu .funnel-traffic{color:var(--tofu);}
+.funnel-skip .funnel-traffic{color:var(--skip);}
+.funnel-desc{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+/* ── SECTIONS ──────────────────────────────────────────────────────── */
+.section{margin-bottom:32px;}
+.section-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.stag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.stag-bofu{background:rgba(34,197,94,.15);color:#4ade80;}
+.stag-mofu{background:rgba(59,130,246,.15);color:#60a5fa;}
+.stag-tofu{background:rgba(245,158,11,.15);color:#fbbf24;}
+.stag-skip{background:rgba(239,68,68,.15);color:#f87171;}
+.stag-gap{background:rgba(168,85,247,.15);color:#c084fc;}
+.stag-crit{background:rgba(239,68,68,.2);color:#f87171;}
+
+/* ── ALERTS ────────────────────────────────────────────────────────── */
+.alert{border-radius:10px;padding:14px 18px;margin-bottom:14px;border-left:4px solid;}
+.alert-red{background:rgba(239,68,68,.07);border-color:var(--skip);}
+.alert-green{background:rgba(34,197,94,.07);border-color:var(--bofu);}
+.alert-blue{background:rgba(59,130,246,.07);border-color:var(--mofu);}
+.alert-orange{background:rgba(245,158,11,.07);border-color:var(--tofu);}
+.alert-purple{background:rgba(99,102,241,.08);border-color:#6366f1;}
+.alert-title{font-weight:800;font-size:13px;margin-bottom:4px;}
+.alert-red .alert-title{color:#f87171;}
+.alert-green .alert-title{color:#4ade80;}
+.alert-blue .alert-title{color:#60a5fa;}
+.alert-orange .alert-title{color:#fbbf24;}
+.alert-purple .alert-title{color:#a5b4fc;}
+
+/* ── TABLES ────────────────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;background:var(--card);}
+th{background:var(--card2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.6px;padding:9px 12px;text-align:left;white-space:nowrap;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.02);}
+
+/* ── POSITIONS & BARS ──────────────────────────────────────────────── */
+.pos{display:inline-flex;align-items:center;justify-content:center;width:32px;height:22px;border-radius:4px;font-size:11px;font-weight:700;}
+.pos-1{background:rgba(34,197,94,.2);color:#4ade80;}
+.pos-5{background:rgba(59,130,246,.2);color:#60a5fa;}
+.pos-10{background:rgba(245,158,11,.2);color:#fbbf24;}
+.pos-20{background:rgba(239,68,68,.15);color:#f87171;}
+.pos-out{background:rgba(100,116,139,.15);color:#94a3b8;}
+.cps-bar{display:flex;align-items:center;gap:8px;}
+.cps-fill{height:6px;border-radius:3px;background:var(--bofu);}
+.cps-val{font-weight:700;color:#fff;min-width:32px;}
+
+/* ── PILLS ─────────────────────────────────────────────────────────── */
+.pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+.pill-bofu{background:rgba(34,197,94,.15);color:#4ade80;}
+.pill-mofu{background:rgba(59,130,246,.15);color:#60a5fa;}
+.pill-tofu{background:rgba(245,158,11,.15);color:#fbbf24;}
+.pill-skip{background:rgba(239,68,68,.15);color:#f87171;}
+.pill-gap{background:rgba(168,85,247,.15);color:#c084fc;}
+.pill-red{background:rgba(239,68,68,.15);color:#f87171;}
+.pill-green{background:rgba(34,197,94,.15);color:#4ade80;}
+.pill-orange{background:rgba(245,158,11,.15);color:#fbbf24;}
+.pill-blue{background:rgba(59,130,246,.15);color:#60a5fa;}
+.pill-warn{background:rgba(245,158,11,.15);color:#fbbf24;}
+
+/* ── MISC ──────────────────────────────────────────────────────────── */
+.url-cell{font-family:monospace;font-size:10px;color:var(--muted);}
+.muted{color:var(--muted);}
+.text-red{color:#f87171;}
+.text-green{color:#4ade80;}
+.text-orange{color:#fbbf24;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.card h4{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.kw-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
+.kw-row:last-child{border-bottom:none;}
+
+/* ── SERVICE ROWS ──────────────────────────────────────────────────── */
+.svc-table{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.svc-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);gap:12px;}
+.svc-row:last-child{border-bottom:none;}
+.svc-url{font-family:monospace;font-size:12px;color:#60a5fa;}
+.svc-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.svc-right{text-align:right;min-width:200px;max-width:320px;flex-shrink:0;}
+
+/* ── TERM LEGEND ───────────────────────────────────────────────────── */
+.term-legend{display:flex;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;}
+.tl-item{flex:1;padding:11px 14px;border-right:1px solid var(--border);}
+.tl-item:last-child{border-right:none;}
+.tl-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+.tl-label{font-size:12px;font-weight:700;color:#fff;display:block;margin-bottom:3px;}
+.tl-desc{font-size:10px;color:var(--muted);line-height:1.4;}
+
+/* ── FUNNEL PATH ───────────────────────────────────────────────────── */
+.funnel-path{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--card2);border-radius:8px;margin-bottom:10px;flex-wrap:wrap;}
+.fp-node{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;}
+.fp-arrow{color:var(--muted);font-size:16px;}
+.fp-bofu{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3);}
+.fp-mofu{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3);}
+.fp-tofu{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3);}
+.fp-cta{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.3);}
+
+/* ── QUICK WIN ─────────────────────────────────────────────────────── */
+.qw-box{background:linear-gradient(135deg,rgba(34,197,94,.12) 0%,rgba(34,197,94,.04) 100%);border:2px solid rgba(34,197,94,.4);border-radius:14px;padding:24px;margin-bottom:28px;position:relative;overflow:hidden;}
+.qw-box::before{content:"";position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(34,197,94,.08) 0%,transparent 70%);pointer-events:none;}
+.qw-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.4);color:#4ade80;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.qw-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.qw-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+.qw-stat{text-align:center;}
+.qw-stat .qv{font-size:24px;font-weight:900;}
+.qw-stat .ql{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.qw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.qw-step{background:rgba(0,0,0,.3);border-radius:8px;padding:12px;border:1px solid rgba(34,197,94,.15);}
+.qw-step-n{font-size:10px;font-weight:800;color:#4ade80;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.qw-step-t{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;}
+.qw-step-d{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* ── PRIORITY PLAN ─────────────────────────────────────────────────── */
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.plan-card.p1{border-left:3px solid var(--skip);}
+.plan-card.p2{border-left:3px solid var(--tofu);}
+.plan-card.p3{border-left:3px solid var(--mofu);}
+.plan-n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;margin-bottom:6px;}
+.p1 .plan-n{background:rgba(239,68,68,.2);color:#f87171;}
+.p2 .plan-n{background:rgba(245,158,11,.2);color:#fbbf24;}
+.p3 .plan-n{background:rgba(59,130,246,.2);color:#60a5fa;}
+.plan-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;}
+.plan-desc{font-size:11px;color:#7a9ab8;line-height:1.6;}
+
+/* ── ROADMAP ───────────────────────────────────────────────────────── */
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.rm-week{padding:18px 16px;border-right:1px solid var(--border);position:relative;}
+.rm-week:last-child{border-right:none;}
+.rm-week-num{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.rm-week-title{font-size:13px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.3;}
+.rm-task{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start;}
+.rm-task-dot{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.rm-task-text{font-size:11px;color:#7a9ab8;line-height:1.5;}
+.rm-week-1 .rm-week-num,.rm-week-1 .rm-week-title{color:#f87171;}
+.rm-week-2 .rm-week-num,.rm-week-2 .rm-week-title{color:#fbbf24;}
+.rm-week-3 .rm-week-num,.rm-week-3 .rm-week-title{color:#60a5fa;}
+.rm-week-4 .rm-week-num,.rm-week-4 .rm-week-title{color:#4ade80;}
+.rm-week-1 .rm-task-dot{background:#f87171;}
+.rm-week-2 .rm-task-dot{background:#fbbf24;}
+.rm-week-3 .rm-task-dot{background:#60a5fa;}
+.rm-week-4 .rm-task-dot{background:#4ade80;}
+.rm-result{margin-top:12px;padding:8px 10px;border-radius:6px;font-size:10px;font-weight:700;text-align:center;}
+.rm-week-1 .rm-result{background:rgba(239,68,68,.12);color:#f87171;}
+.rm-week-2 .rm-result{background:rgba(245,158,11,.12);color:#fbbf24;}
+.rm-week-3 .rm-result{background:rgba(59,130,246,.12);color:#60a5fa;}
+.rm-week-4 .rm-result{background:rgba(34,197,94,.12);color:#4ade80;}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .roadmap{grid-template-columns:1fr 1fr;}
+  .rm-week{border-bottom:1px solid var(--border);}
+  .rm-week:nth-child(odd){border-right:1px solid var(--border);}
+  .rm-week:nth-child(even){border-right:none;}
+  .rm-week:nth-last-child(-n+2){border-bottom:none;}
+  .qw-steps{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:700px){
+  .funnel-grid,.two-col,.plan-grid{grid-template-columns:1fr;}
+  .health-banner{grid-template-columns:auto 1fr 1fr;row-gap:12px;}
+  .health-stat:nth-child(n+5){display:none;}
+  .header .container{flex-direction:column;}
+  .term-legend{flex-direction:column;}
+  .tl-item{border-right:none;border-bottom:1px solid var(--border);}
+  .tl-item:last-child{border-bottom:none;}
+  .roadmap{grid-template-columns:1fr;}
+  .rm-week{border-right:none!important;border-bottom:1px solid var(--border);}
+  .rm-week:last-child{border-bottom:none;}
+  .qw-steps{grid-template-columns:1fr;}
+  .qw-meta{flex-direction:column;gap:10px;}
+  .svc-row{flex-direction:column;align-items:flex-start;}
+  .svc-right{text-align:left;min-width:0;max-width:100%;}
+  table{font-size:11px;}
+  th,td{padding:7px 8px;}
+  .h-left h1{font-size:17px;}
+  .section-title{font-size:14px;}
+  .health-stat .val{font-size:20px;}
+  .grade-circle{width:64px;height:64px;font-size:28px;}
+}
+@media (max-width:480px){
+  .container{padding:16px 12px;}
+  .health-banner{grid-template-columns:auto 1fr;padding:16px;}
+  .health-stat:nth-child(n+4){display:none;}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="h-left">
+      <h1>Коммерческий SEO Аудит &#8212; factor-prodazh.ru</h1>
+      <div class="sub">Построение отделов продаж &middot; обучение менеджеров &middot; курсы ROP &middot; консалтинг B2B &middot; март 2026</div>
+    </div>
+    <div class="methodology-badge">Commercial-First v1.0</div>
+  </div>
+</div>
+<div class="container">
+
+<!-- ═══════════════ 1. HEALTH BANNER ═══════════════ -->
+<div class="health-banner">
+  <div class="grade-circle">D</div>
+  <div class="health-stat">
+    <div class="val text-orange">5%</div>
+    <div class="lbl">Коммерческий трафик</div>
+  </div>
+  <div class="health-stat">
+    <div class="val text-orange">~15</div>
+    <div class="lbl">BOFU визитов / нед</div>
+  </div>
+  <div class="health-stat">
+    <div class="val text-orange">15</div>
+    <div class="lbl">BOFU ключей</div>
+  </div>
+  <div class="health-stat">
+    <div class="val text-red">0</div>
+    <div class="lbl">Коммерч. страниц в топ-10</div>
+  </div>
+</div>
+<div class="alert alert-orange">
+  <div class="alert-title">Диагноз: статьи перехватывают коммерческий трафик вместо посадочных страниц</div>
+  <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+    Запрос &laquo;построить отдел продаж&raquo; &#8212; <strong style="color:#fff">p1, но ведёт на статью</strong>, а не на /tarify/. Страницы /course/*, /tarify/ не ранжируются ни по одному коммерческому запросу. 95% из 314 визитов в неделю приходят на образовательный контент.
+    Плюс 20% трафика (64 визита/нед) &#8212; финансисты и аналитики, которые никогда не купят услуги по продажам.
+    <strong style="color:#fff">Трафик есть &#8212; коммерческого выхода нет.</strong>
+  </p>
+</div>
+
+<!-- ═══════════════ 2. ЛЕГЕНДА ТЕРМИНОВ ═══════════════ -->
+<div class="term-legend">
+  <div class="tl-item">
+    <span class="tl-dot" style="background:var(--bofu)"></span>
+    <span class="tl-label">Прямые покупатели (BOFU)</span>
+    <span class="tl-desc">&laquo;Построить отдел продаж&raquo;, &laquo;заказать тренинг&raquo; &#8212; готов к заявке прямо сейчас.</span>
+  </div>
+  <div class="tl-item">
+    <span class="tl-dot" style="background:var(--mofu)"></span>
+    <span class="tl-label">Выбирают решение (MOFU)</span>
+    <span class="tl-desc">&laquo;ROP кто это&raquo;, &laquo;KPI отдела&raquo; &#8212; изучает варианты. Нужен CTA к услуге.</span>
+  </div>
+  <div class="tl-item">
+    <span class="tl-dot" style="background:var(--tofu)"></span>
+    <span class="tl-label">Изучают тему (TOFU)</span>
+    <span class="tl-desc">&laquo;Этапы продаж&raquo;, &laquo;техника продаж&raquo; &#8212; учится. Нужен конверсионный мост.</span>
+  </div>
+  <div class="tl-item">
+    <span class="tl-dot" style="background:var(--skip)"></span>
+    <span class="tl-label">Нецелевая аудитория (SKIP)</span>
+    <span class="tl-desc">&laquo;Точка безубыточности&raquo;, &laquo;ABC анализ&raquo; &#8212; не клиенты никогда. Новый контент запрещён.</span>
+  </div>
+</div>
+
+<!-- ═══════════════ 3. ВОРОНКА ═══════════════ -->
+<div class="section">
+  <div class="section-title">Распределение семантики по воронке <span class="stag stag-crit">443 ключа в топ-50</span></div>
+  <div class="funnel-grid">
+    <div class="funnel-card funnel-bofu">
+      <div class="funnel-tag">&#11044; Прямые покупатели</div>
+      <div class="funnel-count">15</div>
+      <div class="funnel-traffic">~15 визитов/нед &middot; 5% трафика</div>
+      <div class="funnel-desc">&laquo;Построить отдел продаж&raquo;, &laquo;фактор продаж&raquo; (бренд), branded курсы. <strong style="color:#4ade80">Есть p1</strong> &#8212; но ведёт на статью, не на /tarify/.</div>
+    </div>
+    <div class="funnel-card funnel-mofu">
+      <div class="funnel-tag">&#11044; Выбирают решение</div>
+      <div class="funnel-count">95</div>
+      <div class="funnel-traffic">~50 визитов/нед &middot; 16% трафика</div>
+      <div class="funnel-desc">&laquo;ROP кто это&raquo;, &laquo;KPI отдела продаж&raquo;, &laquo;мотивация менеджеров&raquo;. Целевая аудитория &#8212; читают без CTA к услугам.</div>
+    </div>
+    <div class="funnel-card funnel-tofu">
+      <div class="funnel-tag">&#11044; Изучают тему</div>
+      <div class="funnel-count">245</div>
+      <div class="funnel-traffic">~185 визитов/нед &middot; 59% трафика</div>
+      <div class="funnel-desc">&laquo;Этапы продаж&raquo; sw=4580, &laquo;техника продаж&raquo;, &laquo;работа с возражениями&raquo;. 41% всего трафика &#8212; одна страница /blog/5-etapov.</div>
+    </div>
+    <div class="funnel-card funnel-skip">
+      <div class="funnel-tag">&#11044; Нецелевая аудитория</div>
+      <div class="funnel-count">88</div>
+      <div class="funnel-traffic">~64 визита/нед &middot; 20% трафика</div>
+      <div class="funnel-desc">&laquo;Точка безубыточности&raquo;, &laquo;ABC анализ&raquo;, &laquo;LTV&raquo;, &laquo;RFM анализ&raquo;, &laquo;HR-бренд&raquo; &#8212; финансисты, аналитики, HR.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 4. BOFU ПОЗИЦИИ ═══════════════ -->
+<div class="section">
+  <div class="section-title">Позиции по коммерческим ключам <span class="stag stag-bofu">15 BOFU ключей</span></div>
+  <div class="alert alert-orange">
+    <div class="alert-title">Структурный парадокс: p1 по главному запросу &#8212; но это статья, а не услуга</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      /blog/postroenie-otdela-prodazh-s-nulya занимает p1 по «построить отдел продаж» (sw=36, ~350р/клик в контексте). Это редкий актив. Но страница &#8212; образовательная статья без CTA на /tarify/. <strong style="color:#fff">При конверсии 0.5% это +1 сделка в неделю &#8212; упущено прямо сейчас.</strong>
+    </p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>CPS</th><th>Позиция</th><th>Ключ</th><th>sw</th><th>Страница</th><th>Проблема</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:74px"></div><span class="cps-val">9.8</span></div></td>
+        <td><span class="pos pos-1">p1</span></td>
+        <td><strong>построить отдел продаж</strong></td>
+        <td>36</td>
+        <td class="url-cell">/blog/postroenie-otdela-prodazh-s-nuly&hellip;</td>
+        <td><span class="pill pill-red">Статья вместо /tarify/</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:51px"></div><span class="cps-val">6.7</span></div></td>
+        <td><span class="pos pos-1">p1</span></td>
+        <td><strong>фактор продаж компания</strong></td>
+        <td>47</td>
+        <td class="url-cell">/</td>
+        <td><span class="pill pill-green">Бренд: OK, не масштабируется</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:35px"></div><span class="cps-val">4.6</span></div></td>
+        <td><span class="pos pos-1">p1</span></td>
+        <td><strong>построение отдела продаж с нуля</strong></td>
+        <td>26</td>
+        <td class="url-cell">/blog/postroenie-otdela-prodazh-s-nuly&hellip;</td>
+        <td><span class="pill pill-warn">Каннибализация URL</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:22px"></div><span class="cps-val">2.9</span></div></td>
+        <td><span class="pos pos-5">p6</span></td>
+        <td><strong>создание отдела продаж</strong></td>
+        <td>12</td>
+        <td class="url-cell">/blog/postroenie-otdela-prodazh-s-nuly&hellip;</td>
+        <td><span class="pill pill-warn">Статья конкурирует с /tarify/</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:14px"></div><span class="cps-val">1.8</span></div></td>
+        <td><span class="pos pos-10">p9</span></td>
+        <td><strong>как организовать отдел продаж</strong></td>
+        <td>8</td>
+        <td class="url-cell">/blog/kak-organizovat-otdel-prodazh&hellip;</td>
+        <td><span class="pill pill-warn">Нет CTA на заявку</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:9px"></div><span class="cps-val">1.2</span></div></td>
+        <td><span class="pos pos-10">p10</span></td>
+        <td><strong>отдел продаж под ключ</strong></td>
+        <td>5</td>
+        <td class="url-cell">/</td>
+        <td><span class="pill pill-red">Нет посадочной страницы</span></td>
+      </tr>
+      <tr>
+        <td><div class="cps-bar"><div class="cps-fill" style="width:5px"></div><span class="cps-val">0.7</span></div></td>
+        <td><span class="pos pos-20">p14</span></td>
+        <td><strong>аудит отдела продаж</strong></td>
+        <td>4</td>
+        <td class="url-cell">/tarify/</td>
+        <td><span class="pill pill-red">Слабая оптимизация /tarify/</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:10px;font-size:11px;color:var(--muted)">CPS = sw &times; CTR(pos) &times; 10 (BOFU). Данные keys.so, февраль 2026. Avbid недоступен &#8212; ставки оценочные из нишевого анализа.</div>
+</div>
+
+<!-- ═══════════════ 5. АУДИТ СТРАНИЦ УСЛУГ ═══════════════ -->
+<div class="section">
+  <div class="section-title">Аудит коммерческих страниц <span class="stag stag-crit">Проверено вживую (WebFetch)</span></div>
+  <div class="alert alert-orange">
+    <div class="alert-title">3 системных проблемы на всех коммерческих страницах</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      <strong style="color:#fbbf24">1. Цены скрыты:</strong> /course/prodavec-raketa/, /course/sistema-prodazh/, /book/rop-na-million/ &#8212; цена не указана, только &laquo;Записаться&raquo;/&laquo;Получить&raquo;. Яндекс хуже ранжирует страницы без цены.&nbsp;&nbsp;
+      <strong style="color:#fbbf24">2. Только видеоотзывы:</strong> 6 видеоотзывов на Rutube &#8212; SEO не индексирует. Текстовые отзывы отсутствуют.&nbsp;&nbsp;
+      <strong style="color:#fbbf24">3. /tarify/ H1 = &laquo;Тарифы&raquo;:</strong> нулевая ключевая оптимизация главной коммерческой страницы.
+    </p>
+  </div>
+  <div class="svc-table">
+    <div class="svc-row" style="background:rgba(34,197,94,.03)">
+      <div>
+        <div class="svc-url">/</div>
+        <div class="svc-meta">H1: «Строим отделы продаж и внедряем контроль качества»</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-green">CTA: норм</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">&laquo;Рассчитать внедрения&raquo;, &laquo;Давайте начнем с диагностики&raquo;, попапы. Цены видны (52&thinsp;900&thinsp;&#x20bd; / 104&thinsp;900&thinsp;&#x20bd; / 95&thinsp;000&thinsp;&#x20bd;). <span class="text-red">Нет прямой ссылки на /tarify/ в основном контенте.</span></div>
+      </div>
+    </div>
+    <div class="svc-row" style="background:rgba(239,68,68,.05)">
+      <div>
+        <div class="svc-url">/tarify/</div>
+        <div class="svc-meta">H1: «Тарифы» · Title: «Наши тарифы | Фактор Продаж»</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-red">SEO: критично</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">H1 и Title &#8212; без единого ключевого слова. Основные пакеты без цены &#8212; только &laquo;Узнать стоимость&raquo;. Нет Schema, нет OG.</div>
+      </div>
+    </div>
+    <div class="svc-row" style="background:rgba(245,158,11,.03)">
+      <div>
+        <div class="svc-url">/course/prodavec-raketa/</div>
+        <div class="svc-meta">«Курс для менеджеров по продажам» · 37 уроков · гарантия 7 дней</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-warn">Title ОК, контент слабо</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px"><span class="text-red">Цена не указана.</span> Отзывов нет &#8212; только ссылка на Rutube. Нет Schema Course.</div>
+      </div>
+    </div>
+    <div class="svc-row" style="background:rgba(245,158,11,.03)">
+      <div>
+        <div class="svc-url">/course/coursearsenal/</div>
+        <div class="svc-meta">H1: «Арсенал РОПа» · 40 уроков · 10 недель</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-warn">6 видеоотзывов (Rutube)</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px"><span class="text-red">Цена не указана.</span> Видеоотзывы есть, текстовых нет. Нет Schema.</div>
+      </div>
+    </div>
+    <div class="svc-row" style="background:rgba(239,68,68,.05)">
+      <div>
+        <div class="svc-url">/course/sistema-prodazh/</div>
+        <div class="svc-meta">H1: «Система продаж» &#8212; для руководителей и собственников</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-red">Самая слабая страница</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px"><span class="text-red">Цена не указана. H1 без ключей.</span> Только кнопка &laquo;Записаться на курс&raquo;. Нет Schema, нет отзывов.</div>
+      </div>
+    </div>
+    <div class="svc-row" >
+      <div>
+        <div class="svc-url">/book/rop-na-million/</div>
+        <div class="svc-meta">H1: «РОП на миллион» — книга Александра Кандеева</div>
+      </div>
+      <div class="svc-right">
+        <span class="pill pill-warn">CTA есть, цены нет</span>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">&laquo;Получить книгу&raquo; &#8212; форма, но цена не указана (платно? бесплатно?). Нет Schema Book.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 6. СПЕЦИФИЧЕСКИЕ ПРОБЛЕМЫ: SKIP ═══════════════ -->
+<div class="section">
+  <div class="section-title">Специфические проблемы: нецелевой трафик и тематическое размытие <span class="stag stag-skip">88 ключей &middot; 20% трафика</span></div>
+  <div class="alert alert-red">
+    <div class="alert-title">64 визита в неделю от аудитории, которая никогда не купит услуги по продажам</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      &laquo;Точка безубыточности&raquo;, &laquo;ABC анализ товаров&raquo;, &laquo;LTV&raquo;, &laquo;RFM анализ&raquo;, &laquo;HR-бренд&raquo; &#8212; это финансисты, аналитики и HR. Они не заказывают построение отдела продаж.
+      Эти страницы также создают <strong style="color:#fff">тематическое размытие</strong>: Яндекс видит сайт о продажах, но треть контента &#8212; финансы и аналитика. Это снижает тематический авторитет по всей семантике продаж.
+    </p>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <h4 style="color:#f87171">Топ SKIP по нерелевантности</h4>
+      <div class="kw-row">
+        <span style="font-size:12px">точка безубыточности</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Финансисты / бухгалтеры</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">abc анализ товарных позиций</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Логисты / ритейлеры</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">ltv как посчитать</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Маркетологи / product managers</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">rfm анализ клиентской базы</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Аналитики данных</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">romi в маркетинге</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Маркетологи по digital</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">hr-бренд что это</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">HR-специалисты</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">управление персоналом</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">HR / руководители HR</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">чистая прибыль в отчёте</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Финансовый директор</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">cust dev что это</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Продуктовая аудитория</span>
+      </div>
+      <div class="kw-row">
+        <span style="font-size:12px">b2p бизнес для людей</span>
+        <span class="muted" style="font-size:11px;text-align:right;max-width:180px">Смешанная аудитория, нет покупательского интента</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="color:#f87171">Решение: noindex на SKIP-страницы</h4>
+      <div style="font-size:12px;color:#94a3b8;line-height:1.9">
+        <div>&#128214; <strong style="color:#fff">/blog/tochka-bezubytochnosti</strong> &rarr; noindex</div>
+        <div>&#128214; <strong style="color:#fff">/blog/abc-analiz-tovarnykh-pozitsiy</strong> &rarr; noindex</div>
+        <div>&#128214; <strong style="color:#fff">/blog/rfm-analiz-kliyentskoy-bazy</strong> &rarr; noindex</div>
+        <div>&#128214; <strong style="color:#fff">/blog/romi-v-marketinge</strong> &rarr; noindex</div>
+        <div>&#128214; <strong style="color:#fff">/blog/hr-brend-chto-eto</strong> &rarr; noindex</div>
+        <div>&#128214; <strong style="color:#fff">/blog/upravlenie-personalom*</strong> &rarr; noindex</div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:rgba(239,68,68,.08);border-radius:6px;border-left:3px solid #ef4444;font-size:11px;color:#94a3b8">
+        noindex не удаляет страницы для пользователей &#8212; только убирает их из поиска. После применения Яндекс перераспределяет тематический авторитет на оставшиеся страницы о продажах.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 7. QUICK WIN ═══════════════ -->
+<div class="section">
+  <div class="section-title">&#9889; Quick Win</div>
+  <div class="qw-box">
+    <div class="qw-badge">&#9889; Quick Win &middot; Срок: 4&ndash;6 недель</div>
+    <div class="qw-title">«Этапы продаж» p17 &rarr; p5&ndash;7 = <span style="color:#4ade80">+300 визитов / нед</span></div>
+    <div class="qw-meta">
+      <div class="qw-stat">
+        <div class="qv" style="color:#fbbf24">4&thinsp;580</div>
+        <div class="ql">superwsk запроса</div>
+      </div>
+      <div class="qw-stat">
+        <div class="qv" style="color:#f87171">p17</div>
+        <div class="ql">текущая позиция</div>
+      </div>
+      <div class="qw-stat">
+        <div class="qv" style="color:#4ade80">p5&ndash;7</div>
+        <div class="ql">целевая позиция</div>
+      </div>
+      <div class="qw-stat">
+        <div class="qv" style="color:#4ade80">+300</div>
+        <div class="ql">визитов / нед</div>
+      </div>
+      <div class="qw-stat">
+        <div class="qv" style="color:#60a5fa">x3</div>
+        <div class="ql">рост трафика страницы</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:#94a3b8;margin-bottom:18px;line-height:1.7">
+      /blog/5-etapov-prodazh-menedzhera-po-prodazham уже получает ~130 визитов/нед с p17 по кластеру «этапы продаж» (sw=4580). Страница занимает 41% всего органического трафика сайта. Конкуренты в топ-5 имеют более глубокий контент. Задача: расширить статью до полного кластера (H2 по каждому этапу, таблицы, примеры) &#8212; и выйти с p17 в p5&ndash;7.
+    </p>
+    <div class="qw-steps">
+      <div class="qw-step">
+        <div class="qw-step-n">Шаг 1</div>
+        <div class="qw-step-t">Анализ топ-5 конкурентов</div>
+        <div class="qw-step-d">Изучить что есть у sales-generator.ru, bitrix24, blog.oy-li.ru в p1&ndash;5. Выписать отсутствующие разделы.</div>
+      </div>
+      <div class="qw-step">
+        <div class="qw-step-n">Шаг 2</div>
+        <div class="qw-step-t">Расширение статьи: +1&thinsp;500 слов</div>
+        <div class="qw-step-d">Добавить: техники на каждом этапе, чек-лист, таблицу частых ошибок, примеры в B2B. Обновить H1, Title под кластер.</div>
+      </div>
+      <div class="qw-step">
+        <div class="qw-step-n">Шаг 3</div>
+        <div class="qw-step-t">CTA на конверсию</div>
+        <div class="qw-step-d">Замерить текущие CTA через Метрику (попап, форма, лид-магнит). Если CVR &lt;0.3% &#8212; заменить оффер на «Бесплатный аудит системы продаж».</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:10px 14px;background:rgba(34,197,94,.08);border-radius:8px;font-size:12px;color:#4ade80">
+      <strong>Почему именно это:</strong> статья уже проиндексирована, уже есть позиции, уже есть трафик. Это не новая страница с нуля &#8212; это усиление существующего актива. Яндекс реагирует на расширение контента проиндексированных страниц в течение 2&ndash;4 недель.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 8. ИНФОРМАЦИОННЫЙ ТРАФИК: MOFU + TOFU ═══════════════ -->
+<div class="section">
+  <div class="section-title">Информационный трафик &#8212; конверсионные мосты <span class="stag stag-mofu">MOFU 95 ключей</span> <span class="stag stag-tofu">TOFU 245 ключей</span></div>
+
+  <!-- MOFU -->
+  <div class="alert alert-blue">
+    <div class="alert-title">MOFU: руководители и собственники читают без CTA на услуги</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      Запросы типа «KPI отдела продаж», «мотивация менеджеров», «структура отдела» &#8212; это прямая целевая аудитория. Но в статьях нет ни ссылки на /tarify/, ни CTA на курсы, ни кнопки &laquo;Аудит ОП&raquo;. CVR MOFU при правильном мосте: 1&ndash;2%.
+    </p>
+  </div>
+  <div class="table-wrap" style="margin-bottom:20px">
+  <table>
+    <thead>
+      <tr><th>Ключ</th><th>Поз.</th><th>sw</th><th>Аудитория</th><th>Нужный CTA</th><th>Статус</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>rop кто это</strong></td>
+        <td><span class="pos pos-5">p5</span></td>
+        <td>93</td>
+        <td style="font-size:11px;color:var(--muted)">Руководители нанимают/развивают ROP</td>
+        <td style="font-size:11px">CTA на курс «Арсенал РОПа»</td>
+        <td><span class="pill pill-red">Нет CTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>kpi отдела продаж</strong></td>
+        <td><span class="pos pos-5">p4</span></td>
+        <td>87</td>
+        <td style="font-size:11px;color:var(--muted)">Собственники / директора</td>
+        <td style="font-size:11px">CTA на /tarify/ или консалтинг</td>
+        <td><span class="pill pill-red">Нет CTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>мотивация отдела продаж</strong></td>
+        <td><span class="pos pos-5">p4</span></td>
+        <td>93</td>
+        <td style="font-size:11px;color:var(--muted)">Руководители / собственники</td>
+        <td style="font-size:11px">CTA на консалтинг /tarify/</td>
+        <td><span class="pill pill-red">Нет CTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>структура отдела продаж</strong></td>
+        <td><span class="pos pos-10">p8</span></td>
+        <td>56</td>
+        <td style="font-size:11px;color:var(--muted)">Строят ОП с нуля</td>
+        <td style="font-size:11px">CTA на /tarify/ или аудит ОП</td>
+        <td><span class="pill pill-red">Нет CTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>план развития отдела продаж</strong></td>
+        <td><span class="pos pos-10">p9</span></td>
+        <td>38</td>
+        <td style="font-size:11px;color:var(--muted)">Планировщики / менеджеры</td>
+        <td style="font-size:11px">CTA на аудит ОП</td>
+        <td><span class="pill pill-orange">Слабый CTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>навыки руководителя отдела продаж</strong></td>
+        <td><span class="pos pos-5">p6</span></td>
+        <td>29</td>
+        <td style="font-size:11px;color:var(--muted)">Развивают ROP</td>
+        <td style="font-size:11px">CTA на книгу «РОП на миллион»</td>
+        <td><span class="pill pill-orange">Слабый CTA</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- TOFU -->
+  <div class="alert alert-orange">
+    <div class="alert-title">TOFU: 41% трафика &#8212; одна страница, конверсия неизвестна</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      /blog/5-etapov-prodazh получает ~130 визитов/нед. CTA есть (попап, формы, лид-магнит, блок аудита). Вопрос &#8212; конвертируют ли. Без целей в Метрике это чёрный ящик. Остальные TOFU-страницы (техника продаж, работа с возражениями, скрипты) &#8212; без конверсионных мостов.
+    </p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Ключ / Страница</th><th>Поз.</th><th>sw</th><th>Трафик/нед</th><th>Аудитория</th><th>Конверсионный мост</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div style="font-weight:600">этапы продаж</div>
+          <div class="url-cell">/blog/5-etapov-prodazh-menedzhera&hellip;</div>
+        </td>
+        <td><span class="pos pos-20">p17</span></td>
+        <td>4580</td>
+        <td style="color:#fbbf24;font-weight:700">~36.6</td>
+        <td><span class="pill pill-orange">Менеджеры/тренеры</span></td>
+        <td style="font-size:11px">Лид-магнит: чек-лист → email → курс «Продавец-ракета»</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">5 этапов продаж</div>
+          <div class="url-cell">/blog/5-etapov-prodazh-menedzhera&hellip;</div>
+        </td>
+        <td><span class="pos pos-10">p8</span></td>
+        <td>816</td>
+        <td style="color:#fbbf24;font-weight:700">~20.4</td>
+        <td><span class="pill pill-blue">Менеджеры</span></td>
+        <td style="font-size:11px">Тот же блок CTA что выше</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">работа с возражениями</div>
+          <div class="url-cell">/blog/rabota-s-vozrazheniyami&hellip;</div>
+        </td>
+        <td><span class="pos pos-5">p6</span></td>
+        <td>295</td>
+        <td style="color:#fbbf24;font-weight:700">~17.7</td>
+        <td><span class="pill pill-blue">Активные менеджеры</span></td>
+        <td style="font-size:11px">«Скрипты антивозражений» → лид-магнит + email</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">скрипты продаж</div>
+          <div class="url-cell">/blog/skripty-prodazh-dlya-menedzherov&hellip;</div>
+        </td>
+        <td><span class="pos pos-5">p6</span></td>
+        <td>164</td>
+        <td style="color:#fbbf24;font-weight:700">~9.8</td>
+        <td><span class="pill pill-blue">Менеджеры / ROP</span></td>
+        <td style="font-size:11px">«Готовые скрипты для вашей ниши» → курс или аудит</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">мотивация отдела продаж</div>
+          <div class="url-cell">/blog/motivatsiya-otdela-prodazh&hellip;</div>
+        </td>
+        <td><span class="pos pos-5">p4</span></td>
+        <td>93</td>
+        <td style="color:#fbbf24;font-weight:700">~7.4</td>
+        <td><span class="pill pill-green">Руководители/собственники</span></td>
+        <td style="font-size:11px">«Система мотивации за 1 день» → консалтинг /tarify/</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">техника продаж</div>
+          <div class="url-cell">/blog/tekhniki-prodazh-dlya-menedzherov&hellip;</div>
+        </td>
+        <td><span class="pos pos-20">p18</span></td>
+        <td>756</td>
+        <td style="color:#fbbf24;font-weight:700">~6.0</td>
+        <td><span class="pill pill-orange">Менеджеры — учатся</span></td>
+        <td style="font-size:11px">CTA: «Тренинг по техникам» → /course/prodavec-raketa</td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight:600">холодные звонки скрипты</div>
+          <div class="url-cell">/blog/skripty-holodnyh-zvonkov/</div>
+        </td>
+        <td><span class="pos pos-5">p5</span></td>
+        <td>108</td>
+        <td style="color:#fbbf24;font-weight:700">~6.5</td>
+        <td><span class="pill pill-green">Менеджеры / ROP</span></td>
+        <td style="font-size:11px">«Полный шаблон холодного звонка» → email + курс</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ═══════════════ 9. АРХИТЕКТУРА ВОРОНКИ ═══════════════ -->
+<div class="section">
+  <div class="section-title">Архитектура конверсионной воронки &#8212; что построить</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;margin-top:16px">Кластер 1: Построение отдела продаж</div>
+    <div class="funnel-path">
+      <span class="fp-node fp-tofu">&laquo;этапы продаж&raquo; p17 sw=4580 (~130 визитов/нед)</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-mofu">&laquo;структура ОП&raquo; + &laquo;план развития ОП&raquo;</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-bofu">&laquo;отдел продаж под ключ&raquo; &rarr; /tarify/ (оптимизировать)</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-cta">Заявка на бесплатный аудит ОП</span>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;margin-top:16px">Кластер 2: Обучение менеджеров</div>
+    <div class="funnel-path">
+      <span class="fp-node fp-tofu">&laquo;техники продаж&raquo; p18 + &laquo;работа с возражениями&raquo; p6</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-mofu">&laquo;обучение менеджеров по продажам&raquo; (создать)</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-bofu">&laquo;тренинг по продажам&raquo; &rarr; /course/prodavec-raketa</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-cta">Купить курс «Продавец-ракета»</span>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;margin-top:16px">Кластер 3: Руководитель отдела продаж (ROP)</div>
+    <div class="funnel-path">
+      <span class="fp-node fp-tofu">&laquo;ROP кто это&raquo; + &laquo;навыки руководителя ОП&raquo;</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-mofu">&laquo;KPI ROP&raquo; + &laquo;мотивация ОП&raquo; &rarr; CTA на курс</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-bofu">&laquo;курс для ROP&raquo; &rarr; /course/coursearsenal</span>
+      <span class="fp-arrow">&rarr;</span>
+      <span class="fp-node fp-cta">Arsenal ROP + Книга «РОП на миллион»</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 10. ПРОГНОЗ РОСТА ═══════════════ -->
+<div class="section">
+  <div class="section-title">Прогноз трафика и лидов</div>
+  <div class="alert alert-blue">
+    <div class="alert-title">Допущения расчёта</div>
+    <p style="font-size:12px;color:#cbd5e1;margin-top:4px">
+      Данные Метрики не проверялись &#8212; конверсии оценочные по B2B-бенчмаркам: BOFU CVR 3&ndash;4%, MOFU 0.8&ndash;1.2%, TOFU 0.15&ndash;0.25%.
+      Трафик из keys.so (февраль 2026). После настройки целей в Метрике прогноз нужно пересчитать.
+      * Звонки без коллтрекинга не учтены &#8212; реальное значение лидов выше.
+    </p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px">Сейчас &#8212; базовая линия</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">Трафик / нед</div>
+        <div style="font-size:28px;font-weight:900;color:#fff">~314</div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">BOFU трафик / нед</div>
+        <div style="font-size:22px;font-weight:800;color:#f87171">~15</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;color:var(--muted)">Лидов / мес (оценка)*</div>
+        <div style="font-size:22px;font-weight:800;color:#f87171">~5&ndash;6</div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">BOFU 15&times;3%=0.5/нед<br>MOFU 50&times;1%=0.5/нед<br>TOFU 185&times;0.2%=0.4/нед</div>
+    </div>
+    <div style="background:var(--card);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#fbbf24;margin-bottom:12px">Быстрые победы &#8212; 3 месяца</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">Трафик / нед</div>
+        <div style="font-size:28px;font-weight:900;color:#fff">~480</div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">BOFU трафик / нед</div>
+        <div style="font-size:22px;font-weight:800;color:#fbbf24">~28</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;color:var(--muted)">Лидов / мес (оценка)*</div>
+        <div style="font-size:22px;font-weight:800;color:#fbbf24">~10&ndash;13</div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">Драйверы: /tarify/ H1+цены, конверсия CTA через Метрику, Schema на курсах. Рост конверсии без роста трафика.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid rgba(34,197,94,.4);border-radius:10px;padding:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#4ade80;margin-bottom:12px">Полное исполнение &#8212; 12 месяцев</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">Трафик / нед</div>
+        <div style="font-size:28px;font-weight:900;color:#fff">~950</div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--muted)">BOFU трафик / нед</div>
+        <div style="font-size:22px;font-weight:800;color:#4ade80">~70</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;color:var(--muted)">Лидов / мес (оценка)*</div>
+        <div style="font-size:22px;font-weight:800;color:#4ade80">~22&ndash;28</div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">BOFU 70&times;4%=2.8/нед, MOFU 100&times;1.2%=1.2/нед, TOFU 650&times;0.25%=1.6/нед. Quick Win + новые страницы услуг.</div>
+    </div>
+  </div>
+
+  <!-- Bar chart -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Динамика трафика по воронке</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:6px;margin-top:14px">BOFU трафик</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">Сейчас</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:10%;background:#22c55e;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#22c55e">~15/нед</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">3 мес.</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:18%;background:#22c55e;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#22c55e">~28/нед</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">12 мес.</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:47%;background:#22c55e;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#22c55e">~70/нед</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:6px;margin-top:14px">Весь органический трафик</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">Сейчас</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:33%;background:#3b82f6;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#3b82f6">~314/нед</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">3 мес.</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:50%;background:#3b82f6;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#3b82f6">~480/нед</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:80px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0">12 мес.</div>
+      <div style="flex:1;height:18px;background:var(--card2);border-radius:3px;overflow:hidden"><div style="height:100%;width:100%;background:#3b82f6;border-radius:3px"></div></div>
+      <div style="width:60px;font-size:12px;font-weight:700;color:#3b82f6">~950/нед</div>
+    </div>
+  </div>
+  <div style="margin-top:10px;font-size:11px;color:var(--muted)">* Лиды оценочные. Реальные цифры зависят от конверсии форм (данные Метрики). Без коллтрекинга &#8212; реальное значение выше. Пересчитать после настройки целей.</div>
+</div>
+
+<!-- ═══════════════ 11. РОАДМЕП: ПЕРВЫЙ МЕСЯЦ ═══════════════ -->
+<div class="section">
+  <div class="section-title">&#128197; Роадмеп: первый месяц &#8212; неделя за неделей</div>
+  <div class="roadmap">
+    <div class="rm-week rm-week-1">
+      <div class="rm-week-num">Неделя 1</div>
+      <div class="rm-week-title">Аналитика &amp; замер</div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Настроить цели в Яндекс.Метрике на каждый CTA: попап, формы в тексте, лид-магнит, кнопку «Аудит» на /blog/5-etapov</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Снять тепловую карту и Вебвизор для /blog/5-etapov &#8212; где уходят пользователи</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Проверить Яндекс.Вебмастер: sitemap отправлен, нет ошибок индексирования на /tarify/ и /course/*</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Зафиксировать текущие позиции (скриншот keys.so) &#8212; baseline для замера через месяц</div></div>
+      <div class="rm-result">Итог: данные для всех решений</div>
+    </div>
+    <div class="rm-week rm-week-2">
+      <div class="rm-week-num">Неделя 2</div>
+      <div class="rm-week-title">Коммерческие страницы</div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text"><strong>/tarify/ H1</strong>: «Тарифы» &rarr; «Построение отдела продаж под ключ &#8212; тарифы и стоимость»</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text"><strong>/tarify/ Title</strong>: «Наши тарифы» &rarr; «Построение отдела продаж: тарифы | Фактор Продаж»</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Добавить цены на /course/prodavec-raketa/ и /course/coursearsenal/ (или «от X₽» если динамические)</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Добавить 3&ndash;5 текстовых отзывов на каждую страницу курса (скопировать с Rutube + отформатировать)</div></div>
+      <div class="rm-result">Итог: /tarify/ начнёт ранжироваться по «аудит ОП»</div>
+    </div>
+    <div class="rm-week rm-week-3">
+      <div class="rm-week-num">Неделя 3</div>
+      <div class="rm-week-title">Schema.org + Quick Win</div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Schema Course на /course/prodavec-raketa/, /course/coursearsenal/, /course/sistema-prodazh/ &#8212; с ценой и рейтингом</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Schema Book на /book/rop-na-million/ + Schema LocalBusiness на главную и /tarify/</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text"><strong>Quick Win старт</strong>: расширить /blog/5-etapov &#8212; добавить разделы по каждому этапу, таблицы, примеры B2B (+1&thinsp;500 слов)</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Проверить Schema validator.schema.org после публикации</div></div>
+      <div class="rm-result">Итог: расширенные сниппеты в Яндексе</div>
+    </div>
+    <div class="rm-week rm-week-4">
+      <div class="rm-week-num">Неделя 4</div>
+      <div class="rm-week-title">SKIP + MOFU-мосты</div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">noindex на 6 SKIP-страниц: точка безубыточности, ABC, RFM, ROMI, HR-бренд, управление персоналом</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Добавить /tarify/ в основную навигацию header &#8212; прямая ссылка из главной (сейчас её нет в главном контенте)</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">CTA-блоки в топ-5 MOFU-статьях: «ROP кто это», «KPI отдела», «мотивация ОП», «структура ОП», «план развития ОП»</div></div>
+      <div class="rm-task"><div class="rm-task-dot"></div><div class="rm-task-text">Проверить по данным Метрики (2 недели данных): конверсия CTA на /blog/5-etapov. Принять решение по офферу.</div></div>
+      <div class="rm-result">Итог: концентрация авторитета на продажах</div>
+    </div>
+  </div>
+  <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px;font-size:11px;color:var(--muted);line-height:1.7">
+    <strong style="color:#fff">Первые результаты</strong> ожидаются на 3&ndash;4 неделе: /tarify/ начнёт появляться в топ-20 по «аудит отдела продаж», расширенные сниппеты курсов появятся в Яндексе.
+    Рост трафика от Quick Win (p17&rarr;p5) &#8212; через 4&ndash;8 недель после публикации расширенной статьи.
+    <span style="color:#f87171"> Критично: не начинать новые TOFU-статьи до завершения этапов 1&ndash;4.</span>
+  </div>
+</div>
+
+<!-- ═══════════════ 12. ПРИОРИТЕТНЫЙ ПЛАН ═══════════════ -->
+<div class="section">
+  <div class="section-title">Приоритетный план &#8212; сначала коммерческое</div>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <span class="pill pill-red">&#x25CF; Красный &#8212; критично, 1&ndash;2 недели</span>
+    <span class="pill pill-orange">&#x25CF; Оранжевый &#8212; важно, 3&ndash;4 недели</span>
+    <span class="pill pill-blue">&#x25CF; Синий &#8212; рост, 5&ndash;8 недель</span>
+  </div>
+  <div class="plan-grid">
+    <div class="plan-card p1">
+      <div class="plan-n">1</div>
+      <div class="plan-title">Замерить конверсию CTA через Яндекс.Метрику</div>
+      <div class="plan-desc">Настроить цели на попап «Результат в деньгах за 30 дней», 2 формы в тексте, лид-магнит «Справочник речевых модулей» и блок «Аудит ОП». Снять тепловую карту. Без этих данных невозможно принять решение: менять оффер или масштабировать трафик. Если CVR &lt;0.3% &#8212; менять оффер; если &gt;1% &#8212; фокус на Quick Win (p17&#8594;p5).</div>
+    </div>
+    <div class="plan-card p1">
+      <div class="plan-n">2</div>
+      <div class="plan-title">Переписать /tarify/: H1+Title+цены на пакеты</div>
+      <div class="plan-desc">H1 «Тарифы» &#8212; нулевой SEO-сигнал. Нужно: H1 &#8594; «Построение отдела продаж под ключ &#8212; тарифы и стоимость». Title &#8594; «Построение ОП: тарифы | Фактор Продаж». Добавить цены (или «от X&#8201;&#x20bd;») на пакеты вместо «Узнать стоимость». Добавить Schema LocalBusiness + Offer. Прямо влияет на ранжирование по «отдел продаж под ключ» (~500&#8201;&#x20bd;/клик avbid).</div>
+    </div>
+    <div class="plan-card p1">
+      <div class="plan-n">3</div>
+      <div class="plan-title">Добавить цены + текстовые отзывы на все страницы курсов</div>
+      <div class="plan-desc">Проверено вживую: /course/prodavec-raketa/, /course/sistema-prodazh/, /course/coursearsenal/, /book/rop-na-million/ &#8212; цена не указана. Яндекс хуже ранжирует коммерческие страницы без ценовых сигналов. 6 видеоотзывов на Rutube не индексируются &#8212; нужен текстовый блок 3&ndash;5 отзывов прямо на странице.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">4</div>
+      <div class="plan-title">CTA-блоки в топ-5 MOFU-статьях</div>
+      <div class="plan-desc">«ROP кто это», «KPI отдела продаж», «мотивация менеджеров», «структура отдела» читают руководители и собственники. В каждую: тематический CTA-блок (курс, аудит, книга). CVR MOFU при правильном мосте: 1&ndash;2%. Потенциал: +8&ndash;15 лидов/мес.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">5</div>
+      <div class="plan-title">noindex на 6 SKIP-страниц</div>
+      <div class="plan-desc">«Точка безубыточности», «ABC анализ», «RFM», «ROMI», «HR-бренд» &#8212; создают тематическое размытие. noindex концентрирует ссылочный и тематический авторитет на продажах. Не удаляет страницы для пользователей &#8212; только убирает из поисковой выдачи.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">6</div>
+      <div class="plan-title">Schema.org на курсах + книгах + главной</div>
+      <div class="plan-desc">100% страниц без разметки. Приоритет: Course на /course/*, Book на /book/*, LocalBusiness + Offer на /tarify/. Второй приоритет &#8212; FAQPage на блог (110 вопросных запросов &#8594; вход в Яндекс Нейро). Для курсов без публичной цены: AggregateOffer с «от X&#8201;&#x20bd;».</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">7</div>
+      <div class="plan-title">Quick Win: «этапы продаж» p17 &#8594; p5 (+300 визитов/нед)</div>
+      <div class="plan-desc">superwsk=4580. Расширить /blog/5-etapov до кластера: добавить H2 по каждому этапу (приветствие, выявление потребностей, презентация, работа с возражениями, закрытие), таблицы типичных ошибок, примеры B2B. +1&thinsp;500 слов. При p5 трафик страницы вырастет с ~130 до ~430 визитов/нед.</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">8</div>
+      <div class="plan-title">Создать /uslugi/audit-otdela-prodazh + DR 27 &#8594; 40</div>
+      <div class="plan-desc">«Аудит отдела продаж» &#8212; высокий коммерческий интент (~400&#8201;&#x20bd;/клик). Сейчас /tarify/ p14 &#8212; нет отдельной страницы. Создать лендинг с методологией, кейсами, формой. Параллельно: DR=27 ограничивает рост коммерческих страниц. Гостевые посты на vc.ru и Cossa с кейсами клиентов &#8212; самый релевантный канал для аудитории.</div>
+    </div>
+  </div>
+</div>
+
+<div style="border-top:1px solid var(--border);padding-top:16px;text-align:center;font-size:11px;color:var(--muted);margin-top:8px;padding-bottom:8px">
+  Коммерческий SEO аудит &middot; factor-prodazh.ru &middot; Март 2026 &middot; Методология: Commercial-First v1.0
+  &middot; vis=209 &middot; DR=27 &middot; it50=443 ключа &middot; BOFU трафик 5% &middot; Потенциал: 314 &rarr; 950+ визитов/нед
+</div>
+</div>
+</body>
+</html>
