@@ -743,9 +743,23 @@ footer a:hover { text-decoration: underline; }
 <div class="container">
 
 <!-- ═══════════════════════════════════════════════
+     НАВИГАЦИЯ ДЛЯ ЛПРа
+     ═══════════════════════════════════════════════ -->
+<div style="background:#1e293b; border:1px solid #334155; border-radius:14px; padding:20px 24px; margin:24px 0 28px; display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+  <div style="font-size:13px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; padding-top:2px; white-space:nowrap;">С чего начать:</div>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <a href="#nav-verdict" style="background:rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.3); color:#a5b4fc; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">1. Оценка и проблемы</a>
+    <a href="#nav-funnel" style="background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.25); color:#fbbf24; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">2. Воронка трафика</a>
+    <a href="#nav-quickwin" style="background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25); color:#4ade80; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">3. Быстрый результат</a>
+    <a href="#nav-roi" style="background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.25); color:#c4b5fd; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">4. Деньги и сроки</a>
+  </div>
+  <div style="font-size:12px; color:#475569; padding-top:4px; flex-basis:100%;">Остальные разделы — детали для специалиста. Для принятия решения достаточно этих четырёх.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
      СЕКЦИЯ 1 — VERDICT CARD
      ═══════════════════════════════════════════════ -->
-<div class="verdict-card">
+<div id="nav-verdict" class="verdict-card">
   <div class="verdict-top">
     <div class="verdict-grade">
       <div class="grade-badge grade-f">F</div>
@@ -791,7 +805,7 @@ footer a:hover { text-decoration: underline; }
 <!-- ═══════════════════════════════════════════════
      СЕКЦИЯ 2 — ВОРОНКА
      ═══════════════════════════════════════════════ -->
-<div class="section">
+<div id="nav-funnel" class="section">
   <div class="section-title">📊 Семантическая воронка</div>
   <div class="funnel-grid">
     <div class="funnel-card funnel-bofu">
@@ -977,7 +991,7 @@ footer a:hover { text-decoration: underline; }
 <!-- ═══════════════════════════════════════════════
      СЕКЦИЯ 4 — QUICK WIN
      ═══════════════════════════════════════════════ -->
-<div class="quick-win">
+<div id="nav-quickwin" class="quick-win">
   <div class="qw-speed-tag">⚡ Результат за 1–2 недели</div>
   <div class="qw-label">Quick Win</div>
   <div class="qw-title">CTA-блоки в топ-5 статьях блога → конвертировать 447 уже существующих визитов/нед</div>
@@ -1353,7 +1367,7 @@ footer a:hover { text-decoration: underline; }
 <!-- ═══════════════════════════════════════════════
      СЕКЦИЯ 9 — ПРОГНОЗ В ДЕНЬГАХ
      ═══════════════════════════════════════════════ -->
-<div class="section">
+<div id="nav-roi" class="section">
   <div class="section-title">💰 Прогноз в деньгах</div>
 
   <div style="font-size:11px; color:var(--muted); margin-bottom:8px;">Поисковая аналитика · 4 638 запросов · февраль 2026</div>
