@@ -117,6 +117,12 @@ tr:hover td{background:rgba(255,255,255,.02);}
 .kw-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
 .kw-row:last-child{border-bottom:none;}
 
+/* ── TOOLTIPS ──────────────────────────────────────────────────────── */
+.tip{position:relative;cursor:help;border-bottom:1px dashed rgba(90,112,144,.6);display:inline;}
+.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:#1c2e45;color:#dde4f0;border:1px solid #2a4060;border-radius:7px;padding:6px 11px;font-size:11px;line-height:1.5;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:100;font-family:'Inter',system-ui,sans-serif;font-weight:400;}
+.tip:hover::after{opacity:1;}
+@media(max-width:700px){.tip::after{white-space:normal;max-width:200px;left:0;transform:none;}}
+
 /* ── SERVICE ROWS ──────────────────────────────────────────────────── */
 .svc-table{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 .svc-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);gap:12px;}
@@ -832,7 +838,11 @@ tr:hover td{background:rgba(255,255,255,.02);}
         <div style="font-size:11px;color:var(--muted)">Лидов / мес (оценка)*</div>
         <div style="font-size:22px;font-weight:800;color:#f87171">~5&ndash;6</div>
       </div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.6">BOFU 15&times;3%=0.5/нед<br>MOFU 50&times;1%=0.5/нед<br>TOFU 185&times;0.2%=0.4/нед</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.9">
+        BOFU <span class="tip" data-tip="BOFU визитов в неделю сейчас">15</span>&times;<span class="tip" data-tip="CVR BOFU — B2B консалтинг бенчмарк: 3–5%">3%</span>=<span class="tip" data-tip="лидов в неделю из BOFU-трафика">0.5/нед</span><br>
+        MOFU <span class="tip" data-tip="MOFU визитов в неделю сейчас">50</span>&times;<span class="tip" data-tip="CVR MOFU — B2B консалтинг бенчмарк: 1–2%">1%</span>=<span class="tip" data-tip="лидов в неделю из MOFU-трафика">0.5/нед</span><br>
+        TOFU <span class="tip" data-tip="TOFU визитов в неделю сейчас">185</span>&times;<span class="tip" data-tip="CVR TOFU — информационный трафик с CTA: 0.15–0.25%">0.2%</span>=<span class="tip" data-tip="лидов в неделю из TOFU-трафика">0.4/нед</span>
+      </div>
     </div>
     <div style="background:var(--card);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:18px">
       <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#fbbf24;margin-bottom:12px">Быстрые победы &#8212; 3 месяца</div>
@@ -864,7 +874,11 @@ tr:hover td{background:rgba(255,255,255,.02);}
         <div style="font-size:11px;color:var(--muted)">Лидов / мес (оценка)*</div>
         <div style="font-size:22px;font-weight:800;color:#4ade80">~22&ndash;28</div>
       </div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.6">BOFU 70&times;4%=2.8/нед, MOFU 100&times;1.2%=1.2/нед, TOFU 650&times;0.25%=1.6/нед. Quick Win + новые страницы услуг.</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.9">
+        BOFU <span class="tip" data-tip="BOFU визитов/нед через 12 мес: /tarify/ в топ-5 + новые страницы услуг">70</span>&times;<span class="tip" data-tip="CVR растёт: CTA оптимизированы, страницы с ценами и Schema">4%</span>=<span class="tip" data-tip="2.8 лида в неделю из BOFU">2.8/нед</span><br>
+        MOFU <span class="tip" data-tip="MOFU вырастет за счёт новых кластеров (стоимость ОП, как выбрать консалтинг)">100</span>&times;<span class="tip" data-tip="CVR MOFU улучшится после добавления CTA-блоков в статьи">1.2%</span>=<span class="tip" data-tip="1.2 лида в неделю из MOFU-трафика">1.2/нед</span><br>
+        TOFU <span class="tip" data-tip="TOFU вырастет за счёт Quick Win: этапы продаж p17→p5 (+300 визитов/нед)">650</span>&times;<span class="tip" data-tip="CVR TOFU вырастет: FAQ-блоки + CTA-мосты + лид-магниты">0.25%</span>=<span class="tip" data-tip="1.6 лида в неделю из TOFU-трафика">1.6/нед</span>
+      </div>
     </div>
   </div>
 
