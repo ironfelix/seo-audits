@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит: dynamics-orto.ru</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2330;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+    --yellow: #e3b341;
+    --purple: #bc8cff;
+    --teal: #39d353;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Header */
+  .report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .report-header .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(88,166,255,.1);
+    border: 1px solid rgba(88,166,255,.25);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-bottom: 12px;
+  }
+  .report-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .report-header .meta {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .report-header .meta span { margin-right: 16px; }
+
+  /* Sections */
+  section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .num {
+    width: 24px; height: 24px;
+    background: var(--accent);
+    color: #000;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .kpi-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .kpi-card .kpi-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+  }
+  .kpi-card .kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-card .kpi-sub {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .kpi-card.warn .kpi-value { color: var(--orange); }
+  .kpi-card.good .kpi-value { color: var(--green); }
+  .kpi-card.info .kpi-value { color: var(--accent); }
+  .kpi-card.purple .kpi-value { color: var(--purple); }
+  .kpi-card.red .kpi-value { color: var(--red); }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--bg3);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody tr { border-top: 1px solid var(--border); }
+  tbody tr:hover { background: var(--bg3); }
+  tbody td { padding: 9px 14px; font-size: 13px; }
+  td.mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  td.url { color: var(--muted); font-size: 12px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Pill badges */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+  .pill-green { background: rgba(63,185,80,.15); color: var(--green); }
+  .pill-red { background: rgba(248,81,73,.15); color: var(--red); }
+  .pill-orange { background: rgba(210,153,34,.15); color: var(--orange); }
+  .pill-blue { background: rgba(88,166,255,.15); color: var(--accent); }
+  .pill-purple { background: rgba(188,140,255,.15); color: var(--purple); }
+
+  /* Chart bar */
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-label { width: 140px; font-size: 12px; color: var(--muted); flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; height: 20px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: #000; }
+  .bar-val { font-size: 13px; font-weight: 600; width: 36px; text-align: right; flex-shrink: 0; }
+
+  /* Timeline */
+  .timeline {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .timeline-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; margin-bottom: 8px; }
+  .tl-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .tl-bar { width: 100%; border-radius: 3px 3px 0 0; position: relative; }
+  .tl-bar .tl-tip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s;
+    z-index: 10;
+  }
+  .tl-col:hover .tl-tip { opacity: 1; }
+  .tl-label { font-size: 9px; color: var(--muted); text-align: center; white-space: nowrap; }
+
+  /* Alert blocks */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body { font-size: 13px; }
+  .alert-body strong { display: block; margin-bottom: 2px; }
+  .alert.alert-red { background: rgba(248,81,73,.08); border: 1px solid rgba(248,81,73,.25); }
+  .alert.alert-orange { background: rgba(210,153,34,.08); border: 1px solid rgba(210,153,34,.25); }
+  .alert.alert-green { background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.25); }
+  .alert.alert-blue { background: rgba(88,166,255,.08); border: 1px solid rgba(88,166,255,.25); }
+
+  /* Action list */
+  .action-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .action-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .action-item .priority-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .prio-high { background: rgba(248,81,73,.2); color: var(--red); }
+  .prio-med { background: rgba(210,153,34,.2); color: var(--orange); }
+  .prio-low { background: rgba(88,166,255,.2); color: var(--accent); }
+  .action-item .action-text { font-size: 13px; }
+  .action-item .action-text strong { display: block; font-size: 14px; margin-bottom: 2px; color: #fff; }
+
+  /* Competitor vis compare */
+  .comp-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .comp-name { width: 170px; font-size: 12px; flex-shrink: 0; }
+  .comp-track { flex: 1; height: 18px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .comp-fill { height: 100%; border-radius: 3px; }
+  .comp-vis { width: 40px; font-size: 12px; font-weight: 600; text-align: right; }
+
+  /* Two-col grid */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .pos-tag {
+    display: inline-block;
+    font-family: 'SF Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 6px;
+    min-width: 28px;
+    text-align: center;
+  }
+  .pos-1 { background: rgba(63,185,80,.2); color: var(--green); }
+  .pos-top3 { background: rgba(57,211,83,.12); color: #5bc96b; }
+  .pos-top5 { background: rgba(88,166,255,.15); color: var(--accent); }
+  .pos-top10 { background: rgba(188,140,255,.12); color: var(--purple); }
+  .pos-out { background: rgba(139,148,158,.1); color: var(--muted); }
+
+  .delta-up { color: var(--green); font-weight: 600; }
+  .delta-down { color: var(--red); font-weight: 600; }
+  .delta-flat { color: var(--muted); }
+
+  .kw-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .kw-row:last-child { border-bottom: none; }
+  .kw-word { flex: 1; font-size: 13px; }
+  .kw-sw { font-size: 11px; color: var(--muted); width: 70px; text-align: right; }
+  .kw-traffic { font-size: 12px; font-weight: 600; color: var(--accent); width: 60px; text-align: right; }
+
+  /* ===== EXECUTIVE SUMMARY ===== */
+  .exec-summary {
+    background: linear-gradient(135deg, #0d1f35 0%, #0d1117 100%);
+    border: 1px solid rgba(88,166,255,.3);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exec-summary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--purple), var(--green));
+  }
+  .exec-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .exec-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    background: rgba(88,166,255,.1);
+    border: 1px solid rgba(88,166,255,.25);
+    border-radius: 4px;
+    padding: 3px 10px;
+    flex-shrink: 0;
+  }
+  .exec-verdict {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .verdict-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px var(--orange);
+  }
+
+  /* Market section */
+  .exec-market {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 800px) { .exec-market { grid-template-columns: 1fr; } }
+
+  .market-block {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .market-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .market-share-vis {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .share-donut {
+    width: 90px; height: 90px;
+    flex-shrink: 0;
+  }
+  .share-legend { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .share-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .share-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .share-name { flex: 1; color: var(--text); }
+  .share-pct { font-weight: 700; font-size: 12px; }
+  .market-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* Traffic rows */
+  .market-traffic-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .mtr-row { display: flex; align-items: center; gap: 10px; }
+  .mtr-label { font-size: 12px; width: 210px; flex-shrink: 0; color: var(--text); }
+  .mtr-bar-wrap { flex: 1; }
+  .mtr-bar { height: 16px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .mtr-bar-fill { height: 100%; border-radius: 3px; }
+  .mtr-val { font-size: 12px; width: 80px; text-align: right; color: var(--muted); white-space: nowrap; }
+  .mtr-highlight .mtr-label { color: var(--accent); }
+  .mtr-highlight .mtr-bar { border: 1px solid rgba(88,166,255,.3); }
+
+  /* 4-block grid */
+  .exec-four {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .exec-four { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .exec-four { grid-template-columns: 1fr; } }
+
+  .exec-block {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .exec-block-problem { border-color: rgba(248,81,73,.3); }
+  .exec-block-plan { border-color: rgba(88,166,255,.3); }
+  .exec-block-forecast { border-color: rgba(63,185,80,.3); }
+
+  .eb-icon { font-size: 18px; margin-bottom: 6px; }
+  .eb-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .eb-list { list-style: none; display: flex; flex-direction: column; gap: 5px; font-size: 12px; }
+  .eb-list li::before { content: '·  '; color: var(--muted); }
+  .eb-ol { list-style: none; counter-reset: ebcnt; display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+  .eb-ol li { counter-increment: ebcnt; }
+  .eb-ol li::before {
+    content: counter(ebcnt);
+    display: inline-flex;
+    width: 16px; height: 16px;
+    background: rgba(88,166,255,.2);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .eb-sub { color: var(--muted); display: block; margin-top: 2px; line-height: 1.4; }
+
+  /* Forecast bars */
+  .forecast-rows { display: flex; flex-direction: column; gap: 7px; }
+  .fc-row { display: flex; align-items: center; gap: 8px; }
+  .fc-period { font-size: 11px; color: var(--muted); width: 70px; flex-shrink: 0; }
+  .fc-track { flex: 1; height: 14px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .fc-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+  .fc-num { font-size: 12px; font-weight: 700; width: 60px; text-align: right; color: var(--accent); }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .progress-potential {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .pot-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .pot-label { width: 200px; font-size: 12px; flex-shrink: 0; }
+  .pot-track { flex: 1; height: 24px; background: var(--bg3); border-radius: 4px; overflow: hidden; position: relative; }
+  .pot-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 700; }
+  .pot-val { font-size: 13px; font-weight: 700; width: 60px; text-align: right; }
+
+  .tag { display: inline-block; font-size: 11px; border-radius: 4px; padding: 2px 7px; margin: 2px; }
+
+  /* ===== ROADMAP ===== */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+
+  .roadmap-phase {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0;
+    position: relative;
+  }
+  @media (max-width: 640px) { .roadmap-phase { grid-template-columns: 1fr; } }
+
+  .roadmap-phase-label {
+    padding: 20px 20px 20px 0;
+    position: relative;
+  }
+  .roadmap-phase-label::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .rp-month {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 4px;
+  }
+  .rp-goal {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .rp-dot {
+    position: absolute;
+    right: -5px;
+    top: 24px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    z-index: 1;
+  }
+
+  .roadmap-phase-tasks {
+    padding: 16px 0 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rm-task {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .rm-task-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .rm-task-body { flex: 1; font-size: 13px; }
+  .rm-task-body strong { display: block; font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .rm-task-body span { color: var(--muted); font-size: 12px; line-height: 1.4; }
+  .rm-task-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    border-radius: 4px;
+    padding: 2px 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+  .tag-fix     { background: rgba(248,81,73,.15);   color: var(--red);    }
+  .tag-page    { background: rgba(88,166,255,.15);  color: var(--accent); }
+  .tag-content { background: rgba(188,140,255,.15); color: var(--purple); }
+  .tag-link    { background: rgba(63,185,80,.15);   color: var(--green);  }
+  .tag-geo     { background: rgba(210,153,34,.15);  color: var(--orange); }
+  .tag-plan    { background: rgba(139,148,158,.15); color: var(--muted);  }
+  .tag-cro     { background: rgba(57,211,83,.12);   color: #5bc96b;       }
+
+  .phase-m1  .rp-month { color: var(--red);    } .phase-m1  .rp-dot { background: var(--red);    } .phase-m1  .roadmap-phase-label::after { background: var(--red);    opacity:.4; }
+  .phase-m2  .rp-month { color: var(--orange); } .phase-m2  .rp-dot { background: var(--orange); } .phase-m2  .roadmap-phase-label::after { background: var(--orange); opacity:.4; }
+  .phase-m3  .rp-month { color: var(--yellow); } .phase-m3  .rp-dot { background: var(--yellow); } .phase-m3  .roadmap-phase-label::after { background: var(--yellow); opacity:.4; }
+  .phase-m46 .rp-month { color: var(--accent); } .phase-m46 .rp-dot { background: var(--accent); } .phase-m46 .roadmap-phase-label::after { background: var(--accent); opacity:.4; }
+  .phase-m612 .rp-month { color: var(--green);  } .phase-m612 .rp-dot { background: var(--green);  } .phase-m612 .roadmap-phase-label::after { background: var(--green);  opacity:.4; }
+  .phase-after .rp-month { color: var(--teal);  } .phase-after .rp-dot { background: var(--teal);  }
+
+  .roadmap-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; font-size: 12px; }
+  .roadmap-legend-item { display: flex; align-items: center; gap: 5px; color: var(--muted); }
+  .roadmap-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="report-header">
+    <div class="badge">SEO-аудит</div>
+    <h1>dynamics-orto.ru</h1>
+    <div class="meta">
+      <span>📅 26 февраля 2026</span>
+      <span>📊 Источник: keys.so</span>
+      <span>🔍 База: Яндекс Россия</span>
+      <span>🌐 Ниша: протезирование конечностей</span>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="exec-summary">
+    <div class="exec-header">
+      <div class="exec-label">Executive Summary</div>
+      <div class="exec-verdict">
+        <span class="verdict-dot"></span>
+        Сайт растёт, но уязвим: 86% трафика на одной странице, видимость вдвое ниже пика
+      </div>
+    </div>
+
+    <!-- Доля рынка -->
+    <div class="exec-market">
+      <div class="market-block">
+        <div class="market-title">Доля в органическом поиске</div>
+        <div class="market-share-vis">
+          <div class="share-donut" id="shareDonut"></div>
+          <div class="share-legend">
+            <div class="share-item">
+              <span class="share-dot" style="background:var(--accent)"></span>
+              <span class="share-name">dynamics-orto.ru</span>
+              <span class="share-pct" style="color:var(--accent)">4.2%</span>
+            </div>
+            <div class="share-item">
+              <span class="share-dot" style="background:#3fb950"></span>
+              <span class="share-name">motorica.org</span>
+              <span class="share-pct" style="color:var(--green)">21.9%</span>
+            </div>
+            <div class="share-item">
+              <span class="share-dot" style="background:#d29922"></span>
+              <span class="share-name">scoliologic.ru</span>
+              <span class="share-pct" style="color:var(--orange)">22.2%</span>
+            </div>
+            <div class="share-item">
+              <span class="share-dot" style="background:#bc8cff"></span>
+              <span class="share-name">ortoreal.ru</span>
+              <span class="share-pct" style="color:var(--purple)">13.8%</span>
+            </div>
+            <div class="share-item">
+              <span class="share-dot" style="background:#555"></span>
+              <span class="share-name">Остальные ~20 сайтов</span>
+              <span class="share-pct" style="color:var(--muted)">37.9%</span>
+            </div>
+          </div>
+        </div>
+        <div class="market-note">
+          По индексу видимости keys.so среди топ-10 известных конкурентов. Суммарная видимость рынка: ~1 280 ед.
+        </div>
+      </div>
+
+      <div class="market-block">
+        <div class="market-title">Объём рынка органического трафика</div>
+        <div class="market-traffic-rows">
+          <div class="mtr-row">
+            <div class="mtr-label">Весь рынок (топ-10 игроков)</div>
+            <div class="mtr-bar-wrap">
+              <div class="mtr-bar" style="width:100%; background:var(--bg3)">
+                <div class="mtr-bar-fill" style="width:100%; background:linear-gradient(90deg,#30363d,#21262d)"></div>
+              </div>
+            </div>
+            <div class="mtr-val">~8 700/нед</div>
+          </div>
+          <div class="mtr-row">
+            <div class="mtr-label">Лидеры (motorica + scolio)</div>
+            <div class="mtr-bar-wrap">
+              <div class="mtr-bar">
+                <div class="mtr-bar-fill" style="width:44%; background:var(--red)"></div>
+              </div>
+            </div>
+            <div class="mtr-val" style="color:var(--red)">~3 800/нед</div>
+          </div>
+          <div class="mtr-row">
+            <div class="mtr-label">Середняки (step/orto/ortopro)</div>
+            <div class="mtr-bar-wrap">
+              <div class="mtr-bar">
+                <div class="mtr-bar-fill" style="width:32%; background:var(--orange)"></div>
+              </div>
+            </div>
+            <div class="mtr-val" style="color:var(--orange)">~2 800/нед</div>
+          </div>
+          <div class="mtr-row mtr-highlight">
+            <div class="mtr-label"><strong>dynamics-orto.ru сейчас</strong></div>
+            <div class="mtr-bar-wrap">
+              <div class="mtr-bar">
+                <div class="mtr-bar-fill" style="width:4.2%; background:var(--accent)"></div>
+              </div>
+            </div>
+            <div class="mtr-val" style="color:var(--accent)"><strong>~370/нед</strong></div>
+          </div>
+          <div class="mtr-row">
+            <div class="mtr-label">Потенциал сайта (цель 12 мес)</div>
+            <div class="mtr-bar-wrap">
+              <div class="mtr-bar">
+                <div class="mtr-bar-fill" style="width:20%; background:rgba(88,166,255,.3); border:1px dashed var(--accent)"></div>
+              </div>
+            </div>
+            <div class="mtr-val" style="color:var(--muted)">~1 700/нед</div>
+          </div>
+        </div>
+        <div class="market-note">
+          Оценка: superwsk × CTR(pos). Реальный рынок с учётом всех сайтов — 15 000–25 000 визитов/нед.
+          Текущая доля dynamics-orto: <strong style="color:var(--accent)">≈ 2–3%</strong> от всего рынка ниши.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 блока: статус, проблема, план, прогноз -->
+    <div class="exec-four">
+      <div class="exec-block exec-block-status">
+        <div class="eb-icon">📍</div>
+        <div class="eb-title">Где сейчас</div>
+        <ul class="eb-list">
+          <li>Молодой сайт, <strong>1.5 года</strong> — рост с нуля до 435 ключей в топ-10</li>
+          <li>Пик был в <strong>июле 2025</strong> (ВИД=112), сейчас ВИД=54 — откат на 52%</li>
+          <li>Лидер по одному ключу <strong>"протез ноги"</strong> (p1, sw=821)</li>
+          <li>Доля рынка: <strong style="color:var(--accent)">4.2%</strong> vis среди топ-конкурентов</li>
+          <li>DR=17 — авторитет домена низкий</li>
+        </ul>
+      </div>
+      <div class="exec-block exec-block-problem">
+        <div class="eb-icon">🔴</div>
+        <div class="eb-title">Главная проблема</div>
+        <ul class="eb-list">
+          <li><strong>86% трафика с одной страницы</strong> — структурная уязвимость</li>
+          <li>Главная перегружена: 301 ключ конкурирует между собой на одном URL</li>
+          <li>40+ ключей на p11–20 не реализованы из-за каннибализации</li>
+          <li>Вопросные запросы на p30–44 — нет информационного контента</li>
+          <li>Ценный кластер "протез ступни" <strong>уходит вниз</strong> (delta=-7)</li>
+        </ul>
+      </div>
+      <div class="exec-block exec-block-plan">
+        <div class="eb-icon">🎯</div>
+        <div class="eb-title">Что делать — топ-3</div>
+        <ol class="eb-ol">
+          <li>
+            <strong>Разбить главную на страницы</strong><br>
+            <span class="eb-sub">Создать хабы: /protezirovanie-konechnostej/, /protezy-stopy/, /centr-protezirovanya/ — это даст +150 vis/нед за 2-3 мес</span>
+          </li>
+          <li>
+            <strong>5 информационных статей с FAQ</strong><br>
+            <span class="eb-sub">"Как жить с одной ногой", "Сколько стоит протез", "Как получить бесплатно" — прямая дорога в AI-ответы Нейро</span>
+          </li>
+          <li>
+            <strong>Линкбилдинг до DR 25+</strong><br>
+            <span class="eb-sub">Мед. справочники, партнёры (Ottobock/Ossur), гос. ресурсы. Без авторитета домена рост потолка ограничен</span>
+          </li>
+        </ol>
+      </div>
+      <div class="exec-block exec-block-forecast">
+        <div class="eb-icon">📈</div>
+        <div class="eb-title">Прогноз роста</div>
+        <div class="forecast-rows">
+          <div class="fc-row">
+            <span class="fc-period">Сейчас</span>
+            <div class="fc-track"><div class="fc-fill" style="width:22%"></div></div>
+            <span class="fc-num">370/нед</span>
+          </div>
+          <div class="fc-row">
+            <span class="fc-period">3 месяца</span>
+            <div class="fc-track"><div class="fc-fill" style="width:40%; background:var(--orange)"></div></div>
+            <span class="fc-num" style="color:var(--orange)">~600/нед</span>
+          </div>
+          <div class="fc-row">
+            <span class="fc-period">6 месяцев</span>
+            <div class="fc-track"><div class="fc-fill" style="width:58%; background:var(--yellow)"></div></div>
+            <span class="fc-num" style="color:var(--yellow)">~850/нед</span>
+          </div>
+          <div class="fc-row">
+            <span class="fc-period">12 месяцев</span>
+            <div class="fc-track"><div class="fc-fill" style="width:88%; background:var(--green)"></div></div>
+            <span class="fc-num" style="color:var(--green)">~1 700/нед</span>
+          </div>
+        </div>
+        <div style="margin-top:10px; font-size:11px; color:var(--muted); line-height:1.5">
+          При реализации всего плана — доля рынка <strong style="color:var(--green)">вырастет с 4% до ~20%</strong>, уровень steplife/ortoprotez.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI -->
+  <section>
+    <div class="section-title"><span class="num">1</span>Ключевые метрики</div>
+    <div class="kpi-grid">
+      <div class="kpi-card warn">
+        <div class="kpi-label">Видимость</div>
+        <div class="kpi-value">54</div>
+        <div class="kpi-sub">Потенциал ниши: 113 464</div>
+      </div>
+      <div class="kpi-card info">
+        <div class="kpi-label">Ключей топ-1</div>
+        <div class="kpi-value">49</div>
+        <div class="kpi-sub">топ-3: 146 | топ-5: 244</div>
+      </div>
+      <div class="kpi-card info">
+        <div class="kpi-label">Ключей топ-10</div>
+        <div class="kpi-value">435</div>
+        <div class="kpi-sub">топ-50: 1 194</div>
+      </div>
+      <div class="kpi-card warn">
+        <div class="kpi-label">Domain Rating</div>
+        <div class="kpi-value">17</div>
+        <div class="kpi-sub">Слабый авторитет</div>
+      </div>
+      <div class="kpi-card good">
+        <div class="kpi-label">AI-ответы Нейро</div>
+        <div class="kpi-value">203</div>
+        <div class="kpi-sub">Яндекс Нейро упоминания</div>
+      </div>
+      <div class="kpi-card info">
+        <div class="kpi-label">Трафик (оценка)</div>
+        <div class="kpi-value">~370</div>
+        <div class="kpi-sub">визитов в неделю</div>
+      </div>
+      <div class="kpi-card info">
+        <div class="kpi-label">Страниц в индексе</div>
+        <div class="kpi-value">97</div>
+        <div class="kpi-sub">Яндекс</div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-label">Рекламных ключей</div>
+        <div class="kpi-value">73</div>
+        <div class="kpi-sub">22 активных объявления</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section>
+    <div class="section-title"><span class="num">2</span>История роста сайта</div>
+    <div class="timeline">
+      <div style="margin-bottom:14px; font-size:12px; color:var(--muted);">Индекс видимости (vis) по месяцам. Запуск сайта — сентябрь 2024.</div>
+      <div class="timeline-chart" id="tlChart"></div>
+      <div style="display:flex; gap:6px;" id="tlLabels"></div>
+
+      <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+        <div class="alert alert-green" style="margin:0">
+          <div class="alert-icon">🚀</div>
+          <div class="alert-body">
+            <strong>Июль 2025 — пиковый взрыв</strong>
+            видимость: 55 → 112 (+100%). it1: 24 → 63 (+160%). Скорее всего апдейт Яндекса или выход контент-кластера.
+          </div>
+        </div>
+        <div class="alert alert-orange" style="margin:0">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-body">
+            <strong>Янв 2026 — просадка</strong>
+            видимость упала с 72 до 48 (-33%) за 1 месяц. Тревожный сигнал. Требует диагностики.
+          </div>
+        </div>
+        <div class="alert alert-blue" style="margin:0">
+          <div class="alert-icon">📈</div>
+          <div class="alert-body">
+            <strong>Фев 2026 — восстановление</strong>
+            видимость 48 → 54. Рекламу почти свернули (352 → 22 объявл.), но органика растёт.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Critical problem -->
+  <section>
+    <div class="section-title"><span class="num">3</span>Критическая проблема — концентрация трафика</div>
+    <div class="alert alert-red">
+      <div class="alert-icon">🔴</div>
+      <div class="alert-body">
+        <strong>86% органического трафика идёт с одной страницы (главная)</strong>
+        Одного апдейта Яндекса или технической ошибки на главной достаточно, чтобы потерять весь трафик. Именно это, вероятно, и произошло в январе 2026.
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <div class="bar-row">
+        <div class="bar-label">/ (главная)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:86%; background: var(--red);">~317/нед</div>
+        </div>
+        <div class="bar-val" style="color:var(--red)">86%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">/o-nas/vakansii</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:5.4%; background: var(--orange);">~20</div>
+        </div>
+        <div class="bar-val" style="color:var(--orange)">5%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">/o-nas</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:1.6%; background: var(--accent);">~6</div>
+        </div>
+        <div class="bar-val" style="color:var(--accent)">1.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">protez-dlya-kupaniya</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:1.6%; background: var(--accent);">~6</div>
+        </div>
+        <div class="bar-val" style="color:var(--accent)">1.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">bionicheskij-protez-nogi</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:1.4%; background: var(--purple);">~5</div>
+        </div>
+        <div class="bar-val" style="color:var(--purple)">1.4%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">rozovaya-spravka</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:1.1%; background: var(--purple);">~4</div>
+        </div>
+        <div class="bar-val" style="color:var(--purple)">1.1%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Остальные 30+ стр.</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:2%; background: var(--bg3); color:var(--muted);">&lt;3</div>
+        </div>
+        <div class="bar-val" style="color:var(--muted)">3%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitors -->
+  <section>
+    <div class="section-title"><span class="num">4</span>Конкурентный анализ</div>
+
+    <div style="margin-bottom:16px;">
+      <div class="comp-bar">
+        <div class="comp-name" style="color:var(--accent); font-weight:600;">▶ dynamics-orto.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:0.6%; background:var(--accent);"></div></div>
+        <div class="comp-vis" style="color:var(--accent)">54</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">salut-orto.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:0.4%; background:#555;"></div></div>
+        <div class="comp-vis" style="color:var(--muted)">38</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">ortoprom.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:0.9%; background:var(--orange);"></div></div>
+        <div class="comp-vis" style="color:var(--orange)">84</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">ortoprotez.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:1.4%; background:var(--orange);"></div></div>
+        <div class="comp-vis" style="color:var(--orange)">128</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">steplife.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:1.6%; background:var(--orange);"></div></div>
+        <div class="comp-vis" style="color:var(--orange)">145</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">ortoreal.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:1.96%; background:var(--orange);"></div></div>
+        <div class="comp-vis" style="color:var(--orange)">177</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">motorica.org</div>
+        <div class="comp-track"><div class="comp-fill" style="width:3.1%; background:var(--red);"></div></div>
+        <div class="comp-vis" style="color:var(--red)">281</div>
+      </div>
+      <div class="comp-bar">
+        <div class="comp-name">scoliologic.ru</div>
+        <div class="comp-track"><div class="comp-fill" style="width:3.15%; background:var(--red);"></div></div>
+        <div class="comp-vis" style="color:var(--red)">284</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Конкурент</th>
+            <th>Пересечение ключей</th>
+            <th>Их ВИД</th>
+            <th>Их it50</th>
+            <th>Превосходство</th>
+            <th>Комментарий</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>dynamics-orto.ru</strong></td>
+            <td>—</td>
+            <td style="color:var(--accent); font-weight:700">54</td>
+            <td>1 194</td>
+            <td>—</td>
+            <td style="color:var(--muted)">Наш сайт</td>
+          </tr>
+          <tr>
+            <td>salut-orto.ru</td>
+            <td>598</td>
+            <td style="color:var(--green)">38</td>
+            <td>1 587</td>
+            <td><span class="pill pill-green">Мы обгоняем</span></td>
+            <td style="color:var(--muted)">Обогнали по vis</td>
+          </tr>
+          <tr>
+            <td>ortoprom.ru</td>
+            <td>597</td>
+            <td style="color:var(--orange)">84</td>
+            <td>2 523</td>
+            <td><span class="pill pill-orange">×1.6</span></td>
+            <td style="color:var(--muted)">Достижимый</td>
+          </tr>
+          <tr>
+            <td><strong>ortoprotez.ru</strong></td>
+            <td>517</td>
+            <td style="color:var(--orange)">128</td>
+            <td>1 047</td>
+            <td><span class="pill pill-orange">×2.4</span></td>
+            <td style="color:var(--muted)">Ближайший аналог — схожий it50, но в 2.4× сильнее</td>
+          </tr>
+          <tr>
+            <td>steplife.ru</td>
+            <td>638</td>
+            <td style="color:var(--orange)">145</td>
+            <td>3 111</td>
+            <td><span class="pill pill-orange">×2.7</span></td>
+            <td style="color:var(--muted)">Цель на 6 мес</td>
+          </tr>
+          <tr>
+            <td>ortoreal.ru</td>
+            <td>637</td>
+            <td style="color:var(--red)">177</td>
+            <td>2 699</td>
+            <td><span class="pill pill-red">×3.3</span></td>
+            <td style="color:var(--muted)">Цель на 12 мес</td>
+          </tr>
+          <tr>
+            <td>motorica.org</td>
+            <td>579</td>
+            <td style="color:var(--red)">281</td>
+            <td>4 472</td>
+            <td><span class="pill pill-red">×5.2</span></td>
+            <td style="color:var(--muted)">Лидер рынка</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px; font-size:12px; color:var(--muted)">
+      💡 <strong>ortoprotez.ru</strong> — эталонный конкурент для анализа: одинаковый объём семантики (1 047 vs 1 194 ключей), но видимость в 2.4× выше. Нужно изучить структуру их сайта.
+    </div>
+  </section>
+
+  <!-- Top keywords -->
+  <section>
+    <div class="section-title"><span class="num">5</span>Топ-запросы — что сейчас работает</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Запрос</th>
+            <th>Позиция</th>
+            <th>superwsk</th>
+            <th>Δ позиция</th>
+            <th>Трафик/нед</th>
+            <th>Тип</th>
+            <th>Страница</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>протез ноги</strong></td>
+            <td><span class="pos-tag pos-1">1</span></td>
+            <td class="mono">821</td>
+            <td><span class="delta-up">▲6</span></td>
+            <td style="color:var(--accent); font-weight:700">~230</td>
+            <td><span class="pill pill-blue">ВЧ</span></td>
+            <td class="url">/</td>
+          </tr>
+          <tr>
+            <td>протезы для ног</td>
+            <td><span class="pos-tag pos-top5">5</span></td>
+            <td class="mono">284</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~17</td>
+            <td><span class="pill pill-blue">ВЧ</span></td>
+            <td class="url">/</td>
+          </tr>
+          <tr>
+            <td>клиника динамика москва официальный сайт</td>
+            <td><span class="pos-tag pos-top10">9</span></td>
+            <td class="mono">143</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~26</td>
+            <td><span class="pill pill-green">Бренд+гео</span></td>
+            <td class="url">/</td>
+          </tr>
+          <tr>
+            <td>центр протезирования</td>
+            <td><span class="pos-tag pos-top10">10</span></td>
+            <td class="mono">92</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~17</td>
+            <td><span class="pill pill-blue">СЧ</span></td>
+            <td class="url">/</td>
+          </tr>
+          <tr>
+            <td>что такое розовая справка</td>
+            <td><span class="pos-tag pos-top5">5</span></td>
+            <td class="mono">60</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~3.6</td>
+            <td><span class="pill pill-purple">Информ.</span></td>
+            <td class="url">/kak-poluchit-rozovuyu-xpravku</td>
+          </tr>
+          <tr>
+            <td>протез для купания</td>
+            <td><span class="pos-tag pos-top3">3</span></td>
+            <td class="mono">55</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~6</td>
+            <td><span class="pill pill-green">Коммерч.</span></td>
+            <td class="url">/protez-bedra-dlya-kupaniya</td>
+          </tr>
+          <tr>
+            <td>техник протезист вакансии</td>
+            <td><span class="pos-tag pos-1">2</span></td>
+            <td class="mono">50</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--orange)">~8</td>
+            <td><span class="pill pill-orange">Нецелевой</span></td>
+            <td class="url">/o-nas/vakansii</td>
+          </tr>
+          <tr>
+            <td>протезист конечностей</td>
+            <td><span class="pos-tag pos-1">1</span></td>
+            <td class="mono">33</td>
+            <td><span class="delta-flat">—</span></td>
+            <td style="color:var(--accent)">~9</td>
+            <td><span class="pill pill-blue">СЧ</span></td>
+            <td class="url">/</td>
+          </tr>
+          <tr>
+            <td>протез бедра для купания</td>
+            <td><span class="pos-tag pos-1">1</span></td>
+            <td class="mono">—</td>
+            <td><span class="delta-flat">—</span></td>
+            <td>—</td>
+            <td><span class="pill pill-green">Нишевый</span></td>
+            <td class="url">/protez-bedra-dlya-kupaniya</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Quick Wins -->
+  <section>
+    <div class="section-title"><span class="num">6</span>Quick Wins — позиции 11–20, готовые к росту</div>
+    <div class="alert alert-blue">
+      <div class="alert-icon">💡</div>
+      <div class="alert-body">
+        Все эти запросы ведут на главную страницу. Она перегружена семантикой (301 ключ!) — Яндекс не знает, под какой запрос её ранжировать. Создание отдельных посадочных страниц разгрузит главную и поднимет позиции по этим запросам.
+      </div>
+    </div>
+    <div style="margin-top:14px;" class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Запрос</th>
+            <th>Позиция</th>
+            <th>superwsk</th>
+            <th>KEI</th>
+            <th>Конкуренция (docs)</th>
+            <th>Потенциал</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>протезирование конечностей</strong></td>
+            <td><span class="pos-tag pos-out">12</span></td>
+            <td class="mono" style="color:var(--green); font-weight:700">123</td>
+            <td class="mono">2</td>
+            <td>705к</td>
+            <td style="color:var(--green)">+22/нед</td>
+            <td><span class="pill pill-red">Новая страница</span></td>
+          </tr>
+          <tr>
+            <td>центр протезирования и ортопедии</td>
+            <td><span class="pos-tag pos-out">19</span></td>
+            <td class="mono" style="color:var(--green)">84</td>
+            <td class="mono">7</td>
+            <td>1M</td>
+            <td style="color:var(--green)">+13/нед</td>
+            <td><span class="pill pill-red">Новая страница</span></td>
+          </tr>
+          <tr>
+            <td>клиника динамика москва</td>
+            <td><span class="pos-tag pos-out">20</span></td>
+            <td class="mono">69</td>
+            <td class="mono">18</td>
+            <td>825к</td>
+            <td style="color:var(--accent)">+11/нед</td>
+            <td><span class="pill pill-orange">Доработать гл.</span></td>
+          </tr>
+          <tr>
+            <td>центр ортопедии и протезирования</td>
+            <td><span class="pos-tag pos-out">14</span></td>
+            <td class="mono">68</td>
+            <td class="mono">7</td>
+            <td>1M</td>
+            <td style="color:var(--accent)">+12/нед</td>
+            <td><span class="pill pill-red">Новая страница</span></td>
+          </tr>
+          <tr>
+            <td>протезы конечностей</td>
+            <td><span class="pos-tag pos-out">16</span></td>
+            <td class="mono">46</td>
+            <td class="mono">0</td>
+            <td>788к</td>
+            <td style="color:var(--accent)">+7/нед</td>
+            <td><span class="pill pill-orange">Доработать гл.</span></td>
+          </tr>
+          <tr>
+            <td><strong>технология жизни протезирование</strong></td>
+            <td><span class="pos-tag pos-out">13</span></td>
+            <td class="mono">45</td>
+            <td class="mono" style="color:var(--green); font-weight:700">70</td>
+            <td>2M</td>
+            <td>+7/нед</td>
+            <td><span class="pill pill-purple">Конкурент по бренду!</span></td>
+          </tr>
+          <tr>
+            <td>сколько стоит протез голени</td>
+            <td><span class="pos-tag pos-out">11</span></td>
+            <td class="mono">22</td>
+            <td class="mono">13</td>
+            <td>—</td>
+            <td>+4/нед</td>
+            <td><span class="pill pill-blue">SEO-контент</span></td>
+          </tr>
+          <tr>
+            <td>бионическое протезирование</td>
+            <td><span class="pos-tag pos-out">12</span></td>
+            <td class="mono">18</td>
+            <td class="mono">13</td>
+            <td>764к</td>
+            <td>+3/нед</td>
+            <td><span class="pill pill-blue">Доработать статью</span></td>
+          </tr>
+          <tr>
+            <td>протезирование нижних конечностей в Мск</td>
+            <td><span class="pos-tag pos-out">15</span></td>
+            <td class="mono">17</td>
+            <td class="mono">17</td>
+            <td>802к</td>
+            <td>+3/нед</td>
+            <td><span class="pill pill-green">Гео-страница</span></td>
+          </tr>
+          <tr>
+            <td>сколько стоит протез голени ноги цена</td>
+            <td><span class="pos-tag pos-out">20</span></td>
+            <td class="mono">11</td>
+            <td class="mono" style="color:var(--green)">73</td>
+            <td>2M</td>
+            <td>+2/нед</td>
+            <td><span class="pill pill-blue">SEO-контент</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Falling / Rising -->
+  <section>
+    <div class="section-title"><span class="num">7</span>Динамика позиций — тревоги и точки роста</div>
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <div class="card-title">📉 Падающие позиции (delta &lt; -4)</div>
+          <div class="kw-row">
+            <div class="kw-word">протез ступни</div>
+            <div><span class="pos-tag pos-out">28</span></div>
+            <div style="width:50px; text-align:right; color:var(--red)">sw=66</div>
+            <div class="delta-down" style="width:40px; text-align:right">▼7</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">техник протезист конечностей</div>
+            <div><span class="pos-tag pos-top10">8</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=11</div>
+            <div class="delta-down" style="width:40px; text-align:right">▼6</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">протез ноги фото</div>
+            <div><span class="pos-tag pos-top10">10</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=17</div>
+            <div class="delta-down" style="width:40px; text-align:right">▼6</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">техник протезист это</div>
+            <div><span class="pos-tag pos-out">18</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=8</div>
+            <div class="delta-down" style="width:40px; text-align:right">▼5</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">центр реабилитации после ампутации</div>
+            <div><span class="pos-tag pos-out">18</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=14</div>
+            <div class="delta-down" style="width:40px; text-align:right">▼5</div>
+          </div>
+          <div style="margin-top:10px; font-size:11px; color:var(--muted)">
+            ⚠️ "Протез ступни" (sw=66) — ценный коммерческий запрос. Нужна отдельная страница под протезы стопы.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-title">📈 Растущие позиции (delta &gt; +4)</div>
+          <div class="kw-row">
+            <div class="kw-word" style="font-weight:600">протез ноги ← главный!</div>
+            <div><span class="pos-tag pos-1">1</span></div>
+            <div style="width:50px; text-align:right; color:var(--green)">sw=821</div>
+            <div class="delta-up" style="width:40px; text-align:right">▲6</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">ооо динамика групп</div>
+            <div><span class="pos-tag pos-out">19</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=20</div>
+            <div class="delta-up" style="width:40px; text-align:right">▲27</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">протезисты</div>
+            <div><span class="pos-tag pos-out">18</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=19</div>
+            <div class="delta-up" style="width:40px; text-align:right">▲21</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">клиника динамика москва</div>
+            <div><span class="pos-tag pos-out">20</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=69</div>
+            <div class="delta-up" style="width:40px; text-align:right">▲19</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-word">динамика сайт</div>
+            <div><span class="pos-tag pos-top10">6</span></div>
+            <div style="width:50px; text-align:right; color:var(--muted)">sw=25</div>
+            <div class="delta-up" style="width:40px; text-align:right">▲8</div>
+          </div>
+          <div style="margin-top:10px; font-size:11px; color:var(--muted)">
+            ✅ Главный запрос "протез ноги" растёт на +6 — позитивный знак, держать курс.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info content -->
+  <section>
+    <div class="section-title"><span class="num">8</span>Информационный контент — потенциал для Яндекс Нейро</div>
+    <div class="alert alert-green">
+      <div class="alert-icon">🤖</div>
+      <div class="alert-body">
+        <strong>203 вхождения в AI-ответы Яндекс Нейро — сильный показатель</strong>
+        Страница "розовая справка" (топ-5) доказала формулу: информационная статья + FAQ = AI-видимость. Нужно тиражировать.
+      </div>
+    </div>
+    <div style="margin-top:14px" class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Вопросный запрос</th><th>Позиция</th><th>superwsk</th><th>Потенциал</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>что такое розовая справка</td>
+            <td><span class="pos-tag pos-top5">5</span></td>
+            <td class="mono">60</td>
+            <td><span class="pill pill-green">✅ Работает</span></td>
+          </tr>
+          <tr>
+            <td>сколько стоит протез голени</td>
+            <td><span class="pos-tag pos-out">11</span></td>
+            <td class="mono">22</td>
+            <td><span class="pill pill-orange">Рядом с топ-10</span></td>
+          </tr>
+          <tr>
+            <td>сколько стоит протез голени ноги цена</td>
+            <td><span class="pos-tag pos-out">20</span></td>
+            <td class="mono">11</td>
+            <td><span class="pill pill-orange">Доработать</span></td>
+          </tr>
+          <tr>
+            <td>сколько стоит протез ноги от бедра</td>
+            <td><span class="pos-tag pos-top10">7</span></td>
+            <td class="mono">16</td>
+            <td><span class="pill pill-green">Близко к топ-5</span></td>
+          </tr>
+          <tr>
+            <td>кто делает протезы конечностей профессия</td>
+            <td><span class="pos-tag pos-out">31</span></td>
+            <td class="mono">18</td>
+            <td><span class="pill pill-blue">Новая статья</span></td>
+          </tr>
+          <tr>
+            <td>как жить с одной ногой</td>
+            <td><span class="pos-tag pos-out">44</span></td>
+            <td class="mono">25</td>
+            <td><span class="pill pill-blue">Новая статья + Нейро</span></td>
+          </tr>
+          <tr>
+            <td>как научиться ходить на протезе выше колена</td>
+            <td><span class="pos-tag pos-out">37</span></td>
+            <td class="mono">14</td>
+            <td><span class="pill pill-blue">FAQ-страница</span></td>
+          </tr>
+          <tr>
+            <td>как делают протезы конечностей</td>
+            <td><span class="pos-tag pos-out">38</span></td>
+            <td class="mono">9</td>
+            <td><span class="pill pill-blue">Контент + видео</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ads -->
+  <section>
+    <div class="section-title"><span class="num">9</span>Контекстная реклама — анализ</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Бюджет и охват</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size:13px;">
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted)">Рекламных ключей</span>
+            <strong>73</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted)">Активных объявлений</span>
+            <strong>22</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted)">Бюджет (сред. охват)</span>
+            <strong style="color:var(--orange)">~16 000 ₽/нед</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted)">Бюджет (макс. охват)</span>
+            <strong style="color:var(--red)">~38 900 ₽/нед</strong>
+          </div>
+          <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border); font-size:12px; color:var(--muted)">
+            Пик рекламной активности: авг 2025 (352 объявления). Сейчас — минимум. Готовятся к пилотному сезону?
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">УТП в объявлениях</div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; font-size:12px;">
+          <span class="pill pill-green">✅ Бесплатно по госпрограмме</span>
+          <span class="pill pill-green">✅ Немецкие комплектующие</span>
+          <span class="pill pill-green">✅ Участники СВО</span>
+          <span class="pill pill-green">✅ Юристы оформят документы</span>
+          <span class="pill pill-green">✅ Гарантия 24 месяца</span>
+          <span class="pill pill-blue">📍 Москва и регионы</span>
+        </div>
+        <div style="margin-top:14px; font-size:12px; color:var(--muted)">
+          Самые дорогие ставки:
+        </div>
+        <div style="font-size:13px; margin-top:8px; display:flex; flex-direction:column; gap:5px;">
+          <div style="display:flex; justify-content:space-between;">
+            <span>центры протезирования конечностей в Москве</span>
+            <strong style="color:var(--red)">201 ₽</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>протезирование ног</span>
+            <strong style="color:var(--orange)">73 ₽</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>изготовление протезов ног</span>
+            <strong style="color:var(--orange)">88 ₽</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section>
+    <div class="section-title"><span class="num">10</span>Роадмап — план по месяцам</div>
+
+    <div class="roadmap-legend">
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--red)"></div> Месяц 1</div>
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--orange)"></div> Месяц 2</div>
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--yellow)"></div> Месяц 3</div>
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--accent)"></div> Месяцы 4–6</div>
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--green)"></div> Месяцы 6–12</div>
+      <div class="roadmap-legend-item"><div class="roadmap-legend-dot" style="background:var(--teal)"></div> После 12 мес</div>
+    </div>
+
+    <div class="roadmap">
+
+      <!-- МЕСЯЦ 1 -->
+      <div class="roadmap-phase phase-m1">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">Месяц 1</div>
+          <div class="rp-goal">Диагностика + срочная страница + <strong style="color:var(--purple)">первая статья в работе</strong> параллельно.</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔍</div>
+            <div class="rm-task-body">
+              <strong>Диагностика просадки января 2026 (неделя 1)</strong>
+              <span>Vis упал с 72 до 48 за один месяц (-33%) — аномалия. Выяснить до старта остальных работ.
+              Проверить: изменения на сайте в дек.25 – янв.26, апдейты Яндекса за период, скорость мобильной версии (PageSpeed), потерю внешних ссылок.
+              <br><em>Срок: 3–5 дней. Результат: гипотеза + задача разработчику.</em></span>
+            </div>
+            <div class="rm-task-tag tag-fix">Fix</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📊</div>
+            <div class="rm-task-body">
+              <strong>Настройка аналитики (неделя 1)</strong>
+              <span>Убедиться: цели на заявки/звонки в Метрике проставлены корректно, Яндекс.Вебмастер подключён, UTM-разметка на рекламных кампаниях есть.
+              Без этого невозможно измерить результат остальных задач.
+              <br><em>Срок: 1–2 дня. Если всё настроено — пропустить.</em></span>
+            </div>
+            <div class="rm-task-tag tag-plan">Аналитика</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🚨</div>
+            <div class="rm-task-body">
+              <strong>Страница под протезы стопы — падающий кластер (недели 1–2)</strong>
+              <span>"Протез ступни" (sw=66, delta=−7) теряет позиции — уходит конкуренту из-за каннибализации главной.
+              URL: <code style="color:var(--accent)">/uslugi/protezy-nog/protezy-stopy/</code>
+              Кластер: "протез ступни" (sw=66), "протезы стопы" (sw=41), "протез на ступню" (sw=20). Суммарно sw=127.
+              <br><em>Срок: 1–2 недели вместе с контентом страницы. Самое срочное — кластер уходит вниз прямо сейчас.</em></span>
+            </div>
+            <div class="rm-task-tag tag-page">Страница</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🗺️</div>
+            <div class="rm-task-body">
+              <strong>Техническая карта хабов (неделя 2)</strong>
+              <span>Составить структуру для разработчика: какие URL, под какие кластеры, приоритет.
+              Сама реализация — в Месяце 2. Карта нужна, чтобы разработчик не ждал ТЗ.
+              Минимум: /uslugi/protezirovanie-konechnostej/ и /o-nas/centr-protezirovanya/.
+              <br><em>Срок: 2–3 дня. Результат: таблица задач в таск-трекере.</em></span>
+            </div>
+            <div class="rm-task-tag tag-plan">Планирование</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Статья 1 в работе: "Сколько стоит протез ноги — цены 2026" (неделя 2)</strong>
+              <span>Контент не ждёт пока закончится техничка — запросы: "сколько стоит протез голени" (sw=22, p11), "сколько стоит протез ноги от бедра" (sw=16, p7) уже рядом с топом.
+              Отдать автору техзадание на неделе 2, публикация — в конце месяца 1 или начале месяца 2.
+              Формат: цены по типам + таблица + FAQ 10+ вопросов.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- МЕСЯЦ 2 -->
+      <div class="roadmap-phase phase-m2">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">Месяц 2</div>
+          <div class="rp-goal">Хабы + гео СПб + <strong style="color:var(--purple)">2 новые статьи + ревизия старых</strong>.</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📄</div>
+            <div class="rm-task-body">
+              <strong>Хаб 1: Протезирование конечностей</strong>
+              <span>URL: <code style="color:var(--accent)">/uslugi/protezirovanie-konechnostej/</code><br>
+              Кластер: "протезирование конечностей" (sw=123, p12), "центр протезирования и ортопедии" (sw=84, p19), "центр ортопедии и протезирования" (sw=68, p14), "протезы конечностей" (sw=46, p16). Суммарный sw=321.
+              Потенциал при топ-5: +50/нед. Структура: H1 = "Протезирование конечностей в Москве", 2000–2500 слов, FAQ 8+ вопросов, CTA на консультацию.</span>
+            </div>
+            <div class="rm-task-tag tag-page">Страница</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📄</div>
+            <div class="rm-task-body">
+              <strong>Хаб 2: Центр протезирования</strong>
+              <span>URL: <code style="color:var(--accent)">/o-nas/centr-protezirovanya/</code><br>
+              Кластер: "центр протезирования" (sw=92, p10), "протезный центр" (sw=55, p4), "протезист конечностей" (sw=33, p1). Суммарный sw=180.
+              Страница позиционирования клиники: история, команда, оборудование, лицензии — плюс коммерческий контент.
+              Потенциал при топ-3: +30/нед.</span>
+            </div>
+            <div class="rm-task-tag tag-page">Страница</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🏙️</div>
+            <div class="rm-task-body">
+              <strong>Гео-лендинг: Санкт-Петербург</strong>
+              <span>Текущий /kontakty-spb — только визитка без SEO-ценности. Нужен полноценный лендинг.
+              Ключи: "протезирование СПб" (sw≈34, p13), "протезы голени СПб", "ооо динамика санкт-петербург" (p10).
+              Структура: H1 = "Протезирование конечностей в Санкт-Петербурге", адрес, команда, отзывы с гео, карта.
+              <br><em>Важно: только уникальный контент, не копия московской страницы.</em></span>
+            </div>
+            <div class="rm-task-tag tag-geo">Гео</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔗</div>
+            <div class="rm-task-body">
+              <strong>Внутренняя перелинковка</strong>
+              <span>После создания хабов — расставить ссылки: главная → хабы (анкоры = главный запрос хаба), хабы → страницы услуг, хабы → статьи блога.
+              Это передаёт вес страницам и помогает Яндексу понять иерархию.
+              <br><em>Срок: 1 день после запуска хабов.</em></span>
+            </div>
+            <div class="rm-task-tag tag-fix">SEO</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Статья 2: "Как жить с одной ногой — опыт пациентов"</strong>
+              <span>Параллельно с хабами. Запрос: "как жить с одной ногой" (sw=25, p44).
+              Эмоциональный формат: истории пациентов + практика + FAQ. Максимальный потенциал для Яндекс Нейро.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔧</div>
+            <div class="rm-task-body">
+              <strong>Ревизия существующих страниц</strong>
+              <span>Пока автор пишет новое — редактор проходится по уже опубликованным страницам:
+              обновить устаревшие цены, добавить FAQ-блоки там где их нет, улучшить CTA.
+              Яндекс поощряет актуальность — дата обновления влияет на ранжирование.
+              <br><em>Приоритет: топ-5 страниц по текущему трафику.</em></span>
+            </div>
+            <div class="rm-task-tag tag-fix">Ревизия</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- МЕСЯЦ 3 -->
+      <div class="roadmap-phase phase-m3">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">Месяц 3</div>
+          <div class="rp-goal">Статьи 3–5 + хаб 3 + ревизия хабов месяца 2. Ритм: 1–2 статьи в месяц — постоянно.</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Статья 3: "Как научиться ходить на протезе выше колена"</strong>
+              <span>Запрос: "как научиться ходить на протезе выше колена" (sw=14, p37).
+              Формат: пошаговое руководство + этапы реабилитации + FAQ. Болевая точка пациентов — конвертирует в обращение.
+              Перелинковать на страницу услуг протезирования бедра.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Статья 4: "Кто делает протезы — профессия протезиста"</strong>
+              <span>Запрос: "кто делает протезы конечностей профессия" (sw=18, p31).
+              E-E-A-T контент: интервью с протезистом Динамики, фото, образование, сертификаты.
+              Двойной эффект: SEO-трафик + доверие к клинике как к экспертам.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Статья 5: "Как получить протез бесплатно по госпрограмме"</strong>
+              <span>Нет явного запроса в данных, но это главное УТП в рекламных объявлениях.
+              Формат: пошаговая инструкция: МСЭ → ИПР → выбор клиники → бесплатное изготовление.
+              Закрывает BOFU: человек готовится к протезированию и ищет, как сделать бесплатно → попадает на Динамику.
+              Перелинковать на все коммерческие страницы услуг.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- МЕСЯЦЫ 4–6 -->
+      <div class="roadmap-phase phase-m46">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">Месяцы 4–6</div>
+          <div class="rp-goal">Линкбилдинг + гео-расширение + контент волна 2. Цель: обогнать ortoprom.ru (ВИД=84).</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔗</div>
+            <div class="rm-task-body">
+              <strong>Линкбилдинг — DR 17 → 22+</strong>
+              <span>Steplife.ru (ВИД=145) и motorica.org (ВИД=281) обгоняют в том числе за счёт ссылочного профиля. Без роста DR потолок видимости ~80–90.
+              <br>Приоритетные источники для медицинской ниши:
+              сайты МСЭ/ФСС (государственные), медицинские справочники medi.ru, vrachirf.ru, региональные СМИ (статьи про реабилитацию), партнёры-поставщики Ottobock/Ossur (упоминания в разделе дистрибьюторов).
+              <br>Тактика: 2–3 качественные ссылки в месяц. Избегать биржевых ссылок.
+              <br><em>KPI: DR 22+ к концу 6-го месяца.</em></span>
+            </div>
+            <div class="rm-task-tag tag-link">Ссылки</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🏙️</div>
+            <div class="rm-task-body">
+              <strong>Гео-расширение: Екатеринбург и Калуга</strong>
+              <span>В семантике уже есть запросы: Екатеринбург (sw=13, p15), Калуга (sw=18, p13).
+              Если есть выезд или партнёры — масштабировать формат СПб-лендинга.
+              Воронеж (СВО-контекст) — добавить в приоритет если есть реальная работа с участниками СВО.
+              <br><em>Только при наличии реального присутствия — иначе Яндекс пессимизирует.</em></span>
+            </div>
+            <div class="rm-task-tag tag-geo">Гео</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📄</div>
+            <div class="rm-task-body">
+              <strong>Хаб 3: Бионическое протезирование</strong>
+              <span>URL: <code style="color:var(--accent)">/uslugi/protezy-nog/bionicheskoe-protezirovanie/</code><br>
+              Кластер: "бионическое протезирование" (sw=18, p12), "бионический протез ноги" (есть в индексе, p~10).
+              Уже есть страница /bionicheskij-protez-nogi — проверить, дублируется ли, или нужна отдельная под протезирование (не сам протез).</span>
+            </div>
+            <div class="rm-task-tag tag-page">Страница</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🎯</div>
+            <div class="rm-task-body">
+              <strong>Перехват брендового трафика: "Технология жизни протезирование"</strong>
+              <span>Запрос (p13, kei=70) — пользователи ищут конкурента, но уже находят dynamics-orto.ru на 13-й позиции.
+              Создать страницу "Как выбрать клинику протезирования в Москве" — нейтральное сравнение по критериям.
+              Конвертирует аудиторию, которая ещё не определилась. Не атаковать конкурента напрямую по имени.
+              <br><em>Потенциал: перебросить 5–10 визитов/нед из нецелевого в целевой трафик.</em></span>
+            </div>
+            <div class="rm-task-tag tag-page">Страница</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">✍️</div>
+            <div class="rm-task-body">
+              <strong>Контент волна 2: ещё 3–4 статьи</strong>
+              <span>Закрыть оставшиеся информационные запросы:
+              "как делают протезы конечностей" (sw=9, p38),
+              "как научиться ходить после ампутации ноги выше колена" (sw≈10, p30+),
+              "реабилитация после ампутации ноги" (sw неизвестен, но тема критична для целевой аудитории).
+              Приоритет: запросы 20–40 позиции с sw ≥ 8.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- МЕСЯЦЫ 6–12 -->
+      <div class="roadmap-phase phase-m612">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">Месяцы 6–12</div>
+          <div class="rp-goal">Выход на уровень steplife.ru (ВИД=145). Конкурировать по ВЧ-кластерам.</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🏆</div>
+            <div class="rm-task-body">
+              <strong>Атака на ВЧ-кластеры: "протезирование ног" и "протез голени"</strong>
+              <span>К этому моменту DR вырос, структура сайта укреплена — можно конкурировать с ortoprotez.ru (ВИД=128) и steplife.ru (ВИД=145) за их ключи.
+              Инструменты: углубление контента на хабах (E-E-A-T, Schema.org/MedicalClinic, кейсы пациентов), технический SEO (Core Web Vitals), отзывы с геопривязкой.
+              <br><em>Цель: ВИД 130–150 к концу года.</em></span>
+            </div>
+            <div class="rm-task-tag tag-page">SEO</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📈</div>
+            <div class="rm-task-body">
+              <strong>CRO — конверсия из трафика в заявки</strong>
+              <span>К 6-му месяцу трафик вырастет с 370 до ~700+ визитов/нед. Время оптимизировать конверсию.
+              Тепловые карты Метрики на хабах, A/B тест формы заявки vs кнопка "Записаться", скорость ответа на заявки.
+              Даже рост конверсии с 2% до 3% = +50% заявок без роста трафика.
+              <br><em>KPI: измерить текущий CR до начала, цель +30% к CR.</em></span>
+            </div>
+            <div class="rm-task-tag tag-cro">CRO</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🎬</div>
+            <div class="rm-task-body">
+              <strong>Видео-контент на ключевых страницах</strong>
+              <span>Яндекс учитывает поведенческие факторы — видео увеличивает время на странице.
+              Форматы для ниши: процесс примерки протеза (доверие), видеоотзывы пациентов (социальное доказательство), FAQ в формате коротких видео (Яндекс.Видео + Нейро).
+              Embed YouTube на хабах и в топ-3 статьях блога.</span>
+            </div>
+            <div class="rm-task-tag tag-content">Контент</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔄</div>
+            <div class="rm-task-body">
+              <strong>Ревизия и обновление контента (квартальная)</strong>
+              <span>Статьи из Месяца 3 к этому времени 6+ месяцев — проверить позиции, обновить цены, добавить новые FAQ.
+              Яндекс поощряет актуальность: контент с датой обновления ранжируется стабильнее.
+              <br><em>Периодичность: 1 раз в квартал для топ-10 страниц по трафику.</em></span>
+            </div>
+            <div class="rm-task-tag tag-fix">Поддержка</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔗</div>
+            <div class="rm-task-body">
+              <strong>Линкбилдинг волна 2 — DR 22 → 28+</strong>
+              <span>После достижения DR 22 добавить более сложные форматы: экспертные колонки в медицинских СМИ (АиФ Здоровье, Медпортал), пресс-релизы о технологиях Ottobock/Ossur на базе Динамики, упоминания в гос. ресурсах по реабилитации.
+              <br><em>KPI: DR 28+ к концу 12-го месяца.</em></span>
+            </div>
+            <div class="rm-task-tag tag-link">Ссылки</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ПОСЛЕ 12 МЕС -->
+      <div class="roadmap-phase phase-after">
+        <div class="roadmap-phase-label">
+          <div class="rp-dot"></div>
+          <div class="rp-month">После 12 мес</div>
+          <div class="rp-goal">Удержание топа. Расширение в смежные ниши. Цель — уровень motorica.org.</div>
+        </div>
+        <div class="roadmap-phase-tasks">
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🛡️</div>
+            <div class="rm-task-body">
+              <strong>Мониторинг и защита позиций</strong>
+              <span>Еженедельный мониторинг: видимость, позиции топ-50 ключей, новые конкуренты.
+              Реакция на апдейты Яндекса: диагностика за 2–3 дня, исправление за 2–4 недели.
+              Ключевое правило: не делать резких изменений на страницах в топ-3 без тестирования.
+              <br><em>Инструменты: keys.so еженедельно, Вебмастер ежедневно.</em></span>
+            </div>
+            <div class="rm-task-tag tag-plan">Мониторинг</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🌐</div>
+            <div class="rm-task-body">
+              <strong>Расширение в смежные ниши: реабилитация и ортопедия</strong>
+              <span>Когда основная ниша протезирования охвачена — идти в смежные:
+              "реабилитация после ампутации" (новый раздел /reabilitaciya/), "ортопедические изделия" (если клиника их продаёт), "экзоскелеты для реабилитации" (растущий рынок).
+              Это новые разделы сайта, расширяющие аудиторию без потери фокуса.</span>
+            </div>
+            <div class="rm-task-tag tag-page">Экспансия</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">📰</div>
+            <div class="rm-task-body">
+              <strong>PR и репутационный линкбилдинг</strong>
+              <span>После DR 28+ — переходить к репутационным ссылкам: экспертные комментарии в федеральных СМИ (РБК, Коммерсантъ Здоровье), участие в отраслевых рейтингах клиник протезирования, партнёрство с ФСС для совместных материалов.
+              Это не только SEO — прямая узнаваемость бренда и входящие обращения.</span>
+            </div>
+            <div class="rm-task-tag tag-link">PR</div>
+          </div>
+
+          <div class="rm-task">
+            <div class="rm-task-icon">🔁</div>
+            <div class="rm-task-body">
+              <strong>Новый SEO-аудит по тем же метрикам</strong>
+              <span>Повторить аудит через 12 месяцев: видимость, DR, трафик, доля рынка, позиции по топ-ключам.
+              Сравнить с текущими показателями (фев 2026: ВИД=54, DR=17, трафик=370/нед, доля=4.2%).
+              На основе актуальных данных скорректировать стратегию на 2-й год.
+              <br><em>SEO — не разовое действие. Конкуренты не стоят на месте.</em></span>
+            </div>
+            <div class="rm-task-tag tag-plan">Аудит</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /roadmap -->
+  </section>
+
+  <!-- Growth potential -->
+  <section>
+    <div class="section-title"><span class="num">11</span>Потенциал роста</div>
+    <div class="progress-potential">
+      <div style="margin-bottom:16px; font-size:13px; color:var(--muted)">Прогноз видимости (vis) при реализации плана</div>
+      <div class="pot-row">
+        <div class="pot-label">Сейчас (фев 2026)</div>
+        <div class="pot-track">
+          <div class="pot-fill" style="width:19%; background:var(--muted);">54</div>
+        </div>
+        <div class="pot-val" style="color:var(--muted)">ВИД 54</div>
+      </div>
+      <div class="pot-row">
+        <div class="pot-label">+Quick Wins (3 мес)</div>
+        <div class="pot-track">
+          <div class="pot-fill" style="width:25%; background:var(--accent);">~80</div>
+        </div>
+        <div class="pot-val" style="color:var(--accent)">ВИД ~80</div>
+      </div>
+      <div class="pot-row">
+        <div class="pot-label">+Новые страницы (6 мес)</div>
+        <div class="pot-track">
+          <div class="pot-fill" style="width:40%; background:var(--orange);">~120-150</div>
+        </div>
+        <div class="pot-val" style="color:var(--orange)">ВИД ~130</div>
+      </div>
+      <div class="pot-row">
+        <div class="pot-label">+Контент + линки (12 мес)</div>
+        <div class="pot-track">
+          <div class="pot-fill" style="width:65%; background:var(--green);">~200</div>
+        </div>
+        <div class="pot-val" style="color:var(--green)">ВИД ~200</div>
+      </div>
+
+      <div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:13px;">
+        <div style="text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:var(--accent)">~370</div>
+          <div style="color:var(--muted); font-size:12px">визитов/нед сейчас</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:var(--orange)">~700-850</div>
+          <div style="color:var(--muted); font-size:12px">визитов/нед через 6 мес</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:var(--green)">×4-5</div>
+          <div style="color:var(--muted); font-size:12px">потенциал роста через год</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section>
+    <div class="section-title"><span class="num">12</span>Резюме</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--green)">💪 Сильные стороны</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:7px; font-size:13px;">
+          <li>✅ Лидерство по главному запросу "протез ноги" (p1, sw=821)</li>
+          <li>✅ 203 вхождения в AI-ответы Яндекс Нейро</li>
+          <li>✅ Хорошие позиции по Москве (гео)</li>
+          <li>✅ Быстрый старт с нуля (1.5 года → 435 ключей в топ-10)</li>
+          <li>✅ Страница "розовая справка" — работающий инфо-формат</li>
+          <li>✅ Сильное УТП в рекламе (бесплатно по госпрограмме)</li>
+          <li>✅ Уже обогнали salut-orto.ru по видимости</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--red)">⚠️ Слабые стороны</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:7px; font-size:13px;">
+          <li>🔴 86% трафика с одной страницы — критический риск</li>
+          <li>🔴 DR=17 — слабый авторитет домена</li>
+          <li>🟠 Откат видимости с пика 112 до 54 (-52%) за 7 месяцев</li>
+          <li>🟠 Вопросные запросы на p30-44 — не дотягиваются до AI</li>
+          <li>🟠 Нет страниц под крупные кластеры (стопа, реабилитация)</li>
+          <li>🟠 "Протез ступни" падает — ценный запрос теряется</li>
+          <li>🟡 СПб — слабое присутствие несмотря на офис</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Данные: keys.so API, база Яндекс Россия. Дата сбора: 26.02.2026. Трафик — оценочные значения (superwsk × CTR(pos)).
+  </footer>
+
+</div>
+
+<script>
+// Donut chart for market share
+(function() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 90; canvas.height = 90;
+  document.getElementById('shareDonut').appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const segments = [
+    { pct: 4.2,  color: '#58a6ff' },  // dynamics
+    { pct: 21.9, color: '#3fb950' },  // motorica
+    { pct: 22.2, color: '#d29922' },  // scoliologic
+    { pct: 13.8, color: '#bc8cff' },  // ortoreal
+    { pct: 37.9, color: '#30363d' },  // others
+  ];
+  const cx = 45, cy = 45, r = 38, ir = 26;
+  let startAngle = -Math.PI / 2;
+  segments.forEach(s => {
+    const sweep = (s.pct / 100) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startAngle, startAngle + sweep);
+    ctx.closePath();
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    startAngle += sweep;
+  });
+  // Donut hole
+  ctx.beginPath();
+  ctx.arc(cx, cy, ir, 0, 2 * Math.PI);
+  ctx.fillStyle = '#0d1f35';
+  ctx.fill();
+  // Center text
+  ctx.fillStyle = '#58a6ff';
+  ctx.font = 'bold 14px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('4.2%', cx, cy - 5);
+  ctx.fillStyle = '#8b949e';
+  ctx.font = '9px -apple-system, sans-serif';
+  ctx.fillText('доля', cx, cy + 9);
+})();
+
+// Timeline chart
+const history = [
+  {m:'сен.24',v:7}, {m:'окт.24',v:11}, {m:'ноя.24',v:19}, {m:'дек.24',v:14},
+  {m:'янв.25',v:29}, {m:'фев.25',v:37}, {m:'мар.25',v:32}, {m:'апр.25',v:37},
+  {m:'май.25',v:50}, {m:'июн.25',v:55},
+  {m:'июл.25',v:112}, {m:'авг.25',v:93}, {m:'сен.25',v:86}, {m:'окт.25',v:82},
+  {m:'ноя.25',v:76}, {m:'дек.25',v:72}, {m:'янв.26',v:48}, {m:'фев.26',v:54}
+];
+const max = Math.max(...history.map(h=>h.v));
+const chart = document.getElementById('tlChart');
+const labels = document.getElementById('tlLabels');
+history.forEach(h => {
+  const isJul = h.m === 'июл.25';
+  const isJan = h.m === 'янв.26';
+  const isCurrent = h.m === 'фев.26';
+  const col = document.createElement('div');
+  col.className = 'tl-col';
+  const pct = Math.round((h.v/max)*100);
+  const color = isJul ? '#3fb950' : isJan ? '#f85149' : isCurrent ? '#58a6ff' : '#30363d';
+  col.innerHTML = `
+    <div class="tl-bar" style="height:${pct}%; background:${color}; width:100%;">
+      <span class="tl-tip">${h.m}: ВИД=${h.v}</span>
+    </div>`;
+  chart.appendChild(col);
+  const lbl = document.createElement('div');
+  lbl.className = 'tl-col';
+  lbl.innerHTML = `<div class="tl-label" style="${isJul||isJan||isCurrent?'color:'+color:''}">${h.m}</div>`;
+  labels.appendChild(lbl);
+});
+</script>
+</body>
+</html>
