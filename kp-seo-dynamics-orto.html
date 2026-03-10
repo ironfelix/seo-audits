@@ -223,79 +223,65 @@
   }
 
   /* ---- PRICING ---- */
-  .pricing-grid {
+  .price-single {
+    background: var(--bg2);
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 32px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
     align-items: start;
   }
-  .price-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    position: relative;
-  }
-  .price-card.featured {
-    border-color: var(--accent);
-    background: linear-gradient(135deg, rgba(88,166,255,.06) 0%, var(--bg2) 100%);
-  }
-  .price-badge {
-    position: absolute;
-    top: -11px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    background: var(--accent);
-    color: #000;
-    padding: 2px 10px;
-    border-radius: 10px;
-    white-space: nowrap;
-  }
+  .price-left { min-width: 200px; }
   .price-name {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: .6px;
-    color: var(--muted);
-    margin-bottom: 8px;
+    letter-spacing: .8px;
+    color: var(--accent);
+    margin-bottom: 10px;
   }
   .price-val {
-    font-size: 32px;
+    font-size: 44px;
     font-weight: 800;
     color: #fff;
     line-height: 1;
     margin-bottom: 4px;
   }
-  .price-period { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .price-period { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
   .price-desc {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--muted);
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.5;
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
   }
-  .price-items { list-style: none; }
-  .price-items li {
+  .price-breakdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .pb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
     font-size: 13px;
-    color: var(--text);
-    padding: 5px 0;
-    padding-left: 20px;
-    position: relative;
   }
-  .price-items li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--green);
-    font-weight: 700;
+  .pb-label { color: var(--muted); }
+  .pb-val { color: #fff; font-weight: 600; font-size: 14px; }
+  .pb-total {
+    grid-column: 1 / -1;
+    background: rgba(88,166,255,.08);
+    border-color: rgba(88,166,255,.3);
+    font-size: 14px;
   }
-  .price-items li.dim { color: var(--muted); }
-  .price-items li.dim::before { content: '—'; color: var(--border); }
+  .pb-total .pb-label { color: var(--text); font-weight: 600; }
+  .pb-total .pb-val { color: var(--accent); font-size: 16px; }
 
   /* ---- INCLUDED ---- */
   .included-grid {
@@ -360,7 +346,9 @@
   }
 
   @media (max-width: 640px) {
-    .problem-grid, .phases, .pricing-grid { grid-template-columns: 1fr; }
+    .problem-grid, .phases { grid-template-columns: 1fr; }
+    .price-single { grid-template-columns: 1fr; }
+    .price-breakdown { grid-template-columns: 1fr; }
     .included-grid { grid-template-columns: 1fr; }
     .vs-block { grid-template-columns: 1fr; }
     .vs-sep { display: none; }
@@ -560,56 +548,51 @@
 
   <!-- PRICING -->
   <div class="section">
-    <div class="section-title">Тарифы</div>
-    <div class="pricing-grid">
+    <div class="section-title">Стоимость</div>
+    <div class="price-single">
 
-      <div class="price-card">
-        <div class="price-name">Старт</div>
-        <div class="price-val">49 000 ₽</div>
-        <div class="price-period">в месяц</div>
-        <div class="price-desc">Техническая база + первый контент. Для тех, кто начинает SEO с нуля.</div>
-        <ul class="price-items">
-          <li>Технический аудит и исправления</li>
-          <li>Quick Wins (оптимизация p11–20)</li>
-          <li>1 статья в месяц</li>
-          <li>Ежемесячный отчёт по позициям</li>
-          <li class="dim">Создание хабов</li>
-          <li class="dim">Гео-страницы</li>
-          <li class="dim">Линкбилдинг</li>
-        </ul>
+      <div class="price-left">
+        <div class="price-name">Full-service SEO</div>
+        <div class="price-val">260 000 ₽</div>
+        <div class="price-period">в месяц, всё включено</div>
+        <div class="price-desc">
+          Агентство закрывает весь цикл работ:
+          стратегия, разработка, контент, ссылки, аналитика.
+          Клиент только согласовывает и видит результат.
+        </div>
       </div>
 
-      <div class="price-card featured">
-        <div class="price-badge">Рекомендуем</div>
-        <div class="price-name">Рост</div>
-        <div class="price-val">79 000 ₽</div>
-        <div class="price-period">в месяц</div>
-        <div class="price-desc">Полный цикл по роадмапу: структура + контент + гео. Оптимально для целей в 12 мес.</div>
-        <ul class="price-items">
-          <li>Всё из тарифа Старт</li>
-          <li>Создание хабов (3 шт за квартал)</li>
-          <li>2 статьи в месяц</li>
-          <li>1–2 гео-страницы</li>
-          <li>2–3 ссылки в месяц (линкбилдинг)</li>
-          <li>Мониторинг позиций еженедельно</li>
-          <li class="dim">CRO</li>
-        </ul>
-      </div>
-
-      <div class="price-card">
-        <div class="price-name">Полный</div>
-        <div class="price-val">119 000 ₽</div>
-        <div class="price-period">в месяц</div>
-        <div class="price-desc">Максимальная скорость роста. Цель — занять уровень steplife.ru за 12 месяцев.</div>
-        <ul class="price-items">
-          <li>Всё из тарифа Рост</li>
-          <li>Активный линкбилдинг (5+ ссылок/мес)</li>
-          <li>CRO: оптимизация конверсии форм</li>
-          <li>Видео-SEO (YouTube + Яндекс.Видео)</li>
-          <li>3+ статьи в месяц</li>
-          <li>Яндекс Нейро: Schema.org, FAQ-блоки</li>
-          <li>Ежемесячная стратсессия</li>
-        </ul>
+      <div class="price-right">
+        <div class="price-breakdown">
+          <div class="pb-row">
+            <span class="pb-label">SEO-специалист</span>
+            <span class="pb-val">70 000 ₽</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Разработчик</span>
+            <span class="pb-val">60 000 ₽</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Копирайтер (2–3 статьи)</span>
+            <span class="pb-val">40 000 ₽</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Линкбилдинг (3–5 ссылок)</span>
+            <span class="pb-val">50 000 ₽</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Аналитика и отчётность</span>
+            <span class="pb-val">20 000 ₽</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">PM + инструменты</span>
+            <span class="pb-val">20 000 ₽</span>
+          </div>
+          <div class="pb-row pb-total">
+            <span class="pb-label">Итого в месяц</span>
+            <span class="pb-val">260 000 ₽</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -617,7 +600,7 @@
 
   <!-- INCLUDED -->
   <div class="section">
-    <div class="section-title">Входит во все тарифы</div>
+    <div class="section-title">Что делаем мы, что не нужно от клиента</div>
     <div class="included-grid">
       <div class="inc-item">
         <div class="inc-icon">📊</div>
@@ -629,8 +612,8 @@
       <div class="inc-item">
         <div class="inc-icon">🔍</div>
         <div>
-          <div class="inc-title">Аудит перед стартом</div>
-          <div class="inc-sub">Полный технический аудит входит в первый месяц. Уже готов — начинаем сразу.</div>
+          <div class="inc-title">Аудит уже готов</div>
+          <div class="inc-sub">Не тратим первый месяц на «изучение». Стартуем с Quick Wins с первой недели.</div>
         </div>
       </div>
       <div class="inc-item">
