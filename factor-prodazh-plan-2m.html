@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-план на 2 месяца — factor-prodazh.ru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4f1;
+    --white: #ffffff;
+    --dark: #1a1a1a;
+    --red: #c01020;
+    --red-light: rgba(192,16,32,.08);
+    --red-border: rgba(192,16,32,.2);
+    --gold: #e8a838;
+    --gold-light: #fff8ed;
+    --gold-border: rgba(232,168,56,.3);
+    --green: #2a7a4b;
+    --green-light: #f0faf4;
+    --border: #e2e0db;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --muted2: #9a9a9a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: var(--red);
+    opacity: .08;
+    pointer-events: none;
+  }
+  .hero .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .hero-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 34px; font-weight: 800; color: #fff;
+    line-height: 1.15; margin-bottom: 12px; letter-spacing: -.4px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub { font-size: 15px; color: #94a3b8; max-width: 580px; margin-bottom: 28px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hs { }
+  .hs-val { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+  .hs-val.red { color: var(--red); }
+  .hs-val.gold { color: var(--gold); }
+  .hs-val.green { color: #4ade80; }
+  .hs-label { font-size: 11px; color: #64748b; margin-top: 3px; }
+
+  /* ── WRAP ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .page-body { padding: 40px 0 80px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 40px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted2);
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .section-title {
+    font-size: 22px; font-weight: 800; color: var(--dark);
+    margin-bottom: 20px; letter-spacing: -.3px;
+  }
+
+  /* ── COMMERCIAL BLOCK ── */
+  .commercial {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .comm-top {
+    background: linear-gradient(135deg, var(--red-light), rgba(232,168,56,.06));
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .comm-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 6px; }
+  .comm-price { font-size: 42px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .comm-period { font-size: 14px; color: var(--muted); }
+  .comm-badge {
+    background: var(--red); color: #fff;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    padding: 6px 14px; border-radius: 20px; white-space: nowrap;
+  }
+  .comm-cols { display: grid; grid-template-columns: 1fr 1fr; }
+  .comm-col { padding: 24px 32px; }
+  .comm-col:first-child { border-right: 1px solid var(--border); }
+  .comm-col-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+    margin-bottom: 14px;
+  }
+  .comm-col-title.red { color: var(--red); }
+  .comm-col-title.green { color: var(--green); }
+  .comm-list { list-style: none; }
+  .comm-list li {
+    font-size: 13px; padding: 5px 0; padding-left: 18px;
+    position: relative; color: var(--text); border-bottom: 1px solid var(--bg);
+  }
+  .comm-list li:last-child { border-bottom: none; }
+  .comm-list li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .comm-list.ours li::before { background: var(--red); }
+  .comm-list.theirs li::before { background: var(--green); }
+  .comm-list li span { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
+  /* Format block */
+  .format-row {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .fmt { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 180px; }
+  .fmt-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fmt-title { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .fmt-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+  /* Dont block */
+  .dont-block {
+    margin-top: 12px;
+    background: var(--red-light);
+    border: 1px solid var(--red-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+  }
+  .dont-block strong { color: var(--red); }
+  .dont-block span { color: var(--muted); }
+
+  /* ── QUICK WINS ── */
+  .qw-grid { display: flex; flex-direction: column; gap: 10px; }
+  .qw {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 14px;
+    align-items: start;
+  }
+  .qw.gold { border-left-color: var(--gold); }
+  .qw-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--red); color: #fff;
+    font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .qw.gold .qw-num { background: var(--gold); }
+  .qw-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .qw-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .qw-body strong { color: var(--text); }
+  .qw-effort {
+    text-align: right; white-space: nowrap; flex-shrink: 0;
+  }
+  .qw-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted2); }
+  .qw-impact {
+    font-size: 12px; font-weight: 700; margin-top: 4px;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .qw-impact.high { background: var(--red-light); color: var(--red); }
+  .qw-impact.med { background: var(--gold-light); color: #92580a; }
+
+  /* ── PLAN TIMELINE ── */
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .plan-month {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pm-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pm-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted2); margin-bottom: 4px; }
+  .pm-title { font-size: 16px; font-weight: 800; color: var(--dark); }
+  .pm-goal { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .pm-weeks { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .pm-week { }
+  .pw-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted2); margin-bottom: 6px;
+  }
+  .pw-tasks { list-style: none; }
+  .pw-tasks li {
+    font-size: 13px; color: var(--text);
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .pw-tasks li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--red); font-size: 11px; top: 5px;
+  }
+  .pw-tasks li.gold::before { color: var(--gold); }
+  .pw-tasks li.green::before { color: var(--green); }
+  .pw-tasks li em { color: var(--muted); font-style: normal; font-size: 12px; }
+
+  /* Content plan */
+  .content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .content-table th {
+    background: #f8f7f4;
+    text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .content-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; vertical-align: top;
+  }
+  .content-table tr:last-child td { border-bottom: none; }
+  .pill {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .4px;
+    padding: 2px 7px; border-radius: 3px;
+  }
+  .pill-bofu { background: rgba(42,122,75,.12); color: var(--green); }
+  .pill-mofu { background: var(--gold-light); color: #92580a; }
+  .pill-fix  { background: var(--red-light); color: var(--red); }
+  .pill-new  { background: rgba(99,102,241,.1); color: #4f46e5; }
+
+  /* Metrics */
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .metric-box.target { border-color: var(--red-border); background: var(--red-light); }
+  .mb-label { font-size: 11px; color: var(--muted2); margin-bottom: 6px; font-weight: 500; }
+  .mb-val { font-size: 24px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .mb-val.red { color: var(--red); }
+  .mb-val.green { color: var(--green); }
+  .mb-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* Insight */
+  .insight {
+    background: var(--gold-light);
+    border: 1px solid var(--gold-border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .insight strong { color: var(--dark); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  @media (max-width: 640px) {
+    .comm-cols, .plan-grid { grid-template-columns: 1fr; }
+    .comm-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .comm-top { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .qw { grid-template-columns: 40px 1fr; }
+    .qw-effort { display: none; }
+    .hero h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-label">SEO · Коммерческое предложение</div>
+    <h1>factor-prodazh.ru<br><span>план на 2 месяца</span></h1>
+    <p class="hero-sub">Цель — квалифицированные лиды для стратегии CRM-group 2026. Без накруток, без ПФ-накрутки — только структура, контент и семантика.</p>
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-val red">4</div>
+        <div class="hs-label">квал. лида/мес сейчас</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val gold">8–12</div>
+        <div class="hs-label">цель — месяц 2</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val">447</div>
+        <div class="hs-label">визитов/нед из блога</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val green">0</div>
+        <div class="hs-label">BOFU-страниц сейчас</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+<div class="wrap">
+
+  <!-- COMMERCIAL -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">Часть 1</div>
+    <div class="section-title">Коммерческие условия</div>
+
+    <div class="commercial">
+      <div class="comm-top">
+        <div>
+          <div class="comm-name">Ежемесячный ретейнер · full-service SEO</div>
+          <div class="comm-price">180 000 ₽</div>
+          <div class="comm-period">в месяц · всё включено · минимальный срок 2 месяца</div>
+        </div>
+        <div class="comm-badge">Старт — 1 неделя</div>
+      </div>
+
+      <div class="comm-cols">
+        <div class="comm-col">
+          <div class="comm-col-title red">Берём на себя</div>
+          <ul class="comm-list ours">
+            <li>SEO-стратегия и приоритизация задач<span>еженедельно — что делаем и зачем</span></li>
+            <li>Контент-план на месяц<span>согласовываем с клиентом до старта</span></li>
+            <li>Написание и редактура статей<span>фокус на ЛПРов, не на менеджеров</span></li>
+            <li>Технические правки на сайте<span>title, meta, schema, структура URL</span></li>
+            <li>Оптимизация существующих страниц<span>типографика, читаемость, семантика</span></li>
+            <li>Еженедельный статус-звонок<span>что сделано, результаты, план на неделю</span></li>
+            <li>Ежемесячный отчёт с числами<span>трафик, позиции, лиды — с динамикой</span></li>
+          </ul>
+        </div>
+        <div class="comm-col">
+          <div class="comm-col-title green">Нужно от клиента</div>
+          <ul class="comm-list theirs">
+            <li>Доступ к сайту (редактор или разработчик)<span>для технических правок и публикаций</span></li>
+            <li>Яндекс.Метрика и Вебмастер (read+write)<span>без этого нельзя измерить результат</span></li>
+            <li>Согласование контент-плана<span>1 раз в месяц · до 2 часов</span></li>
+            <li>Экспертный input для BOFU-статей<span>кейсы, цифры, живые примеры клиентов</span></li>
+            <li>Ревью опубликованных материалов<span>финальное одобрение перед публикацией</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="format-row">
+        <div class="fmt">
+          <div class="fmt-icon">📅</div>
+          <div>
+            <div class="fmt-title">Еженедельный статус</div>
+            <div class="fmt-sub">30 мин · что сделано, метрики, план</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">📊</div>
+          <div>
+            <div class="fmt-title">Месячный отчёт</div>
+            <div class="fmt-sub">Трафик, позиции, лиды — с числами, не «мы работали»</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">✍️</div>
+          <div>
+            <div class="fmt-title">Контент-план</div>
+            <div class="fmt-sub">Согласуем до старта · корректируем раз в месяц</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">⚡</div>
+          <div>
+            <div class="fmt-title">Старт за 1 неделю</div>
+            <div class="fmt-sub">Аудит готов · Quick Wins начинаем сразу</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dont-block">
+      <strong>Что не делаем и почему:</strong> ПБН-ссылки, накрутка поведенческих факторов (клик-боты, накрутка Метрики) — краткосрочный эффект с риском фильтра Яндекса. <span>Вместо этого: улучшаем типографику, читаемость и структуру статей — поведенка растёт органически, позиции держатся.</span>
+    </div>
+  </div>
+
+  <!-- TARGETS -->
+  <div class="section">
+    <div class="section-label">Метрики</div>
+    <div class="section-title">Что меряем</div>
+    <div class="metrics-row">
+      <div class="metric-box">
+        <div class="mb-label">Квал. лиды / мес (сейчас)</div>
+        <div class="mb-val red">4</div>
+        <div class="mb-sub">янв–фев 2026</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 1</div>
+        <div class="mb-val red">6–8</div>
+        <div class="mb-sub">быстрые CTA + BOFU</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 2</div>
+        <div class="mb-val red">8–12</div>
+        <div class="mb-sub">контент + структура</div>
+      </div>
+      <div class="metric-box">
+        <div class="mb-label">Трафик блога / нед</div>
+        <div class="mb-val">447 → 560+</div>
+        <div class="mb-sub">за счёт кластеров</div>
+      </div>
+    </div>
+    <div class="insight">
+      <strong>Главный приоритет — качество лидов, не объём трафика.</strong> Сейчас блог даёт трафик от менеджеров по продажам и студентов. Задача — сдвинуть аудиторию в сторону ЛПРов: собственников, коммерческих директоров, РОПов с бюджетом на консалтинг.
+    </div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="section">
+    <div class="section-label">Часть 2 · Месяц 1, недели 1–2</div>
+    <div class="section-title">Quick Wins — результат за 2 недели</div>
+    <div class="qw-grid">
+
+      <div class="qw">
+        <div class="qw-num">1</div>
+        <div>
+          <div class="qw-title">CTA-блоки в топ-5 статьях блога</div>
+          <div class="qw-body">
+            В статьях <em>«менеджер по продажам», «5 этапов», «работа с возражениями», «расчёт стоимости», «приросты»</em> — добавить вставку: <strong>«Выстроили ОП в 200+ компаниях — посмотрите, как это работает»</strong> + кнопка к /cases/ или форме. Не требует SEO-работы — контентное изменение, эффект через 1–2 недели.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">1–3 дня</div>
+          <div class="qw-impact high">+2–3 лида/мес</div>
+        </div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">2</div>
+        <div>
+          <div class="qw-title">Schema.org + OG-теги через Yoast / RankMath</div>
+          <div class="qw-body">
+            Установить плагин, настроить: <strong>Article</strong> для блога, <strong>Service</strong> для /services/, <strong>FAQ</strong> для вопросных страниц. OG-теги автоматически улучшат превью в Telegram и VK. Эффект: расширенные сниппеты в Яндексе, CTR +10–30% без роста позиций.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">1 час</div>
+          <div class="qw-impact high">CTR +10–30%</div>
+        </div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">3</div>
+        <div>
+          <div class="qw-title">Разблокировать /cases/ и /review/*</div>
+          <div class="qw-body">
+            Сейчас кейсы закрыты от индексации — Яндекс не видит социальное доказательство. Разблокировать в robots.txt. Это откроет ранжирование по брендовым запросам <strong>«Фактор продаж кейсы»</strong>, <strong>«Кандеев результаты»</strong> — их ищут ЛПРы на этапе финальной проверки.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">30 мин</div>
+          <div class="qw-impact high">ЛПР-трафик</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">4</div>
+        <div>
+          <div class="qw-title">Исправить каннибализацию: «построение ОП с нуля» → услуга</div>
+          <div class="qw-body">
+            По ключу <strong>«построение отдела продаж с нуля» (sw=115/нед, p6)</strong> ранжируется статья блога, а не страница услуги. Добавить в статью блок с кейсом + яркий CTA → /services/konsalting/. Трафик остаётся на статье, но конвертирует.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">2–3 часа</div>
+          <div class="qw-impact med">BOFU-конверсия</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">5</div>
+        <div>
+          <div class="qw-title">Meta description на 4 страницы без него</div>
+          <div class="qw-body">
+            /bookmarks/, /quiz/, /black-friday/, /blog/test/ — Яндекс сам генерирует сниппет и делает это плохо. Написать уникальные описания <strong>120–155 символов</strong> с ключевыми словами и CTA. Быстро, видимый эффект в CTR через 1–2 недели.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">2 часа</div>
+          <div class="qw-impact med">CTR ↑</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2-MONTH PLAN -->
+  <div class="section">
+    <div class="section-label">Детальный план</div>
+    <div class="section-title">2 месяца по неделям</div>
+    <div class="plan-grid">
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 1</div>
+          <div class="pm-title">Быстрые победы + фундамент</div>
+          <div class="pm-goal">Цель: +2–4 квал. лида, fix технических тормозов</div>
+        </div>
+        <div class="pm-weeks">
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 1</div>
+            <ul class="pw-tasks">
+              <li>CTA-блоки в топ-5 статьях блога</li>
+              <li>Schema.org + OG через Yoast/RankMath</li>
+              <li>Разблокировать /cases/ и /review/*</li>
+              <li>Meta desc на 4 страницы без него</li>
+              <li class="green">Согласование контент-плана на месяц</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 2</div>
+            <ul class="pw-tasks">
+              <li>Исправить каннибализацию «построение ОП»</li>
+              <li>Title: приоритетные 20 страниц (из 68 длинных) <em>— формат «Ключ — уточнение | Фактор Продаж», ≤65 симв.</em></li>
+              <li>Типографика: читаемость топ-10 статей <em>— абзацы, подзаголовки, буллеты</em></li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 3</div>
+            <ul class="pw-tasks">
+              <li class="gold">Публикация статьи 1: BOFU <em>«Построение отдела продаж под ключ: этапы и стоимость»</em></li>
+              <li>Обновление 2 падающих статей <em>«Правила продаж» Δ−18, «Как считать KPI» Δ−14</em></li>
+              <li>Добавить FAQ-блоки в 5 MOFU-статей <em>→ Яндекс Нейро</em></li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 4</div>
+            <ul class="pw-tasks">
+              <li class="gold">Публикация статьи 2: MOFU <em>«Как выбрать консалтинг по продажам: 8 критериев»</em></li>
+              <li>Остальные 48 title (длинные) — батчем</li>
+              <li class="green">Отчёт месяц 1 + контент-план на месяц 2</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 2</div>
+          <div class="pm-title">Структура + контент поток</div>
+          <div class="pm-goal">Цель: +4–6 квал. лидов, 2 новых кластера, 3 статьи</div>
+        </div>
+        <div class="pm-weeks">
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 5</div>
+            <ul class="pw-tasks">
+              <li>Создать хаб /blog/tehnika-prodazh/ <em>«техника продаж» sw=756 p18, «технологии продаж» sw=118 p19</em></li>
+              <li class="gold">Статья 3: BOFU <em>«Аудит отдела продаж: что проверяем и сколько стоит»</em></li>
+              <li>Обновление статьи «обучение на РОП» Δ−17</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 6</div>
+            <ul class="pw-tasks">
+              <li>Создать хаб /blog/etapy-prodazh-menedzhera/ <em>«этапы продаж менеджера» sw=334 p18, «шаги продаж» sw=97 p16</em></li>
+              <li class="gold">Статья 4: MOFU <em>«Как посчитать скидку: формула и таблица» sw=164 p28</em></li>
+              <li>Внутренняя перелинковка хабов → /services/</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 7</div>
+            <ul class="pw-tasks">
+              <li class="gold">Статья 5: MOFU/BOFU <em>«Как правильно продавать B2B-услуги» sw=32 p23</em></li>
+              <li>Оптимизация страниц услуг: H1 + title под коммерческие запросы <em>«консалтинг продаж Москва», «аудит ОП цена»</em></li>
+              <li>Линкбилдинг: подготовка питчей для vc.ru, rb.ru</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 8</div>
+            <ul class="pw-tasks">
+              <li>Ревизия всех новых материалов за 2 месяца</li>
+              <li>A/B: CTA-текст в топ-3 статьях (тест варианта)</li>
+              <li class="green">Итоговый отчёт: трафик, позиции, лиды, план мес. 3</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTENT PLAN -->
+  <div class="section">
+    <div class="section-label">Контент-план</div>
+    <div class="section-title">5 материалов за 2 месяца</div>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Неделя</th>
+          <th>Материал</th>
+          <th>Тип</th>
+          <th>Ключ / sw</th>
+          <th>Цель</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 3</td>
+          <td><strong>Построение отдела продаж под ключ: этапы и стоимость</strong></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td>«отдел продаж под ключ» sw≈155</td>
+          <td>Прямые заявки на консалтинг</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 4</td>
+          <td><strong>Как выбрать консалтинг по продажам: 8 критериев</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>«консалтинг продаж» sw≈80</td>
+          <td>ЛПР на этапе выбора подрядчика</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 7</td>
+          <td><strong>Аудит отдела продаж: что проверяем и сколько стоит</strong></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td>«аудит отдела продаж» sw≈90</td>
+          <td>Заявки на аудит — низкий порог входа</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 6</td>
+          <td><strong>Как посчитать скидку: формула и таблица расчёта</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>«как посчитать скидку» sw=164 p28</td>
+          <td>Яндекс Нейро + менеджеры → ретаргет</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 7</td>
+          <td><strong>Как правильно продавать B2B-услуги: методика и примеры</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>«как правильно продавать» sw=32 p23</td>
+          <td>Аудитория — менеджеры с бюджетом на обучение ОП</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight" style="margin-top:12px">
+      <strong>Принцип контент-плана:</strong> каждый материал согласовывается с клиентом до написания — тема, угол, ключевые тезисы. BOFU-статьи требуют живых данных от клиента: кейсы, цифры, стоимость. Без этого статья не конвертирует.
+    </div>
+  </div>
+
+  <!-- PRELIMINARY WORK -->
+  <div class="section">
+    <div class="section-label">Подготовительная работа</div>
+    <div class="section-title">Что делаем до старта — первая неделя</div>
+    <div class="qw-grid">
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Аудит Метрики: настройка целей и сегментов</div>
+          <div class="qw-body">Проверить что цели на звонки, заявки, форму записаны корректно. Создать сегмент «ЛПР-трафик» (время на сайте 3+ мин, просмотр /services/). Без этого нельзя измерить результат работы.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 1</div></div>
+      </div>
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Базовый срез позиций по BOFU + MOFU ключам</div>
+          <div class="qw-body">Зафиксировать стартовые позиции по 30 целевым запросам. Без baseline невозможно доказать рост. Документируем в таблице — клиент видит в реальном времени.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 1–2</div></div>
+      </div>
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Согласование аудитории и тона BOFU-контента с клиентом</div>
+          <div class="qw-body">1 звонок на 60 минут: кто идеальный клиент, какие боли, что спрашивают на первом звонке, какие возражения. Это фундамент всех статей — без него пишем вслепую.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 2–3</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+</div><!-- /page-body -->
+
+<footer>
+  <div class="wrap">
+    SEO-план для factor-prodazh.ru · март 2026 · конфиденциально
+  </div>
+</footer>
+
+</body>
+</html>
