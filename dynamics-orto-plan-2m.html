@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-план на 2 месяца — dynamics-orto.ru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4f1;
+    --white: #ffffff;
+    --dark: #1a1a1a;
+    --red: #c01020;
+    --red-light: rgba(192,16,32,.08);
+    --red-border: rgba(192,16,32,.2);
+    --gold: #e8a838;
+    --gold-light: #fff8ed;
+    --gold-border: rgba(232,168,56,.3);
+    --green: #2a7a4b;
+    --green-light: #f0faf4;
+    --border: #e2e0db;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --muted2: #9a9a9a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: var(--dark);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: var(--red);
+    opacity: .08;
+    pointer-events: none;
+  }
+  .hero .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+  .hero h1 { font-size: 34px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 12px; letter-spacing: -.4px; }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub { font-size: 15px; color: #94a3b8; max-width: 580px; margin-bottom: 28px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hs-val { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+  .hs-val.red { color: var(--red); }
+  .hs-val.gold { color: var(--gold); }
+  .hs-val.green { color: #4ade80; }
+  .hs-label { font-size: 11px; color: #64748b; margin-top: 3px; }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .page-body { padding: 40px 0 80px; }
+
+  .section { margin-bottom: 40px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted2);
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-title { font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 20px; letter-spacing: -.3px; }
+
+  .commercial { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .comm-top {
+    background: linear-gradient(135deg, var(--red-light), rgba(232,168,56,.06));
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px;
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+  }
+  .comm-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 6px; }
+  .comm-price { font-size: 42px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .comm-period { font-size: 14px; color: var(--muted); }
+  .comm-badge { background: var(--red); color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 6px 14px; border-radius: 20px; white-space: nowrap; }
+  .comm-cols { display: grid; grid-template-columns: 1fr 1fr; }
+  .comm-col { padding: 24px 32px; }
+  .comm-col:first-child { border-right: 1px solid var(--border); }
+  .comm-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 14px; }
+  .comm-col-title.red { color: var(--red); }
+  .comm-col-title.green { color: var(--green); }
+  .comm-list { list-style: none; }
+  .comm-list li { font-size: 13px; padding: 5px 0 5px 18px; position: relative; color: var(--text); border-bottom: 1px solid var(--bg); }
+  .comm-list li:last-child { border-bottom: none; }
+  .comm-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; }
+  .comm-list.ours li::before { background: var(--red); }
+  .comm-list.theirs li::before { background: var(--green); }
+  .comm-list li span { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
+  .format-row { border-top: 1px solid var(--border); padding: 20px 32px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .fmt { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 180px; }
+  .fmt-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fmt-title { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .fmt-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+  .dont-block { margin-top: 12px; background: var(--red-light); border: 1px solid var(--red-border); border-radius: 10px; padding: 16px 20px; font-size: 13px; }
+  .dont-block strong { color: var(--red); }
+  .dont-block span { color: var(--muted); }
+
+  .qw-grid { display: flex; flex-direction: column; gap: 10px; }
+  .qw {
+    background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--red);
+    border-radius: 10px; padding: 18px 20px;
+    display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: start;
+  }
+  .qw.gold { border-left-color: var(--gold); }
+  .qw-num { width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .qw.gold .qw-num { background: var(--gold); }
+  .qw-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .qw-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .qw-body strong { color: var(--text); }
+  .qw-effort { text-align: right; white-space: nowrap; flex-shrink: 0; }
+  .qw-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted2); }
+  .qw-impact { font-size: 12px; font-weight: 700; margin-top: 4px; padding: 2px 8px; border-radius: 4px; }
+  .qw-impact.high { background: var(--red-light); color: var(--red); }
+  .qw-impact.med { background: var(--gold-light); color: #92580a; }
+
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .plan-month { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .pm-header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .pm-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted2); margin-bottom: 4px; }
+  .pm-title { font-size: 16px; font-weight: 800; color: var(--dark); }
+  .pm-goal { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .pm-weeks { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .pw-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted2); margin-bottom: 6px; }
+  .pw-tasks { list-style: none; }
+  .pw-tasks li { font-size: 13px; color: var(--text); padding: 3px 0 3px 16px; position: relative; }
+  .pw-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-size: 11px; top: 5px; }
+  .pw-tasks li.gold::before { color: var(--gold); }
+  .pw-tasks li.green::before { color: var(--green); }
+  .pw-tasks li em { color: var(--muted); font-style: normal; font-size: 12px; }
+
+  .content-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .content-table th { background: #f8f7f4; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .content-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  .content-table tr:last-child td { border-bottom: none; }
+  .pill { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; padding: 2px 7px; border-radius: 3px; }
+  .pill-bofu { background: rgba(42,122,75,.12); color: var(--green); }
+  .pill-mofu { background: var(--gold-light); color: #92580a; }
+  .pill-fix  { background: var(--red-light); color: var(--red); }
+  .pill-new  { background: rgba(99,102,241,.1); color: #4f46e5; }
+
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .metric-box.target { border-color: var(--red-border); background: var(--red-light); }
+  .mb-label { font-size: 11px; color: var(--muted2); margin-bottom: 6px; font-weight: 500; }
+  .mb-val { font-size: 24px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .mb-val.red { color: var(--red); }
+  .mb-val.green { color: var(--green); }
+  .mb-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  .insight { background: var(--gold-light); border: 1px solid var(--gold-border); border-left: 4px solid var(--gold); border-radius: 8px; padding: 14px 18px; font-size: 13px; margin-top: 12px; }
+
+  footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: center; font-size: 12px; color: var(--muted2); }
+
+  @media (max-width: 640px) {
+    .comm-cols, .plan-grid { grid-template-columns: 1fr; }
+    .comm-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .comm-top { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .qw { grid-template-columns: 40px 1fr; }
+    .qw-effort { display: none; }
+    .hero h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-label">SEO · Коммерческое предложение</div>
+    <h1>dynamics-orto.ru<br><span>план на 2 месяца</span></h1>
+    <p class="hero-sub">Хотим получить больше обращений из органического поиска — пациентов и их родственников, которые ищут протезирование в Москве и регионах. Работаем с контентом, структурой сайта и семантикой.</p>
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-val red">54</div>
+        <div class="hs-label">ВИД сейчас (пик 112)</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val">370</div>
+        <div class="hs-label">визитов в неделю</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val red">86%</div>
+        <div class="hs-label">трафика с одной страницы</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val gold">~600</div>
+        <div class="hs-label">цель — визитов/нед через 2 мес</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+<div class="wrap">
+
+  <!-- COMMERCIAL -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">Часть 1</div>
+    <div class="section-title">Коммерческие условия</div>
+
+    <div class="commercial">
+      <div class="comm-top">
+        <div>
+          <div class="comm-name">Ежемесячный ретейнер · full-service SEO</div>
+          <div class="comm-price">180 000 ₽</div>
+          <div class="comm-period">в месяц · всё включено · минимальный срок 2 месяца</div>
+        </div>
+        <div class="comm-badge">Старт — 1 неделя</div>
+      </div>
+
+      <div class="comm-cols">
+        <div class="comm-col">
+          <div class="comm-col-title red">Берём на себя</div>
+          <ul class="comm-list ours">
+            <li>SEO-стратегия и приоритизация задач<span>еженедельно — что делаем и зачем</span></li>
+            <li>Контент-план на месяц<span>согласовываем с клиентом до старта</span></li>
+            <li>Написание статей и страниц<span>медицинская ниша — E-E-A-T, экспертный тон</span></li>
+            <li>Технические правки на сайте<span>title, meta, schema, структура URL</span></li>
+            <li>Оптимизация существующих страниц<span>типографика, читаемость, семантика</span></li>
+            <li>Еженедельный статус-звонок<span>что сделано, результаты, план на неделю</span></li>
+            <li>Ежемесячный отчёт с числами<span>трафик, позиции, обращения — с динамикой</span></li>
+          </ul>
+        </div>
+        <div class="comm-col">
+          <div class="comm-col-title green">Нужно от клиента</div>
+          <ul class="comm-list theirs">
+            <li>Доступ к сайту (редактор или разработчик)<span>для технических правок и публикаций</span></li>
+            <li>Яндекс.Метрика и Вебмастер (read+write)<span>без этого нельзя измерить результат</span></li>
+            <li>Согласование контент-плана<span>1 раз в месяц · до 2 часов</span></li>
+            <li>Экспертный input для медицинских статей<span>данные по случаям, цены, особенности услуг</span></li>
+            <li>Редактура и финальное ревью статей<span>проверка медицинской точности перед публикацией</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="format-row">
+        <div class="fmt">
+          <div class="fmt-icon">📅</div>
+          <div>
+            <div class="fmt-title">Еженедельный статус</div>
+            <div class="fmt-sub">30 мин · что сделано, метрики, план</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">📊</div>
+          <div>
+            <div class="fmt-title">Месячный отчёт</div>
+            <div class="fmt-sub">Трафик, позиции, обращения — с числами</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">✍️</div>
+          <div>
+            <div class="fmt-title">Контент-план</div>
+            <div class="fmt-sub">Согласовываем до старта · корректируем раз в месяц</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">⚡</div>
+          <div>
+            <div class="fmt-title">Старт за 1 неделю</div>
+            <div class="fmt-sub">Аудит готов · Quick Wins начинаем сразу</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dont-block">
+      <strong>Что не делаем:</strong> <span>ПБН и накрутку поведенческих факторов не используем. Это даёт краткосрочный эффект, но Яндекс такие вещи отслеживает и фильтрует. Нам важен устойчивый результат, поэтому работаем с читаемостью и структурой страниц — поведенческие метрики растут сами по себе, когда пользователям удобно читать.</span>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="section">
+    <div class="section-label">Метрики</div>
+    <div class="section-title">Что меряем</div>
+    <div class="metrics-row">
+      <div class="metric-box">
+        <div class="mb-label">Трафик сейчас</div>
+        <div class="mb-val">370</div>
+        <div class="mb-sub">визитов в неделю</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 1</div>
+        <div class="mb-val red">450–500</div>
+        <div class="mb-sub">визитов/нед · Quick Wins</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 2</div>
+        <div class="mb-val red">550–650</div>
+        <div class="mb-sub">визитов/нед · хабы + контент</div>
+      </div>
+      <div class="metric-box">
+        <div class="mb-label">ВИД · цель</div>
+        <div class="mb-val">54 → 80+</div>
+        <div class="mb-sub">вернуть к уровню авг 2025</div>
+      </div>
+    </div>
+    <div class="insight">
+      Главная структурная проблема — 86% трафика приходит с одной страницы. Любой апдейт Яндекса или технический сбой на главной обнуляет весь поток обращений. Два месяца работы направлены на то, чтобы распределить трафик по нескольким сильным страницам.
+    </div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="section">
+    <div class="section-label">Часть 2 · Месяц 1, недели 1–2</div>
+    <div class="section-title">Quick Wins — результат за 2 недели</div>
+    <div class="qw-grid">
+
+      <div class="qw">
+        <div class="qw-num">1</div>
+        <div>
+          <div class="qw-title">Диагностика просадки января 2026</div>
+          <div class="qw-body">
+            ВИД упал с 72 до 48 за один месяц (−33%) — аномалия. До начала остальных работ нужно понять причину: технический сбой, апдейт Яндекса или проблема с конкретными страницами. Без диагностики есть риск повторить ситуацию.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">День 1–2</div>
+          <div class="qw-impact high">Приоритет №1</div>
+        </div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">2</div>
+        <div>
+          <div class="qw-title">Страница под «протез ступни» — кластер уходит вниз</div>
+          <div class="qw-body">
+            «Протез ступни» (sw=66) теряет позиции из-за каннибализации главной страницей. Нужна отдельная страница под кластер: <strong>«протез ступни» (sw=66), «протезы стопы» (sw=41), «протез на ступню» (sw=20)</strong> — суммарно sw=127. При топ-5: +20–30 визитов/нед.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">Нед. 1–2</div>
+          <div class="qw-impact high">+20–30/нед</div>
+        </div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">3</div>
+        <div>
+          <div class="qw-title">Schema.org/MedicalClinic + FAQ на ключевых страницах</div>
+          <div class="qw-body">
+            Медицинская ниша — Яндекс Нейро активно цитирует сайт уже 203 раза. Добавить разметку <strong>MedicalClinic, MedicalProcedure</strong> и структурированные FAQ-блоки на страницы услуг. Расширенные сниппеты в выдаче, CTR +10–20%.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">2–3 часа</div>
+          <div class="qw-impact high">CTR +10–20%</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">4</div>
+        <div>
+          <div class="qw-title">Оптимизировать 6 страниц на позициях 11–20</div>
+          <div class="qw-body">
+            Ключи уже рядом с топом — нужна небольшая доработка страниц: <strong>«сколько стоит протез голени» p11 (+4/нед)</strong>, «бионическое протезирование» p12 (+3/нед), «протезирование нижних конечностей в Москве» p15 (+3/нед). Суммарный потенциал: +15–20 визитов/нед без создания нового контента.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">Нед. 1–2</div>
+          <div class="qw-impact med">+15–20/нед</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">5</div>
+        <div>
+          <div class="qw-title">Настройка аналитики: цели на звонки и форму записи</div>
+          <div class="qw-body">
+            Убедиться что цели на заявки и звонки в Метрике проставлены корректно, Вебмастер подключён, UTM-разметка на рекламных кампаниях есть. Без этого нельзя измерить — приносит ли SEO реальные обращения или только трафик.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">1 день</div>
+          <div class="qw-impact med">Аналитика</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2-MONTH PLAN -->
+  <div class="section">
+    <div class="section-label">Детальный план</div>
+    <div class="section-title">2 месяца по неделям</div>
+    <div class="plan-grid">
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 1</div>
+          <div class="pm-title">Диагностика + Quick Wins + первый контент</div>
+          <div class="pm-goal">Цель: 450–500 визитов/нед, исправить просадку</div>
+        </div>
+        <div class="pm-weeks">
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 1</div>
+            <ul class="pw-tasks">
+              <li>Диагностика просадки января — первый приоритет</li>
+              <li>Настройка целей в Метрике (звонки, форма записи)</li>
+              <li>Schema.org/MedicalClinic + FAQ на страницах услуг</li>
+              <li class="green">Согласование контент-плана на месяц</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 2</div>
+            <ul class="pw-tasks">
+              <li>Страница «протез ступни» — новый URL под кластер sw=127</li>
+              <li>Оптимизация 6 страниц на позициях 11–20 <em>— title, H1, текст, внутренние ссылки</em></li>
+              <li>Техническая карта хабов для разработчика <em>— URL, кластеры, приоритет</em></li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 3</div>
+            <ul class="pw-tasks">
+              <li class="gold">Статья 1: «Сколько стоит протез ноги — цены 2026» <em>sw=22, p11 — потенциал в Нейро</em></li>
+              <li>Хаб «центр протезирования» — старт разработки <em>кластер sw=180: «центр протезирования» sw=92, «протезный центр» sw=55</em></li>
+              <li>Перелинковка: главная → новые страницы хабов</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 4</div>
+            <ul class="pw-tasks">
+              <li>Публикация хаба «центр протезирования»</li>
+              <li class="gold">Статья 2: «Как получить протез бесплатно по ОМС» <em>высокий спрос, прямая воронка в запись</em></li>
+              <li class="green">Отчёт месяц 1 + контент-план на месяц 2</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 2</div>
+          <div class="pm-title">Хабы + гео + контент поток</div>
+          <div class="pm-goal">Цель: 550–650 визитов/нед, ВИД 80+</div>
+        </div>
+        <div class="pm-weeks">
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 5</div>
+            <ul class="pw-tasks">
+              <li>Хаб «протезирование конечностей» <em>кластер sw=321: «протезирование конечностей» sw=123, «центр ортопедии и протезирования» sw=68</em></li>
+              <li class="gold">Статья 3: «Как жить с протезом — опыт пациентов» <em>эмоциональный формат, FAQ, Яндекс Нейро</em></li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 6</div>
+            <ul class="pw-tasks">
+              <li>Гео-страница: Санкт-Петербург <em>«протезирование СПб» sw≈34, p13 — физический офис не обязателен</em></li>
+              <li class="gold">Статья 4: «Бионический протез руки и ноги — как работает и сколько стоит» <em>бионическое протезирование p12, sw=18</em></li>
+              <li>Внутренняя перелинковка хабов между собой</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 7</div>
+            <ul class="pw-tasks">
+              <li>Хаб «протезы стопы» — второй крупный кластер <em>«протез стопы», «протез ступни», смежные — суммарно sw=150+</em></li>
+              <li class="gold">Статья 5: «Реабилитация после ампутации — этапы и сроки» <em>болевая точка пациентов, конвертирует в запись</em></li>
+              <li>Линкбилдинг: подготовка размещений на медицинских порталах</li>
+            </ul>
+          </div>
+
+          <div class="pm-week">
+            <div class="pw-label">Неделя 8</div>
+            <ul class="pw-tasks">
+              <li>Ревизия всех новых страниц и статей</li>
+              <li>CTA на формы записи во всех новых материалах</li>
+              <li class="green">Итоговый отчёт: трафик, позиции, обращения, план мес. 3</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTENT PLAN -->
+  <div class="section">
+    <div class="section-label">Контент-план</div>
+    <div class="section-title">5 материалов за 2 месяца</div>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Неделя</th>
+          <th>Материал</th>
+          <th>Тип</th>
+          <th>Ключ / sw</th>
+          <th>Цель</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 3</td>
+          <td><strong>Сколько стоит протез ноги — цены 2026</strong></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td>«сколько стоит протез голени» sw=22 p11</td>
+          <td>Запись на консультацию + Яндекс Нейро</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 4</td>
+          <td><strong>Как получить протез бесплатно по ОМС</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>высокочастотный информационный</td>
+          <td>Пациенты на этапе выбора клиники</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 5</td>
+          <td><strong>Как жить с протезом — опыт пациентов</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>вопросные запросы p30–44</td>
+          <td>Яндекс Нейро + доверие к клинике</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 6</td>
+          <td><strong>Бионический протез — как работает и сколько стоит</strong></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td>«бионическое протезирование» sw=18 p12</td>
+          <td>Запросы с высоким avbid → запись</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Нед. 7</td>
+          <td><strong>Реабилитация после ампутации — этапы и сроки</strong></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td>вопросные запросы по реабилитации</td>
+          <td>Болевая точка → запись на консультацию</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight" style="margin-top:12px">
+      <strong>Принцип контент-плана:</strong> каждый материал согласовывается с клиентом до написания. Медицинские статьи требуют проверки врача или протезиста перед публикацией — это влияет на E-E-A-T и доверие Яндекса к сайту в медицинской нише.
+    </div>
+  </div>
+
+  <!-- PRELIMINARY WORK -->
+  <div class="section">
+    <div class="section-label">Подготовительная работа</div>
+    <div class="section-title">Что делаем до старта — первая неделя</div>
+    <div class="qw-grid">
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Аудит Метрики: цели на звонки и запись</div>
+          <div class="qw-body">Проверить что цели на обращения настроены корректно. Создать сегмент «коммерческий трафик» — пользователи, которые смотрели страницы услуг. Без этого нельзя понять, приносит ли SEO реальные записи.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 1</div></div>
+      </div>
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Базовый срез позиций по целевым ключам</div>
+          <div class="qw-body">Зафиксировать стартовые позиции по 30–40 ключам из Quick Wins и хабов. Это baseline для отчётов — без него невозможно показать рост в числах.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 1–2</div></div>
+      </div>
+      <div class="qw gold">
+        <div class="qw-num" style="background:var(--gold)">→</div>
+        <div>
+          <div class="qw-title">Звонок с клиентом: услуги, цены, особенности пациентов</div>
+          <div class="qw-body">60 минут: какие виды протезирования ведёте, средний чек, частые вопросы на первичной консультации, что отличает клинику от конкурентов. Это фундамент для BOFU-статей и страниц услуг.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">День 2–3</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    SEO-план для dynamics-orto.ru · март 2026 · конфиденциально
+  </div>
+</footer>
+
+</body>
+</html>
