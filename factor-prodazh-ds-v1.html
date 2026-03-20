@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Factor-Prodazh.ru — Дизайн-система v2</title>
+<title>Factor-Prodazh.ru — Design System v1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -282,14 +282,13 @@ body {
 <!-- ============ HERO ============ -->
 <div class="ds-hero">
   <div class="ds-container">
-    <h1>Factor-Prodazh.ru — Дизайн-система v2</h1>
-    <p>Обновлённая типографика на основании <a href="factor-prodazh-audit.html" style="color:#e8a838;text-decoration:underline">аудита читаемости</a>. 14 CSS-правок применены.</p>
+    <h1>Factor-Prodazh.ru — Design System</h1>
+    <p>Компоненты, цвета, типографика и блоки блога. Извлечено из production-кода.</p>
     <div class="ds-meta">
       <span>CMS: WordPress 6.9</span>
-      <span>Тема: faktor-template</span>
-      <span>Шрифт: Raleway</span>
-      <span>768px</span>
-      <span><a href="factor-prodazh-ds-v1.html" style="color:rgba(255,255,255,.5);text-decoration:underline">v1 (старая)</a></span>
+      <span>Тема: faktor-template (кастомная)</span>
+      <span>Шрифт: Raleway (локальный)</span>
+      <span>Брейкпоинт: 768px</span>
     </div>
   </div>
 </div>
@@ -332,12 +331,8 @@ body {
   <h3 style="font-size:16px;font-weight:700;margin:0 0 12px;color:var(--ds-muted);text-transform:uppercase;letter-spacing:.04em;">Основные</h3>
   <div class="ds-palette">
     <div class="ds-swatch">
-      <div class="ds-swatch-color" style="background:#333333"></div>
-      <div class="ds-swatch-info"><div class="ds-hex">#333333</div><div class="ds-label">Body text (v2, мягче контраст)</div></div>
-    </div>
-    <div class="ds-swatch">
       <div class="ds-swatch-color" style="background:#252525"></div>
-      <div class="ds-swatch-info"><div class="ds-hex">#252525</div><div class="ds-label">Заголовки, thead (без изменений)</div></div>
+      <div class="ds-swatch-info"><div class="ds-hex">#252525</div><div class="ds-label">Body text, заголовки, thead</div></div>
     </div>
     <div class="ds-swatch">
       <div class="ds-swatch-color" style="background:#F5F5F5"></div>
@@ -453,25 +448,22 @@ body {
   </div>
 
   <div class="ds-card">
-    <div class="ds-card-header"><h3>Типографика статьи (blog.css) — v2</h3><span class="ds-tag blog">blog</span></div>
+    <div class="ds-card-header"><h3>Типографика статьи (blog.css)</h3><span class="ds-tag blog">blog</span></div>
     <div style="overflow-x:auto">
     <table class="ds-type-table">
       <thead>
-        <tr><th>Элемент</th><th>Desktop</th><th>Mobile (&le;768px)</th><th>Вес</th><th style="min-width:80px">Отступ сверху</th></tr>
+        <tr><th>Элемент</th><th>Desktop</th><th>Mobile (≤768px)</th><th>Вес</th></tr>
       </thead>
       <tbody>
-        <tr><td>h2</td><td>32px / lh 37.6px</td><td>26px</td><td>600</td><td>48px</td></tr>
-        <tr><td>h3</td><td>26px / lh 123%</td><td>22px</td><td>600</td><td>32px</td></tr>
-        <tr><td>h4</td><td>20px / lh 130%</td><td>18px</td><td>600</td><td>24px</td></tr>
-        <tr><td>p</td><td>20px / lh <strong>155%</strong></td><td>18px / lh 133%</td><td><strong>400</strong></td><td>&mdash;</td></tr>
-        <tr><td>li</td><td>20px / lh <strong>155%</strong></td><td>18px / lh 133%</td><td><strong>400</strong></td><td>&mdash;</td></tr>
-        <tr><td>blockquote (default)</td><td><strong>20px</strong> / lh <strong>140%</strong></td><td>16px</td><td>500</td><td>&mdash;</td></tr>
-        <tr><td>blockquote.grey/yellow/white</td><td>20px / lh 130%</td><td>20px</td><td>500</td><td>&mdash;</td></tr>
+        <tr><td>h2</td><td>32px / lh 37.6px</td><td>26px</td><td>600</td></tr>
+        <tr><td>h3</td><td>26px / lh 123%</td><td>22px</td><td>600</td></tr>
+        <tr><td>h4</td><td>20px / lh 130%</td><td>18px</td><td>600</td></tr>
+        <tr><td>p</td><td>20px / lh 130%</td><td>18px / lh 133%</td><td>500</td></tr>
+        <tr><td>li</td><td>20px / lh 130%</td><td>18px / lh 133%</td><td>500</td></tr>
+        <tr><td>blockquote (default)</td><td>16px / lh 125%</td><td>16px</td><td>500</td></tr>
+        <tr><td>blockquote.grey/yellow/white</td><td>20px / lh 130%</td><td>20px</td><td>500</td></tr>
       </tbody>
     </table>
-    </div>
-    <div class="ds-note" style="margin:0;border-radius:0">
-      <strong>v2:</strong> Интерлиньяж текста 130% &rarr; 155%, вес 500 &rarr; 400, цвет #252525 &rarr; #333, межбуквенный +0.01em, отступ абзацев 20 &rarr; 32px, цитаты 16 &rarr; 20px. <a href="factor-prodazh-audit.html" style="color:var(--ds-accent)">Подробности в аудите</a>.
     </div>
   </div>
 
@@ -637,17 +629,13 @@ body {
   <div class="ds-card">
     <div class="ds-card-header"><h3>h2 / h3 / h4</h3><span class="ds-tag blog">blog</span></div>
     <div class="ds-preview white-bg" style="font-family:Raleway;padding:32px">
-      <p style="font-size:20px;font-weight:400;line-height:155%;color:#333;margin:0 0 32px;letter-spacing:.01em">...конец предыдущей секции. Менеджеры должны квалифицировать каждый лид.</p>
-      <h2 style="font-size:32px;font-weight:600;line-height:37.57px;margin:48px 0 20px">Заголовок H2 — margin-top: 48px</h2>
-      <p style="font-size:20px;font-weight:400;line-height:155%;color:#333;margin:0 0 32px;letter-spacing:.01em">Первый абзац после H2.</p>
-      <h3 style="font-size:26px;font-weight:600;line-height:123%;margin:32px 0 16px">Заголовок H3 — margin-top: 32px</h3>
-      <p style="font-size:20px;font-weight:400;line-height:155%;color:#333;margin:0 0 32px;letter-spacing:.01em">Первый абзац после H3.</p>
-      <h4 style="font-size:20px;font-weight:600;line-height:130%;margin:24px 0 16px">Заголовок H4 — margin-top: 24px</h4>
+      <h2 style="font-size:32px;font-weight:600;line-height:37.57px;margin:0 0 20px">Заголовок H2 — 32px / 600</h2>
+      <h3 style="font-size:26px;font-weight:600;line-height:123%;margin:0 0 15px">Заголовок H3 — 26px / 600</h3>
+      <h4 style="font-size:20px;font-weight:600;line-height:130%;margin:0 0 20px">Заголовок H4 — 20px / 600</h4>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>.single-blog-content_text h2 { font-size: 32px; font-weight: 600; line-height: 37.57px; margin: 48px 0 20px; }  /* v1: 15px top */
-.single-blog-content_text h3 { font-size: 26px; font-weight: 600; line-height: 123%; margin: 32px 0 16px; }   /* v1: 0 top */
-.single-blog-content_text h4 { font-size: 20px; font-weight: 600; line-height: 130%; margin: 24px 0 16px; }   /* v1: 0 top */
-.single-blog-content_text h2:first-child { margin-top: 0; }</pre>
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>.single-blog-content_text h2 { font-size: 32px; font-weight: 600; line-height: 37.57px; margin: 15px 0 20px; }
+.single-blog-content_text h3 { font-size: 26px; font-weight: 600; line-height: 123%; margin: 0 0 15px; }
+.single-blog-content_text h4 { font-size: 20px; font-weight: 600; line-height: 130%; margin-bottom: 20px; }</pre>
   </div>
 </div>
 
@@ -656,43 +644,38 @@ body {
   <h2>08. Текст и списки</h2>
 
   <div class="ds-card">
-    <div class="ds-card-header"><h3>Абзац + ссылки</h3><span class="ds-tag blog">blog v2</span></div>
-    <div class="ds-preview white-bg" style="font-family:Raleway;padding:32px;max-width:720px">
-      <p style="font-size:20px;font-weight:400;line-height:155%;margin-bottom:32px;color:#333;letter-spacing:.01em">Аудит отдела продаж помогает выявить слабые места в процессах и повысить конверсию. Мы анализируем <a href="#" style="color:#453FDF;font-weight:600;text-decoration:underline">воронку продаж</a>, скрипты менеджеров и CRM-систему.</p>
-      <p style="font-size:20px;font-weight:400;line-height:155%;margin:0;color:#333;letter-spacing:.01em">Текст с <mark style="background:#FFFB8F;color:#252525;border-radius:5px;padding:0 5px">выделением</mark> через mark.</p>
+    <div class="ds-card-header"><h3>Paragraph + Links</h3><span class="ds-tag blog">blog</span></div>
+    <div class="ds-preview white-bg" style="font-family:Raleway;padding:32px">
+      <p style="font-size:20px;font-weight:500;line-height:130%;margin-bottom:20px">Аудит отдела продаж помогает выявить слабые места в процессах и повысить конверсию. Мы анализируем <a href="#" style="color:#453FDF;font-weight:600;text-decoration:underline">воронку продаж</a>, скрипты менеджеров и CRM-систему.</p>
+      <p style="font-size:20px;font-weight:500;line-height:130%;margin:0">Текст с <mark style="background:#FFFB8F;color:#252525;border-radius:5px;padding:0 5px">выделением</mark> через mark.</p>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>.single-blog-content_text p {
-  font-size: 20px; font-weight: 400; line-height: 155%; margin-bottom: 32px;  /* v1: 500, 130%, 20px */
-  color: #333333; letter-spacing: 0.01em;                                      /* v1: #252525, 0 */
-}
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>.single-blog-content_text p { font-size: 20px; font-weight: 500; line-height: 130%; margin-bottom: 20px; }
 .single-blog-content_text p a { color: #453FDF; font-weight: 600; text-decoration: underline; }
-.single-blog-content_text { max-width: 640px; }  /* v2: ограничение ширины колонки (~60 CPL) */
 mark { background: #FFFB8F; color: #252525; border-radius: 5px; padding: 0 5px; }</pre>
   </div>
 
   <div class="ds-card">
     <div class="ds-card-header"><h3>Unordered List (золотые bullets)</h3><span class="ds-tag blog">blog</span></div>
     <div class="ds-preview white-bg" style="font-family:Raleway;padding:32px">
-      <ul style="list-style:none;padding:0 0 0 20px;display:flex;flex-direction:column;gap:10px;margin:0">
-        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:400;line-height:155%;color:#333;letter-spacing:.01em">
-          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:11px;flex-shrink:0"></span>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin:0">
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:500;line-height:130%;padding-left:10px">
+          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:9px;flex-shrink:0"></span>
           Анализ текущей воронки продаж
         </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:400;line-height:155%;color:#333;letter-spacing:.01em">
-          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:11px;flex-shrink:0"></span>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:500;line-height:130%;padding-left:10px">
+          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:9px;flex-shrink:0"></span>
           Прослушка звонков менеджеров
         </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:400;line-height:155%;color:#333;letter-spacing:.01em">
-          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:11px;flex-shrink:0"></span>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:20px;font-weight:500;line-height:130%;padding-left:10px">
+          <span style="display:inline-block;min-width:8px;width:8px;height:8px;background:#fff;border:1px solid #C2B674;border-radius:50%;margin-top:9px;flex-shrink:0"></span>
           Оптимизация скриптов и CRM
         </li>
       </ul>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>.single-blog-content_text ul { display: flex; flex-direction: column; gap: 10px; list-style: none; padding-left: 20px; }  /* v1: gap 12px, padding 0 */
-.single-blog-content_text li { font-weight: 400; line-height: 155%; }  /* v1: 500, 130% */
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>.single-blog-content_text ul { display: flex; flex-direction: column; gap: 12px; list-style: none; padding: 0; }
 .single-blog-content_text ul > li::before {
   content: ""; max-width: 6px; width: 100%; height: 6px;
-  background: white; border: 1px solid #C2B674; border-radius: 100%; margin-top: 11px;
+  background: white; border: 1px solid #C2B674; border-radius: 100%; margin-top: 10px;
 }</pre>
   </div>
 
@@ -723,14 +706,13 @@ mark { background: #FFFB8F; color: #252525; border-radius: 5px; padding: 0 5px; 
   <div class="ds-card">
     <div class="ds-card-header"><h3>blockquote (default)</h3></div>
     <div class="ds-preview white-bg" style="font-family:Raleway;padding:32px">
-      <blockquote style="font-size:20px;font-weight:500;line-height:140%;color:#252525;background:#F5F5F5;border:1px dashed #D8D8D8;border-radius:4px;padding:24px;margin:24px 0">
+      <blockquote style="font-size:16px;font-weight:500;line-height:125%;color:#252525;background:#F5F5F5;border:1px dashed #D8D8D8;border-radius:4px;padding:20px;margin:0">
         Средний срок окупаемости аудита продаж в B2B-сегменте составляет 2-3 месяца при условии внедрения рекомендаций.
       </blockquote>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>blockquote {
-  font-size: 20px; font-weight: 500; line-height: 140%; color: #252525;  /* v1: 16px, 125% */
-  background: #F5F5F5; border: 1px dashed #D8D8D8; border-radius: 4px;
-  padding: 24px; margin: 24px 0;                                         /* v1: padding 20px, margin 0 */
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>blockquote {
+  font-size: 16px; font-weight: 500; line-height: 125%; color: #252525;
+  background: #F5F5F5; border: 1px dashed #D8D8D8; border-radius: 4px; padding: 20px;
 }</pre>
   </div>
 
@@ -741,7 +723,7 @@ mark { background: #FFFB8F; color: #252525; border-radius: 5px; padding: 0 5px; 
         Главная ошибка руководителей — они не считают потерянные сделки. А это и есть точка роста.
       </div>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>blockquote.grey { background: #ECEADF; border: none; padding: 25px 40px; margin: 24px -40px; }  /* v1: margin: 0 -40px */</pre>
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>blockquote.grey { background: #ECEADF; border: none; padding: 25px 40px; margin: 0 -40px; }</pre>
   </div>
 
   <div class="ds-card">
@@ -753,8 +735,8 @@ mark { background: #FFFB8F; color: #252525; border-radius: 5px; padding: 0 5px; 
         <div style="position:absolute;right:10px;bottom:10px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:28px;opacity:.3">&#9888;</div>
       </div>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>blockquote.yellow {
-  background: #FFFAEA; border: none; padding: 25px 40px; margin: 24px -40px;  /* v1: margin: 0 -40px */
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>blockquote.yellow {
+  background: #FFFAEA; border: none; padding: 25px 40px; margin: 0 -40px;
 }
 blockquote.yellow::after { /* icon-outline.svg */ right: 10px; bottom: 10px; min-width: 40px; height: 40px; }</pre>
   </div>
@@ -767,7 +749,7 @@ blockquote.yellow::after { /* icon-outline.svg */ right: 10px; bottom: 10px; min
         <div style="position:absolute;right:10px;bottom:10px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:28px;opacity:.15">&#9888;</div>
       </div>
     </div>
-    <pre class="ds-code"><span class="ds-code-label">CSS v2</span>blockquote.white { background: #fff; border: none; padding: 25px 40px; margin: 24px -40px; }  /* v1: margin: 0 -40px */
+    <pre class="ds-code"><span class="ds-code-label">CSS</span>blockquote.white { background: #fff; border: none; padding: 25px 40px; margin: 0 -40px; }
 blockquote.white::after { /* icon-outline-white.svg */ }</pre>
   </div>
 </div>
@@ -1204,8 +1186,8 @@ templates/modules/popup-beforeunload/style/*.css</pre>
 
 <!-- ============ FOOTER ============ -->
 <div style="border-top:2px solid var(--ds-border);padding:32px 0;margin-top:40px;text-align:center">
-  <p style="font-size:14px;color:var(--ds-muted);margin:0">Factor-Prodazh.ru &middot; Дизайн-система v2 &middot; 21.03.2026</p>
-  <p style="font-size:13px;color:#aaa;margin:4px 0 0">Шрифт: Raleway &middot; 768px &middot; 1170px &middot; faktor-template &middot; <a href="factor-prodazh-ds-v1.html" style="color:#aaa;text-decoration:underline">v1 (старая версия)</a></p>
+  <p style="font-size:14px;color:var(--ds-muted);margin:0">Factor-Prodazh.ru Design System v1 &middot; Извлечено из production 20.03.2026</p>
+  <p style="font-size:13px;color:#aaa;margin:4px 0 0">Шрифт: Raleway &middot; Breakpoint: 768px &middot; Container: 1170px &middot; Тема: faktor-template</p>
 </div>
 
 </div><!-- /.ds-container -->
