@@ -186,6 +186,14 @@ body {
 .doc-icon { font-size: 24px; margin-bottom: 8px; }
 .doc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
 .doc-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.doc-card::after {
+  content: '→';
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+}
 
 /* Note */
 .note {
@@ -263,7 +271,7 @@ footer {
   <!-- DOCUMENTS -->
   <div class="section">
     <div class="section-label">Документы проекта</div>
-    <div class="section-title">Материалы</div>
+    <div class="section-title">Документы <span style="font-size:13px; font-weight:500; color:var(--muted);">(нажмите на карточку для перехода)</span></div>
     <div class="docs-grid">
       <a class="doc-card" href="factor-prodazh-point-a.html">
         <div class="doc-icon">А</div>
