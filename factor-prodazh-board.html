@@ -162,6 +162,7 @@ body {
 .pill-active { background: var(--gold-light); color: #92580a; }
 .pill-next { background: var(--blue-light); color: var(--blue); }
 .pill-plan { background: #f5f5f5; color: var(--muted); }
+.pill-review { background: #fef3c7; color: #92400e; }
 
 /* Docs grid */
 .docs-grid {
@@ -185,25 +186,6 @@ body {
 .doc-icon { font-size: 24px; margin-bottom: 8px; }
 .doc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
 .doc-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-/* Week header */
-.week-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  padding: 10px 16px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-.week-num {
-  font-size: 12px; font-weight: 800;
-  color: var(--red); text-transform: uppercase;
-  letter-spacing: .5px;
-}
-.week-dates { font-size: 12px; color: var(--muted); }
-.week-focus { font-size: 12px; font-weight: 600; color: var(--dark); margin-left: auto; }
 
 /* Note */
 .note {
@@ -240,7 +222,7 @@ footer {
 <div class="hero">
   <div class="wrap">
     <h1>factor-prodazh.ru <span>доска проекта</span></h1>
-    <p class="hero-sub">SEO-проект: задачи, выполненные работы и план на неделю</p>
+    <p class="hero-sub">Задачи, выполненные работы и план на ближайшую неделю</p>
     <div class="hero-links">
       <a href="factor-prodazh-point-a.html">Точка А</a>
       <a href="factor-prodazh-plan-2m.html">План 2 мес</a>
@@ -257,22 +239,22 @@ footer {
   <div class="status-bar">
     <div class="sb">
       <div class="sb-label">Фаза проекта</div>
-      <div class="sb-val gold">Подготовка</div>
-      <div class="sb-sub">до старта проекта</div>
+      <div class="sb-val gold">Неделя 1</div>
+      <div class="sb-sub">активная работа</div>
     </div>
     <div class="sb">
       <div class="sb-label">Выполнено задач</div>
-      <div class="sb-val green">6</div>
-      <div class="sb-sub">из подготовительного блока</div>
+      <div class="sb-val green">20</div>
+      <div class="sb-sub">подготовка + первые работы</div>
     </div>
     <div class="sb">
-      <div class="sb-label">На этой неделе</div>
-      <div class="sb-val red">3</div>
-      <div class="sb-sub">в работе</div>
+      <div class="sb-label">В работе / на согласовании</div>
+      <div class="sb-val red">4</div>
+      <div class="sb-sub">черновики статей, правки</div>
     </div>
     <div class="sb">
       <div class="sb-label">Обновлено</div>
-      <div class="sb-val">20.03</div>
+      <div class="sb-val">27.03</div>
       <div class="sb-sub">2026</div>
     </div>
   </div>
@@ -280,17 +262,17 @@ footer {
   <!-- DOCUMENTS -->
   <div class="section">
     <div class="section-label">Документы проекта</div>
-    <div class="section-title">Артефакты</div>
+    <div class="section-title">Материалы</div>
     <div class="docs-grid">
       <a class="doc-card" href="factor-prodazh-point-a.html">
-        <div class="doc-icon">A</div>
+        <div class="doc-icon">А</div>
         <div class="doc-title">Точка А</div>
         <div class="doc-desc">Текущее состояние: семантика, трафик, позиции, проблемы</div>
       </a>
       <a class="doc-card" href="factor-prodazh-plan-2m.html">
         <div class="doc-icon">П</div>
         <div class="doc-title">План 2 мес</div>
-        <div class="doc-desc">SEO-план на 2 месяца: быстрые победы, контент, хабы</div>
+        <div class="doc-desc">План на 2 месяца: быстрые победы, контент, хабы</div>
       </a>
       <a class="doc-card" href="factor-prodazh-ds.html">
         <div class="doc-icon">ДС</div>
@@ -300,14 +282,14 @@ footer {
       <a class="doc-card" href="factor-prodazh-audit.html">
         <div class="doc-icon">Ч</div>
         <div class="doc-title">Аудит читаемости</div>
-        <div class="doc-desc">14 CSS-правок: до/после, патч, контентные рекомендации</div>
+        <div class="doc-desc">14 правок оформления: до/после, патч, рекомендации</div>
       </a>
     </div>
   </div>
 
-  <!-- DONE -->
+  <!-- ===================== DONE ===================== -->
   <div class="section">
-    <div class="section-label">Подготовка</div>
+    <div class="section-label">Завершено</div>
     <div class="section-title">Выполненные работы</div>
     <div class="task-grid">
 
@@ -315,7 +297,7 @@ footer {
         <div class="task-check">&#10003;</div>
         <div>
           <div class="task-title">Точка А: аудит текущего состояния</div>
-          <div class="task-desc">Семантика (1800+ ключей), трафик (447/нед), позиции, проблемы (каннибализация, title, meta). Интерактивный HTML-документ.</div>
+          <div class="task-desc">Семантика (1800+ ключей), трафик (447/нед), позиции, проблемы (каннибализация, заголовки, описания). Интерактивный документ.</div>
           <a class="task-link" href="factor-prodazh-point-a.html">&rarr; Открыть документ</a>
         </div>
         <div class="task-meta">
@@ -327,8 +309,8 @@ footer {
       <div class="task done">
         <div class="task-check">&#10003;</div>
         <div>
-          <div class="task-title">SEO-план на 2 месяца</div>
-          <div class="task-desc">8 недель по задачам: быстрые победы (нед 1-2), контент-план (5 статей), хабы, технические правки. Коммерческие условия 180 тыс/мес.</div>
+          <div class="task-title">План продвижения на 2 месяца</div>
+          <div class="task-desc">8 недель по задачам: быстрые победы (нед 1–2), контент-план (5 статей), хабы, технические правки. Условия 180 тыс/мес.</div>
           <a class="task-link" href="factor-prodazh-plan-2m.html">&rarr; Открыть план</a>
         </div>
         <div class="task-meta">
@@ -341,8 +323,8 @@ footer {
         <div class="task-check">&#10003;</div>
         <div>
           <div class="task-title">Дизайн-система v1</div>
-          <div class="task-desc">21 секция: типографика, палитра, кнопки, формы, карточки блога, шапка/подвал, навигация, блоки статей. Raleway, контейнер 1170px.</div>
-          <a class="task-link" href="factor-prodazh-ds.html">&rarr; Открыть дизайн-систему</a>
+          <div class="task-desc">21 секция: типографика, палитра, кнопки, формы, карточки блога, шапка/подвал. Шрифт Raleway, контейнер 1170px.</div>
+          <a class="task-link" href="factor-prodazh-ds.html">&rarr; Открыть</a>
         </div>
         <div class="task-meta">
           <div class="task-date">20.03</div>
@@ -353,8 +335,8 @@ footer {
       <div class="task done">
         <div class="task-check">&#10003;</div>
         <div>
-          <div class="task-title">Аудит читаемости: 14 CSS-правок</div>
-          <div class="task-desc">Интерлиньяж 130%&rarr;155%, колонка 795&rarr;640px, отступы заголовков, размер цитат. 7 живых сравнений до/после. CSS-патч готов.</div>
+          <div class="task-title">Аудит читаемости: 14 правок оформления</div>
+          <div class="task-desc">Межстрочный интервал 130%&rarr;155%, ширина колонки текста, отступы заголовков, размер цитат. 7 сравнений до/после. Патч готов и применён.</div>
           <a class="task-link" href="factor-prodazh-audit.html">&rarr; Открыть аудит</a>
         </div>
         <div class="task-meta">
@@ -366,8 +348,8 @@ footer {
       <div class="task done">
         <div class="task-check">&#10003;</div>
         <div>
-          <div class="task-title">Доступы: SSH, WP API, админка WP</div>
-          <div class="task-desc">SSH root@93.183.83.167, WP API через ?rest_route=, пароль приложения создан. Плагины: ACF Pro, Redirection, Classic Editor.</div>
+          <div class="task-title">Настройка доступов: сервер, админка, интерфейс</div>
+          <div class="task-desc">Подключение к серверу, настройка работы с сайтом через интерфейс, пароль приложения для автоматизации. Плагины: ACF Pro, Redirection, Classic Editor.</div>
         </div>
         <div class="task-meta">
           <div class="task-date">20.03</div>
@@ -378,12 +360,84 @@ footer {
       <div class="task done">
         <div class="task-check">&#10003;</div>
         <div>
-          <div class="task-title">Повестка звонка с клиентом</div>
-          <div class="task-desc">Стратегия, цели, доступы (админка WP + FTP), формат работы, график. Добавлена в Точку А.</div>
-          <a class="task-link" href="factor-prodazh-point-a.html">&rarr; Внутри Точки А</a>
+          <div class="task-title">Техническая диагностика сайта</div>
+          <div class="task-desc">Проверка robots.txt, индексации страниц (21 шт), удаление тестовой записи /blog/test-zapis/. Открыт раздел /case/ для индексации.</div>
         </div>
         <div class="task-meta">
-          <div class="task-date">19.03</div>
+          <div class="task-date">24.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Аудит описаний всех 164 страниц</div>
+          <div class="task-desc">Проверены мета-описания на всех страницах сайта. Найдены 12 страниц с пустыми или слабыми описаниями. Новые тексты подготовлены в контент-плане.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">24.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Контент-план: 51 тема, 82 кластера</div>
+          <div class="task-desc">Файл XLSX с 5 вкладками: темы, методология, фазы по неделям, технические улучшения, конкуренты. На основе семантического ядра (2204 ключа).</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">25.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Анализ конкурентов: 10 сайтов, ключевые слова</div>
+          <div class="task-desc">Определены 10 ключевых конкурентов в выдаче. Выгружены их ключевые слова для поиска упущенных тем.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">25.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Применён патч читаемости на весь блог</div>
+          <div class="task-desc">Все 14 правок оформления из аудита залиты на сервер. Изменения работают на всех статьях блога. Тонкие ссылки, увеличенные интервалы.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">25.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Инструкция по написанию контента</div>
+          <div class="task-desc">Документ с правилами: стиль, тон, структура статей, типографика, чек-листы, шаблоны для разных типов материалов.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">25.03</div>
+          <div class="task-pill pill-done">Готово</div>
+        </div>
+      </div>
+
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Проверка блоков с призывами к действию</div>
+          <div class="task-desc">Проверены баннеры и ссылки на услуги во всех статьях блога. Выявлены 5 статей без призывов — запланировано добавление.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">24.03</div>
           <div class="task-pill pill-done">Готово</div>
         </div>
       </div>
@@ -391,159 +445,194 @@ footer {
     </div>
   </div>
 
-  <!-- THIS WEEK -->
+  <!-- ===================== IN PROGRESS ===================== -->
   <div class="section">
-    <div class="section-label">Текущая неделя</div>
-    <div class="section-title">23–28 марта: Подготовка к старту</div>
+    <div class="section-label">В работе</div>
+    <div class="section-title">Текущие задачи (24–28 марта)</div>
+    <div class="task-grid">
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Статья: «КЭВ в продажах: ключевой этап воронки»</div>
+          <div class="task-desc">Черновик загружен на сайт (не опубликован). ~2500 слов, 2 инфографики, 6 вопросов-ответов с разметкой. Обложки в фирменном стиле.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-review">На проверке</div>
+        </div>
+      </div>
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Статья: «Советы Гребенюка по продажам: разбор от практиков»</div>
+          <div class="task-desc">Черновик загружен на сайт (не опубликован). ~2800 слов, 2 инфографики, 6 вопросов-ответов. Обложки в фирменном стиле. Ожидает проверки.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-review">На проверке</div>
+        </div>
+      </div>
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Статья: «Построение отдела продаж с нуля: инструкция, бюджет и кейсы»</div>
+          <div class="task-desc">Черновик готов локально. ~2800 слов, таблица расходов, сравнение «сам / подрядчик», 3 кейса с цифрами, 6 вопросов-ответов. Ожидает согласования с клиентом. Консолидация 3 существующих статей в одну.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-review">На проверке</div>
+        </div>
+      </div>
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Оптимизация главной страницы</div>
+          <div class="task-desc">Заголовок, подзаголовок, структура, микроразметка организации. В процессе.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-active">В работе</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== NEXT WEEK ===================== -->
+  <div class="section">
+    <div class="section-label">Следующая неделя</div>
+    <div class="section-title">31 марта — 4 апреля</div>
 
     <div class="note" style="margin-bottom:16px">
-      <strong>Статус:</strong> ждём подтверждение от клиента (звонок/договор). Параллельно готовим подготовительные задачи, которые можно делать без согласования.
+      <strong>Фокус:</strong> техническая оптимизация + публикация согласованных статей + заполнение описаний картинок.
     </div>
 
     <div class="task-grid">
 
-      <div class="task active">
+      <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Звонок с клиентом: согласовать план и доступы</div>
-          <div class="task-desc">Подтвердить план 2м, метрики, формат отчётности. Получить WP admin + Метрику + Вебмастер. Обсудить тон BOFU-контента.</div>
+          <div class="task-title">Заполнить описания у 367 картинок в блоге</div>
+          <div class="task-desc">У 367 из 371 изображений в 112 статьях нет описаний (атрибут alt). Важно для доступности и поисковой оптимизации.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-active">Эта неделя</div>
+          <div class="task-pill pill-next">Нед. 2</div>
         </div>
       </div>
 
-      <div class="task active">
+      <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Базовый срез позиций: 30 целевых запросов</div>
-          <div class="task-desc">Транзакционные: «построение ОП», «аудит ОП», «консалтинг продаж». Информационные: «техника продаж», «этапы продаж». Зафиксировать стартовые позиции до начала работ.</div>
+          <div class="task-title">Каннибализация «построение ОП»: объединить 3 статьи в одну</div>
+          <div class="task-desc">Три статьи конкурируют за одни ключевые слова. Основная (ID 472) получает 65% трафика. Настроить перенаправления с двух других на основную.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-active">Эта неделя</div>
+          <div class="task-pill pill-next">Нед. 2</div>
         </div>
       </div>
 
-      <div class="task active">
+      <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Аудит Метрики: цели и сегменты</div>
-          <div class="task-desc">Проверить настройку целей (звонки, заявки, формы). Создать сегмент «ЛПР-трафик» (3+ мин, /services/). Без этого не измерить результат.</div>
+          <div class="task-title">Переписать заголовки и описания: 20 приоритетных страниц</div>
+          <div class="task-desc">Из 68 страниц с длинными заголовками (&gt;65 символов) — начать с 20 самых посещаемых. Формат: «Ключевое слово — уточнение | Фактор Продаж».</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-active">Эта неделя</div>
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Микроразметка и социальные теги на главной</div>
+          <div class="task-desc">Добавить разметку «Организация» и «Сайт» на главную. Настроить теги для корректного отображения при расшаривании в соцсетях.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Баннеры с призывами в 5 топовых статьях</div>
+          <div class="task-desc">Добавить блоки «Заказать аудит» / «Смотреть кейсы» в статьи с наибольшим трафиком. Ожидаемый эффект: +2–3 заявки в месяц.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Микроразметка «Услуга» и «Вопрос-ответ» на 8 страницах услуг</div>
+          <div class="task-desc">Добавить разметку Service + FAQPage на все страницы /services/. Улучшает отображение в поиске.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Микроразметка «Курс» на 3 страницы курсов</div>
+          <div class="task-desc">Разметка Course + FAQPage на /course/*. Улучшает сниппеты в поисковой выдаче.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Внутренняя перелинковка: блог → страницы услуг</div>
+          <div class="task-desc">Добавить ссылки из статей блога на новые и существующие страницы услуг. Передаёт вес и направляет читателей к заявке.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Написать статью: «Аудит отдела продаж: что проверяем и сколько стоит»</div>
+          <div class="task-desc">Продающая статья: чек-лист аудита, что проверяем, стоимость, кейсы. Привлечение заявок на услугу аудита.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Написать статью: «Как выбрать консалтинг по продажам: 8 критериев»</div>
+          <div class="task-desc">Для руководителей, выбирающих подрядчика. Помогает сформировать доверие к Фактору.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-next">Нед. 2</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- NEXT WEEK -->
-  <div class="section">
-    <div class="section-label">Следующая неделя (при старте)</div>
-    <div class="section-title">Неделя 1: Быстрые победы</div>
-    <div class="task-grid">
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">CTA-блоки в топ-5 статьях блога</div>
-          <div class="task-desc">«менеджер по продажам», «5 этапов», «работа с возражениями», «расчёт стоимости», «приросты». Вставка: кейс + кнопка к /cases/.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 1</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Schema.org + OG-теги через Yoast/RankMath</div>
-          <div class="task-desc">Article для блога, Service для /services/, FAQ для вопросных страниц. CTR +10-30%.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 1</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Meta description на 4 страницы без него</div>
-          <div class="task-desc">/bookmarks/, /quiz/, /black-friday/, /blog/test/ — написать уникальные 120-155 символов с CTA.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 1</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Согласование контент-плана на месяц 1</div>
-          <div class="task-desc">5 материалов: 2 транзакционных + 3 информационных. Темы, углы, ключевые тезисы — согласовать до написания.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 1</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- WEEK 2 -->
-  <div class="section">
-    <div class="section-label">Далее</div>
-    <div class="section-title">Неделя 2: Технические правки</div>
-    <div class="task-grid">
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Исправить каннибализацию «построение ОП»</div>
-          <div class="task-desc">По ключу «построение отдела продаж с нуля» (115/нед, стр.6) ранжируется статья блога вместо услуги. Добавить кейс + CTA &rarr; /services/konsalting/.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 2</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Title: приоритетные 20 страниц (из 68 длинных)</div>
-          <div class="task-desc">Формат «Ключ — уточнение | Фактор Продаж», &le;65 символов.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 2</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Типографика: CSS-патч на топ-10 статей</div>
-          <div class="task-desc">Применить патч читаемости: интерлиньяж, ширина колонки, отступы заголовков. Замерить время на сайте до/после.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 2</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- WEEKS 3-4 -->
+  <!-- ===================== WEEKS 3-4 ===================== -->
   <div class="section">
     <div class="section-label">Далее</div>
-    <div class="section-title">Недели 3–4: Контент + обновления</div>
+    <div class="section-title">Недели 3–4: Контент и обновления</div>
     <div class="task-grid">
 
       <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Статья 1 (транз.): «Построение отдела продаж под ключ: этапы и стоимость»</div>
-          <div class="task-desc">Ключ: «отдел продаж под ключ» sw&asymp;155. Прямые заявки на консалтинг. Нужен экспертный input от клиента.</div>
+          <div class="task-title">Блоки «Вопрос-ответ» в 5 информационных статьях</div>
+          <div class="task-desc">Добавить раскрывающиеся блоки с ответами на частые вопросы. С разметкой для расширенных сниппетов в Яндексе.</div>
         </div>
         <div class="task-meta">
           <div class="task-pill pill-plan">Нед. 3</div>
@@ -553,30 +642,19 @@ footer {
       <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Обновление 2 падающих статей</div>
-          <div class="task-desc">«Правила продаж» &Delta;&minus;18 позиций, «Как считать KPI» &Delta;&minus;14. Обновить контент, добавить актуальные данные.</div>
+          <div class="task-title">Обновление 2 статей с падающим трафиком</div>
+          <div class="task-desc">«Правила продаж» и «Как считать показатели» — потеряли позиции. Обновить контент, добавить актуальные данные.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 3</div>
+          <div class="task-pill pill-plan">Нед. 3–4</div>
         </div>
       </div>
 
       <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">FAQ-блоки в 5 информационных статьях</div>
-          <div class="task-desc">Для попадания в Яндекс Нейро и расширенные сниппеты.</div>
-        </div>
-        <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 3</div>
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="task-check"></div>
-        <div>
-          <div class="task-title">Статья 2 (инф.): «Как выбрать консалтинг по продажам: 8 критериев»</div>
-          <div class="task-desc">Ключ: «консалтинг продаж» sw&asymp;80. ЛПР на этапе выбора подрядчика.</div>
+          <div class="task-title">Остальные 48 заголовков — массовая оптимизация</div>
+          <div class="task-desc">Оставшиеся из 68 страниц с длинными заголовками (&gt;65 символов).</div>
         </div>
         <div class="task-meta">
           <div class="task-pill pill-plan">Нед. 4</div>
@@ -586,22 +664,97 @@ footer {
       <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Остальные 48 title (длинные) — батчем</div>
-          <div class="task-desc">Оставшиеся из 68 страниц с title &gt;65 символов.</div>
+          <div class="task-title">Отчёт за месяц 1 + план на месяц 2</div>
+          <div class="task-desc">Трафик, позиции, заявки — с цифрами и динамикой. Согласовать план на второй месяц.</div>
         </div>
         <div class="task-meta">
           <div class="task-pill pill-plan">Нед. 4</div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ===================== MONTH 2 ===================== -->
+  <div class="section">
+    <div class="section-label">Месяц 2</div>
+    <div class="section-title">Недели 5–8: Структура и масштабирование</div>
+    <div class="task-grid">
+
       <div class="task">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Отчёт за месяц 1 + контент-план на месяц 2</div>
-          <div class="task-desc">Трафик, позиции, лиды — с числами и динамикой. Согласовать план на месяц 2.</div>
+          <div class="task-title">Обновить статью «Обучение на руководителя отдела продаж»</div>
+          <div class="task-desc">Добавить ссылку на курс, актуализировать содержание.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-plan">Нед. 4</div>
+          <div class="task-pill pill-plan">Нед. 5</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Создать раздел «Техника продаж»</div>
+          <div class="task-desc">Хаб-страница, объединяющая 7+ статей по теме. Частотность кластера ~756 запросов/мес.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 5</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Создать раздел «Этапы продаж менеджера»</div>
+          <div class="task-desc">Хаб-страница, объединяющая 5+ статей. Частотность кластера ~334 запросов/мес.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 6</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Оптимизация существующих страниц услуг</div>
+          <div class="task-desc">Заголовки, описания, микроразметка «Услуга» на всех 8 страницах /services/.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 7</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Новая страница услуги: «Настройка CRM для отдела продаж»</div>
+          <div class="task-desc">Коммерческая страница /services/nastroyka-crm/. Что входит, стоимость, кейсы, частые вопросы. Кластер ~320 запросов/мес.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 7</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Новая страница услуги: «Тренинг по продажам для менеджеров»</div>
+          <div class="task-desc">Коммерческая страница /services/trening-prodazh/. Программа, формат, результаты, стоимость. Кластер ~480 запросов/мес.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 7–8</div>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-check"></div>
+        <div>
+          <div class="task-title">Новая страница услуги: «Разработка скриптов продаж»</div>
+          <div class="task-desc">Коммерческая страница /services/skripty-prodazh/. Процесс разработки, примеры, стоимость. Кластер ~290 запросов/мес.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-pill pill-plan">Нед. 8</div>
         </div>
       </div>
 
@@ -613,7 +766,7 @@ footer {
 
 <footer>
   <div class="wrap">
-    factor-prodazh.ru &middot; доска проекта &middot; обновлено 20.03.2026 &middot; конфиденциально
+    factor-prodazh.ru &middot; доска проекта &middot; обновлено 27.03.2026 &middot; конфиденциально
   </div>
 </footer>
 
