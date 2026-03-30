@@ -32,164 +32,107 @@ body {
 }
 .wrap { max-width: 800px; margin: 0 auto; padding: 0 28px; }
 
-/* Hero */
 .hero {
   background: var(--dark);
-  padding: 48px 0 40px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -40px;
-  width: 240px; height: 240px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: .07;
+  padding: 40px 0 32px;
 }
 .hero-label {
   font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
 }
 .hero h1 {
-  font-size: 32px; font-weight: 800; color: #fff;
-  line-height: 1.2; margin-bottom: 10px; letter-spacing: -.4px;
+  font-size: 28px; font-weight: 800; color: #fff;
+  line-height: 1.2; margin-bottom: 8px; letter-spacing: -.3px;
 }
-.hero-sub { font-size: 15px; color: #94a3b8; line-height: 1.6; }
-.hero-meta {
-  margin-top: 20px;
-  display: flex; gap: 24px; flex-wrap: wrap;
-  font-size: 12px; color: #64748b;
-}
-.hero-meta span { display: flex; align-items: center; gap: 5px; }
+.hero-sub { font-size: 14px; color: #94a3b8; }
 
-/* Content */
-.content { padding: 40px 0 60px; }
-
-.section { margin-bottom: 40px; }
+.content { padding: 36px 0 48px; }
+.section { margin-bottom: 36px; }
 .section-num {
   font-size: 11px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
 }
 .section h2 {
-  font-size: 22px; font-weight: 800; color: var(--dark);
-  margin-bottom: 14px; letter-spacing: -.2px; line-height: 1.3;
+  font-size: 20px; font-weight: 800; color: var(--dark);
+  margin-bottom: 12px; letter-spacing: -.2px; line-height: 1.3;
 }
-.section p { margin-bottom: 12px; color: #333; }
-.section p.muted { color: var(--muted); font-size: 14px; }
+.section p { margin-bottom: 10px; color: #333; font-size: 14px; }
 
-/* Key point cards */
-.kp-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
-.kp {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px 20px;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 14px;
-  align-items: start;
-}
-.kp-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 800; color: #fff;
-  flex-shrink: 0;
-}
-.kp-icon.gold { background: var(--gold); }
-.kp-icon.red { background: var(--red); }
-.kp-icon.green { background: var(--green); }
-.kp-icon.blue { background: var(--blue); }
-.kp h3 {
-  font-size: 15px; font-weight: 700; color: var(--dark);
-  margin-bottom: 4px; line-height: 1.3;
-}
-.kp p { font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0; }
-.kp .result {
-  display: inline-block; margin-top: 6px;
-  font-size: 12px; font-weight: 700; color: var(--green);
-  background: #f0fdf4; padding: 2px 8px; border-radius: 4px;
-}
-
-/* Metrics row */
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin: 20px 0;
+  margin: 16px 0;
 }
 .metric {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px;
+  padding: 14px;
   text-align: center;
 }
-.metric-val {
-  font-size: 28px; font-weight: 800; line-height: 1;
-  margin-bottom: 4px;
-}
-.metric-val.green { color: var(--green); }
+.metric-val { font-size: 26px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
 .metric-val.gold { color: #92580a; }
-.metric-val.red { color: var(--red); }
-.metric-label { font-size: 12px; color: var(--muted); }
+.metric-val.green { color: var(--green); }
+.metric-label { font-size: 11px; color: var(--muted); }
 
-/* Divider */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 36px 0;
+.divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+.kp-grid { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.kp {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 12px;
+  align-items: start;
 }
-
-/* Highlight block */
-.highlight {
-  background: var(--gold-light);
-  border: 1px solid var(--gold-border);
-  border-left: 4px solid var(--gold);
+.kp-icon {
+  width: 36px; height: 36px;
   border-radius: 8px;
-  padding: 16px 20px;
-  margin: 16px 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #fff;
 }
-.highlight p { margin: 0; font-size: 14px; color: #333; }
-.highlight strong { color: var(--dark); }
+.kp-icon.gold { background: var(--gold); }
+.kp-icon.red { background: var(--red); }
+.kp-icon.green { background: var(--green); }
+.kp-icon.blue { background: var(--blue); }
+.kp h3 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.kp p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+.kp-effect {
+  font-size: 11px; font-weight: 700; color: var(--green);
+  background: #f0fdf4; padding: 3px 8px; border-radius: 4px;
+  white-space: nowrap; align-self: center;
+}
 
-/* Timeline */
-.timeline { margin: 16px 0; }
+.timeline { margin: 12px 0; }
 .tl-item {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 12px;
-  padding: 12px 0;
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
 }
 .tl-item:last-child { border-bottom: none; }
-.tl-period {
-  font-size: 12px; font-weight: 700; color: var(--blue);
-  padding-top: 2px;
-}
-.tl-content h4 {
-  font-size: 14px; font-weight: 700; margin-bottom: 3px;
-}
-.tl-content p { font-size: 13px; color: var(--muted); margin: 0; }
+.tl-period { font-size: 12px; font-weight: 700; color: var(--blue); padding-top: 1px; }
+.tl-content h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.tl-content p { font-size: 12px; color: var(--muted); margin: 0; }
 
-/* Footer */
 footer {
   border-top: 1px solid var(--border);
-  padding: 20px 0;
+  padding: 16px 0;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted2);
 }
 
 @media (max-width: 640px) {
-  .hero h1 { font-size: 24px; }
   .metrics { grid-template-columns: 1fr; }
   .kp { grid-template-columns: 1fr; }
-  .kp-icon { display: none; }
+  .kp-icon, .kp-effect { display: none; }
   .tl-item { grid-template-columns: 1fr; }
-  .tl-period { margin-bottom: -8px; }
 }
 </style>
 </head>
@@ -199,206 +142,75 @@ footer {
   <div class="wrap">
     <div class="hero-label">SEO-стратегия</div>
     <h1>Как мы растим продажи через поисковый трафик</h1>
-    <p class="hero-sub">Стратегия продвижения factor-prodazh.ru: что делаем, зачем и какой результат ожидаем. Документ для внутреннего согласования.</p>
-    <div class="hero-meta">
-      <span>Подготовлено: 30 марта 2026</span>
-      <span>Горизонт: 6 месяцев</span>
-      <span>Конфиденциально</span>
-    </div>
+    <p class="hero-sub">factor-prodazh.ru · 30 марта 2026 · горизонт 6 месяцев</p>
   </div>
 </div>
 
 <div class="content">
 <div class="wrap">
 
-  <!-- ===== SECTION 1: GOAL ===== -->
   <div class="section">
     <div class="section-num">Цель</div>
-    <h2>Больше заявок от руководителей, которые уже ищут решение</h2>
-    <p>Сайт factor-prodazh.ru получает ~450 визитов в неделю из поиска, но генерирует всего 4 квалифицированных лида в месяц. Причина: трафик идёт на информационные статьи, а коммерческих страниц с формами заявки почти нет. Люди читают и уходят.</p>
-    <p>Наша задача — превратить читателей в заявки. Не просто «больше трафика», а больше целевых обращений от владельцев бизнеса и руководителей, которые ищут построение или аудит отдела продаж.</p>
+    <h2>Больше квалифицированных заявок, а не просто трафика</h2>
+    <p>Сайт получает 450 визитов/нед из поиска, но всего 4 лида в месяц. Трафик идёт на информационные статьи без призывов к действию. Задача — выстроить цепочку: читатель → коммерческая страница → заявка.</p>
 
     <div class="metrics">
       <div class="metric">
         <div class="metric-val gold">4</div>
-        <div class="metric-label">Квал. лидов/мес сейчас</div>
+        <div class="metric-label">лидов/мес сейчас</div>
       </div>
       <div class="metric">
         <div class="metric-val green">8–12</div>
-        <div class="metric-label">Цель через 2 месяца</div>
+        <div class="metric-label">цель 2 мес</div>
       </div>
       <div class="metric">
         <div class="metric-val green">15–20</div>
-        <div class="metric-label">Цель через 6 месяцев</div>
+        <div class="metric-label">цель 6 мес</div>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ===== SECTION 2: WHAT WE DO ===== -->
   <div class="section">
-    <div class="section-num">Что мы делаем</div>
-    <h2>5 направлений работы</h2>
-    <p class="muted">Каждое направление напрямую влияет на количество заявок. Порядок — по приоритету.</p>
+    <div class="section-num">Что делаем</div>
+    <h2>4 направления</h2>
 
     <div class="kp-grid">
-
       <div class="kp">
         <div class="kp-icon red">1</div>
         <div>
           <h3>Коммерциализация сайта</h3>
-          <p>Сейчас на сайте почти нет страниц, которые продают. Блог даёт трафик, но читатель не видит чёткого предложения «вот услуга, вот цена, вот кейсы — оставьте заявку».</p>
-          <p><strong>Что делаем:</strong> создаём новые коммерческие страницы под услуги (тренинг по продажам, разработка скриптов), добавляем блоки с призывами к действию в топовые статьи блога, перелинковываем информационный контент с коммерческими страницами. Каждая точка контакта ведёт к заявке.</p>
-          <div class="result">Ожидаемый эффект: +4–6 лидов/мес</div>
+          <p>Сайт генерирует 450 визитов/нед из поиска, но конвертирует только 4 заявки в месяц. Причина — трафик приходит на информационные статьи, а коммерческих страниц с понятным предложением и формой заявки почти нет. Выстраиваем воронку: каждая точка контакта с читателем ведёт к целевому действию.</p>
         </div>
+        <div class="kp-effect">+4–6 лидов</div>
       </div>
 
       <div class="kp">
         <div class="kp-icon gold">2</div>
         <div>
-          <h3>Покрытие нейровыдачи и расширенных сниппетов</h3>
-          <p>Яндекс и Google всё чаще показывают ответы ИИ прямо в выдаче. Если контент не структурирован — нейросеть берёт информацию у конкурентов. Расширенные сниппеты (FAQ, рейтинги, цены) увеличивают кликабельность в 2–3 раза.</p>
-          <p><strong>Что делаем:</strong> добавляем микроразметку (FAQ, услуги, курсы, организация) на все ключевые страницы; структурируем контент так, чтобы нейросети поисковиков цитировали именно нас; создаём блоки «вопрос-ответ» с чёткими, краткими ответами — идеальный формат для AI-выдачи.</p>
-          <div class="result">Ожидаемый эффект: рост CTR на 15–30%</div>
+          <h3>Покрытие нейровыдачи</h3>
+          <p>Яндекс и Google переходят на AI-ответы в выдаче. Кто не адаптировал контент — теряет трафик: нейросеть берёт информацию у конкурента. Мы формируем контент и разметку так, чтобы поисковые AI цитировали Фактор Продаж как источник экспертизы в нише.</p>
         </div>
+        <div class="kp-effect">CTR +15–30%</div>
       </div>
 
       <div class="kp">
         <div class="kp-icon green">3</div>
         <div>
-          <h3>Рост квалифицированных лидов через контент</h3>
-          <p>У сайта 130+ статей, но большинство — информационные. Не хватает статей, которые закрывают на покупку: «аудит отдела продаж — что проверяем и сколько стоит», «как выбрать консалтинг по продажам».</p>
-          <p><strong>Что делаем:</strong> пишем продающие статьи по запросам руководителей, которые уже ищут решение (BOFU-контент). Консолидируем дублирующиеся статьи (3 про «построение ОП» → одна сильная). Обновляем падающие статьи актуальными данными и кейсами.</p>
-          <div class="result">Ожидаемый эффект: +2–4 лида/мес с новых статей</div>
+          <h3>Экспертный контент под запросы руководителей</h3>
+          <p>На сайте 130+ статей, но они отвечают на общие вопросы. Не хватает контента для тех, кто уже принимает решение о покупке — владельцев бизнеса и руководителей. Закрываем эту потребность: статьи, которые формируют доверие и подводят к заявке.</p>
         </div>
+        <div class="kp-effect">+2–4 лида</div>
       </div>
 
       <div class="kp">
         <div class="kp-icon blue">4</div>
         <div>
-          <h3>Скорость за счёт ИИ</h3>
-          <p>Традиционное SEO — медленный процесс: аудит, стратегия, контент-план, написание, правки. Мы ускоряем каждый этап за счёт ИИ-инструментов, сохраняя качество.</p>
-          <p><strong>Что это даёт:</strong> аудит 164 страниц вместо недели — за день. Контент-план на 51 тему с кластеризацией 2200 ключей — за 2 дня. Черновик статьи на 2500 слов с инфографикой — за 3 часа. Каждый черновик проходит экспертную проверку, но скорость выхода контента — в 3–5 раз выше, чем при классическом подходе.</p>
-          <div class="result">Ожидаемый эффект: 2–3 статьи в неделю вместо 2 в месяц</div>
+          <h3>Скорость выхода на рынок</h3>
+          <p>За счёт ИИ-инструментов цикл от идеи до публикации сокращается в 3–5 раз при сохранении экспертного качества. Это позволяет занимать ниши быстрее конкурентов и оперативно реагировать на изменения спроса. Темп — 3–4 публикации в неделю с экспертной проверкой каждой.</p>
         </div>
-      </div>
-
-      <div class="kp">
-        <div class="kp-icon gold">5</div>
-        <div>
-          <h3>Техническая оптимизация и порядок на сайте</h3>
-          <p>На сайте 367 картинок без описаний, 68 страниц с обрезанными заголовками, пустые метаописания, кейсы закрыты от индексации. Всё это мешает поисковикам правильно показывать сайт.</p>
-          <p><strong>Что делаем:</strong> переписываем заголовки и описания (50 страниц), заполняем описания картинок, открываем кейсы для индексации, убираем дубли и каннибализацию.</p>
-          <div class="result">Ожидаемый эффект: рост позиций по текущим запросам на 3–10 мест</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ===== SECTION 3: TIMELINE ===== -->
-  <div class="section">
-    <div class="section-num">Дорожная карта</div>
-    <h2>Что и когда</h2>
-
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-period">Нед. 1–2</div>
-        <div class="tl-content">
-          <h4>Быстрые победы</h4>
-          <p>Метаописания на 14 страницах. Призывы к действию в топ-5 статьях. Микроразметка на услугах и курсах. Описания у 367 картинок. 3 статьи на согласовании у клиента.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-period">Нед. 3–4</div>
-        <div class="tl-content">
-          <h4>Контент + консолидация</h4>
-          <p>Публикация 3 согласованных статей. 2 новые статьи (аудит ОП, выбор консалтинга). Объединение дублей «построение ОП» (3→1). Обновление 2 падающих статей. Заголовки на 20 приоритетных страницах.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-period">Нед. 5–6</div>
-        <div class="tl-content">
-          <h4>Структура и хабы</h4>
-          <p>Хаб-страница «Техника продаж» (7 статей). Хаб-страница «Этапы продаж» (5 статей). Новые коммерческие страницы: тренинг по продажам, скрипты продаж. Перелинковка блог → услуги.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-period">Нед. 7–8</div>
-        <div class="tl-content">
-          <h4>Масштабирование</h4>
-          <p>Оставшиеся 48 заголовков. Оптимизация 8 страниц услуг. FAQ-блоки в 5 статьях. Отчёт за месяц 2: трафик, позиции, заявки, план на следующий период.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-period">Мес. 3–6</div>
-        <div class="tl-content">
-          <h4>Рост и удержание</h4>
-          <p>Контент-маховик: 2–3 статьи в неделю. Расширение семантики (новые кластеры). A/B-тесты призывов к действию. Масштабирование на регионы. Мониторинг нейровыдачи — адаптация контента под AI-ответы Яндекса.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ===== SECTION 4: WHY THIS WORKS ===== -->
-  <div class="section">
-    <div class="section-num">Почему это работает</div>
-    <h2>Логика стратегии</h2>
-
-    <div class="highlight">
-      <p><strong>Информационный трафик → коммерческие страницы → заявка.</strong> Мы не просто пишем статьи. Каждая статья — точка входа в воронку. Читатель приходит по запросу «KPI менеджера по продажам», видит экспертный контент, переходит на страницу услуги «аудит отдела продаж», оставляет заявку. Без коммерческих страниц и перелинковки эта цепочка разорвана — трафик есть, заявок нет.</p>
-    </div>
-
-    <div class="highlight">
-      <p><strong>ИИ-поиск меняет правила.</strong> Яндекс и Google всё больше отвечают на вопросы прямо в выдаче через нейросети. Если наш контент не структурирован (нет FAQ, нет микроразметки, нет чётких ответов) — нейросеть возьмёт ответ у конкурента. Мы готовим контент и разметку так, чтобы быть источником для AI-ответов, а не жертвой zero-click выдачи.</p>
-    </div>
-
-    <div class="highlight">
-      <p><strong>Скорость — конкурентное преимущество.</strong> Пока конкуренты выпускают 2 статьи в месяц, мы публикуем 2–3 в неделю. За счёт ИИ-инструментов мы проводим аудит, кластеризацию, написание черновиков и техническую оптимизацию в разы быстрее. Каждый материал проходит экспертную проверку — качество не страдает.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ===== SECTION 5: METRICS ===== -->
-  <div class="section">
-    <div class="section-num">Метрики</div>
-    <h2>Как измеряем результат</h2>
-    <p class="muted">Еженедельный мониторинг, ежемесячный отчёт с цифрами.</p>
-
-    <div class="kp-grid">
-      <div class="kp">
-        <div class="kp-icon red">Л</div>
-        <div>
-          <h3>Квалифицированные лиды</h3>
-          <p>Главная метрика. Количество заявок от целевой аудитории (владельцы бизнеса, руководители). Считаем через формы на сайте + телефонию. Цель: 4 → 8–12 за 2 месяца, 15–20 за 6 месяцев.</p>
-        </div>
-      </div>
-      <div class="kp">
-        <div class="kp-icon gold">Т</div>
-        <div>
-          <h3>Органический трафик</h3>
-          <p>Количество визитов из Яндекса и Google. Растёт за счёт новых страниц, улучшения позиций и CTR. Цель: 450 → 600+/нед за 2 месяца.</p>
-        </div>
-      </div>
-      <div class="kp">
-        <div class="kp-icon green">П</div>
-        <div>
-          <h3>Позиции по целевым запросам</h3>
-          <p>30 ключевых коммерческих запросов. Еженедельный замер. Особое внимание: «построение отдела продаж», «аудит отдела продаж», «консалтинг продаж».</p>
-        </div>
-      </div>
-      <div class="kp">
-        <div class="kp-icon blue">К</div>
-        <div>
-          <h3>Конверсия посетитель → заявка</h3>
-          <p>Процент посетителей, которые оставляют заявку. Растёт за счёт коммерческих страниц, CTA-блоков и улучшения юзабилити. Текущая ~0.2%, цель ~0.5%.</p>
-        </div>
+        <div class="kp-effect">3–4 ст/нед</div>
       </div>
     </div>
   </div>
@@ -408,7 +220,7 @@ footer {
 
 <footer>
   <div class="wrap">
-    factor-prodazh.ru · SEO-стратегия · 30.03.2026 · конфиденциально
+    factor-prodazh.ru · SEO-стратегия · конфиденциально
   </div>
 </footer>
 
