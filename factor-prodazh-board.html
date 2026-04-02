@@ -253,13 +253,13 @@ footer {
     </div>
     <div class="sb">
       <div class="sb-label">Выполнено задач</div>
-      <div class="sb-val green">25</div>
+      <div class="sb-val green">26</div>
       <div class="sb-sub">подготовка + первые работы</div>
     </div>
     <div class="sb">
       <div class="sb-label">В работе / на согласовании</div>
-      <div class="sb-val red">3</div>
-      <div class="sb-sub">черновики статей на доработке</div>
+      <div class="sb-val red">4</div>
+      <div class="sb-sub">черновики и правки на согласовании</div>
     </div>
     <div class="sb">
       <div class="sb-label">Обновлено</div>
@@ -497,11 +497,12 @@ footer {
       <div class="task active">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Статья: «Построение отдела продаж с нуля: инструкция, бюджет и кейсы»</div>
-          <div class="task-desc">Черновик готов локально. ~2800 слов, таблица расходов, сравнение «сам / подрядчик», 3 кейса с цифрами, 6 вопросов-ответов. Ожидает согласования с клиентом. Консолидация 3 существующих статей в одну.</div>
+          <div class="task-title">Статья: «Построение отдела продаж с нуля» — визуальная переработка</div>
+          <div class="task-desc">Существующая статья (ID 472, TOP-3) улучшена: TOC, кейсы, ссылки на услуги, баннер, FAQ + Schema.org, SVG-обложки, типографика. Изменения залиты на сайт, ждут согласования клиента.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-review">На проверке</div>
+          <div class="task-date">02.04</div>
+          <div class="task-pill pill-review">На согласовании</div>
         </div>
       </div>
 
@@ -522,14 +523,17 @@ footer {
 
       <!-- Alt-тексты перенесены в низкий приоритет (месяц 2) -->
 
-      <div class="task">
+      <div class="task active">
         <div class="task-check"></div>
         <div>
-          <div class="task-title">Каннибализация «построение ОП»: объединить 3 статьи в одну</div>
-          <div class="task-desc">Три статьи конкурируют за одни ключевые слова. Основная (ID 472) получает 65% трафика. Настроить перенаправления с двух других на основную.</div>
+          <div class="task-title">Каннибализация «построение ОП»: улучшение основной статьи</div>
+          <div class="task-desc">Три статьи конкурировали за одни ключевые слова (ID 472, 520, 2803). Без редиректов — добавлена ссылка из 2803 на основную. Основная статья (472) визуально переработана: оглавление, 3 кейса с золотой полоской, 6 ссылок на /services/, баннер перед FAQ, Schema.org JSON-LD, типографика (&amp;nbsp;, неразрывные дефисы), SVG-обложки (wide + square), alt-тексты. Изменения уже на сайте.</div>
+          <a class="task-link" href="https://factor-prodazh.ru/postroenie-op-old.html">&rarr; Старая версия</a>
+          <a class="task-link" href="https://factor-prodazh.ru/postroenie-op-new.html" style="margin-left:12px">&rarr; Новая версия</a>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 2</div>
+          <div class="task-date">02.04</div>
+          <div class="task-pill pill-review">На согласовании</div>
         </div>
       </div>
 
@@ -569,14 +573,15 @@ footer {
         </div>
       </div>
 
-      <div class="task">
-        <div class="task-check"></div>
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
         <div>
           <div class="task-title">Микроразметка «Услуга» и «Вопрос-ответ» на 8 страницах услуг</div>
-          <div class="task-desc">Добавить разметку Service + FAQPage на все страницы /services/. Улучшает отображение в поиске.</div>
+          <div class="task-desc">Schema.org Service на всех 8 страницах /services/. FAQPage на 3 страницах с FAQ (platniy-audit, antikrizisniy-op, konsalting). PHP-патч читает вопросы из ACF автоматически.</div>
         </div>
         <div class="task-meta">
-          <div class="task-pill pill-next">Нед. 2</div>
+          <div class="task-date">02.04</div>
+          <div class="task-pill pill-done">Готово</div>
         </div>
       </div>
 
