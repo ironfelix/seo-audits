@@ -215,12 +215,81 @@ footer {
   color: var(--muted2);
 }
 
+/* Week summary */
+.week-summary {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.ws-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.ws-badge {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--blue-light);
+  color: var(--blue);
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+.ws-title { font-size: 15px; font-weight: 700; color: var(--dark); }
+.ws-date { font-size: 12px; color: var(--muted); margin-left: auto; }
+.ws-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.ws-col-label {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.ws-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ws-list li {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.ws-done .ws-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+.ws-progress .ws-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
 @media (max-width: 640px) {
   .status-bar { grid-template-columns: 1fr 1fr; }
   .docs-grid { grid-template-columns: 1fr; }
   .task { grid-template-columns: 28px 1fr; }
   .task-meta { display: none; }
   .hero h1 { font-size: 22px; }
+  .ws-cols { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -265,6 +334,37 @@ footer {
       <div class="sb-label">Обновлено</div>
       <div class="sb-val">09.04</div>
       <div class="sb-sub">2026</div>
+    </div>
+  </div>
+
+  <!-- WEEK SUMMARY -->
+  <div class="week-summary">
+    <div class="ws-header">
+      <div class="ws-badge">Неделя 3</div>
+      <div class="ws-title">7–9 апреля 2026</div>
+      <div class="ws-date">Обновлено 09.04</div>
+    </div>
+    <div class="ws-cols">
+      <div class="ws-done">
+        <div class="ws-col-label">✅ Сделано</div>
+        <ul class="ws-list">
+          <li>SEO-лендинг «Построение ОП под ключ» — создан с нуля (1 800 слов, FAQPage + Service JSON-LD)</li>
+          <li>Дожим «Менеджер по продажам» — +3 раздела, +6 FAQ, Schema (черновик → ID 2560)</li>
+          <li>Дожим «Этапы продаж» — ошибки на каждом этапе, обновлены кейсы (черновик → ID 125)</li>
+          <li>Новая статья «ЛПР в продажах» — написана с нуля (~1 200 слов, 5 FAQ)</li>
+          <li>BOFU-статья «Аудит отдела продаж» — написана с нуля (~1 100 слов, 2 кейса)</li>
+          <li>Семантика стратсессий — 31 ключ, 3 кластера, добавлена в контент-план XLSX</li>
+        </ul>
+      </div>
+      <div class="ws-progress">
+        <div class="ws-col-label">⏳ В работе</div>
+        <ul class="ws-list">
+          <li>Применить дожим к живым постам (ID 2560 и ID 125) ← задача клиента</li>
+          <li>Публикация «КЭВ в продажах» — черновик готов, ждём согласования</li>
+          <li>Публикация «Гребенюк: разбор советов» — черновик готов</li>
+          <li>Публикация «Построение ОП с нуля» — черновик готов, нужен 301-редирект</li>
+        </ul>
+      </div>
     </div>
   </div>
 
