@@ -283,6 +283,32 @@ footer {
   font-weight: 700;
 }
 
+/* Collapsible sections */
+.section-toggle { border: none; }
+.section-toggle-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 6px;
+  margin-bottom: 0;
+  user-select: none;
+}
+.section-toggle-summary::-webkit-details-marker { display: none; }
+.section-toggle-summary .section-label { margin-bottom: 0; }
+.section-toggle-summary .section-title { margin-bottom: 0; font-size: 18px; }
+.section-toggle-summary::before {
+  content: '▶';
+  font-size: 9px;
+  color: var(--muted2);
+  transition: transform .2s;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.section-toggle[open] > .section-toggle-summary::before { transform: rotate(90deg); }
+.section-toggle > .section-toggle-summary + .section { margin-top: 8px; }
+
 @media (max-width: 640px) {
   .status-bar { grid-template-columns: 1fr 1fr; }
   .docs-grid { grid-template-columns: 1fr; }
@@ -402,8 +428,11 @@ footer {
       </a>
     </div>
   </div>
+  </details>
 
   <!-- ===================== DONE ===================== -->
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Завершено</span><span class="section-title" style="margin-bottom:0;font-size:18px">Выполненные работы</span></summary>
   <div class="section">
     <div class="section-label">Завершено</div>
     <div class="section-title">Выполненные работы</div>
@@ -567,8 +596,11 @@ footer {
     </details>
 
   </div>
+  </details>
 
   <!-- ===================== PUBLISHED ===================== -->
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Опубликовано</span><span class="section-title" style="margin-bottom:0;font-size:18px">Статьи на сайте</span></summary>
   <div class="section">
     <div class="section-label">Опубликовано</div>
     <div class="section-title">Статьи на сайте</div>
@@ -612,8 +644,11 @@ footer {
 
     </div>
   </div>
+  </details>
 
   <!-- ===================== SPRINT WEEK 3 ===================== -->
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Завершённый спринт</span><span class="section-title" style="margin-bottom:0;font-size:18px">7–13 апреля</span></summary>
   <div class="section">
     <div class="section-label">Завершённый спринт</div>
     <div class="section-title">7–13 апреля</div>
@@ -887,8 +922,11 @@ footer {
     </div>
 
   </div>
+  </details>
 
   <!-- ===================== WEEK 4 SPRINT ===================== -->
+  <details class="section-toggle" open>
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Текущий спринт</span><span class="section-title" style="margin-bottom:0;font-size:18px">14–18 апреля · 8 статей батчем · ∑WS 132 560</span></summary>
   <div class="section">
     <div class="section-label">Текущий спринт</div>
     <div class="section-title">14–18 апреля · 8 статей батчем · ∑WS 132 560</div>
@@ -1032,6 +1070,8 @@ footer {
 
   </div>
 
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Спринт 21–25 апреля</span><span class="section-title" style="margin-bottom:0;font-size:18px">Неделя 5: 4 новые статьи · ∑WS 44 156</span></summary>
   <div class="section">
     <div class="section-label">Спринт 21–25 апреля</div>
     <div class="section-title">Неделя 5: 4 новые статьи · ∑WS 44 156</div>
@@ -1083,8 +1123,11 @@ footer {
 
     </div>
   </div>
+  </details>
 
   <!-- ===================== MONTH 2 ===================== -->
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Месяц 2</span><span class="section-title" style="margin-bottom:0;font-size:18px">Недели 5–8: Структура и масштабирование</span></summary>
   <div class="section">
     <div class="section-label">Месяц 2</div>
     <div class="section-title">Недели 5–8: Структура и масштабирование</div>
@@ -1169,6 +1212,7 @@ footer {
 
     </div>
   </div>
+  </details>
 
 </div>
 </div>
