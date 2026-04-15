@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческий SEO Аудит — yarfintrast.ru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════
+   SEO AUDIT — CRMGroup Design System
+   yarfintrast.ru · Апрель 2026
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --red: #c01020;
+  --red-dk: #a00d1a;
+  --red-light: rgba(192, 16, 32, 0.08);
+  --bg: #ffffff;
+  --card: #f5f5f5;
+  --card2: #ebebeb;
+  --border: #e8e8e8;
+  --text: #1a1a1a;
+  --muted: #595959;
+  --text-light: #888;
+  --bofu: #16a34a;
+  --mofu: #d97706;
+  --tofu: #2563eb;
+  --skip: #dc2626;
+  --brand: #7c3aed;
+  --accent: #c01020;
+  --radius-card: 16px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.09);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+
+/* ─── HEADER ─── */
+.header {
+  background: #fff;
+  border-bottom: 1.5px solid var(--border);
+  padding: 24px 0;
+}
+.header .container {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+}
+.h-left h1 { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -.3px; }
+.h-left .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.methodology-badge {
+  background: var(--red-light); border: 1.5px solid rgba(192,16,32,.2);
+  color: var(--red); padding: 6px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── SECTION ─── */
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 17px; font-weight: 800; color: var(--text);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+
+/* ═══ VERDICT CARD ═══ */
+.verdict-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px 32px;
+  margin: 24px 0 36px;
+  box-shadow: var(--shadow-card);
+}
+.verdict-top {
+  display: flex; align-items: flex-start; gap: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.verdict-grade {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-width: 100px;
+}
+.grade-badge { font-size: 72px; font-weight: 900; line-height: 1; }
+.grade-f { color: #dc2626; }
+.grade-d { color: #d97706; }
+.grade-c { color: #0891b2; }
+.grade-b { color: #16a34a; }
+.verdict-domain { font-size: 13px; color: var(--muted); font-weight: 600; }
+.verdict-date { font-size: 11px; color: var(--text-light); }
+
+.verdict-metrics {
+  display: flex; gap: 32px; flex: 1; justify-content: center; padding: 0 16px;
+}
+.vmet { text-align: center; min-width: 110px; }
+.vmet-val {
+  display: block; font-size: 32px; font-weight: 900; color: var(--text); line-height: 1.1;
+}
+.vmet-val.text-red { color: #dc2626; }
+.vmet-val.text-green { color: #16a34a; }
+.vmet-val.text-orange { color: #d97706; }
+.vmet-label {
+  display: block; font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .3px; margin-top: 6px; line-height: 1.3;
+}
+
+.verdict-potential {
+  background: var(--red-light);
+  border: 1.5px solid rgba(192,16,32,.2);
+  border-radius: 12px; padding: 16px 24px;
+  text-align: center; min-width: 180px;
+}
+.verdict-potential-label {
+  font-size: 10px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px;
+}
+.verdict-potential-val { font-size: 28px; font-weight: 900; color: var(--red); line-height: 1.1; }
+.verdict-potential-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.verdict-problems {
+  padding-top: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.verdict-problem {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--muted);
+}
+.verdict-problem-icon {
+  color: var(--red); font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ═══ FUNNEL ═══ */
+.funnel-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 12px; margin-bottom: 12px;
+}
+.funnel-card {
+  border-radius: var(--radius-card); padding: 18px; border: 1.5px solid;
+  position: relative; overflow: visible; background: #fff;
+  box-shadow: var(--shadow-card);
+}
+.funnel-bofu { border-color: rgba(22,163,74,.3); }
+.funnel-mofu { border-color: rgba(217,119,6,.3); }
+.funnel-tofu { border-color: rgba(37,99,235,.3); }
+.funnel-skip { border-color: rgba(220,38,38,.3); }
+.funnel-brand { border-color: rgba(124,58,237,.3); }
+.funnel-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 8px; position: relative; cursor: help;
+}
+.funnel-bofu .funnel-tag { color: var(--bofu); }
+.funnel-mofu .funnel-tag { color: var(--mofu); }
+.funnel-tofu .funnel-tag { color: var(--tofu); }
+.funnel-skip .funnel-tag { color: var(--skip); }
+.funnel-brand .funnel-tag { color: var(--brand); }
+.funnel-count { font-size: 32px; font-weight: 900; color: var(--text); }
+.funnel-traffic { font-size: 12px; margin-top: 4px; }
+.funnel-bofu .funnel-traffic { color: var(--bofu); }
+.funnel-mofu .funnel-traffic { color: var(--mofu); }
+.funnel-tofu .funnel-traffic { color: var(--tofu); }
+.funnel-skip .funnel-traffic { color: var(--skip); }
+.funnel-brand .funnel-traffic { color: var(--brand); }
+.funnel-desc { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+.commercial-health-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; padding: 12px 20px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 10px; margin-bottom: 28px;
+}
+.ch-item { font-size: 13px; color: var(--muted); font-weight: 600; }
+.ch-item strong { color: var(--text); margin-left: 4px; }
+.ch-grade {
+  font-size: 15px; font-weight: 900; padding: 2px 12px; border-radius: 6px;
+}
+.ch-grade-d { color: #d97706; background: rgba(217,119,6,.1); }
+
+/* ═══ SUMMARY BAR ═══ */
+.summary-bar {
+  display: flex; align-items: stretch;
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden; margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+.summary-bar-item {
+  flex: 1; padding: 14px 20px; text-align: center;
+  border-right: 1.5px solid var(--border);
+}
+.summary-bar-item:last-child { border-right: none; }
+.summary-bar-val { font-size: 22px; font-weight: 900; color: var(--text); line-height: 1.2; }
+.summary-bar-val.text-red { color: #dc2626; }
+.summary-bar-val.text-green { color: #16a34a; }
+.summary-bar-val.text-orange { color: #d97706; }
+.summary-bar-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* ═══ QUICK WIN ═══ */
+.quick-win {
+  background: #fff;
+  border: 1.5px solid rgba(22,163,74,.3);
+  border-left: 4px solid var(--bofu);
+  border-radius: var(--radius-card); padding: 22px 28px; margin-bottom: 36px;
+  box-shadow: var(--shadow-card);
+}
+.qw-speed-tag {
+  display: inline-block;
+  background: rgba(217,119,6,.1); color: #d97706;
+  padding: 4px 12px; border-radius: 6px;
+  font-size: 11px; font-weight: 800; letter-spacing: .3px; margin-bottom: 10px;
+}
+.qw-label {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--bofu); margin-bottom: 8px;
+}
+.qw-title { font-size: 18px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
+.qw-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+/* ═══ TABLES ═══ */
+table {
+  width: 100%; border-collapse: collapse;
+  background: #fff; border-radius: var(--radius-card);
+  overflow: hidden; border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+th {
+  background: var(--card); color: var(--muted);
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: .6px; padding: 10px 14px; text-align: left;
+}
+td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--card); }
+
+.pos {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 24px; border-radius: 6px;
+  font-size: 11px; font-weight: 700;
+}
+.pos-1 { background: rgba(22,163,74,.12); color: #16a34a; }
+.pos-5 { background: rgba(37,99,235,.1); color: #2563eb; }
+.pos-10 { background: rgba(217,119,6,.1); color: #d97706; }
+.pos-20 { background: rgba(220,38,38,.1); color: #dc2626; }
+.pos-out { background: rgba(100,116,139,.08); color: #888; }
+
+.pill {
+  display: inline-block; padding: 3px 9px;
+  border-radius: 8px; font-size: 10px; font-weight: 700;
+}
+.pill-bofu { background: rgba(22,163,74,.1); color: #16a34a; }
+.pill-mofu { background: rgba(217,119,6,.1); color: #b45309; }
+.pill-tofu { background: rgba(37,99,235,.08); color: #2563eb; }
+.pill-skip { background: rgba(220,38,38,.08); color: #dc2626; }
+.pill-brand { background: rgba(124,58,237,.08); color: #7c3aed; }
+.pill-gap { background: rgba(192,16,32,.08); color: var(--red); }
+.pill-red { background: rgba(220,38,38,.08); color: #dc2626; }
+.pill-green { background: rgba(22,163,74,.1); color: #16a34a; }
+.pill-orange { background: rgba(217,119,6,.1); color: #b45309; }
+.pill-blue { background: rgba(37,99,235,.08); color: #2563eb; }
+
+/* Tooltips */
+.pill-bofu, .pill-mofu, .pill-tofu, .pill-skip, .pill-brand,
+.funnel-tag { position: relative; cursor: help; }
+
+.pill-bofu::after, .pill-mofu::after, .pill-tofu::after,
+.pill-skip::after, .pill-brand::after {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a; border: 1px solid #333; color: #e2e8f0;
+  padding: 8px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 400; line-height: 1.6;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s;
+  z-index: 300; box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  white-space: pre-line; text-align: left; min-width: 220px;
+}
+.funnel-tag::after {
+  position: absolute; top: calc(100% + 8px); left: 0; transform: none;
+  background: #1a1a1a; border: 1px solid #333; color: #e2e8f0;
+  padding: 8px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 400; line-height: 1.6;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s;
+  z-index: 400; box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  white-space: pre-line; text-align: left; min-width: 220px;
+}
+.pill-bofu::after, .funnel-tag[data-intent="bofu"]::after {
+  content: "Готов вложить\AИнвестор с деньгами, ищет куда вложить.\A«инвестиции под залог недвижимости»,\A«куда вложить деньги под залог».\AПриоритет \D710 \2014 прямой путь к сделке.";
+}
+.pill-mofu::after, .funnel-tag[data-intent="mofu"]::after {
+  content: "Выбирает\AСравнивает варианты, изучает доходность.\A«частный инвестор под залог»,\A«займы у инвесторов».\AПриоритет \D75 \2014 конвертируются при хорошем CTA.";
+}
+.pill-tofu::after, .funnel-tag[data-intent="tofu"]::after {
+  content: "Изучает тему\AШирокая аудитория: ищут шаблоны, читают.\A«договор займа», «договор залога».\AПриоритет \D71 \2014 трафик есть, инвесторов мало.";
+}
+.pill-skip::after, .funnel-tag[data-intent="skip"]::after {
+  content: "Нецелевой\AЗа\0435мщики ищут деньги, не инвесторы.\A«займ под залог от частного лица».\AПриоритет \D70 \2014 не ваша аудитория.";
+}
+.pill-brand::after, .funnel-tag[data-intent="brand"]::after {
+  content: "Бренд\AИщут именно ЯрФинТраст.\AВысокая конверсия \2014 уже знают о вас.\AРастёт через PR, рекомендации и доверие.";
+}
+.pill-bofu:hover::after, .pill-mofu:hover::after, .pill-tofu:hover::after,
+.pill-skip:hover::after, .pill-brand:hover::after, .funnel-tag:hover::after {
+  opacity: 1;
+}
+
+.url-cell { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 10px; color: var(--text-light); }
+.muted { color: var(--muted); }
+.text-red { color: #dc2626; }
+.text-green { color: #16a34a; }
+.text-orange { color: #d97706; }
+.text-blue { color: #2563eb; }
+
+/* ─── ALERTS ─── */
+.alert {
+  border-radius: var(--radius-card); padding: 16px 20px;
+  margin-bottom: 14px; border-left: 4px solid;
+  background: #fff; box-shadow: var(--shadow-card);
+}
+.alert-red { border-color: var(--skip); }
+.alert-green { border-color: var(--bofu); }
+.alert-blue { border-color: var(--tofu); }
+.alert-orange { border-color: var(--mofu); }
+.alert-purple { border-color: var(--brand); }
+.alert-title { font-weight: 800; font-size: 13px; margin-bottom: 4px; }
+.alert-red .alert-title { color: #dc2626; }
+.alert-green .alert-title { color: #16a34a; }
+.alert-blue .alert-title { color: #2563eb; }
+.alert-orange .alert-title { color: #d97706; }
+.alert-purple .alert-title { color: #7c3aed; }
+
+/* ─── DETAILS ─── */
+details.kw-details {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden; margin-top: 14px;
+  box-shadow: var(--shadow-card);
+}
+details.kw-details > summary {
+  padding: 12px 18px; cursor: pointer;
+  font-size: 12px; font-weight: 700; color: var(--red);
+  list-style: none; user-select: none;
+  display: flex; align-items: center; gap: 8px;
+}
+details.kw-details > summary::-webkit-details-marker { display: none; }
+details.kw-details > summary::before {
+  content: '\25B6'; font-size: 9px; color: var(--muted);
+  transition: transform .15s; display: inline-block;
+}
+details.kw-details[open] > summary::before { transform: rotate(90deg); }
+details.kw-details > summary:hover { background: rgba(255,255,255,.025); }
+.kw-details table { border-radius: 0; border: none; border-top: 1px solid var(--border); }
+.kw-total td { background: rgba(99,102,241,.07) !important; font-weight: 700; }
+.kw-note { padding: 10px 16px; font-size: 10px; color: var(--muted); }
+.gap-header td {
+  background: rgba(245,158,11,.06) !important;
+  color: #fbbf24; font-weight: 700; font-size: 11px; letter-spacing: .5px;
+}
+
+/* ═══ COMPETITOR TABLE ═══ */
+.competitor-summary {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 14px;
+  background: rgba(34,197,94,.06); border: 1px solid rgba(34,197,94,.2);
+  border-radius: 10px; margin-top: 14px;
+  font-size: 14px; font-weight: 700; color: #4ade80;
+}
+
+/* ═══ ROI ═══ */
+.roi-block { display: flex; gap: 16px; margin-top: 20px; }
+.roi-item {
+  flex: 1; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 20px; text-align: center;
+  box-shadow: var(--shadow-card);
+}
+.roi-item span {
+  display: block; font-size: 12px; color: var(--muted);
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: .3px;
+}
+.roi-item strong { display: block; font-size: 24px; font-weight: 900; color: var(--text); }
+.roi-total {
+  background: var(--red-light) !important;
+  border-color: rgba(192,16,32,.2) !important;
+}
+.roi-total strong { color: var(--red); font-size: 28px; }
+
+/* ─── SPARKLINES ─── */
+.sparkline { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
+.sparkline-label { font-size: 11px; color: var(--muted); min-width: 60px; }
+.sparkline-bar { flex: 1; height: 10px; background: rgba(255,255,255,.06); border-radius: 5px; overflow: hidden; }
+.sparkline-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, var(--red), var(--red-dk));
+  transition: width .3s ease;
+}
+.sparkline-val { font-size: 11px; font-weight: 700; color: var(--text); min-width: 50px; text-align: right; }
+
+/* ═══ PLAN ═══ */
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.plan-card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+.plan-card.p1 { border-left: 4px solid var(--red); }
+.plan-card.p2 { border-left: 4px solid var(--mofu); }
+.plan-card.p3 { border-left: 4px solid var(--tofu); }
+.plan-n {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 11px; font-weight: 800; margin-bottom: 8px;
+}
+.p1 .plan-n { background: var(--red-light); color: var(--red); }
+.p2 .plan-n { background: rgba(217,119,6,.1); color: #d97706; }
+.p3 .plan-n { background: rgba(37,99,235,.08); color: #2563eb; }
+.plan-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.plan-desc { font-size: 11px; color: var(--muted); line-height: 1.7; }
+
+/* ═══ CHECKLIST ═══ */
+.card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+.checklist { list-style: none; }
+.checklist li {
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  font-size: 12px; display: flex; align-items: center; gap: 10px;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-ok { color: var(--bofu); font-size: 14px; flex-shrink: 0; }
+.check-warn { color: var(--mofu); font-size: 14px; flex-shrink: 0; }
+.check-fail { color: var(--skip); font-size: 14px; flex-shrink: 0; }
+
+/* ═══ TERM LEGEND ═══ */
+.term-legend {
+  display: flex; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.tl-item {
+  flex: 1; padding: 14px 16px;
+  border-right: 1px solid var(--border);
+}
+.tl-item:last-child { border-right: none; }
+.tl-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.tl-label { font-size: 12px; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px; }
+.tl-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+/* ─── TREND ─── */
+.trend-bar { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin: 12px 0; }
+.trend-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+.trend-fill { width: 100%; border-radius: 4px 4px 0 0; background: rgba(217,119,6,.4); transition: height .3s; }
+.trend-fill.declining { background: rgba(220,38,38,.4); }
+.trend-fill.good { background: rgba(22,163,74,.4); }
+.trend-label { font-size: 10px; color: var(--muted); }
+.trend-val { font-size: 10px; font-weight: 700; color: #fff; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #111; color: #888; padding: 32px 0;
+  margin-top: 40px; font-size: 12px;
+}
+footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+footer a { color: var(--red); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .footer-brand { font-size: 14px; font-weight: 800; color: #fff; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .container { padding: 16px 14px; }
+  .funnel-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .plan-grid { grid-template-columns: 1fr; }
+  .header .container { flex-direction: column; gap: 10px; }
+  .h-left h1 { font-size: 18px; }
+  .verdict-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .verdict-metrics { flex-direction: column; gap: 12px; }
+  .verdict-potential { margin-top: 12px; }
+  .grade-badge { font-size: 52px; }
+  .summary-bar { flex-direction: column; }
+  .summary-bar-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .summary-bar-item:last-child { border-bottom: none; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table thead, table tbody { display: table; width: 100%; }
+  th, td { white-space: nowrap; font-size: 11px; padding: 7px 8px; }
+  .roi-block { flex-direction: column; }
+  .term-legend { flex-direction: column; }
+  .commercial-health-bar { flex-wrap: wrap; gap: 8px; }
+  .pill-bofu::after, .pill-mofu::after, .pill-tofu::after,
+  .pill-skip::after, .pill-brand::after, .funnel-tag::after { display: none; }
+}
+@media (max-width: 480px) {
+  .funnel-grid { grid-template-columns: 1fr; }
+  .grade-badge { font-size: 44px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="container">
+    <div class="h-left">
+      <h1>Коммерческий SEO Аудит — yarfintrast.ru</h1>
+      <div class="sub">Инвестиции в займы под залог недвижимости · апрель 2026</div>
+    </div>
+    <div class="methodology-badge">SEO-аудит · апрель 2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══ НАВИГАЦИЯ ═══ -->
+<div style="background:#f5f5f5; border:1.5px solid #e8e8e8; border-radius:16px; padding:20px 24px; margin:24px 0 28px; display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+  <div style="font-size:13px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.5px; padding-top:2px; white-space:nowrap;">С чего начать:</div>
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <a href="#verdict" style="background:rgba(192,16,32,.08); border:1.5px solid rgba(192,16,32,.2); color:#c01020; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">1. Оценка</a>
+    <a href="#funnel" style="background:rgba(217,119,6,.08); border:1.5px solid rgba(217,119,6,.2); color:#b45309; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">2. Воронка</a>
+    <a href="#opportunity" style="background:rgba(22,163,74,.08); border:1.5px solid rgba(22,163,74,.2); color:#16a34a; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">3. Окно возможностей</a>
+    <a href="#roi" style="background:rgba(124,58,237,.06); border:1.5px solid rgba(124,58,237,.15); color:#7c3aed; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">4. Прогноз</a>
+    <a href="#summary" style="background:rgba(192,16,32,.12); border:1.5px solid rgba(192,16,32,.3); color:#c01020; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none;">5. Итог</a>
+  </div>
+  <div style="font-size:12px; color:#888; padding-top:4px; flex-basis:100%;">Остальные разделы — детали для специалиста. Для принятия решения достаточно этих пяти.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     EXECUTIVE SUMMARY
+     ═══════════════════════════════════════════════ -->
+<div id="exec" style="background:#fff; border:1.5px solid var(--border); border-radius:var(--radius-card); padding:28px 32px; margin-bottom:36px; box-shadow:var(--shadow-card); border-top:4px solid var(--red);">
+
+  <div style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;">Главное</div>
+
+  <div style="font-size:15px; font-weight:700; color:var(--text); line-height:1.6; margin-bottom:20px;">
+    У сайта 3 страницы в индексе Яндекса. У ближайшего конкурента Credit Club — 316. Видимость падает: минус 64% за полтора года. При этом ключевые запросы инвесторов свободны — конкуренты их не занимают.
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px;">
+
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Ситуация</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        3 страницы в индексе при 5 прямых конкурентах. Видимость: 164 &#8594; 59 ключей за 16 месяцев. Тренд вниз. Яндекс готов ранжировать сайт (позиция 2 по «инвестиции под залог недвижимости»), но ему нечего показывать.
+      </div>
+    </div>
+
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Возможность</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        Конкуренты не работают с поиском. Geek Finance теряет позиции. Займ Байкал, Красные Ворота, «Секрет инвестора» — в Яндексе не присутствуют. Ключевые запросы инвесторов — «краудлендинг» (675 запросов, 3К документов), «вложить деньги под проценты» (224, 0 документов) — пустые ниши.
+      </div>
+    </div>
+
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Что делать</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        Создать 15 страниц за квартал: блог (краудлендинг, куда вложить, риски), калькулятор доходности, документы-лид-магниты. Рост с 300 до 2 000 визитов/мес, из них ~800 с инвесторским интентом. Параллельно: PR-статья в Т-Ж/vc.ru для ссылок и бренда.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="font-size:12px; color:var(--muted); line-height:1.6; padding-top:16px; border-top:1px solid var(--border);">
+    <strong style="color:var(--text);">Конкуренты в поиске:</strong>
+    Credit Club — единственный серьёзный SEO-игрок (316 стр., DR 28).
+    Geek Finance — падает (80 &#8594; 40 ключей).
+    Займ Байкал — 28 ключей, только бренд.
+    Красные Ворота — 41 ключ, ЗПИФ-ниша.
+    «Секрет инвестора» — в поиске не найден, работает через закрытые каналы.
+    Поисковое поле свободно.
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 1 — VERDICT CARD
+     ═══════════════════════════════════════════════ -->
+<div id="verdict" class="verdict-card">
+  <div class="verdict-top">
+    <div class="verdict-grade">
+      <div class="grade-badge grade-d" style="font-size:36px;">2/10</div>
+      <div class="verdict-domain">yarfintrast.ru</div>
+      <div class="verdict-date">апрель 2026</div>
+    </div>
+    <div class="verdict-metrics">
+      <div class="vmet">
+        <span class="vmet-val text-orange">3</span>
+        <span class="vmet-label">Страниц в индексе<br>для инвест. компании</span>
+      </div>
+      <div class="vmet">
+        <span class="vmet-val text-red">-64%</span>
+        <span class="vmet-label">Потеря видимости<br>164 → 59 ключей за 16 мес</span>
+      </div>
+      <div class="vmet">
+        <span class="vmet-val text-green">~189</span>
+        <span class="vmet-label">Визитов/мес<br>из органики (оценка)</span>
+      </div>
+    </div>
+    <div class="verdict-potential">
+      <div class="verdict-potential-label">Потенциал из SEO / 12 мес</div>
+      <div class="verdict-potential-val">~2 500</div>
+      <div class="verdict-potential-sub">визитов/мес (все сегменты)<br>при создании 15–20 страниц</div>
+    </div>
+  </div>
+  <div class="verdict-problems">
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>Всего 3 страницы в индексе Яндекса</strong> — главная + 2 PDF-документа. Нет блога, нет FAQ, нет образовательного контента. Каждая ненаписанная статья = упущенный инвестор из поиска.</span>
+    </div>
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>Видимость падает: 164 ключей (дек 2024) → 59 (апр 2026)</strong> — минус 64% за 16 месяцев. Тренд устойчиво вниз. Без действий через 6 месяцев в топ-50 останется ~30 ключей.</span>
+    </div>
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>Инвесторские запросы в Яндексе свободны</strong> — «краудлендинг» (675 запросов, 3К документов), «вложить деньги под проценты» (224 запроса, 0 документов), «краудинвестинг» (169 запросов, 0 документов). Ни один из прямых конкурентов не занимает эти позиции.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 2 — КОРНЕВАЯ ПРОБЛЕМА
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Корневая проблема: 3 страницы в индексе</div>
+
+  <div class="summary-bar">
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-red">3</div>
+      <div class="summary-bar-label">Страниц в индексе Яндекса</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-red">59</div>
+      <div class="summary-bar-label">Ключей в топ-50 (было 164)</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-orange">15</div>
+      <div class="summary-bar-label">DR (Domain Rating)</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-orange">25</div>
+      <div class="summary-bar-label">Ссылок с 22 доменов</div>
+    </div>
+  </div>
+
+  <div class="alert alert-red">
+    <div class="alert-title">Почему это происходит: Tilda без контент-структуры</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Сайт на Tilda — одностраничник с якорными секциями. Яндекс видит это как <strong>одну страницу</strong>, не как отдельные разделы. У конкурента finsr.ru — 62 страницы (577 ключей). У bank-partner1.ru — 32 страницы (1 567 ключей).<br><br>
+      Два PDF-документа (договор займа + договор залога) случайно попали в индекс и ранжируются по 26 ключевым словам — больше, чем вся остальная структура сайта. Это показывает: <strong>Яндекс готов ранжировать yarfintrast.ru</strong>, но ему нечего показывать.
+    </div>
+  </div>
+
+  <!-- Тренд видимости -->
+  <div class="card" style="margin-top:14px;">
+    <div style="font-size:12px; font-weight:700; color:#1a1a1a; margin-bottom:12px;">Динамика ключей в топ-50 (Яндекс, помесячно)</div>
+    <div class="trend-bar">
+      <div class="trend-col"><div class="trend-fill good" style="height:71px;"></div><div class="trend-val">116</div><div class="trend-label">11.24</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:80px;"></div><div class="trend-val">164</div><div class="trend-label">12.24</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:75px;"></div><div class="trend-val">154</div><div class="trend-label">01.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:73px;"></div><div class="trend-val">150</div><div class="trend-label">02.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:72px;"></div><div class="trend-val">149</div><div class="trend-label">03.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:69px;"></div><div class="trend-val">141</div><div class="trend-label">04.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:72px;"></div><div class="trend-val">148</div><div class="trend-label">05.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:70px;"></div><div class="trend-val">143</div><div class="trend-label">06.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:64px;"></div><div class="trend-val">131</div><div class="trend-label">07.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:55px;"></div><div class="trend-val">114</div><div class="trend-label">08.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:57px;"></div><div class="trend-val">118</div><div class="trend-label">09.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:60px;"></div><div class="trend-val">124</div><div class="trend-label">10.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:65px;"></div><div class="trend-val">134</div><div class="trend-label">11.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:70px;"></div><div class="trend-val">143</div><div class="trend-label">12.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:55px;"></div><div class="trend-val">113</div><div class="trend-label">01.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:43px;"></div><div class="trend-val">88</div><div class="trend-label">02.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:38px;"></div><div class="trend-val">78</div><div class="trend-label">03.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:29px; background: rgba(239,68,68,.8);"></div><div class="trend-val text-red">59</div><div class="trend-label">04.26</div></div>
+    </div>
+    <div style="font-size:11px; color:var(--muted); margin-top:8px;">Яндекс Россия (Москва). Пик: декабрь 2024 (164 ключа). Текущий уровень: 59 (-64%).</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 3 — ВОРОНКА
+     ═══════════════════════════════════════════════ -->
+<div id="funnel" class="section">
+  <div class="section-title">Семантическая воронка: инвесторы vs заёмщики</div>
+
+  <div class="alert alert-orange" style="margin-bottom:14px;">
+    <div class="alert-title">Ключевой инсайт: большинство «инвесторских» запросов — на самом деле от заёмщиков</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Запрос «частный инвестор под залог недвижимости» (WS 422) ищет не инвестор, а <strong>заёмщик</strong>, который хочет найти частного кредитора. Это смешанный интент: и инвесторы, и заёмщики. Для привлечения инвесторов нужны другие запросы: «куда вложить деньги под проценты», «инвестиции в займы», «пассивный доход от недвижимости» — по ним у сайта нет ни одной позиции.
+    </div>
+  </div>
+
+  <div class="funnel-grid">
+    <div class="funnel-card funnel-bofu">
+      <div class="funnel-tag" data-intent="bofu">ГОТОВ ВЛОЖИТЬ</div>
+      <div class="funnel-count">3</div>
+      <div class="funnel-traffic">~74 визита/мес</div>
+      <div class="funnel-desc">«Инвестиции под залог недвижимости» (p2), «инвестиции в займы» (p3). Позиции есть, трафик идёт на главную.</div>
+    </div>
+    <div class="funnel-card funnel-mofu">
+      <div class="funnel-tag" data-intent="mofu">ВЫБИРАЕТ</div>
+      <div class="funnel-count">6</div>
+      <div class="funnel-traffic">~115 визитов/мес</div>
+      <div class="funnel-desc">«Частный инвестор под залог» (p5–9), «займы у инвесторов» (p3). Смешанный интент: и инвесторы, и заёмщики. Позиции нестабильные.</div>
+    </div>
+    <div class="funnel-card funnel-tofu">
+      <div class="funnel-tag" data-intent="tofu">ИЗУЧАЕТ</div>
+      <div class="funnel-count">26</div>
+      <div class="funnel-traffic">~50 визитов/мес</div>
+      <div class="funnel-desc">Шаблоны документов из PDF: «договор займа», «договор залога». Юристы, бухгалтеры. Конверсия в инвестора: 0%.</div>
+    </div>
+    <div class="funnel-card funnel-skip">
+      <div class="funnel-tag" data-intent="skip">НЕЦЕЛЕВОЙ</div>
+      <div class="funnel-count">~20</div>
+      <div class="funnel-traffic">~0 визитов</div>
+      <div class="funnel-desc">Запросы за пределами топ-50: «займ под залог от частного лица» — чистые заёмщики. Не целевая аудитория для привлечения инвесторов.</div>
+    </div>
+    <div class="funnel-card funnel-brand">
+      <div class="funnel-tag" data-intent="brand">БРЕНД</div>
+      <div class="funnel-count">2</div>
+      <div class="funnel-traffic">~77 визитов/мес</div>
+      <div class="funnel-desc">«Ярфинтраст» (p1), «ярфинтраст инн» (p1). Стабильно. 71 оценка на Яндекс Картах — хорошая репутация.</div>
+    </div>
+  </div>
+
+  <div class="commercial-health-bar">
+    <span class="ch-item">Всего органики/мес: <strong>~189</strong></span>
+    <span class="ch-item">Готов вложить: <strong class="text-orange">~39%</strong></span>
+    <span class="ch-item">Изучает + Нецелевой: <strong class="text-red">~27%</strong></span>
+    <span class="ch-item">Здоровье воронки: <strong style="color:#d97706;">слабое</strong></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 4 — QUICK WIN
+     ═══════════════════════════════════════════════ -->
+<div id="opportunity" class="quick-win">
+  <div class="qw-speed-tag">Результат за 2–4 недели</div>
+  <div class="qw-label">Quick Win</div>
+  <div class="qw-title">Статья «Краудлендинг: как заработать на залоговых займах» — занять пустую нишу</div>
+  <div class="qw-desc">
+    Запрос «краудлендинг» — 675 запросов/мес, всего 3 000 документов в Яндексе. Это дословное описание бизнес-модели ЯрФинТраст, и ниша практически пустая. Ни один из прямых конкурентов не занимает эту позицию.<br><br>
+    Одна качественная статья (2 500–3 000 слов, с расчётами, FAQ, кейсом) может дать 40-60 ключевых слов и стабильный поток целевых визитов. CTA внутри статьи — ссылка на Telegram-канал или бота.<br><br>
+    Главная страница уже работает для инвесторов и ранжируется по основным запросам (позиция 2). Точка роста — блог и образовательный контент, который приведёт новых людей.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 5 — ТЕКУЩИЕ ПОЗИЦИИ
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Текущие позиции: что сейчас работает</div>
+
+  <div style="font-size:11px; color:var(--muted); margin-bottom:8px;">Яндекс Россия (Москва) · апрель 2026 · 14 значимых ключей</div>
+
+  <table>
+    <thead><tr>
+      <th>Запрос</th>
+      <th>WS</th>
+      <th>Тип</th>
+      <th>Позиция</th>
+      <th>Страница</th>
+      <th>Реальная аудитория</th>
+    </tr></thead>
+    <tbody>
+      <tr class="gap-header"><td colspan="6">&#8212; ГОТОВ ВЛОЖИТЬ: инвестор с деньгами &#8212;</td></tr>
+      <tr>
+        <td><strong>инвестиции под залог недвижимости</strong></td>
+        <td>101</td>
+        <td><span class="pill pill-bofu">Готов вложить</span></td>
+        <td><span class="pos pos-1">2</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-green">Инвестор</td>
+      </tr>
+      <tr>
+        <td>инвестиции в займы под залог недвижимости</td>
+        <td>27</td>
+        <td><span class="pill pill-bofu">Готов вложить</span></td>
+        <td><span class="pos pos-5">3</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-green">Инвестор</td>
+      </tr>
+      <tr>
+        <td>инвестиции в залоговую недвижимость</td>
+        <td>29</td>
+        <td><span class="pill pill-bofu">Готов вложить</span></td>
+        <td><span class="pos pos-10">9</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-green">Инвестор</td>
+      </tr>
+
+      <tr class="gap-header"><td colspan="6">&#8212; ВЫБИРАЕТ: смешанный интент (инвесторы + заёмщики) &#8212;</td></tr>
+      <tr>
+        <td><strong>частный инвестор под залог</strong></td>
+        <td>704</td>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td><span class="pos pos-10">9</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-orange">~70% заёмщики</td>
+      </tr>
+      <tr>
+        <td>частные инвесторы под залог недвижимости</td>
+        <td>422</td>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td><span class="pos pos-5">5</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-orange">~70% заёмщики</td>
+      </tr>
+      <tr>
+        <td>инвесторы под залог недвижимости</td>
+        <td>370</td>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td><span class="pos pos-1">2</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-orange">Смешанный интент</td>
+      </tr>
+      <tr>
+        <td>инвестор под залог недвижимости</td>
+        <td>370</td>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td><span class="pos pos-10">7</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-orange">Смешанный интент</td>
+      </tr>
+      <tr>
+        <td>займы у инвесторов</td>
+        <td>243</td>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td><span class="pos pos-5">3</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-orange">~80% заёмщики</td>
+      </tr>
+
+      <tr class="gap-header"><td colspan="6">&#8212; БРЕНД &#8212;</td></tr>
+      <tr>
+        <td>ярфинтраст</td>
+        <td>77</td>
+        <td><span class="pill pill-brand">Бренд</span></td>
+        <td><span class="pos pos-1">1</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-green">Знают о компании</td>
+      </tr>
+      <tr>
+        <td>ярфинтраст инн</td>
+        <td>4</td>
+        <td><span class="pill pill-brand">Бренд</span></td>
+        <td><span class="pos pos-1">1</span></td>
+        <td class="url-cell">/</td>
+        <td class="text-green">Проверка юрлица</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details class="kw-details">
+    <summary>&#9654; Упущенные ключи: есть у конкурентов, нет у yarfintrast.ru</summary>
+    <div class="kw-note">Запросы инвесторов, по которым у сайта нет позиций.</div>
+    <table>
+      <thead><tr><th>Запрос</th><th>WS</th><th>Тип</th><th>Конкурент</th><th>Их позиция</th><th>Рекомендация</th></tr></thead>
+      <tbody>
+        <tr class="gap-header"><td colspan="6">&#8212; ВЫСОКИЙ ОБЪЁМ (must target) &#8212;</td></tr>
+        <tr>
+          <td>дать деньги под проценты</td>
+          <td>4 279</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-20">31</span></td>
+          <td><span class="pill pill-gap">Статья + калькулятор</span></td>
+        </tr>
+        <tr>
+          <td>частный инвестор займ</td>
+          <td>1 165</td>
+          <td><span class="pill pill-mofu">Выбирает</span></td>
+          <td>finsr.ru</td>
+          <td><span class="pos pos-10">9</span></td>
+          <td><span class="pill pill-gap">Статья в блоге</span></td>
+        </tr>
+        <tr>
+          <td>кредитный инвестор</td>
+          <td>1 051</td>
+          <td><span class="pill pill-mofu">Выбирает</span></td>
+          <td>finsr.ru</td>
+          <td><span class="pos pos-20">14</span></td>
+          <td><span class="pill pill-gap">Блог-статья</span></td>
+        </tr>
+        <tr>
+          <td>займ частный инвестор</td>
+          <td>996</td>
+          <td><span class="pill pill-mofu">Выбирает</span></td>
+          <td>finsr.ru</td>
+          <td><span class="pos pos-5">5</span></td>
+          <td><span class="pill pill-gap">Статья в блоге</span></td>
+        </tr>
+        <tr>
+          <td>кредит частный инвестор</td>
+          <td>938</td>
+          <td><span class="pill pill-mofu">Выбирает</span></td>
+          <td>finsr.ru</td>
+          <td><span class="pos pos-5">6</span></td>
+          <td><span class="pill pill-gap">Статья в блоге</span></td>
+        </tr>
+        <tr class="gap-header"><td colspan="6">&#8212; Инвесторский интент: «у меня деньги, куда вложить» &#8212;</td></tr>
+        <tr>
+          <td><strong>краудлендинг</strong></td>
+          <td style="font-weight:700;">675</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">Пустая ниша (3K docs, KEI=32)</span></td>
+        </tr>
+        <tr>
+          <td>вклады под высокий процент</td>
+          <td>379</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">Нет позиций</span></td>
+        </tr>
+        <tr>
+          <td>вложить деньги под проценты</td>
+          <td>224</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">0 docs в Яндексе (!)</span></td>
+        </tr>
+        <tr>
+          <td>куда вложить миллион рублей</td>
+          <td>197</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">Нет позиций</span></td>
+        </tr>
+        <tr>
+          <td><strong>краудинвестинг</strong></td>
+          <td>169</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">KEI=22, 0 docs</span></td>
+        </tr>
+        <tr>
+          <td>p2p кредитование</td>
+          <td>146</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">KEI=27</span></td>
+        </tr>
+        <tr>
+          <td>высокодоходные облигации</td>
+          <td>136</td>
+          <td><span class="pill pill-mofu">Выбирает</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">7K docs, низкая конкуренция</span></td>
+        </tr>
+        <tr>
+          <td>альтернативные инвестиции</td>
+          <td>49</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">0 рекламодателей</span></td>
+        </tr>
+        <tr>
+          <td>куда вложить чтобы ежемесячный доход</td>
+          <td>40</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">KEI=66, лучшее соотношение</span></td>
+        </tr>
+        <tr>
+          <td>зпиф залоговые займы</td>
+          <td>5</td>
+          <td><span class="pill pill-bofu">Готов вложить</span></td>
+          <td>&#8212;</td>
+          <td><span class="pos pos-out">нет</span></td>
+          <td><span class="pill pill-red">KEI=55, прямое попадание</span></td>
+        </tr>
+        <tr class="kw-total"><td colspan="6">Суммарный потенциал упущенных инвесторских ключей: ~2 000 superwsk. Конкуренция по большинству — минимальная.</td></tr>
+      </tbody>
+    </table>
+  </details>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 6 — ОКНО ВОЗМОЖНОСТЕЙ
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Окно возможностей: поисковое поле свободно</div>
+
+  <div class="alert alert-green">
+    <div class="alert-title">Прямые конкуренты не занимают поисковое поле</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Из пяти прямых конкурентов только Credit Club серьёзно работает с SEO. Geek Finance теряет позиции. Займ Байкал и Красные Ворота — минимальная органика. «Секрет инвестора» в поиске не присутствует.<br><br>
+      Ключевые инвесторские запросы — «краудлендинг» (675 запросов, 3К документов), «вложить деньги под проценты» (224, 0 документов), «краудинвестинг» (169, 0 документов) — <strong>свободны</strong>. Кто первый создаст качественные страницы — тот и займёт.
+    </div>
+  </div>
+
+  <div style="font-size:11px; color:var(--muted); margin-bottom:12px;">Показатели конкурентов · Яндекс · апрель 2026</div>
+
+  <table>
+    <thead><tr>
+      <th>Конкурент</th>
+      <th>Общих ключей</th>
+      <th>Всего KW</th>
+      <th>DR</th>
+      <th>Страниц</th>
+      <th>Видимость</th>
+      <th>Тренд</th>
+      <th>Комментарий</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>yarfintrast.ru</strong></td>
+        <td>&#8212;</td>
+        <td style="color:var(--accent); font-weight:700">59</td>
+        <td>15</td>
+        <td style="color:#dc2626; font-weight:700">3</td>
+        <td>1</td>
+        <td class="text-red">&#9660;</td>
+        <td class="muted">Наш сайт</td>
+      </tr>
+      <tr style="background:rgba(22,163,74,.04);">
+        <td><strong>credit.club</strong></td>
+        <td>&#8212;</td>
+        <td style="color:#16a34a; font-weight:700">1 179</td>
+        <td style="color:#16a34a; font-weight:700">28</td>
+        <td style="color:#16a34a; font-weight:700">316</td>
+        <td style="color:#16a34a; font-weight:700">65</td>
+        <td class="text-green">&#9650;</td>
+        <td class="muted">Лидер ниши. Гео-лендинги (/moskva, /kirov) + /invest для инвесторов. Реклама свёрнута — хватает органики</td>
+      </tr>
+      <tr>
+        <td><strong>finsr.ru</strong></td>
+        <td>11</td>
+        <td>577</td>
+        <td>21</td>
+        <td>62</td>
+        <td>3</td>
+        <td class="text-green">&#9650;</td>
+        <td class="muted">Блог + сервисные страницы. Лидер по инвесторским ключам среди прямых конкурентов</td>
+      </tr>
+      <tr>
+        <td>creditor.ru</td>
+        <td>&#8212;</td>
+        <td>1 956</td>
+        <td>19</td>
+        <td>106</td>
+        <td>6</td>
+        <td class="text-orange">&#8212;</td>
+        <td class="muted">Платформа для инвесторов + заёмщиков. 56 AI-ответов. Калькуляторы (325 ключей)</td>
+      </tr>
+      <tr>
+        <td>finance-gik.ru</td>
+        <td>&#8212;</td>
+        <td>80</td>
+        <td>17</td>
+        <td>13</td>
+        <td>1</td>
+        <td class="text-red">&#9660;</td>
+        <td class="muted">Geek Finance (Краснодар). Все позиции глубокие (p23+). Падает: 245 &#8594; 80 ключей</td>
+      </tr>
+      <tr>
+        <td>krvorota.ru</td>
+        <td>&#8212;</td>
+        <td>41</td>
+        <td>8</td>
+        <td>8</td>
+        <td>1</td>
+        <td class="text-orange">&#8212;</td>
+        <td class="muted">УК Красные Ворота. ЗПИФ-фокус. Лицензия ЦБ. Не потребительский бренд</td>
+      </tr>
+      <tr>
+        <td>ukbaykal.ru</td>
+        <td>&#8212;</td>
+        <td>28</td>
+        <td>10</td>
+        <td>8</td>
+        <td>1</td>
+        <td class="text-orange">&#8212;</td>
+        <td class="muted">Займ Байкал. Только бренд-запросы. Минимальная органика</td>
+      </tr>
+      <tr>
+        <td>bank-partner1.ru</td>
+        <td>10</td>
+        <td>1 567</td>
+        <td>13</td>
+        <td>32</td>
+        <td>2</td>
+        <td class="text-green">&#9650;</td>
+        <td class="muted">Контент-машина: 1 567 ключей из 32 страниц</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px; padding:12px 16px; background:#f5f5f5; border:1.5px solid #e8e8e8; border-radius:10px; font-size:12px; color:#595959; line-height:1.6;">
+    <strong>Вывод:</strong> credit.club — единственный серьёзный SEO-игрок (316 страниц, DR 28). Остальные конкуренты либо падают (Geek Finance), либо не занимаются SEO (Займ Байкал, Красные Ворота, «Секрет инвестора»). Ниша открыта.
+  </div>
+
+  <div class="alert alert-orange" style="margin-top:14px;">
+    <div class="alert-title">«Секрет инвестора» не найден в поиске</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Домены secretinvestora.ru, secret-investora.ru не существуют в индексе. Синдикат работает через закрытые каналы, рекомендации и мероприятия &#8212; не через SEO. Это подтверждает: <strong>органический поиск &#8212; незанятая территория</strong> в нише залоговых инвестиций. Кто первый выстроит контент &#8212; заберёт рынок.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 7 — БЕНЧМАРКИ
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Бенчмарки: у кого учиться</div>
+
+  <div class="alert alert-blue" style="margin-bottom:14px;">
+    <div class="alert-title">credit.club &#8212; как выстроить SEO-машину в залоговой нише</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      316 страниц, DR=28, 1 179 ключей. Стратегия: <strong>гео-лендинги</strong> (/moskva, /kirov, /krasnoyarsk) + <strong>суммовые лендинги</strong> (/na-3-milliona, /na-5-millionov) + страница <strong>/invest</strong> для инвесторов (43 ключа). Свернули рекламу в 2025 &#8212; хватает органики.<br><br>
+      <strong>Что копировать:</strong> город + сумма = отдельная страница. Каждая страница &#8212; это отдельная позиция в поиске.
+    </div>
+  </div>
+
+  <div class="alert alert-blue" style="margin-bottom:14px;">
+    <div class="alert-title">finsr.ru &#8212; одна статья = 67 ключевых слов и 918 визитов/мес</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Их блог-пост <code>/blog/kredit-pod-zalog-ot-chastnogo-investora</code> ранжируется по 67 запросам. DR=21, 62 страницы.<br>
+      <strong>Где обойти:</strong> нет калькулятора доходности, нет кейсов, нет отзывов. Ваши 71 оценка на картах &#8212; сильнее.
+    </div>
+  </div>
+
+  <div class="alert alert-green">
+    <div class="alert-title">buzko-krasnov.webflow.io &#8212; эталон лид-магнитов для профессиональной аудитории</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Юридическая фирма на Webflow. Раздел <strong>/shop-ru</strong> &#8212; каталог шаблонов документов и путеводителей: брачные договоры, конвертируемые займы, SAFE, опционные программы. Фильтрация по 9 категориям.<br><br>
+      <strong>Что адаптировать для ЯрФинТраст:</strong><br>
+      &#8226; Раздел <strong>/dokumenty/</strong> с шаблонами: договор займа, договор залога, чек-лист проверки заёмщика, калькулятор доходности (Excel/Google Sheets)<br>
+      &#8226; <strong>Лид-магнит:</strong> «Скачайте шаблон договора залога» &#8594; email &#8594; Telegram-канал (воронка: документ &#8594; подписка &#8594; доверие &#8594; инвестиция)<br>
+      &#8226; Путеводители: «Как инвестировать в залоговые займы: пошаговый гайд» (PDF 15-20 стр.)<br>
+      &#8226; Формат: за email &#8212; бесплатно, для сбора базы инвесторов<br><br>
+      <strong>Почему это работает:</strong> у Buzko Krasnov документы «стали хрестоматийными» и привлекли 200 000+ человек за 6 лет. Документы = доверие. Для финансовой ниши доверие = главный актив.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 8 — ПРОГНОЗ В ДЕНЬГАХ
+     ═══════════════════════════════════════════════ -->
+<div id="roi" class="section">
+  <div class="section-title">Прогноз: инвесторы из органики</div>
+
+  <table>
+    <thead><tr>
+      <th>Тип трафика</th>
+      <th>Кто приходит</th>
+      <th>Сейчас</th>
+      <th>Через 12 мес</th>
+      <th>Рост</th>
+      <th>За счёт чего</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="pill pill-bofu">Готов вложить</span></td>
+        <td style="font-size:11px; color:#16a34a; font-weight:600;">Инвесторы</td>
+        <td style="font-weight:700;">~74</td>
+        <td style="color:#16a34a; font-weight:700">~600</td>
+        <td style="color:#16a34a;">&#215;8</td>
+        <td style="font-size:11px; color:#595959;">Блог-статьи + калькулятор</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-mofu">Выбирает</span></td>
+        <td style="font-size:11px; color:#d97706;">~30% инвесторы, ~70% заёмщики</td>
+        <td>~115</td>
+        <td>~800</td>
+        <td style="color:#d97706;">&#215;7</td>
+        <td style="font-size:11px; color:#595959;">Блог-статьи</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-brand">Бренд</span></td>
+        <td style="font-size:11px; color:#7c3aed;">Все сегменты</td>
+        <td>~77</td>
+        <td>~200</td>
+        <td style="color:#7c3aed;">&#215;2.6</td>
+        <td style="font-size:11px; color:#595959;">PR, Telegram, отзывы</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-tofu">Изучает</span></td>
+        <td style="font-size:11px; color:#888;">Юристы, бухгалтеры</td>
+        <td>~50</td>
+        <td>~400</td>
+        <td style="color:#2563eb;">&#215;8</td>
+        <td style="font-size:11px; color:#595959;">PDF &#8594; HTML + лид-магниты</td>
+      </tr>
+      <tr class="kw-total">
+        <td><strong>Итого</strong></td>
+        <td></td>
+        <td><strong>~316</strong></td>
+        <td><strong>~2 000</strong></td>
+        <td><strong>&#215;6</strong></td>
+        <td style="font-size:11px;">15 новых страниц</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin:12px 0; font-size:12px; color:var(--muted); line-height:1.6;">
+    <strong>Сплит по сегментам (оценка через 12 мес):</strong> инвесторы ~840/мес (600 прямых + 30% от 800 «выбирает»), заёмщики ~560/мес (70% от 800), бренд ~200, документы ~400.<br>
+    * Данных по текущим заявкам нет. После подключения Метрики + целей можно будет считать конверсии по каждому сегменту.
+  </div>
+
+  <div>
+    <div class="sparkline">
+      <span class="sparkline-label">Сейчас</span>
+      <div class="sparkline-bar"><div class="sparkline-fill" style="width:16%"></div></div>
+      <span class="sparkline-val">~316 визитов/мес (3 страницы)</span>
+    </div>
+    <div class="sparkline">
+      <span class="sparkline-label">6 мес</span>
+      <div class="sparkline-bar"><div class="sparkline-fill" style="width:50%"></div></div>
+      <span class="sparkline-val">~1 000 визитов/мес (10 страниц)</span>
+    </div>
+    <div class="sparkline">
+      <span class="sparkline-label">12 мес</span>
+      <div class="sparkline-bar"><div class="sparkline-fill" style="width:100%"></div></div>
+      <span class="sparkline-val">~2 000 визитов/мес (15+ страниц)</span>
+    </div>
+  </div>
+
+  <div class="roi-block">
+    <div class="roi-item">
+      <span>Трафик сейчас</span>
+      <strong>~316/мес</strong>
+      <small style="color:var(--muted); font-size:11px;">3 страницы в индексе</small>
+    </div>
+    <div class="roi-item">
+      <span>Трафик через 12 мес</span>
+      <strong>~2 000/мес</strong>
+      <small style="color:var(--muted); font-size:11px;">при 15+ страницах</small>
+    </div>
+    <div class="roi-item">
+      <span>Рост</span>
+      <strong>&#215;6</strong>
+      <small style="color:var(--muted); font-size:11px;">от создания контента</small>
+    </div>
+    <div class="roi-item roi-total">
+      <span>Стоимость визита из SEO</span>
+      <strong>0 &#8381;</strong>
+      <small style="color:#16a34a; font-size:11px;">после выхода в топ — трафик бесплатный</small>
+    </div>
+  </div>
+
+  <div class="alert alert-purple" style="margin-top:16px;">
+    <div class="alert-title">Контекст: стоимость привлечения инвестора через Директ</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      ekspert-kapital.ru тратит ~88 000 &#8381;/мес на Яндекс Директ (93 ключа). В нише залоговых инвестиций средняя ставка 50–200&#8381;/клик. Привлечение одного квал. инвестора через контекст: <strong>~15 000–30 000 &#8381;</strong>.<br><br>
+      При выходе в топ-5 по инвесторским запросам (12 мес работы) эти клики становятся бесплатными. Окупаемость SEO: <strong>4–8 месяцев</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 9 — ПРИОРИТЕТНЫЙ ПЛАН
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Приоритетный план работ</div>
+  <div class="plan-grid">
+    <div class="plan-card p1">
+      <div class="plan-n">1</div>
+      <div class="plan-title">Статья «Краудлендинг: как заработать на залоговых займах»</div>
+      <div class="plan-desc">Ключевая статья: что такое краудлендинг, как работает модель, доходность, риски, кейс, FAQ 8 вопросов. Целевой запрос: «краудлендинг» (675 superwsk, 3K docs — пустая ниша). CTA — Telegram-бот или канал. Одна статья может дать 40-60 ключей.</div>
+    </div>
+    <div class="plan-card p1">
+      <div class="plan-n">2</div>
+      <div class="plan-title">Статья: «Куда вложить деньги под залог недвижимости: расчёт доходности»</div>
+      <div class="plan-desc">Целевой кластер: «дать деньги под проценты» (WS 4 279), «куда вложить деньги под залог» (~200), «инвестировать деньги под проценты» (69). Формат: сравнение залоговых займов vs депозиты vs облигации + реальные цифры доходности + калькулятор. CTA: «Обсудить условия инвестирования».</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">3</div>
+      <div class="plan-title">Блог: 4 статьи за первый квартал</div>
+      <div class="plan-desc">
+        1) «Риски инвестиций в займы под залог — честный разбор» (E-E-A-T сигнал)<br>
+        2) «Как проверить заёмщика: чек-лист для частного инвестора» (WS ~150)<br>
+        3) «Частный инвестор: как заработать на займах» (WS 700–1 100 кластер)<br>
+        4) «Пассивный доход от недвижимости: 5 способов» (WS ~300)
+      </div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">4</div>
+      <div class="plan-title">Конвертировать PDF в HTML-страницы</div>
+      <div class="plan-desc">PDF-документы (договор займа, договор залога) ранжируются по 26 ключам, но PDF хуже индексируется и не конвертирует. Перевести в HTML-страницы /dokumenty/dogovor-zaima/ и /dokumenty/dogovor-zaloga/ + добавить CTA на консультацию. Потенциал: «договор залога по договору займа» (WS 850, сейчас p26) &#8594; топ-10.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">5</div>
+      <div class="plan-title">Линкбилдинг до DR 25+</div>
+      <div class="plan-desc">Текущий DR=15, у лидера finsr.ru — DR=21. Нужно: профиль на Banki.ru, vc.ru, РБК, публикации в финансовых СМИ. Цель: +30 ссылающихся доменов за 6 месяцев (сейчас 22). Каждая ссылка из тематического ресурса усиливает все страницы сайта.</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">6</div>
+      <div class="plan-title">Яндекс Нейро + AI-ответы</div>
+      <div class="plan-desc">Сайт уже цитируется в 9 AI-ответах Яндекса — хороший сигнал. FAQ-блоки на каждой странице (5–8 вопросов + JSON-LD FAQPage) увеличат попадание в Нейро. Формат: вопрос инвестора &#8594; конкретный ответ с цифрами. Пример: «Какая доходность залоговых займов?» &#8594; «27% годовых при среднем сроке 12 мес».</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">7</div>
+      <div class="plan-title">Schema.org + технический SEO</div>
+      <div class="plan-desc">Organization + FinancialService на главной, Article на блог-статьях. Яндекс Бизнес: проверить полноту карточки (71 оценка, рейтинг 5.0 — нужно использовать). Google Search Console: отправить sitemap.</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">8</div>
+      <div class="plan-title">Партнёрский субдомен partner.yarfintrast.com</div>
+      <div class="plan-desc">Субдомен уже существует (11 ключей, Видимость=1). Проверить: есть ли каннибализация с основным доменом. Если есть — объединить контент на основной домен (301 редирект). Если нет — развивать отдельно как площадку для партнёрской программы.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 10 — КОНКРЕТНЫЙ ПЛАН: ПЕРВЫЕ ШАГИ
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Конкретный план: что делаем в первую очередь</div>
+
+  <!-- Шаг 1 -->
+  <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:24px; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+      <div style="background:#22c55e; color:#fff; font-size:13px; font-weight:800; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+      <div>
+        <div style="font-size:15px; font-weight:800; color:#1a1a1a;">Статья «Краудлендинг» — занимаем пустую нишу</div>
+        <div style="font-size:12px; color:#888; margin-top:2px;">Неделя 1–2 · Усилие: 3–5 дней · Результат: через 2–4 нед после индексации</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="background:#f5f5f5; border:1.5px solid #e8e8e8; border-radius:12px; padding:16px;">
+        <div style="font-size:11px; color:#16a34a; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px;">Структура статьи</div>
+        <div style="font-size:12px; color:#595959; line-height:1.7;">
+          <strong style="color:#1a1a1a;">H1:</strong> «Краудлендинг: как заработать на залоговых займах»<br><br>
+          &#8594; Что такое краудлендинг простыми словами<br>
+          &#8594; Как работает модель (схема: инвестор &#8594; компания &#8594; заёмщик &#8594; залог)<br>
+          &#8594; Доходность: расчёт на конкретном примере<br>
+          &#8594; Риски и как они закрываются (LTV, оценка залога)<br>
+          &#8594; Сравнение с депозитами и облигациями<br>
+          &#8594; FAQ 8 вопросов<br>
+          &#8594; CTA: ссылка на TG-канал или бота
+        </div>
+      </div>
+      <div style="background:#f5f5f5; border:1.5px solid #e8e8e8; border-radius:12px; padding:16px;">
+        <div style="font-size:11px; color:#16a34a; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px;">Целевые запросы</div>
+        <div style="font-size:12px; color:#595959; line-height:1.7;">
+          <strong style="color:#1a1a1a;">Основной:</strong><br>
+          «краудлендинг» (WS 675, 3K docs — пустая ниша)<br><br>
+          <strong style="color:#1a1a1a;">Дополнительные:</strong><br>
+          «краудинвестинг» (WS 169, 0 docs)<br>
+          «p2p кредитование» (WS 146, KEI=27)<br>
+          «инвестиционная платформа» (WS 182)<br>
+          «альтернативные инвестиции» (WS 49, 0 рекламодателей)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Шаг 2 -->
+  <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:24px; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+      <div style="background:#f59e0b; color:#fff; font-size:13px; font-weight:800; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+      <div>
+        <div style="font-size:15px; font-weight:800; color:#1a1a1a;">Ключевая статья: «Куда вложить деньги: залоговые займы vs депозиты»</div>
+        <div style="font-size:12px; color:#888; margin-top:2px;">Неделя 2–3 · Усилие: 2–3 дня · Результат: через 4–8 нед</div>
+      </div>
+    </div>
+    <div style="font-size:12px; color:#595959; line-height:1.7; padding:0 4px;">
+      Целевой запрос: <strong style="color:#d97706;">«дать деньги под проценты»</strong> (WS 4 279) — самый крупный кластер в нише. Ни один из прямых конкурентов не занимает эту позицию.<br><br>
+      Формат: сравнительная таблица (залоговые займы 27% vs депозит 18% vs облигации 15% vs акции ???%), реальный кейс с расчётом, риски каждого варианта, FAQ. Объём: 2 500–3 000 слов.<br><br>
+      Потенциал одной статьи: <strong style="color:#16a34a;">+67 ключевых слов</strong> (по аналогии с finsr.ru, чья единственная статья ранжируется по 67 ключам).
+    </div>
+  </div>
+
+  <!-- Шаг 3 -->
+  <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:24px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+      <div style="background:#8b5cf6; color:#1a1a1a; font-size:13px; font-weight:800; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+      <div>
+        <div style="font-size:15px; font-weight:800; color:#1a1a1a;">PDF &#8594; HTML + ещё 3 статьи = 15+ новых страниц за квартал</div>
+        <div style="font-size:12px; color:#888; margin-top:2px;">Месяц 1–3 · Результат: нарастающий</div>
+      </div>
+    </div>
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <th style="text-align:left; padding:10px 12px; color:#595959; font-weight:600; font-size:11px; text-transform:uppercase;">#</th>
+          <th style="text-align:left; padding:10px 12px; color:#595959; font-weight:600; font-size:11px; text-transform:uppercase;">Тип</th>
+          <th style="text-align:left; padding:10px 12px; color:#595959; font-weight:600; font-size:11px; text-transform:uppercase;">URL / Название</th>
+          <th style="text-align:left; padding:10px 12px; color:#595959; font-weight:600; font-size:11px; text-transform:uppercase;">Целевой запрос / WS</th>
+          <th style="text-align:left; padding:10px 12px; color:#595959; font-weight:600; font-size:11px; text-transform:uppercase;">Зачем</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #e8e8e8; background:rgba(22,163,74,.04);">
+          <td style="padding:10px 12px; color:#16a34a; font-weight:700;">1</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">Лендинг</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a; font-weight:600;">/blog/kraudlending/</td>
+          <td style="padding:10px 12px; color:#595959;">«краудлендинг» (675), «краудинвестинг» (169), «p2p кредитование» (146)</td>
+          <td style="padding:10px 12px; color:#595959;">Пустая ниша (3K docs). Описание бизнес-модели = 40-60 ключей</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8; background:rgba(22,163,74,.04);">
+          <td style="padding:10px 12px; color:#16a34a; font-weight:700;">2</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a; font-weight:600;">/blog/kuda-vlozhit-dengi-pod-zalog/</td>
+          <td style="padding:10px 12px; color:#595959;">«дать деньги под проценты» (WS 4 279)</td>
+          <td style="padding:10px 12px; color:#595959;">Крупнейший кластер. Позиция свободна</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#d97706; font-weight:700;">3</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Из PDF</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/dokumenty/dogovor-zaima/</td>
+          <td style="padding:10px 12px; color:#595959;">«договор займа» (WS 850+, сейчас p26)</td>
+          <td style="padding:10px 12px; color:#595959;">26 ключей уже ранжируются из PDF. HTML = рост + конверсия</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#d97706; font-weight:700;">4</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Из PDF</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/dokumenty/dogovor-zaloga/</td>
+          <td style="padding:10px 12px; color:#595959;">«договор залога» (WS 400+)</td>
+          <td style="padding:10px 12px; color:#595959;">Второй PDF с позициями. Лид-магнит: скачать &#8594; email &#8594; TG</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#d97706; font-weight:700;">5</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/riski-investicij-v-zajmy/</td>
+          <td style="padding:10px 12px; color:#595959;">«риски инвестиций» (~500 WS)</td>
+          <td style="padding:10px 12px; color:#595959;">Доверие: честный разбор рисков. E-E-A-T сигнал</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#d97706; font-weight:700;">6</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/chastnyj-investor-kak-zarabotat/</td>
+          <td style="padding:10px 12px; color:#595959;">«частный инвестор» (WS 10 700 кластер)</td>
+          <td style="padding:10px 12px; color:#595959;">Крупнейший кластер. finsr.ru = 918 визитов с 1 статьи</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#d97706; font-weight:700;">7</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/passivnyj-dohod-ot-nedvizhimosti/</td>
+          <td style="padding:10px 12px; color:#595959;">«пассивный доход» (~300 WS)</td>
+          <td style="padding:10px 12px; color:#595959;">Чистый инвесторский интент. Нет конкурентов из залоговой ниши</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">8</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Страница</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/dlya-brokerov/</td>
+          <td style="padding:10px 12px; color:#595959;">«кредитный брокер» (~500 WS)</td>
+          <td style="padding:10px 12px; color:#595959;">Второй сегмент: привлечение брокеров. Партнёрские условия</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">9</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/kak-proverit-zaemshchika/</td>
+          <td style="padding:10px 12px; color:#595959;">«проверка заёмщика» (~150 WS)</td>
+          <td style="padding:10px 12px; color:#595959;">Чек-лист = лид-магнит для инвесторов и брокеров</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">10</td>
+          <td style="padding:10px 12px;"><span class="pill pill-tofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/zajm-pod-zalog-nedvizhimosti/</td>
+          <td style="padding:10px 12px; color:#595959;">«займ под залог недвижимости» (WS 10 000+)</td>
+          <td style="padding:10px 12px; color:#595959;">Огромный кластер. Аудитория &#8212; заёмщики, но трафик конвертирует в бренд</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">11</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">Калькулятор</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/kalkulyator-dohodnosti/</td>
+          <td style="padding:10px 12px; color:#595959;">«калькулятор инвестиций» (~500 WS)</td>
+          <td style="padding:10px 12px; color:#595959;">creditor.ru берёт 325 ключей с /kalkulyatory. Интерактив = время на сайте</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">12</td>
+          <td style="padding:10px 12px;"><span class="pill pill-brand" style="font-size:9px;">Страница</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/o-kompanii/</td>
+          <td style="padding:10px 12px; color:#595959;">«ярфинтраст» (WS 77)</td>
+          <td style="padding:10px 12px; color:#595959;">Усиливает бренд-запросы. Команда, лицензии, история</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">13</td>
+          <td style="padding:10px 12px;"><span class="pill pill-bofu" style="font-size:9px;">FAQ</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/faq/</td>
+          <td style="padding:10px 12px; color:#595959;">Вопросные запросы + Яндекс Нейро</td>
+          <td style="padding:10px 12px; color:#595959;">20+ вопросов с JSON-LD. 9 AI-ответов уже есть &#8212; можно нарастить</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e8e8e8;">
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">14</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Лид-магнит</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/dokumenty/gajd-investora/ (PDF)</td>
+          <td style="padding:10px 12px; color:#595959;">Скачивание за email &#8594; TG</td>
+          <td style="padding:10px 12px; color:#595959;">По модели buzko-krasnov: путеводитель 15-20 стр. Воронка в Telegram</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px; color:#2563eb; font-weight:700;">15</td>
+          <td style="padding:10px 12px;"><span class="pill pill-mofu" style="font-size:9px;">Статья</span></td>
+          <td style="padding:10px 12px; color:#1a1a1a;">/blog/land-development-gaby/</td>
+          <td style="padding:10px 12px; color:#595959;">«ГАБ инвестиции» / «дистресс-активы»</td>
+          <td style="padding:10px 12px; color:#595959;">Новые направления компании. Экспертный контент для продвинутых инвесторов</td>
+        </tr>
+      </tbody>
+    </table>
+    </div><!-- /table wrapper -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     КОНТЕНТ-ПЛАН: 15 страниц с таймингом и прогнозом
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Контент-план: 15 страниц за 3 месяца</div>
+
+  <p style="font-size:12px; color:var(--muted); margin-bottom:16px;">
+    Прогноз трафика: superwsk &#215; CTR(позиция). Для новых страниц закладываем выход в топ-20 за 2-3 мес, топ-10 за 4-6 мес. Квал. лид = человек, который оставил заявку или написал в TG (конверсия из визита: «Готов вложить» 3-5%, «Выбирает» 1-2%, «Изучает» 0.3%).
+  </p>
+
+  <table>
+    <thead><tr>
+      <th>#</th>
+      <th>Страница</th>
+      <th>Когда</th>
+      <th>Целевой запрос</th>
+      <th>SuperWSK</th>
+      <th>Прогноз визитов/мес (6 мес)</th>
+      <th>Прогноз лидов/мес</th>
+    </tr></thead>
+    <tbody>
+      <tr style="background:rgba(22,163,74,.04);">
+        <td style="font-weight:700; color:var(--green);">1</td>
+        <td><strong>/blog/kraudlending/</strong><br><span style="font-size:10px; color:var(--muted);">Краудлендинг: как заработать на залоговых займах</span></td>
+        <td>Нед 1-2</td>
+        <td>краудлендинг, краудинвестинг, p2p кредитование</td>
+        <td style="font-weight:700;">675 + 169 + 146</td>
+        <td style="font-weight:700; color:var(--green);">~200</td>
+        <td style="color:var(--green);">6-10</td>
+      </tr>
+      <tr style="background:rgba(22,163,74,.04);">
+        <td style="font-weight:700; color:var(--green);">2</td>
+        <td><strong>/blog/kuda-vlozhit-dengi/</strong><br><span style="font-size:10px; color:var(--muted);">Куда вложить деньги: залоговые займы vs депозиты vs облигации</span></td>
+        <td>Нед 2-3</td>
+        <td>куда вложить деньги, вложить деньги под проценты</td>
+        <td style="font-weight:700;">2 723 + 224</td>
+        <td style="font-weight:700; color:var(--green);">~150</td>
+        <td style="color:var(--green);">3-5</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--orange);">3</td>
+        <td><strong>/dokumenty/dogovor-zaima/</strong><br><span style="font-size:10px; color:var(--muted);">HTML-версия PDF (уже ранжируется по 23 ключам)</span></td>
+        <td>Нед 3</td>
+        <td>договор займа, договор денежного займа</td>
+        <td>850+</td>
+        <td>~120</td>
+        <td style="color:var(--muted);">0-1 (юристы)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--orange);">4</td>
+        <td><strong>/dokumenty/dogovor-zaloga/</strong><br><span style="font-size:10px; color:var(--muted);">HTML-версия PDF (3 ключа сейчас)</span></td>
+        <td>Нед 3</td>
+        <td>договор залога</td>
+        <td>400+</td>
+        <td>~60</td>
+        <td style="color:var(--muted);">0-1 (юристы, но лид-магнит &#8594; TG)</td>
+      </tr>
+      <tr style="background:rgba(22,163,74,.04);">
+        <td style="font-weight:700; color:var(--green);">5</td>
+        <td><strong>/blog/riski-investicij/</strong><br><span style="font-size:10px; color:var(--muted);">Риски инвестиций в займы под залог — честный разбор</span></td>
+        <td>Мес 1</td>
+        <td>риски инвестиций, альтернативные инвестиции</td>
+        <td>~500 + 49</td>
+        <td>~80</td>
+        <td style="color:var(--green);">2-4</td>
+      </tr>
+      <tr style="background:rgba(22,163,74,.04);">
+        <td style="font-weight:700; color:var(--green);">6</td>
+        <td><strong>/blog/passivnyj-dohod/</strong><br><span style="font-size:10px; color:var(--muted);">Пассивный доход от недвижимости: 5 способов в 2026</span></td>
+        <td>Мес 1</td>
+        <td>пассивный доход, пассивный доход от недвижимости</td>
+        <td style="font-weight:700;">3 634 + 40</td>
+        <td style="font-weight:700; color:var(--green);">~180</td>
+        <td style="color:var(--green);">3-5</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--orange);">7</td>
+        <td><strong>/blog/chastnyj-investor/</strong><br><span style="font-size:10px; color:var(--muted);">Частный инвестор: как заработать на займах</span></td>
+        <td>Мес 2</td>
+        <td>частный инвестор, частные инвестиции</td>
+        <td>370 + 60</td>
+        <td>~100</td>
+        <td style="color:var(--orange);">1-3 (смешанный интент)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--orange);">8</td>
+        <td><strong>/blog/kuda-vlozhit-million/</strong><br><span style="font-size:10px; color:var(--muted);">Куда вложить миллион рублей: 7 вариантов с расчётами</span></td>
+        <td>Мес 2</td>
+        <td>куда вложить миллион, куда вложить 5/10 миллионов</td>
+        <td>197 + 15 + 6</td>
+        <td>~60</td>
+        <td style="color:var(--green);">2-3</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--orange);">9</td>
+        <td><strong>/blog/vysokodokhodnye-obligacii/</strong><br><span style="font-size:10px; color:var(--muted);">Высокодоходные облигации vs залоговые займы: сравнение</span></td>
+        <td>Мес 2</td>
+        <td>высокодоходные облигации, инвестиции в облигации</td>
+        <td>136 + 148</td>
+        <td>~50</td>
+        <td style="color:var(--orange);">1-2</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">10</td>
+        <td><strong>/blog/kak-proverit-zaemshchika/</strong><br><span style="font-size:10px; color:var(--muted);">Как проверить заёмщика: чек-лист для инвестора</span></td>
+        <td>Мес 2</td>
+        <td>проверка заёмщика, чек-лист инвестора</td>
+        <td>~150</td>
+        <td>~30</td>
+        <td style="color:var(--green);">1-2 (лид-магнит &#8594; TG)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">11</td>
+        <td><strong>/kalkulyator/</strong><br><span style="font-size:10px; color:var(--muted);">Калькулятор доходности залоговых инвестиций</span></td>
+        <td>Мес 2</td>
+        <td>калькулятор инвестиций, калькулятор доходности</td>
+        <td>~500</td>
+        <td>~80</td>
+        <td style="color:var(--green);">3-5 (высокая конверсия)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">12</td>
+        <td><strong>/faq/</strong><br><span style="font-size:10px; color:var(--muted);">Частые вопросы (20+ вопросов + JSON-LD)</span></td>
+        <td>Мес 2</td>
+        <td>вопросные запросы + Яндекс Нейро</td>
+        <td>&#8212;</td>
+        <td>~40</td>
+        <td style="color:var(--orange);">1-2</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">13</td>
+        <td><strong>/o-kompanii/</strong><br><span style="font-size:10px; color:var(--muted);">О компании: команда, история, лицензии</span></td>
+        <td>Мес 3</td>
+        <td>ярфинтраст (бренд)</td>
+        <td>77</td>
+        <td>~30</td>
+        <td style="color:var(--muted);">0 (усиливает доверие)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">14</td>
+        <td><strong>/dlya-brokerov/</strong><br><span style="font-size:10px; color:var(--muted);">Партнёрская программа для кредитных брокеров</span></td>
+        <td>Мес 3</td>
+        <td>кредитный брокер, партнёрская программа</td>
+        <td>~500</td>
+        <td>~40</td>
+        <td style="color:var(--orange);">2-3 (брокеры)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--blue);">15</td>
+        <td><strong>/blog/zpif-zalogovye-zajmy/</strong><br><span style="font-size:10px; color:var(--muted);">ЗПИФ залоговые займы: как это работает</span></td>
+        <td>Мес 3</td>
+        <td>зпиф, зпиф залоговые займы, инвестиции в зпиф</td>
+        <td>883 + 5 + 3</td>
+        <td>~50</td>
+        <td style="color:var(--green);">2-3</td>
+      </tr>
+      <tr class="kw-total">
+        <td></td>
+        <td><strong>Итого 15 страниц</strong></td>
+        <td>3 мес</td>
+        <td></td>
+        <td></td>
+        <td><strong>~1 270/мес</strong><br><span style="font-size:10px; color:var(--muted);">+ ~316 текущих = ~1 600</span></td>
+        <td><strong>~25-50/мес</strong><br><span style="font-size:10px; color:var(--muted);">из них ~20-35 инвесторы</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+    <div style="background:var(--card); border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;">Через 3 мес (всё опубликовано)</div>
+      <div style="font-size:20px; font-weight:900;">~800/мес</div>
+      <div style="font-size:11px; color:var(--muted);">визитов (страницы только входят в индекс)</div>
+    </div>
+    <div style="background:var(--card); border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;">Через 6 мес (позиции растут)</div>
+      <div style="font-size:20px; font-weight:900; color:var(--green);">~1 600/мес</div>
+      <div style="font-size:11px; color:var(--muted);">визитов, ~25-50 лидов/мес</div>
+    </div>
+    <div style="background:var(--card); border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;">Через 12 мес (топ-10 по основным)</div>
+      <div style="font-size:20px; font-weight:900; color:var(--green);">~2 000+/мес</div>
+      <div style="font-size:11px; color:var(--muted);">визитов, ~40-60 лидов/мес</div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px; font-size:11px; color:var(--light); line-height:1.6;">
+    * Прогноз лидов консервативный. Без аналитики (Метрика + цели) точную конверсию оценить нельзя. После запуска первых 5 страниц можно будет калибровать на реальных данных. Цифры трафика — оценка по superwsk &#215; CTR для топ-10/20.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 11 — КЛЮЧИ ДЛЯ РОСТА TELEGRAM
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Ключи для роста Telegram-канала (1 400 &#8594; 5 000 подписчиков)</div>
+
+  <div class="alert alert-purple" style="margin-bottom:14px;">
+    <div class="alert-title">Воронка: статья в Яндексе &#8594; лид-магнит &#8594; Telegram &#8594; доверие &#8594; инвестиция</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Человек ищет в Яндексе &#8594; находит статью на сайте &#8594; скачивает гайд или калькулятор за email &#8594; получает приглашение в Telegram-канал &#8594; видит разборы сделок &#8594; обращается. Ключевые слова ниже &#8212; это темы для статей, которые приводят <strong>инвесторов</strong> (не заёмщиков) в воронку.
+    </div>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th>Тема контента (статья / видео)</th>
+      <th>Ключевой запрос</th>
+      <th>WS (Яндекс)</th>
+      <th>Аудитория</th>
+      <th>CTA в Telegram</th>
+    </tr></thead>
+    <tbody>
+      <tr class="gap-header"><td colspan="5">&#8212; Высокий объём: привлечение широкой аудитории инвесторов &#8212;</td></tr>
+      <tr>
+        <td>«Куда вложить деньги в 2026 году»</td>
+        <td>куда вложить деньги</td>
+        <td style="font-weight:700;">~45 000</td>
+        <td class="text-green">Инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Каждую неделю разбираем 1 сделку в TG»</td>
+      </tr>
+      <tr>
+        <td>«Пассивный доход: 7 реальных способов»</td>
+        <td>пассивный доход</td>
+        <td style="font-weight:700;">~12 000</td>
+        <td class="text-green">Инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Как мы зарабатываем 27%: кейсы в TG»</td>
+      </tr>
+      <tr>
+        <td>«Инвестиции в недвижимость для начинающих»</td>
+        <td>инвестиции в недвижимость</td>
+        <td style="font-weight:700;">~8 000</td>
+        <td class="text-green">Инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Реальные объекты залога в нашем канале»</td>
+      </tr>
+      <tr>
+        <td>«Инвестиции под высокий процент: где ловушка»</td>
+        <td>инвестиции под высокий процент</td>
+        <td>~3 000</td>
+        <td class="text-green">Инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Честные разборы рисков каждую пятницу»</td>
+      </tr>
+      <tr class="gap-header"><td colspan="5">&#8212; Нишевые: точное попадание в инвестора в залоговые займы &#8212;</td></tr>
+      <tr>
+        <td>«Доходность залоговых займов: расчёт»</td>
+        <td>доходность залоговых займов</td>
+        <td>~50</td>
+        <td class="text-green">Целевой инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Калькулятор доходности + актуальные ставки»</td>
+      </tr>
+      <tr>
+        <td>«Как работает инвестиция под залог»</td>
+        <td>инвестиции в займы под залог</td>
+        <td>27</td>
+        <td class="text-green">Целевой инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Пошаговый разбор сделки с документами»</td>
+      </tr>
+      <tr class="gap-header"><td colspan="5">&#8212; Экспертные темы для продвинутых инвесторов &#8212;</td></tr>
+      <tr>
+        <td>«Сколько реально можно заработать на залоговых займах»</td>
+        <td>сколько можно заработать на инвестициях</td>
+        <td>~5 000</td>
+        <td class="text-green">Инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Реальные кейсы доходности в TG»</td>
+      </tr>
+      <tr>
+        <td>«Дистресс-активы: как зарабатывать на проблемной недвижимости»</td>
+        <td>дистресс активы</td>
+        <td>~200</td>
+        <td class="text-green">Продвинутый инвестор</td>
+        <td style="font-size:11px; color:#7c3aed;">«Разборы дистресс-сделок в TG»</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px; padding:16px 20px; background:rgba(192,16,32,.04); border:1.5px solid rgba(192,16,32,.12); border-radius:12px;">
+    <div style="font-size:13px; font-weight:700; color:#7c3aed; margin-bottom:8px;">Механика роста TG через SEO</div>
+    <div style="font-size:12px; color:#595959; line-height:1.8;">
+      1. <strong>Лид-магнит &#8594; TG-бот:</strong> «Скачайте гайд инвестора» &#8594; ссылка на TG-бота &#8594; бот отправляет PDF + подписывает на канал<br>
+      2. <strong>Калькулятор доходности:</strong> /kalkulyator/ &#8594; «Получить персональный расчёт в Telegram-боте»<br>
+      3. <strong>Документы как магнит:</strong> /dokumenty/ &#8594; кнопка «Скачать» ведёт в TG-бота<br>
+      4. <strong>CTA в каждой статье:</strong> «Разборы реальных сделок каждую неделю в Telegram» &#8594; ссылка на канал<br>
+      5. <strong>Яндекс Дзен:</strong> кросс-постинг статей с сайта в Дзен (отдельный канал). Дзен даёт бесплатный охват через рекомендательную ленту, статьи ранжируются и в поиске Яндекса. В конце каждой статьи — ссылка на TG-бот или канал. Темы: «Куда вложить деньги», «Пассивный доход», «Краудлендинг» — Дзен любит финансовый контент<br>
+      6. <strong>VK / ОК (факультативно):</strong> репосты из Дзена, минимальные усилия, дополнительный охват<br><br>
+      <strong>Оценка потока:</strong> статья в топ-3 по «пассивный доход» (WS 3 634) = ~400 визитов/мес. При конверсии 5-10% в подписку = 20-40 новых подписчиков/мес <strong>с одной статьи</strong>. 10 статей = 200-400 подписчиков/мес. За 12 месяцев: 1 400 &#8594; 4 000-6 000 подписчиков.<br><br>
+      <strong>Золотые ключи с нулевой конкуренцией:</strong> «краудлендинг» (WS 675, всего 3 000 документов в Яндексе &#8212; пустая ниша), «телеграм каналы про инвестиции» (WS 92, 0 рекламодателей), «блог инвестора» (WS 353, 1 рекламодатель).
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 12 — ТЕХНИЧЕСКИЙ ЧЕКЛИСТ
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Технический чеклист</div>
+  <div class="card">
+    <ul class="checklist">
+      <li><span class="check-ok">&#10003;</span> Рейтинг 5.0 (71 оценка) на Яндекс Картах — сильный доверительный сигнал</li>
+      <li><span class="check-ok">&#10003;</span> HTTPS настроен, сертификат валидный</li>
+      <li><span class="check-ok">&#10003;</span> Мобильная версия (адаптивная, Tilda)</li>
+      <li><span class="check-ok">&#10003;</span> Телеграм-канал для инвесторов подключён</li>
+      <li><span class="check-ok">&#10003;</span> Страница dfa.yarfintrast.ru (ЦФА) — отдельный поддомен</li>
+      <li><span class="check-warn">&#9888;</span> <strong>Tilda = ограничения SEO:</strong> нет полного контроля над robots.txt, sitemap, meta-тегами. Для серьёзного SEO-роста рассмотреть WordPress/headless CMS для блога</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Нет sitemap.xml</strong> — проверить, генерирует ли Tilda автоматически. Если нет — создать и отправить в Яндекс Вебмастер и Google Search Console</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Нет Schema.org</strong> — ни Organization, ни FinancialService, ни FAQPage</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Всего 3 страницы в индексе</strong> — критическая нехватка контента</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Нет блога</strong> — основной инструмент привлечения инвесторов через поиск</li>
+      <li><span class="check-warn">&#9888;</span> <strong>PDF-документы вместо HTML-страниц</strong> — 26 ключей ранжируются через PDF, теряется конверсия</li>
+      <li><span class="check-warn">&#9888;</span> <strong>Google: только брендовые запросы</strong> — 8 ключей в топ-50, все бренд. Нет небрендового присутствия в Google</li>
+      <li><span class="check-warn">&#9888;</span> <strong>Линкбилдинг стагнирует:</strong> 25 ссылок, 22 домена. Нет роста за последние 6 месяцев</li>
+      <li><span class="check-warn">&#9888;</span> Субдомен partner.yarfintrast.com (11 ключей) — проверить на каннибализацию</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 12 — ЛЕГЕНДА
+     ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Легенда терминов</div>
+  <div class="term-legend">
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#22c55e;"></span>
+      <span class="tl-label">Готов вложить</span>
+      <span class="tl-desc">Инвестор с деньгами, ищет куда вложить. Самая ценная аудитория.</span>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#f59e0b;"></span>
+      <span class="tl-label">Выбирает</span>
+      <span class="tl-desc">Сравнивает варианты. Часто смешанный интент: и инвесторы, и заёмщики.</span>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#3b82f6;"></span>
+      <span class="tl-label">Изучает</span>
+      <span class="tl-desc">Ранняя стадия. Ищут документы, читают статьи. Далеко от сделки.</span>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#ef4444;"></span>
+      <span class="tl-label">Нецелевой</span>
+      <span class="tl-desc">Заёмщики, юристы, студенты. Никогда не станут инвесторами.</span>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#8b5cf6;"></span>
+      <span class="tl-label">Бренд</span>
+      <span class="tl-desc">Ищут именно «ЯрФинТраст». Уже знают — высокая конверсия.</span>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot" style="background:#6366f1;"></span>
+      <span class="tl-label">WS / DR</span>
+      <span class="tl-desc">WS = сколько раз ищут в Яндексе. DR = авторитет домена (0–100).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ИТОГ
+     ═══════════════════════════════════════════════ -->
+<div id="summary" style="margin-bottom:40px;">
+  <div style="font-size:17px; font-weight:800; color:#1a1a1a; margin-bottom:20px; display:flex; align-items:center; gap:10px;">
+    Итог: что делаем и когда ждать результат
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+    <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:22px;">
+      <div style="font-size:11px; font-weight:700; color:#16a34a; text-transform:uppercase; letter-spacing:.6px; margin-bottom:14px;">Что уже работает</div>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li style="display:flex; gap:10px; font-size:13px; line-height:1.5; color:#444;">
+          <span style="color:#16a34a; flex-shrink:0;">&#8593;</span>
+          Позиция 2 по «инвестиции под залог недвижимости» — без каких-либо SEO-усилий
+        </li>
+        <li style="display:flex; gap:10px; font-size:13px; line-height:1.5; color:#444;">
+          <span style="color:#16a34a; flex-shrink:0;">&#8593;</span>
+          Рейтинг 5.0 (71 оценка) — сильный доверительный сигнал
+        </li>
+        <li style="display:flex; gap:10px; font-size:13px; line-height:1.5; color:#444;">
+          <span style="color:#16a34a; flex-shrink:0;">&#8593;</span>
+          портфель займов — уникальное УТП, которое конкуренты не могут повторить
+        </li>
+        <li style="display:flex; gap:10px; font-size:13px; line-height:1.5; color:#444;">
+          <span style="color:#16a34a; flex-shrink:0;">&#8593;</span>
+          9 упоминаний в AI-ответах Яндекса (Нейро) — Яндекс уже доверяет
+        </li>
+      </ul>
+    </div>
+
+    <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:22px;">
+      <div style="font-size:11px; font-weight:700; color:#d97706; text-transform:uppercase; letter-spacing:.6px; margin-bottom:14px;">Что делаем</div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <div style="background:#fbbf24; color:#fff; font-size:10px; font-weight:800; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">1</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:#1a1a1a; margin-bottom:2px;">Статья «Краудлендинг»</div>
+            <div style="font-size:12px; color:#595959; line-height:1.5;">Пустая ниша в Яндексе. 675 запросов, 3К документов.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <div style="background:#f59e0b; color:#fff; font-size:10px; font-weight:800; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">2</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:#1a1a1a; margin-bottom:2px;">Ключевая статья «Куда вложить»</div>
+            <div style="font-size:12px; color:#595959; line-height:1.5;">Забираем кластер WS 4 279 у рухнувшего конкурента.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <div style="background:#d97706; color:#fff; font-size:10px; font-weight:800; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">3</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:#1a1a1a; margin-bottom:2px;">15 новых страниц на сайте</div>
+            <div style="font-size:12px; color:#595959; line-height:1.5;">Блог, документы, калькулятор, FAQ, страницы сегментов.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <div style="background:#b45309; color:#fff; font-size:10px; font-weight:800; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">4</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:#1a1a1a; margin-bottom:2px;">Дзен + Telegram-воронка</div>
+            <div style="font-size:12px; color:#595959; line-height:1.5;">Статьи в Дзен &#8594; лид-магнит &#8594; TG-бот &#8594; канал.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff; border:1.5px solid #e8e8e8; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:22px;">
+      <div style="font-size:11px; font-weight:700; color:#7c3aed; text-transform:uppercase; letter-spacing:.6px; margin-bottom:14px;">Когда ждать результат</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="font-size:11px; font-weight:700; color:#7c3aed; white-space:nowrap; min-width:54px;">2–4 нед</div>
+          <div style="font-size:13px; color:#444; line-height:1.4;">Первая статья в индексе, первые позиции</div>
+        </div>
+        <div style="height:1px; background:#e8e8e8; margin:2px 0;"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="font-size:11px; font-weight:700; color:#7c3aed; white-space:nowrap; min-width:54px;">1–2 мес</div>
+          <div style="font-size:13px; color:#444; line-height:1.4;">Ключевая статья индексируется, первые позиции</div>
+        </div>
+        <div style="height:1px; background:#e8e8e8; margin:2px 0;"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="font-size:11px; font-weight:700; color:#7c3aed; white-space:nowrap; min-width:54px;">3–4 мес</div>
+          <div style="font-size:13px; color:#444; line-height:1.4;">+100 ключей в топ-50, x3 органический трафик</div>
+        </div>
+        <div style="height:1px; background:#e8e8e8; margin:2px 0;"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="font-size:11px; font-weight:700; color:#7c3aed; white-space:nowrap; min-width:54px;">6 мес</div>
+          <div style="font-size:13px; color:#444; line-height:1.4;">~1 000 визитов/мес, стабильный поток инвесторских запросов</div>
+        </div>
+        <div style="height:1px; background:#e8e8e8; margin:2px 0;"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="font-size:11px; font-weight:700; color:#7c3aed; white-space:nowrap; min-width:54px;">12 мес</div>
+          <div style="font-size:13px; color:#444; line-height:1.4;">~2 000 визитов/мес, из них ~840 с инвесторским интентом</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="container">
+    <div>
+      <div class="footer-brand">CRM Group</div>
+      <div style="margin-top:4px;">SEO-аудит · yarfintrast.ru · апрель 2026</div>
+    </div>
+    <div style="text-align:right;">
+      <a href="https://ai.crmgroup.ru" target="_blank">ai.crmgroup.ru</a>
+      <div style="margin-top:4px; color:#555;">Маркетинг и AI для бизнеса</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
