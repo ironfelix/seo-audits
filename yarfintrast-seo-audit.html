@@ -484,25 +484,72 @@ footer .footer-brand { font-size: 14px; font-weight: 800; color: #fff; }
   .plan-grid { grid-template-columns: 1fr; }
   .header .container { flex-direction: column; gap: 10px; }
   .h-left h1 { font-size: 18px; }
-  .verdict-top { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .verdict-metrics { flex-direction: column; gap: 12px; }
-  .verdict-potential { margin-top: 12px; }
-  .grade-badge { font-size: 52px; }
+  .methodology-badge { font-size: 10px; padding: 4px 10px; }
+  .verdict-card { padding: 20px 16px; }
+  .verdict-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .verdict-metrics { flex-direction: column; gap: 10px; }
+  .verdict-potential { margin-top: 12px; width: 100%; }
+  .grade-badge { font-size: 44px !important; }
+  .vmet-val { font-size: 24px; }
   .summary-bar { flex-direction: column; }
   .summary-bar-item { border-right: none; border-bottom: 1px solid var(--border); }
   .summary-bar-item:last-child { border-bottom: none; }
   table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table thead, table tbody { display: table; width: 100%; }
   th, td { white-space: nowrap; font-size: 11px; padding: 7px 8px; }
+  td { white-space: normal; min-width: 80px; }
   .roi-block { flex-direction: column; }
   .term-legend { flex-direction: column; }
-  .commercial-health-bar { flex-wrap: wrap; gap: 8px; }
+  .tl-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .tl-item:last-child { border-bottom: none; }
+  .commercial-health-bar { flex-direction: column; gap: 6px; padding: 10px 14px; }
+  .section-title { font-size: 15px; }
+  .alert { padding: 14px 16px; }
+
+  /* Sticky nav mobile */
+  .sticky-nav > div { gap: 6px !important; padding: 0 14px !important; overflow-x: auto; flex-wrap: nowrap !important; }
+  .sticky-nav a { font-size: 11px !important; padding: 5px 8px !important; white-space: nowrap; flex-shrink: 0; }
+
+  /* Inline 3-col grids → 1 col on mobile */
+  [style*="grid-template-columns:1fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Inline 2-col grids → 1 col on mobile */
+  [style*="grid-template-columns:1fr 1fr;"],
+  [style*="grid-template-columns: 1fr 1fr;"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quick win */
+  .quick-win { padding: 16px 18px; }
+  .qw-title { font-size: 16px; }
+
+  /* Sparklines */
+  .sparkline { flex-wrap: wrap; }
+  .sparkline-val { font-size: 10px; min-width: auto; text-align: left; flex-basis: 100%; margin-top: 2px; }
+
+  /* ROI items */
+  .roi-item strong { font-size: 20px; }
+  .roi-total strong { font-size: 22px !important; }
+
+  /* Tooltips off */
   .pill-bofu::after, .pill-mofu::after, .pill-tofu::after,
   .pill-skip::after, .pill-brand::after, .funnel-tag::after { display: none; }
+
+  /* Metric cards */
+  .metric-row { flex-direction: column; }
+
+  /* Footer */
+  footer .container { flex-direction: column; text-align: center; gap: 8px; }
 }
 @media (max-width: 480px) {
   .funnel-grid { grid-template-columns: 1fr; }
-  .grade-badge { font-size: 44px; }
+  .funnel-count { font-size: 26px; }
+  .verdict-potential-val { font-size: 22px; }
+  .summary-bar-val { font-size: 18px; }
+  .h-left h1 { font-size: 16px; }
 }
 
 </style>
@@ -520,7 +567,7 @@ footer .footer-brand { font-size: 14px; font-weight: 800; color: #fff; }
   </div>
 </div>
 
-<div class="sticky-nav" style="position:sticky; top:0; z-index:100; background:rgba(255,255,255,.95); backdrop-filter:blur(12px); border-bottom:1.5px solid #e8e8e8; padding:12px 0; transition:box-shadow .2s;">
+<div class="sticky-nav" style="position:sticky; top:0; z-index:100; background:rgba(255,255,255,.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1.5px solid #e8e8e8; padding:12px 0; transition:box-shadow .2s;">
   <div style="max-width:1100px; margin:0 auto; padding:0 24px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
     <a href="#exec" style="color:#888; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">Главное</a>
     <a href="#verdict" style="background:rgba(192,16,32,.06); color:#c01020; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">1. Оценка</a>
