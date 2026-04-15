@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг-стратегия 360 — ЯрФинТраст</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #c01020; --red-light: rgba(192,16,32,0.08);
+  --bg: #fff; --card: #f5f5f5; --border: #e8e8e8;
+  --text: #1a1a1a; --muted: #595959; --light: #888;
+  --green: #16a34a; --orange: #d97706; --blue: #2563eb; --purple: #7c3aed;
+  --radius: 16px; --shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 28px 24px; }
+.header { border-bottom: 1.5px solid var(--border); padding: 24px 0; }
+.header .wrap { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.header h1 { font-size: 22px; font-weight: 800; letter-spacing: -.3px; }
+.header .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.badge { background: var(--red-light); border: 1.5px solid rgba(192,16,32,.2); color: var(--red); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; white-space: nowrap; }
+
+h2 { font-size: 18px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1.5px solid var(--border); }
+h3 { font-size: 14px; font-weight: 700; margin: 24px 0 10px; }
+p, .body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+.card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; box-shadow: var(--shadow); }
+.card-red { border-left: 4px solid var(--red); }
+.card-green { border-left: 4px solid var(--green); }
+.card-orange { border-left: 4px solid var(--orange); }
+.card-blue { border-left: 4px solid var(--blue); }
+.card-purple { border-left: 4px solid var(--purple); }
+.card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.card-body { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1.5px solid var(--border); box-shadow: var(--shadow); margin-bottom: 16px; }
+th { background: var(--card); color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .6px; padding: 10px 14px; text-align: left; }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
+tr:last-child td { border-bottom: none; }
+
+.pill { display: inline-block; padding: 3px 9px; border-radius: 8px; font-size: 10px; font-weight: 700; }
+.pill-red { background: var(--red-light); color: var(--red); }
+.pill-green { background: rgba(22,163,74,.1); color: var(--green); }
+.pill-orange { background: rgba(217,119,6,.1); color: var(--orange); }
+.pill-blue { background: rgba(37,99,235,.08); color: var(--blue); }
+.pill-purple { background: rgba(124,58,237,.08); color: var(--purple); }
+
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 16px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+.metric { background: var(--card); border-radius: 12px; padding: 16px; }
+.metric-val { font-size: 22px; font-weight: 900; }
+.metric-label { font-size: 11px; color: var(--light); margin-top: 2px; }
+.note { font-size: 11px; color: var(--light); line-height: 1.5; margin-top: 8px; }
+
+footer { background: #111; color: #888; padding: 32px 0; margin-top: 40px; font-size: 12px; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+footer a { color: var(--red); text-decoration: none; font-weight: 600; }
+footer .fb { font-size: 14px; font-weight: 800; color: #fff; }
+
+@media (max-width: 768px) {
+  .wrap { padding: 16px 14px; }
+  .header .wrap { flex-direction: column; }
+  .header h1 { font-size: 18px; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  table { display: block; overflow-x: auto; }
+  th, td { white-space: nowrap; font-size: 11px; padding: 7px 8px; }
+  td { white-space: normal; min-width: 80px; }
+  footer .wrap { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <div>
+      <h1>Маркетинг-стратегия 360</h1>
+      <div class="sub">ЯрФинТраст · Привлечение инвесторов, брокеров, рост TG-канала · апрель 2026</div>
+    </div>
+    <div class="badge">Рабочий драфт</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══ ТЕКУЩАЯ СИТУАЦИЯ ═══ -->
+<h2>1. Точка А: что имеем</h2>
+
+<div class="grid-3">
+  <div class="metric"><div class="metric-val" style="color:var(--red);">3</div><div class="metric-label">Страницы в индексе Яндекса</div></div>
+  <div class="metric"><div class="metric-val">1 340</div><div class="metric-label">Подписчиков @yarfintrast</div></div>
+  <div class="metric"><div class="metric-val">243</div><div class="metric-label">Подписчиков @andrey_vinnitskiy</div></div>
+  <div class="metric"><div class="metric-val">~2 000</div><div class="metric-label">Брокеров в базе (неактивных)</div></div>
+  <div class="metric"><div class="metric-val">0</div><div class="metric-label">CRM-процессов (Bitrix заброшен)</div></div>
+  <div class="metric"><div class="metric-val">0</div><div class="metric-label">Системных каналов привлечения</div></div>
+</div>
+
+<div class="card card-red">
+  <div class="card-title">Ключевая проблема</div>
+  <div class="card-body">
+    Все три сегмента клиентов (инвесторы, брокеры, заёмщики) привлекаются несистемно: сарафан, мероприятия, Telegram-канал без воронки. Лиды приходят на почту и теряются. Маркетинг и продажи ведёт один человек. При этом компания управляет портфелем на сотни миллионов и нуждается в стабильном притоке дешёвых денег (инвесторов).
+  </div>
+</div>
+
+<!-- ═══ СЕГМЕНТЫ ═══ -->
+<h2>2. Три сегмента — три стратегии</h2>
+
+<div class="grid-3">
+  <div class="card card-green">
+    <div class="card-title" style="color:var(--green);">Инвесторы</div>
+    <div class="card-body">
+      <strong>Кто:</strong> физлица с капиталом от 1М, ищут доходность выше депозита.<br>
+      <strong>Как приходят сейчас:</strong> TG-канал (~30 млн/мес), сарафан, мероприятия.<br>
+      <strong>Проблема:</strong> нехватка дешёвых денег. При неполном закрытии сделки ставка растёт для всех.<br>
+      <strong>Цель:</strong> 1 400 &#8594; 5 000 подписчиков TG = ~60 млн/мес.
+    </div>
+  </div>
+  <div class="card card-orange">
+    <div class="card-title" style="color:var(--orange);">Кредитные брокеры</div>
+    <div class="card-body">
+      <strong>Кто:</strong> посредники, приводят 90-95% заёмщиков.<br>
+      <strong>Как приходят сейчас:</strong> база ~2 000 контактов, но работа не ведётся.<br>
+      <strong>Проблема:</strong> новый брокер активен &#8594; получает отказы &#8594; уходит в «подвал». Реактивации нет.<br>
+      <strong>Цель:</strong> вернуть 50-100 брокеров из «подвала» за 3 мес.
+    </div>
+  </div>
+  <div class="card card-blue">
+    <div class="card-title" style="color:var(--blue);">Заёмщики</div>
+    <div class="card-body">
+      <strong>Кто:</strong> собственники бизнеса, физлица с недвижимостью.<br>
+      <strong>Как приходят сейчас:</strong> через брокеров (90-95%). Прямой рекламы нет.<br>
+      <strong>Проблема:</strong> зависимость от брокерского канала.<br>
+      <strong>Цель:</strong> пока не приоритет. Фокус — инвесторы и брокеры.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ВСЕ КАНАЛЫ ═══ -->
+<h2>3. Каналы: полная карта</h2>
+
+<table>
+  <thead><tr>
+    <th>Канал</th>
+    <th>Сегмент</th>
+    <th>Скорость</th>
+    <th>Бюджет</th>
+    <th>Сложность</th>
+    <th>Что даёт</th>
+    <th>Статус</th>
+  </tr></thead>
+  <tbody>
+    <tr style="background:rgba(22,163,74,.04);">
+      <td><strong>Реактивация брокеров</strong></td>
+      <td><span class="pill pill-orange">Брокеры</span></td>
+      <td style="color:var(--green); font-weight:700;">1-2 нед</td>
+      <td>0</td>
+      <td>Низкая</td>
+      <td>Возврат заёмщиков через существующую базу</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr style="background:rgba(22,163,74,.04);">
+      <td><strong>TG-бот + welcome-серия</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td style="color:var(--green); font-weight:700;">1-2 нед</td>
+      <td>~30К разово</td>
+      <td>Средняя</td>
+      <td>Квалификация лидов, автоматизация воронки</td>
+      <td><span class="pill pill-red">Нет бота</span></td>
+    </tr>
+    <tr style="background:rgba(22,163,74,.04);">
+      <td><strong>Реферальная программа</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td style="color:var(--green); font-weight:700;">2-4 нед</td>
+      <td>0 (бонус инвестору)</td>
+      <td>Низкая</td>
+      <td>Сарафан x2. Формализация того, что уже работает</td>
+      <td><span class="pill pill-red">Не формализовано</span></td>
+    </tr>
+    <tr>
+      <td><strong>TG-контент (оба канала)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 мес</td>
+      <td>Время</td>
+      <td>Средняя</td>
+      <td>Доверие, прогрев, конверсия подписчиков в инвесторов</td>
+      <td><span class="pill pill-orange">Ведётся, но однотипно</span></td>
+    </tr>
+    <tr>
+      <td><strong>Посевы в TG-каналах</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td style="color:var(--green); font-weight:700;">1-2 нед</td>
+      <td>30-100К/размещение</td>
+      <td>Низкая</td>
+      <td>+50-150 подписчиков за размещение</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>YouTube (Shorts + длинные)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>2-4 мес</td>
+      <td>Время (или 50К/мес продакшн)</td>
+      <td>Средняя</td>
+      <td>Охват, прогрев, воронка в TG</td>
+      <td><span class="pill pill-orange">Ведётся без системы</span></td>
+    </tr>
+    <tr>
+      <td><strong>SEO (блог на сайте)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span> <span class="pill pill-orange">Брокеры</span></td>
+      <td>3-6 мес</td>
+      <td>50-100К/мес (контент)</td>
+      <td>Высокая</td>
+      <td>Органический трафик &#8594; TG-бот &#8594; подписки</td>
+      <td><span class="pill pill-red">3 страницы в индексе</span></td>
+    </tr>
+    <tr>
+      <td><strong>Яндекс Дзен</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 мес</td>
+      <td>0 (кросс-пост)</td>
+      <td>Низкая</td>
+      <td>Бесплатный охват через рекомендательную ленту</td>
+      <td><span class="pill pill-red">Нет канала</span></td>
+    </tr>
+    <tr>
+      <td><strong>PR (Т-Ж, vc.ru, РБК)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>2-3 мес</td>
+      <td>0 (Т-Ж, vc.ru бесплатно)</td>
+      <td>Средняя</td>
+      <td>50-100К прочтений, ссылки на сайт, TG-подписки, доверие</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>Подкасты (гость)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 мес</td>
+      <td>0</td>
+      <td>Низкая</td>
+      <td>10-50К прослушиваний, личный бренд Андрея</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>Вебинары</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>2-4 нед</td>
+      <td>0</td>
+      <td>Средняя</td>
+      <td>Прогрев холодной аудитории, запись = лид-магнит</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>Офлайн (завтраки, ужины)</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 мес</td>
+      <td>20-50К/мероприятие</td>
+      <td>Средняя</td>
+      <td>Высокая конверсия, доверие через личный контакт</td>
+      <td><span class="pill pill-orange">Делается, но не системно</span></td>
+    </tr>
+    <tr>
+      <td><strong>TG Ads</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 нед</td>
+      <td>от 50К/мес</td>
+      <td>Средняя</td>
+      <td>Таргет на подписчиков финансовых каналов</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>Яндекс Директ</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span> <span class="pill pill-blue">Заёмщики</span></td>
+      <td>1-2 нед</td>
+      <td>от 80К/мес</td>
+      <td>Высокая</td>
+      <td>Контекст по «краудлендинг», «куда вложить»</td>
+      <td><span class="pill pill-red">Не делается</span></td>
+    </tr>
+    <tr>
+      <td><strong>Закрытый клуб инвесторов</strong></td>
+      <td><span class="pill pill-green">Инвесторы</span></td>
+      <td>1-2 мес</td>
+      <td>0</td>
+      <td>Низкая</td>
+      <td>Удержание, элитарность, ранний доступ к сделкам</td>
+      <td><span class="pill pill-red">Нет</span></td>
+    </tr>
+    <tr>
+      <td><strong>CRM + аналитика</strong></td>
+      <td>Все</td>
+      <td>1-2 нед</td>
+      <td>0 (Bitrix уже оплачен)</td>
+      <td>Средняя</td>
+      <td>Перестать терять лиды. Считать конверсии</td>
+      <td><span class="pill pill-red">Bitrix заброшен</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══ ПРИОРИТИЗАЦИЯ ═══ -->
+<h2>4. Приоритизация: что делать первым</h2>
+
+<p style="margin-bottom:16px;">Сортировка по: скорость результата x минимум ресурсов. Один человек на маркетинг = нельзя делать всё сразу.</p>
+
+<h3>Фаза 1: Фундамент (недели 1-4)</h3>
+<p style="margin-bottom:12px;">Цель: перестать терять лиды, формализовать сарафан, запустить воронку.</p>
+
+<table>
+  <thead><tr><th>#</th><th>Что</th><th>Зачем</th><th>Кто делает</th><th>Срок</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700; color:var(--red);">1</td>
+      <td><strong>Настроить Bitrix</strong>: почта &#8594; CRM автоматически. Каждый лид = карточка</td>
+      <td>Перестать терять контакты. Без этого всё остальное бессмысленно</td>
+      <td>Интегратор / мы</td>
+      <td>Нед 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--red);">2</td>
+      <td><strong>TG-бот</strong>: квалификация (инвестор/брокер/заёмщик) &#8594; гайд &#8594; подписка на канал &#8594; лид Виктории</td>
+      <td>Точка входа для всего трафика. Без бота некуда вести людей с сайта, Дзена, PR</td>
+      <td>Разработчик ботов</td>
+      <td>Нед 1-2</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--red);">3</td>
+      <td><strong>Реферальная программа</strong>: реферальная ссылка через бота. Инвестор приводит друга &#8594; бонус (повышенная ставка на 1 мес)</td>
+      <td>Сарафан уже работает, нужно формализовать. Стоимость привлечения = 0</td>
+      <td>Андрей + бот</td>
+      <td>Нед 2</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--orange);">4</td>
+      <td><strong>Реактивация брокеров</strong>: рассылка по базе 2 000. «Новые условия + кейс одобренной сделки + приглашение на разбор»</td>
+      <td>Самый быстрый ROI. База есть, нужно только написать письмо</td>
+      <td>Виктория / мы</td>
+      <td>Нед 2-3</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--orange);">5</td>
+      <td><strong>Яндекс Метрика + цели</strong>: установить, настроить цели (заявка, клик на WhatsApp/TG, скачивание документа)</td>
+      <td>Без аналитики не можем считать результат</td>
+      <td>Мы</td>
+      <td>Нед 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--orange);">6</td>
+      <td><strong>Переписать закреплённый пост</strong> @yarfintrast. Написать welcome-серию (5 сообщений за 2 нед через бота)</td>
+      <td>Новый подписчик должен понять: что это, зачем ему, как начать</td>
+      <td>Мы</td>
+      <td>Нед 2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Фаза 2: Контент-машина (месяц 1-2)</h3>
+<p style="margin-bottom:12px;">Цель: запустить системное производство контента для привлечения инвесторов.</p>
+
+<table>
+  <thead><tr><th>#</th><th>Что</th><th>Зачем</th><th>Кто делает</th><th>Срок</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700; color:var(--green);">7</td>
+      <td><strong>Статья «Краудлендинг»</strong> на сайте (2 500-3 000 слов, FAQ, кейс). Пустая ниша в Яндексе</td>
+      <td>Первая SEO-статья. 675 запросов, 3К документов — низкая конкуренция</td>
+      <td>Копирайтер / мы</td>
+      <td>Нед 3-4</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--green);">8</td>
+      <td><strong>Дзен-канал</strong>: кросс-пост статей с сайта + расширение постов Андрея</td>
+      <td>Бесплатный охват. 2-3 статьи/нед. CTA &#8594; TG-бот</td>
+      <td>Мы / Виктория</td>
+      <td>Мес 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--green);">9</td>
+      <td><strong>Контент-план TG</strong>: образование (ср) + кейс сделки (пн) + цифры (пт). Снизить частоту @andrey_vinnitskiy до 1-2/день</td>
+      <td>Привлечение новых подписчиков. Сейчас 80% — анонсы сделок, новым непонятно</td>
+      <td>Андрей + Виктория</td>
+      <td>Мес 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--green);">10</td>
+      <td><strong>YouTube Shorts</strong>: 2-3 шт/нед. Андрей в камеру, 30-60 сек. Темы: «Почему не депозит», «Что такое LTV», «Сколько зарабатываю на займах»</td>
+      <td>Охват &#8594; длинное видео &#8594; TG. Уже есть YouTube, но нет Shorts</td>
+      <td>Андрей (телефон)</td>
+      <td>Мес 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">11</td>
+      <td><strong>Посевы в TG</strong>: 3-5 размещений в инвесторских каналах. Нативный пост, не реклама</td>
+      <td>Самый быстрый платный канал. +50-150 подписчиков за размещение</td>
+      <td>Мы (подбор каналов + текст)</td>
+      <td>Мес 1</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">12</td>
+      <td><strong>PDF-лид-магнит</strong>: «Как работают инвестиции в залоговые займы» (10-15 стр). Раздаётся через бота</td>
+      <td>Конверсия сайт &#8594; TG. Документ = доверие</td>
+      <td>Мы / копирайтер</td>
+      <td>Мес 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Фаза 3: Масштабирование (месяц 2-3)</h3>
+<p style="margin-bottom:12px;">Цель: PR, офлайн, платные каналы — расширение воронки.</p>
+
+<table>
+  <thead><tr><th>#</th><th>Что</th><th>Зачем</th><th>Кто делает</th><th>Срок</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">13</td>
+      <td><strong>Статья в Т-Ж</strong>: «Как я зарабатываю 27% на залоговых займах» от лица Андрея</td>
+      <td>50-100К прочтений целевой аудитории бесплатно. Ссылка на сайт + TG</td>
+      <td>Мы пишем, Андрей правит</td>
+      <td>Мес 2</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">14</td>
+      <td><strong>Статья на vc.ru</strong>: «Залоговые займы как бизнес-модель: изнутри»</td>
+      <td>Аудитория предпринимателей. Бесплатно</td>
+      <td>Мы / Андрей</td>
+      <td>Мес 2</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">15</td>
+      <td><strong>Подкасты</strong>: Андрей как гость в 2-3 финансовых подкастах</td>
+      <td>10-50К прослушиваний. Личный бренд. Бесплатно</td>
+      <td>Мы (питчим подкастерам)</td>
+      <td>Мес 2-3</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">16</td>
+      <td><strong>Первый вебинар</strong>: «Залоговые займы: считаем доходность вместе». Регистрация через TG-бота</td>
+      <td>Прогрев холодной аудитории. Запись = вечный лид-магнит</td>
+      <td>Андрей ведёт, мы организуем</td>
+      <td>Мес 2</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">17</td>
+      <td><strong>Инвестиционный завтрак</strong>: 15-20 человек, камерно. Разбор портфеля, Q&A</td>
+      <td>Высокая конверсия через личный контакт. Фото/видео &#8594; контент</td>
+      <td>Андрей + Виктория</td>
+      <td>Мес 3</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700; color:var(--blue);">18</td>
+      <td><strong>Закрытый клуб инвесторов</strong>: TG-чат. Ежемесячный отчёт, ранний доступ к сделкам. Вступление — после звонка</td>
+      <td>Элитарность. Удержание. Реферальный эффект</td>
+      <td>Андрей</td>
+      <td>Мес 3</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">19</td>
+      <td><strong>Ещё 5 SEO-статей</strong>: риски, пассивный доход, частный инвестор, высокодоходные облигации, ЗПИФ</td>
+      <td>Наращивание органического трафика</td>
+      <td>Копирайтер / мы</td>
+      <td>Мес 2-3</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">20</td>
+      <td><strong>PDF &#8594; HTML</strong>: конвертировать договор займа и залога в страницы сайта + CTA</td>
+      <td>26 ключей уже ранжируются из PDF. HTML = рост + конверсия</td>
+      <td>Мы</td>
+      <td>Мес 2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Фаза 4: Платные каналы (месяц 3+)</h3>
+<p style="margin-bottom:12px;">Цель: масштабировать то, что работает. Запускать платное только после настройки аналитики и воронки.</p>
+
+<table>
+  <thead><tr><th>#</th><th>Что</th><th>Условие запуска</th><th>Бюджет</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700;">21</td>
+      <td><strong>TG Ads</strong>: таргет на подписчиков финансовых каналов. Продвигаем статьи/вебинары, не прямую рекламу</td>
+      <td>Бот работает, welcome-серия настроена, канал ведётся по плану</td>
+      <td>от 50К/мес</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">22</td>
+      <td><strong>Яндекс Директ</strong>: контекст по «краудлендинг», «инвестиции под залог», «куда вложить»</td>
+      <td>Метрика настроена, цели отслеживаются, страницы готовы</td>
+      <td>от 80К/мес</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">23</td>
+      <td><strong>YouTube Ads</strong>: pre-roll Shorts Андрея на финансовых каналах</td>
+      <td>Есть 5+ Shorts с хорошими просмотрами</td>
+      <td>от 50К/мес</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══ ВИДЕО-СТРАТЕГИЯ ═══ -->
+<h2>5. Видео: воронка Андрея</h2>
+
+<div class="card card-purple">
+  <div class="card-title">Воронка: Shorts (охват) &#8594; длинное видео (прогрев) &#8594; TG (продажи)</div>
+  <div class="card-body">
+    Андрей уже ведёт YouTube, но без системы. Нужен регулярный выпуск + Shorts как точка входа. Shorts бесплатно дистрибьютятся алгоритмом YouTube — один удачный ролик может дать 50-100К просмотров.
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">YouTube Shorts (2-3/нед)</div>
+    <div class="card-body">
+      <strong>Формат:</strong> Андрей в камеру, 30-60 сек, одна мысль.<br><br>
+      <strong>Темы:</strong><br>
+      - «Почему я не держу деньги на депозите»<br>
+      - «Что такое LTV и почему 50% — это безопасно»<br>
+      - «Сколько я зарабатываю на залоговых займах»<br>
+      - «Получил отказ — рассказываю почему отказали»<br>
+      - «3 ошибки начинающего инвестора»<br>
+      - «Как я оцениваю залог за 5 минут»<br><br>
+      <strong>CTA:</strong> «Подробнее — в длинном видео на канале» или «Разборы сделок — в Telegram»
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Длинные видео (1/нед)</div>
+    <div class="card-body">
+      <strong>Формат:</strong> 10-20 мин, разбор или рассуждение.<br><br>
+      <strong>Темы:</strong><br>
+      - «Разбираю реальную сделку: залог, оценка, доходность»<br>
+      - «Куда вложить деньги в 2026: мой опыт»<br>
+      - «Что будет если заёмщик не заплатит — показываю процесс»<br>
+      - «Мой инвестиционный портфель: полный разбор»<br>
+      - «Краудлендинг vs депозиты: считаю на калькуляторе»<br><br>
+      <strong>CTA:</strong> ссылка на TG-канал в описании и в конце видео
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Подкасты: Андрей как гость</div>
+  <div class="card-body">
+    Финансовые подкасты ищут экспертов с реальным опытом. Управляющий портфелем залоговых займов — нестандартный гость. Питч: «Управляю портфелем на сотни миллионов, выдаю займы под залог недвижимости, доходность 27%. Расскажу как устроено изнутри».<br><br>
+    <strong>Куда питчить:</strong> «Деньги пришли» (Т-Ж), «Лайфхакер подкаст», «Финтех», «Заметки инвестора», финансовые каналы на YouTube с форматом интервью.<br><br>
+    <strong>Что это даёт:</strong> 10-50К прослушиваний, ссылка на TG в описании, личный бренд. Бесплатно.
+  </div>
+</div>
+
+<!-- ═══ ЮРИДИЧЕСКИЕ ОГРАНИЧЕНИЯ ═══ -->
+<h2>6. Юридические ограничения</h2>
+
+<div class="card card-red">
+  <div class="card-title">Реклама финансовых услуг в России</div>
+  <div class="card-body">
+    <strong>Что ограничено:</strong><br>
+    - Яндекс Директ: реклама займов/инвестиций требует маркировки, лицензий, предупреждений. Модерация строгая<br>
+    - TG Ads: финансовые услуги проходят ручную модерацию. Прямая реклама «вложите деньги» может не пройти<br>
+    - Любая реклама с обещанием доходности должна содержать предупреждение о рисках<br><br>
+    <strong>Что не ограничено:</strong><br>
+    - Авторский контент (статьи, видео, подкасты) — это не реклама<br>
+    - Образовательные материалы («что такое краудлендинг», «как работают залоговые займы»)<br>
+    - PR-публикации (Т-Ж, vc.ru) — авторские колонки<br>
+    - Дзен — контент в рекомендательной ленте<br>
+    - Посевы в TG — нативные посты, не таргетированная реклама<br><br>
+    <strong>Вывод:</strong> основная стратегия — контент-маркетинг, а не прямая реклама. Это и дешевле, и не упирается в ограничения.
+  </div>
+</div>
+
+<!-- ═══ МЕТРИКИ ═══ -->
+<h2>7. Что отслеживать</h2>
+
+<table>
+  <thead><tr><th>Метрика</th><th>Сейчас</th><th>3 мес</th><th>6 мес</th><th>12 мес</th><th>Как считать</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Подписчики @yarfintrast</td>
+      <td>1 340</td>
+      <td>2 000</td>
+      <td>3 000</td>
+      <td>5 000</td>
+      <td>TGStat</td>
+    </tr>
+    <tr>
+      <td>Подписчики @andrey_vinnitskiy</td>
+      <td>243</td>
+      <td>500</td>
+      <td>1 000</td>
+      <td>2 000</td>
+      <td>TGStat</td>
+    </tr>
+    <tr>
+      <td>Визиты на сайт (органика)</td>
+      <td>~316/мес</td>
+      <td>~500</td>
+      <td>~700</td>
+      <td>~1 200</td>
+      <td>Метрика</td>
+    </tr>
+    <tr>
+      <td>Заявки через TG-бота</td>
+      <td>0</td>
+      <td>10/мес</td>
+      <td>25/мес</td>
+      <td>50/мес</td>
+      <td>Бот-аналитика</td>
+    </tr>
+    <tr>
+      <td>YouTube подписчики</td>
+      <td>?</td>
+      <td>+200</td>
+      <td>+500</td>
+      <td>+1 500</td>
+      <td>YouTube Studio</td>
+    </tr>
+    <tr>
+      <td>Реактивированных брокеров</td>
+      <td>0</td>
+      <td>30</td>
+      <td>70</td>
+      <td>150</td>
+      <td>CRM</td>
+    </tr>
+    <tr>
+      <td>PR-публикации</td>
+      <td>0</td>
+      <td>2</td>
+      <td>4</td>
+      <td>8</td>
+      <td>Ручной учёт</td>
+    </tr>
+    <tr>
+      <td>Привлечено инвесторов/мес (новых)</td>
+      <td>?</td>
+      <td>?</td>
+      <td>?</td>
+      <td>?</td>
+      <td>CRM (после настройки)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">* Строка «привлечено инвесторов» пустая намеренно — сейчас нет данных. После настройки CRM и аналитики заполним через 1-2 месяца реальными цифрами.</div>
+
+<!-- ═══ БЮДЖЕТ ═══ -->
+<h2>8. Бюджет: варианты</h2>
+
+<div class="grid-3">
+  <div class="card card-green">
+    <div class="card-title" style="color:var(--green);">Минимум (своими руками)</div>
+    <div class="card-body">
+      <strong>~50-80К/мес</strong><br><br>
+      Копирайтер для статей (2-3/мес)<br>
+      Разработка TG-бота (разово ~30К)<br>
+      Посевы в TG (1-2 размещения/мес)<br><br>
+      Андрей снимает Shorts сам<br>
+      Виктория ведёт рассылки<br>
+      PR-статьи бесплатно<br><br>
+      <strong>Результат:</strong> медленный, но стабильный рост. Основная нагрузка на Андрея и Викторию.
+    </div>
+  </div>
+  <div class="card card-orange">
+    <div class="card-title" style="color:var(--orange);">Оптимум (с подрядчиком)</div>
+    <div class="card-body">
+      <strong>~150-200К/мес</strong><br><br>
+      Контент-маркетолог на ведение (статьи, Дзен, TG-контент)<br>
+      Видеопродакшн (монтаж Shorts + длинных)<br>
+      SEO-специалист (15 страниц за квартал)<br>
+      Посевы в TG (3-5/мес)<br>
+      PR (питч подкастов, написание статей)<br><br>
+      <strong>Результат:</strong> системный рост по всем каналам. Андрей только снимает видео и ходит на мероприятия.
+    </div>
+  </div>
+  <div class="card card-blue">
+    <div class="card-title" style="color:var(--blue);">Максимум (с платным трафиком)</div>
+    <div class="card-body">
+      <strong>~300-400К/мес</strong><br><br>
+      Всё из «Оптимум» +<br>
+      TG Ads (50-100К/мес)<br>
+      Яндекс Директ (80-100К/мес)<br>
+      YouTube Ads (50К/мес)<br>
+      Офлайн-мероприятия (20-50К/событие)<br><br>
+      <strong>Результат:</strong> агрессивный рост. Имеет смысл только после отладки воронки (фаза 1-2).
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ЧТО НЕ ВОШЛО ═══ -->
+<h2>9. Что не учтено / требует обсуждения</h2>
+
+<div class="card">
+  <div class="card-body">
+    <strong>1. Tilda vs отдельная CMS.</strong> Для 15 SEO-страниц Tilda может не хватить. Варианты: блог на поддомене (blog.yarfintrast.ru на WordPress), или Webflow (как buzko-krasnov). Решение влияет на бюджет и скорость.<br><br>
+    <strong>2. Кто пишет контент.</strong> Сейчас один человек на маркетинг. 2-3 статьи/мес + TG-контент + Дзен + рассылки = полная загрузка одного маркетолога. Нужен либо внешний копирайтер, либо контент-менеджер в штат.<br><br>
+    <strong>3. Личный бренд Андрея vs бренд компании.</strong> Сейчас два TG-канала живут отдельно. Нужна чёткая роль каждого: компания = сделки и цифры, Андрей = мнения и закулисье. Перекрёстный рост через репосты.<br><br>
+    <strong>4. Новые направления (land development, ГАБы, дистресс).</strong> Если компания расширяется — контент-стратегия тоже. Отдельные посадочные, отдельный контент-план. Пока не приоритет.<br><br>
+    <strong>5. Compliance.</strong> Все публичные материалы (статьи, видео, лид-магниты) нужно проверять на соответствие требованиям к рекламе финуслуг. Минимум: предупреждение о рисках в каждом материале где упоминается доходность.<br><br>
+    <strong>6. Конкуренция с банками по SEO.</strong> По запросам «куда вложить деньги», «пассивный доход» — в топе Т-Банк, Сбер, Банки.ру. Для DR=15 это тяжёлая конкуренция. Реалистичная стратегия: нишевые ключи (краудлендинг, зпиф, залоговые займы), а не широкие. Прогнозы в SEO-аудите скорректированы под это.<br><br>
+    <strong>7. Партнёрства с family offices и wealth management.</strong> Инвесторы с капиталом 10М+ обычно работают через управляющих. Прямой выход на 3-5 family offices может дать больше, чем весь контент-маркетинг. Это B2B-продажи, не маркетинг — но стоит обсудить.<br><br>
+    <strong>8. Яндекс Бизнес.</strong> 71 оценка, рейтинг 5.0 — сильный актив. Проверить: полнота карточки, фото, актуальность информации. Это бесплатный источник доверия и брендового трафика.
+  </div>
+</div>
+
+<!-- ═══ РЕЗЮМЕ ═══ -->
+<h2>10. Резюме: 3 документа, 1 стратегия</h2>
+
+<div class="grid-3">
+  <div class="card card-red">
+    <div class="card-title">SEO-аудит</div>
+    <div class="card-body">
+      3 страницы &#8594; 15 за квартал<br>
+      ~316 &#8594; ~1 200 визитов/мес<br>
+      15-30 лидов/мес через 12 мес<br>
+      Контент-план с прогнозами<br><br>
+      <a href="yarfintrast-seo-audit.html" style="color:var(--red); font-weight:600;">Открыть SEO-аудит &#8594;</a>
+    </div>
+  </div>
+  <div class="card card-purple">
+    <div class="card-title">Контент-стратегия (TG + Дзен)</div>
+    <div class="card-body">
+      Аудит каналов @yarfintrast и @andrey_vinnitskiy<br>
+      Контент-планы по дням<br>
+      TG-бот, лид-магниты, PR<br>
+      Мероприятия, реактивация брокеров<br><br>
+      <a href="yarfintrast-content-strategy.html" style="color:var(--red); font-weight:600;">Открыть контент-стратегию &#8594;</a>
+    </div>
+  </div>
+  <div class="card card-green">
+    <div class="card-title">Маркетинг 360 (этот документ)</div>
+    <div class="card-body">
+      Полная карта каналов<br>
+      Приоритизация по фазам<br>
+      Видео-стратегия, платные каналы<br>
+      Бюджет: 50К / 150К / 300К варианты<br>
+      Юридические ограничения
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fb">CRM Group</div>
+      <div style="margin-top:4px;">Маркетинг-стратегия 360 · ЯрФинТраст · апрель 2026</div>
+    </div>
+    <div style="text-align:right;">
+      <a href="https://ai.crmgroup.ru" target="_blank">ai.crmgroup.ru</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
