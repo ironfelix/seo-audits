@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — promred.ru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════
+   SEO AUDIT — CRMGroup Design System
+   yarfintrast.ru · Апрель 2026
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --red: #c01020;
+  --red-dk: #a00d1a;
+  --red-light: rgba(192, 16, 32, 0.08);
+  --bg: #ffffff;
+  --card: #f5f5f5;
+  --card2: #ebebeb;
+  --border: #e8e8e8;
+  --text: #1a1a1a;
+  --muted: #595959;
+  --text-light: #888;
+  --bofu: #16a34a;
+  --mofu: #d97706;
+  --tofu: #2563eb;
+  --skip: #dc2626;
+  --brand: #7c3aed;
+  --accent: #c01020;
+  --radius-card: 16px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.09);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+
+/* ─── HEADER ─── */
+.header {
+  background: #fff;
+  border-bottom: 1.5px solid var(--border);
+  padding: 24px 0;
+}
+.header .container {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+}
+.h-left h1 { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -.3px; }
+.h-left .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.methodology-badge {
+  background: var(--red-light); border: 1.5px solid rgba(192,16,32,.2);
+  color: var(--red); padding: 6px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── SECTION ─── */
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 17px; font-weight: 800; color: var(--text);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+
+/* ═══ VERDICT CARD ═══ */
+.verdict-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px 32px;
+  margin: 24px 0 36px;
+  box-shadow: var(--shadow-card);
+}
+.verdict-top {
+  display: flex; align-items: flex-start; gap: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.verdict-grade {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-width: 100px;
+}
+.grade-badge { font-size: 72px; font-weight: 900; line-height: 1; }
+.grade-f { color: #dc2626; }
+.grade-d { color: #d97706; }
+.grade-c { color: #0891b2; }
+.grade-b { color: #16a34a; }
+.verdict-domain { font-size: 13px; color: var(--muted); font-weight: 600; }
+.verdict-date { font-size: 11px; color: var(--text-light); }
+
+.verdict-metrics {
+  display: flex; gap: 32px; flex: 1; justify-content: center; padding: 0 16px;
+}
+.vmet { text-align: center; min-width: 110px; }
+.vmet-val {
+  display: block; font-size: 32px; font-weight: 900; color: var(--text); line-height: 1.1;
+}
+.vmet-val.text-red { color: #dc2626; }
+.vmet-val.text-green { color: #16a34a; }
+.vmet-val.text-orange { color: #d97706; }
+.vmet-label {
+  display: block; font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .3px; margin-top: 6px; line-height: 1.3;
+}
+
+.verdict-potential {
+  background: var(--red-light);
+  border: 1.5px solid rgba(192,16,32,.2);
+  border-radius: 12px; padding: 16px 24px;
+  text-align: center; min-width: 180px;
+}
+.verdict-potential-label {
+  font-size: 10px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px;
+}
+.verdict-potential-val { font-size: 28px; font-weight: 900; color: var(--red); line-height: 1.1; }
+.verdict-potential-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.verdict-problems {
+  padding-top: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.verdict-problem {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--muted);
+}
+.verdict-problem-icon {
+  color: var(--red); font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ═══ FUNNEL ═══ */
+.funnel-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 12px; margin-bottom: 12px;
+}
+.funnel-card {
+  border-radius: var(--radius-card); padding: 18px; border: 1.5px solid;
+  position: relative; overflow: visible; background: #fff;
+  box-shadow: var(--shadow-card);
+}
+.funnel-bofu { border-color: rgba(22,163,74,.3); }
+.funnel-mofu { border-color: rgba(217,119,6,.3); }
+.funnel-tofu { border-color: rgba(37,99,235,.3); }
+.funnel-skip { border-color: rgba(220,38,38,.3); }
+.funnel-brand { border-color: rgba(124,58,237,.3); }
+.funnel-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 8px; position: relative; cursor: help;
+}
+.funnel-bofu .funnel-tag { color: var(--bofu); }
+.funnel-mofu .funnel-tag { color: var(--mofu); }
+.funnel-tofu .funnel-tag { color: var(--tofu); }
+.funnel-skip .funnel-tag { color: var(--skip); }
+.funnel-brand .funnel-tag { color: var(--brand); }
+.funnel-count { font-size: 32px; font-weight: 900; color: var(--text); }
+.funnel-traffic { font-size: 12px; margin-top: 4px; }
+.funnel-bofu .funnel-traffic { color: var(--bofu); }
+.funnel-mofu .funnel-traffic { color: var(--mofu); }
+.funnel-tofu .funnel-traffic { color: var(--tofu); }
+.funnel-skip .funnel-traffic { color: var(--skip); }
+.funnel-brand .funnel-traffic { color: var(--brand); }
+.funnel-desc { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+.commercial-health-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; padding: 12px 20px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 10px; margin-bottom: 28px;
+}
+.ch-item { font-size: 13px; color: var(--muted); font-weight: 600; }
+.ch-item strong { color: var(--text); margin-left: 4px; }
+.ch-grade {
+  font-size: 15px; font-weight: 900; padding: 2px 12px; border-radius: 6px;
+}
+.ch-grade-d { color: #d97706; background: rgba(217,119,6,.1); }
+
+/* ═══ SUMMARY BAR ═══ */
+.summary-bar {
+  display: flex; align-items: stretch;
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden; margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+.summary-bar-item {
+  flex: 1; padding: 14px 20px; text-align: center;
+  border-right: 1.5px solid var(--border);
+}
+.summary-bar-item:last-child { border-right: none; }
+.summary-bar-val { font-size: 22px; font-weight: 900; color: var(--text); line-height: 1.2; }
+.summary-bar-val.text-red { color: #dc2626; }
+.summary-bar-val.text-green { color: #16a34a; }
+.summary-bar-val.text-orange { color: #d97706; }
+.summary-bar-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* ═══ QUICK WIN ═══ */
+.quick-win {
+  background: #fff;
+  border: 1.5px solid rgba(22,163,74,.3);
+  border-left: 4px solid var(--bofu);
+  border-radius: var(--radius-card); padding: 22px 28px; margin-bottom: 36px;
+  box-shadow: var(--shadow-card);
+}
+.qw-speed-tag {
+  display: inline-block;
+  background: rgba(217,119,6,.1); color: #d97706;
+  padding: 4px 12px; border-radius: 6px;
+  font-size: 11px; font-weight: 800; letter-spacing: .3px; margin-bottom: 10px;
+}
+.qw-label {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--bofu); margin-bottom: 8px;
+}
+.qw-title { font-size: 18px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
+.qw-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+/* ═══ TABLES ═══ */
+table {
+  width: 100%; border-collapse: collapse;
+  background: #fff; border-radius: var(--radius-card);
+  overflow: hidden; border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+th {
+  background: var(--card); color: var(--muted);
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: .6px; padding: 10px 14px; text-align: left;
+}
+td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--card); }
+
+.pos {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 24px; border-radius: 6px;
+  font-size: 11px; font-weight: 700;
+}
+.pos-1 { background: rgba(22,163,74,.12); color: #16a34a; }
+.pos-5 { background: rgba(37,99,235,.1); color: #2563eb; }
+.pos-10 { background: rgba(217,119,6,.1); color: #d97706; }
+.pos-20 { background: rgba(220,38,38,.1); color: #dc2626; }
+.pos-out { background: rgba(100,116,139,.08); color: #888; }
+
+.pill {
+  display: inline-block; padding: 3px 9px;
+  border-radius: 8px; font-size: 10px; font-weight: 700;
+}
+.pill-bofu { background: rgba(22,163,74,.1); color: #16a34a; }
+.pill-mofu { background: rgba(217,119,6,.1); color: #b45309; }
+.pill-tofu { background: rgba(37,99,235,.08); color: #2563eb; }
+.pill-skip { background: rgba(220,38,38,.08); color: #dc2626; }
+.pill-brand { background: rgba(124,58,237,.08); color: #7c3aed; }
+.pill-gap { background: rgba(192,16,32,.08); color: var(--red); }
+.pill-red { background: rgba(220,38,38,.08); color: #dc2626; }
+.pill-green { background: rgba(22,163,74,.1); color: #16a34a; }
+.pill-orange { background: rgba(217,119,6,.1); color: #b45309; }
+.pill-blue { background: rgba(37,99,235,.08); color: #2563eb; }
+
+/* Tooltips */
+.pill-bofu, .pill-mofu, .pill-tofu, .pill-skip, .pill-brand,
+.funnel-tag { position: relative; cursor: help; }
+
+.pill-bofu::after, .pill-mofu::after, .pill-tofu::after,
+.pill-skip::after, .pill-brand::after {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a; border: 1px solid #333; color: #e2e8f0;
+  padding: 8px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 400; line-height: 1.6;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s;
+  z-index: 300; box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  white-space: pre-line; text-align: left; min-width: 220px;
+}
+.funnel-tag::after {
+  position: absolute; top: calc(100% + 8px); left: 0; transform: none;
+  background: #1a1a1a; border: 1px solid #333; color: #e2e8f0;
+  padding: 8px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 400; line-height: 1.6;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s;
+  z-index: 400; box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  white-space: pre-line; text-align: left; min-width: 220px;
+}
+.pill-bofu::after, .funnel-tag[data-intent="bofu"]::after {
+  content: "Готов вложить\AИнвестор с деньгами, ищет куда вложить.\A«инвестиции под залог недвижимости»,\A«куда вложить деньги под залог».\AПриоритет \D710 \2014 прямой путь к сделке.";
+}
+.pill-mofu::after, .funnel-tag[data-intent="mofu"]::after {
+  content: "Выбирает\AСравнивает варианты, изучает доходность.\A«частный инвестор под залог»,\A«займы у инвесторов».\AПриоритет \D75 \2014 конвертируются при хорошем CTA.";
+}
+.pill-tofu::after, .funnel-tag[data-intent="tofu"]::after {
+  content: "Изучает тему\AШирокая аудитория: ищут шаблоны, читают.\A«договор займа», «договор залога».\AПриоритет \D71 \2014 трафик есть, инвесторов мало.";
+}
+.pill-skip::after, .funnel-tag[data-intent="skip"]::after {
+  content: "Нецелевой\AЗа\0435мщики ищут деньги, не инвесторы.\A«займ под залог от частного лица».\AПриоритет \D70 \2014 не ваша аудитория.";
+}
+.pill-brand::after, .funnel-tag[data-intent="brand"]::after {
+  content: "Бренд\AИщут именно ЯрФинТраст.\AВысокая конверсия \2014 уже знают о вас.\AРастёт через PR, рекомендации и доверие.";
+}
+.pill-bofu:hover::after, .pill-mofu:hover::after, .pill-tofu:hover::after,
+.pill-skip:hover::after, .pill-brand:hover::after, .funnel-tag:hover::after {
+  opacity: 1;
+}
+
+.url-cell { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 10px; color: var(--text-light); }
+.muted { color: var(--muted); }
+.text-red { color: #dc2626; }
+.text-green { color: #16a34a; }
+.text-orange { color: #d97706; }
+.text-blue { color: #2563eb; }
+
+/* ─── ALERTS ─── */
+.alert {
+  border-radius: var(--radius-card); padding: 16px 20px;
+  margin-bottom: 14px; border-left: 4px solid;
+  background: #fff; box-shadow: var(--shadow-card);
+}
+.alert-red { border-color: var(--skip); }
+.alert-green { border-color: var(--bofu); }
+.alert-blue { border-color: var(--tofu); }
+.alert-orange { border-color: var(--mofu); }
+.alert-purple { border-color: var(--brand); }
+.alert-title { font-weight: 800; font-size: 13px; margin-bottom: 4px; }
+.alert-red .alert-title { color: #dc2626; }
+.alert-green .alert-title { color: #16a34a; }
+.alert-blue .alert-title { color: #2563eb; }
+.alert-orange .alert-title { color: #d97706; }
+.alert-purple .alert-title { color: #7c3aed; }
+
+/* ─── DETAILS ─── */
+details.kw-details {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden; margin-top: 14px;
+  box-shadow: var(--shadow-card);
+}
+details.kw-details > summary {
+  padding: 12px 18px; cursor: pointer;
+  font-size: 12px; font-weight: 700; color: var(--red);
+  list-style: none; user-select: none;
+  display: flex; align-items: center; gap: 8px;
+}
+details.kw-details > summary::-webkit-details-marker { display: none; }
+details.kw-details > summary::before {
+  content: '\25B6'; font-size: 9px; color: var(--muted);
+  transition: transform .15s; display: inline-block;
+}
+details.kw-details[open] > summary::before { transform: rotate(90deg); }
+details.kw-details > summary:hover { background: rgba(255,255,255,.025); }
+.kw-details table { border-radius: 0; border: none; border-top: 1px solid var(--border); }
+.kw-total td { background: rgba(99,102,241,.07) !important; font-weight: 700; }
+.kw-note { padding: 10px 16px; font-size: 10px; color: var(--muted); }
+.gap-header td {
+  background: rgba(245,158,11,.06) !important;
+  color: #fbbf24; font-weight: 700; font-size: 11px; letter-spacing: .5px;
+}
+
+/* ═══ COMPETITOR TABLE ═══ */
+.competitor-summary {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 14px;
+  background: rgba(34,197,94,.06); border: 1px solid rgba(34,197,94,.2);
+  border-radius: 10px; margin-top: 14px;
+  font-size: 14px; font-weight: 700; color: #4ade80;
+}
+
+/* ═══ ROI ═══ */
+.roi-block { display: flex; gap: 16px; margin-top: 20px; }
+.roi-item {
+  flex: 1; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 20px; text-align: center;
+  box-shadow: var(--shadow-card);
+}
+.roi-item span {
+  display: block; font-size: 12px; color: var(--muted);
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: .3px;
+}
+.roi-item strong { display: block; font-size: 24px; font-weight: 900; color: var(--text); }
+.roi-total {
+  background: var(--red-light) !important;
+  border-color: rgba(192,16,32,.2) !important;
+}
+.roi-total strong { color: var(--red); font-size: 28px; }
+
+/* ─── SPARKLINES ─── */
+.sparkline { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
+.sparkline-label { font-size: 11px; color: var(--muted); min-width: 60px; }
+.sparkline-bar { flex: 1; height: 10px; background: rgba(255,255,255,.06); border-radius: 5px; overflow: hidden; }
+.sparkline-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, var(--red), var(--red-dk));
+  transition: width .3s ease;
+}
+.sparkline-val { font-size: 11px; font-weight: 700; color: var(--text); min-width: 50px; text-align: right; }
+
+/* ═══ PLAN ═══ */
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.plan-card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+.plan-card.p1 { border-left: 4px solid var(--red); }
+.plan-card.p2 { border-left: 4px solid var(--mofu); }
+.plan-card.p3 { border-left: 4px solid var(--tofu); }
+.plan-n {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 11px; font-weight: 800; margin-bottom: 8px;
+}
+.p1 .plan-n { background: var(--red-light); color: var(--red); }
+.p2 .plan-n { background: rgba(217,119,6,.1); color: #d97706; }
+.p3 .plan-n { background: rgba(37,99,235,.08); color: #2563eb; }
+.plan-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.plan-desc { font-size: 11px; color: var(--muted); line-height: 1.7; }
+
+/* ═══ CHECKLIST ═══ */
+.card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+.checklist { list-style: none; }
+.checklist li {
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  font-size: 12px; display: flex; align-items: center; gap: 10px;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-ok { color: var(--bofu); font-size: 14px; flex-shrink: 0; }
+.check-warn { color: var(--mofu); font-size: 14px; flex-shrink: 0; }
+.check-fail { color: var(--skip); font-size: 14px; flex-shrink: 0; }
+
+/* ═══ TERM LEGEND ═══ */
+.term-legend {
+  display: flex; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius-card); overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.tl-item {
+  flex: 1; padding: 14px 16px;
+  border-right: 1px solid var(--border);
+}
+.tl-item:last-child { border-right: none; }
+.tl-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.tl-label { font-size: 12px; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px; }
+.tl-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+/* ─── TREND ─── */
+.trend-bar { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin: 12px 0; }
+.trend-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+.trend-fill { width: 100%; border-radius: 4px 4px 0 0; background: rgba(217,119,6,.4); transition: height .3s; }
+.trend-fill.declining { background: rgba(220,38,38,.4); }
+.trend-fill.good { background: rgba(22,163,74,.4); }
+.trend-label { font-size: 10px; color: var(--muted); }
+.trend-val { font-size: 10px; font-weight: 700; color: #fff; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #111; color: #888; padding: 32px 0;
+  margin-top: 40px; font-size: 12px;
+}
+footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+footer a { color: var(--red); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .footer-brand { font-size: 14px; font-weight: 800; color: #fff; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .container { padding: 16px 14px; }
+  .funnel-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .plan-grid { grid-template-columns: 1fr; }
+  .header .container { flex-direction: column; gap: 10px; }
+  .h-left h1 { font-size: 18px; }
+  .methodology-badge { font-size: 10px; padding: 4px 10px; }
+  .verdict-card { padding: 20px 16px; }
+  .verdict-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .verdict-metrics { flex-direction: column; gap: 10px; }
+  .verdict-potential { margin-top: 12px; width: 100%; }
+  .grade-badge { font-size: 44px !important; }
+  .vmet-val { font-size: 24px; }
+  .summary-bar { flex-direction: column; }
+  .summary-bar-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .summary-bar-item:last-child { border-bottom: none; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table thead, table tbody { display: table; width: 100%; }
+  th, td { white-space: nowrap; font-size: 11px; padding: 7px 8px; }
+  td { white-space: normal; min-width: 80px; }
+  .roi-block { flex-direction: column; }
+  .term-legend { flex-direction: column; }
+  .tl-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .tl-item:last-child { border-bottom: none; }
+  .commercial-health-bar { flex-direction: column; gap: 6px; padding: 10px 14px; }
+  .section-title { font-size: 15px; }
+  .alert { padding: 14px 16px; }
+
+  /* Sticky nav mobile */
+  .sticky-nav > div { gap: 6px !important; padding: 0 14px !important; overflow-x: auto; flex-wrap: nowrap !important; }
+  .sticky-nav a { font-size: 11px !important; padding: 5px 8px !important; white-space: nowrap; flex-shrink: 0; }
+
+  /* Inline 3-col grids → 1 col on mobile */
+  [style*="grid-template-columns:1fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Inline 2-col grids → 1 col on mobile */
+  [style*="grid-template-columns:1fr 1fr;"],
+  [style*="grid-template-columns: 1fr 1fr;"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quick win */
+  .quick-win { padding: 16px 18px; }
+  .qw-title { font-size: 16px; }
+
+  /* Sparklines */
+  .sparkline { flex-wrap: wrap; }
+  .sparkline-val { font-size: 10px; min-width: auto; text-align: left; flex-basis: 100%; margin-top: 2px; }
+
+  /* ROI items */
+  .roi-item strong { font-size: 20px; }
+  .roi-total strong { font-size: 22px !important; }
+
+  /* Tooltips off */
+  .pill-bofu::after, .pill-mofu::after, .pill-tofu::after,
+  .pill-skip::after, .pill-brand::after, .funnel-tag::after { display: none; }
+
+  /* Metric cards */
+  .metric-row { flex-direction: column; }
+
+  /* Footer */
+  footer .container { flex-direction: column; text-align: center; gap: 8px; }
+}
+@media (max-width: 480px) {
+  .funnel-grid { grid-template-columns: 1fr; }
+  .funnel-count { font-size: 26px; }
+  .verdict-potential-val { font-size: 22px; }
+  .summary-bar-val { font-size: 18px; }
+  .h-left h1 { font-size: 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div>
+      <h1>SEO-аудит — promred.ru</h1>
+      <div class="sub">Промышленные редукторы и мотор-редукторы · Челябинск · апрель 2026</div>
+    </div>
+    <div class="methodology-badge">Апрель 2026</div>
+  </div>
+</div>
+
+<div class="sticky-nav" style="position:sticky; top:0; z-index:100; background:rgba(255,255,255,.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1.5px solid #e8e8e8; padding:12px 0;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 24px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <a href="#exec" style="color:#888; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">Главное</a>
+    <a href="#verdict" style="background:rgba(192,16,32,.06); color:#c01020; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">1. Оценка</a>
+    <a href="#growth" style="color:#16a34a; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">2. Рост и падение</a>
+    <a href="#keywords" style="color:#b45309; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">3. Ключи</a>
+    <a href="#competitors" style="color:#2563eb; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;">4. Конкуренты</a>
+    <a href="#plan" style="background:rgba(192,16,32,.08); color:#c01020; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:700; text-decoration:none;">5. План</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- EXECUTIVE SUMMARY -->
+<div id="exec" style="background:#fff; border:1.5px solid var(--border); border-radius:var(--radius-card); padding:28px 32px; margin-bottom:36px; box-shadow:var(--shadow-card); border-top:4px solid var(--red);">
+  <div style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;">Главное</div>
+  <div style="font-size:15px; font-weight:700; color:var(--text); line-height:1.6; margin-bottom:20px;">
+    Сайт вырос в 10 раз за лето 2025 (топ-10: 62 &#8594; 660 ключей), потом потерял 60% позиций. Сейчас 250 ключей в топ-10, видимость упала с 119 до 12. Блог генерирует 80% трафика, но коммерческих запросов мало. Конкуренты в 5-10 раз крупнее по семантике.
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px;">
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Ситуация</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        1 435 ключей в топ-50, 173 страницы в индексе, DR=19. Но видимость упала с пика 119 до 12. Топ-3 позиции: было 115, стало 34. Блог даёт 80% трафика по информационным запросам. Коммерческие ключи («купить редуктор», «цена») — слабо покрыты.
+      </div>
+    </div>
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Сильные стороны</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        173 страницы в индексе (каталог + блог). 373 упоминания в AI-ответах Яндекса. 3 500+ клиентов, 10 000+ поставок. Собственное производство в Челябинске. Калькулятор подбора на сайте. Кейсы и отзывы.
+      </div>
+    </div>
+    <div style="background:var(--card); border-radius:12px; padding:16px;">
+      <div style="font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;">Что делать</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+        Диагностика падения (что случилось в окт-дек 2025). Усилить коммерческие страницы каталога (сейчас блог перетягивает трафик). Создать посадочные под ключевые товарные категории. Нарастить ссылочный профиль (DR 19 vs конкуренты DR 30+).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div id="verdict" class="verdict-card">
+  <div class="verdict-top">
+    <div class="verdict-grade">
+      <div class="grade-badge grade-c" style="font-size:36px;">5/10</div>
+      <div class="verdict-domain">promred.ru</div>
+      <div class="verdict-date">апрель 2026</div>
+    </div>
+    <div class="verdict-metrics">
+      <div class="vmet">
+        <span class="vmet-val text-orange">1 435</span>
+        <span class="vmet-label">Ключей в топ-50<br>173 страницы</span>
+      </div>
+      <div class="vmet">
+        <span class="vmet-val text-red">-60%</span>
+        <span class="vmet-label">Потеря видимости<br>119 &#8594; 12 за 9 мес</span>
+      </div>
+      <div class="vmet">
+        <span class="vmet-val text-green">~145</span>
+        <span class="vmet-label">Визитов/мес<br>из органики (оценка)</span>
+      </div>
+    </div>
+    <div class="verdict-potential">
+      <div class="verdict-potential-label">Потенциал / 12 мес</div>
+      <div class="verdict-potential-val">~800</div>
+      <div class="verdict-potential-sub">визитов/мес при восстановлении<br>позиций до уровня авг 2025</div>
+    </div>
+  </div>
+  <div class="verdict-problems">
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>Видимость упала с 119 до 12 за 9 месяцев</strong> — топ-3 позиции: 115 &#8594; 34. Топ-10: 660 &#8594; 250. Нужна диагностика: апдейт Яндекса, технические проблемы или потеря ссылок.</span>
+    </div>
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>80% трафика с блога, не с каталога</strong> — информационные запросы («что такое редуктор», «принцип работы») приводят юристов и студентов. Коммерческие запросы («купить редуктор», «цена мотор-редуктора») покрыты слабо.</span>
+    </div>
+    <div class="verdict-problem">
+      <span class="verdict-problem-icon">&#10007;</span>
+      <span><strong>Конкуренты в 5-10 раз крупнее</strong> — reductors.com (10 411 ключей), mirprivoda.ru (11 388), tehprivod.su (13 359). У promred.ru — 1 435. Разрыв по семантике и авторитету.</span>
+    </div>
+  </div>
+</div>
+
+<!-- РОСТ И ПАДЕНИЕ -->
+<div id="growth" class="section">
+  <div class="section-title">Рост и падение: что произошло</div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div style="font-size:12px; font-weight:700; color:#1a1a1a; margin-bottom:12px;">Ключи в топ-10 (Яндекс, помесячно)</div>
+    <div class="trend-bar">
+      <div class="trend-col"><div class="trend-fill" style="height:12px;"></div><div class="trend-val">77</div><div class="trend-label">11.24</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:8px;"></div><div class="trend-val">50</div><div class="trend-label">12.24</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:7px;"></div><div class="trend-val">47</div><div class="trend-label">01.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:7px;"></div><div class="trend-val">46</div><div class="trend-label">02.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:9px;"></div><div class="trend-val">57</div><div class="trend-label">03.25</div></div>
+      <div class="trend-col"><div class="trend-fill" style="height:10px;"></div><div class="trend-val">62</div><div class="trend-label">04.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:14px;"></div><div class="trend-val">89</div><div class="trend-label">05.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:20px;"></div><div class="trend-val">130</div><div class="trend-label">06.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:57px;"></div><div class="trend-val" style="color:var(--green);">376</div><div class="trend-label">07.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:80px; background:rgba(22,163,74,.7);"></div><div class="trend-val" style="color:var(--green); font-weight:900;">623</div><div class="trend-label">08.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:80px; background:rgba(22,163,74,.7);"></div><div class="trend-val" style="color:var(--green); font-weight:900;">660</div><div class="trend-label">09.25</div></div>
+      <div class="trend-col"><div class="trend-fill good" style="height:78px;"></div><div class="trend-val">649</div><div class="trend-label">10.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:62px;"></div><div class="trend-val">519</div><div class="trend-label">11.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:50px;"></div><div class="trend-val">413</div><div class="trend-label">12.25</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:39px;"></div><div class="trend-val">320</div><div class="trend-label">01.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:32px;"></div><div class="trend-val">266</div><div class="trend-label">02.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:29px;"></div><div class="trend-val">241</div><div class="trend-label">03.26</div></div>
+      <div class="trend-col"><div class="trend-fill declining" style="height:30px;"></div><div class="trend-val">250</div><div class="trend-label">04.26</div></div>
+    </div>
+    <div style="font-size:11px; color:var(--light); margin-top:8px;">Пик: сентябрь 2025 (660 ключей в топ-10, vis=74). Текущий: 250 ключей, vis=12.</div>
+  </div>
+
+  <div class="alert alert-red">
+    <div class="alert-title">Что могло вызвать падение (октябрь 2025 — апрель 2026)</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      <strong>Гипотезы для проверки:</strong><br>
+      1. Апдейт алгоритма Яндекса (проверить даты обновлений за окт-дек 2025)<br>
+      2. Технические проблемы: скорость загрузки, ошибки сервера, изменения в robots.txt<br>
+      3. Потеря ссылок: ссылочный профиль стабилен (3 339 &#8594; 3 527), но dofollow ссылок всего 9<br>
+      4. Конкуренты усилились: mirprivoda.ru вырос с vis=400 до vis=769<br>
+      5. AI-каннибализация: 373 AI-ответа в апреле 2026 — Яндекс Нейро может забирать клики<br><br>
+      <strong>Первый шаг:</strong> проверить Яндекс Вебмастер на ошибки индексации, Метрику на bounce rate и время на сайте за период окт-дек 2025.
+    </div>
+  </div>
+
+  <div class="alert alert-green">
+    <div class="alert-title">373 AI-ответа — двойственный сигнал</div>
+    <div style="font-size:12px; color:#444; line-height:1.8;">
+      Сайт цитируется в 373 AI-ответах Яндекса — это много, значит контент признаётся экспертным. Но AI-ответы каннибализируют клики: пользователь получает ответ прямо в выдаче и не переходит на сайт. Для информационных запросов («что такое редуктор») это потеря трафика. Для коммерческих — менее критично.
+    </div>
+  </div>
+</div>
+
+<!-- КЛЮЧЕВЫЕ ЗАПРОСЫ -->
+<div id="keywords" class="section">
+  <div class="section-title">Текущие позиции: топ-15 по трафику</div>
+
+  <table>
+    <thead><tr>
+      <th>Запрос</th>
+      <th>WS</th>
+      <th>Позиция</th>
+      <th>~Трафик/мес</th>
+      <th>Тип</th>
+      <th>Страница</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>промышленные редукторы челябинск</strong></td>
+        <td>126</td>
+        <td><span class="pos pos-1">1</span></td>
+        <td style="font-weight:700;">16</td>
+        <td><span class="pill pill-green">Коммерческий</span></td>
+        <td class="url-cell">/</td>
+      </tr>
+      <tr>
+        <td><strong>промышленные редукторы</strong></td>
+        <td>2 165</td>
+        <td><span class="pos pos-1">2</span></td>
+        <td style="font-weight:700;">14</td>
+        <td><span class="pill pill-green">Коммерческий</span></td>
+        <td class="url-cell">/</td>
+      </tr>
+      <tr>
+        <td>что значит редуктор</td>
+        <td>1 081</td>
+        <td><span class="pos pos-20">12</span></td>
+        <td>13</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/chto-nuzhno-znat...</td>
+      </tr>
+      <tr>
+        <td>принцип работы редуктора</td>
+        <td>4 465</td>
+        <td><span class="pos pos-5">4</span></td>
+        <td>8</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/iz-chego-sostoit...</td>
+      </tr>
+      <tr>
+        <td>строение редуктора</td>
+        <td>405</td>
+        <td><span class="pos pos-1">1</span></td>
+        <td>7</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/iz-chego-sostoit...</td>
+      </tr>
+      <tr>
+        <td>редуктор фото</td>
+        <td>6 074</td>
+        <td><span class="pos pos-10">9</span></td>
+        <td>3</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/iz-chego-sostoit...</td>
+      </tr>
+      <tr>
+        <td>редуктор это что</td>
+        <td>5 283</td>
+        <td><span class="pos pos-10">10</span></td>
+        <td>3</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/chto-nuzhno-znat...</td>
+      </tr>
+      <tr>
+        <td>редуктор в разрезе</td>
+        <td>1 304</td>
+        <td><span class="pos pos-5">5</span></td>
+        <td>3</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/iz-chego-sostoit...</td>
+      </tr>
+      <tr>
+        <td>классификация редукторов</td>
+        <td>291</td>
+        <td><span class="pos pos-5">6</span></td>
+        <td>2</td>
+        <td><span class="pill pill-blue">Информационный</span></td>
+        <td class="url-cell">/blog/chto-nuzhno-znat...</td>
+      </tr>
+      <tr>
+        <td>ооо промышленные редукторы</td>
+        <td>106</td>
+        <td><span class="pos pos-1">1</span></td>
+        <td>10</td>
+        <td><span class="pill pill-purple">Бренд</span></td>
+        <td class="url-cell">/</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px; font-size:12px; color:var(--muted); line-height:1.6;">
+    <strong>Проблема:</strong> 8 из 10 топ-запросов — информационные. Люди ищут «что такое редуктор» и «принцип работы», а не «купить редуктор» или «цена мотор-редуктора». Блог привлекает студентов и инженеров-теоретиков, а не закупщиков.
+  </div>
+</div>
+
+<!-- КОНКУРЕНТЫ -->
+<div id="competitors" class="section">
+  <div class="section-title">Конкурентный анализ</div>
+
+  <table>
+    <thead><tr>
+      <th>Конкурент</th>
+      <th>Общих ключей</th>
+      <th>Всего KW</th>
+      <th>Видимость</th>
+      <th>Перекрытие</th>
+      <th>Комментарий</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>promred.ru</strong></td>
+        <td>—</td>
+        <td style="color:var(--accent); font-weight:700;">1 435</td>
+        <td>12</td>
+        <td>—</td>
+        <td class="muted">Наш сайт</td>
+      </tr>
+      <tr>
+        <td>tehprivod.su</td>
+        <td>535</td>
+        <td style="font-weight:700;">13 359</td>
+        <td style="color:var(--green); font-weight:700;">402</td>
+        <td>4%</td>
+        <td class="muted">Крупнейший. 13К ключей, vis=402</td>
+      </tr>
+      <tr>
+        <td>mirprivoda.ru</td>
+        <td>676</td>
+        <td>11 388</td>
+        <td style="color:var(--green); font-weight:700;">769</td>
+        <td>6%</td>
+        <td class="muted">Лидер по видимости. 11К ключей</td>
+      </tr>
+      <tr>
+        <td>reductors.com</td>
+        <td>758</td>
+        <td>10 411</td>
+        <td>388</td>
+        <td>7%</td>
+        <td class="muted">Наибольшее пересечение. 10К ключей</td>
+      </tr>
+      <tr>
+        <td>drives.ru</td>
+        <td>484</td>
+        <td>6 631</td>
+        <td>289</td>
+        <td>7%</td>
+        <td class="muted">6К ключей, широкий ассортимент</td>
+      </tr>
+      <tr>
+        <td>ttk-rus.ru</td>
+        <td>513</td>
+        <td>6 083</td>
+        <td>65</td>
+        <td>8%</td>
+        <td class="muted">6К ключей, средняя видимость</td>
+      </tr>
+      <tr>
+        <td>zavod-reduktor.ru</td>
+        <td>549</td>
+        <td>4 495</td>
+        <td style="color:var(--green);">325</td>
+        <td>12%</td>
+        <td class="muted">Высокое перекрытие. Прямой конкурент</td>
+      </tr>
+      <tr>
+        <td>reductor58.ru</td>
+        <td>583</td>
+        <td>3 911</td>
+        <td>44</td>
+        <td>15%</td>
+        <td class="muted">Близкий конкурент по семантике</td>
+      </tr>
+      <tr>
+        <td>evroreduktor.ru</td>
+        <td>384</td>
+        <td>1 708</td>
+        <td>17</td>
+        <td style="color:var(--green); font-weight:700;">22%</td>
+        <td class="muted">Максимальное перекрытие. Сопоставимый размер</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px; font-size:12px; color:var(--muted); line-height:1.6;">
+    <strong>Вывод:</strong> promred.ru — средний игрок в нише. Конкуренты-лидеры (tehprivod, mirprivoda, reductors) имеют в 7-9 раз больше ключей. Ближайшие по размеру — evroreduktor.ru (22% перекрытие, 1 708 ключей) и reductor58.ru (15%, 3 911).
+  </div>
+</div>
+
+<!-- ПЛАН -->
+<div id="plan" class="section">
+  <div class="section-title">Приоритетный план</div>
+
+  <div class="plan-grid">
+    <div class="plan-card p1">
+      <div class="plan-n">1</div>
+      <div class="plan-title">Диагностика падения (срочно)</div>
+      <div class="plan-desc">Проверить Вебмастер на ошибки индексации, Метрику на поведенческие факторы (окт-дек 2025), robots.txt, скорость загрузки, потерю ссылок. Без понимания причины любые действия — стрельба вслепую.</div>
+    </div>
+    <div class="plan-card p1">
+      <div class="plan-n">2</div>
+      <div class="plan-title">Усилить коммерческие страницы каталога</div>
+      <div class="plan-desc">Сейчас блог перетягивает трафик по коммерческим запросам. Страницы каталога (/catalog/...) должны содержать: уникальные описания, характеристики, цены, фото, FAQ. Каждая категория = отдельная посадочная под «купить [тип] редуктор».</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">3</div>
+      <div class="plan-title">Посадочные под товарные категории</div>
+      <div class="plan-desc">Создать SEO-оптимизированные страницы: «червячные редукторы купить» (WS ~2 000), «планетарные редукторы цена» (~1 500), «мотор-редуктор цилиндрический» (~800). Сейчас эти запросы ведут на общую страницу каталога или блог.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">4</div>
+      <div class="plan-title">Конвертировать блог-трафик</div>
+      <div class="plan-desc">5 статей генерируют 80% органики. В каждой нужен CTA: «Подобрать редуктор» &#8594; калькулятор или форма заявки. Сейчас статьи заканчиваются без конверсионного элемента — человек прочитал и ушёл.</div>
+    </div>
+    <div class="plan-card p2">
+      <div class="plan-n">5</div>
+      <div class="plan-title">Гео-страницы</div>
+      <div class="plan-desc">promred.ru базируется в Челябинске, но продаёт по России. Гео-лендинги (/moskva/, /ekaterinburg/, /novosibirsk/) под запросы «редукторы [город]» — быстрый способ расширить семантику по городам.</div>
+    </div>
+    <div class="plan-card p3">
+      <div class="plan-n">6</div>
+      <div class="plan-title">Аналоги импортных редукторов</div>
+      <div class="plan-desc">УТП компании: «подберём аналог импортному редуктору». Страницы «аналог Bonfiglioli», «аналог SEW-Eurodrive», «аналог Nord» — прямой коммерческий интент с низкой конкуренцией. Импортозамещение = актуальная тема.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ТЕХНИЧЕСКИЙ ЧЕКЛИСТ -->
+<div class="section">
+  <div class="section-title">Технический чеклист</div>
+  <div class="card">
+    <ul class="checklist">
+      <li><span class="check-ok">&#10003;</span> 173 страницы в индексе — каталог + блог</li>
+      <li><span class="check-ok">&#10003;</span> Schema.org Organization на сайте</li>
+      <li><span class="check-ok">&#10003;</span> Калькулятор подбора редуктора</li>
+      <li><span class="check-ok">&#10003;</span> Кейсы и отзывы клиентов</li>
+      <li><span class="check-ok">&#10003;</span> 373 AI-ответа — Яндекс доверяет контенту</li>
+      <li><span class="check-warn">&#9888;</span> <strong>DR=19</strong> — у конкурентов 30+. Нужен линкбилдинг через отраслевые каталоги и СМИ</li>
+      <li><span class="check-warn">&#9888;</span> <strong>Всего 9 dofollow-ссылок</strong> из 3 339 — большинство ссылок не передают вес</li>
+      <li><span class="check-warn">&#9888;</span> <strong>Блог каннибализирует каталог</strong> — информационные страницы ранжируются по коммерческим запросам</li>
+      <li><span class="check-fail">&#10007;</span> <strong>0 рекламных кампаний</strong> — конкуренты могут забирать коммерческий трафик через Директ</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Нет гео-страниц</strong> — продажи по России, но только одна гео-привязка (Челябинск)</li>
+      <li><span class="check-fail">&#10007;</span> <strong>Нет страниц аналогов</strong> — «аналог Bonfiglioli/SEW/Nord» — прямой коммерческий интент, страниц нет</li>
+    </ul>
+  </div>
+</div>
+
+<!-- МЕТРИКИ -->
+<div class="section">
+  <div class="section-title">Ключевые метрики</div>
+  <div class="summary-bar">
+    <div class="summary-bar-item">
+      <div class="summary-bar-val">1 435</div>
+      <div class="summary-bar-label">Ключей в топ-50</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-orange">250</div>
+      <div class="summary-bar-label">Ключей в топ-10 (было 660)</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val">19</div>
+      <div class="summary-bar-label">DR (Domain Rating)</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-green">173</div>
+      <div class="summary-bar-label">Страниц в индексе</div>
+    </div>
+    <div class="summary-bar-item">
+      <div class="summary-bar-val text-green">373</div>
+      <div class="summary-bar-label">AI-ответов (Нейро)</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="container">
+    <div>
+      <div class="footer-brand">CRM Group</div>
+      <div style="margin-top:4px;">SEO-аудит · promred.ru · апрель 2026</div>
+    </div>
+    <div style="text-align:right;">
+      <a href="https://ai.crmgroup.ru" target="_blank">ai.crmgroup.ru</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
