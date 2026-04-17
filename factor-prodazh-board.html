@@ -343,13 +343,13 @@ footer {
   <div class="status-bar">
     <div class="sb">
       <div class="sb-label">Фаза проекта</div>
-      <div class="sb-val gold">Неделя 4</div>
+      <div class="sb-val gold">Неделя 5</div>
       <div class="sb-sub">активная работа</div>
     </div>
     <div class="sb">
       <div class="sb-label">Выполнено задач</div>
-      <div class="sb-val green">34</div>
-      <div class="sb-sub">+9 с 10.04 по 14.04</div>
+      <div class="sb-val green">39</div>
+      <div class="sb-sub">+5 с 14.04 по 17.04</div>
     </div>
     <div class="sb">
       <div class="sb-label">В плане на неделю</div>
@@ -358,7 +358,7 @@ footer {
     </div>
     <div class="sb">
       <div class="sb-label">Обновлено</div>
-      <div class="sb-val">14.04</div>
+      <div class="sb-val">17.04</div>
       <div class="sb-sub">2026</div>
     </div>
   </div>
@@ -366,31 +366,32 @@ footer {
   <!-- WEEK SUMMARY -->
   <div class="week-summary">
     <div class="ws-header">
-      <div class="ws-badge">Неделя 4</div>
-      <div class="ws-title">14–18 апреля 2026</div>
-      <div class="ws-date">Обновлено 14.04</div>
+      <div class="ws-badge">Неделя 5</div>
+      <div class="ws-title">21–25 апреля 2026</div>
+      <div class="ws-date">Обновлено 17.04</div>
     </div>
     <div class="ws-cols">
       <div class="ws-done">
-        <div class="ws-col-label">✅ Сделано (нед. 3–4)</div>
+        <div class="ws-col-label">✅ Сделано (нед. 4, 14–17 апреля)</div>
         <ul class="ws-list">
-          <li>Опубликована «КЭВ в продажах» (ID 3541) — ~2 500 слов, обложки, FAQ Schema</li>
-          <li>Опубликована «Советы Гребенюка» (ID 3547) — ~2 800 слов, обложки, FAQ Schema</li>
-          <li>Опубликована «Построение ОП с нуля» (ID 3574) — ~2 800 слов, обложки, FAQ Schema</li>
-          <li>SVG-обложки: генератор v3 — 600×600 и 2400×984, Python CLI + PHP автогенерация</li>
-          <li>2 ACF-поля (cover_subtitle, cover_tag) — обложки генерируются при публикации</li>
-          <li>Типографика обложек: диапазон 56–68px, нормализованный межстрочный интервал</li>
-          <li>Nginx: отключён кэш SVG-файлов (исправлены артефакты старых версий)</li>
+          <li>Опубликована «Аудит отдела продаж 2026» (ID 3567) — BOFU-статья, 4-агентный пайплайн</li>
+          <li>Опубликована «Менеджер по продажам» (ID 3564) — доработанная, дожим обновлён</li>
+          <li>Опубликованы ещё 2 статьи из дожима (ID 3565, ID 3566)</li>
+          <li>factor-prodazh.ru/blogs/ — автогенерация обложек при постинге (без ручного шага)</li>
+          <li>4-агентный пайплайн: writer → editor → seo-optimizer → publisher — готов и обкатан</li>
+          <li>Агенты используют расширенные исследования, company-context, правила голоса</li>
+          <li>Добавлен Metrika-трекинг blog-banner-form: ym(reachGoal, 'blog_form_submit')</li>
         </ul>
       </div>
       <div class="ws-progress">
-        <div class="ws-col-label">⏳ В работе (нед. 4)</div>
+        <div class="ws-col-label">⏳ В работе (нед. 5)</div>
         <ul class="ws-list">
+          <li>Пакетная генерация статей за выходные (агенты пишут самостоятельно) — проверка в пн</li>
           <li>Написать «Управление командой продаж» (∑WS 13 990)</li>
           <li>Написать «Делегирование в продажах» (∑WS 13 140)</li>
           <li>Написать «Бизнес-модель отдела продаж» (∑WS 10 430)</li>
           <li>Написать «Выход из операционки» (∑WS 10 080)</li>
-          <li>Применить дожим к живым постам (ID 2560 и ID 125) ← задача клиента</li>
+          <li>Создать цель blog_form_submit в Метрике (вручную) — JS уже добавлен</li>
         </ul>
       </div>
     </div>
@@ -605,6 +606,30 @@ footer {
     <div class="section-label">Опубликовано</div>
     <div class="section-title">Статьи на сайте</div>
     <div class="task-grid">
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Статья: «Аудит отдела продаж 2026: чек-лист для руководителя»</div>
+          <div class="task-desc">Опубликована (ID 3567). BOFU-статья, ~3 000 слов, 7 блоков аудита, 6 FAQ Schema. Написана 4-агентным пайплайном.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">17.04</div>
+          <div class="task-pill pill-done">Опубликовано</div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div>
+          <div class="task-title">Статья: «Менеджер по продажам» (дожим, ID 3564)</div>
+          <div class="task-desc">Доработана и опубликована. Расширен с 2560 слов, добавлены кейсы и FAQ.</div>
+        </div>
+        <div class="task-meta">
+          <div class="task-date">17.04</div>
+          <div class="task-pill pill-done">Опубликовано</div>
+        </div>
+      </div>
 
       <div class="task done">
         <div class="task-check">&#10003;</div>
