@@ -1093,21 +1093,68 @@
     </div>
 
     <div class="insight">
-      <strong>Сводка по позициям: почему Visibility просел и что будет дальше</strong><br><br>
+      <strong>Почему упал Visibility: разбор по конкретным ключам</strong><br><br>
 
-      Visibility упал с 218 до 165 (−24%). Это выглядит тревожно на фоне роста топ-50 на +1 266 ключей — но объясняется просто.<br><br>
+      Visibility упал с 218 до 165 (−24%). Запросили данные из Keys.so по каждому ключу. <strong>Новые апрельские статьи тут ни при чём</strong> — среди упавших нет ни одной новой публикации.<br><br>
 
-      <strong>Причина:</strong> за 10 дней (13–22 апреля) опубликовали 8 статей. Яндекс обрабатывает новый контент через «карантин» — свежие страницы временно занижаются, пока алгоритм не убедится в их качестве. В это время несколько старых страниц в топ-1/3 немного сдвинулись. Visibility считается по взвешенному трафику с топ-позиций, поэтому даже −1 позиция у высокочастотника даёт заметное падение метрики.<br><br>
+      <strong>Реальная причина:</strong> 5 старых статей потеряли позиции в топ-1. Visibility считается по взвешенному трафику с топ-позиций — падение ВЧ-ключа даже на 2–3 позиции сильно роняет метрику.
+
+      <div style="margin:14px 0; border-radius:8px; overflow:hidden; border:1px solid var(--border)">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead>
+            <tr style="background:var(--bg)">
+              <th style="padding:8px 12px; text-align:left; font-weight:600; color:var(--muted)">Ключ</th>
+              <th style="padding:8px 12px; text-align:center; font-weight:600; color:var(--muted)">Было</th>
+              <th style="padding:8px 12px; text-align:center; font-weight:600; color:var(--muted)">Стало</th>
+              <th style="padding:8px 12px; text-align:right; font-weight:600; color:var(--muted)">WS / мес</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--border)">
+              <td style="padding:8px 12px">постоянный клиент</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--green); font-weight:600">#1</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--muted)">#3</td>
+              <td style="padding:8px 12px; text-align:right; color:var(--muted)">14 487</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border); background:rgba(192,16,32,.03)">
+              <td style="padding:8px 12px">развитие в продажах</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--green); font-weight:600">#1</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--muted)">#4</td>
+              <td style="padding:8px 12px; text-align:right; color:var(--muted)">6 770</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border)">
+              <td style="padding:8px 12px">бутылочные горлышки</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--green); font-weight:600">#1</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--muted)">#6</td>
+              <td style="padding:8px 12px; text-align:right; color:var(--muted)">5 135</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border); background:rgba(192,16,32,.03)">
+              <td style="padding:8px 12px">дорого возражение</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--green); font-weight:600">#1</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--red); font-weight:600">#10</td>
+              <td style="padding:8px 12px; text-align:right; color:var(--muted)">2 698</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border)">
+              <td style="padding:8px 12px">роп это что</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--green); font-weight:600">#1</td>
+              <td style="padding:8px 12px; text-align:center; color:var(--muted)">#8</td>
+              <td style="padding:8px 12px; text-align:right; color:var(--muted)">1 293</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      Итого 5 старых страниц просели на 2–9 позиций. Всё это флуктуации конкурентной выдачи — не следствие новых публикаций.<br><br>
 
       <strong>Что говорит в пользу роста:</strong>
       <ul style="margin:8px 0 0 16px; line-height:1.8">
-        <li>Топ-50: +1 266 ключей — это прямой результат новых статей, они проиндексированы</li>
-        <li>Топ-10: +211 ключей — статьи уже занимают серьёзные позиции</li>
-        <li>AI-ответы Нейро: 248 → 1 404 (+466%) — Яндекс использует наш контент в генеративных ответах, это сигнал качества</li>
-        <li>Топ-1 по новым ключам: «что такое кэв», «окк расшифровка», «структура отдела продаж» — новые статьи уже на первом месте</li>
+        <li>Топ-50: +1 266 ключей — прямой результат новых статей, проиндексированы</li>
+        <li>Топ-10: +211 ключей — статьи занимают серьёзные позиции</li>
+        <li>AI-ответы Нейро: 248 → 1 404 (+466%) — Яндекс использует контент в генеративных ответах</li>
+        <li>Топ-1 новых: «что такое кэв», «окк расшифровка», «структура отдела продаж»</li>
       </ul><br>
 
-      <strong>Прогноз:</strong> Visibility вернётся к 200–230 через 3–5 недель по мере стабилизации позиций. Следить по майским данным Keys.so.
+      <strong>Что делать:</strong> статьи про «постоянный клиент», «возражение дорого», «роп это что» — проверить, не обновил ли конкурент. Возможно, небольшой refresh контента вернёт топ-1.
     </div>
   </div>
 
