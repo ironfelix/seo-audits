@@ -302,6 +302,25 @@
     color: var(--muted2);
   }
 
+  /* ── DONE STATE ── */
+  .qw.done-item { opacity: 0.42; }
+  .qw.done-item .qw-title { text-decoration: line-through; text-decoration-color: var(--green); }
+  .done-tag {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: var(--green); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: .3px;
+    padding: 1px 7px; border-radius: 8px; margin-left: 8px;
+    vertical-align: middle; white-space: nowrap;
+  }
+  .pw-tasks li.done {
+    color: var(--muted2);
+    text-decoration: line-through;
+    text-decoration-color: var(--green);
+  }
+  .pw-tasks li.done::before { content: '✓'; color: var(--green); font-size: 11px; top: 5px; }
+  .content-table tr.done td { opacity: 0.42; }
+  .content-table tr.done td strong { text-decoration: line-through; text-decoration-color: var(--green); }
+
   @media (max-width: 640px) {
     .comm-cols, .plan-grid { grid-template-columns: 1fr; }
     .comm-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
@@ -459,10 +478,10 @@
     <div class="section-title">Quick Wins — результат за 2 недели</div>
     <div class="qw-grid">
 
-      <div class="qw">
+      <div class="qw done-item">
         <div class="qw-num">1</div>
         <div>
-          <div class="qw-title">CTA-блоки в топ-5 статьях блога</div>
+          <div class="qw-title">CTA-блоки в топ-5 статьях блога<span class="done-tag">✓ сделано</span></div>
           <div class="qw-body">
             В статьях <em>«менеджер по продажам», «5 этапов», «работа с возражениями», «расчёт стоимости», «приросты»</em> — добавить вставку: <strong>«Выстроили ОП в 200+ компаниях — посмотрите, как это работает»</strong> + кнопка к /cases/ или форме. Не требует SEO-работы — контентное изменение, эффект через 1–2 недели.
           </div>
@@ -473,10 +492,10 @@
         </div>
       </div>
 
-      <div class="qw">
+      <div class="qw done-item">
         <div class="qw-num">2</div>
         <div>
-          <div class="qw-title">Schema.org + OG-теги через Yoast / RankMath</div>
+          <div class="qw-title">Schema.org + OG-теги через Yoast / RankMath<span class="done-tag">✓ сделано</span></div>
           <div class="qw-body">
             Установить плагин, настроить: <strong>Article</strong> для блога, <strong>Service</strong> для /services/, <strong>FAQ</strong> для вопросных страниц. OG-теги автоматически улучшат превью в Telegram и VK. Эффект: расширенные сниппеты в Яндексе, CTR +10–30% без роста позиций.
           </div>
@@ -487,10 +506,10 @@
         </div>
       </div>
 
-      <div class="qw gold">
+      <div class="qw gold done-item">
         <div class="qw-num">4</div>
         <div>
-          <div class="qw-title">Исправить каннибализацию: «построение ОП с нуля» → услуга</div>
+          <div class="qw-title">Исправить каннибализацию: «построение ОП с нуля» → услуга<span class="done-tag">✓ сделано</span></div>
           <div class="qw-body">
             По ключу <strong>«построение отдела продаж с нуля» (sw=115/нед, p6)</strong> ранжируется статья блога, а не страница услуги. Добавить в статью блок с кейсом + яркий CTA → /services/konsalting/. Трафик остаётся на статье, но конвертирует.
           </div>
@@ -501,10 +520,10 @@
         </div>
       </div>
 
-      <div class="qw gold">
+      <div class="qw gold done-item">
         <div class="qw-num">5</div>
         <div>
-          <div class="qw-title">Meta description на 4 страницы без него</div>
+          <div class="qw-title">Meta description на 4 страницы без него<span class="done-tag">✓ сделано</span></div>
           <div class="qw-body">
             /bookmarks/, /quiz/, /black-friday/, /blog/test/ — Яндекс сам генерирует сниппет и делает это плохо. Написать уникальные описания <strong>120–155 символов</strong> с ключевыми словами и CTA. Быстро, видимый эффект в CTR через 1–2 недели.
           </div>
@@ -535,28 +554,28 @@
           <div class="pm-week">
             <div class="pw-label">Неделя 1</div>
             <ul class="pw-tasks">
-              <li>CTA-блоки в топ-5 статьях блога</li>
-              <li>Schema.org + OG через Yoast/RankMath</li>
-              <li>Meta desc на 4 страницы без него</li>
-              <li class="green">Согласование контент-плана на месяц</li>
+              <li class="done">CTA-блоки в топ-5 статьях блога</li>
+              <li class="done">Schema.org + OG через Yoast/RankMath</li>
+              <li class="done">Meta desc на 4 страницы без него</li>
+              <li class="green done">Согласование контент-плана на месяц</li>
             </ul>
           </div>
 
           <div class="pm-week">
             <div class="pw-label">Неделя 2</div>
             <ul class="pw-tasks">
-              <li>Исправить каннибализацию «построение ОП»</li>
+              <li class="done">Исправить каннибализацию «построение ОП»</li>
               <li>Title: приоритетные 20 страниц (из 68 длинных) <em>— формат «Ключ — уточнение | Фактор Продаж», ≤65 симв.</em></li>
-              <li>Типографика: читаемость топ-10 статей <em>— абзацы, подзаголовки, буллеты</em></li>
+              <li class="done">Типографика: читаемость топ-10 статей <em>— абзацы, подзаголовки, буллеты</em></li>
             </ul>
           </div>
 
           <div class="pm-week">
             <div class="pw-label">Неделя 3</div>
             <ul class="pw-tasks">
-              <li class="gold">Публикация статьи 1: BOFU <em>«Построение отдела продаж под ключ: этапы и стоимость»</em></li>
+              <li class="gold done">Публикация статьи 1: BOFU <em>«Построение отдела продаж под ключ: этапы и стоимость»</em></li>
               <li>Обновление 2 падающих статей <em>«Правила продаж» Δ−18, «Как считать KPI» Δ−14</em></li>
-              <li>Добавить FAQ-блоки в 5 MOFU-статей <em>→ Яндекс Нейро</em></li>
+              <li class="done">Добавить FAQ-блоки в 5 MOFU-статей <em>→ Яндекс Нейро</em></li>
             </ul>
           </div>
 
@@ -584,7 +603,7 @@
             <div class="pw-label">Неделя 5</div>
             <ul class="pw-tasks">
               <li>Создать хаб /blog/tehnika-prodazh/ <em>«техника продаж» sw=756 p18, «технологии продаж» sw=118 p19</em></li>
-              <li class="gold">Статья 3: BOFU <em>«Аудит отдела продаж: что проверяем и сколько стоит»</em></li>
+              <li class="gold done">Статья 3: BOFU <em>«Аудит отдела продаж: что проверяем и сколько стоит»</em></li>
               <li>Обновление статьи «обучение на РОП» Δ−17</li>
             </ul>
           </div>
@@ -637,7 +656,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="done">
           <td style="color:var(--muted);white-space:nowrap">Нед. 3</td>
           <td><strong>Построение отдела продаж под ключ: этапы и стоимость</strong></td>
           <td><span class="pill pill-bofu">BOFU</span></td>
@@ -651,7 +670,7 @@
           <td>«консалтинг продаж» sw≈80</td>
           <td>ЛПР на этапе выбора подрядчика</td>
         </tr>
-        <tr>
+        <tr class="done">
           <td style="color:var(--muted);white-space:nowrap">Нед. 7</td>
           <td><strong>Аудит отдела продаж: что проверяем и сколько стоит</strong></td>
           <td><span class="pill pill-bofu">BOFU</span></td>
