@@ -241,6 +241,64 @@
     font-size: 12px; color: var(--muted2);
   }
 
+  /* ── TABS ── */
+  .tabs-nav {
+    display: flex; gap: 4px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px; margin-top: 8px;
+  }
+  .tab-btn {
+    padding: 10px 20px; font-size: 13px; font-weight: 600;
+    color: var(--muted); background: none; border: none;
+    border-bottom: 2px solid transparent; margin-bottom: -2px;
+    cursor: pointer; transition: all .15s; border-radius: 6px 6px 0 0;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--dark); background: rgba(0,0,0,.03); }
+  .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--white); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px;
+  }
+  .compare-table th {
+    background: #f8f7f4; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border);
+  }
+  .compare-table td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    font-size: 13px; vertical-align: middle;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .metric-name { font-weight: 600; color: var(--dark); }
+  .compare-table .was { color: var(--muted); }
+  .compare-table .now { font-weight: 700; color: var(--dark); }
+  .compare-table .delta { font-weight: 700; font-size: 12px; white-space: nowrap; }
+  .delta.up { color: var(--green); }
+  .delta.neutral { color: var(--muted2); }
+  .delta.tbd { color: var(--muted2); font-weight: 400; font-style: italic; }
+
+  /* Done list */
+  .done-list { list-style: none; }
+  .done-list li {
+    padding: 8px 14px 8px 28px; border-bottom: 1px solid var(--border);
+    position: relative; font-size: 13px;
+    background: var(--white);
+  }
+  .done-list li:first-child { border-radius: 10px 10px 0 0; }
+  .done-list li:last-child { border-bottom: none; border-radius: 0 0 10px 10px; }
+  .done-list li::before {
+    content: '✓'; position: absolute; left: 10px;
+    color: var(--green); font-size: 11px; font-weight: 700; top: 10px;
+  }
+  .done-list.border { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .done-list li .sub { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
   @media (max-width: 700px) {
     .metrics-row, .metrics-row.six, .metrics-row.three { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 24px; }
@@ -271,6 +329,14 @@
 
 <div class="page-body">
 <div class="wrap">
+
+  <!-- TABS NAV -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="showTab('tab-a', this)">Точка А — март 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-m1', this)">Месяц 1 — апрель 2026</button>
+  </nav>
+
+<div id="tab-a" class="tab-panel active">
 
 <!-- ═══ 1. ТРАФИК ═══ -->
 <div class="section">
@@ -768,9 +834,274 @@
   </div>
 </div>
 
-<!-- ═══ FOOTER ═══ -->
+</div><!-- /tab-a -->
+
+<!-- ══════════════════════════════════════════════════════
+     ТАБ МЕСЯЦ 1
+═══════════════════════════════════════════════════════ -->
+<div id="tab-m1" class="tab-panel">
+
+  <!-- 01 СРАВНЕНИЕ МЕТРИК -->
+  <div class="section" style="margin-top:4px">
+    <div class="section-label">01</div>
+    <div class="section-title">Ключевые метрики: было → стало</div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Метрика</th>
+          <th>Точка А (20 марта)</th>
+          <th>Месяц 1 (апрель)</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric-name">Квал. лиды / мес</td>
+          <td class="was">4</td>
+          <td class="now">8</td>
+          <td class="delta up">+4 (×2) ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Всего лидов апрель</td>
+          <td class="was">—</td>
+          <td class="now">36</td>
+          <td class="delta up">конверсия 22%</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Трафик блога / нед</td>
+          <td class="was">~300 (оценка)</td>
+          <td class="now">447</td>
+          <td class="delta up">+49% ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Статьи в блоге</td>
+          <td class="was">143</td>
+          <td class="now">151</td>
+          <td class="delta up">+8 новых</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Черновиков готово</td>
+          <td class="was">0</td>
+          <td class="now">7</td>
+          <td class="delta up">+7 ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Schema.org FAQPage</td>
+          <td class="was">нет</td>
+          <td class="now">во всех статьях</td>
+          <td class="delta up">✓ сделано</td>
+        </tr>
+        <tr>
+          <td class="metric-name">SVG-обложки</td>
+          <td class="was">нет</td>
+          <td class="now">v5 (чёрный стиль, Raleway)</td>
+          <td class="delta up">✓ сделано</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Visibility (Keys.so)</td>
+          <td class="was">218</td>
+          <td class="now">—</td>
+          <td class="delta tbd">обновить из Keys.so</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-50 ключей</td>
+          <td class="was">4 551</td>
+          <td class="now">—</td>
+          <td class="delta tbd">обновить из Keys.so</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-10 ключей</td>
+          <td class="was">1 315</td>
+          <td class="now">—</td>
+          <td class="delta tbd">обновить из Keys.so</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <strong>Главный результат:</strong> квал. лиды выросли с 4 до 8 в апреле — цель месяца 1 достигнута (план 6–8). Трафик блога вырос на ~50% за счёт 8 новых статей. Позиции обновятся в Keys.so через ~2 недели после массовой публикации.
+    </div>
+  </div>
+
+  <!-- 02 ЧТО СДЕЛАНО -->
+  <div class="section">
+    <div class="section-label">02</div>
+    <div class="section-title">Что сделано за месяц</div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+
+      <div>
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2); margin-bottom:8px">Контент</div>
+        <ul class="done-list border">
+          <li>8 статей опубликовано<span class="sub">КЭВ, Гребенюк, Построение ОП, Менеджер, 5 этапов, ЛПР, Аудит, РОП</span></li>
+          <li>7 черновиков готовы<span class="sub">KPI, УТП, Воронка, ЦКП, Возражения, ОКК, Техники</span></li>
+          <li>Пайплайн writer → editor → publisher<span class="sub">4-агентный, с Google Doc и WP черновиком</span></li>
+          <li>Редактура по комментариям Александры и Екатерины<span class="sub">Аудит, УТП, РОП — все правки применены</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2); margin-bottom:8px">Технические</div>
+        <ul class="done-list border">
+          <li>Schema.org FAQPage добавлена во все статьи</li>
+          <li>SVG-обложки v5: скрипт /opt/svg_cover_gen.py на сервере<span class="sub">чёрный стиль, Raleway, gold accent</span></li>
+          <li>Шрифт Raleway установлен на сервере<span class="sub">/usr/local/share/fonts/raleway/ — 5 начертаний</span></li>
+          <li>Lightbox (fslightbox) исправлен в статьях<span class="sub">data-fslightbox + blog-gallery класс</span></li>
+          <li>Метрика: ym reachGoal blog_form_submit<span class="sub">добавлен в blog.js</span></li>
+          <li>FAQ accordion — wpautop fix<span class="sub">одна строка без пробелов между тегами</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 ОПУБЛИКОВАННЫЕ СТАТЬИ -->
+  <div class="section">
+    <div class="section-label">03</div>
+    <div class="section-title">Опубликованные статьи — месяц 1</div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Статья</th><th>Тип</th><th>Дата</th><th>WP ID</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>КЭВ в продажах</strong><br><span class="url">/blog/kev-klyuchevoy-etap-voronki/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3541</td>
+        </tr>
+        <tr>
+          <td><strong>Советы Гребенюка</strong><br><span class="url">/blog/grebenyuk-sovety-prodazhi/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3547</td>
+        </tr>
+        <tr>
+          <td><strong>Построение ОП с нуля</strong><br><span class="url">/blog/postroenie-otdela-prodazh/</span></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3571</td>
+        </tr>
+        <tr>
+          <td><strong>Менеджер по продажам</strong> (обновлён)<br><span class="url">/blog/menedzher-po-prodazham-vsyo-o-professii/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">2560</td>
+        </tr>
+        <tr>
+          <td><strong>5 этапов продаж</strong> (обновлён)<br><span class="url">/blog/5-etapov-prodazh-menedzhera-po-prodazham/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">125</td>
+        </tr>
+        <tr>
+          <td><strong>ЛПР в продажах</strong><br><span class="url">/blog/lpr-v-prodazhakh/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">3566</td>
+        </tr>
+        <tr>
+          <td><strong>Аудит отдела продаж</strong><br><span class="url">/blog/audit-otdela-prodazh/</span></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">3567</td>
+        </tr>
+        <tr>
+          <td><strong>РОП: обязанности</strong><br><span class="url">/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">22 апр</td>
+          <td style="color:var(--muted2)">3631</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Черновики готовы к публикации (неделя 6):</strong> KPI, УТП, Воронка, ЦКП, Работа с возражениями, ОКК, Техники продаж. Публикуем по 1–2 в день на неделе 28 апр — 2 мая.
+    </div>
+  </div>
+
+  <!-- 04 ПОЗИЦИИ — ТРЕБУЮТ ОБНОВЛЕНИЯ -->
+  <div class="section">
+    <div class="section-label">04</div>
+    <div class="section-title">Позиции в Яндексе — требуют обновления</div>
+
+    <div class="insight" style="margin-top:0">
+      <strong>Данные Keys.so обновить.</strong> 8 статей опубликованы 13–22 апреля. Яндекс проиндексировал большинство в течение 3–7 дней. Для актуальных позиций нужно снять срез через Keys.so API — ~2 недели после публикации для стабилизации. Ориентировочно обновить 24–28 апреля.
+    </div>
+
+    <div class="metrics-row" style="margin-top:12px">
+      <div class="metric-box gold-hl">
+        <div class="mb-label">Топ-1 (точка А)</div>
+        <div class="mb-val gold">152</div>
+        <div class="mb-sub">обновить →</div>
+      </div>
+      <div class="metric-box gold-hl">
+        <div class="mb-label">Топ-10 (точка А)</div>
+        <div class="mb-val gold">1 315</div>
+        <div class="mb-sub">обновить →</div>
+      </div>
+      <div class="metric-box gold-hl">
+        <div class="mb-label">Топ-50 (точка А)</div>
+        <div class="mb-val gold">4 551</div>
+        <div class="mb-sub">обновить →</div>
+      </div>
+      <div class="metric-box gold-hl">
+        <div class="mb-label">Visibility (точка А)</div>
+        <div class="mb-val gold">218</div>
+        <div class="mb-sub">обновить →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 ПЛАН НЕДЕЛЯ 6 -->
+  <div class="section">
+    <div class="section-label">05</div>
+    <div class="section-title">Следующий шаг — неделя 6 (28 апр — 2 мая)</div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>День</th><th>Задача</th><th>Приоритет</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Пн–Вт</td>
+          <td><strong>Опубликовать 4 черновика</strong>: Работа с возражениями, Техники продаж, Воронка, ОКК</td>
+          <td><span class="pill pill-bofu">Высокий</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Ср</td>
+          <td><strong>Опубликовать 3 черновика</strong>: KPI, УТП, ЦКП</td>
+          <td><span class="pill pill-bofu">Высокий</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Чт–Пт</td>
+          <td><strong>Написать 3 новые статьи</strong>: Тренинг по продажам (WS 17 957), Управление командой (WS 13 990), Делегирование (WS 13 140)</td>
+          <td><span class="pill pill-mofu">Средний</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Пт</td>
+          <td><strong>Обновить позиции</strong> из Keys.so после публикации волны</td>
+          <td><span class="pill pill-tech" style="background:rgba(0,0,0,.06);color:var(--muted)">Аналитика</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /tab-m1 -->
+
 </div>
 </div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 
 <footer>
   <div class="wrap">
