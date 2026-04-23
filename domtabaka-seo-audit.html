@@ -511,9 +511,9 @@ footer strong { color: var(--text-soft); }
         <div class="kpi-sub">у конкурентов, нет у нас</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">WS потенциал</div>
+        <div class="kpi-label">Охват поиска</div>
         <div class="kpi-val accent">650K+</div>
-        <div class="kpi-sub">суммарный gap топ-50</div>
+        <div class="kpi-sub">суммарный поисковый спрос gap-ключей</div>
       </div>
     </div>
   </div>
@@ -547,16 +547,16 @@ footer strong { color: var(--text-soft); }
         <div class="card-title">🟢 Точки быстрого роста</div>
         <ul style="list-style:none;padding:0;">
           <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--accent)">Трубочный табак</strong> — уже pos 14, WS 10 576, нужен только SEO-текст
+            <strong style="color:var(--accent)">Трубочный табак</strong> — уже позиция 14, 10 576 запросов/мес — нужен только SEO-текст
           </li>
           <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--accent)">Папиросы купить</strong> — pos 10–15, WS 9 995, конкурент в топ-1 при DR=25
+            <strong style="color:var(--accent)">Папиросы купить</strong> — позиция 10–15, 9 995 запросов/мес, конкурент в топ-1
           </li>
           <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--accent)">Кальянный табак после фикса</strong> — 696 товаров, WS кластера ~85 000
+            <strong style="color:var(--accent)">Кальянный табак после фикса</strong> — 696 товаров, ~85 000 запросов/мес
           </li>
           <li style="padding:7px 0;font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--accent)">Must Have</strong> — бренд уже в каталоге, страница = +1 582 WS
+            <strong style="color:var(--accent)">Must Have</strong> — бренд уже в каталоге, страница = +1 582 запросов/мес
           </li>
         </ul>
       </div>
@@ -638,7 +638,7 @@ footer strong { color: var(--text-soft); }
       <div class="issue-num crit">1</div>
       <div class="issue-body">
         <h3>Soft 404 на /catalog/tabak-dlya-kalyana — 696 товаров невидимы</h3>
-        <p>HTTP 200, но React-компонент рендерит 404-экран. Крупнейшая категория (Must Have, DarkSide, Burn) не существует для Яндекса. WS кластера ~85 000.</p>
+        <p>HTTP 200, но React-компонент рендерит 404-экран. Крупнейшая категория (Must Have, DarkSide, Burn) не существует для Яндекса. ~85 000 запросов/мес.</p>
         <code class="fact">HTTP 200 + Strapi slug mismatch → React renders /notfound</code>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
@@ -701,7 +701,7 @@ footer strong { color: var(--text-soft); }
 
     <div style="margin-top:20px;" class="card">
       <div class="card-title">⚠️ Брендовое несоответствие</div>
-      <p style="font-size:13.5px;color:var(--text-soft);margin-top:4px;">Пользователи ищут «дом табака» (WS 4 518, топ-2), попадают на title «ЦДТ | Главная». Рекомендация: H1 «Дом Табака — интернет-магазин табачных изделий» на главной.</p>
+      <p style="font-size:13.5px;color:var(--text-soft);margin-top:4px;">Пользователи ищут «дом табака» (4 518 запросов/мес, топ-2), попадают на title «ЦДТ | Главная». Рекомендация: H1 «Дом Табака — интернет-магазин табачных изделий» на главной.</p>
     </div>
   </div>
 </section>
@@ -756,7 +756,7 @@ footer strong { color: var(--text-soft); }
             <td><span class="comp-vis">—</span></td>
             <td><span class="num">27</span></td>
             <td><span class="num accent">4 713 топ-10</span></td>
-            <td style="font-size:12px;color:var(--muted)">WS 79 122 кальян</td>
+            <td style="font-size:12px;color:var(--muted)">79 122 запросов/мес</td>
           </tr>
           <tr style="background:rgba(212,168,67,0.05)">
             <td><strong style="color:var(--accent)">domtabaka.ru</strong></td>
@@ -783,13 +783,13 @@ footer strong { color: var(--text-soft); }
     <h2 class="section-title">588 gap-ключей — что не охвачено</h2>
     <p class="section-desc">Выборка 300 ключей с каждого из 5 конкурентов, фильтр: ниша + позиция ≤20. 588 — видимая часть айсберга.</p>
     <div class="chart-wrap" style="margin-bottom:16px;">
-      <div class="chart-title">Суммарный WS gap-кластеров (тыс.)</div>
+      <div class="chart-title">Поисковый спрос gap-кластеров (тыс. запросов/мес)</div>
       <div class="chart-canvas-wrap"><canvas id="chartGap"></canvas></div>
     </div>
     <div class="tbl-wrap">
       <table class="tbl">
         <thead>
-          <tr><th>#</th><th>Кластер</th><th>WS кластера</th><th>Лучший конкурент</th><th>Его позиция</th><th>Интент</th><th>Решение</th></tr>
+          <tr><th>#</th><th>Кластер</th><th>Запросов/мес</th><th>Лучший конкурент</th><th>Его позиция</th><th>Интент</th><th>Решение</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -866,11 +866,11 @@ footer strong { color: var(--text-soft); }
   <div class="wrap">
     <div class="section-label">06 · Семантическое ядро</div>
     <h2 class="section-title">Топ коммерческих запросов</h2>
-    <p class="section-desc">Все данные по частотности верифицированы через Яндекс Wordstat (апрель 2026).</p>
+    <p class="section-desc">Данные по поисковому спросу — апрель 2026.</p>
     <div class="tbl-wrap">
       <table class="tbl">
         <thead>
-          <tr><th>Фраза</th><th>WS</th><th>Интент</th><th>Страница</th><th>Покрытие</th></tr>
+          <tr><th>Фраза</th><th>Запросов/мес</th><th>Интент</th><th>Страница</th><th>Покрытие</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -959,7 +959,7 @@ footer strong { color: var(--text-soft); }
     <div class="qw-item">
       <div>
         <div class="qw-title">⚡ Трубочный табак — pos 14 → топ-5</div>
-        <div class="qw-meta">WS 10 576 · /catalog/tabak-trubochnyy · уже в топ-20</div>
+        <div class="qw-meta">10 576 запросов/мес · /catalog/tabak-trubochnyy · уже в топ-20</div>
         <div class="qw-meta" style="margin-top:6px;color:var(--muted)">H1 «Трубочный табак — купить в интернет-магазине» + SEO-текст 400 слов (Virginia/Burley, табак из Погара, бренды Bristol, Mac Baren)</div>
       </div>
       <div class="qw-arrow">
@@ -972,8 +972,8 @@ footer strong { color: var(--text-soft); }
     <div class="qw-item">
       <div>
         <div class="qw-title">⚡ Папиросы купить — pos 10–15 → топ-5</div>
-        <div class="qw-meta">WS 9 995 · /catalog/papirosy · cigars-smoker.ru топ-1 при DR=25</div>
-        <div class="qw-meta" style="margin-top:6px;color:var(--muted)">H1 «Папиросы — купить оптом и в розницу» + SEO-текст 300 слов. Богатыри WS 3 098 (pos 15–19), Путина pos 6–7</div>
+        <div class="qw-meta">9 995 запросов/мес · /catalog/papirosy · cigars-smoker.ru топ-1 при DR=25</div>
+        <div class="qw-meta" style="margin-top:6px;color:var(--muted)">H1 «Папиросы — купить оптом и в розницу» + SEO-текст 300 слов. Богатыри — 3 098 запросов/мес (pos 15–19), Путина pos 6–7</div>
       </div>
       <div class="qw-arrow">
         <span class="arrow-val">12</span>
@@ -985,7 +985,7 @@ footer strong { color: var(--text-soft); }
     <div class="qw-item">
       <div>
         <div class="qw-title">🔴 Кальянный табак — фикс 404 → топ-15</div>
-        <div class="qw-meta">WS кластера ~85 000 · 696 товаров включая Must Have · сейчас = 0 позиций</div>
+        <div class="qw-meta">~85 000 запросов/мес · 696 товаров включая Must Have · сейчас = 0 позиций</div>
         <div class="qw-meta" style="margin-top:6px;color:var(--muted)">Починить slug в Strapi → H1 + SEO-текст + страница /must-have. Impact/Effort = высокий/низкий</div>
       </div>
       <div class="qw-arrow">
@@ -998,7 +998,7 @@ footer strong { color: var(--text-soft); }
     <div class="qw-item">
       <div>
         <div class="qw-title">⚡ Сигариллы — pos 11–31 → топ-10</div>
-        <div class="qw-meta">WS 40 071 · /catalog/sigarilly · puritostore.ru топ-1 при DR=27</div>
+        <div class="qw-meta">40 071 запросов/мес · /catalog/sigarilly · puritostore.ru топ-1 при DR=27</div>
         <div class="qw-meta" style="margin-top:6px;color:var(--muted)">H1 «Сигариллы — купить с доставкой» + SEO-текст 400 слов. Cariba, Barclay, Montana Heritage, Aroma de Habana</div>
       </div>
       <div class="qw-arrow">
@@ -1139,7 +1139,7 @@ footer strong { color: var(--text-soft); }
           <li>696 товаров кальянного табака, включая Must Have</li>
           <li>Уже топ-10–15 по Quick Win запросам (трубочный, папиросы)</li>
           <li>Широкий ассортимент: сигариллы, сигары, снюс, аксессуары</li>
-          <li>Брендовый трафик «дом табака» топ-2 (WS 4 518)</li>
+          <li>Брендовый трафик «дом табака» топ-2 (4 518 запросов/мес)</li>
           <li>Next.js — потенциально быстрый SSR и SEO-friendly</li>
         </ul>
       </div>
@@ -1157,8 +1157,8 @@ footer strong { color: var(--text-soft); }
       <div class="swot-card o">
         <div class="swot-label"><span class="dot"></span>Возможности</div>
         <ul>
-          <li>WS 85 000+ по кальянному табаку после фикса 404</li>
-          <li>588 gap-ключей с суммарным WS 650K+ от конкурентов</li>
+          <li>85 000+ запросов/мес по кальянному табаку после фикса 404</li>
+          <li>588 gap-ключей с суммарным спросом 650K+ запросов/мес</li>
           <li>Конкуренты в топ-1 при DR=25–27 — DR не барьер</li>
           <li>Специализация выигрывает у маркетплейсов в нише</li>
           <li>Технический долг = быстрые результаты от базовых фиксов</li>
@@ -1168,7 +1168,6 @@ footer strong { color: var(--text-soft); }
         <div class="swot-label"><span class="dot"></span>Угрозы</div>
         <ul>
           <li>ФЗ-15: ограничения дистанционной продажи табака</li>
-          <li>Ozon/Wildberries в топе по массовым сигаретным запросам</li>
           <li>Конкуренты с DR 25–31 активно занимают ниши</li>
           <li>Next.js CSR — если не SSR, боты видят пустые страницы</li>
           <li>Регуляторные изменения в табачной отрасли</li>
@@ -1181,7 +1180,7 @@ footer strong { color: var(--text-soft); }
         domtabaka.ru — молодой сайт с правильным ассортиментом, но нулевым SEO-базисом.
         Большинство проблем — устранимые технические долги, а не структурные.
         При последовательном выполнении роадмапа реально выйти на
-        <strong style="color:var(--accent)">×3–5 органического трафика за 3–4 месяца</strong>
+        <strong style="color:var(--accent)">×2–3 органического трафика за 3–4 месяца</strong>
         без значительных ссылочных инвестиций — только за счёт технических фиксов и оптимизации существующих страниц.
       </p>
     </div>
@@ -1302,7 +1301,7 @@ new Chart(document.getElementById('chartGap'), {
       ...base.plugins,
       tooltip: {
         ...base.plugins.tooltip,
-        callbacks: { label: ctx => ' ' + ctx.parsed.x + 'K WS' }
+        callbacks: { label: ctx => ' ' + ctx.parsed.x + 'K зап/мес' }
       }
     },
     scales: {
