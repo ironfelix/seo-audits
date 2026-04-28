@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aim Clo — SEO-предложение на 3 месяца</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4f1;
+    --white: #ffffff;
+    --dark: #0f172a;
+    --accent: #4f46e5;
+    --accent-light: rgba(79,70,229,.08);
+    --accent-border: rgba(79,70,229,.2);
+    --gold: #d4a843;
+    --gold-light: #fff8ed;
+    --gold-border: rgba(212,168,67,.3);
+    --green: #2a7a4b;
+    --green-light: #f0faf4;
+    --border: #e2e0db;
+    --text: #0f172a;
+    --muted: #64748b;
+    --muted2: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    padding: 52px 0 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: .07;
+    pointer-events: none;
+  }
+  .hero .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .hero-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #818cf8;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 34px; font-weight: 800; color: #fff;
+    line-height: 1.15; margin-bottom: 12px; letter-spacing: -.4px;
+  }
+  .hero h1 span { color: #fbbf24; }
+  .hero-sub { font-size: 15px; color: #94a3b8; max-width: 600px; margin-bottom: 28px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hs-val { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+  .hs-val.accent { color: #818cf8; }
+  .hs-val.gold { color: #fbbf24; }
+  .hs-val.green { color: #4ade80; }
+  .hs-val.warn { color: #f87171; }
+  .hs-label { font-size: 11px; color: #64748b; margin-top: 3px; }
+
+  /* ── WRAP ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .page-body { padding: 40px 0 80px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 40px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted2);
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .section-title {
+    font-size: 22px; font-weight: 800; color: var(--dark);
+    margin-bottom: 20px; letter-spacing: -.3px;
+  }
+
+  /* ── ROI CALLOUT ── */
+  .roi-strip {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border-radius: 14px;
+    padding: 28px 32px;
+    color: #fff;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .roi-item { }
+  .roi-val { font-size: 28px; font-weight: 800; color: #818cf8; line-height: 1; margin-bottom: 4px; }
+  .roi-val.gold { color: #fbbf24; }
+  .roi-val.green { color: #4ade80; }
+  .roi-label { font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.4; }
+  .roi-divider { border-left: 1px solid rgba(255,255,255,.1); }
+
+  /* ── COMMERCIAL BLOCK ── */
+  .commercial {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .comm-top {
+    background: linear-gradient(135deg, var(--accent-light), rgba(212,168,67,.06));
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .comm-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 6px; }
+  .comm-price { font-size: 42px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .comm-period { font-size: 14px; color: var(--muted); }
+  .comm-badge {
+    background: var(--accent); color: #fff;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    padding: 6px 14px; border-radius: 20px; white-space: nowrap;
+  }
+  .comm-cols { display: grid; grid-template-columns: 1fr 1fr; }
+  .comm-col { padding: 24px 32px; }
+  .comm-col:first-child { border-right: 1px solid var(--border); }
+  .comm-col-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+    margin-bottom: 14px;
+  }
+  .comm-col-title.accent { color: var(--accent); }
+  .comm-col-title.green { color: var(--green); }
+  .comm-list { list-style: none; }
+  .comm-list li {
+    font-size: 13px; padding: 5px 0 5px 18px;
+    position: relative; color: var(--text); border-bottom: 1px solid var(--bg);
+  }
+  .comm-list li:last-child { border-bottom: none; }
+  .comm-list li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .comm-list.ours li::before { background: var(--accent); }
+  .comm-list.theirs li::before { background: var(--green); }
+  .comm-list li span { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
+  /* Format block */
+  .format-row {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .fmt { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 180px; }
+  .fmt-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fmt-title { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .fmt-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+  /* Dont block */
+  .info-block {
+    margin-top: 12px;
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .info-block strong { color: var(--accent); }
+  .info-block span { color: var(--muted); }
+
+  /* ── QUICK WINS ── */
+  .qw-grid { display: flex; flex-direction: column; gap: 10px; }
+  .qw {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 14px;
+    align-items: start;
+  }
+  .qw.gold { border-left-color: var(--gold); }
+  .qw-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .qw.gold .qw-num { background: var(--gold); }
+  .qw-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .qw-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .qw-body strong { color: var(--text); }
+  .qw-effort { text-align: right; white-space: nowrap; flex-shrink: 0; }
+  .qw-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted2); }
+  .qw-impact {
+    font-size: 12px; font-weight: 700; margin-top: 4px;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .qw-impact.high { background: var(--accent-light); color: var(--accent); }
+  .qw-impact.med { background: var(--gold-light); color: #92580a; }
+
+  /* ── PLAN TIMELINE ── */
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .plan-month {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pm-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pm-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted2); margin-bottom: 4px; }
+  .pm-title { font-size: 15px; font-weight: 800; color: var(--dark); }
+  .pm-goal { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .pm-weeks { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .pm-week { }
+  .pw-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted2); margin-bottom: 6px;
+  }
+  .pw-tasks { list-style: none; }
+  .pw-tasks li {
+    font-size: 13px; color: var(--text);
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .pw-tasks li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 11px; top: 5px;
+  }
+  .pw-tasks li.gold::before { color: var(--gold); }
+  .pw-tasks li.green::before { color: var(--green); }
+  .pw-tasks li em { color: var(--muted); font-style: normal; font-size: 12px; }
+
+  /* Content plan */
+  .content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .content-table th {
+    background: #f8f7f4;
+    text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .content-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; vertical-align: top;
+  }
+  .content-table tr:last-child td { border-bottom: none; }
+  .pill {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .4px;
+    padding: 2px 7px; border-radius: 3px;
+  }
+  .pill-new  { background: var(--accent-light); color: var(--accent); }
+  .pill-opt  { background: var(--gold-light); color: #92580a; }
+  .pill-tech { background: rgba(42,122,75,.12); color: var(--green); }
+  .pill-info { background: rgba(148,163,184,.15); color: #475569; }
+
+  /* Metrics */
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .metric-box.target { border-color: var(--accent-border); background: var(--accent-light); }
+  .mb-label { font-size: 11px; color: var(--muted2); margin-bottom: 6px; font-weight: 500; }
+  .mb-val { font-size: 24px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .mb-val.accent { color: var(--accent); }
+  .mb-val.green { color: var(--green); }
+  .mb-val.warn { color: #dc2626; }
+  .mb-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* Insight */
+  .insight {
+    background: var(--gold-light);
+    border: 1px solid var(--gold-border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  .insight strong { color: var(--dark); }
+
+  /* Competitor compare */
+  .comp-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .comp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .comp-card.us { border-color: var(--accent-border); background: var(--accent-light); }
+  .comp-name { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .comp-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+  .cs { }
+  .cs-val { font-size: 20px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .cs-val.warn { color: #dc2626; }
+  .cs-val.accent { color: var(--accent); }
+  .cs-val.green { color: var(--green); }
+  .cs-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  @media (max-width: 640px) {
+    .comm-cols, .plan-grid, .comp-row { grid-template-columns: 1fr; }
+    .comm-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .comm-top { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .roi-strip { grid-template-columns: 1fr; }
+    .qw { grid-template-columns: 40px 1fr; }
+    .qw-effort { display: none; }
+    .hero h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-label">SEO · Коммерческое предложение · Май 2026</div>
+    <h1>aimclo.ru<br><span>план на 3 месяца</span></h1>
+    <p class="hero-sub">Aim Clo — сильный бренд, но SEO-канала фактически нет: 95% поискового трафика брендовый. Уходим от зависимости от платного трафика — строим небрендовый органический канал через контент о материалах и коллекциях.</p>
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-val warn">112</div>
+        <div class="hs-label">визитов/мес из органики сейчас</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val gold">400–600</div>
+        <div class="hs-label">цель — месяц 3</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val warn">95%</div>
+        <div class="hs-label">брендовый трафик — потолок роста</div>
+      </div>
+      <div class="hs">
+        <div class="hs-val green">286</div>
+        <div class="hs-label">запросов, которые уходят к конкурентам</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+<div class="wrap">
+
+  <!-- ROI CALLOUT -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">Обоснование инвестиции</div>
+    <div class="section-title">Почему SEO окупается для интернет-магазина</div>
+
+    <div class="roi-strip">
+      <div class="roi-item">
+        <div class="roi-val">1%</div>
+        <div class="roi-label">от типичного маркетингового бюджета — стоимость проекта<br>при этом органика работает без CPL после запуска</div>
+      </div>
+      <div class="roi-item roi-divider" style="padding-left:24px">
+        <div class="roi-val gold">×3</div>
+        <div class="roi-label">трафик Uniquefabric.ru с похожим возрастом сайта<br>прямой конкурент, та же ниша натуральных материалов</div>
+      </div>
+      <div class="roi-item roi-divider" style="padding-left:24px">
+        <div class="roi-val green">∞</div>
+        <div class="roi-label">органика работает без CPL<br>каждая созданная страница приносит трафик годами</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>Суть проблемы:</strong> 95% брендового трафика означает, что из поиска к вам приходят только те, кто уже знает Aim Clo. Новые покупатели — люди, которые ищут «платье из льна», «кардиган меринос» — вас не находят. Это не рекламная задача, это контентная. Конкуренты с меньшим возрастом сайта уже решили её страницами под материалы и типы изделий — мы делаем то же самое.
+    </div>
+  </div>
+
+  <!-- COMPETITOR COMPARE -->
+  <div class="section">
+    <div class="section-label">Бенчмарк</div>
+    <div class="section-title">Aim Clo vs прямой конкурент</div>
+
+    <div class="comp-row">
+      <div class="comp-card us">
+        <div class="comp-name">Aim Clo (сейчас)</div>
+        <div class="comp-stats">
+          <div class="cs">
+            <div class="cs-val warn">112</div>
+            <div class="cs-label">визитов/мес из поиска</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val">461</div>
+            <div class="cs-label">страниц в индексе</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val warn">95%</div>
+            <div class="cs-label">брендовый трафик</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val">↓</div>
+            <div class="cs-label">небрендовый трафик — почти нет</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">Uniquefabric.ru (конкурент)</div>
+        <div class="comp-stats">
+          <div class="cs">
+            <div class="cs-val green">~350</div>
+            <div class="cs-label">визитов/мес из поиска</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val">300+</div>
+            <div class="cs-label">страниц в индексе</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val green">40%+</div>
+            <div class="cs-label">небрендовый трафик</div>
+          </div>
+          <div class="cs">
+            <div class="cs-val">↑</div>
+            <div class="cs-label">небрендовый трафик — есть</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>Разница — не в домене, а в контенте.</strong> Uniquefabric ранжируется по запросам «ткань меринос», «льняная ткань купить», «кашемировая пряжа» через отдельные страницы под каждый материал. У Aim Clo этих страниц нет — весь потенциальный трафик по материалам уходит к конкурентам.
+    </div>
+  </div>
+
+  <!-- COMMERCIAL -->
+  <div class="section">
+    <div class="section-label">Часть 1</div>
+    <div class="section-title">Коммерческие условия</div>
+
+    <div class="commercial">
+      <div class="comm-top">
+        <div>
+          <div class="comm-name">Ежемесячный ретейнер · full-service SEO</div>
+          <div class="comm-price">250 000 ₽</div>
+          <div class="comm-period">в месяц · всё включено · минимальный срок 3 месяца</div>
+        </div>
+        <div class="comm-badge">Старт за 1 неделю</div>
+      </div>
+
+      <div class="comm-cols">
+        <div class="comm-col">
+          <div class="comm-col-title accent">Берём на себя</div>
+          <ul class="comm-list ours">
+            <li>Сбор семантики и кластеризация<span>коммерческие («купить», «цена», «доставка») и информационные запросы — отдельно; 30+ кластеров по типам изделий, сезонам, материалам</span></li>
+            <li>Аудит структуры каталога<span>какие подкатегории есть, каких не хватает, что создаём в первую очередь — с опорой на спрос в Яндексе</span></li>
+            <li>ТЗ на каждую страницу<span>H1, структура, ключи, объём — до передачи в работу</span></li>
+            <li>Написание контента через AI-пайплайн<span>writer + seo-optimizer → готовый текст с разметкой</span></li>
+            <li>Публикация страниц на сайте<span>в большинстве случаев — без участия разработки; для страниц с товарной сеткой может потребоваться разовая настройка фильтрации на старте</span></li>
+            <li>Технические правки<span>описания, заголовки, разметка, внутренние ссылки</span></li>
+            <li>Еженедельный статус (30 мин)<span>что сделано, позиции, план на неделю</span></li>
+            <li>Ежемесячный отчёт с числами<span>трафик, позиции, новые страницы — с динамикой</span></li>
+          </ul>
+        </div>
+        <div class="comm-col">
+          <div class="comm-col-title green">Нужно от вас</div>
+          <ul class="comm-list theirs">
+            <li>Доступ к сайту (редактор или разработчик)<span>для публикации страниц и правок</span></li>
+            <li>Яндекс.Метрика — доступ на чтение<span>для анализа трафика и поведения; уточним на старте, есть ли Яндекс.Вебмастер</span></li>
+            <li>Информация о коллекциях и материалах<span>характеристики, уход, уникальные свойства мериноса/льна</span></li>
+            <li>Согласование контент-плана<span>1 раз в месяц · до 1.5 часов · утверждаем список страниц, запросы, приоритеты</span></li>
+            <li>Финальное ревью страниц перед публикацией<span>проверка тона и соответствия бренду — ваше слово перед публикацией</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="format-row">
+        <div class="fmt">
+          <div class="fmt-icon">📅</div>
+          <div>
+            <div class="fmt-title">Еженедельный статус</div>
+            <div class="fmt-sub">30 мин · что сделано, метрики, план</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">📊</div>
+          <div>
+            <div class="fmt-title">Месячный отчёт</div>
+            <div class="fmt-sub">Трафик, позиции, новые страницы — с числами, не «мы работали»</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">🤖</div>
+          <div>
+            <div class="fmt-title">AI-пайплайн</div>
+            <div class="fmt-sub">Контент создаётся и публикуется автоматически — без ручной работы с вашей стороны</div>
+          </div>
+        </div>
+        <div class="fmt">
+          <div class="fmt-icon">⚡</div>
+          <div>
+            <div class="fmt-title">Старт за 1 неделю</div>
+            <div class="fmt-sub">Аудит готов · Quick Wins начинаем сразу же</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <strong>Что не делаем:</strong> <span>ПБН, накрутку поведенческих факторов, закупку ссылок у сомнительных доноров. Не штампуем 500 страниц через ИИ — Яндекс давно научился отличать машинный контент без редактуры. Каждая страница проходит через человека: ТЗ согласовано, текст отредактирован, тон проверен. ИИ помогает нам работать быстрее, но не заменяет контроль качества. SEO работает в долгую именно потому, что Яндекс доверяет страницам, которые написаны по-человечески.</span>
+    </div>
+  </div>
+
+  <!-- TARGETS -->
+  <div class="section">
+    <div class="section-label">Метрики</div>
+    <div class="section-title">Что меряем — и к чему идём</div>
+    <div class="metrics-row">
+      <div class="metric-box">
+        <div class="mb-label">Визитов из поиска сейчас</div>
+        <div class="mb-val warn">112</div>
+        <div class="mb-sub">апрель 2026</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 1</div>
+        <div class="mb-val accent">180–220</div>
+        <div class="mb-sub">quick wins + первые страницы</div>
+      </div>
+      <div class="metric-box target">
+        <div class="mb-label">Цель — месяц 3</div>
+        <div class="mb-val accent">400–600</div>
+        <div class="mb-sub">контент + структура</div>
+      </div>
+      <div class="metric-box">
+        <div class="mb-label">Небрендовый трафик</div>
+        <div class="mb-val">5% → 25%+</div>
+        <div class="mb-sub">новые покупатели из поиска</div>
+      </div>
+    </div>
+    <div class="insight">
+      <strong>Смотрим на небрендовый трафик, а не только на общее число визитов.</strong> Брендовый трафик — это уже ваши клиенты. Нам нужны люди, которые ищут «кардиган из мериноса купить», «льняное платье женское» и не знают Aim Clo. Их мы ловим через страницы материалов и категорий.
+    </div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="section">
+    <div class="section-label">Часть 2 · Месяц 1, недели 1–2</div>
+    <div class="section-title">Quick Wins — результат за 2 недели</div>
+    <div class="qw-grid">
+
+      <div class="qw">
+        <div class="qw-num">1</div>
+        <div>
+          <div class="qw-title">Meta description на топ-30 страниц каталога</div>
+          <div class="qw-body">
+            Страницы категорий (платья, трикотаж, верхняя одежда, брюки) сейчас без уникальных описаний — Яндекс сам придумывает текст для сниппета и делает это плохо. Пишем короткое описание с ключевым запросом + преимущество («натуральные материалы», «меринос», «бесплатная доставка»). Больше людей кликают по ссылке — без роста позиций.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">2–3 дня</div>
+          <div class="qw-impact high">+15–25% переходов</div>
+        </div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">2</div>
+        <div>
+          <div class="qw-title">H1 + title под коммерческие запросы на категориях</div>
+          <div class="qw-body">
+            Сейчас заголовки вида «Кардиганы» — без ключей и без УТП. Меняем на: <strong>«Женские кардиганы из мериноса и кашемира — Aim Clo»</strong>. Формат: ключ + материал/уточнение | Aim Clo. Это прямо влияет на позиции по коммерческим запросам в Яндексе.
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">1–2 дня</div>
+          <div class="qw-impact high">позиции ↑</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">3</div>
+        <div>
+          <div class="qw-title">Расширенное отображение в Яндексе: цена и наличие прямо в поиске</div>
+          <div class="qw-body">
+            Специальная разметка для карточек товаров — Яндекс начинает показывать цену, наличие и рейтинг прямо в результатах поиска, без перехода на сайт. Такие сниппеты занимают больше места и собирают значительно больше кликов, особенно по запросам «купить».
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">1 день</div>
+          <div class="qw-impact high">больше кликов из поиска</div>
+        </div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">4</div>
+        <div>
+          <div class="qw-title">Внутренние ссылки: главная → все категории со счётчиком товаров</div>
+          <div class="qw-body">
+            Если с главной страницы нет явных текстовых ссылок на разделы «Платья из льна», «Пальто», «Кардиганы» — Яндекс не понимает, что эти страницы важны. Добавляем навигационный блок с точными названиями категорий. <strong>Быстро, без доработки, сразу поднимает вес разделов.</strong>
+          </div>
+        </div>
+        <div class="qw-effort">
+          <div class="qw-time">2–3 часа</div>
+          <div class="qw-impact med">вес страниц ↑</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3-MONTH PLAN -->
+  <div class="section">
+    <div class="section-label">Детальный план</div>
+    <div class="section-title">3 месяца по неделям</div>
+
+    <div class="commercial" style="margin-bottom:20px;border-color:var(--accent-border)">
+      <div class="comm-top" style="grid-template-columns:1fr;background:var(--accent-light)">
+        <div>
+          <div class="comm-name">Что такое «сезонная страница каталога» — и что мы создаём</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px">
+            <div>
+              <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px">Что это такое</div>
+              <p style="font-size:13px;line-height:1.6;color:var(--text)">Это страница вашего каталога с собственным URL — например, <strong>/catalog/platya/letnie/</strong>. На ней: заголовок под поисковый запрос, короткий текст с описанием, и ниже — товарная сетка с вашими изделиями, отфильтрованными по типу или материалу.</p>
+              <p style="font-size:13px;line-height:1.6;color:var(--text);margin-top:8px">Покупатель ищет «летние платья купить» → Яндекс показывает вашу страницу → человек видит товары → покупает. Именно такие страницы делает uniquefabric.ru для своих материалов.</p>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px">Что делаем мы</div>
+              <ul class="comm-list ours">
+                <li>Определяем, каких страниц нет, но должны быть<span>«Летние платья», «Льняные платья», «Летние брюки» — их нет, это подтверждено</span></li>
+                <li>Пишем ТЗ: H1, текст, запросы, какие товары попадают<span>согласовываем с вами до написания</span></li>
+                <li>Создаём страницу и публикуем<span>ваш разработчик подключает товарную фильтрацию один раз на старте</span></li>
+                <li>Страница начинает индексироваться и расти в позициях<span>первые результаты — через 2–4 недели после публикации</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-grid">
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 1</div>
+          <div class="pm-title">Сезонные страницы + технический порядок</div>
+          <div class="pm-goal">Цель: 180–220 визитов/мес, 4–6 новых категорийных страниц в индексе до лета</div>
+        </div>
+        <div class="pm-weeks">
+          <div class="pm-week">
+            <div class="pw-label">Неделя 1</div>
+            <ul class="pw-tasks">
+              <li>Описания и заголовки топ-30 страниц каталога</li>
+              <li>Проверить доступы: Метрика (read), Яндекс.Вебмастер</li>
+              <li class="green">Аудит каталога: какие страницы есть, каких нет, что продаётся</li>
+              <li class="green">Встреча с вами: приоритизация — что важно по ассортименту, какой сезон сейчас в фокусе, что создаём первым</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 2</div>
+            <ul class="pw-tasks">
+              <li>Разметка: расширенное отображение в Яндексе (цена, наличие)</li>
+              <li>Внутренние ссылки с главной → все разделы каталога</li>
+              <li>ТЗ на 4 сезонных категорийных страницы</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 3 — публикация</div>
+            <ul class="pw-tasks">
+              <li class="gold">Создаём и публикуем: «Летние платья» <em>— страница с вашими товарами + текст под запрос «летние платья купить»</em></li>
+              <li class="gold">Создаём и публикуем: «Льняные платья» <em>— «платье из льна женское», товарная сетка из льна</em></li>
+              <li class="gold">Создаём и публикуем: «Летние брюки» <em>— «летние брюки женские», раздел пока отсутствует</em></li>
+              <li class="green">Ревью от вас перед публикацией каждой страницы</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 4</div>
+            <ul class="pw-tasks">
+              <li class="gold">Категория: лёгкие блузки и рубашки <em>«блузки из льна и хлопка»</em></li>
+              <li>Внутренняя перелинковка новых страниц ↔ каталог</li>
+              <li class="green">Отчёт месяц 1 + корректировка плана</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 2</div>
+          <div class="pm-title">Категорийные подстраницы + страницы материалов</div>
+          <div class="pm-goal">Цель: 280–350 визитов/мес, 10+ страниц проиндексированы</div>
+        </div>
+        <div class="pm-weeks">
+          <div class="pm-week">
+            <div class="pw-label">Неделя 5</div>
+            <ul class="pw-tasks">
+              <li class="gold">Категория: кардиганы из мериноса <em>«кардиган из мериноса женский»</em></li>
+              <li class="gold">Категория: пальто женское <em>«пальто из шерсти купить»</em></li>
+              <li>Ревью позиций по страницам месяца 1</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 6</div>
+            <ul class="pw-tasks">
+              <li class="gold">Страница материала: меринос <em>«одежда из мериноса» — поддержка каталога</em></li>
+              <li class="gold">Страница материала: лён <em>«льняная одежда женская»</em></li>
+              <li>Расширение внутренней перелинковки</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 7</div>
+            <ul class="pw-tasks">
+              <li class="gold">Страница материала: кашемир <em>«кашемировые вещи купить»</em></li>
+              <li>Оптимизация карточек топ-20 товаров</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 8</div>
+            <ul class="pw-tasks">
+              <li class="gold">Блог: «Как выбрать базовый гардероб из натуральных материалов»</li>
+              <li class="green">Отчёт месяц 2 + план мес. 3</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-month">
+        <div class="pm-header">
+          <div class="pm-num">Месяц 3</div>
+          <div class="pm-title">Оптимизация + новые направления</div>
+          <div class="pm-goal">Цель: 400–600 визитов/мес, первые позиции по категорийным запросам</div>
+        </div>
+        <div class="pm-weeks">
+          <div class="pm-week">
+            <div class="pw-label">Неделя 9</div>
+            <ul class="pw-tasks">
+              <li>Ревью позиций по всем созданным страницам</li>
+              <li>Доработка слабых страниц</li>
+              <li class="gold">ТЗ + публикация по запросам, уходящим к конкурентам</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 10–11</div>
+            <ul class="pw-tasks">
+              <li class="gold">2–3 новые подкатегории по данным конкурентного анализа</li>
+              <li>Подготовка осенних страниц <em>— верхняя одежда, трикотаж</em></li>
+              <li>FAQ-блоки на категориях</li>
+            </ul>
+          </div>
+          <div class="pm-week">
+            <div class="pw-label">Неделя 12</div>
+            <ul class="pw-tasks">
+              <li>Финальный ревью всех страниц</li>
+              <li class="green">Итоговый отчёт: трафик, позиции, динамика</li>
+              <li class="green">Рекомендации по месяцам 4–6</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTENT PLAN -->
+  <div class="section">
+    <div class="section-label">Контент-план</div>
+    <div class="section-title">12+ страниц за 3 месяца</div>
+
+    <div class="insight" style="margin-bottom:16px">
+      <strong>Как устроены эти страницы:</strong> каждая — это страница каталога с товарной сеткой, отфильтрованной по материалу или типу. Покупатель ищет «льняные платья» → попадает на страницу с вашими льняными платьями. Именно так работает uniquefabric.ru по материалам. Конкретный список и порядок страниц — согласуем с вами на первой встрече: исходим из того, что продаёте и что важно по сезону.
+    </div>
+
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Месяц</th>
+          <th>Страница каталога</th>
+          <th>Тип</th>
+          <th>Целевой запрос</th>
+          <th>Цель</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fffbeb">
+          <td style="color:var(--muted);white-space:nowrap">Мес. 1 🌿</td>
+          <td><strong>Сезонные страницы — первый батч</strong><br><span style="font-size:12px;color:var(--muted)">точный список — после встречи</span></td>
+          <td><span class="pill pill-new">СЕЗОННО</span></td>
+          <td>«летние платья», «льняные платья», «лёгкие брюки» — по приоритетам ассортимента</td>
+          <td>Успеть до сезона. Товарная сетка уже есть — нужна страница под запрос</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td style="color:var(--muted);white-space:nowrap">Мес. 1 🌿</td>
+          <td><strong>Страницы по материалам — летние</strong><br><span style="font-size:12px;color:var(--muted)">лён, хлопок, вискоза</span></td>
+          <td><span class="pill pill-new">СЕЗОННО</span></td>
+          <td>«льняная одежда женская», «одежда из хлопка»</td>
+          <td>Модель uniquefabric.ru: материал → товарная сетка → покупка</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Мес. 2</td>
+          <td><strong>Категорийные подстраницы</strong><br><span style="font-size:12px;color:var(--muted)">кардиганы, пальто, трикотаж — по ассортименту</span></td>
+          <td><span class="pill pill-new">НОВАЯ</span></td>
+          <td>«кардиган из мериноса», «пальто из шерсти»</td>
+          <td>Круглогодичный трафик на высокомаржинальные категории</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Мес. 2</td>
+          <td><strong>Страницы по материалам — осенние</strong><br><span style="font-size:12px;color:var(--muted)">меринос, кашемир, шерсть</span></td>
+          <td><span class="pill pill-new">НОВАЯ</span></td>
+          <td>«одежда из мериноса», «кашемировые вещи»</td>
+          <td>Готовимся к осени — страницы должны проиндексироваться заранее</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Мес. 2</td>
+          <td><strong>Блог: базовый гардероб из натуральных материалов</strong></td>
+          <td><span class="pill pill-info">ИНФО</span></td>
+          <td>«базовый гардероб из натуральных тканей»</td>
+          <td>Привлечь покупателей на этапе выбора</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Мес. 3</td>
+          <td><strong>2–3 страницы по конкурентному анализу</strong></td>
+          <td><span class="pill pill-new">НОВАЯ</span></td>
+          <td>По данным анализа конкурентов на старте</td>
+          <td>Закрыть запросы, которые сейчас уходят к другим магазинам</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);white-space:nowrap">Весь период</td>
+          <td><strong>Оптимизация 30+ существующих страниц</strong></td>
+          <td><span class="pill pill-opt">ОПТИМ</span></td>
+          <td>Meta, H1, title по всему каталогу</td>
+          <td>Quick wins без создания нового</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AI PIPELINE -->
+  <div class="section">
+    <div class="section-label">Как мы работаем</div>
+    <div class="section-title">Чем отличается от стандартного SEO</div>
+
+    <div class="comp-row">
+      <div class="comp-card">
+        <div class="comp-name" style="color:#dc2626">Стандартный SEO-подрядчик</div>
+        <ul class="comm-list" style="margin-top:8px">
+          <li style="padding-left:18px">Подбирают ключевые слова<span>список запросов без понимания интента покупателя</span></li>
+          <li style="padding-left:18px">Пишут «SEO-текст»<span>под вхождения ключей, нечитаемый живому человеку</span></li>
+          <li style="padding-left:18px">Первые результаты через 6–12 месяцев<span>за это время конкуренты уже ушли вперёд</span></li>
+          <li style="padding-left:18px">Один канал — поиск<span>Яндекс или Google, не оба</span></li>
+          <li style="padding-left:18px">Контент ради контента<span>трафик без связки с продажами</span></li>
+        </ul>
+      </div>
+      <div class="comp-card us">
+        <div class="comp-name">Наш подход — AI-пайплайн</div>
+        <ul class="comm-list ours" style="margin-top:8px">
+          <li>Семантика + кластеризация по интентам<span>«купить» и «выбрать» — разные страницы с разной задачей</span></li>
+          <li>Контент пишется как ответ на вопрос<span>читается легко, Яндекс ценит — это сигнал ЭПОС: полезность и оригинальность</span></li>
+          <li>Первые позиции через 2–6 недель<span>по новым страницам без истории конкуренции</span></li>
+          <li>Яндекс + Алиса одновременно<span>статья попадает и в поисковую выдачу, и в ответы голосового помощника</span></li>
+          <li>Каждая страница ведёт к покупке<span>каталог → товар → корзина — это структура, не случайность</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:17px;margin-top:28px;margin-bottom:16px">Как создаётся каждая страница: 6 шагов</div>
+    <div class="qw-grid">
+
+      <div class="qw">
+        <div class="qw-num">1</div>
+        <div>
+          <div class="qw-title">Сбор семантики и анализ конкурентов</div>
+          <div class="qw-body">Смотрим, что ищут покупатели в Яндексе по теме страницы. Проверяем, как устроены страницы конкурентов, которые уже в топе. Выбираем угол, который даст результат быстрее.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">автономно</div></div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">2</div>
+        <div>
+          <div class="qw-title">ТЗ на страницу</div>
+          <div class="qw-body">Прописываем: заголовок H1, структуру разделов, объём, целевые запросы, что должно быть на странице, ссылки на товары. <strong>Вы видите ТЗ и подтверждаете до написания.</strong></div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">ревью</div></div>
+      </div>
+
+      <div class="qw">
+        <div class="qw-num">3</div>
+        <div>
+          <div class="qw-title">Написание + редактура</div>
+          <div class="qw-body">Черновик пишется с опорой на ТЗ и данные о конкурентах. Редактор убирает AI-шность, добавляет живой язык, проверяет, что текст соответствует голосу Aim Clo. Результат — в Google Docs на ваш ревью.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">ревью</div></div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">4</div>
+        <div>
+          <div class="qw-title">SEO-упаковка по критериям Яндекса (ЭПОС)</div>
+          <div class="qw-body">Прописываем заголовок страницы, описание для выдачи, FAQ-блок из реальных вопросов покупателей, внутренние ссылки на товары. Проверяем по критериям ЭПОС — <strong>Экспертность, Полезность, Оригинальность, Своевременность</strong> — именно это Яндекс оценивает при ранжировании.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">автономно</div></div>
+      </div>
+
+      <div class="qw gold">
+        <div class="qw-num">5</div>
+        <div>
+          <div class="qw-title">Публикация на сайте</div>
+          <div class="qw-body">Страница публикуется через подключение к вашей CMS. Разметка для расширенного отображения в Яндексе добавляется автоматически. <strong>Цель — публиковать без захода в админку и без участия разработчика.</strong> На старте для страниц с товарной сеткой может потребоваться разовая настройка фильтрации от вашего разработчика — один раз, дальше работает само.</div>
+        </div>
+        <div class="qw-effort"><div class="qw-time">ревью</div></div>
+      </div>
+
+    </div>
+
+    <div class="insight" style="margin-top:16px">
+      <strong>Скорость без потери качества — вот в чём смысл.</strong> Стандартный SEO-шник пишет страницу вручную 3–5 дней. Наш пайплайн делает черновик за часы. Но ИИ ошибается так же, как человек — просто по-другому. Поэтому каждая страница проходит редактора: убрать AI-шность, добавить живой язык, проверить соответствие ЭПОС. Высвободившееся время идёт не на объём, а на стратегию: какие страницы создавать, где конкуренты уязвимы, что принесёт трафик быстрее.
+    </div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="section">
+    <div class="section-label">Следующий шаг</div>
+    <div class="section-title">Как начать</div>
+    <div class="commercial" style="border-color:var(--accent-border)">
+      <div class="comm-top" style="grid-template-columns:1fr">
+        <div>
+          <div class="comm-name">Для старта нужно</div>
+          <div style="display:flex;gap:32px;flex-wrap:wrap;margin-top:16px">
+            <div class="fmt">
+              <div class="fmt-icon">🔑</div>
+              <div>
+                <div class="fmt-title">Доступ к сайту</div>
+                <div class="fmt-sub">Редактор или разработчик — для публикации страниц</div>
+              </div>
+            </div>
+            <div class="fmt">
+              <div class="fmt-icon">📈</div>
+              <div>
+                <div class="fmt-title">Яндекс.Метрика + Вебмастер</div>
+                <div class="fmt-sub">Метрика скорее всего уже есть — нужен read-доступ; Вебмастер уточним</div>
+              </div>
+            </div>
+            <div class="fmt">
+              <div class="fmt-icon">📋</div>
+              <div>
+                <div class="fmt-title">Бриф-созвон 1 час</div>
+                <div class="fmt-sub">Коллекции, материалы, приоритеты, голос бренда</div>
+              </div>
+            </div>
+            <div class="fmt">
+              <div class="fmt-icon">✍️</div>
+              <div>
+                <div class="fmt-title">Договор + полная оплата</div>
+                <div class="fmt-sub">Оплата за месяц вперёд → старт в течение 5 рабочих дней</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Aim Clo · SEO-предложение · Май 2026 · Конфиденциально
+  </div>
+</footer>
+
+</body>
+</html>
