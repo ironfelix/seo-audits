@@ -74,6 +74,7 @@ a:hover { color: var(--accent-hover); }
 .kpi-val.accent { color: var(--accent); }
 .kpi-val.red { color: var(--red); }
 .kpi-val.green { color: var(--green); }
+.kpi-val.orange { color: var(--orange); }
 .kpi-sub { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
 .section { padding: 52px 0; border-bottom: 1px solid var(--border); }
@@ -100,6 +101,7 @@ a:hover { color: var(--accent-hover); }
 .num.big { font-size: 16px; font-weight: 700; }
 .num.accent { color: var(--accent); }
 .num.red { color: var(--red); }
+.num.orange { color: var(--orange); }
 .chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
 .chart-title { font-size: 13px; font-weight: 700; color: var(--text-soft); margin-bottom: 18px; }
 .chart-canvas-wrap { position: relative; height: 260px; }
@@ -142,6 +144,8 @@ a:hover { color: var(--accent-hover); }
 .forecast-metric { font-size: 12px; color: var(--text-soft); }
 .alert-box { background: var(--red-dim); border: 1px solid rgba(224,82,82,0.2); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 16px; }
 .alert-box strong { color: var(--red); }
+.alert-box-orange { background: var(--orange-dim); border: 1px solid rgba(212,129,58,0.2); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 16px; }
+.alert-box-orange strong { color: var(--orange); }
 footer { border-top: 1px solid var(--border); padding: 28px 32px; text-align: center; font-size: 12px; color: var(--muted); }
 footer strong { color: var(--text-soft); }
 @media(max-width:760px) { .two-col { grid-template-columns: 1fr; } .swot { grid-template-columns: 1fr; } }
@@ -154,6 +158,7 @@ footer strong { color: var(--text-soft); }
   <div class="nav-inner">
     <span class="nav-logo">aimclo.ru</span>
     <a href="#exec">Executive</a>
+    <a href="#dynamics">Динамика</a>
     <a href="#tech">Техника</a>
     <a href="#content">Контент</a>
     <a href="#competitors">Конкуренты</a>
@@ -181,33 +186,33 @@ footer strong { color: var(--text-soft); }
     <div class="kpi-grid">
       <div class="kpi">
         <div class="kpi-label">Яндекс-индекс</div>
-        <div class="kpi-val red">0</div>
-        <div class="kpi-sub">из 1 120 в sitemap</div>
+        <div class="kpi-val green">461 стр.</div>
+        <div class="kpi-sub">460+ страниц в индексе (keys.so)</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Google-индекс</div>
-        <div class="kpi-val red">~10</div>
-        <div class="kpi-sub">из 1 120 в sitemap</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">Видимость (vis)</div>
-        <div class="kpi-val red">117</div>
-        <div class="kpi-sub">95% брендовый трафик</div>
+        <div class="kpi-label">VIS (Яндекс)</div>
+        <div class="kpi-val orange">112</div>
+        <div class="kpi-sub">95%+ — брендовый трафик</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Domain Rating</div>
         <div class="kpi-val">24</div>
-        <div class="kpi-sub">конкурент DR=25 имеет vis=315</div>
+        <div class="kpi-sub">uniquefabric.ru DR=25 имеет VIS=310</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Gap-кластеров</div>
-        <div class="kpi-val accent">7</div>
-        <div class="kpi-sub">незакрытых конкурентами</div>
+        <div class="kpi-label">Небрендовый трафик</div>
+        <div class="kpi-val red">~10 vis</div>
+        <div class="kpi-sub">почти нет небрендовых позиций top-10</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">HTML-вес</div>
-        <div class="kpi-val red">494 KB</div>
-        <div class="kpi-sub">норма 50–150 KB (в 3–5 раз тяжелее)</div>
+        <div class="kpi-label">Gap-ключей</div>
+        <div class="kpi-val orange">286</div>
+        <div class="kpi-sub">uniquefabric в top-10, aimclo нет</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Страниц в top-10</div>
+        <div class="kpi-val">543</div>
+        <div class="kpi-sub">из 4 455 в top-50, большинство низкочастотные</div>
       </div>
     </div>
   </div>
@@ -218,14 +223,14 @@ footer strong { color: var(--text-soft); }
   <div class="wrap">
     <div class="section-label">01 — Executive Summary</div>
     <h2 class="section-title">Топ-5 критичных проблем</h2>
-    <p class="section-desc">Сайт фактически не существует в органическом поиске. При 1 120 страницах в sitemap — 0 проиндексировано в Яндексе, около 10 в Google. Все коммерческие страницы категорий и карточек вне выдачи.</p>
+    <p class="section-desc">Сайт имеет 461 страницу в Яндекс-индексе, VIS=112 — но 95%+ трафика брендовый. Небрендового органического трафика почти нет. Конкурент с почти одинаковым DR получает в 2.8× больше видимости за счёт контентной стратегии.</p>
 
     <div class="issue">
       <div class="issue-num crit">1</div>
       <div class="issue-body">
-        <h3>Яндекс: 0 страниц в индексе</h3>
-        <p>При 1 120 страницах в sitemap — ни одна не проиндексирована Яндексом. Целевой поисковик (из брифа) не видит сайт. Органический трафик из Яндекса = 0. Вероятная причина: сайт не подавался в Яндекс.Вебмастер, Яндекс не получил сигнал о существовании сайта.</p>
-        <span class="fact">site:aimclo.ru — 0 результатов (Яндекс, апрель 2026)</span>
+        <h3>95%+ трафика брендовый — небрендовое SEO не работает</h3>
+        <p>VIS=112, но почти весь трафик — запросы «aim clo», «аим кло», «aim clo одежда». Небрендовый органический трафик — менее 10 vis/мес. Категорийные страницы (/shop/platya/, /shop/svitery/) ранжируются на pos 24–43 по высокочастотным запросам — фактически вне видимой выдачи. Конкурент uniquefabric.ru (DR=25, почти равный DR=24) получает VIS=310 — в 2.8× больше — за счёт страниц материалов и SEO-подкатегорий.</p>
+        <span class="fact">keys.so апрель 2026: top-10 keywords aimclo.ru = 543, из них ~530 брендовых</span>
       </div>
       <div><span class="badge crit">Критично</span></div>
     </div>
@@ -233,29 +238,29 @@ footer strong { color: var(--text-soft); }
     <div class="issue">
       <div class="issue-num crit">2</div>
       <div class="issue-body">
-        <h3>Google: ~10 страниц из 1 120+</h3>
-        <p>Все товарные категории и карточки товаров вне Google. Проиндексированы только: главная, 5 категорий верхнего уровня, FAQ, шоурум, акции. Карточки и блог — полностью вне выдачи. Причины: тяжёлые страницы 291–494 KB, статьи блога не в sitemap, параметрические дубли тратят crawl budget.</p>
-        <span class="fact">site:aimclo.ru — ~10 результатов (Google, апрель 2026)</span>
+        <h3>Нет страниц материалов — главный gap vs uniquefabric</h3>
+        <p>«Натуральные ткани» — это USP бренда (меринос, кашемир, лён, хлопок). Uniquefabric.ru захватил весь кластер «модал ткань» (WS=7K–12K) через /materials/modal/. У aimclo нет ни одной страницы /materials/*. Упущено 15+ ключей с суммарным WS ~70K — прямые запросы целевой аудитории.</p>
+        <span class="fact">keys.so: uniquefabric pos 2–9 по «модал ткань» WS=12K, aimclo — отсутствует</span>
       </div>
       <div><span class="badge crit">Критично</span></div>
     </div>
 
     <div class="issue">
-      <div class="issue-num high">3</div>
+      <div class="issue-num crit">3</div>
       <div class="issue-body">
-        <h3>Нет H1 на главной странице</h3>
-        <p>Главная — точка входа по брендовым запросам. Вместо H1 стоит H2 со слоганом «Ты — художник своего мира» (не ключевое слово). Поисковик не получает сигнал о теме страницы. Правка занимает 5 минут в Bitrix.</p>
-        <span class="fact">h1_count=0 на / (crawl.py, 27.04.2026)</span>
+        <h3>Категории без SEO-подразделов — Google и Яндекс видят один URL</h3>
+        <p>/shop/platya/ — одна страница без подразделов по типу (серое, свободное, с декольте, кружевное). Uniquefabric.ru имеет /platya/serye, /platya/svobodnogo-kroya, /platya/s-dekolte — каждая в top-10 по своему кластеру. У aimclo — одна страница, собирающая мусорный трафик на pos 30–43.</p>
+        <span class="fact">keys.so gap: серое платье WS=14K uf pos 6, платье свободное WS=6.7K uf pos 9 — aimclo absent</span>
       </div>
-      <div><span class="badge high">Высокий</span></div>
+      <div><span class="badge crit">Критично</span></div>
     </div>
 
     <div class="issue">
       <div class="issue-num high">4</div>
       <div class="issue-body">
-        <h3>Раздел /blog/ полностью не оптимизирован</h3>
-        <p>Title «Блог» (4 символа). Нет H1, нет meta description. Около 20 статей блога не добавлены в sitemap.xml — краулеры их не находят. Весь информационный трафик заблокирован на уровне точки входа.</p>
-        <span class="fact">/blog/ title=«Блог» (4 симв.), h1=null, meta_description=null</span>
+        <h3>VIS падает: пик 254 (ноябрь 2025) → 112 (апрель 2026)</h3>
+        <p>VIS снизился вдвое за 6 месяцев. Индексированных страниц при этом стало больше (298 → 461). Это означает потерю позиций по имеющимся ключам, а не уменьшение индекса. Апрельский спад — частично сезонный, но тренд начался ещё в декабре 2025.</p>
+        <span class="fact">keys.so history: vis ноябрь 2025 = 254, апрель 2026 = 112 (−56%)</span>
       </div>
       <div><span class="badge high">Высокий</span></div>
     </div>
@@ -263,11 +268,52 @@ footer strong { color: var(--text-soft); }
     <div class="issue">
       <div class="issue-num high">5</div>
       <div class="issue-body">
-        <h3>0 страниц под ключевое USP: натуральные ткани</h3>
-        <p>aimclo позиционируется как «одежда из натуральных материалов» (меринос, кашемир, лён, хлопок). Но нет ни одной SEO-страницы под эти запросы. uniquefabric.ru (DR=25, почти равен aimclo DR=24) получает в 2.7× больше vis (315 vs 117) именно за счёт страниц материалов /materials/*. bonnywool.ru держит топ-5 по меринос-запросам с DR=13 и почти без текста — рынок совершенно не занят.</p>
-        <span class="fact">uniquefabric.ru vis=315 (DR=25) vs aimclo.ru vis=117 (DR=24) — разница в контентной стратегии</span>
+        <h3>HTML 291–494 KB, отсутствие H1 на главной — технические тормоза</h3>
+        <p>HTML страниц 291–494 KB при норме 50–150 KB — в 3–5 раз тяжелее. Главная страница не имеет H1: вместо него H2 со слоганом «Ты — художник своего мира» (не ключевое слово). Поисковик не получает сигнал о теме страницы. Правка H1 занимает 5 минут в Bitrix.</p>
+        <span class="fact">crawl.py апрель 2026: html_size главная 291KB, h1_count=0</span>
       </div>
       <div><span class="badge high">Высокий</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAFFIC DYNAMICS -->
+<section class="section" id="dynamics">
+  <div class="wrap">
+    <div class="section-label">02 — Динамика трафика</div>
+    <h2 class="section-title">VIS и индекс: май 2025 — апрель 2026</h2>
+    <p class="section-desc">Keys.so Яндекс Россия. Пик видимости — ноябрь 2025 (VIS=254). С декабря 2025 стабильное падение: −56% за 5 месяцев. Страниц в индексе при этом стало больше — проблема не в индексации, а в позициях.</p>
+
+    <div class="chart-wrap" style="margin-bottom:24px;">
+      <div class="chart-title">VIS (левая ось) и страниц в индексе (правая ось) — Яндекс, keys.so</div>
+      <div class="chart-canvas-wrap" style="height:300px;">
+        <canvas id="dynamicsChart"></canvas>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Ключевые точки динамики</div>
+        <table class="tbl">
+          <thead><tr><th>Период</th><th>VIS</th><th>Страниц</th><th>Комментарий</th></tr></thead>
+          <tbody>
+            <tr><td>май 2025</td><td><span class="num">209</span></td><td><span class="num">310</span></td><td style="color:var(--text-soft);">Базовый уровень</td></tr>
+            <tr><td>ноябрь 2025</td><td><span class="num accent">254</span></td><td><span class="num">298</span></td><td style="color:var(--green);">Пик VIS</td></tr>
+            <tr><td>декабрь 2025</td><td><span class="num orange">227</span></td><td><span class="num">445</span></td><td style="color:var(--orange);">Индекс вырос, VIS упал</td></tr>
+            <tr><td>январь 2026</td><td><span class="num orange">180</span></td><td><span class="num">448</span></td><td style="color:var(--orange);">Потеря позиций</td></tr>
+            <tr><td>апрель 2026</td><td><span class="num red">112</span></td><td><span class="num">461</span></td><td style="color:var(--red);">−56% от пика</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Интерпретация: что происходит</div>
+        <p style="font-size:13.5px;color:var(--text-soft);line-height:1.65;margin-bottom:12px;">
+          <strong style="color:var(--text);">Парадокс декабря:</strong> страниц в индексе резко выросло (298 → 445), но VIS упал (254 → 227). Это классический сигнал: новые страницы добавились, но без оптимизации — они ранжируются слабо и «разбавляют» средний вес домена.
+        </p>
+        <p style="font-size:13.5px;color:var(--text-soft);line-height:1.65;">
+          <strong style="color:var(--text);">С января по апрель:</strong> страниц стало ещё больше (461), VIS продолжил падение. Проблема — не в индексации, а в качестве страниц и потере позиций по брендовым запросам (сезонность + конкуренция).
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -275,9 +321,9 @@ footer strong { color: var(--text-soft); }
 <!-- TECHNICAL SEO -->
 <section class="section" id="tech">
   <div class="wrap">
-    <div class="section-label">02 — Технический SEO</div>
+    <div class="section-label">03 — Технический SEO</div>
     <h2 class="section-title">Диагностика технического состояния</h2>
-    <p class="section-desc">CMS: 1С-Битрикс (подтверждено из HTTP-заголовков X-Powered-CMS). HTTPS работает, редиректы корректны. Критические проблемы — в индексации и весе страниц.</p>
+    <p class="section-desc">CMS: 1С-Битрикс (подтверждено из HTTP-заголовков X-Powered-CMS). HTTPS работает, редиректы корректны. Индексация Яндексом — 461 страница (keys.so, апрель 2026). Критические проблемы — вес страниц и отсутствие H1.</p>
 
     <div class="two-col" style="margin-bottom:16px;">
       <div class="card">
@@ -293,12 +339,12 @@ footer strong { color: var(--text-soft); }
           <tr><td><span class="badge ok">OK</span></td><td>robots.txt грамотный (200+ правил)</td></tr>
           <tr><td><span class="badge ok">OK</span></td><td>Clean-param для Яндекса</td></tr>
           <tr><td><span class="badge ok">OK</span></td><td>URL-структура читаемая (латиница)</td></tr>
+          <tr><td><span class="badge ok">OK</span></td><td>Яндекс: 461 страниц в индексе (keys.so)</td></tr>
         </table>
       </div>
       <div class="card">
         <div class="card-title">Проблемы</div>
         <table class="tbl">
-          <tr><td><span class="badge crit">КРИТ</span></td><td>Яндекс: 0 страниц в индексе</td></tr>
           <tr><td><span class="badge crit">КРИТ</span></td><td>Google: ~10 из 1 120 страниц</td></tr>
           <tr><td><span class="badge high">HIGH</span></td><td>H1 отсутствует на главной</td></tr>
           <tr><td><span class="badge high">HIGH</span></td><td>HTML 291–494 KB (норма 50–150)</td></tr>
@@ -373,7 +419,7 @@ footer strong { color: var(--text-soft); }
 
     <div style="margin-top:24px;" class="two-col">
       <div class="chart-wrap">
-        <div class="chart-title">Индексация: в sitemap vs факт</div>
+        <div class="chart-title">Индексация: Яндекс (keys.so) vs sitemap</div>
         <div class="chart-canvas-wrap">
           <canvas id="indexChart"></canvas>
         </div>
@@ -391,7 +437,7 @@ footer strong { color: var(--text-soft); }
 <!-- CONTENT AUDIT -->
 <section class="section" id="content">
   <div class="wrap">
-    <div class="section-label">03 — Контент и семантика</div>
+    <div class="section-label">04 — Контент и семантика</div>
     <h2 class="section-title">Покрытие кластеров</h2>
     <p class="section-desc">14 семантических кластеров. 5 из 14 ключевых кластеров полностью не закрыты — именно те, которые соответствуют USP бренда: натуральные ткани и свободный крой.</p>
 
@@ -460,58 +506,76 @@ footer strong { color: var(--text-soft); }
 <!-- COMPETITORS -->
 <section class="section" id="competitors">
   <div class="wrap">
-    <div class="section-label">04 — Конкуренты</div>
+    <div class="section-label">05 — Конкуренты</div>
     <h2 class="section-title">Нишевые конкуренты: рынок не занят</h2>
-    <p class="section-desc">Прямые конкуренты (российские бренды premium casual, натуральные ткани) имеют крайне низкую органическую видимость. Рынок SEO фактически не занят — это возможность.</p>
+    <p class="section-desc">Данные keys.so Яндекс Россия, апрель 2026. Прямые нишевые конкуренты имеют невысокую органическую видимость. Крупные игроки (zarina, befree, ostin) — другой ценовой сегмент. Рынок premium casual из натуральных тканей SEO фактически не занят.</p>
 
     <div class="tbl-wrap" style="margin-bottom:24px;">
       <table class="tbl">
         <thead>
-          <tr><th>Домен</th><th>DR</th><th>vis</th><th>it10</th><th>it50</th><th>Страниц</th><th>SEO-стратегия</th></tr>
+          <tr><th>Домен</th><th>VIS</th><th>DR</th><th>Страниц</th><th>top-10</th><th>top-50</th><th>Комментарий</th></tr>
         </thead>
         <tbody>
           <tr style="background:var(--accent-dim);">
             <td><strong>uniquefabric.ru</strong></td>
+            <td><span class="num big accent">310</span></td>
             <td><span class="num">25</span></td>
-            <td><span class="num big accent">315</span></td>
-            <td><span class="num">1 249</span></td>
-            <td><span class="num">7 182</span></td>
             <td><span class="num">951</span></td>
-            <td>Страницы материалов (/materials/*) + активный контент</td>
+            <td><span class="num">1 248</span></td>
+            <td><span class="num">7 197</span></td>
+            <td>Страницы материалов + активный контент — benchmark</td>
           </tr>
           <tr style="background:rgba(224,82,82,0.05);">
             <td><strong>aimclo.ru</strong></td>
+            <td><span class="num red">112</span></td>
             <td><span class="num">24</span></td>
-            <td><span class="num red">117</span></td>
-            <td><span class="num">547</span></td>
-            <td><span class="num">4 513</span></td>
-            <td><span class="num">460</span></td>
-            <td>Только брендовый трафик, небрендового SEO нет</td>
-          </tr>
-          <tr>
-            <td>tobeone.ru</td>
-            <td><span class="num">21</span></td>
-            <td><span class="num">52</span></td>
-            <td><span class="num">194</span></td>
-            <td><span class="num">922</span></td>
-            <td><span class="num">142</span></td>
-            <td>Только брендовый трафик</td>
+            <td><span class="num">461</span></td>
+            <td><span class="num">543</span></td>
+            <td><span class="num">4 455</span></td>
+            <td>95%+ брендовый трафик, небрендового SEO нет</td>
           </tr>
           <tr>
             <td>bonnywool.ru</td>
-            <td><span class="num">13</span></td>
             <td><span class="num">2</span></td>
-            <td><span class="num">68</span></td>
-            <td><span class="num">421</span></td>
+            <td><span class="num">13</span></td>
             <td><span class="num">60</span></td>
+            <td><span class="num">69</span></td>
+            <td><span class="num">423</span></td>
             <td>Нишевый трикотаж из мериноса, слабый контент</td>
+          </tr>
+          <tr>
+            <td>zarina.ru</td>
+            <td><span class="num">5 509</span></td>
+            <td><span class="num">34</span></td>
+            <td><span class="num">2 523</span></td>
+            <td><span class="num">9 879</span></td>
+            <td><span class="num">95 896</span></td>
+            <td>Масс-маркет, другой сегмент — только как масштаб</td>
+          </tr>
+          <tr>
+            <td>befree.ru</td>
+            <td><span class="num">14 293</span></td>
+            <td><span class="num">33</span></td>
+            <td><span class="num">5 850</span></td>
+            <td><span class="num">17 895</span></td>
+            <td><span class="num">121 833</span></td>
+            <td>Масс-маркет, другой сегмент</td>
+          </tr>
+          <tr>
+            <td>ostin.com</td>
+            <td><span class="num">7 742</span></td>
+            <td><span class="num">32</span></td>
+            <td><span class="num">3 393</span></td>
+            <td><span class="num">21 831</span></td>
+            <td><span class="num">130 956</span></td>
+            <td>Масс-маркет, другой сегмент</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="chart-wrap" style="margin-bottom:16px;">
-      <div class="chart-title">Видимость (vis) нишевых конкурентов — Keys.so Яндекс Россия апрель 2026</div>
+      <div class="chart-title">Видимость (VIS) нишевых конкурентов — Keys.so Яндекс Россия апрель 2026</div>
       <div class="chart-canvas-wrap" style="height:200px;">
         <canvas id="visChart"></canvas>
       </div>
@@ -520,7 +584,7 @@ footer strong { color: var(--text-soft); }
     <div class="card">
       <div class="card-title">Ключевой инсайт: uniquefabric.ru как benchmark</div>
       <p style="font-size:13.5px;color:var(--text-soft);line-height:1.65;">
-        uniquefabric.ru при DR=<strong style="color:var(--text);">25</strong> (почти равном aimclo DR=24) получает vis=<strong style="color:var(--accent);">315</strong> против vis=<strong style="color:var(--red);">117</strong> у aimclo.ru — в <strong style="color:var(--text);">2.7 раза</strong> больше при одинаковом авторитете домена. Разница — в контентной стратегии: uniquefabric создаёт страницы под материалы (/materials/tensel, /materials/modal, /materials/kupra), каждая приносит 78–206 ключей в топ-50. aimclo.ru этого не делает совсем.
+        uniquefabric.ru при DR=<strong style="color:var(--text);">25</strong> (почти равном aimclo DR=24) получает VIS=<strong style="color:var(--accent);">310</strong> против VIS=<strong style="color:var(--red);">112</strong> у aimclo.ru — в <strong style="color:var(--text);">2.8 раза</strong> больше при одинаковом авторитете домена. Разница — в контентной стратегии: uniquefabric создаёт страницы под материалы (/materials/tensel, /materials/modal, /materials/kupra), каждая приносит 78–206 ключей в top-50. aimclo.ru этого не делает совсем.
       </p>
     </div>
   </div>
@@ -529,101 +593,164 @@ footer strong { color: var(--text-soft); }
 <!-- GAP ANALYSIS -->
 <section class="section" id="gap">
   <div class="wrap">
-    <div class="section-label">05 — Gap-анализ</div>
-    <h2 class="section-title">7 незакрытых кластеров</h2>
-    <p class="section-desc">Gap-ключи — запросы, которые aimclo.ru не закрывает. Конкуренты небольшие (DR 13–25), рынок доступен при минимальных инвестициях в контент.</p>
+    <div class="section-label">06 — Gap-анализ</div>
+    <h2 class="section-title">286 ключей — uniquefabric в top-10, aimclo отсутствует</h2>
+    <p class="section-desc">Keys.so gap-анализ: ключи из top-10 uniquefabric.ru, которых нет в топ-50 aimclo.ru. 286 ключей. Три главных кластера — страницы материалов, подкатегории платьев, юбки и подъюбники.</p>
 
     <div class="tbl-wrap" style="margin-bottom:24px;">
       <table class="tbl">
         <thead>
-          <tr><th>Кластер</th><th>WS топ-фраз</th><th>Покрытие aimclo</th><th>Конкурент в топ</th><th>DR конкурента</th></tr>
+          <tr><th>Ключ</th><th>WS</th><th>uniquefabric pos</th><th>aimclo</th><th>URL uniquefabric</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Меринос</strong></td>
-            <td><span class="num">3 000–8 000</span></td>
-            <td style="color:var(--red);">нет страниц</td>
-            <td>bonnywool.ru</td>
-            <td><span class="num">13</span></td>
+            <td><strong>юбка и</strong></td>
+            <td><span class="num big">241 316</span></td>
+            <td><span class="num">2</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/yubki-i-podyubniki</td>
           </tr>
           <tr>
-            <td><strong>Базовый гардероб</strong></td>
-            <td><span class="num">5 000–10 000</span></td>
-            <td style="color:var(--orange);">slug с опечаткой, нет текста</td>
-            <td>baon.ru, idol.ru</td>
-            <td><span class="num">20–35</span></td>
+            <td><strong>платья москвы</strong></td>
+            <td><span class="num">39 682</span></td>
+            <td><span class="num">5</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/platya</td>
           </tr>
           <tr>
-            <td><strong>Пальто шерсть / оверсайз</strong></td>
-            <td><span class="num">3 000–8 000</span></td>
-            <td style="color:var(--red);">смешана с тренчами, H1 не по ключу</td>
-            <td>pompa.ru, elema.ru</td>
-            <td><span class="num">30–40</span></td>
+            <td><strong>серое платье</strong></td>
+            <td><span class="num">14 738</span></td>
+            <td><span class="num">6</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/platya/serye</td>
           </tr>
           <tr>
-            <td><strong>Кашемир</strong></td>
-            <td><span class="num">2 000–5 000</span></td>
-            <td style="color:var(--red);">нет страницы</td>
-            <td>nsale.ru, khancashmere.ru</td>
-            <td><span class="num">15–25</span></td>
+            <td><strong>платья комбинация</strong></td>
+            <td><span class="num">13 646</span></td>
+            <td><span class="num">9</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/platya/kombinacii</td>
           </tr>
           <tr>
-            <td><strong>Российские бренды / slow fashion</strong></td>
-            <td><span class="num">3 500–6 000</span></td>
-            <td style="color:var(--red);">нет страницы</td>
-            <td>murkott.ru, uniquefabric.ru</td>
-            <td><span class="num">15–25</span></td>
+            <td><strong>ткань модал</strong></td>
+            <td><span class="num">12 955</span></td>
+            <td><span class="num">7</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/materials/modal</td>
           </tr>
           <tr>
-            <td><strong>Оверсайз трикотаж</strong></td>
-            <td><span class="num">5 000–12 000</span></td>
-            <td style="color:var(--red);">нет страницы</td>
-            <td>Taboo, NADYA, Savage</td>
-            <td><span class="num">10–20</span></td>
+            <td><strong>модал ткань что</strong></td>
+            <td><span class="num">11 576</span></td>
+            <td><span class="num">4</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/materials/modal</td>
           </tr>
           <tr>
-            <td><strong>Лён / натуральные ткани</strong></td>
-            <td><span class="num">2 000–5 000</span></td>
-            <td style="color:var(--red);">нет страницы</td>
-            <td>Льняные производители</td>
-            <td><span class="num">10–20</span></td>
+            <td><strong>ткань модал что</strong></td>
+            <td><span class="num">10 037</span></td>
+            <td><span class="num">9</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/materials/modal</td>
+          </tr>
+          <tr>
+            <td><strong>нижняя юбка</strong></td>
+            <td><span class="num">9 458</span></td>
+            <td><span class="num">9</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/yubki-i-podyubniki/podyubniki</td>
+          </tr>
+          <tr>
+            <td><strong>модал что это за ткань</strong></td>
+            <td><span class="num">7 861</span></td>
+            <td><span class="num">2</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/materials/modal</td>
+          </tr>
+          <tr>
+            <td><strong>юбки с кружевами</strong></td>
+            <td><span class="num">7 528</span></td>
+            <td><span class="num">9</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/yubki-i-podyubniki/kruzhevnye</td>
+          </tr>
+          <tr>
+            <td><strong>декольте платье</strong></td>
+            <td><span class="num">6 983</span></td>
+            <td><span class="num">6</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/platya/s-dekolte</td>
+          </tr>
+          <tr>
+            <td><strong>платье свободное</strong></td>
+            <td><span class="num">6 747</span></td>
+            <td><span class="num">9</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/platya/svobodnogo-kroya</td>
+          </tr>
+          <tr>
+            <td><strong>воротник одежда</strong></td>
+            <td><span class="num">4 546</span></td>
+            <td><span class="num">1</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/vorotniki-i-manishki</td>
+          </tr>
+          <tr>
+            <td><strong>бренд питерский</strong></td>
+            <td><span class="num">2 814</span></td>
+            <td><span class="num">4</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/about</td>
+          </tr>
+          <tr>
+            <td><strong>питерский бренд</strong></td>
+            <td><span class="num">2 768</span></td>
+            <td><span class="num">6</span></td>
+            <td style="color:var(--red);">—</td>
+            <td style="color:var(--muted);">/about</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <div class="chart-wrap" style="margin-bottom:24px;">
+      <div class="chart-title">Gap-кластеры: суммарный WS по направлениям</div>
+      <div class="chart-canvas-wrap" style="height:200px;">
+        <canvas id="gapChart"></canvas>
+      </div>
+    </div>
+
     <div class="roadmap">
-      <div class="rm-phase" style="border-left:3px solid var(--accent);">
-        <div class="rm-phase-label">Приоритет 1</div>
+      <div class="rm-phase" style="border-left:3px solid var(--red);">
+        <div class="rm-phase-label">Gap-кластер 1 — ~260K WS</div>
+        <div class="rm-phase-period">Юбки и подъюбники</div>
+        <ul>
+          <li>У uniquefabric: /yubki-i-podyubniki + /podyubniki</li>
+          <li>У aimclo: нет раздела юбок вообще</li>
+          <li>«юбка и» — WS=241K, uniquefabric pos 2</li>
+          <li>«нижняя юбка» — WS=9.5K, uniquefabric pos 9</li>
+          <li>«юбки с кружевами» — WS=7.5K, uniquefabric pos 9</li>
+        </ul>
+      </div>
+      <div class="rm-phase" style="border-left:3px solid var(--orange);">
+        <div class="rm-phase-label">Gap-кластер 2 — ~70K WS</div>
         <div class="rm-phase-period">Страницы материалов</div>
         <ul>
-          <li>Создать /shop/iz-merinosa/ (500–800 слов)</li>
-          <li>Создать /shop/iz-kashmira/ (400–600 слов)</li>
-          <li>Создать /shop/iz-lna/ (400–600 слов)</li>
-          <li>bonnywool в топ-5 с DR=13 — aimclo войдёт выше</li>
-          <li>uniquefabric vis=315 vs aimclo 117 именно из-за этого</li>
+          <li>У uniquefabric: /materials/modal (top-2 по 4 ключам)</li>
+          <li>У aimclo: нет ни одной /materials/* страницы</li>
+          <li>«ткань модал» — WS=12.9K, pos 7</li>
+          <li>«модал ткань что» — WS=11.6K, pos 4</li>
+          <li>«модал что это за ткань» — WS=7.9K, pos 2</li>
         </ul>
       </div>
-      <div class="rm-phase" style="border-left:3px solid var(--blue);">
-        <div class="rm-phase-label">Приоритет 2</div>
-        <div class="rm-phase-period">Пальто — 2 страницы</div>
+      <div class="rm-phase" style="border-left:3px solid var(--accent);">
+        <div class="rm-phase-label">Gap-кластер 3 — ~50K WS</div>
+        <div class="rm-phase-period">Платья с фильтрами</div>
         <ul>
-          <li>Разделить /shop/palto-i-trenchi/</li>
-          <li>-&gt; /shop/palto/ + /shop/trenchi/</li>
-          <li>H1 по ключу, 300–400 слов на каждой</li>
-          <li>WS пальто-кластера 4 000–8 000</li>
-          <li>pompa.ru в топ-5 с тонким контентом</li>
-        </ul>
-      </div>
-      <div class="rm-phase" style="border-left:3px solid var(--green);">
-        <div class="rm-phase-label">Приоритет 3 — быстрая победа</div>
-        <div class="rm-phase-period">Базовый гардероб</div>
-        <ul>
-          <li>Переименовать slug: garderobyu -&gt; garderob</li>
-          <li>Добавить H1 «Базовый гардероб женщины»</li>
-          <li>Текст 400–600 слов с ключом</li>
-          <li>Уже ~позиция 10 по WS 6 000+ — выйти в топ-5</li>
-          <li>Минимум усилий, максимум impact</li>
+          <li>У uniquefabric: /platya/serye, /svobodnogo-kroya, /s-dekolte</li>
+          <li>У aimclo: /shop/platya/ — одна страница</li>
+          <li>«серое платье» — WS=14.7K, pos 6</li>
+          <li>«платья комбинация» — WS=13.6K, pos 9</li>
+          <li>«платье свободное» — WS=6.7K, pos 9</li>
         </ul>
       </div>
     </div>
@@ -633,9 +760,9 @@ footer strong { color: var(--text-soft); }
 <!-- TOP GROWTH POINTS -->
 <section class="section" id="issues">
   <div class="wrap">
-    <div class="section-label">06 — Точки роста</div>
+    <div class="section-label">07 — Точки роста</div>
     <h2 class="section-title">Топ-10 рекомендаций</h2>
-    <p class="section-desc">Ранжировано по impact × effort. Первые 5 — технические блокеры, остальные — контентный рост.</p>
+    <p class="section-desc">Ранжировано по impact × effort. Первые 3 — контентные gap-возможности с задокументированными данными keys.so, остальные — технические и структурные улучшения.</p>
 
     <div class="tbl-wrap">
       <table class="tbl">
@@ -643,15 +770,15 @@ footer strong { color: var(--text-soft); }
           <tr><th>#</th><th>Рекомендация</th><th>Impact</th><th>Effort</th><th>Источник</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td><strong>Яндекс.Вебмастер</strong> — зарегистрировать сайт, верифицировать, добавить sitemap, диагностировать нулевую индексацию</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §3</td></tr>
-          <tr><td>2</td><td><strong>Создать /shop/iz-merinosa/</strong> — 500–800 слов + листинг изделий. bonnywool стоит в топ-5 с DR=13 и без текста</td><td><span class="badge crit">High</span></td><td><span class="badge med">Med</span></td><td>gap §5.1</td></tr>
-          <tr><td>3</td><td><strong>Добавить sitemap-blog.xml</strong> — ~20 статей сейчас невидимы для краулеров</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §2</td></tr>
-          <tr><td>4</td><td><strong>H1 на главную страницу</strong> — «Женская одежда из натуральных материалов» или аналог</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §4</td></tr>
-          <tr><td>5</td><td><strong>Оптимизировать /blog/</strong> — title 55–60 симв. + H1 + meta description</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §5</td></tr>
-          <tr><td>6</td><td><strong>Базовый гардероб: slug + текст</strong> — garderobyu -&gt; garderob, 400–600 слов. Уже ~pos 10 по WS 6 000+</td><td><span class="badge crit">High</span></td><td><span class="badge med">Med</span></td><td>gap §5.3</td></tr>
-          <tr><td>7</td><td><strong>Создать /shop/iz-kashmira/</strong> — uniquefabric не имеет кашемира. Прямое конкурентное преимущество</td><td><span class="badge high">Med</span></td><td><span class="badge med">Med</span></td><td>gap §4.5</td></tr>
-          <tr><td>8</td><td><strong>Разделить /shop/palto-i-trenchi/</strong> на /shop/palto/ + /shop/trenchi/. H1 по ключу, 300–400 слов</td><td><span class="badge high">Med</span></td><td><span class="badge med">Med</span></td><td>gap §5.2</td></tr>
-          <tr><td>9</td><td><strong>Уникальный meta description</strong> на всех категориях — сейчас 265–289 симв. шаблон (норма 150–160)</td><td><span class="badge med">Med</span></td><td><span class="badge med">Med</span></td><td>tech §5</td></tr>
+          <tr><td>1</td><td><strong>Создать /shop/iz-merinosa/</strong> — 500–800 слов + листинг изделий. bonnywool стоит в топ-5 с DR=13 и без текста; uniquefabric захватил материальные ключи</td><td><span class="badge crit">High</span></td><td><span class="badge med">Med</span></td><td>gap §6</td></tr>
+          <tr><td>2</td><td><strong>SEO-подкатегории платьев</strong> — /shop/platya/serye/, /shop/platya/svobodnogo-kroya/. Каждая = отдельная страница под свой кластер. uniquefabric в top-6–9 по всем этим ключам</td><td><span class="badge crit">High</span></td><td><span class="badge med">Med</span></td><td>gap §6</td></tr>
+          <tr><td>3</td><td><strong>Раздел юбок + подъюбников</strong> — суммарный WS кластера ~260K. Создать /shop/yubki/ и /shop/yubki/podyubniki/. Uniquefabric держит top-2 по «юбка и» с WS=241K</td><td><span class="badge crit">High</span></td><td><span class="badge med">Med</span></td><td>gap §6</td></tr>
+          <tr><td>4</td><td><strong>H1 на главную страницу</strong> — «Женская одежда из натуральных тканей» или аналог. Правка 5 минут в Bitrix</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §3</td></tr>
+          <tr><td>5</td><td><strong>Добавить sitemap-blog.xml</strong> — ~20 статей сейчас невидимы для краулеров Google</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §2</td></tr>
+          <tr><td>6</td><td><strong>Оптимизировать /blog/</strong> — title 55–60 симв. + H1 + meta description</td><td><span class="badge crit">High</span></td><td><span class="badge ok">Low</span></td><td>tech §4</td></tr>
+          <tr><td>7</td><td><strong>Базовый гардероб: slug + текст</strong> — garderobyu -&gt; garderob, 400–600 слов. Уже ~pos 10 по WS 6 000+</td><td><span class="badge high">Med</span></td><td><span class="badge med">Med</span></td><td>gap §5</td></tr>
+          <tr><td>8</td><td><strong>Создать /shop/iz-kashmira/</strong> — uniquefabric не имеет кашемира. Прямое конкурентное преимущество</td><td><span class="badge high">Med</span></td><td><span class="badge med">Med</span></td><td>gap §5</td></tr>
+          <tr><td>9</td><td><strong>Уникальный meta description</strong> на всех категориях — сейчас 265–289 симв. шаблон (норма 150–160)</td><td><span class="badge med">Med</span></td><td><span class="badge med">Med</span></td><td>tech §3</td></tr>
           <tr><td>10</td><td><strong>Sitemap http -&gt; https</strong> в robots.txt секция Yandex — одна строка</td><td><span class="badge med">Low</span></td><td><span class="badge ok">Low</span></td><td>tech §1</td></tr>
         </tbody>
       </table>
@@ -662,29 +789,21 @@ footer strong { color: var(--text-soft); }
 <!-- QUICK WINS -->
 <section class="section" id="quickwins">
   <div class="wrap">
-    <div class="section-label">07 — Quick Wins</div>
+    <div class="section-label">08 — Quick Wins</div>
     <h2 class="section-title">5 правок за 1 рабочий день</h2>
-    <p class="section-desc">Эти правки не требуют разработки или написания контента. Каждая выполняется за 5–30 минут.</p>
+    <p class="section-desc">Эти правки не требуют разработки или написания контента. Каждая выполняется за 5–30 минут. Яндекс видит 461 страницу — технический барьер снят, теперь фокус на качестве страниц.</p>
 
     <div class="qw-item">
       <div>
-        <div class="qw-title">1. Яндекс.Вебмастер — зарегистрировать и верифицировать</div>
-        <div class="qw-meta">Создать аккаунт -&gt; добавить сайт -&gt; добавить sitemap.xml. Без этого шага все действия для Яндекса = ноль.</div>
-      </div>
-      <div class="qw-arrow"><span class="arrow-val">до 30 мин</span>критично</div>
-    </div>
-
-    <div class="qw-item">
-      <div>
-        <div class="qw-title">2. H1 на главной странице</div>
-        <div class="qw-meta">В Bitrix: открыть редактор главной -&gt; добавить выше H2 тег H1 с ключом «Женская одежда из натуральных тканей».</div>
+        <div class="qw-title">1. H1 на главной странице</div>
+        <div class="qw-meta">В Bitrix: открыть редактор главной -&gt; добавить выше H2 тег H1 с ключом «Женская одежда из натуральных тканей». Яндекс получит сигнал о теме страницы.</div>
       </div>
       <div class="qw-arrow"><span class="arrow-val">до 10 мин</span>высокий</div>
     </div>
 
     <div class="qw-item">
       <div>
-        <div class="qw-title">3. Оптимизировать /blog/ — title + H1 + meta description</div>
+        <div class="qw-title">2. Оптимизировать /blog/ — title + H1 + meta description</div>
         <div class="qw-meta">Title: «Блог Aim Clo — о натуральных тканях, стиле и базовом гардеробе» (60 симв.). H1 + meta description 150 симв.</div>
       </div>
       <div class="qw-arrow"><span class="arrow-val">до 20 мин</span>высокий</div>
@@ -692,18 +811,26 @@ footer strong { color: var(--text-soft); }
 
     <div class="qw-item">
       <div>
-        <div class="qw-title">4. Добавить sitemap-blog.xml</div>
-        <div class="qw-meta">Собрать все URL /blog/*, создать отдельный sitemap, добавить в siteindex. В Bitrix можно настроить автогенерацию.</div>
+        <div class="qw-title">3. Добавить sitemap-blog.xml</div>
+        <div class="qw-meta">Собрать все URL /blog/*, создать отдельный sitemap, добавить в siteindex. В Bitrix можно настроить автогенерацию. Нужно для Google — Яндекс уже индексирует 461 страницу.</div>
       </div>
       <div class="qw-arrow"><span class="arrow-val">до 1 часа</span>высокий</div>
     </div>
 
     <div class="qw-item">
       <div>
-        <div class="qw-title">5. Исправить http -&gt; https в robots.txt (секция Yandex)</div>
+        <div class="qw-title">4. Исправить http -&gt; https в robots.txt (секция Yandex)</div>
         <div class="qw-meta">Найти строку Sitemap: http://aimclo.ru/sitemap.xml -&gt; заменить на https://. Одна строка в файле.</div>
       </div>
       <div class="qw-arrow"><span class="arrow-val">до 5 мин</span>средний</div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">5. Уникальный meta description для топ-15 категорий</div>
+        <div class="qw-meta">Сейчас 265–289 симв. на всех страницах — шаблон. Написать 150–160 симв. с ключом и CTA для каждой категории. Bitrix позволяет задать в свойствах раздела.</div>
+      </div>
+      <div class="qw-arrow"><span class="arrow-val">до 2 часов</span>средний</div>
     </div>
   </div>
 </section>
@@ -711,20 +838,20 @@ footer strong { color: var(--text-soft); }
 <!-- ROADMAP -->
 <section class="section" id="roadmap">
   <div class="wrap">
-    <div class="section-label">08 — Роадмап</div>
+    <div class="section-label">09 — Роадмап</div>
     <h2 class="section-title">Стратегия на 6 месяцев</h2>
-    <p class="section-desc">Три фазы: сначала разблокировать индексацию, затем создать материальные страницы (главный SEO-рост), затем масштабировать контент.</p>
+    <p class="section-desc">Три фазы: сначала исправить технические тормоза (H1, meta, sitemap), затем создать контентные страницы под gap-кластеры (главный SEO-рост), затем масштабировать структуру.</p>
 
     <div class="roadmap">
       <div class="rm-phase">
         <div class="rm-phase-label">Фаза 1</div>
         <div class="rm-phase-period">Месяц 1</div>
         <ul>
-          <li>Яндекс.Вебмастер — диагностика нулевой индексации</li>
           <li>H1 на главной странице</li>
           <li>Оптимизировать /blog/ (title + H1 + desc)</li>
           <li>Добавить sitemap-blog.xml</li>
           <li>Исправить robots.txt (http-&gt;https)</li>
+          <li>Уникальный meta description для 15 категорий</li>
         </ul>
       </div>
       <div class="rm-phase">
@@ -734,18 +861,18 @@ footer strong { color: var(--text-soft); }
           <li>Создать /shop/iz-merinosa/ (500–800 слов)</li>
           <li>Создать /shop/iz-kashmira/ (400–600 слов)</li>
           <li>Исправить /shop/bazovyy-garderob/ (slug + текст)</li>
-          <li>Уникальный meta description для 15 категорий</li>
+          <li>SEO-подкатегории платьев (/serye, /svobodnogo-kroya)</li>
         </ul>
       </div>
       <div class="rm-phase">
         <div class="rm-phase-label">Фаза 3</div>
         <div class="rm-phase-period">Месяцы 2–4</div>
         <ul>
+          <li>Раздел /shop/yubki/ + /podyubniki/ (кластер 260K WS)</li>
           <li>Разделить /shop/palto/ + /shop/trenchi/</li>
           <li>Создать /shop/iz-lna/</li>
           <li>JSON-LD Article на статьях блога</li>
           <li>Alt-теги для изображений (~12 x 15 страниц)</li>
-          <li>Проверить CWV, план по снижению HTML</li>
         </ul>
       </div>
       <div class="rm-phase">
@@ -766,15 +893,15 @@ footer strong { color: var(--text-soft); }
 <!-- FORECAST -->
 <section class="section" id="forecast">
   <div class="wrap">
-    <div class="section-label">09 — Прогноз</div>
+    <div class="section-label">10 — Прогноз</div>
     <h2 class="section-title">Ожидаемые результаты</h2>
-    <p class="section-desc">Консервативный прогноз на основе профилей конкурентов: bonnywool в топ-5 с DR=13 без текста, uniquefabric vis=315 при DR=25 через материальные страницы.</p>
+    <p class="section-desc">Консервативный прогноз на основе профилей конкурентов: bonnywool в топ-5 с DR=13 без текста, uniquefabric VIS=310 при DR=25 через материальные страницы. Яндекс-индексация (461 стр.) — база уже есть.</p>
 
     <div class="forecast-grid" style="margin-bottom:20px;">
       <div class="forecast-card">
-        <div class="forecast-period">Месяц 1–2</div>
-        <div class="forecast-val">+индекс</div>
-        <div class="forecast-metric">Яндекс начинает сканировать после Вебмастера</div>
+        <div class="forecast-period">Месяц 1</div>
+        <div class="forecast-val">+позиции</div>
+        <div class="forecast-metric">H1, meta description — рост брендовых позиций в Яндексе</div>
       </div>
       <div class="forecast-card">
         <div class="forecast-period">Месяц 2–3</div>
@@ -783,12 +910,12 @@ footer strong { color: var(--text-soft); }
       </div>
       <div class="forecast-card">
         <div class="forecast-period">Месяц 3–4</div>
-        <div class="forecast-val">vis 200+</div>
+        <div class="forecast-val">VIS 200+</div>
         <div class="forecast-metric">При запуске 3 материальных страниц</div>
       </div>
       <div class="forecast-card">
         <div class="forecast-period">Месяц 4–6</div>
-        <div class="forecast-val">vis 300+</div>
+        <div class="forecast-val">VIS 310+</div>
         <div class="forecast-metric">Уровень uniquefabric.ru (DR=25)</div>
       </div>
     </div>
@@ -796,7 +923,7 @@ footer strong { color: var(--text-soft); }
     <div class="card">
       <div class="card-title">Benchmark: uniquefabric.ru как ориентир</div>
       <p style="font-size:13.5px;color:var(--text-soft);line-height:1.65;">
-        uniquefabric.ru с DR=<strong style="color:var(--text);">25</strong> (практически равным aimclo DR=24) получает vis=<strong style="color:var(--accent);">315</strong> против vis=<strong style="color:var(--red);">117</strong>. aimclo.ru при реализации контентной стратегии материальных страниц выйдет на vis 250–350 за 4–6 месяцев. <strong style="color:var(--text);">Главный барьер сейчас — не DR, а отсутствие контента под небрендовые запросы.</strong>
+        uniquefabric.ru с DR=<strong style="color:var(--text);">25</strong> (практически равным aimclo DR=24) получает VIS=<strong style="color:var(--accent);">310</strong> против VIS=<strong style="color:var(--red);">112</strong>. aimclo.ru при реализации контентной стратегии материальных страниц выйдет на VIS 250–350 за 4–6 месяцев. <strong style="color:var(--text);">Главный барьер сейчас — не DR и не индексация, а отсутствие контента под небрендовые запросы.</strong>
       </p>
     </div>
   </div>
@@ -805,16 +932,16 @@ footer strong { color: var(--text-soft); }
 <!-- SWOT -->
 <section class="section" id="swot">
   <div class="wrap">
-    <div class="section-label">10 — SWOT</div>
+    <div class="section-label">11 — SWOT</div>
     <h2 class="section-title">Сильные стороны и риски</h2>
-    <p class="section-desc">По результатам трёх блоков аудита: технический, контентный, конкурентный.</p>
+    <p class="section-desc">По результатам трёх блоков аудита: технический, контентный, конкурентный. Данные keys.so апрель 2026.</p>
 
     <div class="swot">
       <div class="swot-card s">
         <div class="swot-label"><span class="dot"></span>Strengths — Сильные стороны</div>
         <ul>
-          <li>DR=24 — выше всех прямых нишевых конкурентов (bonnywool DR=13, tobeone DR=21)</li>
-          <li>1 120+ страниц в sitemap — объём каталога есть</li>
+          <li>DR=24 — выше всех прямых нишевых конкурентов (bonnywool DR=13)</li>
+          <li>461 страниц в Яндекс-индексе (keys.so) — база есть</li>
           <li>SSL, редиректы, robots.txt — всё работает корректно</li>
           <li>Чёткое USP: натуральные материалы (меринос, кашемир, лён)</li>
           <li>Шоурум в Новосибирске — локальный сигнал для поисковиков</li>
@@ -824,8 +951,8 @@ footer strong { color: var(--text-soft); }
       <div class="swot-card w">
         <div class="swot-label"><span class="dot"></span>Weaknesses — Слабые стороны</div>
         <ul>
-          <li>Яндекс: 0 страниц в индексе — корневая проблема</li>
-          <li>95%+ видимости — брендовый трафик, не коммерческий</li>
+          <li>VIS падает: −56% от пика (254 ноябрь → 112 апрель)</li>
+          <li>95%+ видимости — брендовый трафик, небрендового нет</li>
           <li>HTML 291–494 KB — 3–5 раз тяжелее нормы</li>
           <li>Нет страниц под ключевое USP (меринос, кашемир, лён)</li>
           <li>Нет H1 на главной, /blog/ без SEO</li>
@@ -836,11 +963,11 @@ footer strong { color: var(--text-soft); }
         <div class="swot-label"><span class="dot"></span>Opportunities — Возможности</div>
         <ul>
           <li>Рынок не занят: bonnywool в топ с DR=13 без текста</li>
-          <li>3 материальных страницы = +50–100% vis за 2–4 месяца</li>
+          <li>3 материальных страницы = +50–100% VIS за 2–4 месяца</li>
           <li>Базовый гардероб: уже ~pos 10, малые усилия для топ-5</li>
           <li>uniquefabric не имеет кашемира — прямое преимущество</li>
+          <li>286 gap-ключей без конкуренции со стороны aimclo</li>
           <li>Slow fashion / осознанная мода — растущий тренд</li>
-          <li>Российские бренды одежды — WS 3 500+ запросов</li>
         </ul>
       </div>
       <div class="swot-card t">
@@ -848,7 +975,7 @@ footer strong { color: var(--text-soft); }
         <ul>
           <li>Маркетплейсы (WB, OZON) занимают топ по generic fashion-запросам</li>
           <li>uniquefabric.ru активно наращивает контент (951 страница)</li>
-          <li>Если Яндекс не индексирует — технические причины могут быть сложнее</li>
+          <li>VIS-тренд — падение может продолжиться без действий</li>
           <li>Тяжёлые страницы (Bitrix + слайдеры) сложно оптимизировать</li>
           <li>Сезонность: /summer-2025/ конфликт URL при смене коллекций</li>
         </ul>
@@ -858,7 +985,7 @@ footer strong { color: var(--text-soft); }
 </section>
 
 <footer>
-  <strong>aimclo.ru</strong> — Маркетинг-аудит · Апрель 2026 ·
+  <strong>aimclo.ru</strong> — SEO-аудит · Апрель 2026 ·
   Технический SEO + Контент/Семантика + Gap-анализ (Keys.so Яндекс Россия)
 </footer>
 
@@ -870,12 +997,88 @@ const chartDefaults = {
 const gridColor = 'rgba(255,255,255,0.05)';
 const tickStyle = { color: '#636e88', font: { size: 12 } };
 
-// INDEX CHART
+// DYNAMICS CHART — dual axis VIS + Pages
+(function() {
+  const labels = ["май'25","июн'25","июл'25","авг'25","сен'25","окт'25","ноя'25","дек'25","янв'26","фев'26","мар'26","апр'26"];
+  const visData = [209, 198, 161, 185, 240, 248, 254, 227, 180, 180, 158, 112];
+  const pagesData = [310, 293, 219, 279, 270, 271, 298, 445, 448, 424, 416, 461];
+  new Chart(document.getElementById('dynamicsChart').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'VIS',
+          data: visData,
+          borderColor: 'rgba(78,127,255,0.9)',
+          backgroundColor: 'rgba(78,127,255,0.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: visData.map((v,i) => i === 6 ? '#4e7fff' : (i === 11 ? '#e05252' : 'transparent')),
+          pointBorderColor: visData.map((v,i) => i === 6 ? '#4e7fff' : (i === 11 ? '#e05252' : 'rgba(78,127,255,0.5)')),
+          pointRadius: visData.map((v,i) => (i === 6 || i === 11) ? 7 : 4),
+          pointHoverRadius: 6,
+          fill: true,
+          tension: 0.3,
+          yAxisID: 'yVis',
+        },
+        {
+          label: 'Страниц в индексе',
+          data: pagesData,
+          borderColor: 'rgba(79,184,106,0.75)',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [5,4],
+          pointBackgroundColor: 'transparent',
+          pointBorderColor: 'rgba(79,184,106,0.6)',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          fill: false,
+          tension: 0.3,
+          yAxisID: 'yPages',
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          labels: { color: '#b0b8cc', font: { size: 12 }, boxWidth: 20 }
+        },
+        tooltip: {
+          callbacks: {
+            title: (items) => items[0].label,
+            label: (item) => {
+              if (item.datasetIndex === 0) return ' VIS: ' + item.raw;
+              return ' Страниц: ' + item.raw;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: gridColor }, ticks: tickStyle },
+        yVis: {
+          type: 'linear', position: 'left',
+          grid: { color: gridColor }, ticks: { ...tickStyle, stepSize: 50 },
+          title: { display: true, text: 'VIS', color: '#636e88', font: { size: 11 } }
+        },
+        yPages: {
+          type: 'linear', position: 'right',
+          grid: { drawOnChartArea: false },
+          ticks: { ...tickStyle },
+          title: { display: true, text: 'Страниц в индексе', color: '#636e88', font: { size: 11 } }
+        }
+      }
+    }
+  });
+})();
+
+// INDEX CHART — Яндекс 461 (corrected), Google ~10, Sitemap 1120
 new Chart(document.getElementById('indexChart').getContext('2d'), {
   type: 'bar',
   data: {
-    labels: ['Яндекс', 'Google', 'Sitemap'],
-    datasets: [{ data: [0, 10, 1120], backgroundColor: ['rgba(224,82,82,0.75)', 'rgba(212,129,58,0.75)', 'rgba(78,127,255,0.75)'], borderRadius: 6 }]
+    labels: ['Яндекс (keys.so)', 'Google', 'Sitemap'],
+    datasets: [{ data: [461, 10, 1120], backgroundColor: ['rgba(79,184,106,0.75)', 'rgba(212,129,58,0.75)', 'rgba(78,127,255,0.75)'], borderRadius: 6 }]
   },
   options: { ...chartDefaults, scales: { x: { grid: { color: gridColor }, ticks: tickStyle }, y: { grid: { color: gridColor }, ticks: tickStyle } } }
 });
@@ -887,40 +1090,56 @@ new Chart(document.getElementById('htmlChart').getContext('2d'), {
     labels: ['Главная', 'Свитеры', 'Пальто', 'Блог/статья', 'Карточка', 'Норма'],
     datasets: [{
       data: [291, 416, 479, 238, 494, 100],
-      backgroundColor: [224,82,82, 224,82,82, 224,82,82, 212,129,58, 224,82,82, 79,184,106].map((v,i,a) => {
-        const vals = [291, 416, 479, 238, 494, 100];
-        if (vals[Math.floor(i/3)] <= 150) return 'rgba(79,184,106,0.75)';
-        if (vals[Math.floor(i/3)] <= 300) return 'rgba(212,129,58,0.75)';
+      backgroundColor: [291, 416, 479, 238, 494, 100].map(v => {
+        if (v <= 150) return 'rgba(79,184,106,0.75)';
+        if (v <= 300) return 'rgba(212,129,58,0.75)';
         return 'rgba(224,82,82,0.75)';
-      }).filter((v,i) => i < 6),
+      }),
       borderRadius: 6
     }]
   },
   options: { ...chartDefaults, scales: { x: { grid: { color: gridColor }, ticks: { ...tickStyle, font: { size: 11 } } }, y: { grid: { color: gridColor }, ticks: tickStyle } } }
 });
 
-// VIS COMPARISON CHART
+// VIS COMPARISON CHART — updated with keys.so data
 new Chart(document.getElementById('visChart').getContext('2d'), {
   type: 'bar',
   data: {
-    labels: ['uniquefabric.ru (DR=25)', 'aimclo.ru (DR=24)', 'tobeone.ru (DR=21)', 'bonnywool.ru (DR=13)'],
-    datasets: [{ data: [315, 117, 52, 2], backgroundColor: ['rgba(78,127,255,0.8)', 'rgba(224,82,82,0.7)', 'rgba(90,148,212,0.6)', 'rgba(99,110,136,0.5)'], borderRadius: 6 }]
+    labels: ['uniquefabric.ru (DR=25)', 'aimclo.ru (DR=24)', 'bonnywool.ru (DR=13)'],
+    datasets: [{ data: [310, 112, 2], backgroundColor: ['rgba(78,127,255,0.8)', 'rgba(224,82,82,0.7)', 'rgba(99,110,136,0.5)'], borderRadius: 6 }]
   },
   options: { ...chartDefaults, indexAxis: 'y', scales: { x: { grid: { color: gridColor }, ticks: tickStyle }, y: { grid: { display: false }, ticks: { color: '#b0b8cc', font: { size: 12 } } } } }
 });
 
-// Fix HTML weight colors properly
-const htmlChartEl = document.getElementById('htmlChart');
-const htmlChart2 = Chart.getChart(htmlChartEl);
-if (htmlChart2) {
-  const vals = [291, 416, 479, 238, 494, 100];
-  htmlChart2.data.datasets[0].backgroundColor = vals.map(v => {
-    if (v <= 150) return 'rgba(79,184,106,0.75)';
-    if (v <= 300) return 'rgba(212,129,58,0.75)';
-    return 'rgba(224,82,82,0.75)';
-  });
-  htmlChart2.update();
-}
+// GAP CLUSTERS CHART
+new Chart(document.getElementById('gapChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Юбки и подъюбники', 'Страницы материалов (модал)', 'Платья с фильтрами', 'О бренде / Питер', 'Воротники и манишки'],
+    datasets: [{
+      label: 'Суммарный WS кластера',
+      data: [258302, 42429, 48114, 5582, 4546],
+      backgroundColor: ['rgba(224,82,82,0.7)', 'rgba(212,129,58,0.7)', 'rgba(78,127,255,0.7)', 'rgba(90,148,212,0.6)', 'rgba(99,110,136,0.5)'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: (item) => ' WS: ' + item.raw.toLocaleString('ru-RU') }
+      }
+    },
+    indexAxis: 'y',
+    scales: {
+      x: {
+        grid: { color: gridColor }, ticks: { ...tickStyle, callback: (v) => v >= 1000 ? (v/1000).toFixed(0)+'K' : v }
+      },
+      y: { grid: { display: false }, ticks: { color: '#b0b8cc', font: { size: 12 } } }
+    }
+  }
+});
 </script>
 </body>
 </html>
