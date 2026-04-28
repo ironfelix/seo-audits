@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг-аудит — UniSender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #333;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+  --accent: #453FDF;
+  --accent-soft: #eef0ff;
+  --border: #e5e5e5;
+  --border-soft: #f0f0f0;
+  --crit: #c01020;
+  --warn: #e89020;
+  --ok: #16a34a;
+  --hero-bg: #1a1a1a;
+  --font-h: 'Inter', 'Inter', system-ui, sans-serif;
+  --font-b: 'Inter', 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'tnum', 'lnum';
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+
+/* Hero */
+.hero {
+  background: var(--hero-bg);
+  color: #fff;
+  padding: 48px 0 38px;
+}
+.hero-label {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.hero-meta > div { min-width: 120px; }
+.hero-meta .label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 3px;
+}
+.hero-meta .value {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+.hero-meta .value a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,0.4);
+}
+
+/* TOC strip */
+.toc-strip {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+}
+.toc-strip ul {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.toc-strip a {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.toc-strip a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Content */
+.content { padding: 40px 0 48px; }
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 34px 38px;
+  margin-bottom: 22px;
+  scroll-margin-top: 80px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.section-num {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.section h2.section-title {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 4px 0 18px;
+}
+
+/* Markdown content inside sections */
+.md { font-size: 14.5px; line-height: 1.7; color: var(--text-soft); }
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+
+.md h1 { display: none; }
+.md h2 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 32px 0 10px;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.md h3 {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+  letter-spacing: -0.1px;
+}
+.md h4 {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 6px;
+}
+.md p { margin: 0 0 12px; }
+.md strong { font-weight: 700; color: var(--text); }
+.md em { font-style: italic; color: var(--muted); }
+
+.md ul, .md ol { margin: 0 0 14px; padding-left: 22px; }
+.md li { margin-bottom: 4px; }
+.md li::marker { color: var(--accent); }
+
+.md a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid;
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.md a:hover { border-color: var(--accent); }
+
+.md code {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.87em;
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text);
+}
+.md pre {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 14px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; color: inherit; }
+
+.md blockquote {
+  margin: 14px 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  border-radius: 0 6px 6px 0;
+}
+.md blockquote p:last-child { margin-bottom: 0; }
+
+.md hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 28px 0;
+}
+
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.md table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f8f8f8;
+  font-family: var(--font-h);
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.md table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+.md table tr:last-child td { border-bottom: none; }
+.md table tr:hover td { background: #fafbfc; }
+
+.md input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--accent);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 20px;
+}
+footer code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: #f0f0f0;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: var(--muted);
+}
+footer .files {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .hero h1 { font-size: 24px; }
+  .section { padding: 24px 20px; }
+  .section h2.section-title { font-size: 20px; }
+  .md table { font-size: 11.5px; }
+  .md table th, .md table td { padding: 7px 8px; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .hero {
+    background: var(--hero-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 24px 0;
+  }
+  .hero h1 { font-size: 22pt; }
+  .toc-strip { display: none; }
+  .section {
+    break-inside: avoid-page;
+    border: none;
+    padding: 16px 0;
+    margin-bottom: 8px;
+    box-shadow: none;
+  }
+  .section h2.section-title { font-size: 16pt; }
+  .md h2 { font-size: 13pt; break-after: avoid; }
+  .md h3 { break-after: avoid; }
+  .md table, .md pre, .md blockquote { break-inside: avoid; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-label">Маркетинг-аудит</div>
+    <h1>UniSender</h1>
+    <p class="hero-sub">Маркетинг-аудит и SEO-стратегия · https://unisender.com</p>
+    <div class="hero-meta">
+      <div><div class="label">URL</div><div class="value"><a href="https://unisender.com" target="_blank">https://unisender.com</a></div></div>
+      <div><div class="label">Ниша</div><div class="value">SaaS-платформа email-маркетинга (email-рассылки, чат-боты, SMS, автоматизация, лендинги)</div></div>
+      <div><div class="label">Регион</div><div class="value">—</div></div>
+      <div><div class="label">Дата</div><div class="value">2026-04-28</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-strip">
+  <div class="wrap"><ul><li><a href="#section-audit-summary">Сводный отчёт</a></li><li><a href="#section-gap-analysis">Gap-анализ конкурентов</a></li><li><a href="#section-content-audit">Контент и семантика</a></li><li><a href="#section-tech-seo-audit">Технический SEO</a></li></ul></div>
+</nav>
+
+<main class="content">
+  <div class="wrap">
+    
+<section class="section" id="section-audit-summary">
+  <div class="section-head">
+    <span class="section-num">01 · SUMMARY</span>
+  </div>
+  <h2 class="section-title">Сводный отчёт</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-28
+<strong>Скоуп:</strong> технический SEO + контент/семантика + gap-анализ конкурентов (ручной, на основе WebSearch/WebFetch; keys.so данные недоступны — лимит исчерпан 2026-04-28)</p>
+<hr>
+<h2>Топ-5 критичных проблем</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Источник</th>
+<th>Влияние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>hreflang полностью отсутствует на всём сайте</strong></td>
+<td>tech-seo-audit.md §4</td>
+<td>Сайт имеет URL-структуру с <code>/ru/</code> префиксом на всех разделах, но ни одна страница не объявляет языковой/региональный таргетинг. Поисковики не знают, что <code>/</code> и <code>/ru/*</code> — это RU-рынок. Риск: <code>/</code> и <code>/ru/</code> воспринимаются как конкурирующие URL, PageRank размывается.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Canonical mismatch на главной + OG type = &ldquo;article&rdquo; на коммерческих страницах</strong></td>
+<td>tech-seo-audit.md §4, §5</td>
+<td>Canonical главной указывает на <code>https://www.unisender.com</code> (без <code>/</code>), фактический URL <code>https://www.unisender.com/</code> — два разных URL для одной страницы. Все коммерческие страницы (главная, цены, возможности, поддержка) имеют <code>og:type = "article"</code> вместо <code>"website"</code> — снижает CTR при репосте в мессенджерах и соцсетях.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Глоссарий — 468 KB HTML, предположительно провальные CWV</strong></td>
+<td>tech-seo-audit.md §5</td>
+<td><code>/ru/glossary/</code> загружает 400+ терминов, 248 изображений и 1450 ссылок в одном HTML-файле. В 4–5× тяжелее нормы. Google ранжирует страницы с плохим LCP/CLS ниже конкурентов — а глоссарий критически важен для семантического охвата (400+ терминов, каждый — потенциальный трафик).</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Нет FAQPage JSON-LD на страницах с FAQ-блоками</strong></td>
+<td>tech-seo-audit.md §5</td>
+<td><code>/ru/prices/</code> и <code>/ru/features/email/</code> имеют полноценные FAQ-секции (5 вопросов каждая), но без FAQPage разметки. Упущены Rich Snippets — FAQ-аккордеоны в поисковой выдаче, которые увеличивают CTR на 20–30% и занимают больше места на SERP.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>«Альтернатива SendPulse»: Unisender на 10-м месте при уходе SendPulse из РФ</strong></td>
+<td>content-audit.md §4.1</td>
+<td>SendPulse прекратил работу в России с марта 2022 года. Это огромный рынок перебежчиков. Запрос «альтернатива sendpulse» высокочастотный и транзакционный. RuSender создал отдельный поддомен <code>sendpulse-alternative.rusender.ru</code>, DashaMail — отдельный лендинг. Unisender держится на 10-й позиции с устаревшей страницей сравнения.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Топ-3 gap-находки (из gap-analysis.md)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Gap</th>
+<th>Конкуренты захватили</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>«Альтернатива SendPulse»</strong> — Unisender 10-я позиция, RuSender создал поддомен, DashaMail — лендинг</td>
+<td>RuSender, DashaMail</td>
+<td>gap-analysis.md §4.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Web Push уведомления</strong> — у Sendsay, DashaMail, NotiSend есть dedicated страницы, у Unisender нет</td>
+<td>Sendsay, DashaMail, NotiSend</td>
+<td>gap-analysis.md §4.2</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Email для интернет-магазина</strong> — нет dedicated лендинга под ecommerce-кластер, у Sendsay есть</td>
+<td>Sendsay</td>
+<td>gap-analysis.md §4.3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Топ-10 точек роста</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Точка роста</th>
+<th>Impact</th>
+<th>Effort</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Обновить <code>/ru/support/compare/sravnenie-unisender-i-sendpulse/</code></strong>: добавить факт ухода SendPulse из РФ, раздел «Как перенести базу», FAQ по миграции, CTA «Перенесём бесплатно»</td>
+<td>high</td>
+<td>low</td>
+<td>content-audit.md §4.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Добавить FAQPage JSON-LD</strong> на <code>/ru/prices/</code> и <code>/ru/features/email/</code> — FAQ-блоки уже есть, нужна только разметка</td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §5</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Расширить title главной</strong> с 33 до 60 символов: <code>Unisender — сервис email-рассылок и маркетинговой автоматизации</code></td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §4</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Расширить meta description <code>/ru/prices/</code></strong> с 91 до 150–160 символов с упоминанием тарифной линейки и бесплатного тарифа</td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §5</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Создать <code>/ru/features/sms/</code></strong> — полная фича-страница под «SMS-рассылки для бизнеса» (800-1200 слов), конкурентный высокочастотный кластер без dedicated страницы</td>
+<td>high</td>
+<td>med</td>
+<td>content-audit.md §5.2</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Создать <code>/ru/features/chatbots/</code></strong> — страница под «Telegram чат-боты», «конструктор чат-ботов Telegram» — высокочастотный запрос, сейчас только упоминание в /features/</td>
+<td>high</td>
+<td>med</td>
+<td>content-audit.md §5.2</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Разбить <code>/ru/glossary/</code></strong> на страницы по буквам или добавить lazy-load — сократить HTML с 468 KB, улучшить CWV; добавить SpeakableSpecification JSON-LD</td>
+<td>med</td>
+<td>high</td>
+<td>tech-seo-audit.md §5</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Исправить OG type</strong> на <code>website</code> для главной, /ru/prices/, /ru/features/, /ru/support/ (правка в WordPress)</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §4, §5</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Написать статью в Конверт</strong>: «Как выбрать сервис email-рассылок в 2026 году: сравнение 10 платформ» — перехват информационного трафика по кластеру «выбор сервиса»</td>
+<td>med</td>
+<td>med</td>
+<td>content-audit.md §4.2</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Добавить noindex</strong> на шаблоны тегов и авторов блога (<code>/ru/blog/author/*</code>, <code>/ru/blog/tag/*</code>) — устранить дублирование crawl budget</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §2</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Создать лендинг «Email для интернет-магазина»</strong> — <code>/ru/solutions/ecommerce/</code>, 1200–1500 слов, кейсы по брошенной корзине и welcome-серии</td>
+<td>med</td>
+<td>med</td>
+<td>gap-analysis.md §5.2</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Проверить наличие Web Push в платформе и создать <code>/ru/features/webpush/</code></strong> — если функционал есть: быстрый win по растущему кластеру</td>
+<td>med</td>
+<td>low-med</td>
+<td>gap-analysis.md §5.3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Топ-5 быстрых побед (≤ 1 рабочего дня)</h2>
+<ol>
+<li><strong>FAQPage JSON-LD</strong> на <code>/ru/prices/</code> и <code>/ru/features/email/</code> — FAQ уже есть, добавить разметку в WordPress (Yoast / вручную в <code>&lt;head&gt;</code>).</li>
+<li><strong>Title главной</strong> с 33 до 60 символов — одна строка в WordPress настройках страницы или Yoast.</li>
+<li><strong>Meta description <code>/ru/prices/</code></strong> — расширить с 91 до 155 символов с упоминанием тарифов Free/Light/Standard.</li>
+<li><strong>OG type исправить</strong> на <code>website</code> для 4–5 ключевых страниц — правка в Yoast или шаблоне WP.</li>
+<li><strong>Canonical главной</strong> — добавить trailing slash: <code>https://www.unisender.com/</code> вместо <code>https://www.unisender.com</code>.</li>
+</ol>
+<hr>
+<h2>Стратегия 3–6 месяцев</h2>
+<p><strong>Месяц 1 — технические быстрые правки:</strong>
+- FAQPage JSON-LD на prices + features/email
+- Title главной + meta description prices
+- OG type на коммерческих страницах
+- Canonical главной
+- noindex для авторов и тегов блога
+- Инициировать проверку CWV через PageSpeed для glossary + support</p>
+<p><strong>Месяц 1–2 — стратегический контент:</strong>
+- Обновить страницу «vs SendPulse» с акцентом на уход из РФ + миграционный оффер
+- Создать <code>/ru/features/sms/</code> — полная страница под SMS-кластер
+- Создать <code>/ru/features/chatbots/</code> — под Telegram чат-боты</p>
+<p><strong>Месяц 2–3 — расширение охвата:</strong>
+- Создать <code>/ru/features/automation/</code> — отдельная страница под «автоматизацию email»
+- Статья в Конверт «Как выбрать сервис email-рассылок 2026: сравнение 10 платформ»
+- Начать работу над разбивкой глоссария (или lazy-load)</p>
+<p><strong>Месяц 3–6 — долгосрочный контент + техника:</strong>
+- Создать <code>/ru/features/landing/</code> под «конструктор лендингов»
+- SoftwareApplication + AggregateRating JSON-LD на ключевых feature-страницах
+- hreflang аудит (решить: <code>/</code> vs <code>/ru/</code> архитектура, задекларировать в тегах)
+- После подключения Яндекс.Вебмастера — диагностика ошибок краулинга</p>
+<p><strong>Ожидаемый результат:</strong> Rich Snippets (FAQ-аккордеоны) в течение 2–4 недель после разметки. Рост CTR на страницах цен и features на 15–25%. Органический трафик по «альтернатива SendPulse» — первые позиции через 1–2 месяца после обновления страницы. Рост по SMS и чат-бот кластерам — 2–3 месяца.</p>
+<hr>
+<h2>Что НЕ вошло в аудит (и почему)</h2>
+<ul>
+<li><strong>Keys.so API данные</strong> — ежедневный лимит исчерпан 2026-04-28. Gap-анализ проведён вручную (WebSearch + WebFetch). Точные данные по частоте ключей и позициям конкурентов дополнить через <code>keyso_client.py gap</code> при следующей сессии.</li>
+<li><strong>Core Web Vitals</strong> — <code>GOOGLE_PSI_API_KEY</code> не задан в <code>.env</code>. Косвенные сигналы: глоссарий 468 KB — предположительно критические проблемы CWV. Рекомендуется проверить вручную <code>/ru/glossary/</code> и <code>/ru/support/</code> через PageSpeed Insights.</li>
+<li><strong>Яндекс.Вебмастер</strong> — нет доступа к аккаунту. Данные по индексации Яндекса отсутствуют. Рекомендуется подключить.</li>
+<li><strong>Google Search Console</strong> — нет доступа.</li>
+<li><strong>Backlink-профиль</strong> — не анализировался. Unisender — крупный игрок с многолетней историей, DR предположительно высокий.</li>
+<li><strong>Конверсия и UX</strong> — выходит за рамки SEO-аудита.</li>
+<li><strong>Субдомены</strong> (school.unisender.com, integrations.unisender.com, app.unisender.com) — отдельные сущности, требуют отдельного аудита.</li>
+</ul>
+<hr>
+<h2>Следующие шаги</h2>
+<h3>Немедленно (≤ 1 неделя)</h3>
+<ol>
+<li>FAQPage JSON-LD на <code>/ru/prices/</code> и <code>/ru/features/email/</code></li>
+<li>Title главной: 33 → 60 символов</li>
+<li>Meta description <code>/ru/prices/</code>: 91 → 155 символов</li>
+<li>OG type <code>website</code> на главной, prices, features, support</li>
+<li>Canonical главной: добавить trailing slash</li>
+</ol>
+<h3>Краткосрок (1–2 месяца)</h3>
+<ol start="6">
+<li>Обновить «vs SendPulse» — акцент на уход из РФ + миграция</li>
+<li>Создать <code>/ru/features/sms/</code></li>
+<li>Создать <code>/ru/features/chatbots/</code></li>
+<li>noindex для тегов и авторов блога</li>
+<li>Подключить Яндекс.Вебмастер</li>
+</ol>
+<h3>Среднесрок (2–4 месяца)</h3>
+<ol start="11">
+<li>Создать <code>/ru/features/automation/</code></li>
+<li>Статья «Как выбрать сервис email-рассылок 2026»</li>
+<li>Разбивка глоссария / lazy-load букв</li>
+<li>SoftwareApplication JSON-LD на feature-страницах</li>
+<li>Gap-анализ keys.so → дополнение контент-плана (2026-04-29+)</li>
+</ol></div>
+</section>
+
+
+<section class="section" id="section-gap-analysis">
+  <div class="section-head">
+    <span class="section-num">02 · GAP</span>
+  </div>
+  <h2 class="section-title">Gap-анализ конкурентов</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-28
+<strong>База:</strong> Ручной анализ (WebSearch + WebFetch по конкурентам)
+<strong>Метод:</strong> Инвентаризация SEO-страниц и контентных кластеров конкурентов, сравнение с Unisender
+<strong>Примечание:</strong> Данные keys.so (Яндекс Россия) недоступны на дату анализа (лимит API исчерпан). Gap-анализ построен на прямом изучении сайтов конкурентов. Дополнить API-данными при возможности.</p>
+<hr>
+<h2>1. Профиль unisender.com</h2>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Страниц в sitemap</td>
+<td>1047+ (главный сайт) + тысячи статей блога</td>
+</tr>
+<tr>
+<td>Поддомены в индексе</td>
+<td>school.unisender.com, integrations.unisender.com, app.unisender.com</td>
+</tr>
+<tr>
+<td>Редакционный блог</td>
+<td>Журнал «Конверт» — 1000+ статей</td>
+</tr>
+<tr>
+<td>Глоссарий</td>
+<td>400+ терминов</td>
+</tr>
+<tr>
+<td>Сравнения с конкурентами</td>
+<td>10 страниц (/ru/support/category/compare/)</td>
+</tr>
+<tr>
+<td>Позиционирование</td>
+<td>SaaS email-маркетинг + чат-боты + SMS + автоматизация + лендинги</td>
+</tr>
+<tr>
+<td>Конкурентное преимущество по контенту</td>
+<td>Крупнейший редакционный блог в нише (Конверт), глоссарий, школа</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>2. Конкуренты</h2>
+<h3>2.1. Полный список изученных конкурентов</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Позиционирование</th>
+<th>Каналы</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sendsay.ru</td>
+<td>CDP / омниканальная платформа</td>
+<td>Email, SMS, Web Push, Mobile Push, Telegram, VK</td>
+<td>Корпоративный сегмент, 4 продукта</td>
+</tr>
+<tr>
+<td>dashamail.ru</td>
+<td>Email-рассылки, фокус на доставляемость</td>
+<td>Email, Web Push, транзакционные</td>
+<td>Самый широкий набор нишевых фич-страниц</td>
+</tr>
+<tr>
+<td>rusender.ru</td>
+<td>ESP (email-first), позиционирует как аналог SendPulse</td>
+<td>Email, SMTP/API</td>
+<td>Активно атакует «альтернатива sendpulse»</td>
+</tr>
+<tr>
+<td>notisend.ru</td>
+<td>Email + SMS + мессенджеры (WhatsApp, Telegram, VK)</td>
+<td>Email, SMS, мессенджеры</td>
+<td>AI-генерация, Smart SMS Replacement</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2. Конкуренты для gap-анализа</h3>
+<p>Выбраны 4 домена как наиболее тематически близкие к Unisender:
+- <strong>sendsay.ru</strong> — прямой конкурент, схожий функционал, корпоративный сегмент
+- <strong>dashamail.ru</strong> — прямой конкурент, SMB, схожая аудитория
+- <strong>rusender.ru</strong> — прямой конкурент, активно занимает нишу «альтернатива SendPulse»
+- <strong>notisend.ru</strong> — конкурент по мессенджерам + email</p>
+<hr>
+<h2>3. Сводка: карта фич-страниц конкурентов</h2>
+<table>
+<thead>
+<tr>
+<th>Тема / Кластер</th>
+<th>Unisender</th>
+<th>Sendsay</th>
+<th>DashaMail</th>
+<th>RuSender</th>
+<th>NotiSend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email рассылки</td>
+<td>✅ /ru/features/email/</td>
+<td>✅ /features/email-delivery</td>
+<td>✅ /features/email</td>
+<td>✅ /features/email/</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SMS рассылки</td>
+<td>🟡 упоминание в /features/</td>
+<td>✅ dedicated</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅ /sms/</td>
+</tr>
+<tr>
+<td>Telegram чат-боты</td>
+<td>🟡 упоминание в /features/</td>
+<td>✅ канал</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Web Push уведомления</td>
+<td>❌ нет</td>
+<td>✅ /features/webpush</td>
+<td>✅ /features/webpush/</td>
+<td>❌ нет</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>VK-рассылки</td>
+<td>❌ нет</td>
+<td>✅ канал</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Автоматизация / триггеры</td>
+<td>🟡 /triggernye-rassylki/</td>
+<td>✅ /services/automation</td>
+<td>✅ /features/automation/</td>
+<td>❌ нет dedicated</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Транзакционные письма</td>
+<td>✅ /features/email/tranzakcionnye-rassylki/</td>
+<td>✅ /dop/transactional</td>
+<td>✅ /features/transactional/</td>
+<td>✅ /features/email/transactional/</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Конструктор писем</td>
+<td>✅ /features/email/konstruktor-pisem/</td>
+<td>✅</td>
+<td>✅ /features/online_editor/</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Лендинги</td>
+<td>🟡 упоминание в /features/</td>
+<td>❌ нет</td>
+<td>✅ /features/landings/</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Формы подписки</td>
+<td>✅ /features/email/formy-podpiski/</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>A/B тестирование</td>
+<td>🟡 в /features/email/</td>
+<td>✅</td>
+<td>✅ /features/abn/</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Email Validator</td>
+<td>❌ нет dedicated</td>
+<td>❌ нет</td>
+<td>✅ /features/email-validator/</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>AMP-рассылки</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅ /features/amp/</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>RSS-рассылки</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅ /features/rss/</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>NPS-опросы</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅ /features/nps/</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>«Российский сервис» landing</td>
+<td>❌ нет</td>
+<td>✅ /dop/russian_service</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>E-commerce / интернет-магазин</td>
+<td>❌ нет dedicated</td>
+<td>✅ blog+landing</td>
+<td>🟡 /landing/ (туризм)</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>«Альтернатива SendPulse»</td>
+<td>🟡 10-я позиция</td>
+<td>❌ нет</td>
+<td>✅ лендинг</td>
+<td>✅ поддомен</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Сравнения с конкурентами</td>
+<td>✅ 10 страниц</td>
+<td>❌ нет</td>
+<td>✅ 2-3</td>
+<td>✅ 4 шт</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Редакционный блог</td>
+<td>✅ Конверт (1000+)</td>
+<td>🟡 блог+курсы</td>
+<td>🟡 блог</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Глоссарий</td>
+<td>✅ 400+</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>✅</td>
+<td>❌ нет</td>
+</tr>
+<tr>
+<td>Школа / обучение</td>
+<td>✅ school.unisender.com</td>
+<td>✅ курсы</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+<td>❌ нет</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. Кластеры gap-ключей</h2>
+<h3>4.1. «Альтернатива SendPulse» — упущенный горячий кластер</h3>
+<p><strong>Частота:</strong> высокая (SendPulse ушёл из РФ в марте 2022 — постоянный поток новых запросов)
+<strong>У конкурентов:</strong> RuSender (поддомен sendpulse-alternative.rusender.ru), DashaMail (лендинг)
+<strong>У Unisender:</strong> устаревшая страница сравнения, 10-я позиция</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| альтернатива sendpulse россия | C | ❌ 10-я позиция |
+| замена sendpulse | C | ❌ |
+| российский аналог sendpulse | C | ❌ |
+| sendpulse не работает россия | C | ❌ |
+| перейти из sendpulse | C | ❌ |
+| сервис рассылок вместо sendpulse | C | ❌ |</p>
+<p><strong>Комментарий:</strong> Имеет смысл брать немедленно. Страница уже существует, нужно только обновление. RuSender занял топ отдельным поддоменом — у Unisender более сильный бренд, при правильной оптимизации этот запрос можно выиграть.</p>
+<hr>
+<h3>4.2. Web Push уведомления — канал без представленности</h3>
+<p><strong>Частота:</strong> средняя-высокая
+<strong>У конкурентов:</strong> Sendsay (/features/webpush), DashaMail (/features/webpush/), NotiSend, eSputnik
+<strong>У Unisender:</strong> нет dedicated SEO-страницы (неизвестно, есть ли функционал)</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| web push уведомления для сайта | T | ❌ |
+| сервис web push уведомлений | T | ❌ |
+| браузерные push уведомления сервис | T | ❌ |
+| бесплатные push уведомления | C | ❌ |</p>
+<p><strong>Комментарий:</strong> Если у Unisender есть web push функционал — нужна dedicated страница. Если нет — рассмотреть добавление (конкуренты используют как USP омниканального охвата). DashaMail и Sendsay активно ранжируются по этому кластеру.</p>
+<hr>
+<h3>4.3. Email для ecommerce / интернет-магазина</h3>
+<p><strong>Частота:</strong> высокая
+<strong>У конкурентов:</strong> Sendsay (контент + лендинг для e-commerce), DashaMail (туристический лендинг как пример)
+<strong>У Unisender:</strong> статьи в блоге (брошенная корзина, рассылки для магазина), нет dedicated лендинга</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| email рассылки для интернет-магазина | T | 🟡 только блог |
+| письма брошенной корзины | I/T | 🟡 только блог |
+| email маркетинг для ecommerce | I/T | 🟡 только блог |
+| триггерные письма для магазина | T | 🟡 только /triggernye-rassylki/ |
+| welcome письма для магазина | I | 🟡 только блог |</p>
+<p><strong>Комментарий:</strong> Ecommerce — крупнейший B2B-сегмент для ESP. Unisender есть в Bitrix24 маркетплейсе и упоминается в WooCommerce-гайдах, но нет dedicated лендинга «Email-маркетинг для интернет-магазина». Sendsay атакует этот сегмент напрямую.</p>
+<hr>
+<h3>4.4. «Российский сервис рассылок» / ФЗ-152</h3>
+<p><strong>Частота:</strong> средняя, но стратегически важная (B2B-доверие)
+<strong>У конкурентов:</strong> Sendsay (/dop/russian_service) — явная страница с акцентом на российскую инфраструктуру
+<strong>У Unisender:</strong> нет dedicated страницы, хотя это российская компания</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| российский сервис email рассылок | C | 🟡 нет dedicated |
+| сервис рассылок хранение данных россия | C | ❌ |
+| email рассылки соответствие ФЗ-152 | C | ❌ |
+| российские сервисы email рассылок 2026 | I/C | 🟡 попадает в обзоры |</p>
+<p><strong>Комментарий:</strong> После ухода западных сервисов «российский» стал важным фактором выбора. Sendsay прямо атакует этот запрос. Unisender — российская компания с инфраструктурой в РФ, но нигде не делает на этом акцент как на SEO-странице.</p>
+<hr>
+<h3>4.5. AMP-рассылки — нишевый, без конкуренции</h3>
+<p><strong>Частота:</strong> низкая-средняя, растущая
+<strong>У конкурентов:</strong> только DashaMail (/features/amp/)
+<strong>У Unisender:</strong> нет</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| amp email рассылки | I/T | ❌ |
+| интерактивные email письма | I | ❌ |
+| динамические письма google amp | I | ❌ |</p>
+<p><strong>Комментарий:</strong> Нишевый, но DashaMail получает уникальный трафик по теме. Если у Unisender есть AMP поддержка — нужна страница. Если нет — рассмотреть как конкурентное преимущество для разработки.</p>
+<hr>
+<h3>4.6. Email Validator / Валидация базы</h3>
+<p><strong>Частота:</strong> средняя
+<strong>У конкурентов:</strong> DashaMail (/features/email-validator/), RuSender
+<strong>У Unisender:</strong> нет dedicated SEO-страницы (может быть как инструмент в платформе)</p>
+<p><strong>Топ-фразы кластера:</strong>
+| Фраза | Интент | Покрытие |
+|-------|--------|---------|
+| валидация email базы | T | ❌ |
+| проверка email адресов | T | ❌ |
+| email validator онлайн | T | ❌ |
+| очистка базы email | T | ❌ |</p>
+<p><strong>Комментарий:</strong> Инструментальный запрос с прямой конверсией. Если функционал есть — нужна страница.</p>
+<hr>
+<h2>5. Приоритетные направления (топ-3)</h2>
+<h3>5.1. «Альтернатива SendPulse» — НЕМЕДЛЕННО</h3>
+<p><strong>Обоснование:</strong> SendPulse ушёл из России в марте 2022. Ежемесячный поток транзакционных запросов от аудитории, которая ищет замену прямо сейчас. У Unisender уже есть страница — нужно только обновление (1–2 часа работы). RuSender захватил топ с выделенным поддоменом, DashaMail — с лендингом. Unisender как крупнейший игрок должен лидировать по этому запросу.</p>
+<p><strong>Конкретные шаги:</strong>
+1. Переписать H1 и вводный блок: «Ищете альтернативу SendPulse? Unisender работает в России»
+2. Добавить секцию «SendPulse недоступен в РФ с марта 2022 года»
+3. Добавить пошаговую инструкцию «Как перенести базу из SendPulse в Unisender»
+4. CTA: «Перенесём вашу базу из SendPulse бесплатно»
+5. FAQ: «Работает ли SendPulse в России?», «Как сохранить историю рассылок при переходе?»</p>
+<p><strong>Ожидаемый эффект:</strong> топ-3 по «альтернатива sendpulse» за 4–8 недель.</p>
+<hr>
+<h3>5.2. Email для интернет-магазина — отдельный лендинг</h3>
+<p><strong>Обоснование:</strong> Ecommerce — крупнейший покупающий сегмент для ESP. У Unisender есть интеграции с WooCommerce, Bitrix, Shopify (через integrations.unisender.com), но нет SEO-страницы под «email маркетинг для интернет-магазина». Sendsay закрыл этот кластер; у Unisender преимущество — более широкий канальный охват (email + SMS + чат-боты + лендинги для магазина).</p>
+<p><strong>Конкретные шаги:</strong>
+1. Создать <code>/ru/solutions/internet-magazin/</code> (или <code>/ru/use-cases/ecommerce/</code>) — 1200–1500 слов
+2. H1: «Email-маркетинг для интернет-магазина: рассылки, триггеры, брошенные корзины»
+3. Секции: брошенная корзина, welcome-серия, реактивация, постпродажные письма
+4. Блок с метриками: «60–72% посетителей бросают корзину. Email вернёт каждого второго»
+5. Кейс + CTA «Подключить магазин»</p>
+<p><strong>Ожидаемый эффект:</strong> органический трафик по ecommerce-кластеру за 2–3 месяца.</p>
+<hr>
+<h3>5.3. Web Push уведомления — закрыть пробел в канальном охвате</h3>
+<p><strong>Обоснование:</strong> Sendsay, DashaMail, NotiSend — все имеют Web Push. Unisender позиционируется как «всё в одном», но без Web Push теряет запросы от аудитории, которая ищет омниканальный инструмент. Web Push — растущий канал с открываемостью до 90%.</p>
+<p><strong>Конкретные шаги:</strong>
+1. Если функционал есть — создать <code>/ru/features/webpush/</code> по образцу DashaMail
+2. H1: «Web Push уведомления для сайта — Unisender»
+3. 800–1000 слов, примеры сценариев (брошенная корзина, акции, новинки)
+4. Если функционала нет — рассмотреть партнёрство или добавление в roadmap</p>
+<hr>
+<h2>6. Что НЕ брать и почему</h2>
+<table>
+<thead>
+<tr>
+<th>Тема</th>
+<th>Причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RSS-рассылки</td>
+<td>Нишевый кластер, только DashaMail — малый объём трафика. Добавлять только если функционал уже есть.</td>
+</tr>
+<tr>
+<td>NPS-опросы</td>
+<td>Вне core-продукта email-маркетинга. Инструментальный запрос с низкой конверсией для ESP.</td>
+</tr>
+<tr>
+<td>AMP-рассылки</td>
+<td>Нишевый, технически сложный. Брать только если есть поддержка в платформе.</td>
+</tr>
+<tr>
+<td>VK-рассылки</td>
+<td>Очень конкурентный кластер (VK сам является поставщиком). Sendsay и NotiSend занимают этот рынок.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Приложение: сравнение ключевых характеристик конкурентов</h2>
+<table>
+<thead>
+<tr>
+<th>Характеристика</th>
+<th>Unisender</th>
+<th>Sendsay</th>
+<th>DashaMail</th>
+<th>RuSender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Бесплатный тариф</td>
+<td>✅ до 1500 писем / 100 контактов</td>
+<td>❌ нет</td>
+<td>✅ есть</td>
+<td>✅ до 2000 писем / 500 контактов</td>
+</tr>
+<tr>
+<td>Каналы</td>
+<td>Email, SMS, Telegram, Лендинги</td>
+<td>Email, SMS, Telegram, VK, Push</td>
+<td>Email, Web Push</td>
+<td>Email, SMTP</td>
+</tr>
+<tr>
+<td>CDP / поведенческая авт.</td>
+<td>🟡 базовая</td>
+<td>✅ полноценная CDP</td>
+<td>🟡 модуль CDP</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Блог / образование</td>
+<td>✅ Конверт (крупнейший)</td>
+<td>✅ курсы</td>
+<td>🟡</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Сравнения с конкурентами</td>
+<td>✅ 10</td>
+<td>❌</td>
+<td>✅ 2-3</td>
+<td>✅ 4</td>
+</tr>
+<tr>
+<td>Акцент «российский сервис»</td>
+<td>❌ нет страницы</td>
+<td>✅ есть</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Позиционирование</td>
+<td>SMB + Email-first</td>
+<td>CDP / Enterprise</td>
+<td>Email-first</td>
+<td>ESP</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+
+<section class="section" id="section-content-audit">
+  <div class="section-head">
+    <span class="section-num">03 · CONTENT</span>
+  </div>
+  <h2 class="section-title">Контент и семантика</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-28
+<strong>Ниша:</strong> SaaS email-маркетинга (email-рассылки, чат-боты, SMS, автоматизация, лендинги)
+<strong>Целевой регион:</strong> Россия + Беларусь (приоритет), Яндекс / Google RU</p>
+<hr>
+<h2>1. Текущий контент сайта</h2>
+<h3>1.1. Страницы по типам</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Тип</th>
+<th>H1</th>
+<th>Title</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/ (www)</td>
+<td>Главная / лендинг</td>
+<td>Сервис email-рассылок Unisender.</td>
+<td>Unisender — сервис Email рассылок (33 симв.)</td>
+<td>Перехватывает все небрендовые запросы</td>
+</tr>
+<tr>
+<td>/ru/features/</td>
+<td>Обзор продукта</td>
+<td>Возможности Unisender</td>
+<td>84 симв. — слишком длинный</td>
+<td>Хаб для sub-feature страниц</td>
+</tr>
+<tr>
+<td>/ru/features/email/</td>
+<td>Продуктовый лендинг</td>
+<td>Email рассылка</td>
+<td>55 симв. ✓</td>
+<td>Главная коммерческая страница</td>
+</tr>
+<tr>
+<td>/ru/features/email/konstruktor-pisem/</td>
+<td>Фича-страница</td>
+<td>—</td>
+<td>Конструктор писем</td>
+<td>Конкурирует по «конструктор писем»</td>
+</tr>
+<tr>
+<td>/ru/features/email/triggernye-rassylki/</td>
+<td>Фича-страница</td>
+<td>—</td>
+<td>Триггерные рассылки</td>
+<td>Конкурирует по «триггерные письма»</td>
+</tr>
+<tr>
+<td>/ru/features/email/tranzakcionnye-rassylki/</td>
+<td>Фича-страница</td>
+<td>—</td>
+<td>Транзакционные рассылки</td>
+<td>Конкурирует по «транзакционные письма smtp»</td>
+</tr>
+<tr>
+<td>/ru/features/email/personalizirovannaja-rassylka-pisem/</td>
+<td>Фича-страница</td>
+<td>—</td>
+<td>Персонализированная рассылка</td>
+<td>—</td>
+</tr>
+<tr>
+<td>/ru/features/email/formy-podpiski/</td>
+<td>Фича-страница</td>
+<td>—</td>
+<td>Формы подписки</td>
+<td>—</td>
+</tr>
+<tr>
+<td>/ru/prices/</td>
+<td>Ценообразование</td>
+<td>Цены на email рассылки</td>
+<td>34 симв. — короткий</td>
+<td>Слабый meta description (91 симв.)</td>
+</tr>
+<tr>
+<td>/ru/about/</td>
+<td>О компании</td>
+<td>—</td>
+<td>—</td>
+<td>Брендовый трафик</td>
+</tr>
+<tr>
+<td>/ru/templates/</td>
+<td>Галерея шаблонов</td>
+<td>—</td>
+<td>100+ HTML шаблонов</td>
+<td>Конкурирует по «шаблоны email рассылок»</td>
+</tr>
+<tr>
+<td>/ru/blog/</td>
+<td>Редакция «Конверт»</td>
+<td>Конверт</td>
+<td>78 симв. — длинный</td>
+<td>1000+ статей, Yoast SEO ✓</td>
+</tr>
+<tr>
+<td>/ru/blog/articles/</td>
+<td>Архив блога</td>
+<td>Все статьи</td>
+<td>38 симв. ✓</td>
+<td>—</td>
+</tr>
+<tr>
+<td>/ru/support/</td>
+<td>База знаний</td>
+<td>База знаний</td>
+<td>44 симв. ✓</td>
+<td>194 KB HTML</td>
+</tr>
+<tr>
+<td>/ru/glossary/</td>
+<td>Глоссарий</td>
+<td>Словарь маркетолога</td>
+<td>32 симв. — короткий</td>
+<td>468 KB HTML, 400+ терминов</td>
+</tr>
+<tr>
+<td>/ru/support/category/compare/</td>
+<td>Сравнения</td>
+<td>—</td>
+<td>—</td>
+<td>10 конкурентов</td>
+</tr>
+<tr>
+<td>/ru/support/compare/sravnenie-unisender-i-sendpulse/</td>
+<td>vs SendPulse</td>
+<td>—</td>
+<td>—</td>
+<td>SendPulse ушёл из РФ — стратегическая страница</td>
+</tr>
+<tr>
+<td>school.unisender.com</td>
+<td>Школа</td>
+<td>—</td>
+<td>—</td>
+<td>Отдельный поддомен</td>
+</tr>
+<tr>
+<td>integrations.unisender.com</td>
+<td>Интеграции</td>
+<td>—</td>
+<td>—</td>
+<td>Отдельный поддомен</td>
+</tr>
+</tbody>
+</table>
+<h3>1.2. Структурный вывод</h3>
+<p>Unisender имеет <strong>зрелую контент-архитектуру</strong>: продуктовые лендинги по каждой фиче, ценовая страница, кравильный блог (1000+ статей), глоссарий (400+ терминов), база знаний, сравнения с 10 конкурентами. Инфраструктура SEO присутствует — Yoast для блога, sitemap, robots.txt.</p>
+<p><strong>Проблема не в отсутствии контента, а в его оптимизации и точечных gap&rsquo;ах.</strong></p>
+<hr>
+<h2>2. Семантическое ядро</h2>
+<h3>2.1. Таблица ключевых фраз</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Фраза</th>
+<th>Примерная частота</th>
+<th>Интент</th>
+<th>Кластер</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>сервис email рассылок</td>
+<td>очень высокая</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>2</td>
+<td>email рассылки для бизнеса</td>
+<td>высокая</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>3</td>
+<td>программа для email рассылок</td>
+<td>высокая</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>4</td>
+<td>платформа email маркетинга</td>
+<td>средняя</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>5</td>
+<td>сервис для массовой рассылки писем</td>
+<td>высокая</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>6</td>
+<td>email маркетинг сервис бесплатно</td>
+<td>высокая</td>
+<td>T</td>
+<td>1. Главный продукт</td>
+</tr>
+<tr>
+<td>7</td>
+<td>цены email рассылки</td>
+<td>высокая</td>
+<td>C</td>
+<td>2. Тарифы</td>
+</tr>
+<tr>
+<td>8</td>
+<td>тарифы сервис рассылок</td>
+<td>средняя</td>
+<td>C</td>
+<td>2. Тарифы</td>
+</tr>
+<tr>
+<td>9</td>
+<td>бесплатный сервис рассылок</td>
+<td>высокая</td>
+<td>C</td>
+<td>2. Тарифы</td>
+</tr>
+<tr>
+<td>10</td>
+<td>unisender тарифы</td>
+<td>средняя</td>
+<td>N</td>
+<td>2. Тарифы</td>
+</tr>
+<tr>
+<td>11</td>
+<td>unisender стоимость</td>
+<td>средняя</td>
+<td>N</td>
+<td>2. Тарифы</td>
+</tr>
+<tr>
+<td>12</td>
+<td>лучший сервис email рассылок</td>
+<td>высокая</td>
+<td>I/C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>13</td>
+<td>выбрать сервис для email рассылок</td>
+<td>средняя</td>
+<td>I/C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>14</td>
+<td>альтернатива sendpulse россия</td>
+<td>высокая</td>
+<td>C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>15</td>
+<td>замена sendpulse</td>
+<td>средняя</td>
+<td>C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>16</td>
+<td>unisender vs sendsay</td>
+<td>средняя</td>
+<td>C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>17</td>
+<td>unisender vs dashamail</td>
+<td>средняя</td>
+<td>C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>18</td>
+<td>российские сервисы email рассылок</td>
+<td>высокая</td>
+<td>I/C</td>
+<td>3. Выбор/сравнение</td>
+</tr>
+<tr>
+<td>19</td>
+<td>триггерные письма</td>
+<td>высокая</td>
+<td>I/T</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>20</td>
+<td>цепочки писем</td>
+<td>средняя</td>
+<td>I/T</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>21</td>
+<td>автоматизация email маркетинга</td>
+<td>высокая</td>
+<td>I/T</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>22</td>
+<td>welcome серия писем</td>
+<td>средняя</td>
+<td>I</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>23</td>
+<td>брошенная корзина email</td>
+<td>средняя</td>
+<td>T</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>24</td>
+<td>триггерные рассылки настройка</td>
+<td>средняя</td>
+<td>I</td>
+<td>4. Автоматизация</td>
+</tr>
+<tr>
+<td>25</td>
+<td>конструктор писем для рассылок</td>
+<td>высокая</td>
+<td>T</td>
+<td>5. Конструктор/шаблоны</td>
+</tr>
+<tr>
+<td>26</td>
+<td>шаблоны email рассылок бесплатно</td>
+<td>высокая</td>
+<td>T</td>
+<td>5. Конструктор/шаблоны</td>
+</tr>
+<tr>
+<td>27</td>
+<td>html шаблоны писем</td>
+<td>средняя</td>
+<td>T</td>
+<td>5. Конструктор/шаблоны</td>
+</tr>
+<tr>
+<td>28</td>
+<td>drag and drop редактор писем</td>
+<td>средняя</td>
+<td>T</td>
+<td>5. Конструктор/шаблоны</td>
+</tr>
+<tr>
+<td>29</td>
+<td>транзакционные письма</td>
+<td>высокая</td>
+<td>T</td>
+<td>6. Транзакционные</td>
+</tr>
+<tr>
+<td>30</td>
+<td>smtp сервис для рассылок</td>
+<td>средняя</td>
+<td>T</td>
+<td>6. Транзакционные</td>
+</tr>
+<tr>
+<td>31</td>
+<td>отправка email через api</td>
+<td>средняя</td>
+<td>T</td>
+<td>6. Транзакционные</td>
+</tr>
+<tr>
+<td>32</td>
+<td>интеграция unisender bitrix24</td>
+<td>средняя</td>
+<td>T</td>
+<td>7. Интеграции</td>
+</tr>
+<tr>
+<td>33</td>
+<td>unisender woocommerce</td>
+<td>средняя</td>
+<td>T</td>
+<td>7. Интеграции</td>
+</tr>
+<tr>
+<td>34</td>
+<td>api email рассылок</td>
+<td>средняя</td>
+<td>T</td>
+<td>7. Интеграции</td>
+</tr>
+<tr>
+<td>35</td>
+<td>что такое email маркетинг</td>
+<td>высокая</td>
+<td>I</td>
+<td>8. Образование</td>
+</tr>
+<tr>
+<td>36</td>
+<td>email маркетинг для начинающих</td>
+<td>средняя</td>
+<td>I</td>
+<td>8. Образование</td>
+</tr>
+<tr>
+<td>37</td>
+<td>как начать email маркетинг</td>
+<td>средняя</td>
+<td>I</td>
+<td>8. Образование</td>
+</tr>
+<tr>
+<td>38</td>
+<td>email маркетинг ROI</td>
+<td>средняя</td>
+<td>I</td>
+<td>8. Образование</td>
+</tr>
+<tr>
+<td>39</td>
+<td>sms рассылки для бизнеса</td>
+<td>высокая</td>
+<td>T</td>
+<td>9. SMS</td>
+</tr>
+<tr>
+<td>40</td>
+<td>массовая sms рассылка</td>
+<td>высокая</td>
+<td>T</td>
+<td>9. SMS</td>
+</tr>
+<tr>
+<td>41</td>
+<td>sms рассылка стоимость</td>
+<td>средняя</td>
+<td>C</td>
+<td>9. SMS</td>
+</tr>
+<tr>
+<td>42</td>
+<td>telegram чат-бот для бизнеса</td>
+<td>высокая</td>
+<td>T</td>
+<td>10. Чат-боты</td>
+</tr>
+<tr>
+<td>43</td>
+<td>бот для рассылок telegram</td>
+<td>средняя</td>
+<td>T</td>
+<td>10. Чат-боты</td>
+</tr>
+<tr>
+<td>44</td>
+<td>конструктор чат-ботов telegram</td>
+<td>высокая</td>
+<td>T</td>
+<td>10. Чат-боты</td>
+</tr>
+<tr>
+<td>45</td>
+<td>конструктор лендингов</td>
+<td>очень высокая</td>
+<td>T</td>
+<td>11. Лендинги</td>
+</tr>
+<tr>
+<td>46</td>
+<td>создать лендинг онлайн бесплатно</td>
+<td>высокая</td>
+<td>T</td>
+<td>11. Лендинги</td>
+</tr>
+<tr>
+<td>47</td>
+<td>форма подписки на сайт</td>
+<td>высокая</td>
+<td>T</td>
+<td>12. Сбор базы</td>
+</tr>
+<tr>
+<td>48</td>
+<td>как собрать базу email подписчиков</td>
+<td>средняя</td>
+<td>I</td>
+<td>12. Сбор базы</td>
+</tr>
+<tr>
+<td>49</td>
+<td>доставляемость email рассылок</td>
+<td>средняя</td>
+<td>I/T</td>
+<td>13. Доставляемость</td>
+</tr>
+<tr>
+<td>50</td>
+<td>spf dkim dmarc настройка</td>
+<td>средняя</td>
+<td>I</td>
+<td>13. Доставляемость</td>
+</tr>
+<tr>
+<td>51</td>
+<td>письма в спам что делать</td>
+<td>средняя</td>
+<td>I</td>
+<td>13. Доставляемость</td>
+</tr>
+<tr>
+<td>52</td>
+<td>сегментация базы email</td>
+<td>средняя</td>
+<td>I</td>
+<td>14. Аналитика</td>
+</tr>
+<tr>
+<td>53</td>
+<td>open rate click rate email</td>
+<td>средняя</td>
+<td>I</td>
+<td>14. Аналитика</td>
+</tr>
+<tr>
+<td>54</td>
+<td>ab тест email рассылки</td>
+<td>средняя</td>
+<td>I/T</td>
+<td>14. Аналитика</td>
+</tr>
+<tr>
+<td>55</td>
+<td>unisender отзывы</td>
+<td>средняя</td>
+<td>I/C</td>
+<td>Брендовый</td>
+</tr>
+</tbody>
+</table>
+<p><em>Частота — экспертная оценка по нише, без данных keys.so (лимит исчерпан 2026-04-28, доступен с 2026-04-29).</em></p>
+<hr>
+<h2>3. Кластеры</h2>
+<h3>3.1. Таблица кластеров</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Кластер</th>
+<th>Запросов</th>
+<th>Частота суммарно</th>
+<th>Интент</th>
+<th>Страница</th>
+<th>Покрытие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Главный продукт (email сервис)</td>
+<td>6</td>
+<td>очень высокая</td>
+<td>T</td>
+<td>/, /ru/features/email/</td>
+<td>🟡 есть, не оптимизирован</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Тарифы / Цены</td>
+<td>5</td>
+<td>высокая</td>
+<td>C</td>
+<td>/ru/prices/</td>
+<td>🟡 есть, слабый meta</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Выбор / Сравнение / Альтернативы</td>
+<td>7</td>
+<td>высокая</td>
+<td>C/I</td>
+<td>/ru/support/category/compare/</td>
+<td>❌ слабое (10-е место по «альтернатива sendpulse»)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Автоматизация / Триггеры</td>
+<td>6</td>
+<td>высокая</td>
+<td>T/I</td>
+<td>/ru/features/email/triggernye-rassylki/</td>
+<td>🟡 есть фича, нет большой SEO-страницы</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Конструктор / Шаблоны</td>
+<td>4</td>
+<td>высокая</td>
+<td>T</td>
+<td>/ru/features/email/konstruktor-pisem/, /ru/templates/</td>
+<td>✅ хорошо закрыт</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Транзакционные / SMTP / API</td>
+<td>3</td>
+<td>средняя</td>
+<td>T</td>
+<td>/ru/features/email/tranzakcionnye-rassylki/</td>
+<td>🟡 есть, не оптимизирован</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Интеграции</td>
+<td>3</td>
+<td>средняя</td>
+<td>T</td>
+<td>integrations.unisender.com</td>
+<td>🟡 поддомен, не оптимизирован под SEO</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Email-маркетинг (образование)</td>
+<td>4</td>
+<td>высокая</td>
+<td>I</td>
+<td>/ru/blog/ (много статей)</td>
+<td>✅ блог закрывает</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SMS-рассылки</td>
+<td>3</td>
+<td>высокая</td>
+<td>T</td>
+<td>/ru/features/ (упоминание)</td>
+<td>❌ нет отдельной SEO-страницы</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Чат-боты Telegram</td>
+<td>3</td>
+<td>высокая</td>
+<td>T</td>
+<td>/ru/features/ (упоминание)</td>
+<td>❌ нет отдельной SEO-страницы</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Лендинги</td>
+<td>2</td>
+<td>высокая</td>
+<td>T</td>
+<td>/ru/features/ (упоминание)</td>
+<td>❌ нет отдельной SEO-страницы</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Сбор базы / Формы подписки</td>
+<td>2</td>
+<td>средняя</td>
+<td>I/T</td>
+<td>/ru/features/email/formy-podpiski/, блог</td>
+<td>🟡 есть фича-страница</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Доставляемость</td>
+<td>3</td>
+<td>средняя</td>
+<td>I</td>
+<td>/ru/blog/ (статьи), /ru/support/</td>
+<td>🟡 рассредоточено по блогу</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Аналитика / A/B тесты</td>
+<td>3</td>
+<td>средняя</td>
+<td>I</td>
+<td>/ru/blog/</td>
+<td>🟡 есть в блоге</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. SERP-анализ приоритетных кластеров</h2>
+<h3>4.1. Кластер «Альтернатива SendPulse» — ключевой запрос «альтернатива sendpulse россия»</h3>
+<p><strong>Почему приоритетный:</strong>
+SendPulse с марта 2022 года прекратил обслуживание клиентов из РФ. Это огромный рынок перебежчиков. Запросы «альтернатива sendpulse», «замена sendpulse», «российский аналог sendpulse» — высокочастотные и транзакционные (человек ищет замену прямо сейчас).</p>
+<p><strong>Кто в топе Яндекса/Google:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Домен</th>
+<th>Тип страницы</th>
+<th>Формат</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>picktech.ru</td>
+<td>Агрегатор/обзор</td>
+<td>Статья-список</td>
+<td>Нейтральный рейтинг 2025</td>
+</tr>
+<tr>
+<td>2</td>
+<td>crmindex.ru</td>
+<td>Агрегатор</td>
+<td>«111 похожих сервисов»</td>
+<td>Широкий список, нет глубины</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a2is.ru</td>
+<td>Агрегатор</td>
+<td>Список</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rusender.ru</td>
+<td>Прямой конкурент</td>
+<td>Лендинг «RuSender — аналог SendPulse»</td>
+<td>Отдельный поддомен sendpulse-alternative.rusender.ru — агрессивная SEO-атака</td>
+</tr>
+<tr>
+<td>5</td>
+<td>startpack.ru</td>
+<td>Агрегатор</td>
+<td>«50 сервисов»</td>
+<td>Каталог</td>
+</tr>
+<tr>
+<td>6</td>
+<td>uguide.ru</td>
+<td>Блог</td>
+<td>Статья «Лучшие российские аналоги»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>dashamail.ru</td>
+<td>Прямой конкурент</td>
+<td>Лендинг «Альтернатива SendPulse»</td>
+<td>Прямо атакует этот запрос</td>
+</tr>
+<tr>
+<td>8</td>
+<td>petr-panda.ru</td>
+<td>Блог</td>
+<td>Обзор аналогов</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td>svoivit.ru</td>
+<td>Агрегатор</td>
+<td>Список аналогов</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>unisender.com</td>
+<td>Сравнение</td>
+<td>/ru/support/compare/sravnenie-unisender-i-sendpulse/</td>
+<td>10-я позиция</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн топа:</strong> Все агрегаторы и обзорники, 2 прямых конкурента с dedicated лендингами (RuSender, DashaMail). Unisender на 10-й позиции — это провал для брендового запроса «Unisender vs SendPulse».</p>
+<p><strong>Что взять:</strong> RuSender создал отдельный поддомен <code>sendpulse-alternative.rusender.ru</code> с явным сигналом «мы замена SendPulse». Unisender должен обновить страницу <code>/ru/support/compare/sravnenie-unisender-i-sendpulse/</code> и добавить явный заголовок «SendPulse недоступен в России с 2022 года — переходите на Unisender», миграционный оффер, FAQ по переносу данных.</p>
+<hr>
+<h3>4.2. Кластер «Лучший сервис email рассылок» — запрос «лучший сервис email рассылок для малого бизнеса»</h3>
+<p><strong>Топ Яндекса/Google:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Домен</th>
+<th>Тип</th>
+<th>Формат</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>kp.ru</td>
+<td>СМИ</td>
+<td>«8 лучших сервисов email-рассылок 2026»</td>
+<td>Авторитетный источник, статья-рейтинг</td>
+</tr>
+<tr>
+<td>2</td>
+<td>zazumedia.ru</td>
+<td>Агентство</td>
+<td>Обзор</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>directline.pro</td>
+<td>Агентство</td>
+<td>«Рейтинг 2026»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>onreport.ru</td>
+<td>Медиа</td>
+<td>«Сравнение и тарифы»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>kokoc.com</td>
+<td>Агентство</td>
+<td>«ТОП-7 сервисов»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td>okocrm.com</td>
+<td>CRM-блог</td>
+<td>Список</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>dashamail.ru</td>
+<td>Конкурент</td>
+<td>«8 российских сервисов»</td>
+<td>Конкурент пишет рейтинг, в котором себя ставит первым</td>
+</tr>
+<tr>
+<td>8</td>
+<td>secrets.tbank.ru</td>
+<td>T-Банк</td>
+<td>Обзор</td>
+<td>Авторитетный источник</td>
+</tr>
+<tr>
+<td>9</td>
+<td>emailmatrix.ru</td>
+<td>Агентство</td>
+<td>«20 сервисов»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>websiteplanet.com</td>
+<td>Агрегатор</td>
+<td>«10 лучших»</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн топа:</strong> Все — сторонние обзоры и рейтинги. Ни один сервис (ни Unisender, ни конкуренты) <strong>не ранжируется по своей главной коммерческой странице</strong> по этому запросу — топ захвачен медиа.</p>
+<p><strong>Что взять:</strong> Запрос информационный (пользователь ещё выбирает). Нужна статья в блоге Конверт: «Как выбрать сервис email-рассылок в 2026 году: критерии и сравнение». Unisender уже появляется в таких рейтингах — статья поможет перехватить трафик внутри.</p>
+<hr>
+<h3>4.3. Кластер «Email-маркетинг для бизнеса» — запрос «что такое email маркетинг»</h3>
+<p><strong>Топ Яндекса/Google:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Домен</th>
+<th>Тип</th>
+<th>Формат</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>practicum.yandex.ru</td>
+<td>Яндекс</td>
+<td>Гайд</td>
+<td>Мощный домен, длинная статья</td>
+</tr>
+<tr>
+<td>2</td>
+<td>yandex.ru/adv</td>
+<td>Яндекс</td>
+<td>Образовательная страница</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>digital-academy.ru</td>
+<td>Онлайн-школа</td>
+<td>«5 шагов»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>addshop.ru</td>
+<td>Блог</td>
+<td>Полное руководство</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>hellobar.com</td>
+<td>SaaS</td>
+<td>Гайд для начинающих</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td>synergy.ru</td>
+<td>Университет</td>
+<td>Образовательная</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>esputnik.com</td>
+<td>Конкурент</td>
+<td>«Что такое email-маркетинг»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>retailrocket.ru</td>
+<td>CDP</td>
+<td>Гайд</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td>wix.com</td>
+<td>SaaS</td>
+<td>«Руководство для новичков»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>unisender.com</td>
+<td>—</td>
+<td>В блоге, не на основном сайте</td>
+<td>Присутствует, позиция не определена</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн топа:</strong> Длинные руководства (1500-3000 слов), авторитетные домены. Unisender конкурирует блогом «Конверт» — это правильная стратегия.</p>
+<p><strong>Что взять:</strong> Unisender должен убедиться, что в блоге есть эталонная статья «Что такое email-маркетинг» — полное руководство 2000+ слов с таблицами, примерами и конкретными шагами. Такая статья уже скорее всего есть в 1000+ статьях «Конверта» — нужно её найти и оптимизировать.</p>
+<hr>
+<h2>5. Контент-план (рекомендации)</h2>
+<h3>5.1. High priority</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1 (целевой)</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>/ru/support/compare/sravnenie-unisender-i-sendpulse/</td>
+<td>Обновление существующей</td>
+<td>Альтернатива SendPulse</td>
+<td>«Unisender — лучшая альтернатива SendPulse для России»</td>
+<td>Обновить: добавить факт ухода SendPulse из РФ (март 2022), раздел «Как перенести базу из SendPulse в Unisender», FAQ по миграции. Объём 1000-1500 слов. Добавить CTA «Перенесём вашу базу бесплатно».</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/ (homepage)</td>
+<td>Оптимизация title</td>
+<td>Главный продукт</td>
+<td>Сервис email-рассылок Unisender.</td>
+<td>Расширить title с 33 до 60 символов: «Unisender — сервис email-рассылок и маркетинговой автоматизации». Исправить canonical и OG type.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/ru/prices/</td>
+<td>Оптимизация мета</td>
+<td>Тарифы</td>
+<td>Цены на email рассылки</td>
+<td>Расширить meta description с 91 до 155 символов. Добавить FAQPage JSON-LD для 5 имеющихся FAQ-вопросов. Добавить PriceSpecification в JSON-LD.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/ru/features/email/</td>
+<td>Оптимизация</td>
+<td>Главный продукт</td>
+<td>Email рассылка</td>
+<td>Исправить OG type с «article» на «website». Добавить FAQPage JSON-LD (5 FAQ уже есть). Сократить meta description с 192 до 155 символов.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>/ru/blog/[статья] «Как выбрать сервис email-рассылок»</td>
+<td>Новая статья или обновление</td>
+<td>Выбор/сравнение</td>
+<td>«Как выбрать сервис email-рассылок в 2026 году: сравнение 10 платформ»</td>
+<td>Статья для блога Конверт. 1500-2500 слов. Критерии выбора + сравнительная таблица (Unisender vs Sendsay vs DashaMail vs NotiSend). Призыв в конце: «Попробуйте Unisender бесплатно».</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2. Medium priority</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1 (целевой)</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>/ru/features/sms/</td>
+<td>Новая страница</td>
+<td>SMS-рассылки</td>
+<td>«SMS-рассылки для бизнеса»</td>
+<td>Сейчас SMS упоминается только в /ru/features/. Нужна полная фича-страница по образцу /ru/features/email/. 800-1200 слов.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>/ru/features/chatbots/</td>
+<td>Новая страница</td>
+<td>Чат-боты Telegram</td>
+<td>«Чат-боты для Telegram»</td>
+<td>Аналогично SMS — нужна отдельная страница. Telegram-боты высокочастотный запрос. 800-1200 слов.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>/ru/features/automation/</td>
+<td>Новая страница</td>
+<td>Автоматизация</td>
+<td>«Автоматизация email-маркетинга»</td>
+<td>Сейчас нет страницы под слово «автоматизация». Есть только /triggernye-rassylki/. 1000-1500 слов с визуализацией сценариев.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>/ru/glossary/</td>
+<td>Технический фикс</td>
+<td>—</td>
+<td>Словарь маркетолога</td>
+<td>Разбить страницу на пагинацию или lazy-load по буквам. Сократить HTML с 468 KB. Исправить meta description с 216 до 155 симв.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>/ru/features/landing/</td>
+<td>Новая страница</td>
+<td>Лендинги</td>
+<td>«Конструктор лендингов для email-маркетинга»</td>
+<td>Конструктор лендингов — очень конкурентный запрос. Нужна страница с CTA, примерами, кейсами.</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3. Low priority (но стратегически важно)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1 (целевой)</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>/ru/blog/ — статья «Доставляемость email»</td>
+<td>Новая/обновление</td>
+<td>Доставляемость</td>
+<td>«Доставляемость email-рассылок: как настроить SPF, DKIM, DMARC»</td>
+<td>Унифицированное руководство. Сейчас тема разбита по множеству статей блога.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>/ru/blog/ — статья «Email маркетинг ROI»</td>
+<td>Новая</td>
+<td>Образование</td>
+<td>«ROI email-маркетинга в 2026: статистика и как считать»</td>
+<td>Вечнозелёная статья с цифрами, ежегодно обновляемая.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>integrations.unisender.com</td>
+<td>Поддомен</td>
+<td>Интеграции</td>
+<td>—</td>
+<td>Проверить: закрыт ли поддомен от дублирования в основном индексе, корректен ли hreflang.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>6. Выводы</h2>
+<h3>Топ-3 точки роста по контенту</h3>
+<p><strong>1. «Альтернатива SendPulse» — стратегическая возможность (impact: HIGH)</strong>
+SendPulse ушёл из России в 2022, но Unisender на 10-й позиции по запросу «альтернатива sendpulse». RuSender и DashaMail активно атакуют эту нишу. Обновление страницы <code>/ru/support/compare/sravnenie-unisender-i-sendpulse/</code> с акцентом на «переходи из SendPulse» + миграционный оффер — быстрая и ценная работа с высокой конверсией трафика.</p>
+<p><strong>2. Продуктовые фича-страницы для SMS, Telegram, Лендингов — закрытие gap (impact: HIGH)</strong>
+SMS-рассылки, Telegram чат-боты, Лендинги — три коммерческих кластера с высокой частотой, которые упомянуты на <code>/ru/features/</code> одной строкой, без полноценных SEO-страниц. Конкуренты DashaMail и RuSender имеют dedicated страницы под каждый канал. Создание трёх страниц даст самостоятельное ранжирование по высокочастотным запросам.</p>
+<p><strong>3. Оптимизация ключевых коммерческих страниц — базовая гигиена (impact: MEDIUM)</strong>
+Title главной 33 символа, meta description цен 91 символ, OG type «article» везде, 0 FAQPage JSON-LD на страницах с FAQ — всё это технические упущения, которые не требуют новых страниц. Правка займёт несколько часов и немедленно улучшит CTR в выдаче + Rich Snippets.</p>
+<h3>Риски и ограничения</h3>
+<ul>
+<li><strong>Конкуренция в информационном кластере</strong> — «что такое email маркетинг» занят Яндекс Практикумом и Яндекс.Рекламой. Конкурировать с самим Яндексом на его платформе — малопродуктивно. Правильная стратегия: вытаскивать трафик через long-tail запросы в блоге «Конверт».</li>
+<li><strong>Блог «Конверт» охватывает темы далеко за пределами email</strong> (YouTube, Mail.ru, временные почты) — это снижает тематическую фокусировку. С точки зрения Google E-E-A-T, более тематически сфокусированные конкуренты могут обогнать по нишевым запросам.</li>
+<li><strong>Данные keys.so недоступны</strong> — частота запросов дана как экспертная оценка. Gap-анализ по конкурентам будет проведён 2026-04-29.</li>
+</ul></div>
+</section>
+
+
+<section class="section" id="section-tech-seo-audit">
+  <div class="section-head">
+    <span class="section-num">04 · TECH</span>
+  </div>
+  <h2 class="section-title">Технический SEO</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-28
+<strong>Статус:</strong> анализ</p>
+<hr>
+<h2>1. robots.txt</h2>
+<p>URL: <code>https://www.unisender.com/robots.txt</code></p>
+<h3>Содержимое</h3>
+<pre><code>User-agent: *
+Disallow: /*index.php
+Disallow: /*?utm_source=
+Disallow: /*?
+Disallow: /*a=
+Disallow: /*spu_action=
+Disallow: /*lang=
+Disallow: /*b_id=
+Disallow: /*chan=
+Disallow: /*position=
+Disallow: /*keyword=
+Disallow: /ru/lp/
+Disallow: /en/lp/
+Allow: /*.js
+Allow: /*.css
+
+User-agent: Yandex
+Disallow: /amp$
+Disallow: /*index.php
+Disallow: /*?utm_source=
+Disallow: /*?
+Disallow: /*a=
+Disallow: /*lang=
+Allow: /*.js
+Allow: /*.css
+Clean-param: utm_source&amp;utm_medium&amp;utm_term&amp;utm_campaign&amp;_openstat&amp;gclid&amp;a&amp;spu_action&amp;b_id&amp;chan&amp;keyword&amp;position /
+
+Sitemap: https://www.unisender.com/sitemap.xml
+</code></pre>
+<h3>Находки</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Серьёзность</th>
+<th>Рекомендация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Disallow: /*?</code> — блокирует ВСЕ URL с любым query-параметром для всех ботов, кроме Yandex</td>
+<td>⚠️ средняя</td>
+<td>Оставить только специфичные параметры (<code>utm_source=</code>, <code>a=</code>, etc.) вместо wildcard <code>?</code>. У Яндекса есть <code>Clean-param</code> — у остальных ботов нет аналога, поэтому wildcard <code>?</code> блокирует все параметрические URL</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>Disallow: /en/lp/</code> — упоминается /en/, хотя /en/ возвращает 410 Gone</td>
+<td>🔵 мелочь</td>
+<td>Убрать строку или заменить на <code>Disallow: /en/</code> целиком (если /en/ намеренно удалён)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>Sitemap:</code> директива присутствует и корректна ✓</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yandex-секция с <code>Clean-param</code> настроена корректно ✓</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>Disallow: /amp$</code> для Yandex — блокирует AMP-страницы (без <code>/</code> это блокирует точный матч <code>/amp</code>, не раздел)</td>
+<td>🔵 мелочь</td>
+<td>Проверить: если AMP-страниц нет — правило бессмысленно. Если есть — уточнить до <code>Disallow: /amp/</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>2. sitemap.xml</h2>
+<p>URL: <code>https://www.unisender.com/sitemap.xml</code></p>
+<h3>Структура</h3>
+<p>Двухуровневый sitemap index:</p>
+<pre><code>/sitemap.xml (index)
+├── /ru/sitemap_index.xml          — 1 047 URLs
+│   ├── pages: features, glossary, support, prices, about, integrations
+│   └── lastmod: до апреля 2026
+└── /ru/blog/sitemap_index.xml     — 8 под-карт
+    ├── post-sitemap.xml (+ post-sitemap2.xml, post-sitemap3.xml)
+    ├── page-sitemap.xml
+    ├── news-sitemap.xml
+    ├── category-sitemap.xml
+    ├── post_tag-sitemap.xml
+    └── author-sitemap.xml
+</code></pre>
+<h3>Находки</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Серьёзность</th>
+<th>Рекомендация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>В главном sitemap.xml только <code>/ru/</code> — нет <code>/en/</code> (корректно, если /en/ удалён) ✓</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Блог использует Yoast SEO sitemap отдельно ✓ — post-sitemap + news-sitemap</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>author-sitemap.xml</code> и <code>post_tag-sitemap.xml</code> попадают в индекс — страницы авторов и тегов могут создавать дубли</td>
+<td>⚠️ средняя</td>
+<td>Проверить, закрыты ли страницы тегов и авторов через <code>noindex</code>. Если нет — добавить <code>&lt;meta robots="noindex"&gt;</code> на шаблоны тегов и авторов</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>news-sitemap.xml</code> присутствует — хорошо для Google News / Яндекс.Новостей</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>3. Индексация</h2>
+<h3>Google (site:unisender.com)</h3>
+<p>Поиск <code>site:unisender.com</code> вернул результаты из разных разделов: главная, /ru/about/, /ru/prices/, /ru/support/, /ru/features/, /ru/features/email/, статьи блога, страница интеграций. Сайт в индексе Google ✓.</p>
+<p>Также обнаружены субдомены в индексе:
+- <code>school.unisender.com</code> — Школа email-маркетинга
+- <code>integrations.unisender.com</code> — Раздел интеграций
+- <code>app.unisender.com</code> — Приложение (личный кабинет)</p>
+<h3>Яндекс</h3>
+<p>Прямой доступ к Яндекс.Вебмастеру отсутствует (нет доступа). Косвенные сигналы: страницы в sitemap 1047+, разнообразный контент.</p>
+<p><strong>[ПРОВЕРИТЬ]</strong> через Яндекс.Вебмастер: количество страниц в индексе Яндекса, ошибки краулинга.</p>
+<h3>Ключевые наблюдения</h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Страниц в /ru/sitemap_index.xml</td>
+<td>1 047</td>
+</tr>
+<tr>
+<td>Под-карт в /ru/blog/sitemap_index.xml</td>
+<td>8 (тысячи статей)</td>
+</tr>
+<tr>
+<td>Google — оценка</td>
+<td>Сайт индексируется, несколько разделов найдено</td>
+</tr>
+<tr>
+<td>Яндекс — оценка</td>
+<td>Нет прямых данных</td>
+</tr>
+<tr>
+<td>/en/ субсайт</td>
+<td>410 Gone — намеренно удалён</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. Главная страница</h2>
+<p>URL: <code>https://www.unisender.com/</code> (редирект с <code>https://unisender.com/</code>)</p>
+<h3>Таблица мета-тегов</h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP статус</td>
+<td>200</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Redirect non-www→www</td>
+<td>301</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>&ldquo;Unisender — сервис Email рассылок&rdquo; (33 символа)</td>
+<td>❌ слишком короткий</td>
+</tr>
+<tr>
+<td>Meta description</td>
+<td>161 символ</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>H1</td>
+<td>&ldquo;Сервис email-рассылок Unisender.&rdquo; (1 шт.)</td>
+<td>⚠️ точка в конце</td>
+</tr>
+<tr>
+<td>Canonical</td>
+<td><code>https://www.unisender.com</code> (без trailing slash)</td>
+<td>❌ несоответствие</td>
+</tr>
+<tr>
+<td>hreflang</td>
+<td>Пусто — <code>[]</code></td>
+<td>❌ критично</td>
+</tr>
+<tr>
+<td>OG type</td>
+<td><code>article</code></td>
+<td>❌ должен быть <code>website</code></td>
+</tr>
+<tr>
+<td>JSON-LD</td>
+<td><code>Organization</code></td>
+<td>⚠️ не полный набор</td>
+</tr>
+<tr>
+<td>Изображений без alt</td>
+<td>9 из 73</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>HTML размер</td>
+<td>137 KB</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Время ответа</td>
+<td>738 ms</td>
+<td>⚠️ пограничное</td>
+</tr>
+<tr>
+<td>html lang</td>
+<td><code>ru</code></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3>Детальные замечания</h3>
+<p><strong>Title (33 символа):</strong>
+Слишком короткий. Теряет ключевые слова: не указаны «email-маркетинг», «рассылки», «автоматизация». Норма: 55–65 символов.
+Пример улучшенного: <code>Unisender — сервис email-рассылок и маркетинговой автоматизации</code></p>
+<p><strong>Canonical mismatch:</strong>
+- Canonical: <code>https://www.unisender.com</code> (без <code>/</code>)
+- Actual URL: <code>https://www.unisender.com/</code> (с <code>/</code>)
+Поисковики технически рассматривают их как разные URL. Нужно привести к единому виду — добавить <code>/</code> в canonical.</p>
+<p><strong>hreflang — полностью отсутствует:</strong>
+Сайт имеет URL-структуру с языковым префиксом <code>/ru/</code> (feature-страницы, блог, поддержка), но hreflang-теги нигде не заданы. Поисковики не знают:
+- Что <code>/</code> и <code>/ru/</code> — это одно и то же (RU-рынок)
+- Что у сайта нет активных языковых версий</p>
+<p><strong>OG type = &ldquo;article&rdquo;:</strong>
+Главная страница, страница цен, раздел возможностей — везде <code>og:type = "article"</code>. Корректный тип для главной — <code>website</code>. Только <code>/ru/blog/</code> использует <code>website</code> (корректно).</p>
+<p><strong>JSON-LD Organization:</strong>
+Присутствует только <code>Organization</code>. Для SaaS-сервиса рекомендуется добавить <code>SoftwareApplication</code> с рейтингом.</p>
+<hr>
+<h2>5. Ключевые страницы</h2>
+<h3>Таблица</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>H1</th>
+<th>Title (chars)</th>
+<th>Meta desc (chars)</th>
+<th>hreflang</th>
+<th>OG type</th>
+<th>JSON-LD</th>
+<th>HTML (KB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/ru/prices/</td>
+<td>Цены на email рассылки ✓</td>
+<td>34 ❌</td>
+<td>91 ❌</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td>112</td>
+</tr>
+<tr>
+<td>/ru/features/</td>
+<td>Возможности Unisender ✓</td>
+<td>84 ❌</td>
+<td>141 ✓</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td>121</td>
+</tr>
+<tr>
+<td>/ru/features/email/</td>
+<td>Email рассылка ✓</td>
+<td>55 ✓</td>
+<td>192 ❌</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td>99</td>
+</tr>
+<tr>
+<td>/ru/blog/</td>
+<td>Конверт ⚠️</td>
+<td>78 ❌</td>
+<td>143 ✓</td>
+<td>❌ пусто</td>
+<td>website ✓</td>
+<td>нет ❌</td>
+<td>138</td>
+</tr>
+<tr>
+<td>/ru/blog/articles/</td>
+<td>Все статьи ✓</td>
+<td>38 ✓</td>
+<td>142 ✓</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td>79</td>
+</tr>
+<tr>
+<td>/ru/blog/[статья]</td>
+<td>По тексту ✓</td>
+<td>59 ✓</td>
+<td>124 ✓</td>
+<td>❌ пусто</td>
+<td>article ✓</td>
+<td>Article ✓</td>
+<td>140</td>
+</tr>
+<tr>
+<td>/ru/support/</td>
+<td>База знаний ⚠️</td>
+<td>44 ✓</td>
+<td>164 ✓</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td>194</td>
+</tr>
+<tr>
+<td>/ru/glossary/</td>
+<td>Словарь маркетолога ✓</td>
+<td>32 ❌</td>
+<td>216 ❌</td>
+<td>❌ пусто</td>
+<td>article ❌</td>
+<td>нет ❌</td>
+<td><strong>468</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Детальные замечания</h3>
+<p><strong>Страница цен (/ru/prices/):</strong>
+- Meta description 91 символ — вдвое меньше нормы (150–160). Не описывает тарифную линейку.
+- Title 34 символа — не раскрывает продукт.
+- FAQ-блок на странице (5 вопросов с H3) — нет FAQPage JSON-LD. Упущен rich snippet.
+- JSON-LD отсутствует полностью — нет SoftwareApplication, нет PriceSpecification.</p>
+<p><strong>Страница возможностей (/ru/features/):</strong>
+- Title 84 символа — превышает рекомендованный лимит (55–65).</p>
+<p><strong>Email-рассылка (/ru/features/email/):</strong>
+- Meta description 192 символа — обрежется в выдаче после ~160 символов.
+- FAQ-блок (5 вопросов с H3) — нет FAQPage JSON-LD.</p>
+<p><strong>Блог /ru/blog/ — H1 &ldquo;Конверт&rdquo;:</strong>
+- H1 содержит только бренд журнала, не ключевой запрос. Поисковики не понимают, что эта страница — про email-маркетинг.
+- Рекомендация: <code>Конверт — журнал об email-маркетинге от Unisender</code> или оставить в H1, добавив subtitle в видимый текст.</p>
+<p><strong>Глоссарий (/ru/glossary/) — 468 KB HTML:</strong>
+- Страница загружает весь словарь (~400+ терминов) в один HTML-файл.
+- 468 KB — это в 4–5× тяжелее нормы. Проблемы: медленная загрузка, высокий LCP, плохой CWV.
+- 248 изображений, 1450 внутренних ссылок — огромная DOM-нагрузка.
+- Meta description 216 символов — превышает лимит.
+- Рекомендация: пагинация или lazy-load букв алфавита.</p>
+<p><strong>База знаний (/ru/support/) — 194 KB HTML:</strong>
+- Двукратная нагрузка по отношению к норме (100 KB).</p>
+<hr>
+<h2>6. Core Web Vitals</h2>
+<p><code>GOOGLE_PSI_API_KEY</code> не задан в <code>.env</code> — автоматическая проверка невозможна.</p>
+<p><strong>Косвенные сигналы:</strong>
+- Глоссарий: 468 KB HTML, 248 изображений, 1450 ссылок → предположительно очень высокий LCP и TBT.
+- База знаний: 194 KB HTML.
+- Главная: 137 KB — приемлемо.
+- Время ответа сервера: 667–1115 ms (по TTFB — пограничное значение).</p>
+<p><strong>Рекомендация:</strong> проверить вручную через <a href="https://pagespeed.web.dev/">PageSpeed Insights</a>:
+1. <code>https://www.unisender.com/</code> — главная
+2. <code>https://www.unisender.com/ru/glossary/</code> — критичная страница
+3. <code>https://www.unisender.com/ru/support/</code> — база знаний</p>
+<hr>
+<h2>7. Редиректы</h2>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>Результат</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://unisender.com/</code> →</td>
+<td><code>https://www.unisender.com/</code></td>
+<td>✅ http→https + non-www→www (1 шаг)</td>
+</tr>
+<tr>
+<td><code>https://unisender.com/</code> →</td>
+<td><code>https://www.unisender.com/</code></td>
+<td>✅ non-www→www</td>
+</tr>
+<tr>
+<td><code>https://www.unisender.com/ru/</code> →</td>
+<td><code>https://www.unisender.com/</code></td>
+<td>⚠️ языковой префикс теряется</td>
+</tr>
+<tr>
+<td><code>https://www.unisender.com/en/features/email/</code></td>
+<td>410 Gone</td>
+<td>ℹ️ намеренное удаление</td>
+</tr>
+</tbody>
+</table>
+<h3>Ключевая проблема: /ru/ редиректит на /</h3>
+<p><code>www.unisender.com/ru/</code> → <code>www.unisender.com/</code></p>
+<p><strong>Ситуация:</strong> Главная страница сайта живёт на <code>/</code> без языкового префикса, при этом все разделы сайта (features, prices, support, blog) используют <code>/ru/</code> префикс. Это непоследовательная URL-архитектура:
+- <code>/</code> = главная (русскоязычная, без префикса)
+- <code>/ru/prices/</code>, <code>/ru/features/</code> и т.д. — с префиксом</p>
+<p>Если когда-то планируется вернуть <code>/en/</code> версии, эта архитектура создаст путаницу. Без hreflang ситуация усугубляется — поисковики не знают, что <code>/</code> = RU-страница.</p>
+<hr>
+<h2>8. Структура URL</h2>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Наблюдение</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Кириллица в URL</td>
+<td>Только латиница в slug (транслит)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Читабельность</td>
+<td><code>/ru/blog/kak-nastroit-elektronnuyu-pochtu-v-outlook/</code> — транслит, читаемо</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Вложенность</td>
+<td><code>/ru/features/email/</code> — 3 уровня, норма</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Trailing slash</td>
+<td>Все страницы с trailing slash в canonical</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Параметрические URL</td>
+<td>Агрессивно заблокированы через <code>/*?</code> в robots.txt</td>
+<td>ℹ️</td>
+</tr>
+<tr>
+<td>Субдомены</td>
+<td><code>school.</code>, <code>integrations.</code>, <code>app.</code> — в индексе</td>
+<td>✅ отдельные сущности</td>
+</tr>
+<tr>
+<td>Длина URL</td>
+<td>Норма</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Критичные проблемы (топ-5)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Страниц</th>
+<th>Влияние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>hreflang полностью отсутствует</strong> на всём сайте</td>
+<td>Все</td>
+<td>Поисковики (особенно Google) не знают языковую/региональную принадлежность страниц. При наличии URL-структуры <code>/ru/</code> — риск неправильного таргетинга и конкуренции <code>/</code> vs <code>/ru/</code> в выдаче</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>OG type = &ldquo;article&rdquo; на коммерческих страницах</strong></td>
+<td>Главная, prices, features, support, glossary, blog-статьи</td>
+<td>Неправильный Open Graph тип снижает CTR в соцсетях и мессенджерах; поисковики используют OG-данные как сигнал</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Canonical mismatch на главной</strong></td>
+<td>Главная</td>
+<td><code>https://www.unisender.com</code> ≠ <code>https://www.unisender.com/</code>. PageRank и сигналы делятся между двумя URL</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Глоссарий 468 KB HTML</strong></td>
+<td>/ru/glossary/</td>
+<td>Критически тяжёлая страница. Предположительно провальные Core Web Vitals → Google снижает ранжирование; пользователи закрывают страницу</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Отсутствие FAQPage JSON-LD при наличии FAQ-блоков</strong></td>
+<td>/ru/prices/, /ru/features/email/ (и вероятно другие)</td>
+<td>Упущены Rich Snippets — FAQ-аккордеоны в выдаче, которые значительно повышают CTR</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Средние проблемы</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Страниц</th>
+<th>Рекомендация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Title слишком короткий (33–34 символа) на главной и /prices/</td>
+<td>2+</td>
+<td>Дописать до 55–65 символов с ключами</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Meta description слишком короткий на /prices/ (91 символ)</td>
+<td>1</td>
+<td>Расширить до 150–160 символов</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Meta description слишком длинный на /features/email/ (192 символа) и /glossary/ (216 символов)</td>
+<td>2+</td>
+<td>Сократить до 150–160</td>
+</tr>
+<tr>
+<td>4</td>
+<td>JSON-LD отсутствует на ключевых коммерческих страницах</td>
+<td>prices, features, support</td>
+<td>Добавить <code>SoftwareApplication</code> + <code>AggregateRating</code> на features-страницы</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>/ru/</code> редиректит на <code>/</code> — непоследовательная URL-архитектура</td>
+<td>—</td>
+<td>Рассмотреть либо перенос главной на <code>/ru/</code>, либо добавление hreflang для явного таргетинга</td>
+</tr>
+<tr>
+<td>6</td>
+<td>База знаний 194 KB HTML</td>
+<td>/ru/support/</td>
+<td>Оптимизировать загрузку контента (lazy load секций)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>9 изображений без alt на главной</td>
+<td>/</td>
+<td>Добавить alt-теги</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>author-sitemap.xml</code> и <code>post_tag-sitemap.xml</code> в индексе без noindex</td>
+<td>/ru/blog/</td>
+<td>Добавить <code>noindex</code> на шаблоны страниц тегов и авторов блога</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Мелочи</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Рекомендация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>H1 главной имеет точку в конце: &ldquo;Сервис email-рассылок Unisender.&rdquo;</td>
+<td>Убрать точку</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>Disallow: /en/lp/</code> в robots.txt при удалённом /en/</td>
+<td>Очистить неактуальные правила</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>Disallow: /amp$</code> в Yandex-секции — синтаксис без <code>/</code> блокирует только точный матч</td>
+<td>Уточнить или убрать если AMP не используется</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Blog title 78 символов (норма 55–65)</td>
+<td>Сократить</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Время ответа сервера 667–1115 ms</td>
+<td>Проверить TTFB через PageSpeed</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Сгенерировано автоматически из research/*.md · 2026-04-28</div>
+    <div class="files"><code>audit-summary.md</code> <code>gap-analysis.md</code> <code>content-audit.md</code> <code>tech-seo-audit.md</code></div>
+  </div>
+</footer>
+
+</body>
+</html>
