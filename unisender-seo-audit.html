@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fafafa;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --text-soft: #333;
+  --bg: #0c0e11;
+  --card: #141720;
+  --text: #eef0f5;
+  --text-soft: #b0b8cc;
   --muted: #6b6b6b;
   --muted2: #9a9a9a;
-  --accent: #453FDF;
-  --accent-soft: #eef0ff;
-  --border: #e5e5e5;
+  --accent: #4e7fff;
+  --accent-soft: rgba(78,127,255,0.14);
+  --border: rgba(255,255,255,0.07);
   --border-soft: #f0f0f0;
-  --crit: #c01020;
-  --warn: #e89020;
-  --ok: #16a34a;
-  --hero-bg: #1a1a1a;
+  --crit: #e05252;
+  --warn: #d4813a;
+  --ok: #4fb86a;
+  --hero-bg: #141720;
   --font-h: 'Inter', 'Inter', system-ui, sans-serif;
   --font-b: 'Inter', 'Inter', system-ui, sans-serif;
 }
@@ -343,6 +343,21 @@ footer .files {
   .md table, .md pre, .md blockquote { break-inside: avoid; }
   footer { display: none; }
 }
+
+/* dark-mode overrides */
+.toc-strip { background: rgba(12,14,17,0.92) !important; border-color: rgba(255,255,255,0.07) !important; }
+.toc-strip a { color: #b0b8cc !important; }
+.toc-strip a:hover, .toc-strip a.active { color: #4e7fff !important; background: rgba(78,127,255,0.12) !important; }
+.section { background: #141720 !important; border-color: rgba(255,255,255,0.07) !important; }
+.section-head { border-color: rgba(255,255,255,0.07) !important; }
+.md table th { background: #1c2030 !important; color: #eef0f5 !important; }
+.md table td { border-color: rgba(255,255,255,0.07) !important; }
+.md table tr:hover { background: rgba(78,127,255,0.06) !important; }
+.md code { background: #1c2030 !important; color: #eef0f5 !important; }
+.md pre { background: #1c2030 !important; }
+.md blockquote { border-color: #4e7fff !important; background: rgba(78,127,255,0.08) !important; }
+.footer { background: #141720 !important; border-color: rgba(255,255,255,0.07) !important; color: #636e88 !important; }
+
 </style>
 </head>
 <body>
