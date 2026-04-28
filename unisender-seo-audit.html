@@ -142,6 +142,7 @@ footer strong { color: var(--text-soft); }
     <a href="#tech">Техника</a>
     <a href="#content">Контент</a>
     <a href="#competitors">Конкуренты</a>
+    <a href="#traffic">Трафик</a>
     <a href="#gap">Gap</a>
     <a href="#issues">Точки роста</a>
     <a href="#quickwins">Quick Wins</a>
@@ -488,10 +489,53 @@ footer strong { color: var(--text-soft); }
   </div>
 </section>
 
+<!-- TRAFFIC DYNAMICS -->
+<section class="section" id="traffic">
+  <div class="wrap">
+    <div class="section-label">04 — Динамика трафика</div>
+    <h2 class="section-title">Общий трафик и email-маркетинговый: ноябрь 2024 — апрель 2026</h2>
+    <p class="section-desc">Данные keys.so, база Яндекс Москва. VIS — расчётный органический трафик. Email-маркетинговый трафик — оценка на основе wsk-вклада 81 email-ключа (0.16% от total). Разрыв в масштабах — ключевая проблема монетизации SEO.</p>
+
+    <div class="chart-wrap" style="margin-bottom:24px;">
+      <div class="chart-title">Общий органический трафик (левая ось) vs email-маркетинговый (правая ось)</div>
+      <div class="chart-canvas-wrap" style="height:320px;">
+        <canvas id="trafficChart"></canvas>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Ключевые события и объяснение роста</div>
+        <table class="tbl">
+          <tr><td style="color:var(--muted);white-space:nowrap;">апр–июн 2025</td><td>Резкий рост +47% / +43% — масштабный вброс блог-статей про общие IT-темы (скачать видео, переводчики, настройки почты)</td></tr>
+          <tr><td style="color:var(--muted);white-space:nowrap;">июл–окт 2025</td><td>Плато 130–140K — конкуренты подтянулись по блог-ключам, позиции стабилизировались</td></tr>
+          <tr><td style="color:var(--muted);white-space:nowrap;">янв–мар 2026</td><td>Второй пик 200–204K — ещё волна блог-контента + сезонный зимний спрос</td></tr>
+          <tr><td style="color:var(--muted);white-space:nowrap;">апр 2026 −24%</td><td>Сезонный спад (зимние темы теряют спрос весной) + неполный месяц (данные на 28.04)</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">YoY и структура трафика</div>
+        <table class="tbl">
+          <tr><td>Апрель 2025 → апрель 2026</td><td><span class="badge ok">+27% YoY</span></td></tr>
+          <tr><td>Пик трафика (янв 2026)</td><td><span class="num">206 394 vis</span></td></tr>
+          <tr><td>Email-маркетинговый трафик</td><td><span class="badge crit">~242 vis/мес</span></td></tr>
+          <tr><td>Доля email-маркетинга в трафике</td><td><span class="badge crit">0.16%</span></td></tr>
+          <tr><td>Весь рост идёт за счёт</td><td>нерелевантного IT-блога</td></tr>
+          <tr><td>Email-маркетинговые позиции</td><td>стагнируют, не растут</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert-box" style="background:var(--red-dim);border-color:var(--red);color:var(--text);">
+      <strong>Критический инсайт:</strong> Органический рост unisender.com реален (+27% YoY), но экономически бесполезен — 99.84% трафика приходит по нецелевым запросам (скачать видео, настройки почты, инструкции Алисы). Email-маркетинговый трафик — ~242 посетителя в месяц — не растёт при росте общего трафика. Конкурент notisend.ru имеет в 40 раз меньше общего трафика, но каждый второй посетитель — потенциальный клиент.
+    </div>
+  </div>
+</section>
+
 <!-- COMPETITORS -->
 <section class="section" id="competitors">
   <div class="wrap">
-    <div class="section-label">04 — Конкуренты</div>
+    <div class="section-label">05 — Конкуренты</div>
     <h2 class="section-title">Парадокс видимости: гигант с нерелевантным трафиком</h2>
     <p class="section-desc">Unisender доминирует по VIS, но этот трафик не конвертируется в пользователей email-маркетинга. Узкоспециализированные конкуренты с 10–50 страницами имеют лучшее покрытие по целевым запросам.</p>
 
@@ -569,7 +613,7 @@ footer strong { color: var(--text-soft); }
 <!-- GAP ANALYSIS -->
 <section class="section" id="gap">
   <div class="wrap">
-    <div class="section-label">05 — Gap-анализ</div>
+    <div class="section-label">06 — Gap-анализ</div>
     <h2 class="section-title">265 gap-ключей: конкуренты в top-10, Unisender отсутствует</h2>
     <p class="section-desc">Gap-анализ по keys.so, апрель 2026. Конкуренты в top-10, unisender.com не ранжируется. Суммарный потенциал — свыше 1 млн показов в месяц.</p>
 
@@ -671,7 +715,7 @@ footer strong { color: var(--text-soft); }
 <!-- GROWTH POINTS -->
 <section class="section" id="issues">
   <div class="wrap">
-    <div class="section-label">06 — Точки роста</div>
+    <div class="section-label">07 — Точки роста</div>
     <h2 class="section-title">12 рекомендаций</h2>
     <p class="section-desc">Ранжировано по impact × effort. Первые позиции — высокий impact при низких усилиях. Стратегические позиции — долгосрочный семантический рост.</p>
 
@@ -774,7 +818,7 @@ footer strong { color: var(--text-soft); }
 <!-- QUICK WINS -->
 <section class="section" id="quickwins">
   <div class="wrap">
-    <div class="section-label">07 — Quick Wins</div>
+    <div class="section-label">08 — Quick Wins</div>
     <h2 class="section-title">5 правок за 1 рабочий день</h2>
     <p class="section-desc">Эти правки не требуют разработки или написания контента. Каждая выполняется за 5–30 минут в Yoast SEO или WordPress шаблоне.</p>
 
@@ -823,7 +867,7 @@ footer strong { color: var(--text-soft); }
 <!-- ROADMAP -->
 <section class="section" id="roadmap">
   <div class="wrap">
-    <div class="section-label">08 — Роадмап</div>
+    <div class="section-label">09 — Роадмап</div>
     <h2 class="section-title">Стратегия на 3–6 месяцев</h2>
     <p class="section-desc">Три фазы: сначала технические быстрые правки, затем стратегический контент под email-кластеры, затем расширение охвата и долгосрочная техника.</p>
 
@@ -999,6 +1043,91 @@ new Chart(document.getElementById('gapChart').getContext('2d'), {
       tooltip: {
         callbacks: {
           label: ctx => ' WS: ~' + Math.round(ctx.parsed.x).toLocaleString('ru-RU') + 'K'
+        }
+      }
+    }
+  }
+});
+
+// Traffic dynamics chart (dual axis)
+const trafficLabels = ['ноя\'24','дек\'24','янв\'25','фев\'25','мар\'25','апр\'25','май\'25','июн\'25','июл\'25','авг\'25','сен\'25','окт\'25','ноя\'25','дек\'25','янв\'26','фев\'26','мар\'26','апр\'26'];
+const totalVis    = [82501,69846,76534,94984,83454,122644,115068,164643,145708,136753,131950,137773,164402,148895,206394,202910,204125,155566];
+const emailVis    = [128,109,119,148,130,191,179,256,227,213,205,215,256,232,321,316,318,242];
+
+new Chart(document.getElementById('trafficChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: trafficLabels,
+    datasets: [
+      {
+        label: 'Общий трафик (VIS)',
+        data: totalVis,
+        borderColor: '#4e7fff',
+        backgroundColor: 'rgba(78,127,255,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        fill: true,
+        tension: 0.35,
+        yAxisID: 'y'
+      },
+      {
+        label: 'Email-маркетинговый трафик (оценка)',
+        data: emailVis,
+        borderColor: '#e05252',
+        backgroundColor: 'rgba(224,82,82,0.08)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        fill: true,
+        tension: 0.35,
+        yAxisID: 'y1',
+        borderDash: [5, 3]
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: { color: '#636e88', font: { size: 11 }, maxRotation: 45 }
+      },
+      y: {
+        position: 'left',
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: {
+          color: '#4e7fff',
+          font: { size: 11 },
+          callback: v => (v >= 1000 ? (v/1000).toFixed(0)+'K' : v)
+        },
+        title: { display: true, text: 'Общий VIS', color: '#4e7fff', font: { size: 11 } }
+      },
+      y1: {
+        position: 'right',
+        grid: { drawOnChartArea: false },
+        ticks: { color: '#e05252', font: { size: 11 } },
+        title: { display: true, text: 'Email-маркетинговый VIS', color: '#e05252', font: { size: 11 } }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+        labels: { color: '#b0b8cc', font: { size: 12 }, boxWidth: 14, padding: 16 }
+      },
+      tooltip: {
+        backgroundColor: '#1c2030',
+        borderColor: 'rgba(255,255,255,0.12)',
+        borderWidth: 1,
+        titleColor: '#eef0f5',
+        bodyColor: '#b0b8cc',
+        callbacks: {
+          label: ctx => {
+            const v = ctx.parsed.y;
+            return ' ' + ctx.dataset.label + ': ' + v.toLocaleString('ru-RU');
+          }
         }
       }
     }
