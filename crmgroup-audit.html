@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг-аудит — CRM Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #333;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+  --accent: #453FDF;
+  --accent-soft: #eef0ff;
+  --border: #e5e5e5;
+  --border-soft: #f0f0f0;
+  --crit: #c01020;
+  --warn: #e89020;
+  --ok: #16a34a;
+  --hero-bg: #1a1a1a;
+  --font-h: 'Inter', 'Inter', system-ui, sans-serif;
+  --font-b: 'Inter', 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'tnum', 'lnum';
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+
+/* Hero */
+.hero {
+  background: var(--hero-bg);
+  color: #fff;
+  padding: 48px 0 38px;
+}
+.hero-label {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.hero-meta > div { min-width: 120px; }
+.hero-meta .label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 3px;
+}
+.hero-meta .value {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+.hero-meta .value a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,0.4);
+}
+
+/* TOC strip */
+.toc-strip {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+}
+.toc-strip ul {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.toc-strip a {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.toc-strip a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Content */
+.content { padding: 40px 0 48px; }
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 34px 38px;
+  margin-bottom: 22px;
+  scroll-margin-top: 80px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.section-num {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.section h2.section-title {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 4px 0 18px;
+}
+
+/* Markdown content inside sections */
+.md { font-size: 14.5px; line-height: 1.7; color: var(--text-soft); }
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+
+.md h1 { display: none; }
+.md h2 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 32px 0 10px;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.md h3 {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+  letter-spacing: -0.1px;
+}
+.md h4 {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 6px;
+}
+.md p { margin: 0 0 12px; }
+.md strong { font-weight: 700; color: var(--text); }
+.md em { font-style: italic; color: var(--muted); }
+
+.md ul, .md ol { margin: 0 0 14px; padding-left: 22px; }
+.md li { margin-bottom: 4px; }
+.md li::marker { color: var(--accent); }
+
+.md a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid;
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.md a:hover { border-color: var(--accent); }
+
+.md code {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.87em;
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text);
+}
+.md pre {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 14px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; color: inherit; }
+
+.md blockquote {
+  margin: 14px 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  border-radius: 0 6px 6px 0;
+}
+.md blockquote p:last-child { margin-bottom: 0; }
+
+.md hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 28px 0;
+}
+
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.md table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f8f8f8;
+  font-family: var(--font-h);
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.md table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+.md table tr:last-child td { border-bottom: none; }
+.md table tr:hover td { background: #fafbfc; }
+
+.md input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--accent);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 20px;
+}
+footer code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: #f0f0f0;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: var(--muted);
+}
+footer .files {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .hero h1 { font-size: 24px; }
+  .section { padding: 24px 20px; }
+  .section h2.section-title { font-size: 20px; }
+  .md table { font-size: 11.5px; }
+  .md table th, .md table td { padding: 7px 8px; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .hero {
+    background: var(--hero-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 24px 0;
+  }
+  .hero h1 { font-size: 22pt; }
+  .toc-strip { display: none; }
+  .section {
+    break-inside: avoid-page;
+    border: none;
+    padding: 16px 0;
+    margin-bottom: 8px;
+    box-shadow: none;
+  }
+  .section h2.section-title { font-size: 16pt; }
+  .md h2 { font-size: 13pt; break-after: avoid; }
+  .md h3 { break-after: avoid; }
+  .md table, .md pre, .md blockquote { break-inside: avoid; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-label">Маркетинг-аудит</div>
+    <h1>CRM Group</h1>
+    <p class="hero-sub">Маркетинг-аудит и SEO-стратегия · https://crmgroup.ru</p>
+    <div class="hero-meta">
+      <div><div class="label">URL</div><div class="value"><a href="https://crmgroup.ru" target="_blank">https://crmgroup.ru</a></div></div>
+      <div><div class="label">Ниша</div><div class="value">CRM-агентство / email-маркетинг / маркетинговая автоматизация</div></div>
+      <div><div class="label">Регион</div><div class="value">—</div></div>
+      <div><div class="label">Дата</div><div class="value">2026-04-30</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-strip">
+  <div class="wrap"><ul><li><a href="#section-audit-summary">Сводный отчёт</a></li><li><a href="#section-gap-analysis">Gap-анализ конкурентов</a></li><li><a href="#section-content-audit">Контент и семантика</a></li><li><a href="#section-tech-seo-audit">Технический SEO</a></li></ul></div>
+</nav>
+
+<main class="content">
+  <div class="wrap">
+    
+<section class="section" id="section-audit-summary">
+  <div class="section-head">
+    <span class="section-num">01 · SUMMARY</span>
+  </div>
+  <h2 class="section-title">Сводный отчёт</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-30
+<strong>Скоуп:</strong> технический SEO + контент/семантика + gap-анализ конкурентов (keys.so, база msk; endpoints competitors/lost вернули 400 — gap проведён через сравнение keywords вручную)</p>
+<hr>
+<h2>Топ-5 критичных проблем</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Источник</th>
+<th>Влияние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Главная коммерческая стра��ица технически сломана</strong> — <code>/email-marketing-pod-klyuch/</code> не имеет meta description (NULL) и содержит два H1-заголовка. Google не отображает сниппет — CTR в поиске равен нулю. При транзакционном запросе «email маркетинг под ключ» (WS ~2000) страница уступает inbox-marketing.ru, который уже в топ-1.</td>
+<td>tech-seo-audit.md §5</td>
+<td>Прямые потери лидов. Один технический фикс — meta desc + удалить дублирующий H1 — ставит страницу в конкуренцию.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>VIS=115 при 10-летней истории агентства</strong> — органический трафик экстремально низкий. keys.so: emailmatrix.ru (аналогичный конкурент) имеет VIS=214, DR=18, Топ-50=7389 ключей против 2456 у crmgroup.ru. Разрыв в 3x по семантическому охвату.</td>
+<td>gap-analysis.md §1</td>
+<td>Сайт фактически не работает как канал лидогенерации. 90%+ трафика — прямые заходы и брендовые запросы.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Сервисные страницы не ранжируются ни по одному коммерческому запросу</strong> — ни <code>/crm-marketing/</code>, ни <code>/services/</code>, ни <code>/marketing-audit/</code> не попали в топ-10 страниц по органическому трафику (keys.so). Весь трафик идёт с глоссария и блога (информационные ключи).</td>
+<td>gap-analysis.md §1, content-audit.md §4</td>
+<td>Агентство платит за SEO-присутствие информационного контента, но не получает лидов с коммерческих страниц.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Массовое отсутствие alt-текста</strong> — /special-projects/ (32 из 38 изображений без alt), /web-development/ (10 из 17), /marketing-audit/ (7 из 12). Яндекс активно использует image search и текстовую релевантность изображений для оценки страницы.</td>
+<td>tech-seo-audit.md §5</td>
+<td>Потеря ранжирования в Яндекс.Картинках, ухудшение сигнала релевантности страниц.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Категории и теги блога в sitemap без noindex</strong> — 16 категорий + 23 тега = 39 страниц тонкого контента проиндексированы и тратят crawl budget. При всего 134 страницах в индексе из 276 в sitemap — краулинговый бюджет уже ограничен.</td>
+<td>tech-seo-audit.md §2, §3</td>
+<td>Размывание PageRank, краулинг полезных страниц откладывается из-за обхода бесполезных архивов.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Топ-10 точек роста</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Точка роста</th>
+<th>Impact</th>
+<th>Effort</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Починить /email-marketing-pod-klyuch/</strong>: добавить meta description (~155 символов), убрать второй H1, добавить FAQPage JSON-LD (FAQ-секция на странице есть)</td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §5, content-audit.md §5.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>OG type → website на /crm-marketing/</strong> и добавить FAQPage JSON-LD (FAQ-блок уже есть)</td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §5</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Переписать H1 /services/</strong> с «Услуги» на «Агентство CRM-маркетинга и email-рассылок» + оптимизировать meta description</td>
+<td>high</td>
+<td>low</td>
+<td>tech-seo-audit.md §5, content-audit.md §5.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Добавить noindex</strong> на category/tag архивы блога (<code>/category/*</code>, <code>/tag/*</code>) — 39 страниц через Yoast SEO</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §2</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Создать /loyalty-program/</strong> — страница-услуга «Настройка программы лояльности под ключ». «Программа лояльности» WS=73,581, в топе только SaaS-платформы, нет ни одного сильного CRM-агентства</td>
+<td>high</td>
+<td>med</td>
+<td>gap-analysis.md §5.1</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Добавить alt-тексты</strong> к изображениям на /special-projects/ (32 шт), /web-development/ (10 шт), /marketing-audit/ (7 шт)</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §5</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Написать статью «Структура email-письма»</strong> (2500-3000 слов с примерами из портфолио CRM Group). Emailmatrix.ru владеет кластером: «электронное письмо» WS=263k, «тема письма» WS=100k</td>
+<td>high</td>
+<td>med</td>
+<td>gap-analysis.md §5.2</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Написать статью о программе лояльности</strong> (2500 слов) — информационный вход в кластер WS=73k. Mindbox.ru в топе как CDP-платформа; CRM Group как агентство не представлено</td>
+<td>high</td>
+<td>med</td>
+<td>gap-analysis.md §5.1, content-audit.md §4.3</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Исправить HTTP redirect</strong>: nginx отдаёт <code>Location: https://crmgroup.ru:443/</code> с явным портом — нестандартно. Правка одной строки nginx конфига</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §7</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Написать статью «Push-уведомления: руководство»</strong> (2000 слов) — emailmatrix.ru на pos 21 при WS=192,394. Уточнить: оказывает ли CRM Group услугу push-маркетинга</td>
+<td>med</td>
+<td>med</td>
+<td>gap-analysis.md §4.2</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Убрать /conditions/ из sitemap</strong> (или снять Disallow из robots.txt) — устранить конфликт</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §1, §2</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Проверить и закрыть testcontent.crmgroup.ru</strong> от индексации — staging субдомен в Google</td>
+<td>med</td>
+<td>low</td>
+<td>tech-seo-audit.md §3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Топ-5 быстрых побед (≤ 1 рабочего дня)</h2>
+<ol>
+<li><strong>Meta description /email-marketing-pod-klyuch/</strong> — добавить 155 символов в Yoast SEO. Прямо сейчас Google не показывает описание.</li>
+<li><strong>Убрать второй H1</strong> на /email-marketing-pod-klyuch/ — в коде страницы явно два H1 тега.</li>
+<li><strong>FAQPage JSON-LD</strong> на /crm-marketing/ и /email-marketing-pod-klyuch/ — FAQ-блоки уже есть, нужна только разметка.</li>
+<li><strong>OG type: website</strong> на /crm-marketing/ (сейчас &ldquo;article&rdquo;).</li>
+<li><strong>Alt-тексты</strong> на /special-projects/ — 32 пустых alt. Заполнить в WordPress медиа-библиотеке.</li>
+</ol>
+<hr>
+<h2>Стратегия 3 месяца</h2>
+<p><strong>Месяц 1 — технические фиксы:</strong>
+- Meta description + H1 фикс /email-marketing-pod-klyuch/
+- FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/
+- OG type на коммерческих страницах
+- Noindex category/tag страниц блога
+- Alt-тексты массово (special-projects, web-development, marketing-audit)
+- H1 /services/ переписать
+- Nginx redirect (:443 → без порта)
+- Закрыть testcontent.crmgroup.ru
+- Убрать конфликт /conditions/ в robots/sitemap</p>
+<p><strong>Месяц 1–2 — контентные быстрые победы:</strong>
+- Статья «Структура email-письма с примерами» (/blog/email-structure/) — 2500-3000 слов
+- Статья «Программа лояльности: виды и как запустить» — 2500 слов
+- Страница-услуга /loyalty-program/ под транзакционный спрос</p>
+<p><strong>Месяц 2–3 — развитие охвата:</strong>
+- Статья «Push-уведомления: полное руководство»
+- Статья «Брошенная корзина: как вернуть покупателя письмом»
+- Уточнить позиционирование /services/ как hub-страницы с перелинковкой на все сервисные страницы
+- Начать линкбилдинг для DR: гостевые статьи в Cossa, vc.ru, профильных изданиях</p>
+<p><strong>Ожидаемый результат:</strong>
+- FAQPage JSON-LD → rich snippets в Яндексе через 2-4 недели
+- Фикс /email-marketing-pod-klyuch/ → рост позиций по «email маркетинг под ключ» через 1-2 месяца
+- Статьи про loyalty/email structure → позиции в топ-20 через 2-3 месяца, топ-10 через 4-6</p>
+<hr>
+<h2>Что НЕ вошло в аудит (и почему)</h2>
+<ul>
+<li><strong>Core Web Vitals</strong> — <code>GOOGLE_PSI_API_KEY</code> не задан в .env. Косвенно: главная 252 KB HTML — вероятно есть проблемы с TBT. Рекомендуется проверить вручную через PageSpeed Insights.</li>
+<li><strong>Google Search Console</strong> — нет доступа. Данные по позициям и CTR недоступны.</li>
+<li><strong>Яндекс.Вебмастер</strong> — нет доступа.</li>
+<li><strong>Keys.so competitors endpoint</strong> — вернул 400 (&ldquo;Method not allowed&rdquo;). Gap-анализ проведён через manual keywords comparison для emailmatrix.ru, inbox-marketing.ru, emailsoldiers.ru. Полноценный gap против 30+ конкурентов не получен.</li>
+<li><strong>Backlink-профиль</strong> — DR=16 низкий, но детальный анализ ссылочного не проводился. Рекомендуется прогнать через Ahrefs/Semrush.</li>
+<li><strong>Email Soldiers = CRM Group?</strong> — возможна смена бренда. Если emailsoldiers.ru — это прежнее имя CRM Group, это важно для коммуникации: «агентство с историей с 2015 года» в продажах.</li>
+<li><strong>Субдомен service.crmgroup.ru</strong> — «Дизайн-поддержка вашего бизнеса» — отдельная сущность, требует отдельного аудита.</li>
+</ul>
+<hr>
+<h2>Следующие шаги</h2>
+<h3>Немедленно (≤ 1 неделя)</h3>
+<ol>
+<li>Meta description /email-marketing-pod-klyuch/ + убрать второй H1</li>
+<li>FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</li>
+<li>OG type → website на /crm-marketing/</li>
+<li>Noindex для /category/<em> и /tag/</em> страниц блога</li>
+<li>Убрать /conditions/ из sitemap или снять Disallow</li>
+</ol>
+<h3>Краткосрок (1–2 месяца)</h3>
+<ol start="6">
+<li>Alt-тексты на /special-projects/ (32 шт) + /web-development/ (10 шт)</li>
+<li>H1 /services/ переписать с ключом</li>
+<li>Статья «Структура email-письма»</li>
+<li>Nginx redirect :443 исправить</li>
+<li>Закрыть testcontent.crmgroup.ru от индексации</li>
+</ol>
+<h3>Среднесрок (2–4 месяца)</h3>
+<ol start="11">
+<li>Создать /loyalty-program/ + статья про программы лояльности</li>
+<li>Статья «Push-уведомления: руководство»</li>
+<li>Статья «Брошенная корзина: письма с примерами»</li>
+<li>Начать наращивание DR через публикации в Cossa, vc.ru, отраслевых изданиях</li>
+<li>Подключить Яндекс.Вебмастер и Google Search Console</li>
+</ol></div>
+</section>
+
+
+<section class="section" id="section-gap-analysis">
+  <div class="section-head">
+    <span class="section-num">02 · GAP</span>
+  </div>
+  <h2 class="section-title">Gap-анализ конкурентов</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-30
+<strong>База:</strong> Keys.so, Яндекс Россия (msk)
+<strong>Метод:</strong> keys.so profile + ручной анализ keywords конкурентов (endpoints competitors/lost вернули 400 — использованы concs из profile + direct keys comparison)</p>
+<hr>
+<h2>1. Профиль crmgroup.ru</h2>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+<th>Контекст</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VIS (визиты из поиска)</td>
+<td>115</td>
+<td>Очень низкий для 10-летнего агентства</td>
+</tr>
+<tr>
+<td>DR (Domain Rating)</td>
+<td>16</td>
+<td>Низкий. Emailmatrix DR=18, mindbox DR=40+</td>
+</tr>
+<tr>
+<td>Топ-1 ключей</td>
+<td>86</td>
+<td>Почти исключительно глоссарные термины</td>
+</tr>
+<tr>
+<td>Топ-3 ключей</td>
+<td>191</td>
+<td></td>
+</tr>
+<tr>
+<td>Топ-5 ключей</td>
+<td>257</td>
+<td></td>
+</tr>
+<tr>
+<td>Топ-10 ключей</td>
+<td>445</td>
+<td></td>
+</tr>
+<tr>
+<td>Топ-50 ключей</td>
+<td>2 456</td>
+<td></td>
+</tr>
+<tr>
+<td>Страниц в индексе</td>
+<td>134</td>
+<td>При ~276 в sitemap — 49% проиндексировано</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Исторический тренд VIS:</strong>
+- Nov 2024: 106 → Apr 2026: 115 (+8%) — минимальный рост за 17 месяцев</p>
+<p><strong>Топ-10 страниц по органическому охвату (it50):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>it50</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/glossary/kpi</td>
+<td>265</td>
+</tr>
+<tr>
+<td>/glossary/average-order-value</td>
+<td>75</td>
+</tr>
+<tr>
+<td>/glossary/analytika-dannych</td>
+<td>70</td>
+</tr>
+<tr>
+<td>/blog/messenger-max-dlya-biznesa</td>
+<td>69</td>
+</tr>
+<tr>
+<td>/glossary/retention</td>
+<td>65</td>
+</tr>
+<tr>
+<td>/glossary/segmentaciya-celevoy-auditorii</td>
+<td>62</td>
+</tr>
+<tr>
+<td>/blog/top-five-crm-metrics-guide</td>
+<td>62</td>
+</tr>
+<tr>
+<td>/glossary/drr</td>
+<td>60</td>
+</tr>
+<tr>
+<td>/glossary/benchmarking</td>
+<td>59</td>
+</tr>
+<tr>
+<td>/blog/incrementality</td>
+<td>58</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> 9 из 10 топ-страниц — глоссарий и блог с информационным трафиком. Ни одна сервисная страница (crm-marketing, email-marketing) не попала в топ-10 по трафику — <strong>коммерческие страницы не генерируют органический трафик</strong>.</p>
+<hr>
+<h2>2. Конкуренты</h2>
+<h3>2.1. Полный список (из profile concs, топ-10 по пересечению семантики)</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Пересечений</th>
+<th>VIS</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mango-office.ru</td>
+<td>798</td>
+<td>~3 316</td>
+<td>Облачная телефония — пересечение по общим маркетинговым терминам</td>
+</tr>
+<tr>
+<td>kokoc.com</td>
+<td>688</td>
+<td>~4 482</td>
+<td>Digital-агентство широкого профиля</td>
+</tr>
+<tr>
+<td>neiros.ru</td>
+<td>548</td>
+<td>~1 161</td>
+<td>Маркетинговый блог</td>
+</tr>
+<tr>
+<td>mindbox.ru</td>
+<td>534</td>
+<td>~1 227</td>
+<td>CDP-платформа + блог про CRM-маркетинг</td>
+</tr>
+<tr>
+<td>sales-generator.ru</td>
+<td>515</td>
+<td>~1 241</td>
+<td>Маркетинговый блог</td>
+</tr>
+<tr>
+<td>ads.vk.com</td>
+<td>478</td>
+<td>~6 859</td>
+<td>Рекламная платформа ВК</td>
+</tr>
+<tr>
+<td>okocrm.com</td>
+<td>465</td>
+<td>~6 403</td>
+<td>CRM-система</td>
+</tr>
+<tr>
+<td>sendpulse.com</td>
+<td>450</td>
+<td>~1 036</td>
+<td>ESP-платформа</td>
+</tr>
+<tr>
+<td>roistat.com</td>
+<td>413</td>
+<td>~848</td>
+<td>Платформа аналитики</td>
+</tr>
+<tr>
+<td>elama.ru</td>
+<td>405</td>
+<td>~6 515</td>
+<td>Рекламный сервис</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2. Прямые конкуренты (CRM/email-маркетинг агентства) — отобраны для gap-анализа</h3>
+<p>Из keyso concs по нише не идентифицированы напрямую (пересечений мало из-за малого ядра crmgroup.ru). Дополнительно идентифицированы через SERP-анализ:</p>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>VIS</th>
+<th>DR</th>
+<th>Топ-50</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>emailmatrix.ru</strong></td>
+<td>214</td>
+<td>18</td>
+<td>7 389</td>
+<td>Прямой конкурент, #1 RUWARD 2025 email-агентство</td>
+</tr>
+<tr>
+<td><strong>inbox-marketing.ru</strong></td>
+<td>~0</td>
+<td>14</td>
+<td>90</td>
+<td>Прямой конкурент (маленький трафик)</td>
+</tr>
+<tr>
+<td>emailsoldiers.ru</td>
+<td>~0</td>
+<td>—</td>
+<td>200+</td>
+<td>Возможно ребрендированный / нишевый</td>
+</tr>
+<tr>
+<td>mindbox.ru</td>
+<td>~1 227</td>
+<td>40+</td>
+<td>15 000+</td>
+<td>CDP-платформа, конкурирует по образовательному контенту</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Emailmatrix.ru — основной SEO-конкурент.</strong> VIS=214 (в 1.9x больше crmgroup.ru), DR=18, Топ-50=7389 (в 3x больше). Занимает топ по коммерческим запросам «email маркетинг агентство», «crm агентство».</p>
+<hr>
+<h2>3. Сводка gap-анализа</h2>
+<p>Метод: ручное сравнение keywords из keyso для emailmatrix.ru и crmgroup.ru.</p>
+<ul>
+<li><strong>Всего ключей в emailmatrix:</strong> 7 389 в топ-50</li>
+<li><strong>Всего ключей в crmgroup:</strong> 2 456 в топ-50</li>
+<li><strong>Ключи emailmatrix, которых нет у crmgroup:</strong> &gt;4 000 (расчётно)</li>
+</ul>
+<p><strong>Главное структурное наблюдение:</strong> emailmatrix.ru выстроил <strong>3 типа контента</strong>, которых у crmgroup нет:
+1. Большие образовательные статьи под high-frequency запросы (электронное письмо, UTM, push, CPC)
+2. Коммерческое ранжирование по «crm агентство», «email маркетинг агентство»
+3. Инструментарий (кубик онлайн, дашборды) — нестандартные способы привлечь трафик</p>
+<hr>
+<h2>4. Кластеры gap-ключей</h2>
+<h3>4.1. Кластер «Структура и оформление email-письма»</h3>
+<p>Лидер: emailmatrix.ru (/blog/email_body)</p>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>emailmatrix pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>электронное письмо</td>
+<td>263 659</td>
+<td>18</td>
+</tr>
+<tr>
+<td>текст письма</td>
+<td>264 079</td>
+<td>20</td>
+</tr>
+<tr>
+<td>тема письма</td>
+<td>100 786</td>
+<td>5 / 18</td>
+</tr>
+<tr>
+<td>написано письмо</td>
+<td>755 463</td>
+<td>39</td>
+</tr>
+<tr>
+<td>шапка в письме</td>
+<td>4 165</td>
+<td>2</td>
+</tr>
+<tr>
+<td>структура электронного письма</td>
+<td>686</td>
+<td>3</td>
+</tr>
+<tr>
+<td>схема письма</td>
+<td>14 898</td>
+<td>13</td>
+</tr>
+<tr>
+<td>пример электронного письма</td>
+<td>3 069</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>crmgroup.ru:</strong> нет ни одной статьи по этому кластеру.
+<strong>Покрытие конкурентами:</strong> 1/1 (emailmatrix.ru)
+<strong>Интент:</strong> информационный → CTA на рассылку/аудит
+<strong>Вывод:</strong> Взять. CRM Group как агентство с 10 годами кейсов и примерами писем крупных брендов может сделать статью с реальными примерами.</p>
+<h3>4.2. Кластер «Push-уведомления»</h3>
+<p>Лидер: emailmatrix.ru (/blog/creative-push-guide)</p>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>emailmatrix pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>пуш</td>
+<td>192 394</td>
+<td>21</td>
+</tr>
+<tr>
+<td>push notifications</td>
+<td>894</td>
+<td>35</td>
+</tr>
+</tbody>
+</table>
+<p><strong>crmgroup.ru:</strong> нет статьи о push-уведомлениях.
+<strong>Покрытие конкурентами:</strong> 1/1 (emailmatrix.ru)
+<strong>Интент:</strong> информационный, средняя коммерческая ценность
+<strong>Вывод:</strong> Взять в блог, если CRM Group оказывает услуги push-маркетинга (проверить продуктовую матрицу).</p>
+<h3>4.3. Кластер «UTM метки»</h3>
+<p>Лидер: emailmatrix.ru (/blog/utm-tags)</p>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>emailmatrix pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utm source</td>
+<td>211 779</td>
+<td>35</td>
+</tr>
+<tr>
+<td>utm метка</td>
+<td>13 489</td>
+<td>37</td>
+</tr>
+</tbody>
+</table>
+<p><strong>crmgroup.ru:</strong> нет статьи.
+<strong>Интент:</strong> информационны��, низкая прямая конверсия, высокая SEO-ценность (трафик digital-маркетологов = потенциальных клиентов)
+<strong>Вывод:</strong> Взять (среднесрок).</p>
+<h3>4.4. Кластер «Программа лояльности»</h3>
+<p>Лидер: mindbox.ru (/journal/education/vidy-programm-loyalnosti)</p>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>mindbox pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>программа лояльности</td>
+<td>73 581</td>
+<td>18</td>
+</tr>
+<tr>
+<td>баллы лояльности</td>
+<td>4 597</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+<p><strong>crmgroup.ru:</strong> нет ни страницы услуги, ни статьи.
+<strong>Конкуренты:</strong> SaaS-платформы (mindbox, teyca, kilbil) — не агентства.
+<strong>Интент:</strong> информационный + коммерческий
+<strong>Вывод:</strong> <strong>Высокий приоритет.</strong> CRM Group как агентство по настройке программ лояльности — уникальная позиция. Нет сильного конкурента-агентства в этом кластере.</p>
+<h3>4.5. Кластер «CRM агентство» (коммерческий)</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>emailmatrix pos</th>
+<th>crmgroup pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>crm агентство</td>
+<td>677</td>
+<td>14</td>
+<td>нет данных (вероятно &gt;50)</td>
+</tr>
+<tr>
+<td>email маркетинг агентство</td>
+<td>~1 500</td>
+<td>топ</td>
+<td>нет данных</td>
+</tr>
+<tr>
+<td>агентство email маркетинга</td>
+<td>~800</td>
+<td>топ</td>
+<td>нет данных</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> Прямые коммерческие запросы — crmgroup.ru не видна в топе. Нужны: правки on-page /crm-marketing/ и /email-marketing-pod-klyuch/ + наращивание DR.</p>
+<h3>4.6. Кластер «Брошенная корзина»</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>emailsoldiers pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>брошенная корзина</td>
+<td>~1 200</td>
+<td>41</td>
+</tr>
+<tr>
+<td>письмо брошенная корзина</td>
+<td>~700</td>
+<td>прим. топ-20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>crmgroup.ru:</strong> нет статьи. Emailsoldiers (возможно тот же бренд) имел статью. Inbox-marketing, emailmatrix — также охвачено.
+<strong>Вывод:</strong> Взять в блог (средний приоритет).</p>
+<hr>
+<h2>5. Приоритетные направления (топ-3)</h2>
+<h3>5.1. «Программа лояльности» — голубой океан для агентства</h3>
+<p><strong>Почему:</strong> WS=73,581 — огромная частота. В топе только SaaS-платформы и образовательные материалы. Нет ни одного CRM-агентства с сильной позицией по этому запросу. CRM Group работает с loyalty-программами (см. кейсы). Конкуренция по нишевому запросу «запустить программу лояльности агентство» — минимальная.</p>
+<p><strong>Что создать:</strong>
+- Статья «Программы лояльности: виды, как работают, что лучше выбрать» (2500-3000 слов) → таргет «программа лояльности» WS=73k
+- Страница-услуга <code>/loyalty-program/</code> «Настройка программы лояльности под ключ» → таргет «программа лояльности для бизнеса» + «настроить программу лояльности»
+- Кейсы с метриками (удержание, LTV, повторные покупки)</p>
+<p><strong>Ожидаемый impact:</strong> 1-3 позиции в топ по долгохвостовым запросам + лиды от B2B, кто ищет агентство для loyalty.</p>
+<h3>5.2. «Структура и написание email-письма» — перехват трафика digital-маркетологов</h3>
+<p><strong>Почему:</strong> «Электронное письмо» (WS=263,659) и «тема письма» (WS=100,786) — запросы с огромным трафиком. emailmatrix занял их одной статьёй /blog/email_body. Digital-маркетологи, которые ищут «как написать письмо», это прямая ЦА CRM Group.</p>
+<p><strong>Что создать:</strong>
+- Статья «Структура email-письма: от темы до подписи с примерами» (2500-3000 слов) — разбор на реальных примерах из портфолио CRM Group (Miele, Burger King, Kérastase упоминаются на сайте)
+- Дополнительно: «Тема письма: как писать, чтобы открывали» (отдельная более узкая статья)</p>
+<p><strong>Ожидаемый impact:</strong> Трафик 50-150 визитов/день при попадании в топ-10 по medium-frequency ключам кластера.</p>
+<h3>5.3. «Починить email-marketing-pod-klyuch/» — быстрая победа</h3>
+<p><strong>Почему:</strong> Страница /email-marketing-pod-klyuch/ технически сломана: нет meta description, двойной H1. Это ключевая коммерческая страница под запрос «email маркетинг под ключ» (WS: ~2000). Inbox-marketing.ru уже в топ-1 по этому запросу. Починка meta/H1 + добавление FAQPage JSON-LD — это ≤2 часов работы, которые дадут шанс войти в топ-10.</p>
+<hr>
+<h2>6. Что НЕ брать и почему</h2>
+<table>
+<thead>
+<tr>
+<th>Кластер</th>
+<th>Причина не брать</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UTM метки (WS: 211k)</td>
+<td>emailmatrix на позиции 35 — конкурировать по этому запросу тяжело с DR=16; брать в среднесрок</td>
+</tr>
+<tr>
+<td>«Написание письма» (WS: 755k)</td>
+<td>Слишком общий запрос, «написано письмо» — это не email-маркетинг, это ОС/редакторы; мусорный трафик</td>
+</tr>
+<tr>
+<td>CPC, CPL, CPA (платная реклама)</td>
+<td>Не профиль агентства, конкуренция огромная (media giants)</td>
+</tr>
+<tr>
+<td>Разработка CRM-системы</td>
+<td>CRM Group — не разработчик CRM, это агентство услуг</td>
+</tr>
+<tr>
+<td>B2C запросы «как создать рассылку»</td>
+<td>CRM Group работает с B2B-брендами, B2C-трафик не конвертируется</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+
+<section class="section" id="section-content-audit">
+  <div class="section-head">
+    <span class="section-num">03 · CONTENT</span>
+  </div>
+  <h2 class="section-title">Контент и семантика</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-30
+<strong>Ниша:</strong> Агентство CRM- и email-маркетинга, B2B
+<strong>Целевой регион:</strong> Россия (Яндекс + Google)</p>
+<hr>
+<h2>1. Текущий контент сайта</h2>
+<h3>1.1. Инвентаризация по типам</h3>
+<table>
+<thead>
+<tr>
+<th>Тип страниц</th>
+<th>Кол-во</th>
+<th>Примеры</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Главная</td>
+<td>1</td>
+<td>crmgroup.ru/</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Сервисные страницы</td>
+<td>9</td>
+<td>/crm-marketing/, /email-marketing-pod-klyuch/, /telegram-chatbot/, /marketing-audit/, /web-development/, /special-projects/, /services/ + 2</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Кейсы</td>
+<td>25</td>
+<td>/cases/communication-strategy/, /cases/custdev/</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>68</td>
+<td>/blog/crm-marketer/, /blog/top10-game-mechanics/</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Глоссарий</td>
+<td>103</td>
+<td>/glossary/kpi, /glossary/retention</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Whitepapers</td>
+<td>~5</td>
+<td>/whitepapers/</td>
+<td>Есть</td>
+</tr>
+<tr>
+<td>Прочее</td>
+<td>~15</td>
+<td>/contacts/, /questionnaire/, /calendar/, /newyear-quiz/</td>
+<td>Есть</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Итого: ~226 страниц</strong> в sitemap. Реально в индексе Google: 134 (по keys.so).</p>
+<h3>1.2. Сервисные страницы — детальная оценка</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>H1</th>
+<th>Текущий SEO-фокус</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/crm-marketing/</td>
+<td>«CRM-маркетинг, который приносит повторную выручку»</td>
+<td>CRM-маркетинг под ключ</td>
+<td>🟡 Есть страница, title неплохой, но H1 слоган, нет FAQ на всех коммерческих кластерах</td>
+</tr>
+<tr>
+<td>/email-marketing-pod-klyuch/</td>
+<td>2 разных H1 (баг)</td>
+<td>Email-маркетинг под ключ</td>
+<td>❌ Нет meta description, двойной H1, страница технически сломана</td>
+</tr>
+<tr>
+<td>/telegram-chatbot/</td>
+<td>«Разработаем чат-бот в телеграме»</td>
+<td>Telegram-боты</td>
+<td>🟡 Страница есть, нет FAQ JSON-LD, title &gt;70 символов</td>
+</tr>
+<tr>
+<td>/marketing-audit/</td>
+<td>«Аудит маркетинговых коммуникаций»</td>
+<td>Аудит CRM-коммуникаций</td>
+<td>🟡 Нет JSON-LD, много изображений без alt</td>
+</tr>
+<tr>
+<td>/web-development/</td>
+<td>«Делаем сайты, которые приводят клиентов»</td>
+<td>Разработка сайтов</td>
+<td>🟡 Не основная ниша, title &gt;70 символов</td>
+</tr>
+<tr>
+<td>/special-projects/</td>
+<td>«Запускаем игровые спецпроекты»</td>
+<td>Спецпроекты, геймификация</td>
+<td>🟡 Title слишком короткий, 32/38 изображений без alt</td>
+</tr>
+<tr>
+<td>/services/</td>
+<td>«Услуги»</td>
+<td>Обзорная страница услуг</td>
+<td>❌ H1 «Услуги» без ключей — страница не ранжируется ни по чему</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>2. Семантическое ядро — первичный сбор</h2>
+<p>Источники: keys.so данные crmgroup.ru + поисковые саджесты + WebSearch</p>
+<h3>2.1. Коммерческие запросы (агентские услуги)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Фраза</th>
+<th>ЧС (WS)</th>
+<th>Интент</th>
+<th>Страница CRMGroup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>crm маркетинг</td>
+<td>~10 000</td>
+<td>C</td>
+<td>/crm-marketing/</td>
+</tr>
+<tr>
+<td>2</td>
+<td>crm маркетинг агентство</td>
+<td>~800</td>
+<td>T</td>
+<td>/crm-marketing/</td>
+</tr>
+<tr>
+<td>3</td>
+<td>email маркетинг под ключ</td>
+<td>~2 000</td>
+<td>T</td>
+<td>/email-marketing-pod-klyuch/</td>
+</tr>
+<tr>
+<td>4</td>
+<td>email маркетинг агентство</td>
+<td>~1 500</td>
+<td>T</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>автоматизация email рассылок</td>
+<td>~1 200</td>
+<td>T</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>настройка email рассылок</td>
+<td>~800</td>
+<td>T</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>7</td>
+<td>триггерные рассылки</td>
+<td>~1 800</td>
+<td>C</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>8</td>
+<td>программа лояльности для бизнеса</td>
+<td>~15 000</td>
+<td>C</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>9</td>
+<td>аудит email маркетинга</td>
+<td>~400</td>
+<td>T</td>
+<td>/marketing-audit/</td>
+</tr>
+<tr>
+<td>10</td>
+<td>аудит crm маркетинга</td>
+<td>~300</td>
+<td>T</td>
+<td>/marketing-audit/</td>
+</tr>
+<tr>
+<td>11</td>
+<td>разработка чат-бота telegram</td>
+<td>~2 000</td>
+<td>T</td>
+<td>/telegram-chatbot/</td>
+</tr>
+<tr>
+<td>12</td>
+<td>telegram бот для бизнеса</td>
+<td>~3 000</td>
+<td>C</td>
+<td>/telegram-chatbot/</td>
+</tr>
+<tr>
+<td>13</td>
+<td>мессенджер маркетинг</td>
+<td>~1 500</td>
+<td>C</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>14</td>
+<td>сегментация базы клиентов</td>
+<td>~600</td>
+<td>C</td>
+<td>нет dedicated URL</td>
+</tr>
+<tr>
+<td>15</td>
+<td>welcome серия писем</td>
+<td>~500</td>
+<td>C/I</td>
+<td>нет dedicated URL</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2. Информационные запросы (блог + глоссарий)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Фраза</th>
+<th>ЧС (WS)</th>
+<th>Интент</th>
+<th>Страница CRMGroup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>что такое crm маркетинг</td>
+<td>~3 000</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>17</td>
+<td>как написать email рассылку</td>
+<td>~2 500</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>18</td>
+<td>тема письма</td>
+<td>100 786</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>19</td>
+<td>структура email письма</td>
+<td>~686</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>20</td>
+<td>utm метка</td>
+<td>~211 779</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>21</td>
+<td>push уведомления</td>
+<td>~192 394</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>22</td>
+<td>брошенная корзина email</td>
+<td>~1 200</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>23</td>
+<td>ltv клиента</td>
+<td>~4 000</td>
+<td>I</td>
+<td>нет в блоге (есть в glossary темах)</td>
+</tr>
+<tr>
+<td>24</td>
+<td>кликбейт</td>
+<td>5 013</td>
+<td>I</td>
+<td>/blog/clickbait — есть</td>
+</tr>
+<tr>
+<td>25</td>
+<td>retention</td>
+<td>9 469</td>
+<td>I</td>
+<td>/glossary/retention — есть</td>
+</tr>
+<tr>
+<td>26</td>
+<td>drr маркетинг</td>
+<td>10 483</td>
+<td>I</td>
+<td>/glossary/drr — есть</td>
+</tr>
+<tr>
+<td>27</td>
+<td>kpi</td>
+<td>(очень высокая)</td>
+<td>I</td>
+<td>/glossary/kpi — есть (50 ключей)</td>
+</tr>
+<tr>
+<td>28</td>
+<td>программа лояльности</td>
+<td>73 581</td>
+<td>I</td>
+<td>нет статьи</td>
+</tr>
+<tr>
+<td>29</td>
+<td>геймификация в маркетинге</td>
+<td>~4 760</td>
+<td>I</td>
+<td>/blog/gamification-in-marketing — есть</td>
+</tr>
+<tr>
+<td>30</td>
+<td>инкрементальность маркетинг</td>
+<td>~12 230</td>
+<td>I</td>
+<td>/blog/incrementality — есть</td>
+</tr>
+</tbody>
+</table>
+<p><em>ЧС = частотность по Яндексу; данные keys.so там где доступны, автосаджест или WebSearch для остальных</em></p>
+<hr>
+<h2>3. Кластеры с покрытием</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Кластер</th>
+<th>Ключевая фраза</th>
+<th>ЧС</th>
+<th>Интент</th>
+<th>Кол-во ключей</th>
+<th>Покрытие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CRM-маркетинг (услуга)</td>
+<td>crm маркетинг агентство</td>
+<td>~800</td>
+<td>T/C</td>
+<td>15+</td>
+<td>🟡 Есть страница, не оптимизирована под транзакционный кластер</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Email-маркетинг (услуга)</td>
+<td>email маркетинг под ключ</td>
+<td>~2 000</td>
+<td>T</td>
+<td>20+</td>
+<td>❌ Страница технически сломана (нет meta desc, 2 H1)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Триггерные рассылки</td>
+<td>триггерные рассылки агентство</td>
+<td>~500</td>
+<td>T</td>
+<td>10+</td>
+<td>❌ Нет dedicated страницы</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Программа лояльности</td>
+<td>программа лояльности бизнес</td>
+<td>~15 000</td>
+<td>C/T</td>
+<td>30+</td>
+<td>❌ Нет ни статьи, ни страницы</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Telegram чат-боты</td>
+<td>разработка telegram бота</td>
+<td>~2 000</td>
+<td>T</td>
+<td>15+</td>
+<td>🟡 Страница есть, без FAQ JSON-LD</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Аудит CRM/email</td>
+<td>аудит email маркетинга</td>
+<td>~400</td>
+<td>T</td>
+<td>10+</td>
+<td>🟡 Страница есть</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Структура письма</td>
+<td>тема письма электронного</td>
+<td>~100 786</td>
+<td>I</td>
+<td>50+</td>
+<td>❌ Нет статьи — крупнейший пробел</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Push уведомления</td>
+<td>пуш уведомления</td>
+<td>~192 394</td>
+<td>I</td>
+<td>50+</td>
+<td>❌ Нет статьи — крупнейший пробел</td>
+</tr>
+<tr>
+<td>9</td>
+<td>UTM метки</td>
+<td>utm метка пример</td>
+<td>~211 779</td>
+<td>I</td>
+<td>40+</td>
+<td>❌ Нет статьи (emailmatrix.ru владеет)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Welcome-серия / онбординг</td>
+<td>welcome серия писем</td>
+<td>~500</td>
+<td>I/C</td>
+<td>10+</td>
+<td>❌ Нет статьи</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Брошенная корзина</td>
+<td>брошенная корзина письмо</td>
+<td>~1 200</td>
+<td>I/C</td>
+<td>15+</td>
+<td>❌ Нет статьи (emailsoldiers.ru владел)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>CRM глоссарий</td>
+<td>kpi что это, retention</td>
+<td>разные</td>
+<td>I</td>
+<td>400+</td>
+<td>✅ Глоссарий есть (103 термина), основной источник трафика</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Геймификация в маркетинге</td>
+<td>геймификация маркетинг</td>
+<td>~4 760</td>
+<td>I</td>
+<td>10+</td>
+<td>✅ Есть статья + /special-projects/</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Мессенджер MAX</td>
+<td>макс мессенджер</td>
+<td>~7 764</td>
+<td>I</td>
+<td>5+</td>
+<td>✅ Статья есть, топовая по трафику</td>
+</tr>
+<tr>
+<td>15</td>
+<td>CRM-маркетолог</td>
+<td>crm маркетолог</td>
+<td>~2 500</td>
+<td>I</td>
+<td>10+</td>
+<td>✅ Статья есть (/blog/crm-marketer/)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. SERP-анализ приоритетных кластеров</h2>
+<h3>4.1. «Email маркетинг под ключ» — Яндекс топ-5</h3>
+<table>
+<thead>
+<tr>
+<th>Место</th>
+<th>Домен</th>
+<th>Тип страницы</th>
+<th>Объём</th>
+<th>Формат</th>
+<th>Сильное</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>inbox-marketing.ru</td>
+<td>Лендинг-услуги</td>
+<td>2000+ слов</td>
+<td>Лендинг с прайсом (от 210k/мес)</td>
+<td>FAQ блок, явные цены</td>
+</tr>
+<tr>
+<td>2</td>
+<td>lid.am</td>
+<td>Агрегатор</td>
+<td>—</td>
+<td>Каталог</td>
+<td>Агрегатор</td>
+</tr>
+<tr>
+<td>3</td>
+<td>key-client.ru</td>
+<td>Лендинг</td>
+<td>1500 слов</td>
+<td>Лендинг</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>mediaguru.ru</td>
+<td>Лендинг</td>
+<td>2000 слов</td>
+<td>Лендинг</td>
+<td>Структурированный priceblock</td>
+</tr>
+<tr>
+<td>5</td>
+<td>email2business.ru</td>
+<td>Лендинг</td>
+<td>1500 слов</td>
+<td>Лендинг</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>?</strong></td>
+<td><strong>crmgroup.ru</strong></td>
+<td><strong>—</strong></td>
+<td><strong>—</strong></td>
+<td><strong>—</strong></td>
+<td><strong>Не в топ-10</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> В топе — лендинги агентств с FAQ и явными кейсами. crmgroup.ru (/email-marketing-pod-klyuch/) должна была быть в топе, но технически сломана (нет meta description, двойной H1).</p>
+<h3>4.2. «CRM маркетинг агентство» — Яндекс топ-5</h3>
+<table>
+<thead>
+<tr>
+<th>Место</th>
+<th>Домен</th>
+<th>Тип</th>
+<th>Объём</th>
+<th>Формат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>emailmatrix.ru</td>
+<td>Главная/услуги</td>
+<td>3000+ слов</td>
+<td>Агентский лендинг</td>
+</tr>
+<tr>
+<td>2</td>
+<td>inbox-marketing.ru</td>
+<td>Лендинг</td>
+<td>2000+ слов</td>
+<td>Лендинг</td>
+</tr>
+<tr>
+<td>3</td>
+<td>wim.agency</td>
+<td>Услуги</td>
+<td>2000 слов</td>
+<td>Лендинг</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>retailcrm, другие</td>
+<td>Рейтинги</td>
+<td>—</td>
+<td>Списки агентств</td>
+</tr>
+<tr>
+<td><strong>?</strong></td>
+<td><strong>crmgroup.ru</strong></td>
+<td><strong>—</strong></td>
+<td><strong>—</strong></td>
+<td><strong>Не в топ-10</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> В топе — агентства с мощными лендингами на /crm-marketing/ и высоким DR. CRM Group имеет хорошую страницу /crm-marketing/, но DR=16 не позволяет конкурировать без наращивания ссылочного.</p>
+<h3>4.3. «Программа лояльности» — Яндекс топ-5</h3>
+<table>
+<thead>
+<tr>
+<th>Место</th>
+<th>Домен</th>
+<th>Тип</th>
+<th>Формат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-3</td>
+<td>mindbox.ru, teyca.ru, yandex-pay</td>
+<td>SaaS + обзоры</td>
+<td>Образовательные лонгриды</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>kilbil.ru, rarus.ru</td>
+<td>SaaS</td>
+<td>Лондирнги</td>
+</tr>
+<tr>
+<td><strong>crmgroup</strong></td>
+<td>Нет</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> По «программа лояльности» в топе — SaaS-платформы и статьи. CRM Group как <strong>агентство по настройке программ лояльности</strong> — незанятая ниша. Есть потенциал статьи «Как выбрать и запустить программу лояльности» + лендинг под услугу.</p>
+<hr>
+<h2>5. Контент-план (рекомендации)</h2>
+<h3>5.1. Высокий приоритет (техн. фикс + быстрые wins)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1</th>
+<th>Бриф</th>
+<th>Impact</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>/email-marketing-pod-klyuch/</td>
+<td>Фикс</td>
+<td>Email-маркетинг (услуга)</td>
+<td>«Email-маркетинг под ключ для бизнеса»</td>
+<td>Добавить meta description ~155 символов, убрать второй H1, добавить FAQPage JSON-LD</td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/crm-marketing/</td>
+<td>Фикс + улучшение</td>
+<td>CRM-маркетинг (услуга)</td>
+<td>оставить текущий</td>
+<td>Изменить OG type на website, добавить FAQPage JSON-LD (FAQ-блок уже есть)</td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/services/</td>
+<td>Фикс</td>
+<td>Обзор услуг</td>
+<td>«Услуги агентства CRM-маркетинга»</td>
+<td>Переписать H1 с ключом, добавить meta description, оптимизировать под «crm маркетинг агентство»</td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/special-projects/</td>
+<td>Фикс</td>
+<td>Спецпроекты</td>
+<td>—</td>
+<td>Добавить alt-тексты ко всем 32 изображениям, расширить title до 55-60 символов</td>
+<td>high</td>
+<td>low</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2. Средний приоритет (новые страницы)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1</th>
+<th>Объём</th>
+<th>Impact</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>/loyalty-program/</td>
+<td>Новая страница</td>
+<td>Программа лояльности</td>
+<td>«Настройка программы лояльности для бизнеса»</td>
+<td>1200-1500 слов: виды программ, как CRM Group запускает, кейсы с метриками, FAQ</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>6</td>
+<td>/trigger-emails/</td>
+<td>Новая страница</td>
+<td>Триггерные рассылки</td>
+<td>«Триггерные email-рассылки под ключ»</td>
+<td>1000-1200 слов: виды триггеров, welcome/брошенная корзина/реактивация, кейсы, FAQ</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>7</td>
+<td>/blog/email-structure/</td>
+<td>Статья блога</td>
+<td>Структура письма</td>
+<td>«Структура email-письма: разбор по частям с примерами»</td>
+<td>2500-3000 слов: шапка, тема, прехедер, тело, CTA, подпись + примеры клиентов CRM Group</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>8</td>
+<td>/blog/push-notifications-guide/</td>
+<td>Статья блога</td>
+<td>Push уведомления</td>
+<td>«Push-уведомления: руководство по настройке и примеры»</td>
+<td>2000 слов: виды пушей, best practices, инструменты, метрики. emailmatrix pos 21 на WS 192k</td>
+<td>high</td>
+<td>med</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3. Низкий приоритет (долгосрок)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1</th>
+<th>Impact</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>/blog/utm-tags/</td>
+<td>Статья</td>
+<td>UTM метки</td>
+<td>«UTM-метки: полное руководство с примерами 2026»</td>
+<td>med</td>
+<td>med</td>
+</tr>
+<tr>
+<td>10</td>
+<td>/blog/abandoned-cart-email/</td>
+<td>Статья</td>
+<td>Брошенная корзина</td>
+<td>«Письма о брошенной корзине: 10 примеров и шаблон»</td>
+<td>med</td>
+<td>med</td>
+</tr>
+<tr>
+<td>11</td>
+<td>/blog/welcome-series/</td>
+<td>Статья</td>
+<td>Welcome-серия</td>
+<td>«Welcome-цепочка писем: как настроить и что включить»</td>
+<td>med</td>
+<td>med</td>
+</tr>
+<tr>
+<td>12</td>
+<td>/blog/what-is-crm-marketing/</td>
+<td>Статья</td>
+<td>Что такое CRM</td>
+<td>«CRM-маркетинг: что это, как работает и зачем нужен»</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>13</td>
+<td>/messenger-marketing/</td>
+<td>Новая страница</td>
+<td>Мессенджер-маркетинг</td>
+<td>«Мессенджер-маркетинг для бизнеса»</td>
+<td>med</td>
+<td>med</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>6. Выводы</h2>
+<h3>Топ-3 точки роста по контенту</h3>
+<ol>
+<li>
+<p><strong>Починить /email-marketing-pod-klyuch/</strong> — единственная страница под высококонкурентный транзакционный запрос «email маркетинг под ключ» буквально сломана. Нет meta description, двойной H1. После фикса страница получит шанс попасть в топ-10 Яндекса без создания нового контента. <strong>Impact: высокий, Effort: минимальный</strong>.</p>
+</li>
+<li>
+<p><strong>Создать страницу /loyalty-program/</strong> — «программа лояльности» (WS: 73 581) — огромный кластер, где в топе SaaS-платформы. Агентство CRM Group с кейсами по настройке программ лояльности может занять позицию «не купите у нас платформу, а настройте с нами». Нет ни одного сильного CRM-агентства в топе по этому запросу.</p>
+</li>
+<li>
+<p><strong>Статья про структуру email-письма</strong> — emailmatrix.ru занял этот кластер (WS: 263 659 для «электронное письмо», WS: 100 786 для «тема письма»). CRM Group — агентство с 400+ клиентами и реальными кейсами design-писем — может создать более экспертную статью с примерами реальных кампаний. Информационный трафик конвертируется через «обсудить вашу рассылку» CTA.</p>
+</li>
+</ol>
+<h3>Риски и ограничения</h3>
+<ul>
+<li><strong>DR=16</strong> — сложно конкурировать по высокочастотным коммерческим запросам без прокачки ссылочного профиля. Приоритет — длинный хвост и информационные кластеры, где DR 16-20 достаточен.</li>
+<li><strong>Закрытые страницы в robots.txt /conditions/</strong> — если это важная страница, ошибка нанесёт урон.</li>
+<li><strong>68 статей в блоге</strong> — немало контента, но большинство не оптимизированы под конкретные высокочастотные запросы. Нужен аудит существующих статей с переоптимизацией.</li>
+</ul></div>
+</section>
+
+
+<section class="section" id="section-tech-seo-audit">
+  <div class="section-head">
+    <span class="section-num">04 · TECH</span>
+  </div>
+  <h2 class="section-title">Технический SEO</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-04-30
+<strong>Статус:</strong> анализ</p>
+<hr>
+<h2>1. robots.txt</h2>
+<p>URL: https://crmgroup.ru/robots.txt</p>
+<pre><code>User-agent: *
+Disallow: /wp-admin
+Disallow: /conditions
+Disallow: /wp-includes
+...
+Sitemap: https://crmgroup.ru/sitemap_index.xml
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Описание</th>
+<th>Рекомендация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Конфликт: /conditions заблокирован, но в sitemap</strong></td>
+<td><code>/conditions/</code> попадает в page-sitemap.xml с lastmod 2024-04-18, при этом в robots.txt для всех агентов стоит <code>Disallow: /conditions</code>. Сканер видит URL в sitemap, приходит → получает 200 (страница существует) → но не может её сканировать</td>
+<td>Либо убрать <code>/conditions/</code> из sitemap, либо снять Disallow в robots.txt</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Дублирование Disallow: /xmlrpc.php</strong></td>
+<td>В каждом user-agent блоке правило <code>/xmlrpc.php</code> написано дважды</td>
+<td>Убрать дубль</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Параметр UTM: несогласованность</strong></td>
+<td>В <code>User-agent: *</code> блоке: <code>/*utm=</code>, в Yandex/GoogleBot блоках: <code>*utm=</code> (без ведущего slash) — разные паттерны для разных ботов</td>
+<td>Унифицировать: <code>Disallow: /*utm=</code> везде</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Положительно:</strong> Sitemap директива есть, <code>Host:</code> задан корректно, важные разделы открыты.</p>
+<hr>
+<h2>2. sitemap.xml</h2>
+<p>Главный файл: <code>https://crmgroup.ru/sitemap_index.xml</code> (генерируется Yoast SEO)</p>
+<table>
+<thead>
+<tr>
+<th>Sitemap</th>
+<th>URL-ов</th>
+<th>Последнее обновление</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page-sitemap.xml</td>
+<td>21</td>
+<td>2026-04-09</td>
+</tr>
+<tr>
+<td>blog-sitemap.xml</td>
+<td>68</td>
+<td>2026-04-09</td>
+</tr>
+<tr>
+<td>glossary-sitemap.xml</td>
+<td>103</td>
+<td>2026-03-10</td>
+</tr>
+<tr>
+<td>cases-sitemap.xml</td>
+<td>25</td>
+<td>2026-01-14</td>
+</tr>
+<tr>
+<td>cases_title-sitemap.xml</td>
+<td>~10</td>
+<td>2025-12-25</td>
+</tr>
+<tr>
+<td>whitepapers-sitemap.xml</td>
+<td>~5</td>
+<td>2025-11-18</td>
+</tr>
+<tr>
+<td><strong>category-sitemap.xml</strong></td>
+<td><strong>16</strong></td>
+<td>2026-03-11</td>
+</tr>
+<tr>
+<td><strong>post_tag-sitemap.xml</strong></td>
+<td><strong>23</strong></td>
+<td>2026-03-11</td>
+</tr>
+<tr>
+<td>glossary_topic-sitemap.xml</td>
+<td>~5</td>
+<td>2026-03-10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Итого в sitemap: ~276 URL</strong></p>
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Категории и теги в sitemap</strong></td>
+<td>16 категорий + 23 тега = 39 страниц тонкого контента попадают в индекс. Страницы-архивы <code>/category/crm_marketing/</code>, <code>/tag/ai/</code> — дублируют blog listing, содержат мало уникального текста. Тратят crawl budget</td>
+</tr>
+<tr>
+<td><strong>Конфликт /conditions</strong></td>
+<td>см. п.1</td>
+</tr>
+<tr>
+<td><strong>URL с Кириллицей в тегах</strong></td>
+<td><code>/category/%d0%b4%d0%b8%d0%b7%d0%b0%d0%b9%d0%bd-%d0%bf%d0%be%d0%b4%d0%b4%d0%b5%d1%80%d0%b6%d0%ba%d0%b0/</code> — пересекается с латинскими URL категорий. Непоследовательная URL-структура</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>3. Индексация</h2>
+<table>
+<thead>
+<tr>
+<th>Поисковик</th>
+<th>Оценка (site:)</th>
+<th>В sitemap</th>
+<th>Разница</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Яндекс</td>
+<td>~200+</td>
+<td>~276</td>
+<td>Частичный недоиндекс</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>По данным keys.so — 134 страниц в индексе</td>
+<td>~276</td>
+<td>~142 страницы не проиндексированы</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Keys.so (апрель 2026):</strong> 134 страниц в индексе. При sitemap ~276 URL — Google индексирует ~49% страниц.</p>
+<p><strong>Предположительно не попало в индекс:</strong> старые статьи блога, ряд glossary-страниц с тонким контентом, category/tag-архивы.</p>
+<p><strong>Замечание:</strong> Субдомен <code>testcontent.crmgroup.ru</code> появился в результатах поиска Google (по данным site:crmgroup.ru). Это тестовый/staging-субдомен, который должен быть заблокирован от индексации.</p>
+<hr>
+<h2>4. Главная страница</h2>
+<p>URL: https://crmgroup.ru/ (финальный URL после редиректа)</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP статус</td>
+<td>200</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>Агентство CRM-маркетинга: рост повторных продаж и LTV | CRM Group</td>
+<td>✅ (65 символов)</td>
+</tr>
+<tr>
+<td>Meta description</td>
+<td>CRM Group помогает выстроить CRM- и email-маркетинг&hellip;</td>
+<td>✅ (158 символов)</td>
+</tr>
+<tr>
+<td>H1</td>
+<td>«Делаем клиентов постоянными»</td>
+<td>⚠️ Нет коммерческого ключа</td>
+</tr>
+<tr>
+<td>H1 count</td>
+<td>1</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Canonical</td>
+<td>https://crmgroup.ru/</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>OG type</td>
+<td>website</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>hreflang</td>
+<td>отсутствует</td>
+<td>✅ (только RU аудитория)</td>
+</tr>
+<tr>
+<td>HTML lang</td>
+<td>ru-RU</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>JSON-LD</td>
+<td>2 блока, тип не распознан (вероятно Organization/WebSite без типов)</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>H2 (1):</td>
+<td>«Доказываем делом»</td>
+<td>⚠️ нет ключей</td>
+</tr>
+<tr>
+<td>Размер HTML</td>
+<td>252 KB</td>
+<td>⚠️ Тяжёлый (норма 50-100 KB)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>H1 главной не содержит коммерческого запроса.</strong> «Делаем клиентов постоянными» — слоган, не SEO-заголовок. Конкурент emailmatrix.ru: «Email-маркетинг и CRM-маркетинг для крупных брендов» — ключи в H1 сразу.</p>
+<hr>
+<h2>5. Ключевые страницы</h2>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Title (длина)</th>
+<th>Meta desc</th>
+<th>H1</th>
+<th>H1 count</th>
+<th>OG type</th>
+<th>Проблемы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/services/</td>
+<td>Услуги агентства CRM-group | Профессиональные омниканальные коммуникации (72)</td>
+<td>125 символов</td>
+<td>«Услуги»</td>
+<td>1</td>
+<td>website</td>
+<td>H1 «Услуги» — без ключей</td>
+</tr>
+<tr>
+<td>/crm-marketing/</td>
+<td>CRM-маркетинг под ключ: email, SMS, push и мессенджеры | CRM Group (66)</td>
+<td>124 символа</td>
+<td>«CRM-маркетинг, который приносит повторную выручку»</td>
+<td>1</td>
+<td><strong>article</strong></td>
+<td>OG type должен быть website</td>
+</tr>
+<tr>
+<td>/email-marketing-pod-klyuch/</td>
+<td>Email-маркетинг под ключ (61)</td>
+<td><strong>NULL</strong></td>
+<td>2 разных H1</td>
+<td><strong>2</strong></td>
+<td>article</td>
+<td><strong>Нет meta description + двойной H1</strong></td>
+</tr>
+<tr>
+<td>/telegram-chatbot/</td>
+<td>Разработаем чат-бот в телеграме под ваш запрос (83)</td>
+<td>142 символа</td>
+<td>«Разработаем чат-бот в телеграме под ваш запрос»</td>
+<td>1</td>
+<td>website</td>
+<td>Title &gt;70 символов</td>
+</tr>
+<tr>
+<td>/marketing-audit/</td>
+<td>Аудит маркетинговых коммуникаций для бизнеса (81)</td>
+<td>127 символа</td>
+<td>«Аудит маркетинговых коммуникаций для бизнеса»</td>
+<td>1</td>
+<td>website</td>
+<td>Title &gt;70 символов; 7 изображений без alt</td>
+</tr>
+<tr>
+<td>/web-development/</td>
+<td>Делаем сайты, которые приводят клиентов (76)</td>
+<td>131 символ</td>
+<td>«Делаем сайты, которые приводят клиентов»</td>
+<td>1</td>
+<td>website</td>
+<td>Title &gt;70; 10 изображений без alt</td>
+</tr>
+<tr>
+<td>/special-projects/</td>
+<td>Спецпроекты и геймификация для бизнеса (38)</td>
+<td>103 символа</td>
+<td>«Запускаем игровые спецпроекты»</td>
+<td>1</td>
+<td>website</td>
+<td><strong>Title 38 символов — слишком короткий; 32 из 38 изображений без alt</strong></td>
+</tr>
+<tr>
+<td>/glossary/</td>
+<td>Глоссарий — CRM-маркетинга CRM-Group (46)</td>
+<td>154 символа</td>
+<td>«База знаний»</td>
+<td>1</td>
+<td>website</td>
+<td>Title «Глоссарий» без ключей; H1 «База знаний» — тоже без ключей</td>
+</tr>
+<tr>
+<td>/blog/</td>
+<td>Блог — CRM-Group (41)</td>
+<td>64 символа</td>
+<td>«МаркетингНаданных» (рендер-баг)</td>
+<td>1</td>
+<td>website</td>
+<td><strong>H1 содержит артефакт рендеринга «МаркетингНаданных»; meta desc 64 символа — слишком короткий</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Сводка по alt-тексту изображений:</h3>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>Изображений</th>
+<th>Без alt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/special-projects/</td>
+<td>38</td>
+<td><strong>32 (84%)</strong></td>
+</tr>
+<tr>
+<td>/web-development/</td>
+<td>17</td>
+<td><strong>10 (59%)</strong></td>
+</tr>
+<tr>
+<td>/marketing-audit/</td>
+<td>12</td>
+<td><strong>7 (58%)</strong></td>
+</tr>
+<tr>
+<td>/crm-marketing/</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>/telegram-chatbot/</td>
+<td>14</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>6. Core Web Vitals</h2>
+<p><code>GOOGLE_PSI_API_KEY</code> не задан в <code>.env</code>. CWV не проверены.</p>
+<p>Косвенные сигналы:
+- Главная: 252 KB HTML — выше нормы (50–100 KB). Риск высокого TBT.
+- Blog listing: 234 KB HTML + 67 изображений — нагрузка на рендер.
+- Глоссарий: 107 KB — приемлемо (в отличие от unisender.com).</p>
+<p><strong>Рекомендация:</strong> Проверить вручную главную и /blog/ через PageSpeed Insights.</p>
+<hr>
+<h2>7. Редиректы</h2>
+<table>
+<thead>
+<tr>
+<th>Проверка</th>
+<th>Результат</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http → https</td>
+<td>301, работает</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>HTTP Location header</strong></td>
+<td><code>https://crmgroup.ru:443/</code> — содержит явный порт :443</td>
+<td><strong>⚠️ Нестандартно</strong></td>
+</tr>
+<tr>
+<td>www → non-www</td>
+<td>301, корректно</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Trailing slash</td>
+<td><code>/crm-marketing</code> → <code>/crm-marketing/</code> (301)</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Проблема с портом :443:</strong> nginx отвечает 301 с <code>Location: https://crmgroup.ru:443/</code>. Большинство браузеров и поисковых ботов корректно обрабатывают <code>https://host:443/</code> = <code>https://host/</code>, но это нестандартное поведение. Часть краулеров, особенно устаревших, может обрабатывать их как разные URL, создавая потенциальный дубль. <strong>Требует исправления в nginx конфигурации</strong> (<code>return 301 https://crmgroup.ru$request_uri;</code> без порта).</p>
+<hr>
+<h2>8. Структура URL</h2>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Кириллица в URL</td>
+<td>Частично: <code>/category/%d0%b4%d0%b8%d0%b7%d0%b0%d0%b9%d0%bd-подд/</code> — некоторые категории с Кириллицей, другие латиницей. Непоследовательно.</td>
+</tr>
+<tr>
+<td>Читабельность</td>
+<td>Хорошая для сервисных страниц: <code>/crm-marketing/</code>, <code>/telegram-chatbot/</code>. Исключение: <code>/email-marketing-pod-klyuch/</code> — транслит, длинно</td>
+</tr>
+<tr>
+<td>Вложенность</td>
+<td>2 уровня максимум (<code>/glossary/kpi</code>, <code>/blog/article</code>) — норма</td>
+</tr>
+<tr>
+<td>Параметры в URL</td>
+<td>В robots.txt закрыты UTM и form параметры — корректно</td>
+</tr>
+<tr>
+<td>Субдомен test</td>
+<td><code>testcontent.crmgroup.ru</code> — техн. субдомен, попал в Google</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Критичные проблемы (топ-5)</h2>
+<ol>
+<li>
+<p><strong>Email-маркетинг страница: нет meta description + 2 H1</strong> — <code>/email-marketing-pod-klyuch/</code> — ключевая коммерческая страница без meta description и с двумя H1-заголовками. Google не может корректно отображать сниппет. При CTR-проверке в выдаче — пустое описание.</p>
+</li>
+<li>
+<p><strong>HTTP redirect Location: :443</strong> — nginx отдаёт нестандартный Location header <code>https://crmgroup.ru:443/</code>. Потенциальное дублирование канонических URL в некоторых краулерах. Требует одной правки в nginx.</p>
+</li>
+<li>
+<p><strong>Категории и теги в sitemap и индексе</strong> — 39 страниц-архивов (16 категорий + 23 тега) попадают в sitemap без noindex. Это тонкий контент, дублирующий blog listing, тратящий crawl budget и размывающий ссылочный вес.</p>
+</li>
+<li>
+<p><strong>Массовое отсутствие alt-текста</strong> — /special-projects/ (32 из 38 без alt), /web-development/ (10 из 17), /marketing-audit/ (7 из 12). Потеря релевантности для визуального поиска Яндекса + нарушение доступности.</p>
+</li>
+<li>
+<p><strong>OG type = &ldquo;article&rdquo; на коммерческих страницах</strong> — <code>/crm-marketing/</code> имеет <code>og:type = "article"</code>. При репосте в мессенджерах карточка отображается как статья, а не как сервис компании. Снижает CTR из социального трафика.</p>
+</li>
+</ol>
+<h2>Средние проблемы</h2>
+<ul>
+<li>H1 главной — слоган без ключевых слов</li>
+<li>H1 /services/ = «Услуги» — без SEO-значения</li>
+<li>H1 /blog/ — рендер-артефакт «МаркетингНаданных»</li>
+<li>Title /special-projects/ = 38 символов — слишком короткий</li>
+<li>Title /telegram-chatbot/, /marketing-audit/ &gt; 70 символов — обрезка в выдаче</li>
+<li>Blog meta description = 64 символа — слишком короткий</li>
+<li>Конфликт /conditions в robots vs sitemap</li>
+<li>testcontent.crmgroup.ru в индексе</li>
+</ul>
+<h2>Мелочи</h2>
+<ul>
+<li>Двойной Disallow /xmlrpc.php в robots.txt</li>
+<li>Несогласованные паттерны UTM в robots.txt</li>
+<li>URL категорий с кириллицей vs латиница — непоследовательно</li>
+<li>JSON-LD типы не определяются (возможно Organization/WebSite без явного @type)</li>
+</ul></div>
+</section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Сгенерировано автоматически из research/*.md · 2026-04-30</div>
+    <div class="files"><code>audit-summary.md</code> <code>gap-analysis.md</code> <code>content-audit.md</code> <code>tech-seo-audit.md</code></div>
+  </div>
+</footer>
+
+</body>
+</html>
