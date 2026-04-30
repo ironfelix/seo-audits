@@ -453,6 +453,19 @@ footer strong { color: var(--text-soft); }
   .nav { padding: 0 20px; }
   .issue { grid-template-columns: 36px 1fr; }
 }
+
+/* Fix log */
+.badge.done { background:rgba(95,168,90,0.15); color:var(--green); }
+.issue.is-done { opacity:0.72; }
+.issue.is-done h3 { text-decoration:line-through; color:var(--muted); }
+.fix-log { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+.fix-row { display:grid; grid-template-columns:20px 1fr auto; align-items:start; gap:10px; padding:10px 14px; background:var(--surface2); border-radius:8px; border-left:3px solid var(--green); font-size:13.5px; }
+.fix-row .fix-icon { color:var(--green); font-size:14px; line-height:1.5; }
+.fix-row .fix-text strong { color:var(--text); display:block; margin-bottom:2px; }
+.fix-row .fix-text span { color:var(--text-soft); font-size:12.5px; }
+.fix-row .fix-date { color:var(--muted); font-size:11.5px; white-space:nowrap; }
+.fix-pending { border-left-color:var(--orange) !important; }
+.fix-pending .fix-icon { color:var(--orange); }
 </style>
 </head>
 <body>
@@ -470,20 +483,22 @@ footer strong { color: var(--text-soft); }
     <a href="#roadmap">Роадмап</a>
     <a href="#forecast">Прогноз</a>
     <a href="#swot">SWOT</a>
+    <a href="#fixes" style="color:var(--green)">✅ Фиксы</a>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">SEO-аудит · Апрель 2026</div>
+    <div class="hero-badge">SEO-аудит · Апрель 2026 · <span style="color:var(--green)">Обновлено 30.04.2026</span></div>
     <h1>crmgroup<span>.ru</span></h1>
-    <p class="hero-sub">Комплексный SEO-аудит агентства CRM- и email-маркетинга — технический, контентный и конкурентный анализ.</p>
+    <p class="hero-sub">Комплексный SEO-аудит агентства CRM- и email-маркетинга — технический, контентный и конкурентный анализ. Технические фиксы применены через прямой доступ к серверу.</p>
     <div class="hero-chips">
       <div class="chip"><strong>URL:</strong> https://crmgroup.ru</div>
       <div class="chip"><strong>Ниша:</strong> CRM/email-маркетинг агентство</div>
       <div class="chip"><strong>Регион:</strong> Россия (Москва)</div>
       <div class="chip"><strong>Поисковик:</strong> Яндекс + Google</div>
       <div class="chip"><strong>CMS:</strong> WordPress + Yoast SEO</div>
+      <div class="chip" style="border-color:var(--green);color:var(--green)"><strong>✅ 8/11 фиксов применены</strong></div>
     </div>
     <div class="kpi-grid">
       <div class="kpi">
@@ -530,17 +545,17 @@ footer strong { color: var(--text-soft); }
       <div class="card">
         <div class="card-title">🔴 Критичные блокеры</div>
         <ul style="list-style:none;padding:0;">
-          <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--red)">/email-marketing-pod-klyuch/ сломана</strong> — нет meta description (NULL) + двойной H1. Google не показывает сниппет, CTR = 0
+          <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--muted);text-decoration:line-through;">
+            <strong style="color:var(--green)">✅ /email-marketing-pod-klyuch/ исправлена</strong> — meta description добавлен (176 симв), двойной H1 устранён, OG type = "website"
           </li>
           <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--red)">Сервисные страницы не ранжируются</strong> — ни /crm-marketing/, ни /email-marketing-pod-klyuch/ не попали в топ-10 по органике. Весь трафик — с глоссария
+            <strong style="color:var(--red)">Сервисные страницы не ранжируются</strong> — техничка исправлена, но контентная работа ещё впереди. Ни одной сервисной страницы в топ-10 органики
           </li>
-          <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--orange)">32 из 38 изображений без alt</strong> на /special-projects/. Яндекс активно использует image search
+          <li style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--muted);text-decoration:line-through;">
+            <strong style="color:var(--green)">✅ Alt-тексты добавлены</strong> на /special-projects/, /web-development/, /marketing-audit/ — все шаблоны обновлены
           </li>
-          <li style="padding:7px 0;font-size:13.5px;color:var(--text-soft);">
-            <strong style="color:var(--blue)">39 страниц категорий/тегов</strong> в sitemap без noindex — тратят crawl budget при 49% индексации
+          <li style="padding:7px 0;font-size:13.5px;color:var(--muted);text-decoration:line-through;">
+            <strong style="color:var(--green)">✅ Noindex включён</strong> для 39 категорий/тегов — crawl budget освобождён
           </li>
         </ul>
       </div>
@@ -632,16 +647,17 @@ footer strong { color: var(--text-soft); }
     <h2 class="section-title">Топ-5 блокеров роста</h2>
     <p class="section-desc">Технические фиксы устраняются до контентных работ — иначе новые страницы недополучат 30–50% потенциала.</p>
 
-    <div class="issue">
+    <div class="issue is-done">
       <div class="issue-num crit">1</div>
       <div class="issue-body">
         <h3>Главная коммерческая страница технически сломана</h3>
         <p>/email-marketing-pod-klyuch/ — ключевая страница под запрос «email маркетинг под ключ» (WS ~2 000) не имеет meta description и содержит два H1-заголовка. Google не отображает сниппет, CTR = 0. Inbox-marketing.ru уже в топ-1 по этому запросу.</p>
         <code class="fact">meta description: NULL · H1 count: 2 · OG type: article</code>
+        <code class="fact" style="background:var(--green-dim);color:var(--green);margin-top:4px;">✅ ИСПРАВЛЕНО: meta description добавлен (176 симв) · H1 = 1 · OG type = "website"</code>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
-        <span class="badge crit">Критично</span>
-        <span class="badge ok">1–2 часа</span>
+        <span class="badge done">Исправлено</span>
+        <span class="badge ok">30 апр</span>
       </div>
     </div>
 
@@ -671,29 +687,31 @@ footer strong { color: var(--text-soft); }
       </div>
     </div>
 
-    <div class="issue">
+    <div class="issue is-done">
       <div class="issue-num high">4</div>
       <div class="issue-body">
         <h3>Массовое отсутствие alt-текста на изображениях</h3>
         <p>/special-projects/ — 32 из 38 изображений без alt (84%). /web-development/ — 10 из 17, /marketing-audit/ — 7 из 12. Яндекс активно использует image search и текстовую релевантность изображений для оценки страниц. Потеря ранжирования в Яндекс.Картинках и ухудшение сигнала релевантности.</p>
         <code class="fact">/special-projects/: 32/38 без alt · /web-development/: 10/17 · /marketing-audit/: 7/12</code>
+        <code class="fact" style="background:var(--green-dim);color:var(--green);margin-top:4px;">✅ ИСПРАВЛЕНО: alt-тексты добавлены во все три шаблона — кейс-баннеры, логотипы партнёров, mockup-скриншоты, портфолио, графики</code>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
-        <span class="badge high">Высокий</span>
-        <span class="badge ok">2–4 часа</span>
+        <span class="badge done">Исправлено</span>
+        <span class="badge ok">30 апр</span>
       </div>
     </div>
 
-    <div class="issue">
+    <div class="issue is-done">
       <div class="issue-num med">5</div>
       <div class="issue-body">
         <h3>39 страниц категорий и тегов блога в sitemap без noindex</h3>
         <p>16 категорий + 23 тега = 39 страниц тонкого контента проиндексированы и тратят crawl budget. При всего 134 страницах в индексе из 276 в sitemap — поисковый бот обходит бесполезные архивы вместо полезных сервисных и глоссарных страниц.</p>
         <code class="fact">category-sitemap.xml: 16 URL · post_tag-sitemap.xml: 23 URL · индекс: 49%</code>
+        <code class="fact" style="background:var(--green-dim);color:var(--green);margin-top:4px;">✅ ИСПРАВЛЕНО: noindex-tax-category=true, noindex-tax-post_tag=true в wpseo_titles (прямое изменение в wp_options)</code>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
-        <span class="badge med">Среднее</span>
-        <span class="badge ok">30 мин</span>
+        <span class="badge done">Исправлено</span>
+        <span class="badge ok">30 апр</span>
       </div>
     </div>
 
@@ -703,12 +721,12 @@ footer strong { color: var(--text-soft); }
         <table class="tbl">
           <thead><tr><th>Страница</th><th>Проблема</th><th>Рекомендация</th></tr></thead>
           <tbody>
-            <tr><td><strong>/blog/</strong></td><td>H1 = «МаркетингНаданных» — артефакт рендеринга</td><td>Починить JS-рендер или задать статический H1</td></tr>
-            <tr><td><strong>/crm-marketing/</strong></td><td>OG type = "article" вместо "website"</td><td>Изменить в Yoast SEO на "website"</td></tr>
-            <tr><td><strong>/services/</strong></td><td>H1 = «Услуги» — без ключевых слов</td><td>Переписать: «Агентство CRM-маркетинга и email-рассылок»</td></tr>
-            <tr><td><strong>nginx redirect</strong></td><td>Location: https://crmgroup.ru:443/ — явный порт</td><td>Убрать :443 в nginx конфиге</td></tr>
+            <tr style="opacity:0.6"><td><strong>/blog/</strong></td><td><s>H1 = «МаркетингНаданных» — артефакт рендеринга</s></td><td><span class="badge done">✅ Исправлено</span> Добавлен пробел перед &lt;br&gt; в шаблоне</td></tr>
+            <tr style="opacity:0.6"><td><strong>/crm-marketing/</strong></td><td><s>OG type = "article" вместо "website"</s></td><td><span class="badge done">✅ Исправлено</span> wpseo_opengraph_type filter в functions.php</td></tr>
+            <tr style="opacity:0.6"><td><strong>/services/</strong></td><td><s>H1 = «Услуги» — без ключевых слов</s></td><td><span class="badge done">✅ Исправлено</span> H1 = «Услуги агентства CRM-маркетинга»</td></tr>
+            <tr><td><strong>nginx redirect</strong></td><td>Location: https://crmgroup.ru:443/ — явный порт</td><td>Убрать :443 в nginx конфиге (нужен SSH-доступ)</td></tr>
             <tr><td><strong>testcontent.crmgroup.ru</strong></td><td>Staging-субдомен в индексе Google</td><td>Закрыть через robots.txt или password protection</td></tr>
-            <tr><td><strong>/conditions/</strong></td><td>Конфликт: в robots Disallow, в sitemap присутствует</td><td>Убрать из sitemap или снять Disallow</td></tr>
+            <tr style="opacity:0.6"><td><strong>/conditions/</strong></td><td><s>Конфликт: в robots Disallow, в sitemap присутствует</s></td><td><span class="badge done">✅ Исправлено</span> Disallow убран из robots.txt</td></tr>
           </tbody>
         </table>
       </div>
@@ -894,25 +912,25 @@ footer strong { color: var(--text-soft); }
     <h2 class="section-title">5 действий на этой неделе</h2>
     <p class="section-desc">Все 5 пунктов — ≤ 1 рабочего дня суммарно. Каждый из них напрямую влияет на индексацию или CTR в поиске.</p>
 
-    <div class="qw-item">
+    <div class="qw-item" style="opacity:0.65">
       <div>
-        <div class="qw-title">Meta description для /email-marketing-pod-klyuch/</div>
+        <div class="qw-title" style="text-decoration:line-through">Meta description для /email-marketing-pod-klyuch/</div>
         <div class="qw-meta">Добавить 155 символов в Yoast SEO. Сейчас Google не показывает описание — пустой сниппет = CTR 0%.</div>
       </div>
       <div class="qw-arrow">
-        <span class="arrow-val">≤ 1ч</span>
-        <span class="badge crit">crit</span>
+        <span class="arrow-val">30 апр</span>
+        <span class="badge done">✅ Готово</span>
       </div>
     </div>
 
-    <div class="qw-item">
+    <div class="qw-item" style="opacity:0.65">
       <div>
-        <div class="qw-title">Убрать второй H1 на /email-marketing-pod-klyuch/</div>
+        <div class="qw-title" style="text-decoration:line-through">Убрать второй H1 на /email-marketing-pod-klyuch/</div>
         <div class="qw-meta">В коде страницы явно два H1-тега. Дублирование нарушает структуру документа и снижает понятность для поисковика.</div>
       </div>
       <div class="qw-arrow">
-        <span class="arrow-val">≤ 30м</span>
-        <span class="badge crit">crit</span>
+        <span class="arrow-val">30 апр</span>
+        <span class="badge done">✅ Готово</span>
       </div>
     </div>
 
@@ -923,29 +941,29 @@ footer strong { color: var(--text-soft); }
       </div>
       <div class="qw-arrow">
         <span class="arrow-val">2–3ч</span>
-        <span class="badge high">high</span>
+        <span class="badge high">⏳ В плане</span>
       </div>
     </div>
 
-    <div class="qw-item">
+    <div class="qw-item" style="opacity:0.65">
       <div>
-        <div class="qw-title">Noindex для /category/* и /tag/* страниц блога</div>
+        <div class="qw-title" style="text-decoration:line-through">Noindex для /category/* и /tag/* страниц блога</div>
         <div class="qw-meta">39 страниц-архивов тратят crawl budget. Один toggle в Yoast SEO → Поисковые системы → Архивы. Освобождает бот для полезных страниц.</div>
       </div>
       <div class="qw-arrow">
-        <span class="arrow-val">≤ 15м</span>
-        <span class="badge med">med</span>
+        <span class="arrow-val">30 апр</span>
+        <span class="badge done">✅ Готово</span>
       </div>
     </div>
 
-    <div class="qw-item">
+    <div class="qw-item" style="opacity:0.65">
       <div>
-        <div class="qw-title">OG type → website на /crm-marketing/</div>
-        <div class="qw-meta">Сейчас og:type = "article". При репосте в мессенджерах карточка выглядит как статья. Изменить в Yoast SEO → Social → Open Graph.</div>
+        <div class="qw-title" style="text-decoration:line-through">OG type → website на /crm-marketing/ и сервисных страницах</div>
+        <div class="qw-meta">Было og:type = "article". Применён wpseo_opengraph_type filter — все 6 сервисных страниц теперь возвращают og:type="website".</div>
       </div>
       <div class="qw-arrow">
-        <span class="arrow-val">≤ 15м</span>
-        <span class="badge med">med</span>
+        <span class="arrow-val">30 апр</span>
+        <span class="badge done">✅ Готово</span>
       </div>
     </div>
   </div>
@@ -1096,8 +1114,121 @@ footer strong { color: var(--text-soft); }
   </div>
 </section>
 
+<!-- FIXES LOG -->
+<section class="section" id="fixes">
+  <div class="wrap">
+    <div class="section-label">11 · Журнал фиксов</div>
+    <h2 class="section-title">Что уже применено на сайте</h2>
+    <p class="section-desc">Технические правки выполнены через FTP-доступ к серверу (212.233.90.162) и прямые изменения в БД WordPress. Доступ: сервер → WP theme files + wp_postmeta/wp_options.</p>
+
+    <div class="fix-log">
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>robots.txt — убраны лишние Disallow и дубли</strong>
+          <span>Удалён Disallow: /conditions (страница публичная, была в sitemap). Убраны дубликаты /xmlrpc.php в каждом блоке. Унифицированы UTM-паттерны: /*utm= для всех bot-групп.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>Двойной H1 на /email-marketing-pod-klyuch/ — устранён</strong>
+          <span>В content-page.php добавлена проверка: entry-title не выводится, если в контенте страницы уже есть &lt;h1&gt;. Было 2 H1 → стало 1.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>H1-артефакт на /blog/ — «МаркетингНаданных» исправлен</strong>
+          <span>В page-blog-preview.php добавлен пробел перед &lt;br&gt;: поисковые боты теперь читают «Маркетинг на данных» корректно.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>Meta description — добавлен на 5 сервисных страниц</strong>
+          <span>Через прямой UPDATE в wp_postmeta (_yoast_wpseo_metadesc) добавлены описания для: /email-marketing-pod-klyuch/, /crm-marketing/, /marketing-audit/, /web-development/, /telegram-chatbot/. В functions.php добавлен wpseo_metadesc filter как fallback для Yoast 21.5.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>OG type → "website" на 6 сервисных страницах</strong>
+          <span>Добавлен wpseo_opengraph_type filter в functions.php для ID: 13187, 12998, 6998, 12501, 12576, 12566. Проверено: все 6 страниц возвращают og:type="website".</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>Noindex для 39 архивных страниц категорий и тегов</strong>
+          <span>В wpseo_titles option (wp_options) выставлены: noindex-tax-category=true, noindex-tax-post_tag=true. 39 тонких страниц больше не попадут в индекс.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>H1 /services/ — «Услуги» → «Услуги агентства CRM-маркетинга»</strong>
+          <span>В page-services.php заменён the_title() на содержательный H1 с ключевым словом. Breadcrumb и навигация не затронуты.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>Alt-тексты на изображениях — /special-projects/, /web-development/, /marketing-audit/</strong>
+          <span>В трёх PHP-шаблонах добавлены alt-атрибуты: кейс-баннеры (название кейса), mockup-скриншоты, иконки навыков (alt=""), логотипы партнёров (La Roche-Posay, Miele, Burger King, PUMA, Kérastase, Vichy, Т-Банк и др.), изображение «кому поможет аудит», график этапов разработки, фото кейсов в портфолио (название проекта).</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;" class="card">
+      <div class="card-title">⏳ Остаётся сделать</div>
+      <div style="margin-top:8px;" class="fix-log">
+        <div class="fix-row fix-pending">
+          <div class="fix-icon">⏳</div>
+          <div class="fix-text">
+            <strong>FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</strong>
+            <span>FAQ-блоки уже есть. Нужна разметка Schema.org. Rich snippets в Яндексе через 2–4 недели после добавления.</span>
+          </div>
+          <div class="fix-date">ожидает</div>
+        </div>
+        <div class="fix-row fix-pending">
+          <div class="fix-icon">⏳</div>
+          <div class="fix-text">
+            <strong>nginx redirect: убрать явный порт :443 из Location</strong>
+            <span>Нужен доступ к nginx.conf (SSH недоступен — только publickey auth). Требует привлечения сисадмина.</span>
+          </div>
+          <div class="fix-date">ожидает</div>
+        </div>
+        <div class="fix-row fix-pending">
+          <div class="fix-icon">⏳</div>
+          <div class="fix-text">
+            <strong>Закрыть testcontent.crmgroup.ru от индексации</strong>
+            <span>Staging-субдомен попал в индекс Google. Решение: robots.txt на субдомене или HTTP Basic Auth.</span>
+          </div>
+          <div class="fix-date">ожидает</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <strong>SEO-аудит crmgroup.ru</strong> · Апрель 2026 · Данные: keys.so (Яндекс Россия, Москва) · Инструменты: crawl.py, keyso_client.py
+  <strong>SEO-аудит crmgroup.ru</strong> · Апрель 2026 · Данные: keys.so (Яндекс Россия, Москва) · Инструменты: crawl.py, keyso_client.py · <span style="color:var(--green)">Обновлено 30.04.2026 — 8 фиксов применены</span>
 </footer>
 
 <script>
