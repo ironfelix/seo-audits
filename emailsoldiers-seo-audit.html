@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — emailsoldiers.ru</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0d0e0c;
+  --surface: #161917;
+  --surface2: #1e2220;
+  --surface3: #242724;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0ec;
+  --text-soft: #b8bdb6;
+  --muted: #6b7068;
+  --accent: #d4a843;
+  --accent-dim: rgba(212,168,67,0.15);
+  --accent-hover: #e8bc5a;
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --orange: #d4813a;
+  --orange-dim: rgba(212,129,58,0.12);
+  --green: #5fa85a;
+  --green-dim: rgba(95,168,90,0.12);
+  --blue: #5a94d4;
+  --blue-dim: rgba(90,148,212,0.12);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,14,12,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.nav a { color: var(--text-soft); }
+.nav a:hover { color: var(--text); }
+.nav-brand { font-weight: 600; color: var(--text); margin-right: 8px; }
+
+/* LAYOUT */
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+
+/* HERO */
+.hero { padding: 64px 0 48px; background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
+.hero-domain { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.hero-title { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+.hero-sub { color: var(--text-soft); max-width: 620px; margin-bottom: 24px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border2); color: var(--text-soft); }
+
+/* KPI GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 32px 0; }
+.kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.kpi-val { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.kpi-label { font-size: 12px; color: var(--muted); }
+.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.kpi-red { color: var(--red); }
+.kpi-orange { color: var(--orange); }
+.kpi-green { color: var(--green); }
+.kpi-accent { color: var(--accent); }
+
+/* SECTION HEADERS */
+.section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 8px; }
+.section-title { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+.section-desc { color: var(--text-soft); margin-bottom: 28px; max-width: 700px; }
+
+/* CARD */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.card + .card { margin-top: 12px; }
+.card-title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+
+/* PROBLEM CARDS */
+.problem { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 20px 20px 16px; border-left: 4px solid var(--red); margin-bottom: 12px; }
+.problem.medium { border-left-color: var(--orange); }
+.problem.low { border-left-color: var(--muted); }
+.problem-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.problem-title { font-weight: 600; font-size: 15px; }
+.problem-body { color: var(--text-soft); font-size: 13.5px; }
+.problem-body code { background: var(--surface2); padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 12.5px; color: var(--accent); }
+
+/* TABLES */
+.tbl-wrap { overflow-x: auto; margin: 20px 0; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.tbl th { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border2); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; white-space: nowrap; }
+.tbl td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.num { font-weight: 700; font-family: monospace; }
+.num.big { font-size: 15px; }
+.num.big.accent { color: var(--accent); }
+.num.big.red { color: var(--red); }
+.num.big.orange { color: var(--orange); }
+
+/* BADGES */
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; }
+.badge.crit { background: var(--red-dim); color: var(--red); }
+.badge.high { background: var(--orange-dim); color: var(--orange); }
+.badge.med { background: var(--accent-dim); color: var(--accent); }
+.badge.ok { background: var(--green-dim); color: var(--green); }
+.badge.done { background: var(--green-dim); color: var(--green); }
+
+/* CHART */
+.chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 20px 0; }
+.chart-title { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.chart-canvas-wrap { max-height: 220px; }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* PROGRESS */
+.progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; margin: 6px 0; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+.progress-fill.red { background: var(--red); }
+.progress-fill.green { background: var(--green); }
+.progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+
+/* ROADMAP */
+.roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.rm-phase { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border2); border-radius: var(--radius); padding: 16px; }
+.rm-phase-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+.rm-phase-period { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.rm-phase ul { padding-left: 16px; }
+.rm-phase li { font-size: 13px; color: var(--text-soft); margin-bottom: 6px; }
+
+/* FORECAST */
+.forecast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.forecast-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.forecast-timeline { font-size: 11px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px; }
+.forecast-metric { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.forecast-desc { font-size: 12px; color: var(--text-soft); }
+
+/* SWOT */
+.swot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.swot-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.swot-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.swot-card ul { padding-left: 16px; }
+.swot-card li { font-size: 13px; color: var(--text-soft); margin-bottom: 5px; }
+
+/* QUICK WINS */
+.qw-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+.qw-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.qw-meta { font-size: 12px; color: var(--text-soft); }
+.qw-arrow { text-align: right; flex-shrink: 0; }
+.arrow-val { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+
+/* FIX LOG */
+.fix-log { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+.fix-row { display:grid; grid-template-columns:20px 1fr auto; align-items:start; gap:10px; padding:10px 14px; background:var(--surface2); border-radius:8px; border-left:3px solid var(--green); font-size:13.5px; }
+.fix-row .fix-icon { color:var(--green); font-size:14px; line-height:1.5; }
+.fix-row .fix-text strong { color:var(--text); display:block; margin-bottom:2px; }
+.fix-row .fix-text span { color:var(--text-soft); font-size:12.5px; }
+.fix-row .fix-date { color:var(--muted); font-size:11.5px; white-space:nowrap; }
+.fix-pending { border-left-color:var(--orange) !important; }
+.fix-pending .fix-icon { color:var(--orange); }
+
+/* FOOTER */
+footer { text-align: center; padding: 32px 24px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  .two-col, .three-col, .swot { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">emailsoldiers.ru</span>
+  <a href="#summary">Выводы</a>
+  <a href="#visibility">Видимость</a>
+  <a href="#problems">Проблемы</a>
+  <a href="#competitors">Конкуренты</a>
+  <a href="#gap">Gap</a>
+  <a href="#pages">Страницы</a>
+  <a href="#quickwins">Quick Wins</a>
+  <a href="#roadmap">Роадмап</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-domain">SEO-аудит · emailsoldiers.ru · Апрель 2026</div>
+    <h1 class="hero-title">emailsoldiers.ru — аудит органики</h1>
+    <p class="hero-sub">Агентство CRM- и email-маркетинга. Работают с 2012 года. VIS=131 — при пике 351 в ноябре 2025. За 5 месяцев потеряли 63% видимости.</p>
+    <div class="chips">
+      <div class="chip">VIS <strong>131</strong></div>
+      <div class="chip">DR <strong>13</strong></div>
+      <div class="chip">it50 <strong>7 823</strong></div>
+      <div class="chip" style="border-color:var(--red);color:var(--red)"><strong>⚠ −63% VIS за 5 мес</strong></div>
+      <div class="chip">276 страниц в индексе</div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-val kpi-orange">131</div>
+        <div class="kpi-label">Видимость (VIS)</div>
+        <div class="kpi-sub">Пик: 351 (ноя 2025)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val kpi-red">13</div>
+        <div class="kpi-label">Domain Rating</div>
+        <div class="kpi-sub">emailmatrix: DR=18</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">67</div>
+        <div class="kpi-label">Ключей в топ-1</div>
+        <div class="kpi-sub">топ-10: 1 065</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">7 823</div>
+        <div class="kpi-label">Ключей в топ-50</div>
+        <div class="kpi-sub">276 страниц в индексе</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val kpi-red">0</div>
+        <div class="kpi-label">Сервисных в топ-10</div>
+        <div class="kpi-sub">весь трафик — глоссарий и блог</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="section" id="summary">
+  <div class="wrap">
+    <div class="section-label">01 · Executive Summary</div>
+    <h2 class="section-title">Ключевые выводы</h2>
+    <p class="section-desc">8 лет на рынке, 200+ клиентов — и VIS=131. Есть база: 91 глоссарная статья, 306 постов блога, 16 кейсов. Но сайт работает как информационный ресурс, не как канал лидогенерации. На фоне этого — резкое падение видимости с ноября 2025.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="problem">
+          <div class="problem-header">
+            <div class="problem-title">PHP-ошибка в robots.txt</div>
+            <span class="badge crit">Критично</span>
+          </div>
+          <div class="problem-body">robots.txt содержит PHP Warning: <code>fopen failed to open stream</code>. Поисковые боты читают мусор вместо директив. Ломает sitemaps-плагин.</div>
+        </div>
+        <div class="problem">
+          <div class="problem-header">
+            <div class="problem-title">VIS −63% за 5 месяцев</div>
+            <span class="badge crit">Критично</span>
+          </div>
+          <div class="problem-body">351 → 131 (ноябрь 2025 → апрель 2026). Параллельно it50 упал с 9552 до 7823. Возможная причина: алгоритмическое обновление или технические проблемы.</div>
+        </div>
+        <div class="problem">
+          <div class="problem-header">
+            <div class="problem-title">nginx :443 в редиректах + www не каноничен</div>
+            <span class="badge crit">Критично</span>
+          </div>
+          <div class="problem-body"><code>http://emailsoldiers.ru/</code> → <code>https://emailsoldiers.ru:443/</code>. Плюс <code>www.</code> не редиректит на non-www — два отдельных хоста в индексе.</div>
+        </div>
+      </div>
+      <div>
+        <div class="problem medium">
+          <div class="problem-header">
+            <div class="problem-title">/services/ → 404, услуги на /uslugi</div>
+            <span class="badge high">Средне</span>
+          </div>
+          <div class="problem-body">Международный URL /services/ возвращает 404. Страница услуг — на нестандартном /uslugi. Часть входящих ссылок теряется.</div>
+        </div>
+        <div class="problem medium">
+          <div class="problem-header">
+            <div class="problem-title">Массовые пустые alt на изображениях</div>
+            <span class="badge high">Средне</span>
+          </div>
+          <div class="problem-body">Главная: 48/55 (87%). About-us: 264/264 (100%). Blog: 47/61. Glossary: 17/17. Cases: 15/15. Тысячи изображений без alt по всему сайту.</div>
+        </div>
+        <div class="problem medium">
+          <div class="problem-header">
+            <div class="problem-title">H1 на /about-us отсутствует</div>
+            <span class="badge high">Средне</span>
+          </div>
+          <div class="problem-body">Страница «О нас» не имеет ни одного H1. Это нарушение базовой структуры для поисковых роботов.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIBILITY -->
+<section class="section" id="visibility">
+  <div class="wrap">
+    <div class="section-label">02 · История видимости</div>
+    <h2 class="section-title">Динамика органики — тренд на спад</h2>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Видимость VIS по месяцам (Яндекс Россия, Москва)</div>
+      <div class="chart-canvas-wrap"><canvas id="chartVis"></canvas></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Период</th><th>VIS</th><th>Топ-10</th><th>Топ-50</th><th>Динамика</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Сен 2025</td><td><span class="num">141</span></td><td>1 152</td><td>8 998</td><td>—</td></tr>
+          <tr><td>Окт 2025</td><td><span class="num accent">329</span></td><td>1 145</td><td>9 050</td><td style="color:var(--green)">+133%</td></tr>
+          <tr><td>Ноя 2025</td><td><span class="num accent">351</span></td><td>1 115</td><td>9 552</td><td style="color:var(--green)">+7% ↑ пик</td></tr>
+          <tr><td>Дек 2025</td><td><span class="num">317</span></td><td>1 011</td><td>9 002</td><td style="color:var(--orange)">−10%</td></tr>
+          <tr><td>Янв 2026</td><td><span class="num">294</span></td><td>1 017</td><td>8 312</td><td style="color:var(--orange)">−7%</td></tr>
+          <tr><td>Фев 2026</td><td><span class="num red">103</span></td><td>1 041</td><td>8 064</td><td style="color:var(--red)">−65%</td></tr>
+          <tr><td>Мар 2026</td><td><span class="num red">107</span></td><td>1 025</td><td>7 931</td><td style="color:var(--muted)">+4%</td></tr>
+          <tr><td>Апр 2026</td><td><span class="num red">131</span></td><td>1 065</td><td>7 823</td><td style="color:var(--muted)">+22%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--text-soft);margin-top:12px;">⚠ Резкое падение VIS в феврале 2026 (−65% за месяц) при относительно стабильных it10/it50 — характерно для алгоритмического обновления или санкций на коммерческие страницы. Требует проверки в Яндекс.Вебмастере.</p>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="section" id="problems">
+  <div class="wrap">
+    <div class="section-label">03 · Технические проблемы</div>
+    <h2 class="section-title">Топ-7 блокеров</h2>
+
+    <div class="problem">
+      <div class="problem-header">
+        <div class="problem-title">🔴 PHP-ошибка в robots.txt</div>
+        <span class="badge crit">Критично #1</span>
+      </div>
+      <div class="problem-body">
+        <p>robots.txt возвращает PHP Warning в теле ответа:<br>
+        <code>Warning: fopen(/var/www/.../wp-content/sitemaps/174564472969f3679e69b0b): failed to open stream: No such file or directory</code><br>
+        Плагин xml-sitemaps.php пытается открыть временный файл, которого нет. Ошибка выводится прямо в robots.txt — поисковые боты видят мусор после директив. Нужно либо переустановить/обновить плагин xml-sitemaps, либо пересоздать sitemap вручную.</p>
+      </div>
+    </div>
+
+    <div class="problem">
+      <div class="problem-header">
+        <div class="problem-title">🔴 nginx редиректы с :443 + www не закрыт</div>
+        <span class="badge crit">Критично #2</span>
+      </div>
+      <div class="problem-body">
+        <p>HTTP→HTTPS редирект отдаёт порт в Location:<br>
+        <code>http://emailsoldiers.ru/blog</code> → <code>https://emailsoldiers.ru:443/blog</code><br>
+        Дополнительно: <code>www.emailsoldiers.ru</code> НЕ редиректит на non-www — отдаёт <code>https://www.emailsoldiers.ru:443/</code>. Два хоста в индексе = дубли, размытие ссылочного веса. Фикс — в nginx.conf, нужен сисадмин.</p>
+      </div>
+    </div>
+
+    <div class="problem">
+      <div class="problem-header">
+        <div class="problem-title">🔴 /services/ → 404</div>
+        <span class="badge crit">Критично #3</span>
+      </div>
+      <div class="problem-body">
+        <p>Стандартный URL для страницы услуг (<code>/services/</code>) возвращает 404. Реальная страница — на нестандартном <code>/uslugi</code>. Любые внешние ссылки на /services/ теряются. Рекомендация: 301-редирект /services/ → /uslugi (или переименовать slug).</p>
+      </div>
+    </div>
+
+    <div class="problem medium">
+      <div class="problem-header">
+        <div class="problem-title">🟠 Массовые пустые alt-тексты</div>
+        <span class="badge high">Средне #4</span>
+      </div>
+      <div class="problem-body">
+        <p>Главная: 48/55 изображений без alt (87%). About-us: 264/264 (100%). Blog: 47/61. Glossary: 17/17. Cases: 15/15. Масштаб проблемы огромный — несколько тысяч изображений по всему сайту.</p>
+      </div>
+    </div>
+
+    <div class="problem medium">
+      <div class="problem-header">
+        <div class="problem-title">🟠 H1 отсутствует на /about-us</div>
+        <span class="badge high">Средне #5</span>
+      </div>
+      <div class="problem-body">
+        <p>Страница «О нас» (<code>/about-us</code>) не содержит ни одного H1-заголовка. При этом страница содержит 264 изображения без alt — вероятно, это слайдовая презентация, загруженная как картинки.</p>
+      </div>
+    </div>
+
+    <div class="problem medium">
+      <div class="problem-header">
+        <div class="problem-title">🟠 Meta description отсутствует на /glossary/ и других</div>
+        <span class="badge high">Средне #6</span>
+      </div>
+      <div class="problem-body">
+        <p>Страница-хаб глоссария (<code>/glossary/</code>) не имеет meta description (длина 0). Аналогично — все отдельные статьи глоссария нужно проверить на наличие описаний.</p>
+      </div>
+    </div>
+
+    <div class="problem low">
+      <div class="problem-header">
+        <div class="problem-title">⚪ H1 /blog/ — «Все статьи»</div>
+        <span class="badge med">Мелочь #7</span>
+      </div>
+      <div class="problem-body">
+        <p>H1 страницы блога — «Все статьи». Не содержит ключевых слов, не помогает ранжированию. Лучше: «Блог о CRM- и email-маркетинге» или «Статьи об email-рассылках и CRM».</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Страница</th><th>Статус</th><th>Title</th><th>Desc</th><th>H1</th><th>Alt пустых</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ 58 зн.</td>
+            <td>✅ 146 зн.</td>
+            <td>✅ 1 шт.</td>
+            <td><span class="badge crit">48/55</span></td>
+          </tr>
+          <tr>
+            <td><code>/uslugi</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ OK</td>
+            <td>✅ OK</td>
+            <td><span class="badge high">H1=бренд</span></td>
+            <td><span class="badge crit">15/15</span></td>
+          </tr>
+          <tr>
+            <td><code>/services/</code></td>
+            <td><span class="badge crit">404</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><code>/blog/</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ OK</td>
+            <td>✅ OK</td>
+            <td><span class="badge high">«Все статьи»</span></td>
+            <td><span class="badge crit">47/61</span></td>
+          </tr>
+          <tr>
+            <td><code>/glossary/</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ OK</td>
+            <td><span class="badge crit">нет</span></td>
+            <td>✅ OK</td>
+            <td><span class="badge crit">17/17</span></td>
+          </tr>
+          <tr>
+            <td><code>/cases/</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ OK</td>
+            <td>✅ OK</td>
+            <td>✅ OK</td>
+            <td><span class="badge crit">15/15</span></td>
+          </tr>
+          <tr>
+            <td><code>/about-us</code></td>
+            <td><span class="badge ok">200</span></td>
+            <td>✅ OK</td>
+            <td>✅ OK</td>
+            <td><span class="badge crit">нет H1</span></td>
+            <td><span class="badge crit">264/264</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="section" id="competitors">
+  <div class="wrap">
+    <div class="section-label">04 · Конкурентный анализ</div>
+    <h2 class="section-title">Положение среди прямых конкурентов</h2>
+    <p class="section-desc">По семантическому профилю keys.so в окружение emailsoldiers попадают ESP-платформы (unisender, sendpulse) — они не прямые конкуренты. Прямые агентства: emailmatrix.ru, crmgroup.ru.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Домен</th><th>Тип</th><th>VIS</th><th>DR</th><th>Топ-50</th><th>Позиция</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>emailmatrix.ru</strong></td>
+            <td>Агентство</td>
+            <td><span class="num big accent">214</span></td>
+            <td>18</td>
+            <td>7 389</td>
+            <td><span class="badge ok">Лидер</span></td>
+          </tr>
+          <tr style="background:var(--surface2)">
+            <td><strong>emailsoldiers.ru</strong> ← мы</td>
+            <td>Агентство</td>
+            <td><span class="num big orange">131</span></td>
+            <td>13</td>
+            <td>7 823</td>
+            <td><span class="badge high">#2 по VIS</span></td>
+          </tr>
+          <tr>
+            <td><strong>crmgroup.ru</strong></td>
+            <td>Агентство</td>
+            <td><span class="num big">115</span></td>
+            <td>17</td>
+            <td>2 456</td>
+            <td><span class="badge med">#3</span></td>
+          </tr>
+          <tr>
+            <td>unisender.com</td>
+            <td>ESP-платформа</td>
+            <td>155 274</td>
+            <td>—</td>
+            <td>641 301</td>
+            <td><span class="badge crit">Не конкурент</span></td>
+          </tr>
+          <tr>
+            <td>sendpulse.com</td>
+            <td>ESP-платформа</td>
+            <td>1 036</td>
+            <td>—</td>
+            <td>68 851</td>
+            <td><span class="badge crit">Не конкурент</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:12px;font-size:13px;color:var(--text-soft)">emailsoldiers.ru имеет больше ключей в топ-50 (7 823 vs 7 389 у emailmatrix), но значительно проигрывает по VIS (131 vs 214) — значит, emailmatrix ранжируется по более частотным запросам, а emailsoldiers — по длинному хвосту низкочастотного глоссария.</p>
+  </div>
+</section>
+
+<!-- GAP -->
+<section class="section" id="gap">
+  <div class="wrap">
+    <div class="section-label">05 · Gap-анализ</div>
+    <h2 class="section-title">Где можно вырасти</h2>
+    <p class="section-desc">emailmatrix.ru ранжируется по более частотным запросам при меньшем количестве ключей в топ-50. Это сигнал: у emailsoldiers много низкочастотного глоссарного трафика, но нет охвата высокочастотных кластеров.</p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Приоритетные gap-кластеры (оценочный спрос)</div>
+      <div class="chart-canvas-wrap"><canvas id="chartGap"></canvas></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>#</th><th>Кластер</th><th>Спрос/мес</th><th>emailmatrix</th><th>Интент</th><th>Приоритет</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Структура email-письма</strong></td>
+            <td><span class="num big accent">~263 000</span></td>
+            <td>в топ</td>
+            <td>Информ.</td>
+            <td><span class="badge crit">Высокий</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Программа лояльности</strong></td>
+            <td><span class="num big accent">73 581</span></td>
+            <td>нет</td>
+            <td>Инф.+Ком.</td>
+            <td><span class="badge crit">Высокий</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Email-рассылки для бизнеса</strong></td>
+            <td><span class="num big">~40 000</span></td>
+            <td>в топ</td>
+            <td>Коммерч.</td>
+            <td><span class="badge crit">Высокий</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>CRM-маркетинг (агентство)</strong></td>
+            <td><span class="num big">~3 000</span></td>
+            <td>в топ</td>
+            <td>Коммерч.</td>
+            <td><span class="badge crit">Высокий</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>Брошенная корзина — письма</strong></td>
+            <td><span class="num big">~1 900</span></td>
+            <td>нет</td>
+            <td>Информ.</td>
+            <td><span class="badge high">Средний</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>Дизайн email-шаблонов</strong></td>
+            <td><span class="num big">~5 000</span></td>
+            <td>нет</td>
+            <td>Инф.+Ком.</td>
+            <td><span class="badge high">Средний</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TOP PAGES -->
+<section class="section" id="pages">
+  <div class="wrap">
+    <div class="section-label">06 · Текущий органический трафик</div>
+    <h2 class="section-title">Топ-10 страниц по охвату (it50)</h2>
+    <p class="section-desc">100% лучших страниц — это глоссарий и блог. Ни одной коммерческой страницы в топе. Сайт генерирует информационный трафик, не лиды.</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>#</th><th>URL</th><th>it50</th><th>Тип</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>/glossary/email-address</td><td><span class="num">1 338</span></td><td>Глоссарий</td></tr>
+          <tr><td>2</td><td>/glossary/email-domain</td><td><span class="num">413</span></td><td>Глоссарий</td></tr>
+          <tr><td>3</td><td>/glossary/sap</td><td><span class="num">350</span></td><td>Глоссарий</td></tr>
+          <tr><td>4</td><td>/glossary/messenger</td><td><span class="num">347</span></td><td>Глоссарий</td></tr>
+          <tr><td>5</td><td>/blog/notation-language-and-flowchats</td><td><span class="num">297</span></td><td>Блог</td></tr>
+          <tr><td>6</td><td>/glossary/valid-email</td><td><span class="num">272</span></td><td>Глоссарий</td></tr>
+          <tr><td>7</td><td>/glossary/email-protocol</td><td><span class="num">258</span></td><td>Глоссарий</td></tr>
+          <tr><td>8</td><td>/blog/outlook-templates-from-word</td><td><span class="num">153</span></td><td>Блог</td></tr>
+          <tr><td>9</td><td>/glossary/push</td><td><span class="num">137</span></td><td>Глоссарий</td></tr>
+          <tr><td>10</td><td>/glossary/blind-courtesy-copy</td><td><span class="num">122</span></td><td>Глоссарий</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--text-soft);margin-top:12px">Есть сильный актив: 91 глоссарная статья и 306 постов блога. Проблема в том, что эти страницы не конвертируют и не ведут к коммерческим страницам.</p>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section" id="quickwins">
+  <div class="wrap">
+    <div class="section-label">07 · Быстрые победы</div>
+    <h2 class="section-title">6 действий с высоким impact</h2>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">Исправить PHP-ошибку в robots.txt</div>
+        <div class="qw-meta">Переустановить/обновить плагин xml-sitemaps или регенерировать sitemap. Пока ошибка в robots.txt — поисковые боты дезориентированы.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">1–2ч</span>
+        <span class="badge crit">Срочно</span>
+      </div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">301-редирект /services/ → /uslugi</div>
+        <div class="qw-meta">Любые обратные ссылки на /services/ сейчас ведут в 404. Один редирект в nginx или .htaccess.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">30 мин</span>
+        <span class="badge crit">Срочно</span>
+      </div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">Закрыть www.emailsoldiers.ru каноническим редиректом</div>
+        <div class="qw-meta">www. отдаёт самостоятельный сайт вместо редиректа на non-www. Двойной индекс — прямой вред ссылочному весу. Нужен nginx/сисадмин.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">сисадмин</span>
+        <span class="badge crit">Срочно</span>
+      </div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">H1 на /about-us + убрать слайды-картинки</div>
+        <div class="qw-meta">Страница о компании без H1 и 264 изображениями без alt. Либо заменить слайды HTML-контентом, либо добавить alt-тексты с описанием компании.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">4–8ч</span>
+        <span class="badge high">Важно</span>
+      </div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">Meta description для /glossary/ + все глоссарные статьи</div>
+        <div class="qw-meta">91 статья глоссария — основной источник трафика. Без описаний теряем CTR в выдаче.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">1–2 дня</span>
+        <span class="badge high">Важно</span>
+      </div>
+    </div>
+
+    <div class="qw-item">
+      <div>
+        <div class="qw-title">H1 /blog/ → «Блог о CRM- и email-маркетинге»</div>
+        <div class="qw-meta">Один текстовый фикс в CMS. Добавляет ключевые слова в важный заголовок страницы-хаба.</div>
+      </div>
+      <div class="qw-arrow">
+        <span class="arrow-val">15 мин</span>
+        <span class="badge med">Легко</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-label">08 · Роадмап</div>
+    <h2 class="section-title">План на 3 месяца</h2>
+    <p class="section-desc">Сначала — стабилизация (технические проблемы + расследование падения VIS). Затем — контентный рост на базе существующего глоссария и блога.</p>
+    <div class="roadmap">
+      <div class="rm-phase" style="border-top:3px solid var(--red)">
+        <div class="rm-phase-label" style="color:var(--red)">▶ Этап 1</div>
+        <div class="rm-phase-period">Неделя 1–2 — Стабилизация</div>
+        <ul>
+          <li>⚙️ Починить PHP-ошибку в robots.txt</li>
+          <li>⚙️ 301: /services/ → /uslugi</li>
+          <li>⚙️ nginx: убрать :443 из Location (сисадмин)</li>
+          <li>⚙️ nginx: www → non-www редирект (сисадмин)</li>
+          <li>📋 Проверить Яндекс.Вебмастер на санкции (февральское падение)</li>
+          <li>📝 H1 на /about-us</li>
+          <li>📝 H1 /blog/ с ключевыми словами</li>
+        </ul>
+      </div>
+      <div class="rm-phase" style="border-top:3px solid var(--accent)">
+        <div class="rm-phase-label" style="color:var(--accent)">▶ Этап 2</div>
+        <div class="rm-phase-period">Месяц 1–2 — SEO-база</div>
+        <ul>
+          <li>📝 Meta description для /glossary/ и топ-20 глоссарных статей</li>
+          <li>🖼 Alt-тексты для топ-страниц (glossary, cases, blog)</li>
+          <li>📝 Статья «Структура email-письма с примерами» (~263k спрос)</li>
+          <li>📝 Статья «Программа лояльности: виды и как запустить» (73k)</li>
+          <li>🔗 Внутренние ссылки из глоссария на услуги</li>
+        </ul>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-phase-label">Этап 3</div>
+        <div class="rm-phase-period">Месяц 2–3 — Рост</div>
+        <ul>
+          <li>📝 H1 /uslugi переписать с ключом «email-маркетинг для бизнеса»</li>
+          <li>📝 Страница услуги /loyalty-program/ (отдельная)</li>
+          <li>📝 Статья «Дизайн email-шаблонов: примеры»</li>
+          <li>🔗 Линкбилдинг: Cossa, vc.ru, email-блоги</li>
+          <li>⚙️ Подключить GSC + Яндекс.Вебмастер мониторинг</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORECAST -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-label">09 · Прогноз</div>
+    <h2 class="section-title">Ожидаемые результаты</h2>
+    <div class="forecast-grid">
+      <div class="forecast-card">
+        <div class="forecast-timeline">После технических фиксов (2–4 нед)</div>
+        <div class="forecast-metric">Стабилизация VIS</div>
+        <div class="forecast-desc">Устранение PHP-ошибки robots.txt и www-дублей остановит размытие ссылочного веса</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-timeline">1–2 месяца</div>
+        <div class="forecast-metric">VIS 200–250</div>
+        <div class="forecast-desc">Alt-тексты + meta descriptions глоссария + H1-фиксы + 2 высокочастотных статьи</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-timeline">3 месяца</div>
+        <div class="forecast-metric">VIS 300+ / it10 1500+</div>
+        <div class="forecast-desc">Содержательные коммерческие страницы + контентный план + внутренние ссылки из глоссария</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-label">10 · SWOT</div>
+    <h2 class="section-title">Сильные стороны и риски</h2>
+    <div class="swot">
+      <div class="swot-card" style="border-top:3px solid var(--green)">
+        <div class="swot-label" style="color:var(--green)">Сильные стороны</div>
+        <ul>
+          <li>Большая контентная база: 306 постов, 91 глоссарий, 16 кейсов</li>
+          <li>8+ лет опыта и 200+ клиентов — есть что показать</li>
+          <li>Глоссарий работает — топ-страницы по информационным запросам</li>
+          <li>Активный блог (последнее обновление: март 2026)</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="border-top:3px solid var(--orange)">
+        <div class="swot-label" style="color:var(--orange)">Слабые стороны</div>
+        <ul>
+          <li>DR=13 — очень низкий для 8-летнего агентства</li>
+          <li>PHP-ошибка в robots.txt — базовая техника не работает</li>
+          <li>www-дубль не закрыт — дробит ссылочный вес</li>
+          <li>Ни одной коммерческой страницы в топ-10</li>
+          <li>About-us без H1 и с 264 изображениями без alt</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="border-top:3px solid var(--blue)">
+        <div class="swot-label" style="color:var(--blue)">Возможности</div>
+        <ul>
+          <li>Глоссарий как точка входа → перелинковка на услуги</li>
+          <li>Ниша «структура email-письма» (263k спрос) — у конкурентов слабо закрыта</li>
+          <li>DR низкий — есть пространство для быстрого роста линкбилдингом</li>
+          <li>Кейсы с реальными клиентами (Додо, Miele, Vichy) — контент-маркетинг</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="border-top:3px solid var(--red)">
+        <div class="swot-label" style="color:var(--red)">Риски</div>
+        <ul>
+          <li>Февральское падение VIS −65% — причина неизвестна. Возможны санкции Яндекса</li>
+          <li>emailmatrix.ru активно заполняет информационные ниши</li>
+          <li>PHP-ошибка robots.txt — если боты не могут читать директивы, риск переиндексации мусора</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>SEO-аудит emailsoldiers.ru</strong> · Апрель 2026 · Данные: keys.so (Яндекс Россия, Москва) · Инструменты: crawl.py, keyso_client.py
+</footer>
+
+<script>
+// VIS history chart
+new Chart(document.getElementById('chartVis'), {
+  type: 'line',
+  data: {
+    labels: ['Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26','Мар 26','Апр 26'],
+    datasets: [{
+      label: 'VIS',
+      data: [141, 329, 351, 317, 294, 103, 107, 131],
+      borderColor: '#d4a843',
+      backgroundColor: 'rgba(212,168,67,0.08)',
+      borderWidth: 2,
+      tension: 0.3,
+      fill: true,
+      pointBackgroundColor: [
+        '#5a94d4','#5fa85a','#5fa85a','#d4813a','#d4813a','#e05252','#e05252','#d4813a'
+      ],
+      pointRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#6b7068', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#6b7068', font: { size: 11 } } }
+    }
+  }
+});
+
+// Gap clusters chart
+new Chart(document.getElementById('chartGap'), {
+  type: 'bar',
+  data: {
+    labels: ['Структура email','Прогр. лояльности','Email для бизнеса','CRM агентство','Дизайн шаблонов','Брошенная корзина'],
+    datasets: [{
+      label: 'Спрос/мес',
+      data: [263000, 73581, 40000, 3000, 5000, 1900],
+      backgroundColor: ['#d4a843','#d4a843','#5a94d4','#e05252','#5a94d4','#5fa85a'],
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#6b7068', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#6b7068', font: { size: 11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
