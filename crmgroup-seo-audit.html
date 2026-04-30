@@ -974,44 +974,45 @@ footer strong { color: var(--text-soft); }
   <div class="wrap">
     <div class="section-label">08 · Роадмап</div>
     <h2 class="section-title">План на 3 месяца</h2>
-    <p class="section-desc">Технические фиксы → контентные быстрые победы → развитие охвата. Последовательность важна: без технического фундамента контент недополучает видимость.</p>
+    <p class="section-desc">Технические фиксы → контентные быстрые победы → развитие охвата. <strong style="color:var(--green)">Этап 1 выполнен на 89%</strong> — осталось только nginx :443 (ждёт сисадмина). Следующий приоритет — контентные работы.</p>
     <div class="roadmap">
-      <div class="rm-phase">
-        <div class="rm-phase-label">Этап 1</div>
+      <div class="rm-phase" style="border-top:3px solid var(--green)">
+        <div class="rm-phase-label" style="color:var(--green)">✅ Этап 1</div>
         <div class="rm-phase-period">Месяц 1 — Тех. фундамент</div>
         <ul>
-          <li>Meta description + H1 фикс /email-marketing-pod-klyuch/</li>
-          <li>FAQPage JSON-LD на 2 коммерческих страницах</li>
-          <li>OG type → website на /crm-marketing/</li>
-          <li>Noindex category/tag страниц блога (39 шт)</li>
-          <li>Alt-тексты массово (special-projects, web-dev, audit)</li>
-          <li>H1 /services/ переписать с ключом</li>
-          <li>Nginx redirect: убрать :443</li>
-          <li>Закрыть testcontent.crmgroup.ru</li>
-          <li>Убрать конфликт /conditions/ в robots/sitemap</li>
+          <li><span style="color:var(--green)">✅</span> Meta description на 6 сервисных страницах</li>
+          <li><span style="color:var(--green)">✅</span> H1 фикс на /email-marketing-pod-klyuch/ и /blog/</li>
+          <li><span style="color:var(--green)">✅</span> FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</li>
+          <li><span style="color:var(--green)">✅</span> OG type → website на 6 сервисных страницах</li>
+          <li><span style="color:var(--green)">✅</span> Noindex category/tag (39 страниц блога)</li>
+          <li><span style="color:var(--green)">✅</span> Alt-тексты: /special-projects/, /web-development/, /marketing-audit/</li>
+          <li><span style="color:var(--green)">✅</span> H1 /services/ → «Услуги агентства CRM-маркетинга»</li>
+          <li><span style="color:var(--green)">✅</span> Закрыть testcontent.crmgroup.ru (robots.txt Disallow: /)</li>
+          <li><span style="color:var(--green)">✅</span> Убрать конфликт /conditions/ в robots.txt</li>
+          <li><span style="color:var(--orange)">⏳</span> <span style="color:var(--orange)">Nginx redirect: убрать :443 из Location</span> — передано сисадмину</li>
         </ul>
       </div>
-      <div class="rm-phase">
-        <div class="rm-phase-label">Этап 2</div>
+      <div class="rm-phase" style="border-top:3px solid var(--accent)">
+        <div class="rm-phase-label" style="color:var(--accent)">▶ Этап 2</div>
         <div class="rm-phase-period">Месяц 1–2 — Контент</div>
         <ul>
-          <li>Статья «Структура email-письма с примерами» (2 500–3 000 слов, /blog/email-structure/)</li>
-          <li>Статья «Программа лояльности: виды и как запустить» (2 500 слов)</li>
-          <li>Страница-услуга /loyalty-program/ под транзакционный спрос</li>
-          <li>Переработка /crm-marketing/ с кластером «crm агентство»</li>
-          <li>Кейсы с метриками по loyalty на портфолио-странице</li>
+          <li>📝 Статья «Структура email-письма с примерами» (~263k спрос, 2 500–3 000 слов)</li>
+          <li>📝 Статья «Программа лояльности: виды и как запустить» (73k спрос)</li>
+          <li>📝 Страница-услуга /loyalty-program/ под транзакционный спрос</li>
+          <li>📝 Переработка /crm-marketing/ с кластером «crm агентство»</li>
+          <li>📝 Кейсы с метриками по loyalty на портфолио-странице</li>
         </ul>
       </div>
       <div class="rm-phase">
         <div class="rm-phase-label">Этап 3</div>
         <div class="rm-phase-period">Месяц 2–3 — Охват</div>
         <ul>
-          <li>Статья «Push-уведомления: полное руководство» (2 000 слов)</li>
-          <li>Статья «Брошенная корзина: письма с примерами»</li>
-          <li>/services/ как hub-страница с перелинковкой на все сервисы</li>
-          <li>Линкбилдинг: гостевые публикации Cossa, vc.ru, Habr</li>
-          <li>Подключить GSC + Яндекс.Вебмастер</li>
-          <li>Статья «UTM метки: полный гайд» (после укрепления DR)</li>
+          <li>📝 Статья «Push-уведомления: полное руководство» (192k спрос)</li>
+          <li>📝 Статья «Брошенная корзина: письма с примерами»</li>
+          <li>🔗 /services/ как hub-страница с перелинковкой на все сервисы</li>
+          <li>🔗 Линкбилдинг: гостевые публикации Cossa, vc.ru, Habr</li>
+          <li>⚙️ Подключить GSC + Яндекс.Вебмастер</li>
+          <li>📝 Статья «UTM метки: полный гайд» (после укрепления DR)</li>
         </ul>
       </div>
     </div>
