@@ -498,7 +498,7 @@ footer strong { color: var(--text-soft); }
       <div class="chip"><strong>Регион:</strong> Россия (Москва)</div>
       <div class="chip"><strong>Поисковик:</strong> Яндекс + Google</div>
       <div class="chip"><strong>CMS:</strong> WordPress + Yoast SEO</div>
-      <div class="chip" style="border-color:var(--green);color:var(--green)"><strong>✅ 8/11 фиксов применены</strong></div>
+      <div class="chip" style="border-color:var(--green);color:var(--green)"><strong>✅ 9/11 фиксов применены</strong></div>
     </div>
     <div class="kpi-grid">
       <div class="kpi">
@@ -934,14 +934,14 @@ footer strong { color: var(--text-soft); }
       </div>
     </div>
 
-    <div class="qw-item">
+    <div class="qw-item" style="opacity:0.65">
       <div>
-        <div class="qw-title">FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</div>
-        <div class="qw-meta">FAQ-блоки уже присутствуют на обеих страницах. Нужна только JSON-LD разметка. Rich snippets в Яндексе через 2–4 недели.</div>
+        <div class="qw-title" style="text-decoration:line-through">FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</div>
+        <div class="qw-meta">FAQ-блоки уже присутствуют на обеих страницах. JSON-LD добавлен через wp_head filter в functions.php. Дубли в post_content удалены из БД — ровно 1 FAQPage на страницу.</div>
       </div>
       <div class="qw-arrow">
-        <span class="arrow-val">2–3ч</span>
-        <span class="badge high">⏳ В плане</span>
+        <span class="arrow-val">30 апр</span>
+        <span class="badge done">✅ Готово</span>
       </div>
     </div>
 
@@ -1193,19 +1193,20 @@ footer strong { color: var(--text-soft); }
         </div>
         <div class="fix-date">30 апр 2026</div>
       </div>
+
+      <div class="fix-row">
+        <div class="fix-icon">✅</div>
+        <div class="fix-text">
+          <strong>FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</strong>
+          <span>Добавлена Schema.org FAQPage-разметка через wp_head filter в functions.php: 7 Q&amp;A для /email-marketing-pod-klyuch/, 4 Q&amp;A для /crm-marketing/. Обнаружены и удалены из post_content дубли (2 блока на ID 13187, 1 блок на ID 12998) — теперь ровно 1 FAQPage на каждой странице. Rich snippets в Яндексе ожидаются через 2–4 недели.</span>
+        </div>
+        <div class="fix-date">30 апр 2026</div>
+      </div>
     </div>
 
     <div style="margin-top:20px;" class="card">
       <div class="card-title">⏳ Остаётся сделать</div>
       <div style="margin-top:8px;" class="fix-log">
-        <div class="fix-row fix-pending">
-          <div class="fix-icon">⏳</div>
-          <div class="fix-text">
-            <strong>FAQPage JSON-LD на /crm-marketing/ и /email-marketing-pod-klyuch/</strong>
-            <span>FAQ-блоки уже есть. Нужна разметка Schema.org. Rich snippets в Яндексе через 2–4 недели после добавления.</span>
-          </div>
-          <div class="fix-date">ожидает</div>
-        </div>
         <div class="fix-row fix-pending">
           <div class="fix-icon">⏳</div>
           <div class="fix-text">
@@ -1228,7 +1229,7 @@ footer strong { color: var(--text-soft); }
 </section>
 
 <footer>
-  <strong>SEO-аудит crmgroup.ru</strong> · Апрель 2026 · Данные: keys.so (Яндекс Россия, Москва) · Инструменты: crawl.py, keyso_client.py · <span style="color:var(--green)">Обновлено 30.04.2026 — 8 фиксов применены</span>
+  <strong>SEO-аудит crmgroup.ru</strong> · Апрель 2026 · Данные: keys.so (Яндекс Россия, Москва) · Инструменты: crawl.py, keyso_client.py · <span style="color:var(--green)">Обновлено 30.04.2026 — 9 фиксов применены</span>
 </footer>
 
 <script>
