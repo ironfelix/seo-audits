@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Marketing 360 — CRM Group</title>
+<style>
+@font-face {
+  font-family: 'TTRuns';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Runs/TT_Runs_Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'TTRuns';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Runs/TT_Runs_DemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_DemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+
+:root {
+  --red:        #c01020;
+  --red-dk:     #a00d1a;
+  --red-light:  rgba(192,16,32,0.07);
+  --red-mid:    rgba(192,16,32,0.15);
+  --text:       #1a1a1a;
+  --text-sec:   #595959;
+  --text-light: #888;
+  --bg:         #ffffff;
+  --bg-alt:     #f5f5f5;
+  --bg-dark:    #111111;
+  --border:     #e8e8e8;
+  --fh:         'TTRuns', sans-serif;
+  --fb:         'TTSmalls', sans-serif;
+  --radius:     16px;
+  --radius-sm:  8px;
+  --shadow:     0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10);
+  --max-w:      1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--fb);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--bg-dark);
+  padding: 80px 0 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(192,16,32,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fb);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid rgba(192,16,32,0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+.hero-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.hero h1 span { color: var(--red); }
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  max-width: 600px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-stat-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 36px;
+  color: #fff;
+  line-height: 1;
+}
+.hero-stat-num span { color: var(--red); }
+.hero-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+}
+.hero-divider {
+  width: 1px; height: 48px;
+  background: rgba(255,255,255,0.1);
+  align-self: center;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 72px 0;
+}
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+.section-alt {
+  background: var(--bg-alt);
+}
+.section-dark {
+  background: var(--bg-dark);
+  color: #fff;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.section-dark .section-tag { color: var(--red); }
+
+h2 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.section-dark h2 { color: #fff; }
+
+.section-lead {
+  font-size: 17px;
+  color: var(--text-sec);
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.65;
+}
+.section-dark .section-lead { color: rgba(255,255,255,0.55); }
+
+/* ── PROBLEM BLOCK ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+@media(max-width:680px){ .problem-grid { grid-template-columns: 1fr; } }
+
+.metric-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.metric-card-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-card-num.red { color: var(--red); }
+.metric-card-label {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 4px;
+}
+.metric-card-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.insight-box {
+  background: var(--red-light);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 20px 24px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.insight-box strong { color: var(--red); }
+
+/* ── ICP ── */
+.icp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media(max-width:780px){ .icp-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .icp-grid { grid-template-columns: 1fr; } }
+
+.icp-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--bg);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.icp-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.icp-icon {
+  width: 40px; height: 40px;
+  background: var(--red-light);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+.icp-card h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.icp-card p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.55;
+}
+
+/* ── FUNNEL ── */
+.funnel {
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 48px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+.funnel::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(192,16,32,0.12) 0%, transparent 70%);
+}
+.funnel-title {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.funnel-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+.funnel-step {
+  display: grid;
+  grid-template-columns: 200px 1fr 120px;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.funnel-step:last-child { border-bottom: none; }
+.funnel-step-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.funnel-step-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+}
+.funnel-step-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 26px;
+  color: #fff;
+  text-align: right;
+}
+.funnel-step-num.highlight { color: var(--red); }
+.funnel-arrow {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 18px;
+  padding: 4px 0;
+}
+
+/* ── CHANNEL CARDS ── */
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+@media(max-width:680px){ .channels-grid { grid-template-columns: 1fr; } }
+
+.channel-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.channel-card:hover { box-shadow: var(--shadow-lg); }
+.channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+}
+.channel-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--red-light);
+  line-height: 1;
+  margin-bottom: 8px;
+  /* using border trick for outlined number */
+  -webkit-text-stroke: 1.5px var(--red);
+  color: transparent;
+}
+.channel-card h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.channel-card .leads-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--red-light);
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.channel-card p {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* ── LISTS ── */
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+.check-list li::before {
+  content: '';
+  width: 18px; height: 18px;
+  background: var(--red-light);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23c01020' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 24px 0;
+}
+.data-table th {
+  background: var(--bg-dark);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--fb);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+}
+.data-table th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.data-table th:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-alt); }
+.data-table .red { color: var(--red); font-weight: 600; }
+.data-table .total td {
+  background: var(--red-light);
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: none;
+}
+/* Tables inside dark sections */
+.section-dark .data-table td {
+  color: rgba(255,255,255,0.85);
+  border-bottom-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+}
+.section-dark .data-table tr:hover td {
+  background: rgba(255,255,255,0.07);
+}
+.section-dark .data-table .total td {
+  background: rgba(192,16,32,0.2);
+  color: #fff;
+}
+.section-dark .data-table .red {
+  color: #ff6b6b;
+}
+
+/* ── TAGS ── */
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg-alt);
+  color: var(--text-sec);
+  border: 1px solid var(--border);
+}
+.tag.red {
+  background: var(--red-light);
+  color: var(--red);
+  border-color: rgba(192,16,32,0.2);
+}
+
+/* ── PARTNER GRID ── */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media(max-width:680px){ .partner-grid { grid-template-columns: 1fr 1fr; } }
+
+.partner-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  background: var(--bg);
+}
+.partner-card h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.partner-card .partner-type {
+  font-size: 11px;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.partner-card p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+
+/* ── ROADMAP ── */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+@media(max-width:780px){ .roadmap { grid-template-columns: 1fr 1fr; gap: 16px; } }
+@media(max-width:480px){ .roadmap { grid-template-columns: 1fr; } }
+
+.roadmap-item {
+  padding: 28px 24px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.roadmap-item:last-child { border-right: none; }
+.roadmap-month {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--red);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.roadmap-item h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.roadmap-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.roadmap-action {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.roadmap-action::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+}
+.roadmap-result {
+  margin-top: 20px;
+  padding: 10px 14px;
+  background: rgba(192,16,32,0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--fh);
+  font-size: 14px;
+  color: #fff;
+}
+.roadmap-result span { color: var(--red); font-weight: 700; }
+
+/* ── PRINCIPLE ── */
+.principle {
+  background: var(--red);
+  border-radius: var(--radius);
+  padding: 48px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.principle::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+.principle h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.principle p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── CHANNEL DEEP ── */
+.channel-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+.channel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.channel-index {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  -webkit-text-stroke: 2px var(--red);
+  color: transparent;
+  flex-shrink: 0;
+}
+.channel-header-text h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.channel-header-text .horizon {
+  font-size: 13px;
+  color: var(--text-light);
+}
+.channel-header-text .horizon strong { color: var(--red); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media(max-width:680px){ .two-col { grid-template-columns: 1fr; } }
+
+.mini-title {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ── OUTBOUND SEQUENCE ── */
+.sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.seq-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  transition: background 0.15s;
+}
+.seq-step:last-child { border-bottom: none; }
+.seq-step:hover { background: var(--bg-alt); }
+.seq-day {
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 56px;
+  padding-top: 2px;
+}
+.seq-content h5 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.seq-content p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+.doc-footer {
+  background: var(--bg-dark);
+  padding: 40px 0;
+  text-align: center;
+}
+.doc-footer p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+}
+.doc-footer strong { color: rgba(255,255,255,0.6); }
+
+/* ── PRINT ── */
+@media print {
+  .hero { background: #111 !important; }
+  .section-dark { background: #111 !important; }
+  body { font-size: 13px; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 28px; letter-spacing: -0.01em; margin-bottom: 16px; }
+  .hero-sub { font-size: 15px; margin-bottom: 32px; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-num { font-size: 28px; }
+  .hero-divider { display: none; }
+
+  .section { padding: 32px 0; }
+  .section-alt { padding: 32px 0; }
+  .section-dark { padding: 32px 0; }
+
+  h2 { font-size: 22px !important; }
+  h3 { font-size: 18px !important; }
+
+  .channel-header { flex-direction: column; gap: 12px; }
+  .channel-index { width: 36px; height: 36px; font-size: 16px; }
+
+  .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 13px; }
+  .data-table thead { display: none; }
+  .data-table tbody { display: block; }
+  .data-table tr { display: block; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; padding: 12px; }
+  .data-table td { display: block; padding: 4px 0; border: none; font-size: 13px; }
+  .data-table td:first-child { font-weight: 600; font-size: 14px; color: var(--text); }
+
+  .funnel-steps { flex-direction: column; }
+  .funnel-step { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 8px; }
+  .funnel-step:last-child { border-bottom: none; }
+  .funnel-arrow { transform: rotate(90deg); }
+
+  .math-formula { font-size: 22px !important; }
+  .whitepaper-steps { grid-template-columns: 1fr !important; }
+  .nurture-steps { grid-template-columns: 1fr !important; }
+  .cadence-grid { grid-template-columns: 1fr !important; }
+  .dir-campaigns { grid-template-columns: 1fr !important; }
+  .partner-grid { grid-template-columns: 1fr !important; }
+  .cases-grid { grid-template-columns: 1fr !important; }
+
+  .principle { padding: 24px 20px; }
+  .principle h3 { font-size: 18px; }
+
+  .roadmap { grid-template-columns: 1fr !important; }
+  .roadmap-item { padding: 20px; }
+
+  .doc-footer { padding: 20px 0; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">Стратегия · 1 мая 2026</div>
+    <h1>B2B Marketing <span>360°</span><br>для CRM Group</h1>
+    <p class="hero-sub">Retention · Email-маркетинг · CRM-маркетинг<br>Цель: 50–60 квалифицированных лидов в месяц</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">50<span>–60</span></div>
+        <div class="hero-stat-label">квал лидов / мес</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">канала параллельно</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3<span>–4</span></div>
+        <div class="hero-stat-label">мес до результата</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРОБЛЕМА -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Исходная точка</div>
+    <h2>Где сейчас находится маркетинг</h2>
+    <p class="section-lead">Блог есть, трафик есть, но 95% приходит на информационный контент. Страниц услуг практически нет. Конверсия в лиды минимальна.</p>
+
+    <div class="problem-grid">
+      <div class="metric-card">
+        <div class="metric-card-num red">324</div>
+        <div class="metric-card-label">органических визитов / мес</div>
+        <div class="metric-card-note">emailmatrix: 320, outofcloud: 495. Паритет, но без конверсии.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-num">~0.3</div>
+        <div class="metric-card-label">лида / мес с SEO при позиции 5</div>
+        <div class="metric-card-note">Прогноз из leadgen_semantics. Только SEO не выведет на 50–60.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-num red">95%</div>
+        <div class="metric-card-label">трафика идёт на информационные статьи</div>
+        <div class="metric-card-note">Страниц услуг с SEO-трафиком почти нет. Лиды некуда конвертировать.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-num">0</div>
+        <div class="metric-card-label">активных outbound-каналов</div>
+        <div class="metric-card-note">Директ настроен на AI/речевую аналитику — не на retention-услуги.</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>Главный вывод:</strong> CRM Group обучает рынок через блог, но не захватывает его. Нужна машина из 4 каналов одновременно. Только тогда 50–60 квал лидов реальны в горизонте 3–4 месяцев.
+    </div>
+  </div>
+</section>
+
+<!-- ICP -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-tag">Целевой клиент</div>
+    <h2>Кто такой квалифицированный лид</h2>
+    <p class="section-lead">Все 4 критерия должны совпадать. Иначе nurture-цепочка, не продажа.</p>
+
+    <div class="icp-grid" style="margin-bottom:32px;">
+      <div class="icp-card">
+        <div class="icp-icon">🗃️</div>
+        <h4>База ≥ 10 000 контактов</h4>
+        <p>Есть CRM или email-платформа. Данные накоплены, но маркетинг по ним не запущен или работает плохо.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">💰</div>
+        <h4>Бюджет ≥ 150k₽/мес</h4>
+        <p>Или выручка компании ≥ 50M₽/год. Платёжеспособный клиент с горизонтом 3–6 месяцев.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">😤</div>
+        <h4>Активная боль</h4>
+        <p>Отток растёт, email не работает, нет CRM-маркетолога, хотят программу лояльности.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">👔</div>
+        <h4>ЛПР: маркетинг или владелец</h4>
+        <p>Директор по маркетингу или владелец. Не аналитик, не разработчик.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">🏪</div>
+        <h4>Правильная отрасль</h4>
+        <p>Интернет-магазины, ритейл, банки/финтех, телеком, FMCG, B2B-сервисы с подпиской.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">⚙️</div>
+        <h4>Нужный стек</h4>
+        <p>Mindbox, RetailCRM, Carrotquest, MAXMA, Altkraft, Юнисендер: уже есть или выбирают.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МАТЕМАТИКА -->
+<section class="section section-dark">
+  <div class="wrap">
+    <div class="section-tag">Математика</div>
+    <h2>Как получить 50–60 квал лидов</h2>
+    <p class="section-lead">Каждый канал это отдельная труба. Все 4 открыты одновременно.</p>
+
+    <table class="data-table" style="margin-bottom:40px;">
+      <thead>
+        <tr>
+          <th>Канал</th>
+          <th>Квал лидов / мес</th>
+          <th>Горизонт</th>
+          <th>Бюджет / мес</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SEO + контент</td>
+          <td class="red">15–20</td>
+          <td>С марта, +3–4 мес</td>
+          <td>Команда (время)</td>
+        </tr>
+        <tr>
+          <td>Лид-магниты + прогрев</td>
+          <td class="red">10–15</td>
+          <td>4–6 нед</td>
+          <td>Создание + ~15k₽/мес</td>
+        </tr>
+        <tr>
+          <td>Outbound + HH.ru</td>
+          <td class="red">5–8</td>
+          <td>3–4 нед</td>
+          <td>Инструменты ~15k₽/мес</td>
+        </tr>
+        <tr>
+          <td>Яндекс.Директ</td>
+          <td class="red">5–8</td>
+          <td>Уже идёт</td>
+          <td>50–60k₽</td>
+        </tr>
+        <tr>
+          <td>Партнёрства</td>
+          <td class="red">5–10</td>
+          <td>2–3 мес</td>
+          <td>—</td>
+        </tr>
+        <tr class="total">
+          <td><strong>Итого</strong></td>
+          <td><strong>40–61 квал лидов</strong></td>
+          <td>Выход на режим: 3–4 мес</td>
+          <td>~80–90k₽/мес</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="funnel">
+      <div class="funnel-title">Как 40–58 квал лидов складываются из 4 каналов</div>
+      <div class="funnel-steps">
+        <div class="funnel-step">
+          <div class="funnel-step-label">SEO + контент</div>
+          <div class="funnel-step-desc">62 статьи, 6 посадочных, органический трафик</div>
+          <div class="funnel-step-num">15–20 / мес</div>
+        </div>
+        <div class="funnel-arrow">+ прибавляем лид-магнитный поток</div>
+        <div class="funnel-step">
+          <div class="funnel-step-label">Лид-магниты + аутрич</div>
+          <div class="funnel-step-desc">Вайтпейперы → прогрев → персональный контакт + HH.ru</div>
+          <div class="funnel-step-num">15–20 / мес</div>
+        </div>
+        <div class="funnel-arrow">+ платный трафик на горячие запросы</div>
+        <div class="funnel-step">
+          <div class="funnel-step-label">Яндекс.Директ</div>
+          <div class="funnel-step-desc">50–60k₽/мес, 11–13 заявок → 40% квалификация</div>
+          <div class="funnel-step-num">5–8 / мес</div>
+        </div>
+        <div class="funnel-arrow">+ входящий поток от партнёров</div>
+        <div class="funnel-step">
+          <div class="funnel-step-label">Квал лидов итого ✓</div>
+          <div class="funnel-step-desc">Горизонт выхода на режим: 3–4 месяца</div>
+          <div class="funnel-step-num highlight">40–58 / мес</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАНАЛ 1: SEO -->
+<section class="channel-section">
+  <div class="wrap">
+    <div class="channel-header">
+      <div class="channel-index">01</div>
+      <div class="channel-header-text">
+        <h3>SEO + контент</h3>
+        <div class="horizon">Старт: <strong>март 2026</strong> · Первые позиции через 3–4 мес (июнь–июль) · Цель: 15–20 квал лидов/мес</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="mini-title">Проблема архитектуры</div>
+        <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px;">Сейчас блог обучает рынок — статьи про RFM, цепочки писем, омниканал. Но трафик уходит без конверсии: страниц услуг с SEO-видимостью почти нет. Нужно 3 слоя контента.</p>
+
+        <div class="mini-title">Слой 1: страницы услуг (BOFU)</div>
+        <p style="font-size:13px;color:var(--text-sec);margin-bottom:12px;">Аудит апрель 2026: 2 страницы уже есть (другие слаги), 4 нужно создать.</p>
+        <table class="data-table">
+          <thead><tr><th>Реальный URL</th><th>Ключ</th><th>WS</th><th>Статус</th></tr></thead>
+          <tbody>
+            <tr><td>/crm-marketing/</td><td>crm маркетинг</td><td class="red">2 393</td><td style="color:#b45300;font-weight:600;">⚙ Доработать</td></tr>
+            <tr><td>/email-marketing-pod-klyuch/</td><td>email маркетинг</td><td class="red">1 354</td><td style="color:#b45300;font-weight:600;">⚙ Починить (2×H1, нет meta)</td></tr>
+            <tr><td>/programmy-loyalnosti/ <em style="color:var(--text-sec)">(создать)</em></td><td>разработка программы лояльности</td><td class="red">557</td><td style="color:var(--red);font-weight:600;">✦ Приоритет №1</td></tr>
+            <tr><td>/triggernye-rassylki/ <em style="color:var(--text-sec)">(создать)</em></td><td>триггерные рассылки</td><td>327</td><td style="color:var(--red);font-weight:600;">✦ Создать</td></tr>
+            <tr><td>/rfm-analiz/ <em style="color:var(--text-sec)">(создать)</em></td><td>rfm анализ</td><td class="red">1 258</td><td style="color:var(--red);font-weight:600;">✦ Создать</td></tr>
+            <tr><td>/retention-marketing/ <em style="color:var(--text-sec)">(создать)</em></td><td>retention маркетинг</td><td>201</td><td style="color:var(--red);font-weight:600;">✦ Создать</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text-sec);margin-top:8px;">Лид-форма и лид-магнит уже существуют — нужно разместить на новых страницах.</p>
+      </div>
+      <div>
+        <div class="mini-title">Слой 2: контент-план (62 статьи, готов)</div>
+        <p style="font-size:13px;color:var(--text-sec);margin-bottom:12px;">Кластеризован по 8 столпам. Высокий приоритет — 15 статей. Старт с crmgroup.ru, параллельно emailsoldiers.ru.</p>
+        <table class="data-table" style="margin-bottom:24px;">
+          <thead><tr><th>Статья (crmgroup.ru)</th><th>WS</th><th>Приоритет</th></tr></thead>
+          <tbody>
+            <tr><td>Что такое CRM-маркетинг: объясняем для бизнеса</td><td class="red">39 595</td><td>🔴 Апрель</td></tr>
+            <tr><td>Customer Journey Map в CRM-маркетинге</td><td class="red">16 270</td><td>🔴 Апрель</td></tr>
+            <tr><td>Удержание клиентов: 5 стратегий для e-commerce</td><td class="red">9 990</td><td>🔴 Апрель</td></tr>
+            <tr><td>LTV в e-commerce: как считать и увеличивать</td><td>951</td><td>🟡 Апрель</td></tr>
+            <tr><td>Разработка и запуск email-рассылок под ключ</td><td>1 185</td><td>🟡 Апрель</td></tr>
+            <tr><td>Реактивация клиентской базы: механики и шаблоны</td><td>350</td><td>🔴 Май</td></tr>
+            <tr><td>80% программ лояльности умирают за год — почему</td><td>400</td><td>🔴 Май</td></tr>
+            <tr><td>Триггерные рассылки: 12 сценариев с шаблонами</td><td>400</td><td>🔴 Май</td></tr>
+            <tr><td>Retention marketing: стратегии удержания клиентов</td><td>300</td><td>🔴 Май</td></tr>
+            <tr><td>Email-маркетинг для e-commerce: гайд 2026</td><td>500</td><td>🔴 Май</td></tr>
+            <tr><td>Отток клиентов: как предсказать через CRM</td><td>67</td><td>🟡 Июнь</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mini-title">AI в SEO</div>
+        <ul class="check-list">
+          <li>Черновики статей через LLM, скорость написания ×3 — план на 62 статьи покрывает 475 ключей</li>
+          <li>Авто-мониторинг позиций через Keys.so API еженедельно</li>
+          <li>Каждая статья заканчивается ссылка на страницу услуги или лид-магнит</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАНАЛ 2: ЛИД-МАГНИТЫ -->
+<section class="channel-section section-alt">
+  <div class="wrap">
+    <div class="channel-header">
+      <div class="channel-index">02</div>
+      <div class="channel-header-text">
+        <h3>Лид-магниты + прогрев</h3>
+        <div class="horizon">Горизонт: <strong>4–6 недель</strong> · Цель: 10–15 квал лидов/мес · Тёплый контакт дешевле холодного</div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-bottom:32px;">
+      Схема простая: льём трафик на посадочную с вайтпейпером → человек оставляет email → получает прогревочную цепочку → в нужный момент пишем персонально. Он уже знает о нас, боль уже названа.
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="mini-title">Шаг 1: сделать 2–3 вайтпейпера</div>
+        <p style="font-size:13px;color:var(--text-sec);margin-bottom:12px;">Каждый закрывает конкретную боль ICP. Доступ через форму. Контакт уходит в CRM.</p>
+        <table class="data-table" style="margin-bottom:24px;">
+          <thead><tr><th>Вайтпейпер</th><th>Для кого</th></tr></thead>
+          <tbody>
+            <tr><td>Retention-маркетинг 2026: бенчмарки e-commerce</td><td>e-com, ритейл</td></tr>
+            <tr><td>Email-маркетинг в цифрах: что считать, что игнорировать</td><td>директора по маркетингу</td></tr>
+            <tr><td>RFM-анализ за 3 шага: практическое руководство</td><td>аналитики, CRM-команды</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mini-title">Шаг 2: лить трафик на лид-магнит</div>
+        <ul class="check-list" style="margin-bottom:0;">
+          <li>Директ: отдельная кампания на скачивание, CPL 500–800₽ (не на услугу)</li>
+          <li>Кнопка в каждой статье блога — 62 статьи из контент-плана как канал</li>
+          <li>Telegram-посевы в каналах про маркетинг, e-com, CRM</li>
+          <li>Партнёры: Mindbox, Carrotquest — кросс-промо по своей базе</li>
+        </ul>
+      </div>
+      <div>
+        <div class="mini-title">Шаг 3: прогрев → персональный аутрич</div>
+        <div class="sequence">
+          <div class="seq-step">
+            <div class="seq-day">Сначала</div>
+            <div class="seq-content">
+              <h5>ICP-проверка</h5>
+              <p>До любого касания: база ≥10k контактов? Бюджет ≥150k₽/мес? ЛПР — директор по маркетингу или владелец? Если нет — автопрогрев без ручного аутрича.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 0</div>
+            <div class="seq-content">
+              <h5>Скачал вайтпейпер</h5>
+              <p>Автоматически: письмо с доступом + 2 строки о CRM Group. Без продажи.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 3</div>
+            <div class="seq-content">
+              <h5>Кейс из той же ниши</h5>
+              <p>Один результат: ниша + метрика + срок. Призыв один — задать вопрос, не купить.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 7</div>
+            <div class="seq-content">
+              <h5>Персональный аутрич</h5>
+              <p>«Вы скачали гайд по retention. Часто у таких команд проблема [X] — мы её видели у [ниша]. Если актуально — покажем за 20 минут.»</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 14</div>
+            <div class="seq-content">
+              <h5>Финал или диагностика</h5>
+              <p>Если не ответил — закрываем ветку. Если ответил — 4 критерия ICP, выход на диагностику.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;font-size:13px;color:var(--text-sec);">
+          <strong>Математика:</strong> 200 скачиваний/мес → 60 дочитали цепочку → 20 ответили → <strong>10–15 квал лидов</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАНАЛ 3: OUTBOUND + HH.RU -->
+<section class="channel-section">
+  <div class="wrap">
+    <div class="channel-header">
+      <div class="channel-index">03</div>
+      <div class="channel-header-text">
+        <h3>Outbound + HH.ru</h3>
+        <div class="horizon">Горизонт: <strong>3–4 недели</strong> · Цель: 5–8 квал лидов/мес · Холодный канал с горячим поводом</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="mini-title">Источник: HH.ru как разведка</div>
+        <div class="insight-box" style="margin-bottom:20px;">
+          Компания открыла вакансию «CRM-маркетолог» или «email-маркетолог» — <strong>боль уже признана</strong>, решение ещё не принято. Первый контакт не холодный: есть конкретный повод и конкретная боль.
+        </div>
+        <ul class="check-list" style="margin-bottom:24px;">
+          <li>Ежедневный парсинг: «crm маркетолог», «email маркетолог», «retention», «программа лояльности»</li>
+          <li>Находим ЛПР: профиль компании + Контур.Фокус</li>
+          <li>Первое сообщение — про вакансию, не про услугу</li>
+          <li>100–150 касаний в неделю, 2 волны/мес</li>
+        </ul>
+
+        <div class="mini-title">Целевые сегменты</div>
+        <table class="data-table">
+          <thead><tr><th>Сегмент</th><th>Горячий признак</th></tr></thead>
+          <tbody>
+            <tr><td>E-commerce 50–500M₽/год</td><td>Ищут email/retention-маркетолога</td></tr>
+            <tr><td>Ритейл с программой лояльности</td><td>Вакансия CRM-маркетолога открыта 2+ мес</td></tr>
+            <tr><td>B2B-сервисы с подпиской</td><td>Ищут менеджера по удержанию или росту</td></tr>
+            <tr><td>Финтех / банки</td><td>Формируют CRM-команду с нуля</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="mini-title">Цепочка касаний</div>
+        <div class="sequence">
+          <div class="seq-step">
+            <div class="seq-day">Сначала</div>
+            <div class="seq-content">
+              <h5>ICP-проверка по компании</h5>
+              <p>Выручка компании, размер команды, наличие базы контактов — через HH.ru + Контур.Фокус. Не подходит по ICP — не пишем, не тратим ресурс.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 1</div>
+            <div class="seq-content">
+              <h5>Персональное сообщение</h5>
+              <p>«Видим вакансию CRM-маркетолога. Мы делаем именно это — retention, email, работа с базой. Можем показать как это работает у [ниша].»</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 3</div>
+            <div class="seq-content">
+              <h5>Кейс</h5>
+              <p>Один конкретный результат из той же ниши. Ниша + метрика + срок. Не питч — факт.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 7</div>
+            <div class="seq-content">
+              <h5>Звонок или мессенджер</h5>
+              <p>Уточнить задачу. Не продаём — слушаем. Совпадает по ICP — зовём на диагностику.</p>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-day">День 14</div>
+            <div class="seq-content">
+              <h5>Финальный оффер</h5>
+              <p>«Закрываю тему. Если вернётесь — свяжитесь». Часть отвечает именно здесь.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;font-size:13px;color:var(--text-sec);">
+          <strong>Математика:</strong> 300 касаний/мес → ~40 ответов → ~15 звонков → <strong>5–8 квал лидов</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАНАЛ 4: ДИРЕКТ -->
+<section class="channel-section section-alt">
+  <div class="wrap">
+    <div class="channel-header">
+      <div class="channel-index">04</div>
+      <div class="channel-header-text">
+        <h3>Яндекс.Директ</h3>
+        <div class="horizon"><strong>Уже запущен</strong> · Цель: 5–8 квал лидов/мес · Бюджет 50–60k₽ · Ставки близки к 0, аукцион полупустой · Еженедельный трекинг CPC/CPL</div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-bottom:32px;">
+      По данным Keys.so: ставки на нишевые retention-ключи <strong>0₽</strong>, конкурентов в аукционе 3–8. Аукцион почти пустой. Реальный CPL <strong>4–6k₽</strong>.
+    </div>
+
+    <div class="mini-title" style="margin-bottom:12px;">Еженедельный трекинг (заполнять каждый понедельник)</div>
+    <table class="data-table" style="margin-bottom:32px;">
+      <thead>
+        <tr>
+          <th>Неделя</th>
+          <th>Расход ₽</th>
+          <th>Клики</th>
+          <th>CPC ₽</th>
+          <th>Заявок</th>
+          <th>CPL ₽</th>
+          <th>Квал лидов</th>
+          <th>Стоимость квал лида</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Нед 1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Нед 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Нед 3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Нед 4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="total"><td><strong>Месяц</strong></td><td></td><td></td><td><strong>Цель: &lt;100₽</strong></td><td></td><td><strong>Цель: &lt;5k₽</strong></td><td></td><td><strong>Цель: &lt;12k₽</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-bottom:32px;font-size:13px;color:var(--text-sec);">
+      <strong>Что делать по данным:</strong> CPC растёт → проверить ставки и минус-слова. CPL выше 8k₽ → пауза кампании, пересмотр посадочной. Квал лидов &lt;3/нед → менять заголовки объявлений (LLM генерирует 5 вариантов).
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="mini-title">Кампания 1: CRM-маркетинг и retention</div>
+        <table class="data-table" style="margin-bottom:24px;">
+          <thead><tr><th>Ключ</th><th>WS</th><th>Конкурентов</th></tr></thead>
+          <tbody>
+            <tr><td>crm маркетинг</td><td class="red">2 393</td><td>4</td></tr>
+            <tr><td>crm агентство</td><td>677</td><td>3</td></tr>
+            <tr><td>разработка программы лояльности</td><td>557</td><td>3</td></tr>
+            <tr><td>rfm анализ</td><td class="red">1 258</td><td>5</td></tr>
+            <tr><td>автоматизация маркетинга</td><td>920</td><td>2</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mini-title">Кампания 2: Email-маркетинг</div>
+        <table class="data-table">
+          <thead><tr><th>Ключ</th><th>WS</th><th>Конкурентов</th></tr></thead>
+          <tbody>
+            <tr><td>email маркетинг</td><td class="red">1 354</td><td>8</td></tr>
+            <tr><td>триггерные рассылки</td><td>327</td><td>0</td></tr>
+            <tr><td>цепочки писем</td><td class="red">1 630</td><td>0</td></tr>
+            <tr><td>программа лояльности для бизнеса</td><td>430</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="mini-title">Бюджет и прогноз (пересчитано по реальным ставкам)</div>
+        <table class="data-table" style="margin-bottom:24px;">
+          <thead><tr><th>Кампания</th><th>Бюджет</th><th>CPL</th><th>Заявок</th></tr></thead>
+          <tbody>
+            <tr><td>CRM / retention</td><td>30–35k₽</td><td>~5k₽</td><td class="red">6–7</td></tr>
+            <tr><td>Email-маркетинг</td><td>20–25k₽</td><td>~4k₽</td><td class="red">5–6</td></tr>
+            <tr class="total"><td><strong>Итого</strong></td><td><strong>50–60k₽</strong></td><td><strong>~4–5k₽</strong></td><td><strong>11–13</strong></td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:-8px;margin-bottom:20px;font-size:13px;color:var(--text-sec);">
+          11–13 заявок → квалификация ~40–50% → <strong>5–8 квал лидов/мес</strong>. Директ здесь не главный источник — усилитель для тех, кто уже ищет.
+        </div>
+
+        <div class="mini-title">AI в Директе</div>
+        <ul class="check-list">
+          <li>LLM генерирует 10 вариантов заголовков → A/B тест 2 нед → автовыбор победителя</li>
+          <li>Динамические объявления под сегмент: интернет-магазины / SaaS / ритейл / финтех</li>
+          <li>Ретаргетинг по посетителям страниц услуг, бюджет 20–30k₽/мес</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАНАЛ 5: ПАРТНЁРЫ -->
+<section class="channel-section">
+  <div class="wrap">
+    <div class="channel-header">
+      <div class="channel-index">05</div>
+      <div class="channel-header-text">
+        <h3>Партнёрства с платформами</h3>
+        <div class="horizon">Горизонт: <strong>2–3 месяца</strong> · Цель: 5–10 квал лидов/мес. Самый дешёвый лид от партнёра</div>
+      </div>
+    </div>
+
+    <p style="font-size:15px;color:var(--text-sec);max-width:680px;margin-bottom:32px;">Платформы продают технологию. CRM Group продаёт работу на этой технологии. Не конкуренция — симбиоз. Клиент купил MAXMA, но не знает как маркетить по базе — CRM Group заходит как агентство.</p>
+
+    <div class="partner-grid">
+      <div class="partner-card">
+        <h4>MAXMA</h4>
+        <div class="partner-type">Платформа лояльности</div>
+        <p>Клиент запустил платформу, нужен кто-то, кто настроит механики и сделает коммуникации по базе.</p>
+      </div>
+      <div class="partner-card">
+        <h4>Altkraft</h4>
+        <div class="partner-type">Платформа лояльности</div>
+        <p>Аналогично MAXMA. Совместные вебинары + рекомендации клиентам, которые не знают как работать с данными.</p>
+      </div>
+      <div class="partner-card">
+        <h4>Mindbox</h4>
+        <div class="partner-type">CDP / Marketing automation</div>
+        <p>Клиент внедрил Mindbox, нужна команда, которая будет делать кампании и использовать весь потенциал платформы.</p>
+      </div>
+      <div class="partner-card">
+        <h4>RetailCRM</h4>
+        <div class="partner-type">CRM для ритейла</div>
+        <p>CRM настроена, маркетинг по базе не запущен. CRM Group логичный следующий шаг после внедрения.</p>
+      </div>
+      <div class="partner-card">
+        <h4>Carrotquest</h4>
+        <div class="partner-type">Marketing automation</div>
+        <p>Клиент платит, но сценарии не настроены, цепочки не запущены. CRM Group делает то, что платформа не делает сама.</p>
+      </div>
+      <div class="partner-card">
+        <h4>Юнисендер</h4>
+        <div class="partner-type">ESP</div>
+        <p>Есть база, есть рассылки, нет стратегии. CRM Group берёт стратегию и исполнение поверх email-платформы.</p>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:24px;">
+      <strong>Механика партнёрства:</strong> % с первой сделки или фиксированный бонус за лид. Совместные вебинары 1 раз в квартал. Реферальная ссылка в документации партнёра как пассивный поток.
+    </div>
+  </div>
+</section>
+
+<!-- УСИЛИТЕЛИ -->
+<section class="channel-section">
+  <div class="wrap">
+    <div class="section-tag">Поверх 5 каналов</div>
+    <h2>Усилители</h2>
+    <p class="section-lead">Не отдельные каналы лидов. Конвертируют сомнение в доверие и работают в каждом канале одновременно.</p>
+
+    <div class="icp-grid">
+      <div class="icp-card">
+        <div class="icp-icon">📁</div>
+        <h4>Кейсы — приоритет сбора</h4>
+        <p>Кейс — главный конверсионный элемент в холодном аутриче, на посадочных и в вайтпейперах. Нужно <strong>системно собирать</strong>: после каждого завершённого проекта брать метрики, писать разбор. Цель: 1–2 новых кейса в месяц с цифрами до/после.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">✈️</div>
+        <h4>Telegram-канал</h4>
+        <p>Кейсы с цифрами, разборы retention-кампаний, инсайты по RFM. Когда лид проверяет CRM Group, канал конвертирует сомнение в доверие.</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">📰</div>
+        <h4>Экспертный PR</h4>
+        <p>VC.ru, Habr, Retail.ru: 1–2 материала в месяц. Не реклама: «Как мы подняли retention клиента X на 34% за 6 недель».</p>
+      </div>
+      <div class="icp-card">
+        <div class="icp-icon">🎙️</div>
+        <h4>Вебинары</h4>
+        <p>1 раз в месяц или квартал: экспертный эфир по теме retention: тренды, кейсы, разбор механик. Без продажи в лоб. Участники видят уровень команды и приходят сами.</p>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:24px;">
+      <strong>Кейс в каждом канале:</strong> холодный аутрич — кейс на 3-й день, лид-магнит — кейс в письме прогрева, посадочная — кейс в секции доверия, вебинар — разбор кейса как основа эфира. Нет кейсов — все каналы работают вполсилы.
+    </div>
+  </div>
+</section>
+
+<!-- РОАДМАП -->
+<section class="section section-dark">
+  <div class="wrap">
+    <div class="section-tag">Роадмап</div>
+    <h2>По месяцам</h2>
+    <p class="section-lead">Март и Директ уже идут. Апрель — лид-магниты и HH.ru. Июнь — выходим на полный режим.</p>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-month">Март · Уже идёт</div>
+        <h4>Старт</h4>
+        <div class="roadmap-actions">
+          <div class="roadmap-action">SEO: первые статьи и страницы услуг</div>
+          <div class="roadmap-action">Директ: 2 кампании запущены, трекинг CPC/CPL</div>
+          <div class="roadmap-action">Сбор кейсов: зафиксировать метрики текущих проектов</div>
+        </div>
+        <div class="roadmap-result">Цель: <span>5–8</span> квал лидов</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-month">Апрель</div>
+        <h4>Добавляем каналы</h4>
+        <div class="roadmap-actions">
+          <div class="roadmap-action">Первый вайтпейпер: посадочная + форма + цепочка</div>
+          <div class="roadmap-action">Запуск HH.ru-аутрича: 150 касаний/нед</div>
+          <div class="roadmap-action">Контент: 4–5 статей/мес по контент-плану</div>
+          <div class="roadmap-action">Договориться с 2–3 партнёрами</div>
+        </div>
+        <div class="roadmap-result">Цель: <span>15–20</span> квал лидов</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-month">Май · Спринт</div>
+        <h4>Страницы + проблемный контент</h4>
+        <div class="roadmap-actions">
+          <div class="roadmap-action">Создать /programmy-loyalnosti/ — приоритет №1 (avbid 410₽, конкурентов-агентств нет)</div>
+          <div class="roadmap-action">Починить /email-marketing-pod-klyuch/ — убрать 2×H1, добавить meta description</div>
+          <div class="roadmap-action">5 проблемных статей: реактивация, программы лояльности, триггеры, retention, email e-com</div>
+          <div class="roadmap-action">Разместить лид-форму и лид-магнит (уже есть) на новой странице и топ-20 блога</div>
+          <div class="roadmap-action">Директ перенацелить с AI/речевой аналитики на retention-услуги</div>
+        </div>
+        <div class="roadmap-result">Цель: <span>30–40</span> квал лидов</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-month">Июль–Авг</div>
+        <h4>Выход на цель</h4>
+        <div class="roadmap-actions">
+          <div class="roadmap-action">SEO в топ-5 по CRM-маркетинг, удержание клиентов</div>
+          <div class="roadmap-action">Лид-магниты: 200+ скачиваний/мес, прогрев в рутине</div>
+          <div class="roadmap-action">Директ: CPL снизился за счёт улучшенных посадочных</div>
+          <div class="roadmap-action">HH.ru-аутрич: 300 касаний/мес без доп. усилий</div>
+        </div>
+        <div class="roadmap-result">Цель: <span>50–60</span> квал лидов ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- СПРИНТ МАЙ 2026 -->
+<section class="section">
+  <div class="wrap">
+    <div class="channel-header" style="margin-bottom:32px;">
+      <div class="channel-index" style="background:var(--red);">05</div>
+      <div class="channel-header-text">
+        <h3>Спринт · Май 2026</h3>
+        <div class="horizon">Апдейт от 30 апреля 2026 · Цель-горизонт: <strong>200 лидов/мес</strong> · Текущий план даёт 50–60 — нужны все каналы одновременно</div>
+      </div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:24px;">
+      <thead><tr><th>#</th><th>Задача</th><th>Приоритет</th><th>Статус</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Создать страницу <strong>/programmy-loyalnosti/</strong> с лид-формой и кейсами</td><td class="red">Обязательно</td><td>—</td></tr>
+        <tr><td>2</td><td>Починить <strong>/email-marketing-pod-klyuch/</strong>: убрать 2×H1, добавить meta description (155 симв.)</td><td class="red">Обязательно</td><td>—</td></tr>
+        <tr><td>3</td><td>Написать 5 проблемных статей (реактивация, программы лояльности, триггеры, retention, email e-com)</td><td class="red">Обязательно</td><td>Статья по программе лояльности уже есть ✓</td></tr>
+        <tr><td>4</td><td>Разместить существующий лид-магнит на топ-20 страниц блога и глоссария</td><td style="color:#b45300;font-weight:600;">Важно</td><td>Форма и магнит готовы ✓</td></tr>
+        <tr><td>5</td><td>Перенацелить Директ с AI/речевой аналитики на retention-услуги</td><td style="color:#b45300;font-weight:600;">Важно</td><td>—</td></tr>
+        <tr><td>6</td><td>Запустить HH.ru-мониторинг вакансий CRM/email-маркетолог → аутрич</td><td style="color:var(--text-sec);">Следующий шаг</td><td>—</td></tr>
+        <tr><td>7</td><td>Оформить партнёрство с RetailCRM и amoCRM (заявка в партнёрскую программу)</td><td style="color:var(--text-sec);">Следующий шаг</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="principle" style="margin-top:0;">
+      <h3>Разрыв до 200 лидов</h3>
+      <p>Текущий план (50–60 лидов) закрывает ~25% от цели. Разрыв закрывается только при одновременной работе всех 5 каналов: SEO + Директ (уже идут) + лид-магниты на потоке + HH.ru-аутрич + партнёрства. Каждый незапущенный канал — минус 10–20 лидов в месяц. Ключевое ограничение сейчас: нет страниц услуг — органический трафик уходит без конверсии.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПРИНЦИП -->
+<section class="section">
+  <div class="wrap">
+    <div class="principle">
+      <h3>Главный принцип</h3>
+      <p>Директ и SEO уже идут — это база. Лид-магниты собирают свою базу: каждый скачавший вайтпейпер стоил 500₽ и уже знает о CRM Group. HH.ru даёт горячих кандидатов для исходящего аутрича — те, кто ищет сотрудника, уже признали боль. Кейсы работают во всех каналах одновременно: без них конверсия падает на каждом шаге. Нет одного главного канала — есть система из пяти, и она выходит на 50–60 квал лидов к августу.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="wrap">
+    <p><strong>CRM Group · B2B Marketing 360°</strong> · 1 мая 2026 · Конфиденциально</p>
+  </div>
+</div>
+
+</body>
+</html>
