@@ -1397,6 +1397,197 @@ h2 {
   </div>
 </section>
 
+<!-- ЭВОЛЮЦИЯ ПРОДУКТА -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Продуктовая эволюция</div>
+    <h2>Как расти: услуги, страницы, монетизация</h2>
+    <p class="section-lead">Каждый уровень открывает новую семантику и продаётся существующим клиентам. Логика: сначала каналы → потом инфраструктура → потом аналитика → потом продукт.</p>
+
+    <style>
+      .evo-level { margin-bottom: 40px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+      .evo-level-header { display: flex; align-items: center; gap: 20px; padding: 20px 28px; background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+      .evo-level-badge { font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+      .evo-badge-now  { background: #fee2e2; color: #991b1b; }
+      .evo-badge-6m   { background: #fef3c7; color: #92400e; }
+      .evo-badge-12m  { background: #dbeafe; color: #1e40af; }
+      .evo-badge-24m  { background: #d1fae5; color: #065f46; }
+      .evo-level-title { font-family: var(--fh); font-size: 18px; font-weight: 700; }
+      .evo-level-ws { margin-left: auto; font-size: 13px; color: var(--text-sec); }
+      .evo-level-ws strong { color: var(--text); }
+      .evo-services { display: grid; gap: 0; }
+      .evo-service { display: grid; grid-template-columns: 220px 1fr 180px 180px; gap: 0; border-bottom: 1px solid var(--border); }
+      .evo-service:last-child { border-bottom: none; }
+      .evo-service > div { padding: 16px 20px; border-right: 1px solid var(--border); font-size: 14px; }
+      .evo-service > div:last-child { border-right: none; }
+      .evo-service-name { font-weight: 600; color: var(--text); }
+      .evo-service-name span { display: block; font-size: 12px; font-weight: 400; color: var(--text-sec); font-family: monospace; margin-top: 4px; }
+      .evo-service-desc { color: var(--text-sec); line-height: 1.5; }
+      .evo-service-model { color: var(--text-sec); }
+      .evo-service-model strong { display: block; color: var(--text); margin-bottom: 4px; }
+      .evo-service-ws { display: flex; flex-direction: column; gap: 4px; }
+      .evo-service-ws-key { font-size: 12px; color: var(--text-sec); font-family: monospace; }
+      .evo-service-ws-val { font-family: var(--fh); font-weight: 700; color: var(--red); font-size: 18px; }
+      .evo-services-header { display: grid; grid-template-columns: 220px 1fr 180px 180px; background: #f9f9f9; border-bottom: 1px solid var(--border); }
+      .evo-services-header > div { padding: 10px 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sec); border-right: 1px solid var(--border); }
+      .evo-services-header > div:last-child { border-right: none; }
+      @media (max-width: 640px) {
+        .evo-service { grid-template-columns: 1fr; }
+        .evo-service > div { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+        .evo-service > div:last-child { border-bottom: none; }
+        .evo-services-header { display: none; }
+        .evo-level-header { flex-wrap: wrap; }
+        .evo-level-ws { margin-left: 0; }
+      }
+    </style>
+
+    <!-- УРОВЕНЬ 0: СЕЙЧАС -->
+    <div class="evo-level">
+      <div class="evo-level-header">
+        <div class="evo-level-badge evo-badge-now">Сейчас</div>
+        <div class="evo-level-title">Email + CRM + Retention</div>
+        <div class="evo-level-ws">Семантика: <strong>~2k WS</strong></div>
+      </div>
+      <div class="evo-services-header">
+        <div>Услуга / страница</div><div>Что продаём</div><div>Монетизация</div><div>Ключевой запрос / WS</div>
+      </div>
+      <div class="evo-services">
+        <div class="evo-service">
+          <div class="evo-service-name">CRM-маркетинг<span>/crm-marketing/</span></div>
+          <div class="evo-service-desc">Стратегия и ведение CRM: сегментация, триггеры, цепочки по всей базе</div>
+          <div class="evo-service-model"><strong>Абонентская</strong>от 80k₽/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">crm маркетинг</span><span class="evo-service-ws-val">2 393</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Email-маркетинг<span>/email-marketing-pod-klyuch/</span></div>
+          <div class="evo-service-desc">Рассылки под ключ: стратегия, тексты, вёрстка, отправка, аналитика</div>
+          <div class="evo-service-model"><strong>Абонентская</strong>от 50k₽/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">email маркетинг</span><span class="evo-service-ws-val">1 354</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">RFM-анализ<span>/rfm-analiz/</span></div>
+          <div class="evo-service-desc">Разовый анализ базы: сегменты, рекомендации, план работы с каждым</div>
+          <div class="evo-service-model"><strong>Разовый проект</strong>от 30k₽</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">rfm анализ</span><span class="evo-service-ws-val">1 258</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- УРОВЕНЬ 1: +6 МЕС -->
+    <div class="evo-level">
+      <div class="evo-level-header">
+        <div class="evo-level-badge evo-badge-6m">+6 месяцев</div>
+        <div class="evo-level-title">Мультиканал + Лояльность</div>
+        <div class="evo-level-ws">Семантика: <strong>~50k WS</strong></div>
+      </div>
+      <div class="evo-services-header">
+        <div>Услуга / страница</div><div>Что продаём</div><div>Монетизация</div><div>Ключевой запрос / WS</div>
+      </div>
+      <div class="evo-services">
+        <div class="evo-service">
+          <div class="evo-service-name">Программа лояльности<span>/programmy-loyalnosti/</span></div>
+          <div class="evo-service-desc">Разработка механики, внедрение платформы (MAXMA, Altkraft), запуск и ведение коммуникаций</div>
+          <div class="evo-service-model"><strong>Проект + абонентская</strong>150–500k проект, 60–120k/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">разработка программы лояльности</span><span class="evo-service-ws-val">557</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">SMS-маркетинг<span>/sms-marketing/</span></div>
+          <div class="evo-service-desc">Сегментированные SMS-рассылки: промо, триггеры, реактивация — через SMS-шлюз партнёра</div>
+          <div class="evo-service-model"><strong>Абонентская + трафик</strong>от 30k₽/мес + стоимость SMS</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">смс рассылка для бизнеса</span><span class="evo-service-ws-val">~8 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">WhatsApp / Telegram рассылки<span>/messenger-marketing/</span></div>
+          <div class="evo-service-desc">Коммуникации в мессенджерах: онбординг, реактивация, триггеры по базе</div>
+          <div class="evo-service-model"><strong>Абонентская + трафик</strong>от 40k₽/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">рассылка в whatsapp для бизнеса</span><span class="evo-service-ws-val">~12 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Web Push уведомления<span>/push-uvedomleniya/</span></div>
+          <div class="evo-service-desc">Настройка и ведение push-уведомлений: сценарии брошенной корзины, промо, реактивация</div>
+          <div class="evo-service-model"><strong>Абонентская</strong>от 25k₽/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">push уведомления для сайта</span><span class="evo-service-ws-val">~15 000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- УРОВЕНЬ 2: +12 МЕС -->
+    <div class="evo-level">
+      <div class="evo-level-header">
+        <div class="evo-level-badge evo-badge-12m">+12 месяцев</div>
+        <div class="evo-level-title">Инфраструктура + Данные</div>
+        <div class="evo-level-ws">Семантика: <strong>~80k WS</strong></div>
+      </div>
+      <div class="evo-services-header">
+        <div>Услуга / страница</div><div>Что продаём</div><div>Монетизация</div><div>Ключевой запрос / WS</div>
+      </div>
+      <div class="evo-services">
+        <div class="evo-service">
+          <div class="evo-service-name">Валидация email-базы<span>/validaciya-email-bazy/</span></div>
+          <div class="evo-service-desc">Чистка базы перед запуском: удаление невалидных, дублей, спам-ловушек — повышает доставляемость</div>
+          <div class="evo-service-model"><strong>Разовый / подписка</strong>от 5k₽ за базу, партнёрский ресселл</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">валидация email базы</span><span class="evo-service-ws-val">~2 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Настройка email-инфраструктуры<span>/nastrojka-email-infrastruktury/</span></div>
+          <div class="evo-service-desc">SPF, DKIM, DMARC, прогрев IP, выбор и настройка ESP/SMTP — без этого рассылки в спаме</div>
+          <div class="evo-service-model"><strong>Разовый проект</strong>50–150k₽; ресселл SMTP как опция</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">настройка email рассылок</span><span class="evo-service-ws-val">~3 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">CDP-консалтинг<span>/vnedrenie-cdp/</span></div>
+          <div class="evo-service-desc">Выбор платформы (Mindbox, Carrotquest, Retail Rocket), внедрение, настройка сегментов и сценариев</div>
+          <div class="evo-service-model"><strong>Проект + ведение</strong>300–800k проект, 80–150k/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">cdp платформа</span><span class="evo-service-ws-val">~300</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Маркетинговая аналитика<span>/crm-analitika-rfm-ltv/</span></div>
+          <div class="evo-service-desc">Регулярный дашборд: LTV, churn, когорты, RFM-динамика — на базе данных клиента</div>
+          <div class="evo-service-model"><strong>Абонентская</strong>от 40k₽/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">маркетинговая аналитика</span><span class="evo-service-ws-val">~5 000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- УРОВЕНЬ 3: +24 МЕС -->
+    <div class="evo-level">
+      <div class="evo-level-header">
+        <div class="evo-level-badge evo-badge-24m">+24 месяца</div>
+        <div class="evo-level-title">Продуктизация</div>
+        <div class="evo-level-ws">Семантика: <strong>~150k WS</strong></div>
+      </div>
+      <div class="evo-services-header">
+        <div>Услуга / страница</div><div>Что продаём</div><div>Монетизация</div><div>Ключевой запрос / WS</div>
+      </div>
+      <div class="evo-services">
+        <div class="evo-service">
+          <div class="evo-service-name">NPS и клиентский опыт<span>/nps-issledovanie/</span></div>
+          <div class="evo-service-desc">Настройка NPS-опросов, интерпретация результатов, план улучшений по сегментам</div>
+          <div class="evo-service-model"><strong>Проект + мониторинг</strong>от 50k проект, 20k/мес</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">nps опрос клиентов</span><span class="evo-service-ws-val">~4 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Библиотека email-шаблонов<span>/shablony-email/</span></div>
+          <div class="evo-service-desc">Готовые HTML-шаблоны для Mindbox, Unisender, Brevo — продажа по типу и отрасли</div>
+          <div class="evo-service-model"><strong>Разовая продажа</strong>от 5k₽/шаблон; подписка на библиотеку</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">шаблоны email рассылок</span><span class="evo-service-ws-val">~6 000</span></div>
+        </div>
+        <div class="evo-service">
+          <div class="evo-service-name">Обучение и акселератор<span>/obuchenie-crm-marketing/</span></div>
+          <div class="evo-service-desc">Курс для in-house маркетологов: монетизация аудитории блога, которая уже читает и доверяет</div>
+          <div class="evo-service-model"><strong>Разовая оплата</strong>20–80k₽ за курс/акселератор</div>
+          <div class="evo-service-ws"><span class="evo-service-ws-key">курсы crm маркетинг</span><span class="evo-service-ws-val">~500</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="principle" style="margin-top:0;">
+      <h3>Логика эволюции</h3>
+      <p>Каждый уровень решает задачу предыдущего глубже. Email → мультиканал: те же клиенты, выше чек. Мультиканал → инфраструктура: клиент покупает пакет «настройка + ведение». Инфраструктура → аналитика: агентство становится незаменимым, потому что держит данные. Аналитика → продукт: накопленная экспертиза продаётся без команды. WS-цифры в разделах +6/+12/+24 мес требуют верификации в Keys.so — даны как ориентир.</p>
+    </div>
+  </div>
+</section>
+
 <!-- РОАДМАП -->
 <section class="section section-dark">
   <div class="wrap">
