@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — ямалмото.рф</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0d0e0c;
+  --surface: #161917;
+  --surface2: #1e2220;
+  --surface3: #242724;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0ec;
+  --text-soft: #b8bdb6;
+  --muted: #6b7068;
+  --accent: #d4a843;
+  --accent-dim: rgba(212,168,67,0.15);
+  --accent-hover: #e8bc5a;
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --orange: #d4813a;
+  --orange-dim: rgba(212,129,58,0.12);
+  --green: #5fa85a;
+  --green-dim: rgba(95,168,90,0.12);
+  --blue: #5a94d4;
+  --blue-dim: rgba(90,148,212,0.12);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,14,12,0.88); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 52px;
+  display: flex; align-items: center; gap: 20px;
+  font-size: 13px; overflow-x: auto; white-space: nowrap;
+}
+.nav a { color: var(--text-soft); }
+.nav a:hover { color: var(--text); }
+.nav-brand { font-weight: 600; color: var(--text); margin-right: 8px; }
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+
+.hero { padding: 64px 0 48px; background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
+.hero-domain { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.hero-title { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+.hero-sub { color: var(--text-soft); max-width: 640px; margin-bottom: 24px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border2); color: var(--text-soft); }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 32px 0; }
+.kpi { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; }
+.kpi-val { font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+.kpi-label { font-size: 12px; color: var(--muted); }
+.kpi.red .kpi-val { color: var(--red); }
+.kpi.green .kpi-val { color: var(--green); }
+.kpi.blue .kpi-val { color: var(--blue); }
+
+h2.sec-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.sec-desc { color: var(--text-soft); margin-bottom: 28px; font-size: 14px; }
+
+.alert { border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px; font-size: 14px; display: flex; gap: 10px; }
+.alert.red { background: var(--red-dim); border: 1px solid rgba(224,82,82,0.25); }
+.alert.orange { background: var(--orange-dim); border: 1px solid rgba(212,129,58,0.25); }
+.alert.green { background: var(--green-dim); border: 1px solid rgba(95,168,90,0.25); }
+.alert.blue { background: var(--blue-dim); border: 1px solid rgba(90,148,212,0.25); }
+.alert-icon { flex-shrink: 0; font-size: 16px; }
+.alert strong { display: block; margin-bottom: 2px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 20px; }
+th { text-align: left; padding: 8px 12px; background: var(--surface2); color: var(--text-soft); font-weight: 500; font-size: 12px; border-bottom: 1px solid var(--border2); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.badge.red { background: var(--red-dim); color: var(--red); }
+.badge.orange { background: var(--orange-dim); color: var(--orange); }
+.badge.green { background: var(--green-dim); color: var(--green); }
+.badge.blue { background: var(--blue-dim); color: var(--blue); }
+.badge.gray { background: var(--surface3); color: var(--muted); }
+
+.chart-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+.chart-title { font-size: 14px; font-weight: 600; color: var(--text-soft); margin-bottom: 16px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:640px) { .two-col { grid-template-columns: 1fr; } }
+
+.roadmap { list-style: none; }
+.roadmap li { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.roadmap li:last-child { border-bottom: none; }
+.rm-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rm-body strong { display: block; margin-bottom: 4px; }
+.rm-body p { color: var(--text-soft); font-size: 13px; }
+
+.fix-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.fix-row:last-child { border-bottom: none; }
+.fix-icon { font-size: 16px; flex-shrink: 0; width: 22px; text-align: center; }
+
+.mono { font-family: 'SFMono-Regular', 'Consolas', monospace; font-size: 12px; background: var(--surface3); padding: 1px 6px; border-radius: 4px; color: var(--accent); }
+
+.footer { padding: 32px 0; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">ямалмото.рф</span>
+  <a href="#summary">Саммари</a>
+  <a href="#tech">Технический SEO</a>
+  <a href="#pages">Страницы</a>
+  <a href="#keyso">Keys.so</a>
+  <a href="#competitors">Конкуренты</a>
+  <a href="#roadmap">Роадмап</a>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-domain">SEO-аудит · 03.05.2026 · Keys.so (Яндекс Россия, Москва)</div>
+    <h1 class="hero-title">ЯМАЛ МОТО — ямалмото.рф</h1>
+    <p class="hero-sub">Дилер BRP-техники из США и Канады: снегоходы Ski-Doo и Lynx, квадроциклы Can-Am, гидроциклы Sea-Doo. Поставка с 2013 года, авиадоставка за 21 день. Платформа — Tilda.</p>
+    <div class="chips">
+      <span class="chip">🏍 BRP: Ski-Doo · Can-Am · Sea-Doo</span>
+      <span class="chip">📦 Поставка из США/Канады</span>
+      <span class="chip">🏗 Tilda + DDoS-Guard</span>
+      <span class="chip">📍 Москва + доставка по России</span>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi red">
+        <div class="kpi-val">84</div>
+        <div class="kpi-label">VIS (keys.so)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">27</div>
+        <div class="kpi-label">DR (авторитет)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">1 038</div>
+        <div class="kpi-label">Ключей в топ-50</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-val">58</div>
+        <div class="kpi-label">Ключей в топ-3</div>
+      </div>
+      <div class="kpi blue">
+        <div class="kpi-val">146</div>
+        <div class="kpi-label">Ключей в топ-10</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-val">411</div>
+        <div class="kpi-label">Ключей 31–50</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div id="summary" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Топ-5 критичных проблем</h2>
+    <p class="sec-desc">Проблемы, которые прямо сейчас тормозят органику.</p>
+
+    <div class="alert red">
+      <span class="alert-icon">🔴</span>
+      <div><strong>Все изображения без alt-текстов (100%)</strong>
+      На главной 67 из 67 изображений не имеют alt. На /snegokhody — 19/19, на /kvadrocikly — 23/23. Яндекс и Google не понимают, что на картинках — это прямой потерянный SEO-сигнал плюс нарушение доступности.</div>
+    </div>
+    <div class="alert red">
+      <span class="alert-icon">🔴</span>
+      <div><strong>Нет Schema.org разметки вообще (ни Product, ни Organization)</strong>
+      На сайте 0 JSON-LD блоков. Для товарного сайта с конкретными моделями техники отсутствие Product-микроразметки — прямая потеря расширенных сниппетов (цена, наличие, отзывы) в Яндексе и Google.</div>
+    </div>
+    <div class="alert orange">
+      <span class="alert-icon">🟠</span>
+      <div><strong>VIS=84 при конкурентах 9 000–15 000</strong>
+      globaldrive.ru — VIS 15 481 (в 184 раза больше), universalmotors.ru — 9 289. Ямалмото технически ранжируется по 1 038 ключам, но 40% из них — позиции 31–50. Огромный потенциал подтяжки.</div>
+    </div>
+    <div class="alert orange">
+      <span class="alert-icon">🟠</span>
+      <div><strong>Canonical в punycode вместо кириллицы</strong>
+      <span class="mono">canonical: https://xn--80awbcka1a2h.xn--p1ai</span> — Яндекс предпочитает кириллический вариант <span class="mono">https://ямалмото.рф</span>. Это может размывать ссылочный вес между двумя версиями URL.</div>
+    </div>
+    <div class="alert orange">
+      <span class="alert-icon">🟠</span>
+      <div><strong>Нет lang="ru" и бедная семантическая структура H2/H3</strong>
+      На страницах разделов только 3 H2 и 0 H3. Google использует заголовки для понимания структуры контента. Добавление H3 под каждую модель техники усилит семантику страниц.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH SEO -->
+<div id="tech" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Технический SEO</h2>
+    <p class="sec-desc">Данные crawl.py + ручная проверка. Дата: 03.05.2026.</p>
+
+    <table>
+      <thead><tr><th>Параметр</th><th>Статус</th><th>Значение / Проблема</th></tr></thead>
+      <tbody>
+        <tr><td>robots.txt</td><td><span class="badge green">ОК</span></td><td>Стандартный Tilda: блокирует /tilda/* служебные пути, Clean-param для Яндекса</td></tr>
+        <tr><td>Sitemap</td><td><span class="badge green">ОК</span></td><td>3 файла: sitemap.xml (60 URL), sitemap-store.xml (119 URL), sitemap-feeds.xml</td></tr>
+        <tr><td>HTTP → HTTPS</td><td><span class="badge green">ОК</span></td><td>301 редирект на https</td></tr>
+        <tr><td>www → non-www</td><td><span class="badge green">ОК</span></td><td>301 редирект работает</td></tr>
+        <tr><td>Canonical (главная)</td><td><span class="badge orange">⚠</span></td><td><span class="mono">https://xn--80awbcka1a2h.xn--p1ai</span> — punycode. Нужен: <span class="mono">https://ямалмото.рф</span></td></tr>
+        <tr><td>html lang</td><td><span class="badge red">Нет</span></td><td>Атрибут lang на &lt;html&gt; отсутствует. Добавить <span class="mono">lang="ru"</span></td></tr>
+        <tr><td>Alt-тексты</td><td><span class="badge red">0%</span></td><td>Главная: 67/67 без alt · /snegokhody: 19/19 · /kvadrocikly: 23/23</td></tr>
+        <tr><td>JSON-LD Schema</td><td><span class="badge red">Нет</span></td><td>0 блоков на всём сайте. Нужны: Product, Organization, BreadcrumbList, FAQ</td></tr>
+        <tr><td>Open Graph</td><td><span class="badge green">ОК</span></td><td>og:title, og:description, og:image присутствуют</td></tr>
+        <tr><td>H1 на страницах</td><td><span class="badge green">ОК</span></td><td>Ровно 1 H1 на каждой проверенной странице</td></tr>
+        <tr><td>H2 / H3 структура</td><td><span class="badge orange">⚠</span></td><td>Только 3 H2 на страницах разделов, H3 нет. Нужна иерархия под модели</td></tr>
+        <tr><td>Title длина</td><td><span class="badge green">ОК</span></td><td>Главная: 81 символ · /snegokhody: в норме · /kvadrocikly: в норме</td></tr>
+        <tr><td>Meta description</td><td><span class="badge green">ОК</span></td><td>Главная: 171 символ · разделы: 145–147 символов</td></tr>
+        <tr><td>DDoS-Guard</td><td><span class="badge blue">Инфо</span></td><td>Защита может замедлять краулинг Яндекса. Проверьте скорость индексации в ВМ</td></tr>
+        <tr><td>Размер страницы</td><td><span class="badge orange">⚠</span></td><td>Главная: 1,08 МБ HTML. Для Tilda — норма, но стоит проверить CWV</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert blue">
+      <span class="alert-icon">ℹ</span>
+      <div><strong>Core Web Vitals не проверялись</strong> — нет GOOGLE_PSI_API_KEY. Рекомендуется проверить через PageSpeed Insights вручную для главной и страниц категорий.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGES -->
+<div id="pages" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Ключевые страницы</h2>
+    <p class="sec-desc">Результаты crawl.py для 3 основных разделов.</p>
+
+    <table>
+      <thead><tr><th>Страница</th><th>H1</th><th>Title</th><th>Imgs без alt</th><th>Schema</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="mono">/</span></td>
+          <td>Снегоходы, Квадроциклы и Гидроциклы за 21 день</td>
+          <td>Купить Снегоходы, Квадроциклы и Гидроциклы из США и Канады: под заказ за 21 день! (81)</td>
+          <td><span class="badge red">67 / 67</span></td>
+          <td><span class="badge red">0</span></td>
+        </tr>
+        <tr>
+          <td><span class="mono">/snegokhody</span></td>
+          <td>Снегоходы BRP из США и Канады в Москве и с доставкой по всей России</td>
+          <td>Купить Снегоходы из США и Канады: под заказ за 21 день!</td>
+          <td><span class="badge red">19 / 19</span></td>
+          <td><span class="badge red">0</span></td>
+        </tr>
+        <tr>
+          <td><span class="mono">/kvadrocikly</span></td>
+          <td>Квадроциклы BRP из США и Канады в Москве и с доставкой по всей России</td>
+          <td>Купить Квадроциклы из США и Канады: под заказ за 21 день!</td>
+          <td><span class="badge red">23 / 23</span></td>
+          <td><span class="badge red">0</span></td>
+        </tr>
+        <tr>
+          <td><span class="mono">/gidrocikly</span></td>
+          <td>—</td>
+          <td>Купить Гидроциклы из США и Канады: под заказ за 21 день!</td>
+          <td><span class="badge orange">?</span></td>
+          <td><span class="badge red">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert orange">
+      <span class="alert-icon">🟠</span>
+      <div><strong>Региональные страницы в sitemap — потенциал не раскрыт</strong>
+      В sitemap.xml обнаружены региональные URL: <span class="mono">/tyumen/</span>, <span class="mono">/ekaterinburg/</span>, <span class="mono">/novosibirsk/</span>, <span class="mono">/khabarovsk/</span>, <span class="mono">/krasnoyarsk/</span>. Это правильная стратегия для гео-запросов («купить снегоход Тюмень»), но нужно убедиться, что у каждой страницы уникальный контент, а не дубль главной.</div>
+    </div>
+  </div>
+</div>
+
+<!-- KEYSO -->
+<div id="keyso" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Данные keys.so</h2>
+    <p class="sec-desc">База: Яндекс Россия (Москва). Дата среза: 03.05.2026. Уникальных ключей в топ-50: 1 038.</p>
+
+    <div class="two-col">
+      <div class="chart-wrap">
+        <div class="chart-title">Распределение позиций (1 038 ключей)</div>
+        <canvas id="posChart" height="200"></canvas>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-title">VIS vs конкуренты</div>
+        <canvas id="visChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;margin:28px 0 12px">Лучшие позиции (топ-10) — высокочастотные</h3>
+    <table>
+      <thead><tr><th>Запрос</th><th>Позиция</th><th>WS</th><th>Приоритет</th></tr></thead>
+      <tbody>
+        <tr><td>купить брп</td><td><span class="badge green">#1</span></td><td>10 916</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>brp outlander</td><td><span class="badge green">#1</span></td><td>9 988</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>квадроцикл outlander</td><td><span class="badge green">#1</span></td><td>3 944</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>брп снегоход купить</td><td><span class="badge green">#2</span></td><td>7 743</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>купить гидроцикл</td><td><span class="badge green">#4</span></td><td>9 763</td><td><span class="badge blue">Усилить</span></td></tr>
+        <tr><td>гидроциклы купить</td><td><span class="badge green">#4</span></td><td>8 985</td><td><span class="badge blue">Усилить</span></td></tr>
+        <tr><td>брп снегоходы купить</td><td><span class="badge green">#5</span></td><td>7 743</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>скандик купить</td><td><span class="badge green">#5</span></td><td>7 382</td><td><span class="badge green">Держать</span></td></tr>
+        <tr><td>новые снегоходы</td><td><span class="badge green">#6</span></td><td>6 642</td><td><span class="badge blue">Усилить</span></td></tr>
+        <tr><td>снегоход скандик</td><td><span class="badge green">#9</span></td><td>15 459</td><td><span class="badge blue">Усилить</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:16px;font-weight:600;margin:28px 0 12px">Near-miss ключи — огромный потенциал</h3>
+    <p style="color:var(--text-soft);font-size:13px;margin-bottom:14px">Запросы с высокой частотой, где позиции 21–50. Подняться на 10–15 позиций = в разы больше трафика.</p>
+    <table>
+      <thead><tr><th>Запрос</th><th>Позиция сейчас</th><th>WS</th><th>Целевая позиция</th></tr></thead>
+      <tbody>
+        <tr><td>снегоходов</td><td><span class="badge red">#29</span></td><td>1 850 735</td><td>топ-15</td></tr>
+        <tr><td>снегоход</td><td><span class="badge red">#40</span></td><td>1 850 711</td><td>топ-15</td></tr>
+        <tr><td>снегоходы</td><td><span class="badge red">#35</span></td><td>1 850 711</td><td>топ-15</td></tr>
+        <tr><td>куплю снегоход</td><td><span class="badge red">#46</span></td><td>95 971</td><td>топ-15</td></tr>
+        <tr><td>снегоходы цена</td><td><span class="badge orange">#23</span></td><td>45 779</td><td>топ-10</td></tr>
+        <tr><td>snegohody brp / снегоходы brp</td><td><span class="badge orange">#14</span></td><td>45 189</td><td>топ-5</td></tr>
+        <tr><td>brp снегоход</td><td><span class="badge orange">#18</span></td><td>42 325</td><td>топ-10</td></tr>
+        <tr><td>купить водный мотоцикл</td><td><span class="badge orange">#26</span></td><td>28 913</td><td>топ-10</td></tr>
+        <tr><td>снегоход новый</td><td><span class="badge orange">#28</span></td><td>24 601</td><td>топ-10</td></tr>
+        <tr><td>квадроциклы brp</td><td><span class="badge orange">#27</span></td><td>14 537</td><td>топ-10</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert blue">
+      <span class="alert-icon">💡</span>
+      <div><strong>Почему снегоходов/снегоход на позициях 29–40?</strong>
+      Ключи «снегоход» и «снегоходов» — конкурентные высокочастотные запросы. На них ранжируются агрегаторы (Авито, маркетплейсы) и крупные дилеры. Для подъёма нужны: расширение контента на страницах категорий, добавление H3 по моделям, FAQ, внутренние ссылки, ссылочная масса.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITORS -->
+<div id="competitors" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Конкуренты</h2>
+    <p class="sec-desc">Семантическое пересечение по keys.so (Яндекс, Москва). ямалмото.рф vs рынок.</p>
+
+    <table>
+      <thead><tr><th>Домен</th><th>VIS</th><th>Пересечение ключей</th><th>Позиционирование</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>globaldrive.ru</strong></td>
+          <td><span class="badge red">15 481</span></td>
+          <td>611</td>
+          <td>Широкий дилер: мотоциклы, ATV, водная техника</td>
+        </tr>
+        <tr>
+          <td><strong>universalmotors.ru</strong></td>
+          <td><span class="badge red">9 289</span></td>
+          <td>740</td>
+          <td>Дилер BRP и других брендов, официальный</td>
+        </tr>
+        <tr>
+          <td><strong>hft.ru</strong></td>
+          <td><span class="badge orange">1 069</span></td>
+          <td>636</td>
+          <td>Техника для бездорожья, запчасти BRP</td>
+        </tr>
+        <tr>
+          <td><strong>atvarmor.ru</strong></td>
+          <td><span class="badge orange">986</span></td>
+          <td>469</td>
+          <td>Аксессуары и техника ATV/UTV</td>
+        </tr>
+        <tr>
+          <td><strong>formula7.ru</strong></td>
+          <td><span class="badge gray">490</span></td>
+          <td>748</td>
+          <td>Дилер BRP, наибольшее семантическое пересечение</td>
+        </tr>
+        <tr>
+          <td><strong>brp-pride.ru</strong></td>
+          <td><span class="badge gray">138</span></td>
+          <td>714</td>
+          <td>BRP специализированный дилер</td>
+        </tr>
+        <tr>
+          <td><strong>ямалмото.рф</strong></td>
+          <td><span class="badge red">84</span></td>
+          <td>—</td>
+          <td>Поставка из США/Канады, авиадоставка за 21 день</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert red">
+      <span class="alert-icon">🔴</span>
+      <div><strong>VIS в 184 раза ниже лидера рынка</strong>
+      globaldrive.ru имеет VIS=15 481 vs ямалмото.рф VIS=84. Даже formula7.ru с VIS=490 ранжируется по схожей семантике в 6 раз лучше. При этом у ямалмото есть ценное УТП (поставка из США за 21 день), которое слабо раскрыто на SEO-уровне.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div id="roadmap" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Роадмап</h2>
+    <p class="sec-desc">Приоритизированный план. Начинать с критичного — быстрые wins без разработки.</p>
+
+    <ul class="roadmap">
+      <li>
+        <div class="rm-num">1</div>
+        <div class="rm-body">
+          <strong>Этап 1 — Быстрые технические фиксы (1–2 недели)</strong>
+          <p>1) Добавить alt-тексты всем изображениям через Tilda (редактор блоков → каждое фото → alt). Приоритет: главная → /snegokhody → /kvadrocikly → /gidrocikly. Для alt использовать: «[Модель] — купить в Москве» (например, «Ski-Doo Summit X Expert — купить в России»).<br><br>
+          2) Добавить JSON-LD через Tilda HTML-блок: <span class="mono">Organization</span> (название, телефон, адрес) + <span class="mono">FAQPage</span> на страницы с «Вопросы и ответы» + <span class="mono">Product</span> на карточки техники.<br><br>
+          3) Исправить canonical: в настройках Tilda → SEO → Canonical URL → указать кириллический <span class="mono">https://ямалмото.рф</span> для всех страниц.<br><br>
+          4) Добавить <span class="mono">lang="ru"</span> через Head-код в настройках сайта Tilda.</p>
+        </div>
+      </li>
+      <li>
+        <div class="rm-num">2</div>
+        <div class="rm-body">
+          <strong>Этап 2 — Контент и семантика (1–2 месяца)</strong>
+          <p>Расширить страницы категорий (/snegokhody, /kvadrocikly, /gidrocikly):<br>
+          — Добавить H3-блоки под каждую модель (Ski-Doo Skandic, Summit X, Tundra и т.д.)<br>
+          — Написать 200–400 слов экспертного текста про каждую линейку с ключами<br>
+          — FAQ-раздел с 4–6 вопросами (откуда везёте, таможня, гарантия, сроки)<br><br>
+          Целевые ключи: «снегоходы цена» (WS 45K, #23→топ-10), «купить водный мотоцикл» (WS 28K, #26→топ-10).<br><br>
+          Создать страницы под модели-лидеры отдельно: /snegokhody/ski-doo-skandic уже есть в sitemap — наполнить уникальным контентом.</p>
+        </div>
+      </li>
+      <li>
+        <div class="rm-num">3</div>
+        <div class="rm-body">
+          <strong>Этап 3 — Региональные страницы (2 месяца)</strong>
+          <p>В sitemap уже есть /tyumen/, /ekaterinburg/, /novosibirsk/, /khabarovsk/, /krasnoyarsk/. Убедиться, что каждая имеет:<br>
+          — Уникальный H1 с городом: «Снегоходы BRP в Тюмени — доставка за 21 день»<br>
+          — Уникальный текст 200+ слов (про логистику в регион, сроки)<br>
+          — Canonical на саму страницу, а не на главную<br>
+          — Разметка LocalBusiness с адресом точки выдачи (если есть)</p>
+        </div>
+      </li>
+      <li>
+        <div class="rm-num">4</div>
+        <div class="rm-body">
+          <strong>Этап 4 — Ссылочная масса и авторитет (2–3 месяца)</strong>
+          <p>DR=27 при конкурентах с DR 35–55. Стратегия:<br>
+          — Регистрация в отраслевых каталогах (охота, мото, outdoor-порталы)<br>
+          — Статьи на тематических ресурсах (snow-bikes, BRP-форумы) со ссылками<br>
+          — PR: пресс-релизы о поставках / кейсах клиентов<br>
+          — Партнёрские ссылки от обслуживающих мастерских и аксессуаров BRP</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3 style="font-size:16px;font-weight:600;margin:32px 0 12px">Статус фиксов</h3>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Добавить alt-тексты всем изображениям (67 на главной + разделы)</span></div>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Добавить JSON-LD: Organization + FAQPage + Product</span></div>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Исправить canonical на кириллический URL</span></div>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Добавить lang="ru" на &lt;html&gt;</span></div>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Расширить H2/H3 структуру страниц категорий</span></div>
+    <div class="fix-row"><span class="fix-icon">⏳</span><span>Наполнить региональные страницы уникальным контентом</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>robots.txt — стандартный, корректный</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>Sitemap × 3 (179+ URL) — присутствует и указан в robots.txt</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>HTTP → HTTPS редирект (301)</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>www → non-www редирект (301)</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>Ровно 1 H1 на каждой странице</span></div>
+    <div class="fix-row"><span class="fix-icon">✅</span><span>Open Graph теги присутствуют</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="wrap">
+    <p>SEO-аудит ямалмото.рф · 03.05.2026 · Данные: keys.so (Яндекс Россия) + crawl.py</p>
+  </div>
+</div>
+
+<script>
+// Position distribution chart
+new Chart(document.getElementById('posChart'), {
+  type: 'bar',
+  data: {
+    labels: ['1–3', '4–10', '11–20', '21–30', '31–50'],
+    datasets: [{
+      data: [58, 146, 219, 204, 411],
+      backgroundColor: ['#5fa85a', '#5a94d4', '#d4a843', '#d4813a', '#e05252'],
+      borderWidth: 0,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.raw} ключей` }
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#b8bdb6' } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#b8bdb6' } }
+    }
+  }
+});
+
+// VIS comparison
+new Chart(document.getElementById('visChart'), {
+  type: 'bar',
+  data: {
+    labels: ['globaldrive.ru', 'universalmotors', 'hft.ru', 'atvarmor.ru', 'formula7.ru', 'ямалмото.рф'],
+    datasets: [{
+      data: [15481, 9289, 1069, 986, 490, 84],
+      backgroundColor: ['#5a94d4','#5a94d4','#5a94d4','#5a94d4','#5a94d4','#e05252'],
+      borderWidth: 0,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` VIS: ${ctx.raw}` } }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#b8bdb6' } },
+      y: { grid: { display: false }, ticks: { color: '#b8bdb6', font: { size: 11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
