@@ -334,6 +334,8 @@
   <nav class="tabs-nav">
     <button class="tab-btn active" onclick="showTab('tab-a', this)">Точка А — март 2026</button>
     <button class="tab-btn" onclick="showTab('tab-m1', this)">Месяц 1 — апрель 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-m2', this)">Месяц 2 — май 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-done', this)">Выполненные работы</button>
   </nav>
 
 <div id="tab-a" class="tab-panel active">
@@ -1276,6 +1278,547 @@
   </div>
 
 </div><!-- /tab-m1 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══  ТАБ: МЕСЯЦ 2  ═══════════════════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="tab-m2" class="tab-panel">
+
+<!-- 01 СРАВНЕНИЕ КЛЮЧЕВЫХ МЕТРИК -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">Ключевые метрики: Точка А → Месяц 1 → Месяц 2</div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th>Точка А (март)</th>
+        <th>Месяц 1 (апрель)</th>
+        <th>Месяц 2 (май)</th>
+        <th>Δ апр→май</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="metric-name">Визитов всего / мес</td>
+        <td class="was">20 800</td>
+        <td class="was">20 179</td>
+        <td class="now">14 868</td>
+        <td><span class="delta neutral">−5 311 (−26%)</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Органика</td>
+        <td class="was">7 331</td>
+        <td class="was">7 732</td>
+        <td class="now">7 087</td>
+        <td><span class="delta neutral">−645 (−8%)</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Реклама</td>
+        <td class="was">9 830</td>
+        <td class="was">6 748</td>
+        <td class="now">3 265</td>
+        <td><span class="delta up">−3 483 (−52%) ↓ зависимость</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Доля органики</td>
+        <td class="was">35%</td>
+        <td class="was">38%</td>
+        <td class="now">48%</td>
+        <td><span class="delta up">+10 п.п. ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-1 (Keys.so)</td>
+        <td class="was">145</td>
+        <td class="was">155</td>
+        <td class="now">169</td>
+        <td><span class="delta up">+14 (+9%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-3 (Keys.so)</td>
+        <td class="was">440</td>
+        <td class="was">450</td>
+        <td class="now">476</td>
+        <td><span class="delta up">+26 (+6%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-10 (Keys.so)</td>
+        <td class="was">1 322</td>
+        <td class="was">1 595</td>
+        <td class="now">1 691</td>
+        <td><span class="delta up">+96 (+6%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-50 (Keys.so)</td>
+        <td class="was">4 649</td>
+        <td class="was">6 015</td>
+        <td class="now">6 275</td>
+        <td><span class="delta up">+260 (+4%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Страниц в индексе</td>
+        <td class="was">133</td>
+        <td class="was">149</td>
+        <td class="now">155</td>
+        <td><span class="delta up">+6 ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Visibility (Keys.so)</td>
+        <td class="was">215</td>
+        <td class="was">180</td>
+        <td class="now">148</td>
+        <td><span class="delta neutral">−32 (−18%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">AI-ответы Яндекс</td>
+        <td class="was">—</td>
+        <td class="was">1 687</td>
+        <td class="now">1 174</td>
+        <td><span class="delta neutral">−513 (−30%) ↓</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Главное за месяц:</strong> доля органики выросла с 38% до 48% — это ключевое достижение. Снижение общего трафика объясняется планомерным сокращением рекламы (−52%). Позиции по всем группам растут: топ-1 +9%, топ-10 +6%, топ-50 +4%. Падение Visibility связано с флуктуациями алгоритма Яндекса по высокочастотным ключам старых страниц, а не с новыми публикациями.
+  </div>
+</div>
+
+<!-- 02 ТРАФИК ПО ИСТОЧНИКАМ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Трафик по источникам (апр 20 — май 20, 2026)</div>
+
+  <div class="metrics-row six">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Всего визитов</div>
+      <div class="mb-val green">14 868</div>
+      <div class="mb-sub">пользователей: 12 015</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Органика</div>
+      <div class="mb-val green">7 087</div>
+      <div class="mb-sub">48% трафика ↑</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Реклама</div>
+      <div class="mb-val">3 265</div>
+      <div class="mb-sub">22% — снижение</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прямые</div>
+      <div class="mb-val">2 362</div>
+      <div class="mb-sub">16%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Ссылки</div>
+      <div class="mb-val">1 218</div>
+      <div class="mb-sub">8%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Рекомендации</div>
+      <div class="mb-val">464</div>
+      <div class="mb-sub">3%</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Сравнение с предыдущим периодом (мар 20 — апр 19):</strong> всего было 20 179 визитов (органика 7 732, реклама 6 748, прямые 3 441, ссылки 1 267). Общий трафик снизился из-за сокращения рекламного бюджета. Органика просела на 8% — что нормально для периода без крупных обновлений контента.
+  </div>
+</div>
+
+<!-- 03 ЯНДЕКС VS GOOGLE -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Органика по поисковикам</div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Яндекс (desktop + mobile)</div>
+      <div class="mb-val green">3 664</div>
+      <div class="mb-sub">52% органики</div>
+    </div>
+    <div class="metric-box gold-hl">
+      <div class="mb-label">Google (desktop + app)</div>
+      <div class="mb-val gold">2 930</div>
+      <div class="mb-sub">41% органики</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прочие (Bing, Mail.ru, др.)</div>
+      <div class="mb-val">493</div>
+      <div class="mb-sub">7% органики</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Поисковик</th>
+        <th class="right">Апр 20 — Май 20</th>
+        <th class="right">Мар 20 — Апр 19</th>
+        <th class="right">Δ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Яндекс (desktop)</td>
+        <td class="right">3 013</td>
+        <td class="right">3 388</td>
+        <td class="right"><span class="delta neutral">−375</span></td>
+      </tr>
+      <tr>
+        <td>Яндекс (mobile)</td>
+        <td class="right">651</td>
+        <td class="right">693</td>
+        <td class="right"><span class="delta neutral">−42</span></td>
+      </tr>
+      <tr>
+        <td><strong>Яндекс итого</strong></td>
+        <td class="right"><strong>3 664</strong></td>
+        <td class="right"><strong>~4 081</strong></td>
+        <td class="right"><span class="delta neutral">−417 (−10%)</span></td>
+      </tr>
+      <tr>
+        <td>Google (desktop)</td>
+        <td class="right">2 923</td>
+        <td class="right">3 243</td>
+        <td class="right"><span class="delta neutral">−320</span></td>
+      </tr>
+      <tr>
+        <td>Google mobile app</td>
+        <td class="right">7</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Google итого</strong></td>
+        <td class="right"><strong>2 930</strong></td>
+        <td class="right"><strong>~3 243</strong></td>
+        <td class="right"><span class="delta neutral">−313 (−10%)</span></td>
+      </tr>
+      <tr>
+        <td>Bing</td>
+        <td class="right">342</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td>Яндекс.Картинки</td>
+        <td class="right">80</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td>Mail.ru</td>
+        <td class="right">44</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Яндекс vs Google:</strong> соотношение стабильное — 52% на 41%. Снижение трафика из обоих поисковиков примерно одинаковое (−10%). Это подтверждает, что падение связано с уменьшением общей аудитории (сезон, меньше рекламного трафика перекрёстно влияет на брендовые запросы), а не с санкциями алгоритма.
+  </div>
+</div>
+
+<!-- 04 ПОЗИЦИИ KEYS.SO -->
+<div class="section">
+  <div class="section-label">04</div>
+  <div class="section-title">Позиции Keys.so — динамика</div>
+
+  <div class="metrics-row">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-1</div>
+      <div class="mb-val green">169</div>
+      <div class="mb-sub">было 155 (+14, +9%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-3</div>
+      <div class="mb-val green">476</div>
+      <div class="mb-sub">было 450 (+26, +6%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-5</div>
+      <div class="mb-val green">813</div>
+      <div class="mb-sub">было 795 (+18, +2%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-10</div>
+      <div class="mb-val green">1 691</div>
+      <div class="mb-sub">было 1 595 (+96, +6%) ↑</div>
+    </div>
+  </div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-50</div>
+      <div class="mb-val green">6 275</div>
+      <div class="mb-sub">было 6 015 (+260, +4%) ↑</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Страниц в индексе</div>
+      <div class="mb-val">155</div>
+      <div class="mb-sub">было 149 (+6) ↑</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Visibility</div>
+      <div class="mb-val red">148</div>
+      <div class="mb-sub">было 180 (−32, −18%) ↓</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:16px; margin-top:24px; margin-bottom:12px;">Топ страниц по видимости (топ-50 ключей)</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Страница</th>
+        <th class="right">Ключей в топ-50</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos top3">1</td>
+        <td class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</td>
+        <td class="right">654</td>
+      </tr>
+      <tr>
+        <td class="pos top3">2</td>
+        <td class="url">/blog/menedzher-po-prodazham-vsyo-o-professii/</td>
+        <td class="right">324</td>
+      </tr>
+      <tr>
+        <td class="pos top3">3</td>
+        <td class="url">/blog/5-etapov-prodazh.../</td>
+        <td class="right">290</td>
+      </tr>
+      <tr>
+        <td class="pos top10">4</td>
+        <td class="url">/blog/kak-rasschitat-skidku-na-tovar/</td>
+        <td class="right">286</td>
+      </tr>
+      <tr>
+        <td class="pos top10">5</td>
+        <td class="url">/blog/kak-rasschitat-prirost-prodazh-v-biznese/</td>
+        <td class="right">257</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Visibility vs позиции:</strong> Visibility — метрика Keys.so, взвешенная по частотности ключей. Её снижение при росте числа ключей в топах означает, что упали несколько высокочастотных ключей старых страниц. Новые статьи постепенно индексируются и добавляют ключи в топ-50 — это отражается в росте Топ-50 (+260).
+  </div>
+</div>
+
+<!-- 05 ТОП СТРАНИЦ ПО ОРГАНИКЕ -->
+<div class="section">
+  <div class="section-label">05</div>
+  <div class="section-title">Топ страниц по органическому трафику (апр 20 — май 20)</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Страница</th>
+        <th class="right">Визитов из органики</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos top3">1</td>
+        <td class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</td>
+        <td class="right">561</td>
+      </tr>
+      <tr>
+        <td class="pos top3">2</td>
+        <td class="url">/ (главная)</td>
+        <td class="right">282</td>
+      </tr>
+      <tr>
+        <td class="pos top3">3</td>
+        <td class="url">/blog/kpi-dlya-menedzherov-po-prodazham/</td>
+        <td class="right">273</td>
+      </tr>
+      <tr>
+        <td class="pos top10">4</td>
+        <td class="url">/blog/kak-otrabotat-vozrazhenie-dorogo...</td>
+        <td class="right">239</td>
+      </tr>
+      <tr>
+        <td class="pos top10">5</td>
+        <td class="url">/blog/otchyot-menedzhera-o-prodazhakh...</td>
+        <td class="right">224</td>
+      </tr>
+      <tr>
+        <td class="pos top10">6</td>
+        <td class="url">/blog/plan-prodazh-dlya-menedzherov/</td>
+        <td class="right">215</td>
+      </tr>
+      <tr>
+        <td class="pos top10">7</td>
+        <td class="url">/blog/5-etapov-prodazh...</td>
+        <td class="right">186</td>
+      </tr>
+      <tr>
+        <td class="pos top10">8</td>
+        <td class="url">/blog/sistema-motivacii-menedzhera...</td>
+        <td class="right">170</td>
+      </tr>
+      <tr>
+        <td class="pos top50">9</td>
+        <td class="url">/blog/skripty-prodazh...</td>
+        <td class="right">169</td>
+      </tr>
+      <tr>
+        <td class="pos top50">10</td>
+        <td class="url">/blog/chto-takoye-sebestoimost...</td>
+        <td class="right">162</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Инсайт по топ-страницам:</strong> статья про расчёт стоимости товара стабильно лидирует (561 визит). Новые статьи (воронка, техники продаж, работа с возражениями, ЦКП) пока не попали в топ-10 — они ещё набирают позиции. Ожидаем их появление в топ-10 органики в месяце 3.
+  </div>
+</div>
+
+</div><!-- /tab-m2 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══  ТАБ: ВЫПОЛНЕННЫЕ РАБОТЫ  ════════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="tab-done" class="tab-panel">
+
+<!-- 01 КОНТЕНТ -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">Контент — 13 статей опубликовано (апр 20 — май 20)</div>
+
+  <ul class="done-list border">
+    <li>
+      Воронка продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/voronka-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/voronka-prodazh/</a> — ID 3662</span>
+    </li>
+    <li>
+      ЦКП: ценный конечный продукт
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/ckp-tsennyj-konechnyj-produkt/" style="color:var(--blue)">factor-prodazh.ru/blog/ckp-tsennyj-konechnyj-produkt/</a> — ID 3663</span>
+    </li>
+    <li>
+      Работа с возражениями в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/rabota-s-vozrazheniyami-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/rabota-s-vozrazheniyami-v-prodazhakh/</a> — ID 3664</span>
+    </li>
+    <li>
+      ОКК — отдел контроля качества
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/okk-otdel-kontrolya-kachestva-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/okk-otdel-kontrolya-kachestva-prodazh/</a> — ID 3665</span>
+    </li>
+    <li>
+      Техники продаж для менеджеров
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/tehniki-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/tehniki-prodazh/</a> — ID 3666</span>
+    </li>
+    <li>
+      KPI простыми словами
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/kpi-prostymi-slovami/" style="color:var(--blue)">factor-prodazh.ru/blog/kpi-prostymi-slovami/</a> — ID 3625</span>
+    </li>
+    <li>
+      УТП: что это такое, как составить
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/utp-chto-eto-takoe/" style="color:var(--blue)">factor-prodazh.ru/blog/utp-chto-eto-takoe/</a> — ID 3628</span>
+    </li>
+    <li>
+      РОП: обязанности и задачи руководителя отдела продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/</a> — ID 3631</span>
+    </li>
+    <li>
+      ЛПР в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/lpr-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/lpr-v-prodazhakh/</a> — ID 3566</span>
+    </li>
+    <li>
+      Аудит отдела продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/audit-otdela-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/audit-otdela-prodazh/</a> — ID 3567</span>
+    </li>
+    <li>
+      Делегирование в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/delegirovanie-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/delegirovanie-v-prodazhakh/</a> — ID 3772</span>
+    </li>
+    <li>
+      Управление командой продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/upravlenie-komandoy-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/upravlenie-komandoy-prodazh/</a> — ID 3773</span>
+    </li>
+    <li>
+      Масштабирование бизнеса
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/masshtabirovanie-biznesa/" style="color:var(--blue)">factor-prodazh.ru/blog/masshtabirovanie-biznesa/</a> — ID 3774</span>
+    </li>
+  </ul>
+
+  <div class="note" style="margin-top:16px">
+    <strong>В процессе публикации (написаны, проходят подготовку):</strong> Выход из операционки продаж, Стратегия развития отдела продаж, Стратегическая сессия для отдела продаж.
+  </div>
+</div>
+
+<!-- 02 ТЕХНИЧЕСКИЕ УЛУЧШЕНИЯ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Технические улучшения</div>
+
+  <ul class="done-list border">
+    <li>
+      Автогенерация SVG-обложек v5 встроена в WordPress
+      <span class="sub">mu-plugin <code>factor-cover-gen.php</code> — обложки создаются автоматически при сохранении поста, ручной SSH больше не нужен</span>
+    </li>
+    <li>
+      Яндекс Вебмастер: настроена более частая переобходка страниц
+      <span class="sub">Новые статьи индексируются быстрее</span>
+    </li>
+    <li>
+      llms.txt задеплоен на factor-prodazh.ru
+      <span class="sub">51 строка — протокол для LLM-поиска (llmstxt.org). Обновлять при каждой публикации.</span>
+    </li>
+    <li>
+      100 запросов позиций 10–50 собраны и загружены в борд задач
+      <span class="sub">Семантика для приоритизации следующего контент-спринта</span>
+    </li>
+    <li>
+      Починены формы захвата: «Связаться с автором», подписка в подвале
+      <span class="sub">Добавлены метки Bitrix — заявки корректно попадают в CRM</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 03 ЛИД-МАГНИТ -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Лид-магнит «Реформа ОП 2026»</div>
+
+  <ul class="done-list border">
+    <li>
+      Создан HTML-гайд: 4 раздела, чеклист 16 пунктов, 3 кейса
+      <span class="sub">Размещён на /reforma-op/ с подключённой Яндекс.Метрикой</span>
+    </li>
+    <li>
+      Попап V1 (модальное окно) — триггер: блог 70% скролл, остальные страницы 50% или 60 сек
+      <span class="sub">Cookie: 30 дней. Метка: ЛМ_РеформаОП_v1</span>
+    </li>
+    <li>
+      Попап V5 (флоат bottom-right) — триггер: 40% скролл или 30 сек (не в блоге)
+      <span class="sub">Cookie: 7 дней. Метка: ЛМ_РеформаОП_v5</span>
+    </li>
+    <li>
+      Сайдбар-карточка в статьях блога — всегда видна
+      <span class="sub">Метка: LM_ReformaOP_sidebar</span>
+    </li>
+    <li>
+      Все формы подключены к Google Sheets + Bitrix CRM
+      <span class="sub">Spreadsheet: 1m9XIe7...</span>
+    </li>
+    <li>
+      Яндекс.Метрика: 6 целей настроены
+      <span class="sub">lm_v1_view, lm_v1_submit, lm_v5_view, lm_v5_submit, lm_sidebar_view, lm_sidebar_submit</span>
+    </li>
+  </ul>
+</div>
+
+</div><!-- /tab-done -->
 
 </div>
 </div>
