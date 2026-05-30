@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline Backlog — AI Content System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f1;
+  --white: #ffffff;
+  --dark: #1a1a1a;
+  --red: #c01020;
+  --red-light: rgba(192,16,32,.08);
+  --red-border: rgba(192,16,32,.2);
+  --gold: #e8a838;
+  --gold-light: #fff8ed;
+  --gold-border: rgba(232,168,56,.3);
+  --green: #2a7a4b;
+  --green-light: #f0faf4;
+  --green-border: rgba(42,122,75,.2);
+  --blue: #4f46e5;
+  --blue-light: rgba(99,102,241,.08);
+  --blue-border: rgba(79,70,229,.2);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,.07);
+  --purple-border: rgba(124,58,237,.2);
+  --border: #e2e0db;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+  background: var(--dark);
+  padding: 40px 0 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: .08;
+  pointer-events: none;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+.hero h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.hero p {
+  color: rgba(255,255,255,.5);
+  font-size: 13px;
+}
+.hero-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.hero-chip {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+}
+.hero-chip b { color: #fff; }
+
+.main { padding: 32px 0 60px; }
+
+/* Source card */
+.source-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.source-card h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 14px;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.compare-col {
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.compare-col.them { background: var(--blue-light); border: 1px solid var(--blue-border); }
+.compare-col.us { background: var(--green-light); border: 1px solid var(--green-border); }
+.compare-col .label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+.compare-col.them .label { color: var(--blue); }
+.compare-col.us .label { color: var(--green); }
+.compare-col ul { padding-left: 16px; }
+.compare-col li { margin-bottom: 4px; }
+.compare-col li .tag-win { color: var(--green); font-weight: 600; }
+.compare-col li .tag-miss { color: var(--red); font-weight: 600; }
+
+/* Priority section */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Backlog item */
+.item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: flex-start;
+}
+.item:hover { border-color: #ccc; }
+
+.item-num {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.p1 .item-num { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
+.p2 .item-num { background: var(--gold-light); color: #b57d1a; border: 1px solid var(--gold-border); }
+.p3 .item-num { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
+.td .item-num { background: #f3f3f3; color: var(--muted); border: 1px solid var(--border); }
+
+.item-body {}
+.item-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.item-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.item-detail {
+  font-size: 12px;
+  color: var(--muted2);
+  background: #f8f7f4;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.item-detail code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  background: #eeecea;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.item-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.tag-skill { background: var(--blue-light); color: var(--blue); }
+.tag-effort { background: #f3f3f3; color: var(--muted); }
+.tag-type-aeo { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); }
+.tag-type-schema { background: var(--green-light); color: var(--green); }
+.tag-type-quality { background: var(--gold-light); color: #9a6a0a; }
+.tag-type-research { background: var(--blue-light); color: var(--blue); }
+.tag-type-auto { background: #f3f3f3; color: var(--muted); }
+
+.item-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+.effort-bar {
+  display: flex;
+  gap: 3px;
+  justify-content: flex-end;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.dot.fill { background: var(--gold); }
+.dot.empty { background: #e2e0db; }
+.effort-label { font-size: 10px; color: var(--muted2); margin-top: 3px; }
+
+/* Status badges */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.status-todo { background: #f3f3f3; color: var(--muted); }
+.status-blocked { background: var(--red-light); color: var(--red); }
+.status.dot-icon::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* Priority label */
+.priority-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.badge-p1 { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
+.badge-p2 { background: var(--gold-light); color: #9a6a0a; border: 1px solid var(--gold-border); }
+.badge-p3 { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
+.badge-td { background: #f3f3f3; color: var(--muted); }
+
+/* Summary row */
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-align: center;
+}
+.summary-card .num {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.summary-card .lbl { font-size: 12px; color: var(--muted); }
+.num-red { color: var(--red); }
+.num-gold { color: var(--gold); }
+.num-blue { color: var(--blue); }
+.num-muted { color: var(--muted); }
+
+.section-gap { margin-bottom: 32px; }
+
+@media (max-width: 640px) {
+  .compare-row { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: repeat(2, 1fr); }
+  .item { grid-template-columns: auto 1fr; }
+  .item-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Pipeline Backlog</h1>
+    <p>Доработки AI Content System — Фактор Продаж · обновлено 2026-05-31</p>
+    <div class="hero-meta">
+      <div class="hero-chip">Источник: анализ ContentOS vs Фактор</div>
+      <div class="hero-chip"><b>13</b> задач</div>
+      <div class="hero-chip"><b>4</b> P1 · <b>5</b> P2 · <b>4</b> P3/TD</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+<div class="wrap">
+
+  <!-- Source analysis -->
+  <div class="source-card">
+    <h3>Что мы обнаружили — ContentOS vs наш пайплайн</h3>
+    <div class="compare-row">
+      <div class="compare-col them">
+        <div class="label">ContentOS (Humanswith.ai) — сильнее</div>
+        <ul>
+          <li><span class="tag-win">+</span> AEO-скоринг по движкам (77.1/100: Perplexity, ChatGPT, Bing, Gemini, Yandex)</li>
+          <li><span class="tag-win">+</span> Citation integrity — семантическая сверка 14/15 тезисов с источниками</li>
+          <li><span class="tag-win">+</span> SpeakableSpecification schema — AI-поиск и голосовые ответы</li>
+          <li><span class="tag-win">+</span> AI-detection gate (0.28 → likely_human)</li>
+          <li><span class="tag-win">+</span> Uniqueness check (web-плагиат, 0.0)</li>
+          <li><span class="tag-win">+</span> Locked H2 план в TZ с 3 bullet + источник на каждый раздел</li>
+          <li><span class="tag-win">+</span> Corpus brand voice из парсинга статей клиента</li>
+        </ul>
+      </div>
+      <div class="compare-col us">
+        <div class="label">Фактор — сильнее</div>
+        <ul>
+          <li><span class="tag-win">+</span> Глубина русского языка: кальки, тире-лимит, AI-фреймы, ритм</li>
+          <li><span class="tag-win">+</span> E-E-A-T с позицией: «мы против X, потому что Y» + грязная деталь</li>
+          <li><span class="tag-win">+</span> Competitive gap: /researcher читает топ-10, ищет уникальный угол</li>
+          <li><span class="tag-win">+</span> Полный WP-цикл: ACF, обложки, llms.txt — автоматически</li>
+          <li><span class="tag-win">+</span> Жизненный цикл: tracker (30d, 90d), page-optimizer</li>
+          <li><span class="tag-miss">—</span> Нет AEO-скоринга</li>
+          <li><span class="tag-miss">—</span> SpeakableSpecification отсутствует</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="num num-red">4</div>
+      <div class="lbl">P1 — быстро</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-gold">5</div>
+      <div class="lbl">P2 — требуют работы</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-blue">3</div>
+      <div class="lbl">P3 — будущее</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-muted">1</div>
+      <div class="lbl">Технический долг</div>
+    </div>
+  </div>
+
+  <!-- P1 -->
+  <div class="section-gap">
+    <div class="section-title">P1 — Высокий приоритет · быстрая реализация (1–3 дня)</div>
+
+    <div class="item p1">
+      <div class="item-num">1</div>
+      <div class="item-body">
+        <div class="item-title">SpeakableSpecification в /publisher</div>
+        <div class="item-desc">ContentOS генерирует эту schema автоматически, мы — нет. SpeakableSpecification указывает AI-поисковикам (Google AI Overview, Yandex AI) какой текст цитировать. Добавить к существующему Schema.org блоку.</div>
+        <div class="item-detail">
+          В Шаг 2 /publisher добавить к FAQPage-схеме: <code>"@type":"SpeakableSpecification"</code> с <code>cssSelector:[".tl-dr","h2:first-of-type + p"]</code> — лид-абзац и первые предложения первых двух H2. Опционально: <code>HowTo</code> если статья пошаговая.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-type-schema">Schema.org</span>
+          <span class="tag tag-effort">~30 мин</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">2</div>
+      <div class="item-body">
+        <div class="item-title">Locked H2 план в /researcher → pipeline.md</div>
+        <div class="item-desc">ContentOS формирует TZ где каждый H2 получает: 3 bullet-а что писать, источник для сноски, кейс для упоминания. Сейчас /researcher даёт research-файл, но /writer получает только структуру без детального плана на раздел.</div>
+        <div class="item-detail">
+          В pipeline.md добавить секцию <code>## H2 Plan</code> после <code>## Structure</code>. Формат: <code>### Н2 заголовок</code> → <code>- Написать: [3 bullet]</code> → <code>- Источник: [url/название]</code> → <code>- Кейс: [факт из /case/]</code>. /writer обязан следовать плану.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-research">Research</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">3</div>
+      <div class="item-body">
+        <div class="item-title">AEO precheck в /quality-gate (ручной, без API)</div>
+        <div class="item-desc">Перед публикацией проверить: первое предложение после H1 — прямой ответ на запрос? Первое предложение каждого H2 — самостоятельный ответ на подзапрос? Если нет — FAIL + вернуть в /editor.</div>
+        <div class="item-detail">
+          Добавить в /quality-gate метрику 18: <b>AEO: лид = прямой ответ</b> — PASS/FAIL. Критерий: можно ли первое предложение вставить в ChatGPT/Perplexity ответ без контекста? Вторая метрика 19: <b>AEO: H2-первые предложения</b> — проверить первые 3 H2.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-effort">~1 час</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">4</div>
+      <div class="item-body">
+        <div class="item-title">Тире-лимит gate как hard block в /quality-gate</div>
+        <div class="item-desc">Сейчас тире-лимит (≤8 на статью) есть в правилах /editor и паблишере, но /quality-gate его не блокирует явно. ContentOS имеет языковой gate как обязательный. Добавить автопроверку в quality-gate с точным подсчётом.</div>
+        <div class="item-detail">
+          Метрика: <code>text.count('—')</code> → если &gt;8 — FAIL. Вывести: <code>Тире: {n}/8 ✗ — вернуть в /editor</code>. Также проверять: нет ли абзаца с 3+ тире. Сейчас эта проверка есть в /editor как «hard gate», но не в /quality-gate как блокирующее условие.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-effort">~30 мин</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="section-gap">
+    <div class="section-title">P2 — Высокий приоритет · нужны усилия (3–7 дней)</div>
+
+    <div class="item p2">
+      <div class="item-num">5</div>
+      <div class="item-body">
+        <div class="item-title">AEO pre-publication scoring в /tracker (до публикации)</div>
+        <div class="item-desc">ContentOS измеряет AEO-цитируемость до публикации и итерирует (64.2 → 77.1). Сейчас наш /tracker проверяет AI-упоминания только через 30 дней после публикации. Нужна проверка до публикации — хотя бы Perplexity + Yandex AI.</div>
+        <div class="item-detail">
+          Добавить в /publisher Шаг 1.5: AEO draft check. WebFetch Perplexity с ключевым запросом + поиск тематически близкого ответа. Если наша статья (black box — она ещё не опубликована) → проверить структуру первого абзаца на цитируемость. Минимально: тест «вставь лид в ChatGPT — он ответит им на вопрос?»
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">6</div>
+      <div class="item-body">
+        <div class="item-title">AI-detection gate в /quality-gate</div>
+        <div class="item-desc">ContentOS показывает явный скор AI-детекции (0.28 → likely_human). Это мягкий gate — статья не блокируется, но если скор &gt;0.7 (probably_ai) — возвращается в /editor. Сейчас у нас нет автоматического скора, только правила редактора.</div>
+        <div class="item-detail">
+          Использовать ZeroGPT API (бесплатный tier: 100 req/день) или GPTZero API. Добавить в /quality-gate метрику 20: <b>AI-detection</b> → если probably_ai (&gt;0.7) — WARN + вернуть в /editor с пометкой конкретных «AI-абзацев». Не блокировать при 0.4–0.7 (ambiguous).
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">7</div>
+      <div class="item-body">
+        <div class="item-title">Citation integrity в /fact-checker</div>
+        <div class="item-desc">ContentOS автоматически проверяет: каждый тезис с источником семантически следует из этого источника (не просто упомянут, а является логической импликацией). 93.3/100 — 14/15 тезисов верифицированы. Сейчас /fact-checker делает это вручную/по уровням T1-T3.</div>
+        <div class="item-detail">
+          Добавить в /fact-checker Шаг X: для каждой сноски [источник, тезис] → WebFetch источника → AI-prompt: «Подтверждает ли этот текст тезис: {тезис}? YES/NO/PARTIAL + объяснение». Вывести таблицу: тезис | источник | статус | замечание. Блокировать при 2+ FAIL.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/fact-checker</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">8</div>
+      <div class="item-body">
+        <div class="item-title">Uniqueness check в /quality-gate</div>
+        <div class="item-desc">ContentOS проверяет уникальность текста (web-плагиат, 0.0 совпадений). Сейчас в пайплайне нет такой проверки. Важно для партнёрских проектов (где /writer может воспроизводить конкурентные тексты) и при batch-публикации 19+ статей подряд.</div>
+        <div class="item-detail">
+          Использовать text.ru API или Яндекс-текстовый анализ. Добавить в /quality-gate метрику 21: <b>Uniqueness</b>. Порог: уникальность &lt;85% → WARN, &lt;70% → FAIL. Для каждой партии статей запускать перед публикацией.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">9</div>
+      <div class="item-body">
+        <div class="item-title">Corpus brand voice — обновление из опубликованных статей</div>
+        <div class="item-desc">ContentOS строит профиль голоса бренда из корпуса N статей клиента. Сейчас у нас голос описан в FACTOR_WRITING_RULES.md и russian-language-reference.md, но это статические правила — они не обновляются из новых статей. С ростом блога (28+ статей) правила начинают расходиться с реальным опубликованным голосом.</div>
+        <div class="item-detail">
+          Добавить в /researcher или отдельный /brand-voice скилл: раз в квартал парсить последние 10 опубликованных статей → выводить «что отличает наш голос» (частые глаголы, типичная длина предложения, соотношение H2/H3, характерные обороты). Обновлять review-patterns.md.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-research">Research</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="section-gap">
+    <div class="section-title">P3 — Будущее · стратегические улучшения</div>
+
+    <div class="item p3">
+      <div class="item-num">10</div>
+      <div class="item-body">
+        <div class="item-title">AEO scoring dashboard в /tracker (30d проверка)</div>
+        <div class="item-desc">Через 30 дней после публикации /tracker проверяет AI-упоминания вручную (Perplexity, Яндекс AI). Добавить количественный скор по образцу ContentOS: 0–100 для каждого движка, трекинг динамики между проверками.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-effort">~3 дня</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">11</div>
+      <div class="item-body">
+        <div class="item-title">TZ readiness gate — проверка брифа до /writer</div>
+        <div class="item-desc">ContentOS оценивает ТЗ перед генерацией (88/100 readiness). Если бриф неполный — /writer получает слабую инструкцию. Добавить проверку pipeline.md на полноту перед запуском /writer: есть ли unique angle, competitive gap, locked H2 plan, источники.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-effort">~4 часа</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">12</div>
+      <div class="item-body">
+        <div class="item-title">/page-optimizer — чтение action items из pipeline.md</div>
+        <div class="item-desc">/tracker записывает action items в pipeline.md (раздел «## Action items»), /page-optimizer должен их читать и вычёркивать выполненные. Сейчас этот loop не замкнут — items накапливаются, но не исполняются автоматически.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/page-optimizer</span>
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-auto">Автоматизация</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Debt -->
+  <div class="section-gap">
+    <div class="section-title">Технический долг — накоплен, решать параллельно</div>
+
+    <div class="item td">
+      <div class="item-num">13</div>
+      <div class="item-body">
+        <div class="item-title">Yandex Webmaster OAuth token для /tracker</div>
+        <div class="item-desc">Без токена /tracker не получает данные по позициям через Яндекс.Вебмастер API. Задача висит в MEMORY.md. Нужен OAuth ALL_SCOPES через Яндекс.OAuth → добавить в .env три переменные.</div>
+        <div class="item-detail">
+          Переменные: <code>YANDEX_WEBMASTER_TOKEN</code>, <code>YANDEX_WEBMASTER_USER_ID</code>, <code>YANDEX_WEBMASTER_HOST_ID=https:factor-prodazh.ru:443</code>. Получить: Яндекс.OAuth → создать приложение с правом <code>webmaster:read</code> → пройти авторизацию → скопировать token.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-auto">Автоматизация</span>
+          <span class="status status-blocked dot-icon">blocked</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="effort-bar">
+          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
+        </div>
+        <div class="effort-label">усилие</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sequence -->
+  <div class="source-card" style="margin-bottom:0;">
+    <h3>Рекомендуемая очерёдность</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
+        <div style="font-weight:600;margin-bottom:4px;">Неделя 1</div>
+        <div style="color:var(--muted);">#1 SpeakableSpecification · #4 Тире gate · #3 AEO precheck</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">~2–3 часа суммарно, чистые изменения в скиллах</div>
+      </div>
+      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
+        <div style="font-weight:600;margin-bottom:4px;">Неделя 2</div>
+        <div style="color:var(--muted);">#2 Locked H2 · #13 Webmaster OAuth · #6 AI-detection</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Разблокирует /tracker + улучшает качество черновиков</div>
+      </div>
+      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
+        <div style="font-weight:600;margin-bottom:4px;">Неделя 3–4</div>
+        <div style="color:var(--muted);">#7 Citation integrity · #8 Uniqueness · #5 AEO scoring</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Тяжелее, но даёт ContentOS-уровень верификации</div>
+      </div>
+      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
+        <div style="font-weight:600;margin-bottom:4px;">Квартал</div>
+        <div style="color:var(--muted);">#9 Brand voice · #10 AEO dashboard · #11 TZ gate · #12 page-optimizer</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Стратегические, не срочные</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>
