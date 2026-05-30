@@ -160,8 +160,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <h1>Pipeline Backlog — AI Content System</h1>
     <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip">Источник: анализ ContentOS · SEO/GEO/AEO протокол 2025-2026</div>
-      <div class="hero-chip"><b>30</b> задач</div>
+      <div class="hero-chip">Источник: ContentOS · SEO/GEO/AEO протокол 2025-2026 · HonestWriter</div>
+      <div class="hero-chip"><b>34</b> задачи</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
@@ -171,9 +171,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">30</span></button>
-    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">20</span></button>
-    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">22</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">34</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">24</span></button>
+    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">26</span></button>
   </div>
 </div>
 
@@ -185,10 +185,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <div class="summary-row">
     <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
-    <div class="summary-card"><div class="num num-gold">12</div><div class="lbl">P2 — средние</div></div>
-    <div class="summary-card"><div class="num num-blue">8</div><div class="lbl">P3 — будущее</div></div>
+    <div class="summary-card"><div class="num num-gold">14</div><div class="lbl">P2 — средние</div></div>
+    <div class="summary-card"><div class="num num-blue">10</div><div class="lbl">P3 — будущее</div></div>
     <div class="summary-card"><div class="num num-muted">3</div><div class="lbl">Техдолг</div></div>
-    <div class="summary-card"><div class="num num-teal">30</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-teal">34</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
@@ -506,6 +506,40 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
+    <div class="item p2">
+      <div class="item-num">31</div>
+      <div class="item-body">
+        <div class="item-title">Brand Persona (архетип) — персонаж вместо списка правил</div>
+        <div class="item-desc">HonestWriter: «content in company's real voice, not AI's» — достигается через персонаж, а не правила. Сейчас FACTOR_WRITING_RULES.md = список запретов. Персона = живой образ: возраст, опыт, любимые фразы, что ненавидит, как говорит. AI воспроизводит характер легче, чем 30 пунктов запрещённых слов.</div>
+        <div class="item-detail">Добавить в /writer и /editor: <code>persona.md</code> — читается перед каждой задачей. Пример для Фактора: «Кандеев, 44, 200+ проектов, работал РОПом с 2009. Говорит: «в 8 из 10 проектов», «без системы нет масштаба». Ненавидит: «давайте разберёмся», определения из словаря, советы без цифр. Стиль: уверенный директ — партнёр, не учитель». Пользовательский пример: «high economist» — внутри тон оф войс должна жить персона с характером, не только правилами.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-skill">/editor</span>
+          <span class="tag tag-type-quality">Голос бренда</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">32</div>
+      <div class="item-body">
+        <div class="item-title">AI Visibility Score — единая метрика присутствия в AI</div>
+        <div class="item-desc">HonestWriter показывает composite score: 49.1% (↑3.2%) = % целевых промптов, в ответах на которые упоминается бренд. Сейчас /tracker считает yes/no per platform вручную, без единого KPI и тренда. Нет понимания «растём мы в AI-выдаче или нет».</div>
+        <div class="item-detail">Добавить в /tracker: каждый месяц — прогон 30–50 промптов × 4 платформы → AI Visibility Score = (сумма попаданий / все попытки) × 100%. Хранить в pipeline.md как time-series. Дашборд в финальном выводе: «49.1% (↑3.2 за месяц) — ChatGPT 67%, Perplexity 58%, Нейро 31%, Gemini 44%». Связать с <a href="#item-23">Share of Voice</a> (#23) — это его агрегированная версия.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
   <!-- P3 -->
   <div class="section-gap">
     <div class="section-title">P3 — Стратегические · 1 неделя и более</div>
@@ -638,6 +672,40 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
+    <div class="item p3">
+      <div class="item-num">33</div>
+      <div class="item-body">
+        <div class="item-title">Per-platform mention counts — абсолютные числа по платформам</div>
+        <div class="item-desc">HonestWriter: ChatGPT 142 упоминания, Claude 96, Perplexity 88+. Абсолютные числа дополняют % — платформы растут с разной скоростью, и 50% от 200 промптов ≠ 50% от 10. Сейчас /tracker не накапливает абсолютные данные по платформам как time-series.</div>
+        <div class="item-detail">Добавить в /tracker: monthly per-platform mention count — сколько раз бренд упомянут из N проверенных промптов × платформа. Пример вывода: «ChatGPT: 34/50 (68%), Perplexity: 29/50 (58%), Нейро: 16/50 (32%). Итого: 79/150 (53%). Прошлый месяц: 71/150 (47%). ↑6%». Выявляет: какая платформа отстаёт → где нужен целевой контент.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">34</div>
+      <div class="item-body">
+        <div class="item-title">AI question drift detection — автообновление при смене фрейма ответов</div>
+        <div class="item-desc">HonestWriter: «on autopilot» = когда AI меняет как он отвечает на вашу тему, контент обновляется автоматически. Сейчас /tracker мониторит упоминания, но не отслеживает смену фрейма ответов. Если ChatGPT начал отвечать на «работа с возражениями» с психологического угла вместо системного — наш контент устарел, но мы этого не знаем.</div>
+        <div class="item-detail">Добавить в /tracker: ежемесячно сохранять summary топ-3 AI-ответов по каждому целевому промпту. Сравнивать с прошлым месяцем (embedding cosine similarity или ручное). Если drift &gt;30% — action item: «AI изменил фрейм ответа на [запрос] — обновить: [FAQ / лид / H2-раздел]» → передать в /page-optimizer. Minimum viable: ручное сравнение раз в квартал с записью в pipeline.md.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-skill">/page-optimizer</span>
+          <span class="tag tag-type-aeo">AEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~3 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
   <!-- Technical Debt -->
   <div class="section-gap">
     <div class="section-title">Технический долг</div>
@@ -691,7 +759,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="seq-row">
       <div class="seq-card"><div class="seq-title">Неделя 1 — быстрые победы</div><div class="seq-items">#1 Speakable · #3 AEO precheck · #5 Info Gain · #6 JS-SEO · #7 robots.txt</div><div class="seq-note">~6-8 часов суммарно. Чистые изменения в скиллах, без API.</div></div>
       <div class="seq-card"><div class="seq-title">Неделя 2 — качество</div><div class="seq-items">#4 Тире gate · #2 Schema stack · #8 Locked H2 · #28 Webmaster OAuth</div><div class="seq-note">Разблокирует /tracker + поднимает качество черновиков</div></div>
-      <div class="seq-card"><div class="seq-title">Месяц 1 — инфраструктура</div><div class="seq-items">#9 Prompts.md · #10 Entity @id · #11 Internal linking · #15 Brand mentions · #19 ПФ мониторинг</div><div class="seq-note">Стратегические сигналы для долгосрочного роста</div></div>
+      <div class="seq-card"><div class="seq-title">Месяц 1 — инфраструктура</div><div class="seq-items">#9 Prompts.md · #10 Entity @id · #11 Internal linking · #15 Brand mentions · #19 ПФ мониторинг · #31 Brand Persona · #32 AI Visibility Score</div><div class="seq-note">Стратегические сигналы для долгосрочного роста</div></div>
       <div class="seq-card"><div class="seq-title">Квартал — продукт</div><div class="seq-items">#17 VS-страницы · #20 YouTube · #24 Reddit/community · #25 Topical map · #21 Wikidata</div><div class="seq-note">Требуют отдельного планирования и ресурсов</div></div>
     </div>
   </div>
@@ -782,6 +850,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="item p2">
       <div class="item-num">29</div>
       <div class="item-body"><div class="item-title">19 черновиков — прогнать через /editor → /publisher</div><div class="item-desc">Партиями по 3-5. Google Doc ID у каждой статьи. Следующий шаг: редактура → публикация.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">31</div>
+      <div class="item-body"><div class="item-title">Brand Persona — персонаж вместо списка правил</div><div class="item-desc">Персона = живой образ: возраст, опыт, фразы, антипатии, стиль. AI воспроизводит характер точнее, чем 30 запретов. Файл <code>persona.md</code> читается перед каждым /writer и /editor.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/editor</span><span class="tag tag-type-quality">Голос бренда</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">32</div>
+      <div class="item-body"><div class="item-title">AI Visibility Score — composite KPI в AI-выдаче</div><div class="item-desc">% промптов, на которые AI упоминает бренд (Нейро + Perplexity). Единое число с трендом month-over-month. Хранится в pipeline.md.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">P3 — Стратегические (Both рынка)</div>
+    <div class="item p3">
+      <div class="item-num">33</div>
+      <div class="item-body"><div class="item-title">Per-platform mention counts</div><div class="item-desc">Нейро: X/50, Perplexity: Y/50 — абсолютные числа по платформам помимо %. Выявляет где отстаём → целевой контент туда.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">34</div>
+      <div class="item-body"><div class="item-title">AI question drift detection — смена фрейма ответов</div><div class="item-desc">Если AI сменил угол ответа на целевой запрос — контент устарел. Ежемесячное сравнение топ-3 ответов → при drift → action item в /page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
     </div>
   </div>
 
@@ -907,6 +995,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
 
     <div class="item p2">
+      <div class="item-num">31</div>
+      <div class="item-body">
+        <div class="item-title">Brand Persona — персонаж вместо списка правил</div>
+        <div class="item-desc">HonestWriter: «content in company's real voice, not AI's». Персонаж с характером, фразами и антипатиями → AI воспроизводит точнее, чем перечень запретов. Файл <code>persona.md</code> читается перед /writer и /editor.</div>
+        <div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/editor</span><span class="tag tag-type-quality">Голос бренда</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
+      </div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">32</div>
+      <div class="item-body">
+        <div class="item-title">AI Visibility Score — composite KPI присутствия в AI</div>
+        <div class="item-desc">HonestWriter: 49.1% (↑3.2%) = % промптов, где AI упоминает бренд. Единое число с трендом month-over-month. Breakdown по платформам: ChatGPT 67%, Perplexity 58%, Gemini 44%. Хранится в pipeline.md.</div>
+        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
+      </div>
+    </div>
+
+    <div class="item p2">
       <div class="item-num">9</div>
       <div class="item-body">
         <div class="item-title">Prompt research artifact — prompts.md для Global</div>
@@ -955,6 +1060,22 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-title">Topical authority map + semantic clustering</div>
         <div class="item-desc">siteFocusScore + siteRadius (из утечки): Google векторизует страницы относительно ядра темы сайта. Для Global: кластеризация через sentence-BERT embeddings (не только SERP), entity-grouping вокруг топик-кластеров.</div>
         <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 дня</span></div>
+      </div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">33</div>
+      <div class="item-body">
+        <div class="item-title">Per-platform mention counts — ChatGPT: 142, Claude: 96…</div>
+        <div class="item-desc">Абсолютные числа по платформам (ChatGPT, Perplexity, Gemini, Claude) помимо %. Платформы растут по-разному — абсолюты + % вместе точнее показывают где работать.</div>
+        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
+      </div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">34</div>
+      <div class="item-body">
+        <div class="item-title">AI question drift — автообновление при смене фрейма ответов</div>
+        <div class="item-desc">HonestWriter «on autopilot»: когда AI меняет как отвечает на вашу тему — контент обновляется. Ежемесячное сравнение топ-3 ответов ChatGPT/Perplexity → drift &gt;30% → action item в /page-optimizer.</div>
+        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div>
       </div>
     </div>
   </div>
