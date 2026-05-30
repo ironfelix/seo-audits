@@ -9,7 +9,7 @@
 <style>
 :root {
   --bg: #f5f4f1;
-  --white: #ffffff;
+  --white: #fff;
   --dark: #1a1a1a;
   --red: #c01020;
   --red-light: rgba(192,16,32,.08);
@@ -26,285 +26,130 @@
   --purple: #7c3aed;
   --purple-light: rgba(124,58,237,.07);
   --purple-border: rgba(124,58,237,.2);
+  --teal: #0d7877;
+  --teal-light: rgba(13,120,119,.08);
+  --teal-border: rgba(13,120,119,.25);
   --border: #e2e0db;
   --text: #1a1a1a;
   --muted: #6b6b6b;
   --muted2: #9a9a9a;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
-
-.hero {
-  background: var(--dark);
-  padding: 40px 0 32px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: var(--blue);
-  opacity: .08;
-  pointer-events: none;
-}
-.wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
-.hero h1 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.hero p {
-  color: rgba(255,255,255,.5);
-  font-size: 13px;
-}
-.hero-meta {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.hero-chip {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 6px;
-  padding: 4px 12px;
-  font-size: 12px;
-  color: rgba(255,255,255,.7);
-}
+/* Hero */
+.hero { background: var(--dark); padding: 36px 0 28px; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: var(--blue); opacity: .07; pointer-events: none; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+.hero h1 { font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.hero p { color: rgba(255,255,255,.45); font-size: 13px; }
+.hero-meta { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.hero-chip { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; padding: 3px 11px; font-size: 12px; color: rgba(255,255,255,.65); }
 .hero-chip b { color: #fff; }
 
-.main { padding: 32px 0 60px; }
+/* Tabs */
+.tabs-bar { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tabs-inner { max-width: 980px; margin: 0 auto; padding: 0 28px; display: flex; gap: 0; }
+.tab-btn { padding: 13px 18px; font-size: 13px; font-weight: 600; color: var(--muted); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all .15s; white-space: nowrap; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab-btn .cnt { display: inline-block; background: #f0f0f0; border-radius: 10px; padding: 0 6px; font-size: 11px; margin-left: 5px; color: var(--muted); font-weight: 600; }
+.tab-btn.active .cnt { background: var(--blue-light); color: var(--blue); }
 
-/* Source card */
-.source-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
-}
-.source-card h3 {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  margin-bottom: 14px;
-}
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.compare-col {
-  padding: 14px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.6;
-}
-.compare-col.them { background: var(--blue-light); border: 1px solid var(--blue-border); }
-.compare-col.us { background: var(--green-light); border: 1px solid var(--green-border); }
-.compare-col .label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  margin-bottom: 8px;
-  color: var(--muted);
-}
-.compare-col.them .label { color: var(--blue); }
-.compare-col.us .label { color: var(--green); }
-.compare-col ul { padding-left: 16px; }
-.compare-col li { margin-bottom: 4px; }
-.compare-col li .tag-win { color: var(--green); font-weight: 600; }
-.compare-col li .tag-miss { color: var(--red); font-weight: 600; }
+/* Tab content */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
 
-/* Priority section */
-.section-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
+.main { padding: 28px 0 60px; }
 
-/* Backlog item */
-.item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px 20px;
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 14px;
-  align-items: flex-start;
-}
+/* Summary row */
+.summary-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+.summary-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-align: center; }
+.summary-card .num { font-size: 26px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
+.summary-card .lbl { font-size: 11px; color: var(--muted); }
+.num-red { color: var(--red); } .num-gold { color: var(--gold); } .num-blue { color: var(--blue); } .num-muted { color: var(--muted); } .num-green { color: var(--green); } .num-teal { color: var(--teal); }
+
+/* Section title */
+.section-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-gap { margin-bottom: 28px; }
+
+/* Item */
+.item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 8px; display: grid; grid-template-columns: auto 1fr auto; gap: 13px; align-items: flex-start; }
 .item:hover { border-color: #ccc; }
-
-.item-num {
-  width: 28px; height: 28px;
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
+.item-num { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 .p1 .item-num { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
 .p2 .item-num { background: var(--gold-light); color: #b57d1a; border: 1px solid var(--gold-border); }
 .p3 .item-num { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
 .td .item-num { background: #f3f3f3; color: var(--muted); border: 1px solid var(--border); }
-
-.item-body {}
-.item-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.item-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.55;
-  margin-bottom: 8px;
-}
-.item-detail {
-  font-size: 12px;
-  color: var(--muted2);
-  background: #f8f7f4;
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin-top: 6px;
-  line-height: 1.6;
-}
-.item-detail code {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-size: 11px;
-  background: #eeecea;
-  padding: 1px 5px;
-  border-radius: 3px;
-}
-.item-meta {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-.tag {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
+.item-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.item-desc { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 7px; }
+.item-detail { font-size: 12px; color: var(--muted2); background: #f8f7f4; border-radius: 6px; padding: 8px 11px; margin-top: 5px; line-height: 1.6; }
+.item-detail code { font-family: 'JetBrains Mono','Fira Code',monospace; font-size: 11px; background: #eeecea; padding: 1px 5px; border-radius: 3px; }
+.item-meta { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; align-items: center; }
+.tag { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
 .tag-skill { background: var(--blue-light); color: var(--blue); }
 .tag-effort { background: #f3f3f3; color: var(--muted); }
-.tag-type-aeo { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); }
+.tag-ru { background: rgba(220,53,69,.08); color: #b02030; border: 1px solid rgba(220,53,69,.2); }
+.tag-global { background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-border); }
+.tag-both { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); }
+.tag-type-aeo { background: var(--purple-light); color: var(--purple); }
 .tag-type-schema { background: var(--green-light); color: var(--green); }
 .tag-type-quality { background: var(--gold-light); color: #9a6a0a; }
 .tag-type-research { background: var(--blue-light); color: var(--blue); }
-.tag-type-auto { background: #f3f3f3; color: var(--muted); }
+.tag-type-entity { background: var(--teal-light); color: var(--teal); }
+.tag-type-distrib { background: rgba(220,53,69,.08); color: #b02030; }
+.status-blocked { background: var(--red-light); color: var(--red); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+.item-right { flex-shrink: 0; }
+.effort-bar { display: flex; gap: 3px; justify-content: flex-end; }
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot.fill { background: var(--gold); } .dot.empty { background: #e2e0db; }
+.effort-label { font-size: 10px; color: var(--muted2); margin-top: 3px; text-align: right; }
 
-.item-right {
-  text-align: right;
-  flex-shrink: 0;
-}
-.effort-bar {
-  display: flex;
-  gap: 3px;
-  justify-content: flex-end;
-}
-.dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-}
-.dot.fill { background: var(--gold); }
-.dot.empty { background: #e2e0db; }
-.effort-label { font-size: 10px; color: var(--muted2); margin-top: 3px; }
+/* Context block */
+.ctx { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-bottom: 20px; }
+.ctx h3 { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 14px; }
+.ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ctx-col { padding: 14px 16px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.ctx-col.ru { background: rgba(220,53,69,.05); border: 1px solid rgba(220,53,69,.15); }
+.ctx-col.gl { background: var(--teal-light); border: 1px solid var(--teal-border); }
+.ctx-col .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+.ctx-col.ru .lbl { color: #b02030; }
+.ctx-col.gl .lbl { color: var(--teal); }
+.ctx-col ul { padding-left: 16px; }
+.ctx-col li { margin-bottom: 3px; }
+.stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.stat-chip { background: #f3f3f3; border-radius: 6px; padding: 8px 12px; font-size: 12px; line-height: 1.4; }
+.stat-chip b { font-size: 15px; display: block; font-weight: 800; margin-bottom: 1px; }
+.stat-chip.red b { color: var(--red); }
+.stat-chip.gold b { color: var(--gold); }
+.stat-chip.teal b { color: var(--teal); }
+.stat-chip.blue b { color: var(--blue); }
+.stat-chip.green b { color: var(--green); }
 
-/* Status badges */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-.status-todo { background: #f3f3f3; color: var(--muted); }
-.status-blocked { background: var(--red-light); color: var(--red); }
-.status.dot-icon::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+/* Channel table */
+.channel-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+.channel-table th { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); background: #fafaf8; }
+.channel-table td { padding: 9px 12px; border-bottom: 1px solid #f0ede9; vertical-align: top; line-height: 1.4; }
+.channel-table tr:last-child td { border-bottom: none; }
+.channel-table .win { color: var(--green); font-weight: 600; }
+.channel-table .warn { color: var(--gold); font-weight: 600; }
+.channel-table .no { color: var(--muted2); }
 
-/* Priority label */
-.priority-badge {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  padding: 2px 7px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-.badge-p1 { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
-.badge-p2 { background: var(--gold-light); color: #9a6a0a; border: 1px solid var(--gold-border); }
-.badge-p3 { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
-.badge-td { background: #f3f3f3; color: var(--muted); }
-
-/* Summary row */
-.summary-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
-}
-.summary-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 18px;
-  text-align: center;
-}
-.summary-card .num {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.summary-card .lbl { font-size: 12px; color: var(--muted); }
-.num-red { color: var(--red); }
-.num-gold { color: var(--gold); }
-.num-blue { color: var(--blue); }
-.num-muted { color: var(--muted); }
-
-.section-gap { margin-bottom: 32px; }
+/* Sequence */
+.seq-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.seq-card { background: #f3f3f3; border-radius: 6px; padding: 10px 14px; font-size: 13px; flex: 1; min-width: 200px; }
+.seq-card .seq-title { font-weight: 600; margin-bottom: 4px; }
+.seq-card .seq-items { color: var(--muted); }
+.seq-card .seq-note { font-size: 11px; color: var(--muted2); margin-top: 3px; }
 
 @media (max-width: 640px) {
-  .compare-row { grid-template-columns: 1fr; }
-  .summary-row { grid-template-columns: repeat(2, 1fr); }
+  .ctx-grid { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: repeat(3, 1fr); }
   .item { grid-template-columns: auto 1fr; }
   .item-right { display: none; }
+  .seq-row { flex-direction: column; }
+  .tabs-inner { overflow-x: auto; }
 }
 </style>
 </head>
@@ -312,401 +157,840 @@ body {
 
 <div class="hero">
   <div class="wrap">
-    <h1>Pipeline Backlog</h1>
-    <p>Доработки AI Content System — Фактор Продаж · обновлено 2026-05-31</p>
+    <h1>Pipeline Backlog — AI Content System</h1>
+    <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip">Источник: анализ ContentOS vs Фактор</div>
-      <div class="hero-chip"><b>13</b> задач</div>
-      <div class="hero-chip"><b>4</b> P1 · <b>5</b> P2 · <b>4</b> P3/TD</div>
+      <div class="hero-chip">Источник: анализ ContentOS · SEO/GEO/AEO протокол 2025-2026</div>
+      <div class="hero-chip"><b>30</b> задач</div>
+      <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
+      <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">30</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">20</span></button>
+    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">22</span></button>
   </div>
 </div>
 
 <div class="main">
 <div class="wrap">
 
-  <!-- Source analysis -->
-  <div class="source-card">
-    <h3>Что мы обнаружили — ContentOS vs наш пайплайн</h3>
-    <div class="compare-row">
-      <div class="compare-col them">
-        <div class="label">ContentOS (Humanswith.ai) — сильнее</div>
-        <ul>
-          <li><span class="tag-win">+</span> AEO-скоринг по движкам (77.1/100: Perplexity, ChatGPT, Bing, Gemini, Yandex)</li>
-          <li><span class="tag-win">+</span> Citation integrity — семантическая сверка 14/15 тезисов с источниками</li>
-          <li><span class="tag-win">+</span> SpeakableSpecification schema — AI-поиск и голосовые ответы</li>
-          <li><span class="tag-win">+</span> AI-detection gate (0.28 → likely_human)</li>
-          <li><span class="tag-win">+</span> Uniqueness check (web-плагиат, 0.0)</li>
-          <li><span class="tag-win">+</span> Locked H2 план в TZ с 3 bullet + источник на каждый раздел</li>
-          <li><span class="tag-win">+</span> Corpus brand voice из парсинга статей клиента</li>
-        </ul>
-      </div>
-      <div class="compare-col us">
-        <div class="label">Фактор — сильнее</div>
-        <ul>
-          <li><span class="tag-win">+</span> Глубина русского языка: кальки, тире-лимит, AI-фреймы, ритм</li>
-          <li><span class="tag-win">+</span> E-E-A-T с позицией: «мы против X, потому что Y» + грязная деталь</li>
-          <li><span class="tag-win">+</span> Competitive gap: /researcher читает топ-10, ищет уникальный угол</li>
-          <li><span class="tag-win">+</span> Полный WP-цикл: ACF, обложки, llms.txt — автоматически</li>
-          <li><span class="tag-win">+</span> Жизненный цикл: tracker (30d, 90d), page-optimizer</li>
-          <li><span class="tag-miss">—</span> Нет AEO-скоринга</li>
-          <li><span class="tag-miss">—</span> SpeakableSpecification отсутствует</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<!-- ==================== TAB: ALL ==================== -->
+<div class="tab-panel active" id="tab-all">
 
-  <!-- Stats -->
   <div class="summary-row">
-    <div class="summary-card">
-      <div class="num num-red">4</div>
-      <div class="lbl">P1 — быстро</div>
-    </div>
-    <div class="summary-card">
-      <div class="num num-gold">5</div>
-      <div class="lbl">P2 — требуют работы</div>
-    </div>
-    <div class="summary-card">
-      <div class="num num-blue">3</div>
-      <div class="lbl">P3 — будущее</div>
-    </div>
-    <div class="summary-card">
-      <div class="num num-muted">1</div>
-      <div class="lbl">Технический долг</div>
-    </div>
+    <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
+    <div class="summary-card"><div class="num num-gold">12</div><div class="lbl">P2 — средние</div></div>
+    <div class="summary-card"><div class="num num-blue">8</div><div class="lbl">P3 — будущее</div></div>
+    <div class="summary-card"><div class="num num-muted">3</div><div class="lbl">Техдолг</div></div>
+    <div class="summary-card"><div class="num num-teal">30</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
   <div class="section-gap">
-    <div class="section-title">P1 — Высокий приоритет · быстрая реализация (1–3 дня)</div>
+    <div class="section-title">P1 — Быстрые победы · 30 мин — 3 часа каждая</div>
 
     <div class="item p1">
       <div class="item-num">1</div>
       <div class="item-body">
         <div class="item-title">SpeakableSpecification в /publisher</div>
-        <div class="item-desc">ContentOS генерирует эту schema автоматически, мы — нет. SpeakableSpecification указывает AI-поисковикам (Google AI Overview, Yandex AI) какой текст цитировать. Добавить к существующему Schema.org блоку.</div>
-        <div class="item-detail">
-          В Шаг 2 /publisher добавить к FAQPage-схеме: <code>"@type":"SpeakableSpecification"</code> с <code>cssSelector:[".tl-dr","h2:first-of-type + p"]</code> — лид-абзац и первые предложения первых двух H2. Опционально: <code>HowTo</code> если статья пошаговая.
-        </div>
+        <div class="item-desc">ContentOS генерирует автоматически. Указывает Google AI Overview и Yandex AI какой блок цитировать. 65% голосовых поисков начинаются с вопросов — Speakable нужен именно для них.</div>
+        <div class="item-detail">Добавить к Schema.org блоку: <code>"@type":"SpeakableSpecification","cssSelector":[".tl-dr","h2:first-of-type + p"]</code>. Лид-абзац + первые предложения первых двух H2.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/publisher</span>
-          <span class="tag tag-type-aeo">AEO/GEO</span>
           <span class="tag tag-type-schema">Schema.org</span>
+          <span class="tag tag-type-aeo">AEO</span>
+          <span class="tag tag-both">Both</span>
           <span class="tag tag-effort">~30 мин</span>
         </div>
       </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
     <div class="item p1">
       <div class="item-num">2</div>
       <div class="item-body">
-        <div class="item-title">Locked H2 план в /researcher → pipeline.md</div>
-        <div class="item-desc">ContentOS формирует TZ где каждый H2 получает: 3 bullet-а что писать, источник для сноски, кейс для упоминания. Сейчас /researcher даёт research-файл, но /writer получает только структуру без детального плана на раздел.</div>
-        <div class="item-detail">
-          В pipeline.md добавить секцию <code>## H2 Plan</code> после <code>## Structure</code>. Формат: <code>### Н2 заголовок</code> → <code>- Написать: [3 bullet]</code> → <code>- Источник: [url/название]</code> → <code>- Кейс: [факт из /case/]</code>. /writer обязан следовать плану.
-        </div>
+        <div class="item-title">Schema stack expansion — Review / ItemList / BreadcrumbList / Person</div>
+        <div class="item-desc">Кейс Previsible: SoftwareApplication schema → +150% AI трафика за 90 дней. FAQPage schema + citations = +40% к вероятности попасть в AI-ответ (Authoritas 2025). +3x к ChatGPT цитированию. Сейчас у нас только Article + FAQPage.</div>
+        <div class="item-detail">Добавить в /publisher: <code>BreadcrumbList</code> на каждой странице, <code>Person</code> с <code>worksFor</code> и <code>sameAs</code> для автора, <code>ItemList</code> для подборок/списков статей. Для глобала дополнительно: <code>Review</code> + <code>AggregateRating</code> (звёзды в SERP).</div>
         <div class="item-meta">
-          <span class="tag tag-skill">/researcher</span>
-          <span class="tag tag-skill">/writer</span>
-          <span class="tag tag-type-research">Research</span>
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-schema">Schema.org</span>
+          <span class="tag tag-both">Both</span>
           <span class="tag tag-effort">~2 часа</span>
         </div>
       </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
     <div class="item p1">
       <div class="item-num">3</div>
       <div class="item-body">
         <div class="item-title">AEO precheck в /quality-gate (ручной, без API)</div>
-        <div class="item-desc">Перед публикацией проверить: первое предложение после H1 — прямой ответ на запрос? Первое предложение каждого H2 — самостоятельный ответ на подзапрос? Если нет — FAIL + вернуть в /editor.</div>
-        <div class="item-detail">
-          Добавить в /quality-gate метрику 18: <b>AEO: лид = прямой ответ</b> — PASS/FAIL. Критерий: можно ли первое предложение вставить в ChatGPT/Perplexity ответ без контекста? Вторая метрика 19: <b>AEO: H2-первые предложения</b> — проверить первые 3 H2.
-        </div>
+        <div class="item-desc">44% AI Overview цитат — из первой трети контента (Growth Memo 2026). Первое предложение = прямой ответ на запрос. Проверить перед публикацией: каждый H2 закрывает подзапрос самостоятельно?</div>
+        <div class="item-detail">Добавить метрику 18: AEO-лид PASS/FAIL. Критерий: можно ли вставить первый абзац в ChatGPT/Perplexity ответ без контекста? Метрика 19: H2 самодостаточность — первые 3 H2.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/quality-gate</span>
-          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-type-aeo">AEO</span>
+          <span class="tag tag-both">Both</span>
           <span class="tag tag-effort">~1 час</span>
         </div>
       </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
     <div class="item p1">
       <div class="item-num">4</div>
       <div class="item-body">
         <div class="item-title">Тире-лимит gate как hard block в /quality-gate</div>
-        <div class="item-desc">Сейчас тире-лимит (≤8 на статью) есть в правилах /editor и паблишере, но /quality-gate его не блокирует явно. ContentOS имеет языковой gate как обязательный. Добавить автопроверку в quality-gate с точным подсчётом.</div>
-        <div class="item-detail">
-          Метрика: <code>text.count('—')</code> → если &gt;8 — FAIL. Вывести: <code>Тире: {n}/8 ✗ — вернуть в /editor</code>. Также проверять: нет ли абзаца с 3+ тире. Сейчас эта проверка есть в /editor как «hard gate», но не в /quality-gate как блокирующее условие.
-        </div>
+        <div class="item-desc">Правило ≤8 тире на статью есть в /editor и /publisher, но /quality-gate его не блокирует. Часто пропускается при batch-публикации.</div>
+        <div class="item-detail"><code>text.count('—')</code> → если &gt;8 → FAIL с выводом: «Тире: N/8 — вернуть в /editor». Также: абзац с 3+ тире → FAIL.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/quality-gate</span>
           <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
           <span class="tag tag-effort">~30 мин</span>
         </div>
       </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">5</div>
+      <div class="item-body">
+        <div class="item-title">Information Gain check в /quality-gate</div>
+        <div class="item-desc">Information Gain стал доминирующим сигналом после March 2026 core update (Digital Applied). AI-парафраз получает низкий score. Оригинальные данные/исследования = +15-25%. Сейчас в quality-gate этого нет.</div>
+        <div class="item-detail">Добавить метрику 20: наличие хотя бы одного из — (а) собственный кейс с конкретными цифрами, (б) уникальное наблюдение из практики, (в) скриншот/данные не из конкурентных статей, (г) оригинальный опрос или бенчмарк. FAIL если ничего из перечисленного.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 час</span>
         </div>
-        <div class="effort-label">усилие</div>
       </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">6</div>
+      <div class="item-body">
+        <div class="item-title">JS-SEO валидация в /publisher</div>
+        <div class="item-desc">AI-краулеры (ChatGPT, Claude, Perplexity) не исполняют JavaScript вообще (Vercel research 2024). Если Schema JSON-LD или основной контент рендерятся через JS — AI их не видит.</div>
+        <div class="item-detail">Добавить в /publisher предпроверку: main content + Schema JSON-LD + meta-теги присутствуют в исходном HTML-ответе (curl без JS). Для WP: проверить что JSON-LD не в Gutenberg-блоке, а в <code>&lt;head&gt;</code> через <code>wp_head</code>.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 час</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">7</div>
+      <div class="item-body">
+        <div class="item-title">robots.txt — AI-краулеры явно разрешены</div>
+        <div class="item-desc">Rutgers/Wharton 2025: сайты блокирующие AI-краулеры теряют 23,1% месячного трафика и 13,9% human browsing. Три семейства: training (GPTBot, ClaudeBot), search/retrieval (OAI-SearchBot, PerplexityBot, YandexAdditional), user-triggered. Без OAI-SearchBot = нет в ChatGPT Search; без YandexAdditional = нет в Нейро.</div>
+        <div class="item-detail">Добавить в /publisher проверку robots.txt: все retrieval-боты разрешены? Чеклист: <code>OAI-SearchBot</code>, <code>PerplexityBot</code>, <code>YandexAdditional</code>, <code>Claude-SearchBot</code>, <code>GPTBot</code>. PerplexityBot crawl-to-referral ratio ~110:1 (лучший), ClaudeBot 23951:1 (худший).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-aeo">AEO/GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~30 мин</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
   </div>
 
   <!-- P2 -->
   <div class="section-gap">
-    <div class="section-title">P2 — Высокий приоритет · нужны усилия (3–7 дней)</div>
-
-    <div class="item p2">
-      <div class="item-num">5</div>
-      <div class="item-body">
-        <div class="item-title">AEO pre-publication scoring в /tracker (до публикации)</div>
-        <div class="item-desc">ContentOS измеряет AEO-цитируемость до публикации и итерирует (64.2 → 77.1). Сейчас наш /tracker проверяет AI-упоминания только через 30 дней после публикации. Нужна проверка до публикации — хотя бы Perplexity + Yandex AI.</div>
-        <div class="item-detail">
-          Добавить в /publisher Шаг 1.5: AEO draft check. WebFetch Perplexity с ключевым запросом + поиск тематически близкого ответа. Если наша статья (black box — она ещё не опубликована) → проверить структуру первого абзаца на цитируемость. Минимально: тест «вставь лид в ChatGPT — он ответит им на вопрос?»
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/publisher</span>
-          <span class="tag tag-skill">/tracker</span>
-          <span class="tag tag-type-aeo">AEO/GEO</span>
-          <span class="tag tag-effort">~1 день</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">6</div>
-      <div class="item-body">
-        <div class="item-title">AI-detection gate в /quality-gate</div>
-        <div class="item-desc">ContentOS показывает явный скор AI-детекции (0.28 → likely_human). Это мягкий gate — статья не блокируется, но если скор &gt;0.7 (probably_ai) — возвращается в /editor. Сейчас у нас нет автоматического скора, только правила редактора.</div>
-        <div class="item-detail">
-          Использовать ZeroGPT API (бесплатный tier: 100 req/день) или GPTZero API. Добавить в /quality-gate метрику 20: <b>AI-detection</b> → если probably_ai (&gt;0.7) — WARN + вернуть в /editor с пометкой конкретных «AI-абзацев». Не блокировать при 0.4–0.7 (ambiguous).
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/quality-gate</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-effort">~3 часа</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">7</div>
-      <div class="item-body">
-        <div class="item-title">Citation integrity в /fact-checker</div>
-        <div class="item-desc">ContentOS автоматически проверяет: каждый тезис с источником семантически следует из этого источника (не просто упомянут, а является логической импликацией). 93.3/100 — 14/15 тезисов верифицированы. Сейчас /fact-checker делает это вручную/по уровням T1-T3.</div>
-        <div class="item-detail">
-          Добавить в /fact-checker Шаг X: для каждой сноски [источник, тезис] → WebFetch источника → AI-prompt: «Подтверждает ли этот текст тезис: {тезис}? YES/NO/PARTIAL + объяснение». Вывести таблицу: тезис | источник | статус | замечание. Блокировать при 2+ FAIL.
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/fact-checker</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-effort">~1 день</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
-        </div>
-        <div class="effort-label">усилие</div>
-      </div>
-    </div>
+    <div class="section-title">P2 — Средний приоритет · 1–3 дня каждая</div>
 
     <div class="item p2">
       <div class="item-num">8</div>
       <div class="item-body">
-        <div class="item-title">Uniqueness check в /quality-gate</div>
-        <div class="item-desc">ContentOS проверяет уникальность текста (web-плагиат, 0.0 совпадений). Сейчас в пайплайне нет такой проверки. Важно для партнёрских проектов (где /writer может воспроизводить конкурентные тексты) и при batch-публикации 19+ статей подряд.</div>
-        <div class="item-detail">
-          Использовать text.ru API или Яндекс-текстовый анализ. Добавить в /quality-gate метрику 21: <b>Uniqueness</b>. Порог: уникальность &lt;85% → WARN, &lt;70% → FAIL. Для каждой партии статей запускать перед публикацией.
-        </div>
+        <div class="item-title">Locked H2 план в /researcher → pipeline.md</div>
+        <div class="item-desc">ContentOS: каждый H2 = 3 bullet что писать + источник + кейс. Сейчас /writer получает research-файл, но не детальный план на раздел. Это самый быстрый способ повысить quality на уровне черновика.</div>
+        <div class="item-detail">В pipeline.md добавить секцию <code>## H2 Plan</code>. Формат: <code>### H2 заголовок</code> → <code>- Написать: [3 bullet]</code> → <code>- Источник: [url]</code> → <code>- Кейс: [цифра/факт]</code>. /writer следует плану, не отступает.</div>
         <div class="item-meta">
-          <span class="tag tag-skill">/quality-gate</span>
-          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-skill">/researcher</span><span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-research">Research</span>
+          <span class="tag tag-both">Both</span>
           <span class="tag tag-effort">~2 часа</span>
         </div>
       </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">9</div>
+      <div class="item-body">
+        <div class="item-title">Prompt research artifact — prompts.md</div>
+        <div class="item-desc">Keyword research 2025-2026 = keyword + prompt + entity research. Средняя длина LLM-запроса — 7 слов (vs 2-3 для Google). LLM делает 3 поиска на 1 запрос (Gauge data). Нужен отдельный артефакт реальных промптов.</div>
+        <div class="item-detail">Добавить в /researcher Шаг X: создавать <code>prompts.md</code> — 15-25 словные prompts с тегами (compare/recommend/how-to) + источник + статус цитирования. Источники: прямой опрос ChatGPT/Claude/Perplexity («List 30 questions users ask about [topic]»), GSC regex 7+ слов, Perplexity follow-up как PAA, Reddit/vc.ru комменты.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-research">Research</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~3 часа</span>
         </div>
-        <div class="effort-label">усилие</div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">10</div>
+      <div class="item-body">
+        <div class="item-title">Entity-SEO — @id consistency + mainEntityOfPage</div>
+        <div class="item-desc">После Google «Clarity Cleanup» июнь 2025 (удалено 3 млрд сущностей) — консистентность @id критичнее sameAs. Неочевидно: @id связывает все сущности в единый граф; mainEntityOfPage превращает сайт в «мини-Knowledge Graph».</div>
+        <div class="item-detail">Добавить в /publisher: <code>@id</code> с консистентными URL по всему сайту, <code>mainEntityOfPage</code> указывающий на канонический @id сущности на каждой странице. Проверить: все страницы одной темы ссылаются на один Organization @id?</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-entity">Entity</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">11</div>
+      <div class="item-body">
+        <div class="item-title">Internal linking — entity-based anchors + bidirectional</div>
+        <div class="item-desc">Сейчас «3-7 внутренних ссылок» без указания каких. Для topical authority нужно: 8-15 outbound на страницу, anchor texts описывающие сущности, bidirectional pillar↔spoke↔single. Google context2/fullLeftContext из утечки: анкор работает только если окружающий текст семантически близок.</div>
+        <div class="item-detail">Добавить в /seo-optimizer: проверку anchor texts — нет ли «здесь», «подробнее», «читайте». Требовать описательные анкоры с именем сущности. Для pillar-страниц: проверять наличие bidirectional ссылок в обоих направлениях (pillar→spoke и spoke→pillar).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/seo-optimizer</span>
+          <span class="tag tag-type-entity">Entity</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">12</div>
+      <div class="item-body">
+        <div class="item-title">AI-detection gate в /quality-gate</div>
+        <div class="item-desc">ContentOS: явный скор (0.28 → likely_human). Мягкий gate — если probably_ai (&gt;0.7) → вернуть в /editor с пометкой конкретных абзацев. Сейчас только правила редактора, нет автоматического скора.</div>
+        <div class="item-detail">ZeroGPT API (бесплатный tier: 100 req/день) или GPTZero API. Метрика 21: AI-detection. Если &gt;0.7 → WARN + список «AI-абзацев» для переписи. Не блокировать 0.4-0.7 (ambiguous). Выводить в отчёт.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">13</div>
+      <div class="item-body">
+        <div class="item-title">Citation integrity в /fact-checker</div>
+        <div class="item-desc">ContentOS: семантическая сверка тезисов с источниками — 14/15 верифицированы (93.3/100). Тезис не просто упомянут, а является логической импликацией источника. Сейчас /fact-checker проверяет уровни T1/T2/T3, но не автоматически.</div>
+        <div class="item-detail">Добавить в /fact-checker: для каждой сноски [источник, тезис] → WebFetch → AI-prompt: «Подтверждает ли этот текст тезис: {тезис}? YES/NO/PARTIAL + объяснение». Таблица: тезис | источник | статус | замечание. Блокировать при 2+ FAIL.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/fact-checker</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">14</div>
+      <div class="item-body">
+        <div class="item-title">vc.ru / Habr — дистрибуция как отдельный шаг пайплайна</div>
+        <div class="item-desc">vc.ru — топ-1 AI-цитируемость в RU. ChatGPT часто цитирует Forbes/Medium/vc.ru, Perplexity цитирует 46.7% community posts. Сейчас в пайплайне есть mention vc.ru в /tracker, но нет автоматического шага публикации кросс-поста.</div>
+        <div class="item-detail">Добавить в /publisher Шаг 8: после публикации в WP — создать кросс-пост на vc.ru/Habr. Формат: сокращённая версия (50% объёма) с ссылкой «Полная версия на factor-prodazh.ru». Добавить в pipeline.md статус дистрибуции.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">15</div>
+      <div class="item-body">
+        <div class="item-title">Brand mentions monitoring в /tracker</div>
+        <div class="item-desc">Brand mentions коррелируют с AIO-цитированием 0.664 vs 0.218 у backlinks — это №1 фактор для GEO (Ahrefs 75k брендов). Топ-25% брендов по упоминаниям получают в 10x больше AIO-цитат. Сейчас /tracker не считает unlinked mentions.</div>
+        <div class="item-detail">Добавить в /tracker: (1) Google Alerts по бренду → считать monthly unlinked mentions; (2) Brand search volume в GSC как лагирующий индикатор; (3) Если mentions &lt; target → action item: «получить 5 упоминаний на [vc.ru/Habr/форумах]».</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">16</div>
+      <div class="item-body">
+        <div class="item-title">Uniqueness check в /quality-gate</div>
+        <div class="item-desc">ContentOS: web-плагиат check (0.0). Важно при batch-публикации 19+ статей подряд — /writer может воспроизводить конкурентные тексты для смежных тем.</div>
+        <div class="item-detail">text.ru API или Яндекс антиплагиат. Метрика 22: Uniqueness. Порог: &lt;85% → WARN, &lt;70% → FAIL. Запускать как часть /quality-gate или отдельно перед batch-публикацией.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">17</div>
+      <div class="item-body">
+        <div class="item-title">VS/Comparison страницы — шаблон в /writer</div>
+        <div class="item-desc">B2B SaaS comparison pages: 7.5%+ conversion vs 2-5% baseline. 51% B2B buyers начинают research в AI chatbot. VS-страницы = самый цитируемый формат в ChatGPT/Perplexity для коммерческих запросов. Backstage SEO: 25 comparison pages → 172% ROI за 36 мес.</div>
+        <div class="item-detail">Новый шаблон для /writer: (а) честная таблица сравнения включая сильные стороны конкурента, (б) use cases где конкурент лучше, (в) pricing comparison, (г) FAQPage schema с comparative questions, (д) «When to use X instead of Y»-раздел обязательный.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-research">Формат</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">18</div>
+      <div class="item-body">
+        <div class="item-title">AEO pre-publication scoring</div>
+        <div class="item-desc">ContentOS итерирует до публикации (64.2 → 77.1). Сейчас /tracker проверяет AI-упоминания только через 30 дней. Нужна хотя бы базовая проверка структуры лида до публикации.</div>
+        <div class="item-detail">Добавить в /publisher Шаг 1.5: AEO draft check. WebFetch Perplexity с ключевым запросом → посмотреть какой формат цитируется. Если конкурент цитируется через TL;DR-блок, а у нас его нет → вернуть в /editor. Минимально: лид вставить в ChatGPT и спросить «ответит ли ты этим на вопрос [ключ]?»</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-aeo">AEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">19</div>
+      <div class="item-body">
+        <div class="item-title">Поведенческие факторы (ПФ) мониторинг через Метрику</div>
+        <div class="item-desc">Яндекс ПФ — приоритетный фактор ранжирования (Метрика + Браузер + клики в SERP). 1-2 недели накопления статистики для влияния. Декрементировать быстрее инкрементирования. Накрутка → потеря 90% трафика + обнуление ИКС на год.</div>
+        <div class="item-detail">Добавить в /tracker: для каждой статьи через 30d — время на сайте, глубина просмотра, bounce rate из Метрики API. Сравнивать с медианой по блогу. Если bounce &gt;75% или avg session &lt;90 сек → action item в page-optimizer: «улучшить лид + добавить визуальный элемент в первые 2 экрана».</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">ПФ</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="section-gap">
+    <div class="section-title">P3 — Стратегические · 1 неделя и более</div>
+
+    <div class="item p3">
+      <div class="item-num">20</div>
+      <div class="item-body">
+        <div class="item-title">YouTube sub-pipeline</div>
+        <div class="item-desc">YouTube — 29-30% всех AI Overview citations (в 200x чаще любой другой видео-платформы). Long-form 10-20 мин = 94% AI-цитат vs 5.7% у Shorts. Views НЕ коррелируют с citations — структура коррелирует (chapters, transcripts, descriptions). Для review-ниши самый недооценённый AI-канал.</div>
+        <div class="item-detail">Новый sub-pipeline: статья → видео-скрипт через /writer-video → запись (HeyGen/Synthesia/ручная) → загрузка с timestamped chapters, 500+ слов описание с topic declaration в первых двух строках → <code>VideoObject</code> schema + <code>transcript</code> на странице обзора. Отдельный шаг в pipeline.md.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">new /video</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">21</div>
+      <div class="item-body">
+        <div class="item-title">Organization + Person sameAs с Wikidata-записью</div>
+        <div class="item-desc">Google Knowledge Graph Clarity Cleanup 2025: удалено 3 млрд сущностей. Wikidata Q-ID — реалистичный способ попасть в Knowledge Graph без Wikipedia. Person Agent Rank: Google знает кто опубликовал, что они опубликовали, где цитируются — единый @id через все публикации.</div>
+        <div class="item-detail">Создать Wikidata-запись для бренда/автора (Q-ID). Добавить в /publisher: Organization schema с <code>sameAs</code> (LinkedIn, Crunchbase, GitHub, YouTube, Wikidata Q-ID), Person schema автора с тем же набором. MuckRack профиль для author authority. Консистентный bio-блок во всех публикациях.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-entity">Entity</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">22</div>
+      <div class="item-body">
+        <div class="item-title">Content freshness calendar в /page-optimizer</div>
+        <div class="item-desc">December 2025 Core Update: косметические обновления дат без изменения контента детектируются и наказываются. AI-цитируемый контент в среднем на 25.7% свежее органически ранжированного. 70% цитируемых страниц меняются за 2-3 месяца.</div>
+        <div class="item-detail">/page-optimizer должен работать не только по action items от /tracker, но и по calendar: каждые 60-90 дней статья проходит content refresh с РЕАЛЬНЫМИ изменениями: новая статистика, обновлённые скриншоты/примеры, новые кейсы. Добавить в pipeline.md: <code>freshness_due: YYYY-MM-DD</code>.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/page-optimizer</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">23</div>
+      <div class="item-body">
+        <div class="item-title">Share of Voice — операционализация 30-50 prompts × платформы</div>
+        <div class="item-desc">Сейчас «Share of Voice в LLM измеряется вручную». Нужна формализованная метрика: 30-50 целевых prompts × 4 платформы (ChatGPT, Perplexity, Gemini, Яндекс Нейро) × ежемесячно → datapoint с trend-линией.</div>
+        <div class="item-detail">Добавить в /tracker: набор prompts из prompts.md (Задача 9) → прогон через платформы → отмечать цитирует/не цитирует → % share of voice. Для RU: Яндекс Нейро + Perplexity (RU). Для Global: ChatGPT Search + Perplexity + Gemini + Claude.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">24</div>
+      <div class="item-body">
+        <div class="item-title">Reddit/community agent</div>
+        <div class="item-desc">Reddit — #2 домен в Google US, 44% social-media citations в AI Overviews, 46.7% Perplexity community-запросов. 90/10 rule: 90% helpful ответов в профильных сабреддитах, 10% — упоминания материалов где релевантно. Reddit volatile (Lily Ray: падение 350 SISTRIX points за день в январе 2025).</div>
+        <div class="item-detail">Этапный подход: Crawl phase (нед.1-4): 90% helpful ответы в r/sales, r/B2B, профильных форумах, без ссылок. Walk phase (мес.2-3): упоминать материалы где уместно. Run phase (мес.4-6): собственные треды «I tested X for 30 days». Для RU: vc.ru комменты + профильные Telegram-чаты вместо Reddit.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">new /community</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">25</div>
+      <div class="item-body">
+        <div class="item-title">Topical authority map в /researcher</div>
+        <div class="item-desc">Topical Authority = Topical Coverage + Historical Data + Cost of Retrieval (Koray Gübür). Google siteFocusScore + siteRadius из утечки: векторизация страниц относительно «ядра темы». Случайные статьи не строят authority — нужна полная карта тематики.</div>
+        <div class="item-detail">Добавить в /researcher: перед написанием статьи проверить topical map (хранить в <code>project/topical-map.md</code>): закрывает ли эта статья gap? Не публиковать «случайные» статьи вне карты. Метод кластеризации: семантическая через embeddings (sentence-BERT + UMAP), а не только SERP-кластеризация.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-entity">Entity</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">26</div>
+      <div class="item-body">
+        <div class="item-title">page-optimizer — чтение action items из pipeline.md</div>
+        <div class="item-desc">/tracker записывает action items в pipeline.md, /page-optimizer должен их читать и вычёркивать выполненные. Сейчас этот цикл не замкнут.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/page-optimizer</span><span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">Автоматизация</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">27</div>
+      <div class="item-body">
+        <div class="item-title">Corpus brand voice из парсинга опубликованных статей</div>
+        <div class="item-desc">ContentOS: автоматический профиль голоса бренда из корпуса клиента. Со временем опубликованные статьи и правила в FACTOR_WRITING_RULES.md расходятся — нужно обновление.</div>
+        <div class="item-detail">Раз в квартал: парсить последние 10 опубликованных статей → выводить паттерны (средняя длина предложения, типичные глаголы, соотношение H2/H3, характерные обороты). Обновлять review-patterns.md. Добавить в /researcher.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
+  <!-- Technical Debt -->
+  <div class="section-gap">
+    <div class="section-title">Технический долг</div>
+
+    <div class="item td">
+      <div class="item-num">28</div>
+      <div class="item-body">
+        <div class="item-title">Yandex Webmaster OAuth token для /tracker</div>
+        <div class="item-desc">Без токена /tracker не получает данные по позициям Яндекс. Три переменные в .env: YANDEX_WEBMASTER_TOKEN, USER_ID, HOST_ID.</div>
+        <div class="item-detail">Яндекс.OAuth → приложение с правом <code>webmaster:read</code> → авторизация → token в .env. HOST_ID формат: <code>https:factor-prodazh.ru:443</code>.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="status-blocked">blocked</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item td">
+      <div class="item-num">29</div>
+      <div class="item-body">
+        <div class="item-title">19 черновиков — прогнать через /editor → /publisher партиями</div>
+        <div class="item-desc">19 статей написаны, черновики в WP, ждут редактуры и публикации. Google Doc ID у каждой. Прогонять партиями по 3-5 статей.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/editor</span><span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-ru">RU</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item td">
+      <div class="item-num">30</div>
+      <div class="item-body">
+        <div class="item-title">Inline формы на старых страницах без конверсий</div>
+        <div class="item-desc">28 конверсий = все со старых страниц. 0 конверсий с новых 19 статей (419 визитов). Добавить inline формы ЛМ «Реформа ОП» в топ-5 по трафику новых статей.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="status-blocked">срочно</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
+  <!-- Sequence -->
+  <div class="ctx" style="margin-bottom:0">
+    <h3>Рекомендуемая очерёдность</h3>
+    <div class="seq-row">
+      <div class="seq-card"><div class="seq-title">Неделя 1 — быстрые победы</div><div class="seq-items">#1 Speakable · #3 AEO precheck · #5 Info Gain · #6 JS-SEO · #7 robots.txt</div><div class="seq-note">~6-8 часов суммарно. Чистые изменения в скиллах, без API.</div></div>
+      <div class="seq-card"><div class="seq-title">Неделя 2 — качество</div><div class="seq-items">#4 Тире gate · #2 Schema stack · #8 Locked H2 · #28 Webmaster OAuth</div><div class="seq-note">Разблокирует /tracker + поднимает качество черновиков</div></div>
+      <div class="seq-card"><div class="seq-title">Месяц 1 — инфраструктура</div><div class="seq-items">#9 Prompts.md · #10 Entity @id · #11 Internal linking · #15 Brand mentions · #19 ПФ мониторинг</div><div class="seq-note">Стратегические сигналы для долгосрочного роста</div></div>
+      <div class="seq-card"><div class="seq-title">Квартал — продукт</div><div class="seq-items">#17 VS-страницы · #20 YouTube · #24 Reddit/community · #25 Topical map · #21 Wikidata</div><div class="seq-note">Требуют отдельного планирования и ресурсов</div></div>
+    </div>
+  </div>
+
+</div><!-- /tab-all -->
+
+<!-- ==================== TAB: RU ==================== -->
+<div class="tab-panel" id="tab-ru">
+
+  <div class="ctx">
+    <h3>RU рынок — ключевые отличия</h3>
+    <div class="ctx-grid">
+      <div class="ctx-col ru">
+        <div class="lbl">🇷🇺 Яндекс специфика</div>
+        <ul>
+          <li><b>Яндекс 74%</b> поискового рынка (май 2025)</li>
+          <li><b>Нейро</b> присутствует в 68% информационных, 43% коммерческих запросов (ETarget 2025)</li>
+          <li><b>5 источников</b> в Нейро (vs 13 в Google AIO) → конкуренция жёстче</li>
+          <li><b>63% цитирований Нейро</b> — из топ-5 органики. В топ-3 шанс ~73% (Devorra фев.2026)</li>
+          <li>ПФ (поведенческие факторы) — <b>приоритетный сигнал</b> ранжирования</li>
+          <li>Ссылочный вес снижен на ~30% (апдейт 2024)</li>
+          <li><b>Алиса</b> опирается на Яндекс.Поиск → попасть в топ Яндекса = попасть в ответ Алисы</li>
+          <li>Региональность <b>критична</b> — указать явно в Вебмастере</li>
+          <li>Баден-Баден: плотность ключей &gt;5% → штраф</li>
+        </ul>
+      </div>
+      <div class="ctx-col ru">
+        <div class="lbl">📊 Инструменты для RU</div>
+        <ul>
+          <li><b>keys.so</b> — конкуренты и gap (уже подключён)</li>
+          <li><b>Яндекс Wordstat</b> — новый UI + beta API (август 2025)</li>
+          <li><b>Яндекс.Метрика</b> — ПФ + конверсии (Counter 87146068)</li>
+          <li><b>Яндекс.Вебмастер</b> — позиции, ошибки, настройка региона</li>
+          <li><b>vc.ru, Habr, Дзен</b> — дистрибуция (топ AI-цитируемость RU)</li>
+          <li><b>YandexAdditional</b> — разрешить в robots.txt для Нейро</li>
+          <li>text.ru — уникальность</li>
+          <li>Rush Analytics, Topvisor — кластеризация</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-chip red"><b>30%</b>потеря трафика<br>инф. сайтами</div>
+      <div class="stat-chip gold"><b>63%</b>цитат Нейро<br>из топ-5</div>
+      <div class="stat-chip blue"><b>~5</b>источников<br>в Нейро</div>
+      <div class="stat-chip teal"><b>74%</b>доля Яндекса<br>в RU</div>
+      <div class="stat-chip green"><b>CTR ÷2</b>после появления<br>Нейро-блока</div>
+    </div>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">P1 — Срочные для RU рынка</div>
+    <div class="item p1">
+      <div class="item-num">1</div>
+      <div class="item-body"><div class="item-title">SpeakableSpecification в /publisher</div><div class="item-desc">Нужен для Алисы и Яндекс AI. Минимальный импакт в RU — но Яндекс Нейро расширяет structured data. 30 минут.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-schema">Schema.org</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">3</div>
+      <div class="item-body"><div class="item-title">AEO precheck — первый абзац = прямой ответ</div><div class="item-desc">Алиса использует источники из топ-5 Яндекса. Нейро: параметрическое знание не используется — только переданные источники. Значит первый абзац ДОЛЖЕН быть прямым ответом.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 час</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">4</div>
+      <div class="item-body"><div class="item-title">Тире-лимит gate как hard block</div><div class="item-desc">RU-специфика редактуры. Текущее правило ≤8 тире не блокирует публикацию автоматически.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">7</div>
+      <div class="item-body"><div class="item-title">robots.txt — YandexAdditional разрешён</div><div class="item-desc">Без YandexAdditional в allow → нет в Нейро. Без Нейро → теряем 63% потенциальных цитирований. Проверять в /publisher.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">30</div>
+      <div class="item-body"><div class="item-title">Inline формы на статьях без конверсий</div><div class="item-desc"><b>Срочно:</b> 0 конверсий с 19 новых статей при 419 визитах. Добавить форму ЛМ «Реформа ОП» в топ-5 по трафику.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="status-blocked">срочно</span></div></div>
+    </div>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">P2 — Важные для RU рынка</div>
+    <div class="item p2">
+      <div class="item-num">14</div>
+      <div class="item-body"><div class="item-title">vc.ru / Habr — дистрибуция как шаг пайплайна</div><div class="item-desc">ChatGPT цитирует vc.ru как авторитетный RU-источник. Perplexity — активно. Нужен автоматический шаг кросс-поста после публикации в WP.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">19</div>
+      <div class="item-body"><div class="item-title">ПФ мониторинг через Метрику</div><div class="item-desc">Bounce rate + время на сайте + глубина просмотра из Метрики в /tracker. Если ПФ плохие → action item в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">28</div>
+      <div class="item-body"><div class="item-title">Yandex Webmaster OAuth token</div><div class="item-desc">Без токена /tracker не получает данные по позициям Яндекс. Три переменные в .env.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-ru">RU</span><span class="status-blocked">blocked</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">29</div>
+      <div class="item-body"><div class="item-title">19 черновиков — прогнать через /editor → /publisher</div><div class="item-desc">Партиями по 3-5. Google Doc ID у каждой статьи. Следующий шаг: редактура → публикация.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span></div></div>
+    </div>
+  </div>
+
+</div><!-- /tab-ru -->
+
+<!-- ==================== TAB: GLOBAL ==================== -->
+<div class="tab-panel" id="tab-global">
+
+  <div class="ctx">
+    <h3>Global рынок — что принципиально отличается</h3>
+    <div class="ctx-grid">
+      <div class="ctx-col gl">
+        <div class="lbl">🌐 Google + Western AI</div>
+        <ul>
+          <li><b>AI Overviews</b> покрывают 49.9% поисков Google (AWR Q4 2025)</li>
+          <li>CTR позиции №1 снизился на <b>58%</b> (Ahrefs дек.2025)</li>
+          <li><b>38% AIO-цитат</b> идут из топ-10 органики (было 76% год назад)</li>
+          <li><b>YouTube — 29-30%</b> всех AI Overview citations (в 200x больше любой платформы)</li>
+          <li><b>Brand mentions</b> корреляция 0.664 с AIO vs 0.218 backlinks</li>
+          <li>Reddit — #2 домен в Google US, 44% social citations в AIO</li>
+          <li>ChatGPT конверсия AI-трафика <b>15.9%</b> (в 6-23x выше органики)</li>
+          <li>Comparison/VS-страницы: <b>7.5%+</b> conversion vs 2-5% baseline</li>
+        </ul>
+      </div>
+      <div class="ctx-col gl">
+        <div class="lbl">🛠 Инструменты для Global</div>
+        <ul>
+          <li><b>Ahrefs</b> — keyword research + Brand Radar 2.0 (243M+ organic prompts)</li>
+          <li><b>Semrush</b> — Keyword Magic + Prompt Tracking</li>
+          <li><b>AlsoAsked</b> + AnswerThePublic — вопросная семантика</li>
+          <li><b>Otterly.AI / Profound</b> — AI brand monitoring</li>
+          <li><b>G2, Capterra, ProductHunt</b> — review platforms (AggregateRating schema)</li>
+          <li><b>GSC</b> — AI Overview impressions + CTR</li>
+          <li><b>Reddit, LinkedIn, Medium</b> — дистрибуция</li>
+          <li>MuckRack — author authority profile</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-chip red"><b>58%</b>падение CTR<br>позиции №1</div>
+      <div class="stat-chip gold"><b>29-30%</b>AIO из YouTube<br>(в 200x больше)</div>
+      <div class="stat-chip teal"><b>0.664</b>корреляция<br>brand mentions + AIO</div>
+      <div class="stat-chip blue"><b>15.9%</b>конверсия<br>ChatGPT трафика</div>
+      <div class="stat-chip green"><b>7.5%</b>conversion<br>VS-страниц</div>
+    </div>
+  </div>
+
+  <!-- Comparison table: RU vs Global -->
+  <div class="ctx">
+    <h3>Что менять в пайплайне для Global</h3>
+    <table class="channel-table">
+      <thead><tr><th>Параметр</th><th>RU (текущий)</th><th>Global (нужно добавить)</th></tr></thead>
+      <tbody>
+        <tr><td>Поисковые движки</td><td>Яндекс 74%, Google 26%</td><td class="win">Google 90%+ · Bing 10%</td></tr>
+        <tr><td>AI-системы</td><td>Яндекс Нейро, Алиса</td><td class="win">ChatGPT Search, Perplexity, Google AIO, Claude, Gemini</td></tr>
+        <tr><td>Keyword tools</td><td>keys.so, Wordstat</td><td class="win">Ahrefs, Semrush, AlsoAsked</td></tr>
+        <tr><td>Топ-дистрибуция</td><td>vc.ru, Habr, Дзен</td><td class="win">Reddit, YouTube, LinkedIn, G2, Medium</td></tr>
+        <tr><td>Brand monitoring</td><td>Google Alerts (RU)</td><td class="win">Ahrefs Brand Radar, Otterly.AI, Semrush</td></tr>
+        <tr><td>Review platforms</td><td>Нет</td><td class="win">G2, Capterra, Trustpilot — AggregateRating schema</td></tr>
+        <tr><td>Video канал</td><td>Нет</td><td class="win">YouTube sub-pipeline (29-30% AIO citations)</td></tr>
+        <tr><td>Entity graph</td><td>Минимальный</td><td class="win">Wikidata Q-ID + полный sameAs + Organization/Person</td></tr>
+        <tr><td>Schema</td><td>Article + FAQ + Author</td><td class="win">+ Review + AggregateRating + SoftwareApplication + ItemList</td></tr>
+        <tr><td>Форматы контента</td><td>Статьи + кейсы</td><td class="win">+ VS/Comparison pages + Best-of lists</td></tr>
+        <tr><td>robots.txt AI</td><td>YandexAdditional</td><td class="win">+ OAI-SearchBot, Claude-SearchBot, PerplexityBot</td></tr>
+        <tr><td>Язык / редактура</td><td>Глубокий RU (кальки, тире, ритм)</td><td class="warn">Отдельные правила для EN</td></tr>
+        <tr><td>ПФ оптимизация</td><td>Приоритет #1 для Яндекса</td><td class="no">Не актуально для Google (NavBoost indirect)</td></tr>
+        <tr><td>Региональность</td><td>Критична для Яндекса</td><td class="no">Слабый фактор для Google</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">P1 — Первые шаги для Global пайплайна</div>
+
+    <div class="item p1">
+      <div class="item-num">1</div>
+      <div class="item-body"><div class="item-title">SpeakableSpecification + расширенный Schema stack</div><div class="item-desc">Для Global: добавить Review + AggregateRating (звёзды в SERP Google), ItemList для «Best of» страниц, BreadcrumbList. Кейс Previsible: SoftwareApplication schema → +150% AI трафика за 90 дней.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-schema">Schema.org</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 часа</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">6</div>
+      <div class="item-body"><div class="item-title">JS-SEO валидация — особо критично для Global</div><div class="item-desc">Google + ChatGPT + Perplexity не рендерят JS. Gemini 3 (с января 2026 дефолтный в Google AI Mode) расширил пул источников — но только для статически доступного контента.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 час</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">5</div>
+      <div class="item-body"><div class="item-title">Information Gain check — ключевой сигнал Google 2026</div><div class="item-desc">После March 2026 core update — доминирующий сигнал (Digital Applied). AI-парафраз = низкий score. Собственные данные = +15-25%. Критично для Google.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 час</span></div></div>
+    </div>
+    <div class="item p1">
+      <div class="item-num">7</div>
+      <div class="item-body"><div class="item-title">robots.txt — OAI-SearchBot, PerplexityBot, Claude-SearchBot</div><div class="item-desc">Без OAI-SearchBot = нет в ChatGPT Search. PerplexityBot crawl-to-referral ~110:1 (лучший ROI). ClaudeBot 23951:1 (нагрузка без отдачи — можно rate-limit).</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~30 мин</span></div></div>
+    </div>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">P2 — Ключевые доработки для Global</div>
+
+    <div class="item p2">
+      <div class="item-num">15</div>
+      <div class="item-body">
+        <div class="item-title">Brand mentions monitoring — приоритет для Global</div>
+        <div class="item-desc">Brand mentions = №1 фактор для Google AIO (корреляция 0.664). Backlinks = 0.218. Топ-25% брендов по упоминаниям → 10x больше AIO-цитат. Для RU это тоже важно, но для Global — критично.</div>
+        <div class="item-detail">Инструменты: Ahrefs Brand Radar 2.0 (243M+ organic prompts), Semrush Brand Monitoring, Google Alerts. В /tracker: monthly unlinked mentions count → если меньше цели → action item: «5 упоминаний на [Reddit/LinkedIn/G2/Medium]».</div>
+        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">17</div>
+      <div class="item-body">
+        <div class="item-title">VS/Comparison pages — шаблон в /writer</div>
+        <div class="item-desc">51% B2B buyers начинают research в AI chatbot. VS-страницы = самый цитируемый формат для commercial intent в ChatGPT/Perplexity. 7.5%+ conversion. Для RU меньше актуально, для Global — один из топ-форматов.</div>
+        <div class="item-detail">Шаблон: честная comparison table (включая сильные стороны конкурента), use cases где конкурент лучше, pricing, FAQPage schema с comparative questions, «When to use X instead of Y». Princeton research: Fluency + Statistics = лучшая пара для LLM-цитирования (не Quote + Cite).</div>
+        <div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 день</span></div>
+      </div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">10</div>
+      <div class="item-body">
+        <div class="item-title">Entity-SEO @id + mainEntityOfPage</div>
+        <div class="item-desc">Google Knowledge Graph Clarity Cleanup 2025: удалено 3 млрд сущностей. @id consistency — критичнее sameAs. Преобразует сайт в «мини-Knowledge Graph».</div>
+        <div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
       </div>
     </div>
 
     <div class="item p2">
       <div class="item-num">9</div>
       <div class="item-body">
-        <div class="item-title">Corpus brand voice — обновление из опубликованных статей</div>
-        <div class="item-desc">ContentOS строит профиль голоса бренда из корпуса N статей клиента. Сейчас у нас голос описан в FACTOR_WRITING_RULES.md и russian-language-reference.md, но это статические правила — они не обновляются из новых статей. С ростом блога (28+ статей) правила начинают расходиться с реальным опубликованным голосом.</div>
-        <div class="item-detail">
-          Добавить в /researcher или отдельный /brand-voice скилл: раз в квартал парсить последние 10 опубликованных статей → выводить «что отличает наш голос» (частые глаголы, типичная длина предложения, соотношение H2/H3, характерные обороты). Обновлять review-patterns.md.
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/researcher</span>
-          <span class="tag tag-type-research">Research</span>
-          <span class="tag tag-effort">~2 дня</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
-        </div>
-        <div class="effort-label">усилие</div>
+        <div class="item-title">Prompt research artifact — prompts.md для Global</div>
+        <div class="item-desc">LLM-запросы в среднем 7 слов (vs 2-3 для Google). LLM делает 3 поиска на 1 промпт. Для Global: AlsoAsked + AnswerThePublic + прямой опрос ChatGPT/Claude + Brand Radar 2.0.</div>
+        <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
       </div>
     </div>
   </div>
 
-  <!-- P3 -->
   <div class="section-gap">
-    <div class="section-title">P3 — Будущее · стратегические улучшения</div>
+    <div class="section-title">P3 — Стратегические для Global (строить параллельно с контентом)</div>
 
     <div class="item p3">
-      <div class="item-num">10</div>
+      <div class="item-num">20</div>
       <div class="item-body">
-        <div class="item-title">AEO scoring dashboard в /tracker (30d проверка)</div>
-        <div class="item-desc">Через 30 дней после публикации /tracker проверяет AI-упоминания вручную (Perplexity, Яндекс AI). Добавить количественный скор по образцу ContentOS: 0–100 для каждого движка, трекинг динамики между проверками.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/tracker</span>
-          <span class="tag tag-type-aeo">AEO/GEO</span>
-          <span class="tag tag-effort">~3 дня</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
-        </div>
-        <div class="effort-label">усилие</div>
+        <div class="item-title">YouTube sub-pipeline — самый недооценённый AI-канал</div>
+        <div class="item-desc">YouTube = 29-30% Google AIO citations (в 200x больше любой другой платформы). Long-form 10-20 мин = 94% citations vs 5.7% Shorts. Views НЕ коррелируют с citations — структура (chapters, transcripts) коррелирует. Можно конкурировать с крупными брендами быстро через structured content.</div>
+        <div class="item-detail">Sub-pipeline: статья → /video-writer (скрипт по статье, 10-20 мин) → запись → загрузка с timestamped chapters, 500+ слов описания, VideoObject schema + transcript на статье. Citation не зависит от подписчиков — зависит от структуры.</div>
+        <div class="item-meta"><span class="tag tag-skill">new /video</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 нед</span></div>
       </div>
     </div>
 
     <div class="item p3">
-      <div class="item-num">11</div>
+      <div class="item-num">21</div>
       <div class="item-body">
-        <div class="item-title">TZ readiness gate — проверка брифа до /writer</div>
-        <div class="item-desc">ContentOS оценивает ТЗ перед генерацией (88/100 readiness). Если бриф неполный — /writer получает слабую инструкцию. Добавить проверку pipeline.md на полноту перед запуском /writer: есть ли unique angle, competitive gap, locked H2 plan, источники.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/researcher</span>
-          <span class="tag tag-skill">/writer</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-effort">~4 часа</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
+        <div class="item-title">Organization + Person sameAs с Wikidata Q-ID</div>
+        <div class="item-desc">После Clarity Cleanup — Wikidata реалистичнее Wikipedia для входа в Knowledge Graph. Google Agent Rank оценивает автора на entity-level: кто опубликовал, где цитируется, консистентный bio.</div>
+        <div class="item-detail">Создать Wikidata-запись (Q-ID) → добавить в Organization schema: sameAs [LinkedIn, GitHub, YouTube, Crunchbase, Wikidata Q-ID]. MuckRack профиль для author authority. Единый Person @id через все публикации (гостевые посты, vc.ru, Medium).</div>
+        <div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 дня</span></div>
       </div>
     </div>
 
     <div class="item p3">
-      <div class="item-num">12</div>
+      <div class="item-num">24</div>
       <div class="item-body">
-        <div class="item-title">/page-optimizer — чтение action items из pipeline.md</div>
-        <div class="item-desc">/tracker записывает action items в pipeline.md (раздел «## Action items»), /page-optimizer должен их читать и вычёркивать выполненные. Сейчас этот loop не замкнут — items накапливаются, но не исполняются автоматически.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/page-optimizer</span>
-          <span class="tag tag-skill">/tracker</span>
-          <span class="tag tag-type-auto">Автоматизация</span>
-          <span class="tag tag-effort">~1 день</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
+        <div class="item-title">Reddit/community agent для Global</div>
+        <div class="item-desc">Reddit = 44% social-media citations в AIO, 46.7% Perplexity community-запросов. Volatile (падение 350 SISTRIX points за день), но мощный. Для RU аналог — vc.ru комменты + Telegram-чаты.</div>
+        <div class="item-detail">90/10 rule. Crawl phase: профильные сабреддиты (r/sales, r/b2b), 0 ссылок. Walk phase: ссылки где уместно. Run phase: собственные треды с исследованиями. Отслеживать суммарный upvote score и количество ссылок в ответах.</div>
+        <div class="item-meta"><span class="tag tag-skill">new /community</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 нед</span></div>
       </div>
     </div>
-  </div>
 
-  <!-- Tech Debt -->
-  <div class="section-gap">
-    <div class="section-title">Технический долг — накоплен, решать параллельно</div>
-
-    <div class="item td">
-      <div class="item-num">13</div>
+    <div class="item p3">
+      <div class="item-num">25</div>
       <div class="item-body">
-        <div class="item-title">Yandex Webmaster OAuth token для /tracker</div>
-        <div class="item-desc">Без токена /tracker не получает данные по позициям через Яндекс.Вебмастер API. Задача висит в MEMORY.md. Нужен OAuth ALL_SCOPES через Яндекс.OAuth → добавить в .env три переменные.</div>
-        <div class="item-detail">
-          Переменные: <code>YANDEX_WEBMASTER_TOKEN</code>, <code>YANDEX_WEBMASTER_USER_ID</code>, <code>YANDEX_WEBMASTER_HOST_ID=https:factor-prodazh.ru:443</code>. Получить: Яндекс.OAuth → создать приложение с правом <code>webmaster:read</code> → пройти авторизацию → скопировать token.
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/tracker</span>
-          <span class="tag tag-type-auto">Автоматизация</span>
-          <span class="status status-blocked dot-icon">blocked</span>
-        </div>
-      </div>
-      <div class="item-right">
-        <div class="effort-bar">
-          <div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div>
-        </div>
-        <div class="effort-label">усилие</div>
+        <div class="item-title">Topical authority map + semantic clustering</div>
+        <div class="item-desc">siteFocusScore + siteRadius (из утечки): Google векторизует страницы относительно ядра темы сайта. Для Global: кластеризация через sentence-BERT embeddings (не только SERP), entity-grouping вокруг топик-кластеров.</div>
+        <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 дня</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Sequence -->
-  <div class="source-card" style="margin-bottom:0;">
-    <h3>Рекомендуемая очерёдность</h3>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
-      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
-        <div style="font-weight:600;margin-bottom:4px;">Неделя 1</div>
-        <div style="color:var(--muted);">#1 SpeakableSpecification · #4 Тире gate · #3 AEO precheck</div>
-        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">~2–3 часа суммарно, чистые изменения в скиллах</div>
-      </div>
-      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
-        <div style="font-weight:600;margin-bottom:4px;">Неделя 2</div>
-        <div style="color:var(--muted);">#2 Locked H2 · #13 Webmaster OAuth · #6 AI-detection</div>
-        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Разблокирует /tracker + улучшает качество черновиков</div>
-      </div>
-      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
-        <div style="font-weight:600;margin-bottom:4px;">Неделя 3–4</div>
-        <div style="color:var(--muted);">#7 Citation integrity · #8 Uniqueness · #5 AEO scoring</div>
-        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Тяжелее, но даёт ContentOS-уровень верификации</div>
-      </div>
-      <div style="background:#f3f3f3;border-radius:6px;padding:10px 14px;font-size:13px;">
-        <div style="font-weight:600;margin-bottom:4px;">Квартал</div>
-        <div style="color:var(--muted);">#9 Brand voice · #10 AEO dashboard · #11 TZ gate · #12 page-optimizer</div>
-        <div style="font-size:11px;color:var(--muted2);margin-top:4px;">Стратегические, не срочные</div>
-      </div>
+  <!-- Key insight for global -->
+  <div class="ctx" style="margin-bottom:0;">
+    <h3>Ключевой инсайт: Princeton GEO Paper для Global</h3>
+    <div style="font-size:13px; line-height:1.6; color:var(--muted);">
+      Исследование на 10 000 запросов в Perplexity.ai выявило контр-интуитивный результат. Лучшая пара для LLM-цитирования — <b style="color:var(--text)">Fluency + Statistics</b>, а не Quote + Cite:
     </div>
+    <table class="channel-table" style="margin-top:12px;">
+      <thead><tr><th>Тактика</th><th>Прирост видимости в LLM</th><th>Что делать в пайплайне</th></tr></thead>
+      <tbody>
+        <tr><td><b>Quotation Addition</b></td><td class="win">+42.6%</td><td>Цитаты экспертов с атрибуцией в /writer</td></tr>
+        <tr><td><b>Statistics Addition</b></td><td class="win">+32.8%</td><td>Заменять «многие» на «X из Y» в /editor</td></tr>
+        <tr><td><b>Fluency Optimization</b></td><td class="win">+28.7%</td><td>Короткие чёткие предложения с инлайн-цифрами</td></tr>
+        <tr><td><b>Cite Sources</b></td><td class="win">+27.7%</td><td>Inline-ссылки на первоисточники в /fact-checker</td></tr>
+        <tr><td>Keyword Stuffing</td><td style="color:var(--red);font-weight:600;">отрицательный</td><td>Запрещено в правилах /writer</td></tr>
+        <tr><td>Content Padding</td><td class="no">не работает</td><td>Глубина важнее длины (декабрь 2025 core update)</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:12px; color:var(--muted2); margin-top:10px;">«Underdog effect»: низкоранжированные сайты получают непропорционально больший прирост от Cite Sources (+115% для позиции 5 vs почти ноль для топ-1). Для нового проекта — приоритет на Citations, не на Fluency.</div>
   </div>
 
-</div>
-</div>
+</div><!-- /tab-global -->
 
+</div><!-- /wrap -->
+</div><!-- /main -->
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
 </body>
 </html>
