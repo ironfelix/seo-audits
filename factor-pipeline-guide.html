@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как писать статьи через AI-пайплайн — Фактор Продаж</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f1;
+  --white: #ffffff;
+  --dark: #1a1a1a;
+  --gold: #e8a838;
+  --gold-light: #fff8ed;
+  --gold-border: rgba(232,168,56,.3);
+  --green: #2a7a4b;
+  --green-light: #f0faf4;
+  --green-border: rgba(42,122,75,.2);
+  --blue: #4f46e5;
+  --blue-light: rgba(99,102,241,.08);
+  --red: #c01020;
+  --border: #e2e0db;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+  background: var(--dark);
+  padding: 40px 0 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .06;
+  pointer-events: none;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+.hero h1 {
+  font-size: 26px; font-weight: 800; color: #fff;
+  line-height: 1.2; margin-bottom: 8px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-sub { font-size: 14px; color: #94a3b8; margin-bottom: 20px; }
+.hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-links a {
+  font-size: 12px; font-weight: 600; color: #94a3b8;
+  text-decoration: none; padding: 5px 12px;
+  border: 1px solid rgba(148,163,184,.3); border-radius: 6px;
+}
+.hero-links a:hover { color: #fff; border-color: rgba(255,255,255,.4); }
+
+.page-body { padding: 32px 0 60px; }
+
+/* Steps */
+.step {
+  display: flex;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.step.auto { border-left: 4px solid var(--green); }
+.step.manual { border-left: 4px solid var(--gold); }
+.step.stop { border-left: 4px solid var(--red); }
+
+.step-num {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step.auto .step-num { background: var(--green-light); color: var(--green); }
+.step.manual .step-num { background: var(--gold-light); color: #b07d10; }
+.step.stop .step-num { background: #fff0f0; color: var(--red); }
+
+.step-content { flex: 1; }
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.step-title { font-size: 16px; font-weight: 700; }
+.step-cmd {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: var(--dark);
+  color: var(--gold);
+  padding: 2px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.step-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.tag-auto { background: var(--green-light); color: var(--green); }
+.tag-manual { background: var(--gold-light); color: #b07d10; }
+.tag-stop { background: #fff0f0; color: var(--red); }
+
+.step-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.step-desc strong { color: var(--text); }
+
+.step-result {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.step.auto .step-result { background: var(--green-light); color: var(--green); }
+.step.manual .step-result { background: var(--gold-light); color: #7a5a0a; }
+.step.stop .step-result { background: #fff0f0; color: var(--red); }
+
+.step-checklist {
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+}
+.step-checklist li {
+  font-size: 13px;
+  color: var(--text);
+  padding: 3px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.step-checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 0;
+  color: var(--muted2);
+}
+
+/* Connector */
+.step-connector {
+  text-align: center;
+  font-size: 18px;
+  color: var(--muted2);
+  margin: 4px 0;
+}
+
+/* Section */
+.section-head {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--muted2);
+  margin: 32px 0 12px;
+}
+
+/* Brief block */
+.brief-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.brief-block h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.brief-field {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.brief-label {
+  min-width: 160px;
+  color: var(--muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.brief-value { color: var(--text); }
+.brief-example {
+  font-size: 12px;
+  color: var(--muted2);
+  font-style: italic;
+}
+
+/* Info box */
+.info-box {
+  background: var(--blue-light);
+  border: 1px solid rgba(99,102,241,.2);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.info-box strong { color: var(--blue); }
+
+.warn-box {
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.tl-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.tl-week { font-size: 11px; color: var(--muted2); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+.tl-dates { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.tl-items { font-size: 13px; line-height: 1.6; }
+.tl-items li { margin-bottom: 3px; padding-left: 14px; position: relative; }
+.tl-items li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+/* FAQ */
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.faq-q { font-weight: 700; margin-bottom: 6px; }
+.faq-a { font-size: 14px; color: var(--muted); }
+
+footer {
+  background: var(--dark);
+  padding: 16px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-sub">Фактор Продаж · Внутренний гайд</div>
+    <h1>Как написать статью<br>через <span>AI-пайплайн</span></h1>
+    <p style="color:#94a3b8; font-size:14px; margin-bottom:20px;">Пошаговая инструкция для команды · 8 шагов от темы до публикации</p>
+    <div class="hero-links">
+      <a href="factor-prodazh-board.html">← Борд проекта</a>
+      <a href="https://factor-prodazh.ru/blog/" target="_blank">Блог сайта</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+<div class="wrap">
+
+  <div class="info-box">
+    <strong>Что это такое:</strong> AI-пайплайн — это набор команд для Claude (AI-ассистента), которые автоматически исследуют тему, пишут черновик, редактируют его, проверяют факты и публикуют статью на сайт. Твоя задача — дать тему и проверить результат перед публикацией.
+  </div>
+
+  <!-- BEFORE YOU START -->
+  <div class="section-head">Перед началом</div>
+
+  <div class="brief-block">
+    <h3>Что нужно чтобы начать</h3>
+    <div class="brief-field">
+      <div class="brief-label">Claude Code</div>
+      <div class="brief-value">Доступ выдаёт Иван — API-ключ + настроенные команды</div>
+    </div>
+    <div class="brief-field">
+      <div class="brief-label">Тема статьи</div>
+      <div class="brief-value">Конкретная: «как составить план продаж», «что такое KPI менеджера»</div>
+    </div>
+    <div class="brief-field">
+      <div class="brief-label">Время</div>
+      <div class="brief-value">~30–40 минут активного времени. Claude работает сам, ты проверяешь.</div>
+    </div>
+    <div class="brief-field">
+      <div class="brief-label">Папка проекта</div>
+      <div class="brief-value"><code style="font-family:monospace; font-size:13px;">factor/articles/</code> — туда идут все материалы</div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="section-head">8 шагов пайплайна</div>
+
+  <!-- STEP 0: BRIEF -->
+  <div class="step manual">
+    <div class="step-num">0</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Заполни бриф</div>
+        <div class="step-tag tag-manual">Делаешь ты · 10 мин</div>
+      </div>
+      <div class="step-desc">
+        Открой файл <strong>factor/brief.md</strong> и заполни его. Это единственный шаг где нужно думать — остальное делает Claude.<br><br>
+        Что писать в брифе:
+      </div>
+      <div style="margin-top:12px; background:var(--bg); border-radius:8px; padding:14px 16px; font-size:13px; font-family:'Courier New',monospace; line-height:1.8;">
+        <span style="color:var(--muted2)"># Тема статьи</span><br>
+        Как составить план продаж на месяц<br><br>
+        <span style="color:var(--muted2)"># Целевая аудитория</span><br>
+        РОП, собственник бизнеса с отделом продаж<br><br>
+        <span style="color:var(--muted2)"># Главный ключевой запрос</span><br>
+        план продаж на месяц<br><br>
+        <span style="color:var(--muted2)"># Что важно упомянуть (опционально)</span><br>
+        — кейс с клиентом из строительной отрасли<br>
+        — формула расчёта плана от воронки
+      </div>
+      <div class="step-result">📄 Результат: заполненный brief.md — Claude прочитает его и будет отталкиваться от него при написании</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 1: RESEARCHER -->
+  <div class="step auto">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Ресёрч</div>
+        <div class="step-cmd">/researcher</div>
+        <div class="step-tag tag-auto">Claude делает сам · 5–10 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude изучает топ-10 конкурентов по твоей теме, находит уникальный угол («чего нет у других»), проверяет факты и цифры.<br><br>
+        <strong>Ты просто пишешь команду</strong> в чат Claude: <code style="font-family:monospace; font-size:13px; background:#f0f0ed; padding:2px 6px; border-radius:4px;">/researcher slug=plan-prodazh-na-mesyats</code>
+      </div>
+      <div class="step-result">📁 Результат: файл research-report.md в папке статьи + создан pipeline.md для отслеживания прогресса</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 2: WRITER -->
+  <div class="step auto">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Написать черновик</div>
+        <div class="step-cmd">/writer</div>
+        <div class="step-tag tag-auto">Claude делает сам · 10–15 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude пишет статью на основе ресёрча и брифа. Стиль — голос Фактора Продаж: уверенный, конкретный, с кейсами. Без «следует отметить» и прочего ИИ-мусора.<br><br>
+        Обычный объём: <strong>3 000–5 000 слов</strong>, структурированная статья с H1/H2/FAQ.
+      </div>
+      <div class="step-result">📝 Результат: HTML-черновик статьи + Google Doc создаётся автоматически (ссылка в чате)</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 3: EDITOR -->
+  <div class="step auto">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Редактура</div>
+        <div class="step-cmd">/editor</div>
+        <div class="step-tag tag-auto">Claude делает сам · 5–7 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude убирает ИИ-обороты, добавляет живой голос компании, заменяет размытые фразы на конкретику. Если есть Google Doc — правит прямо в нём с комментариями.<br><br>
+        <strong>После редактуры:</strong> зайди в Google Doc и посмотри комментарии. Если что-то не устраивает — напиши Claude что поменять.
+      </div>
+      <div class="step-result">✏️ Результат: отредактированный Google Doc с комментариями по правкам</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 4: FACT-CHECKER -->
+  <div class="step auto">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Проверка фактов</div>
+        <div class="step-cmd">/fact-checker</div>
+        <div class="step-tag tag-auto">Claude делает сам · 3–5 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude проверяет все цифры, источники и утверждения в статье. Сомнительные места помечает — их нужно будет проверить вручную или убрать.
+      </div>
+      <div class="step-result">✅ Результат: список проверенных/спорных утверждений. Помеченные [ПРОВЕРИТЬ] нужно закрыть перед публикацией</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 5: QUALITY GATE -->
+  <div class="step auto">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Контроль качества</div>
+        <div class="step-cmd">/quality-gate</div>
+        <div class="step-tag tag-auto">Claude делает сам · 2–3 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude проверяет статью по 15 критериям — структура, язык, E-E-A-T, FAQ, внутренние ссылки и т.д. Выдаёт вердикт <strong>PASS / FAIL</strong>.<br><br>
+        Если <strong>FAIL</strong> — Claude сам исправляет и перепроверяет. Публикация невозможна пока нет PASS.
+      </div>
+      <div class="step-result">🎯 Результат: вердикт PASS (можно идти дальше) или список проблем для исправления</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 6: SEO OPTIMIZER -->
+  <div class="step auto">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">SEO-упаковка</div>
+        <div class="step-cmd">/seo-optimizer</div>
+        <div class="step-tag tag-auto">Claude делает сам · 3–5 мин</div>
+      </div>
+      <div class="step-desc">
+        Claude готовит все SEO-элементы: H1 с ключевым словом и годом, мета-заголовок (50–60 символов), описание (120–155 символов), теги для обложки, FAQ из реальных запросов Яндекса.
+      </div>
+      <div class="step-result">🔍 Результат: готовые SEO-поля для WordPress + оптимизированные H2-заголовки</div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 7: PUBLISHER — STOP -->
+  <div class="step stop">
+    <div class="step-num">7</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Публикация</div>
+        <div class="step-cmd">/publisher</div>
+        <div class="step-tag tag-stop">🔴 Стоп — нужна твоя проверка</div>
+      </div>
+      <div class="step-desc">
+        Claude создаёт черновик в WordPress и Google Doc. <strong>Здесь нужно остановиться и проверить статью</strong> перед тем как она уйдёт на сайт.<br><br>
+        Claude пришлёт две ссылки:
+      </div>
+      <ul class="step-checklist">
+        <li>Google Doc со статьёй — прочитай, убедись что всё окей</li>
+        <li>Предпросмотр WordPress — посмотри как выглядит на сайте</li>
+        <li>Нет [ПРОВЕРИТЬ] в тексте</li>
+        <li>Кейс реальный (с factor-prodazh.ru/case/)</li>
+        <li>Тон звучит как Фактор, не как ChatGPT</li>
+      </ul>
+      <div class="step-result" style="margin-top:12px;">
+        ✅ Если всё ок — напиши <strong>«публикуем»</strong><br>
+        ✏️ Если нужны правки — напиши что поменять, Claude исправит<br>
+        ❌ «да», «ок», «хорошо» — Claude не воспринимает как команду. Только <strong>«публикуем»</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-connector">↓</div>
+
+  <!-- STEP 8: AUTO PUBLISH -->
+  <div class="step auto">
+    <div class="step-num">8</div>
+    <div class="step-content">
+      <div class="step-header">
+        <div class="step-title">Статья на сайте</div>
+        <div class="step-tag tag-auto">Claude делает сам · 2–3 мин</div>
+      </div>
+      <div class="step-desc">
+        После «публикуем» Claude автоматически: форматирует статью (таблицы, карточки шагов, FAQ-аккордеон), заполняет SEO-поля, генерирует обложку, публикует. Добавляет статью в llms.txt чтобы AI-поисковики её индексировали.
+      </div>
+      <div class="step-result">🚀 Результат: статья опубликована. Claude пришлёт ссылку на живую страницу.</div>
+    </div>
+  </div>
+
+  <!-- JUNE PLAN -->
+  <div class="section-head" style="margin-top:40px;">План на июнь 2026</div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:20px;">
+    <div style="font-size:16px; font-weight:700; margin-bottom:4px;">Цель июня</div>
+    <div style="color:var(--muted); font-size:14px; margin-bottom:16px;">Опубликовать 19 готовых черновиков + команда Светы самостоятельно делает первые 2–3 статьи</div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <div style="background:var(--green-light); border:1px solid var(--green-border); border-radius:8px; padding:10px 16px; text-align:center; min-width:100px;">
+        <div style="font-size:22px; font-weight:800; color:var(--green);">28</div>
+        <div style="font-size:11px; color:var(--green);">статей сейчас</div>
+      </div>
+      <div style="display:flex; align-items:center; font-size:20px; color:var(--muted2);">→</div>
+      <div style="background:var(--gold-light); border:1px solid var(--gold-border); border-radius:8px; padding:10px 16px; text-align:center; min-width:100px;">
+        <div style="font-size:22px; font-weight:800; color:#b07d10;">~47</div>
+        <div style="font-size:11px; color:#b07d10;">к концу июня</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:flex-start;">
+      <div style="min-width:90px; flex-shrink:0;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2);">2–6 июня</div>
+        <div style="font-size:13px; font-weight:700; color:var(--dark);">Неделя 11</div>
+      </div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
+        Публикуем <strong style="color:var(--text);">5 статей</strong> из 19 готовых черновиков.
+        Ставим форму «Реформа ОП» прямо в тело топ-3 статей с трафиком — там сейчас 280+ визитов и ноль заявок.
+        Подключаем Яндекс Вебмастер чтобы видеть позиции статей в поиске.
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:flex-start;">
+      <div style="min-width:90px; flex-shrink:0;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2);">9–13 июня</div>
+        <div style="font-size:13px; font-weight:700; color:var(--dark);">Неделя 12</div>
+      </div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
+        Публикуем ещё <strong style="color:var(--text);">5 статей</strong>.
+        Команда Светы делает <strong style="color:var(--text);">первую статью вместе с Иваном</strong> — прогон всего пайплайна вживую, шаг за шагом.
+        Смотрим первые результаты ПФ-продвижения (2 недели прошло — должен быть сигнал).
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:flex-start;">
+      <div style="min-width:90px; flex-shrink:0;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2);">16–20 июня</div>
+        <div style="font-size:13px; font-weight:700; color:var(--dark);">Неделя 13</div>
+      </div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
+        Публикуем ещё <strong style="color:var(--text);">5 статей</strong>.
+        Команда Светы самостоятельно делает <strong style="color:var(--text);">2 статьи</strong> — с поддержкой, но без ручного ведения.
+        Смотрим трафик и конверсии: видно ли что новые статьи уже индексируются.
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:flex-start;">
+      <div style="min-width:90px; flex-shrink:0;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2);">23–27 июня</div>
+        <div style="font-size:13px; font-weight:700; color:var(--dark);">Неделя 14</div>
+      </div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
+        Публикуем <strong style="color:var(--text);">последние 4 статьи</strong> — итого на сайте ~47 статей.
+        Подводим итоги апрель–июнь: трафик, конверсии, позиции.
+        Планируем июль: новые темы, следующая партия черновиков.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-head">Частые вопросы</div>
+
+  <div class="faq-item">
+    <div class="faq-q">Сколько времени занимает одна статья?</div>
+    <div class="faq-a">30–40 минут твоего времени. Claude работает параллельно — пока он пишет, ты занимаешься другим. Читаешь результат когда готово.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Что если Claude написал что-то неправильно?</div>
+    <div class="faq-a">На шаге 7 (проверка перед публикацией) напиши что поменять: «переделай раздел про X», «убери кейс про логистику, он не реальный», «сделай вводный абзац короче». Claude исправит и покажет снова.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Обязательно ли делать все 8 шагов?</div>
+    <div class="faq-a">Да. Пропускать fact-checker и quality-gate нельзя — иначе на сайт могут попасть выдуманные кейсы или ИИ-язык. /publisher проверяет что все шаги пройдены и не опубликует без них.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Кейсы — можно выдумать похожий на реальный?</div>
+    <div class="faq-a">Нет. Только реальные кейсы с factor-prodazh.ru/case/ или подтверждённые Кандеевым. Claude знает об этом правиле и ставит пометку [нужна деталь от клиента] вместо выдуманного кейса.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Как придумать slug (URL статьи)?</div>
+    <div class="faq-a">Это адрес статьи на сайте. Латиницей, через дефисы, от ключевого запроса. Пример: «план продаж на месяц» → <code style="font-family:monospace; font-size:12px; background:#f0f0ed; padding:1px 5px; border-radius:3px;">plan-prodazh-na-mesyats</code>. Claude предложит вариант сам.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Что делать если Claude «завис» или написал что-то странное?</div>
+    <div class="faq-a">Напиши Ивану. Не перезапускай сессию сам — в ней сохранён прогресс работы над статьёй. Или спроси Claude напрямую: «что ты сейчас делаешь?»</div>
+  </div>
+
+  <!-- WARN -->
+  <div class="warn-box" style="margin-top:24px;">
+    <strong>Главное правило:</strong> Не пиши «публикуем» пока не прочитал статью. После этого слова статья уходит на сайт автоматически. «Да», «ок», «хорошо» — не считаются, только <strong>«публикуем»</strong>.
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Фактор Продаж · Внутренний гайд по AI-пайплайну · factor-prodazh.ru
+  </div>
+</footer>
+
+</body>
+</html>
