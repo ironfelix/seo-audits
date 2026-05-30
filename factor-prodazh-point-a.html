@@ -241,6 +241,64 @@
     font-size: 12px; color: var(--muted2);
   }
 
+  /* ── TABS ── */
+  .tabs-nav {
+    display: flex; gap: 4px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px; margin-top: 8px;
+  }
+  .tab-btn {
+    padding: 10px 20px; font-size: 13px; font-weight: 600;
+    color: var(--muted); background: none; border: none;
+    border-bottom: 2px solid transparent; margin-bottom: -2px;
+    cursor: pointer; transition: all .15s; border-radius: 6px 6px 0 0;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--dark); background: rgba(0,0,0,.03); }
+  .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--white); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px;
+  }
+  .compare-table th {
+    background: #f8f7f4; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border);
+  }
+  .compare-table td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    font-size: 13px; vertical-align: middle;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .metric-name { font-weight: 600; color: var(--dark); }
+  .compare-table .was { color: var(--muted); }
+  .compare-table .now { font-weight: 700; color: var(--dark); }
+  .compare-table .delta { font-weight: 700; font-size: 12px; white-space: nowrap; }
+  .delta.up { color: var(--green); }
+  .delta.neutral { color: var(--muted2); }
+  .delta.tbd { color: var(--muted2); font-weight: 400; font-style: italic; }
+
+  /* Done list */
+  .done-list { list-style: none; }
+  .done-list li {
+    padding: 8px 14px 8px 28px; border-bottom: 1px solid var(--border);
+    position: relative; font-size: 13px;
+    background: var(--white);
+  }
+  .done-list li:first-child { border-radius: 10px 10px 0 0; }
+  .done-list li:last-child { border-bottom: none; border-radius: 0 0 10px 10px; }
+  .done-list li::before {
+    content: '✓'; position: absolute; left: 10px;
+    color: var(--green); font-size: 11px; font-weight: 700; top: 10px;
+  }
+  .done-list.border { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .done-list li .sub { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
   @media (max-width: 700px) {
     .metrics-row, .metrics-row.six, .metrics-row.three { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 24px; }
@@ -271,6 +329,17 @@
 
 <div class="page-body">
 <div class="wrap">
+
+  <!-- TABS NAV -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="showTab('tab-a', this)">Точка А — март 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-m1', this)">Месяц 1 — апрель 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-m2', this)">Месяц 2 — май 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-done', this)">Выполненные работы</button>
+    <button class="tab-btn" onclick="showTab('tab-m3plan', this)">Месяц 3 — план</button>
+  </nav>
+
+<div id="tab-a" class="tab-panel active">
 
 <!-- ═══ 1. ТРАФИК ═══ -->
 <div class="section">
@@ -311,7 +380,7 @@
   </div>
 
   <div class="insight">
-    <strong>Ключевое наблюдение:</strong> 47% трафика — реклама (9 830 визитов). Органика — 35% (7 331). Задача: довести органику до 50%+ и снизить зависимость от платного трафика. При этом рекламу сейчас отключили полностью (Keys.so: 0 активных объявлений с июля 2025) — значит, 9 830 — это последний платный хвост или Яндекс Директ, который не через Keys.so.
+    <strong>Ключевое наблюдение:</strong> 47% трафика: реклама (9 830 визитов). Органика: 35% (7 331). Задача: довести органику до 50%+ и снизить зависимость от платного трафика. При этом рекламу сейчас отключили полностью (Keys.so: 0 активных объявлений с июля 2025): значит, 9 830: это последний платный хвост или Яндекс Директ, который не через Keys.so.
   </div>
 </div>
 
@@ -398,7 +467,7 @@
   </table>
 
   <div class="insight">
-    <strong>Коммерчески ценные ключи (AvBid > 100 ₽):</strong> «лпр» (225 ₽), «стратсессия» (215 ₽), «утп» (179 ₽), «лпр это» (164 ₽), «средний чек» (117 ₽), «отдел продаж» (106 ₽). По ним нужно в топ-10 — это прямые заявки от ЛПР.
+    <strong>Коммерчески ценные ключи (AvBid > 100 ₽):</strong> «лпр» (225 ₽), «стратсессия» (215 ₽), «утп» (179 ₽), «лпр это» (164 ₽), «средний чек» (117 ₽), «отдел продаж» (106 ₽). По ним нужно в топ-10: это прямые заявки от ЛПР.
   </div>
 </div>
 
@@ -426,7 +495,7 @@
   </table>
 
   <div class="note">
-    <strong>Проблема:</strong> Все топ-10 страниц — для менеджеров и студентов, а не для ЛПР. «Как рассчитать стоимость товара» (374 ключа) привлекает бухгалтеров. «Менеджер по продажам — всё о профессии» — соискателей. Трафик есть, лидов нет.
+    <strong>Проблема:</strong> Все топ-10 страниц: для менеджеров и студентов, а не для ЛПР. «Как рассчитать стоимость товара» (374 ключа) привлекает бухгалтеров. «Менеджер по продажам: всё о профессии»: соискателей. Трафик есть, лидов нет.
   </div>
 </div>
 
@@ -449,7 +518,7 @@
       <div class="issue-sev crit">Критично</div>
       <div>
         <div class="issue-title">Нет Open Graph и Twitter Card</div>
-        <div class="issue-body">При шаринге в Telegram, VK, WhatsApp — ссылка без превью. Теряются переходы из мессенджеров. <strong>Решение:</strong> og:title, og:description, og:image через SEO-плагин. 1 час работы.</div>
+        <div class="issue-body">При шаринге в Telegram, VK, WhatsApp: ссылка без превью. Теряются переходы из мессенджеров. <strong>Решение:</strong> og:title, og:description, og:image через SEO-плагин. 1 час работы.</div>
       </div>
     </div>
 
@@ -457,7 +526,7 @@
       <div class="issue-sev crit">Критично</div>
       <div>
         <div class="issue-title">Тестовая запись в индексе</div>
-        <div class="issue-body">/blog/test-zapis/ — HTTP 200, нет noindex, есть в sitemap. Будет проиндексирована. <strong>Решение:</strong> удалить или 301 → /blog/.</div>
+        <div class="issue-body">/blog/test-zapis/: HTTP 200, нет noindex, есть в sitemap. Будет проиндексирована. <strong>Решение:</strong> удалить или 301 → /blog/.</div>
       </div>
     </div>
 
@@ -480,7 +549,7 @@
       <div class="issue-sev warn">Важно</div>
       <div>
         <div class="issue-title">Пустые alt у изображений</div>
-        <div class="issue-body">В проверенных статьях 9+ контентных изображений с alt="". Диаграммы, скрины CRM, скрипты — без описания. Влияет на accessibility и SEO. <strong>Решение:</strong> описательные alt на всех контентных изображениях.</div>
+        <div class="issue-body">В проверенных статьях 9+ контентных изображений с alt="". Диаграммы, скрины CRM, скрипты: без описания. Влияет на accessibility и SEO. <strong>Решение:</strong> описательные alt на всех контентных изображениях.</div>
       </div>
     </div>
 
@@ -488,7 +557,7 @@
       <div class="issue-sev warn">Важно</div>
       <div>
         <div class="issue-title">robots.txt блокирует /cases/ и /reviews/</div>
-        <div class="issue-body">Конверсионный контент (кейсы, отзывы) закрыт от индексации. Кейсы — сильный BOFU-сигнал. <strong>Решение:</strong> открыть или убедиться, что это намеренно.</div>
+        <div class="issue-body">Конверсионный контент (кейсы, отзывы) закрыт от индексации. Кейсы: сильный BOFU-сигнал. <strong>Решение:</strong> открыть или убедиться, что это намеренно.</div>
       </div>
     </div>
 
@@ -496,7 +565,7 @@
       <div class="issue-sev info">Средне</div>
       <div>
         <div class="issue-title">Meta descriptions: часть коротких</div>
-        <div class="issue-body">У части статей description < 100 символов (норма 120–160). Title и H1 не совпадают у некоторых статей — путает поисковик.</div>
+        <div class="issue-body">У части статей description < 100 символов (норма 120–160). Title и H1 не совпадают у некоторых статей, путает поисковик.</div>
       </div>
     </div>
 
@@ -504,7 +573,7 @@
       <div class="issue-sev info">Средне</div>
       <div>
         <div class="issue-title">Устаревшие Nginx 1.20 и PHP 8.1</div>
-        <div class="issue-body">Nginx 1.20.1 (текущая 1.26), PHP 8.1.27 (EOL ноябрь 2025 — нет security-патчей). Не SEO-проблема напрямую, но risk.</div>
+        <div class="issue-body">Nginx 1.20.1 (текущая 1.26), PHP 8.1.27 (EOL ноябрь 2025, нет security-патчей). Не SEO-проблема напрямую, но risk.</div>
       </div>
     </div>
 
@@ -531,8 +600,8 @@
       <tr><td>Canonical</td><td><span class="pill pill-ok">OK</span></td><td>Указаны корректно</td></tr>
       <tr><td>Responsive</td><td><span class="pill pill-ok">OK</span></td><td>Брейкпоинты 600px, flexbox/grid</td></tr>
       <tr><td><strong>CTA-блоки</strong></td><td><span class="pill pill-warn">Улучшить</span></td><td>4–5 CTA на статью — есть, но все ведут на курсы/аудит. Нет BOFU-CTA под конкретный запрос читателя</td></tr>
-      <tr><td><strong>Schema markup</strong></td><td><span class="pill pill-crit">Нет</span></td><td>Нет Article, FAQ, Breadcrumbs — 0 rich snippets</td></tr>
-      <tr><td><strong>OG-теги</strong></td><td><span class="pill pill-crit">Нет</span></td><td>Нет og:title, og:image — плохое отображение при шаринге</td></tr>
+      <tr><td><strong>Schema markup</strong></td><td><span class="pill pill-crit">Нет</span></td><td>Нет Article, FAQ, Breadcrumbs: 0 rich snippets</td></tr>
+      <tr><td><strong>OG-теги</strong></td><td><span class="pill pill-crit">Нет</span></td><td>Нет og:title, og:image: плохое отображение при шаринге</td></tr>
       <tr><td><strong>Alt-тексты</strong></td><td><span class="pill pill-crit">Пусто</span></td><td>Массово пустые alt на контентных изображениях</td></tr>
       <tr><td><strong>Комментарии / UGC</strong></td><td><span class="pill pill-warn">Нет</span></td><td>Упущенный UGC-сигнал и engagement</td></tr>
     </tbody>
@@ -588,7 +657,7 @@
   </table>
 
   <div class="insight">
-    <strong>Итого:</strong> 3 новых BOFU/MOFU статьи (неделя 1) + 2 переработки существующих (неделя 2). Статьи про скидку и B2B уже есть в блоге — переписываем под ЛПР-аудиторию с новыми CTA.
+    <strong>Итого:</strong> 3 новых BOFU/MOFU статьи (неделя 1) + 2 переработки существующих (неделя 2). Статьи про скидку и B2B уже есть в блоге, переписываем под ЛПР-аудиторию с новыми CTA.
   </div>
 </div>
 
@@ -628,7 +697,7 @@
       </tr>
       <tr>
         <td>Расчёт стоимости товара<br><span class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</span></td>
-        <td>CTA-блок (374 ключа — самая трафиковая), meta, alt</td>
+        <td>CTA-блок (374 ключа, самая трафиковая), meta, alt</td>
         <td><span class="pill pill-fix">Quick Win</span></td>
         <td>1</td>
       </tr>
@@ -716,7 +785,7 @@
   </table>
 
   <div class="insight">
-    <strong>Прямые конкуренты:</strong> blog.oy-li.ru (Visibility 200), sales-generator.ru (847), academy-of-capital.ru (269), in-scale.ru (761). У factor-prodazh.ru Visibility = 218 — на уровне Oy-li, но ниже Sales Generator в 4 раза. Зона роста: перехватить ключи конкурентов через BOFU-контент.
+    <strong>Прямые конкуренты:</strong> blog.oy-li.ru (Visibility 200), sales-generator.ru (847), academy-of-capital.ru (269), in-scale.ru (761). У factor-prodazh.ru Visibility = 218: на уровне Oy-li, но ниже Sales Generator в 4 раза. Зона роста: перехватить ключи конкурентов через BOFU-контент.
   </div>
 </div>
 
@@ -768,206 +837,1238 @@
   </div>
 </div>
 
-<!-- ═══ 11. ИТОГИ РАБОТ АПР–МАЙ 2026 ═══ -->
+</div><!-- /tab-a -->
+
+<!-- ══════════════════════════════════════════════════════
+     ТАБ МЕСЯЦ 1
+═══════════════════════════════════════════════════════ -->
+<div id="tab-m1" class="tab-panel">
+
+  <!-- 01 СРАВНЕНИЕ МЕТРИК -->
+  <div class="section" style="margin-top:4px">
+    <div class="section-label">01</div>
+    <div class="section-title">Ключевые метрики: было → стало</div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Метрика</th>
+          <th>Точка А (20 марта)</th>
+          <th>Месяц 1 (апрель)</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric-name">Квал. лиды / мес</td>
+          <td class="was">4</td>
+          <td class="now">8</td>
+          <td class="delta up">+4 (×2) ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Всего лидов апрель</td>
+          <td class="was">—</td>
+          <td class="now">36</td>
+          <td class="delta up">конверсия 22%</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Трафик блога / нед</td>
+          <td class="was">1 709 (фев–мар)</td>
+          <td class="now">2 034</td>
+          <td class="delta up">+325 (+19%)</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Статьи в блоге</td>
+          <td class="was">143</td>
+          <td class="now">151</td>
+          <td class="delta up">+8 новых</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Черновиков готово</td>
+          <td class="was">0</td>
+          <td class="now">7</td>
+          <td class="delta up">+7 ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Schema.org FAQPage</td>
+          <td class="was">нет</td>
+          <td class="now">во всех статьях</td>
+          <td class="delta up">✓ сделано</td>
+        </tr>
+        <tr>
+          <td class="metric-name">SVG-обложки</td>
+          <td class="was">нет</td>
+          <td class="now">v5 (чёрный стиль, Raleway)</td>
+          <td class="delta up">✓ сделано</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-50 ключей</td>
+          <td class="was">4 551</td>
+          <td class="now">5 817</td>
+          <td class="delta up">+1 266 (+28%) ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-10 ключей</td>
+          <td class="was">1 315</td>
+          <td class="now">1 526</td>
+          <td class="delta up">+211 (+16%) ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-5 ключей</td>
+          <td class="was">704</td>
+          <td class="now">757</td>
+          <td class="delta up">+53 (+8%) ↑</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Топ-1 ключей</td>
+          <td class="was">152</td>
+          <td class="now">133</td>
+          <td class="delta neutral" style="white-space:normal; min-width:180px">
+            −19
+            <details style="margin-top:5px">
+              <summary style="cursor:pointer; font-size:11px; font-weight:600; color:var(--blue); list-style:none; display:inline-flex; align-items:center; gap:4px">
+                ↓ 33 ключа упали из топ-1
+              </summary>
+              <div style="margin-top:8px; border-radius:6px; overflow:hidden; border:1px solid var(--border); max-height:300px; overflow-y:auto; font-size:11px;">
+                <table style="width:100%; border-collapse:collapse;">
+                  <thead>
+                    <tr style="background:var(--bg); position:sticky; top:0">
+                      <th style="padding:5px 8px; text-align:left; font-weight:600; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.3px">Ключ</th>
+                      <th style="padding:5px 8px; text-align:center; font-weight:600; color:var(--muted); font-size:10px; white-space:nowrap">Стало</th>
+                      <th style="padding:5px 8px; text-align:right; font-weight:600; color:var(--muted); font-size:10px">WS</th>
+                      <th style="padding:5px 8px; text-align:right; font-weight:600; color:var(--muted); font-size:10px">Интент</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">постоянный клиент</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#3</td><td style="padding:4px 8px; text-align:right">14 487</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">развитие в продажах</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#4</td><td style="padding:4px 8px; text-align:right">6 770</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">бутылочные горлышки</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#6</td><td style="padding:4px 8px; text-align:right">5 135</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">дорого возражение</td><td style="padding:4px 8px; text-align:center; color:var(--red); font-weight:600">#10</td><td style="padding:4px 8px; text-align:right">2 698</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">постоянный клиент это</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#4</td><td style="padding:4px 8px; text-align:right">1 450</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">роп это что</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#8</td><td style="padding:4px 8px; text-align:right">1 293</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">отдел развития продаж</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">1 077</td><td style="padding:4px 8px; text-align:right"><span style="background:#fef9c3;color:#854d0e;font-size:10px;padding:1px 5px;border-radius:3px">🎯 микс</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">мотивация менеджера по продажам</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#3</td><td style="padding:4px 8px; text-align:right">696</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">b2p это</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#8</td><td style="padding:4px 8px; text-align:right">667</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">функции отдела продаж</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#5</td><td style="padding:4px 8px; text-align:right">656</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">окк это</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">653</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">возражение дорого как отработать</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#5</td><td style="padding:4px 8px; text-align:right">519</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">дорого возражение как отработать</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#5</td><td style="padding:4px 8px; text-align:right">492</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">возражение дорого в продажах</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#7</td><td style="padding:4px 8px; text-align:right">451</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">роп это в продажах</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#6</td><td style="padding:4px 8px; text-align:right">438</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">скрипт продаж пример</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#12</td><td style="padding:4px 8px; text-align:right">416</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">менеджер фермер</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">395</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">отдел контроля качества обслуживания</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">284</td><td style="padding:4px 8px; text-align:right"><span style="background:#fef9c3;color:#854d0e;font-size:10px;padding:1px 5px;border-radius:3px">🎯 микс</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">что такое постоянный клиент</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#6</td><td style="padding:4px 8px; text-align:right">262</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">что такое окк</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">224</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">конечный продукт менеджера по продажам</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#4</td><td style="padding:4px 8px; text-align:right">198</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">отработка возражения дорого в продажах</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#6</td><td style="padding:4px 8px; text-align:right">101</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">система мотивации для менеджеров</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">76</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">хантер это в продажах</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#3</td><td style="padding:4px 8px; text-align:right">67</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">скрипт продажника</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#11</td><td style="padding:4px 8px; text-align:right">62</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">план развития отдела продаж образец</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">49</td><td style="padding:4px 8px; text-align:right"><span style="background:#fef9c3;color:#854d0e;font-size:10px;padding:1px 5px;border-radius:3px">🎯 микс</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">курсы для ропа</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#8</td><td style="padding:4px 8px; text-align:right">48</td><td style="padding:4px 8px; text-align:right"><span style="background:#dcfce7;color:#166534;font-size:10px;padding:1px 5px;border-radius:3px">💼 ком</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">готовые скрипты для продаж</td><td style="padding:4px 8px; text-align:center; color:var(--red)">#18</td><td style="padding:4px 8px; text-align:right">46</td><td style="padding:4px 8px; text-align:right"><span style="background:#fef9c3;color:#854d0e;font-size:10px;padding:1px 5px;border-radius:3px">🎯 микс</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">что значит окк</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">44</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">kpi в торговле простыми словами</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#7</td><td style="padding:4px 8px; text-align:right">30</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border)"><td style="padding:4px 8px">отчет менеджера по продажам образец</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#2</td><td style="padding:4px 8px; text-align:right">52</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                    <tr style="border-top:1px solid var(--border); background:var(--bg)"><td style="padding:4px 8px">положение о мотивации отдела продаж</td><td style="padding:4px 8px; text-align:center; color:var(--muted)">#9</td><td style="padding:4px 8px; text-align:right">9</td><td style="padding:4px 8px; text-align:right"><span style="background:#eff6ff;color:#1d4ed8;font-size:10px;padding:1px 5px;border-radius:3px">ℹ инфо</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin:5px 0 0; font-size:10px; color:var(--muted2)">Все упавшие: инфо-запросы (кроме 1 коммерческого: «курсы для ропа» WS 48). Прямого влияния на выручку нет.</p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-name">Visibility (Keys.so)</td>
+          <td class="was">218</td>
+          <td class="now">165</td>
+          <td class="delta neutral">−53 (старые стр. просели)</td>
+        </tr>
+        <tr>
+          <td class="metric-name">AI-ответы Яндекс Нейро</td>
+          <td class="was">248</td>
+          <td class="now">1 404</td>
+          <td class="delta up">+1 156 (+466%) рост</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Страниц в индексе</td>
+          <td class="was">130</td>
+          <td class="now">142</td>
+          <td class="delta up">+12 ↑</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <strong>Главный результат:</strong> квал. лиды выросли с 4 до 8: цель месяца 1 достигнута (план 6–8). +1 266 ключей в топ-50. Рост AI-ответов Нейро ×5,6 (+466%). Трафик блога вырос с 1 709 до 2 034 визитов / нед (+19%). Органика сайта: 7 331 → 7 728 (+5%). Топ-1 просел на 19 ключей (подробности в тогле выше).
+    </div>
+
+    <!-- Разбивка трафика по каналам -->
+    <div style="margin-top:28px">
+      <div style="font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:14px">Трафик по каналам (Яндекс.Метрика)</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Канал</th>
+            <th>21 фев–20 мар</th>
+            <th>21 мар–20 апр</th>
+            <th>Δ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Всего визитов</strong></td>
+            <td>20 800</td>
+            <td>19 979</td>
+            <td style="color:var(--muted)">−821 (−4%)</td>
+          </tr>
+          <tr>
+            <td>Органический поиск</td>
+            <td>7 331 (35%)</td>
+            <td><strong>7 728 (39%)</strong></td>
+            <td style="color:var(--green)">+397 (+5%) ↑</td>
+          </tr>
+          <tr>
+            <td>Рекламный трафик</td>
+            <td>9 830 (47%)</td>
+            <td>6 579 (33%)</td>
+            <td style="color:var(--muted)">−3 251 (−33%)</td>
+          </tr>
+          <tr>
+            <td>Прямые заходы</td>
+            <td>2 015 (10%)</td>
+            <td>3 416 (17%)</td>
+            <td style="color:var(--green)">+1 401 (+70%) ↑</td>
+          </tr>
+          <tr>
+            <td>Переходы по ссылкам</td>
+            <td>1 145 (6%)</td>
+            <td>1 267 (6%)</td>
+            <td style="color:var(--green)">+122 (+11%) ↑</td>
+          </tr>
+          <tr>
+            <td>Рекомендательные системы</td>
+            <td>221 (1%)</td>
+            <td>524 (3%)</td>
+            <td style="color:var(--green)">+303 (+137%) ↑</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:12px">
+        Общий трафик сайта практически не изменился (−4%), снижение: только за счёт рекламного канала (−33%). Органика при этом выросла на 5%, её доля поднялась с 35% до 39%. Прямые заходы +70%: растёт узнаваемость бренда. Рекомендательные системы ×2,4: статьи начали расшариваться.
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 ЧТО СДЕЛАНО -->
+  <div class="section">
+    <div class="section-label">02</div>
+    <div class="section-title">Что сделано за месяц</div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+
+      <div>
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2); margin-bottom:8px">Контент</div>
+        <ul class="done-list border">
+          <li>8 статей опубликовано<span class="sub">КЭВ, Гребенюк, Построение ОП, Менеджер, 5 этапов, ЛПР, Аудит, РОП</span></li>
+          <li>7 черновиков готовы<span class="sub">KPI, УТП, Воронка, ЦКП, Возражения, ОКК, Техники</span></li>
+          <li>Пайплайн writer → editor → publisher<span class="sub">4-агентный, с Google Doc и WP черновиком</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted2); margin-bottom:8px">Технические</div>
+        <ul class="done-list border">
+          <li>Schema.org FAQPage добавлена во все статьи</li>
+          <li>SVG-обложки v5: скрипт /opt/svg_cover_gen.py на сервере<span class="sub">чёрный стиль, Raleway, gold accent</span></li>
+          <li>Шрифт Raleway установлен на сервере<span class="sub">/usr/local/share/fonts/raleway/, 5 начертаний</span></li>
+          <li>Lightbox (fslightbox) исправлен в статьях<span class="sub">data-fslightbox + blog-gallery класс</span></li>
+          <li>Метрика: ym reachGoal blog_form_submit<span class="sub">добавлен в blog.js</span></li>
+          <li>FAQ accordion: wpautop fix<span class="sub">одна строка без пробелов между тегами</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 ОПУБЛИКОВАННЫЕ СТАТЬИ -->
+  <div class="section">
+    <div class="section-label">03</div>
+    <div class="section-title">Опубликованные статьи — месяц 1</div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Статья</th><th>Тип</th><th>Дата</th><th>WP ID</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>КЭВ в продажах</strong><br><span class="url">/blog/kev-klyuchevoy-etap-voronki/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3541</td>
+        </tr>
+        <tr>
+          <td><strong>Советы Гребенюка</strong><br><span class="url">/blog/grebenyuk-sovety-prodazhi/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3547</td>
+        </tr>
+        <tr>
+          <td><strong>Построение ОП с нуля</strong><br><span class="url">/blog/postroenie-otdela-prodazh/</span></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">13 апр</td>
+          <td style="color:var(--muted2)">3571</td>
+        </tr>
+        <tr>
+          <td><strong>Менеджер по продажам</strong> (обновлён)<br><span class="url">/blog/menedzher-po-prodazham-vsyo-o-professii/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">2560</td>
+        </tr>
+        <tr>
+          <td><strong>5 этапов продаж</strong> (обновлён)<br><span class="url">/blog/5-etapov-prodazh-menedzhera-po-prodazham/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">125</td>
+        </tr>
+        <tr>
+          <td><strong>ЛПР в продажах</strong><br><span class="url">/blog/lpr-v-prodazhakh/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">3566</td>
+        </tr>
+        <tr>
+          <td><strong>Аудит отдела продаж</strong><br><span class="url">/blog/audit-otdela-prodazh/</span></td>
+          <td><span class="pill pill-bofu">BOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">17 апр</td>
+          <td style="color:var(--muted2)">3567</td>
+        </tr>
+        <tr>
+          <td><strong>РОП: обязанности</strong><br><span class="url">/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/</span></td>
+          <td><span class="pill pill-mofu">MOFU</span></td>
+          <td style="white-space:nowrap;color:var(--muted)">22 апр</td>
+          <td style="color:var(--muted2)">3631</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Черновики готовы к публикации (неделя 6):</strong> KPI, УТП, Воронка, ЦКП, Работа с возражениями, ОКК, Техники продаж. Публикуем по 1–2 в день на неделе 27 апр – 2 мая.
+    </div>
+  </div>
+
+  <!-- 04 ПОЗИЦИИ Keys.so — апрель 2026 -->
+  <div class="section">
+    <div class="section-label">04</div>
+    <div class="section-title">Позиции в Яндексе (Keys.so, апрель 2026)</div>
+
+    <div class="metrics-row" style="margin-bottom:12px">
+      <div class="metric-box green-hl">
+        <div class="mb-label">Топ-50 ключей</div>
+        <div class="mb-val green">5 817</div>
+        <div class="mb-sub">было 4 551 (+28%)</div>
+      </div>
+      <div class="metric-box green-hl">
+        <div class="mb-label">Топ-10 ключей</div>
+        <div class="mb-val green">1 526</div>
+        <div class="mb-sub">было 1 315 (+16%)</div>
+      </div>
+      <div class="metric-box green-hl">
+        <div class="mb-label">Топ-5 ключей</div>
+        <div class="mb-val green">757</div>
+        <div class="mb-sub">было 704 (+8%)</div>
+      </div>
+      <div class="metric-box highlight">
+        <div class="mb-label">Visibility</div>
+        <div class="mb-val red">165</div>
+        <div class="mb-sub">было 218 (−24%)</div>
+      </div>
+    </div>
+
+    <div class="metrics-row three">
+      <div class="metric-box">
+        <div class="mb-label">Топ-1 ключей</div>
+        <div class="mb-val">133</div>
+        <div class="mb-sub">было 152 (−13%)</div>
+      </div>
+      <div class="metric-box green-hl">
+        <div class="mb-label">AI-ответы Нейро</div>
+        <div class="mb-val green">1 404</div>
+        <div class="mb-sub">было 248 (+466%) ↑↑</div>
+      </div>
+      <div class="metric-box green-hl">
+        <div class="mb-label">Страниц в индексе</div>
+        <div class="mb-val green">142</div>
+        <div class="mb-sub">было 130 (+12)</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>Почему упал Visibility</strong><br><br>
+
+      Visibility упал с 218 до 165 (−24%). Данные по каждому ключу из Keys.so: <strong>новые апрельские статьи тут ни при чём</strong>: среди упавших нет ни одной новой публикации. Упали старые страницы (детали в тогле «Топ-1 ключей» выше).<br><br>
+
+      <strong>Гипотезы причины:</strong>
+      <ul style="margin:8px 0 0 16px; line-height:1.8">
+        <li>Конкуренты обновили страницы под высокочастотные ключи («постоянный клиент» WS 14к, «возражение дорого» WS 2,7к)</li>
+        <li>Возможно, сократили или остановили ПФ → поведенческие метрики просели → Яндекс скорректировал ранжирование</li>
+      </ul><br>
+
+      <strong>Что делать:</strong> проверить, не обновил ли конкурент эти страницы. Небольшой refresh (актуальные данные, структура) должен вернуть топ-1. Все упавшие ключи: информационные, прямого влияния на выручку нет.
+    </div>
+  </div>
+
+  <!-- 05 ПЛАН НЕДЕЛЯ 6 -->
+  <div class="section">
+    <div class="section-label">05</div>
+    <div class="section-title">Следующий шаг — неделя 6 (27 апр — 2 мая)</div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>День</th><th>Задача</th><th>Приоритет</th></tr>
+      </thead>
+      <tbody>
+        <tr style="opacity:.5">
+          <td style="white-space:nowrap;color:var(--muted)">Пт 24</td>
+          <td><s>Опубликован KPI для менеджеров по продажам (3625)</s></td>
+          <td><span class="pill pill-bofu" style="background:var(--green-light);color:var(--green)">✓ готово</span></td>
+        </tr>
+        <tr style="opacity:.5">
+          <td style="white-space:nowrap;color:var(--muted)">Сб 25</td>
+          <td><s>Обновлён ЛПР в продажах (3566) — h3 + FAQ accordion</s></td>
+          <td><span class="pill pill-bofu" style="background:var(--green-light);color:var(--green)">✓ готово</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Пн 27</td>
+          <td><strong>Опубликовать</strong>: Работа с возражениями (3664), Техники продаж (3666)</td>
+          <td><span class="pill pill-bofu">Высокий</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Вт 28</td>
+          <td><strong>Опубликовать</strong>: Воронка продаж (3662)</td>
+          <td><span class="pill pill-bofu">Высокий</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Ср 29</td>
+          <td><strong>Опубликовать</strong>: ОКК (3665), УТП (3628)</td>
+          <td><span class="pill pill-bofu">Высокий</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Чт 30</td>
+          <td><strong>Опубликовать</strong>: ЦКП (3663) + начать новые статьи: Тренинг (WS 17 957), Управление командой (WS 13 990)</td>
+          <td><span class="pill pill-mofu">Средний</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Пт 1 мая</td>
+          <td><strong>Проверить формы захвата лидов</strong>: все формы на сайте → заявки попадают в CRM / почту. Снять трафик за апрель из Метрики.</td>
+          <td><span class="pill pill-tech" style="background:rgba(0,0,0,.06);color:var(--muted)">Технический</span></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;color:var(--muted)">Нед. 6</td>
+          <td><strong>Проверить упавшие ключи и страницы</strong>: постоянный клиент, возражение дорого, роп это что, бутылочные горлышки — посмотреть, обновил ли конкурент. Сделать небольшой refresh (актуальные данные, структура) → вернуть топ-1.</td>
+          <td><span class="pill pill-mofu">Средний</span></td>
+        </tr>
+        <tr style="border-top:2px solid var(--border)">
+          <td style="white-space:nowrap;color:var(--muted)">Май</td>
+          <td><strong>Пересмотреть коммерческую семантику</strong>: скорректировать контент-план — оставить в приоритете только коммерческие и транзакционные запросы. Инфо-статьи — только если ведут к коммерческой странице.</td>
+          <td><span class="pill pill-bofu">Приоритет</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /tab-m1 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══  ТАБ: МЕСЯЦ 2  ═══════════════════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="tab-m2" class="tab-panel">
+
+<!-- 01 СРАВНЕНИЕ КЛЮЧЕВЫХ МЕТРИК -->
 <div class="section">
-  <div class="section-label">11 — обновлено 30.05.2026</div>
-  <div class="section-title">Итоги работ — апрель–май 2026</div>
+  <div class="section-label">01</div>
+  <div class="section-title">Ключевые метрики: Точка А → Месяц 1 → Месяц 2</div>
 
-  <!-- Закрытые задачи -->
-  <div style="margin-bottom:28px;">
-    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted2);margin-bottom:10px;">Выполнено</div>
-    <div class="issue-grid">
-      <div class="issue info">
-        <div class="issue-sev info">✅ Контент</div>
-        <div>
-          <div class="issue-title">23 статьи опубликованы / обновлены</div>
-          <div class="issue-body">КЭВ, Гребенюк, Построение ОП, ЛПР, Аудит ОП, Менеджер (обновл.), 5 этапов (обновл.), РОП, Воронка, ЦКП, Работа с возражениями, ОКК, Техники продаж, Выход из операционки, Стратсессия, Делегирование, Управление ОП, Масштабирование, УТП, KPI, Показатели ОП, Холодный аутрич, План продаж. Каждая статья: TL;DR-блок, TOC, карточки шагов, таблицы, FAQ-аккордеон, SEO-поля, обложка.</div>
-        </div>
-      </div>
-      <div class="issue info">
-        <div class="issue-sev info">✅ ЛМ</div>
-        <div>
-          <div class="issue-title">Лид-магнит «Реформа ОП» запущен</div>
-          <div class="issue-body">Страница /reforma-op/, PDF в медиатеке WP (ID 3906). Три точки захвата: модальный попап V1, флоат V5 (exit-intent + таймер), сайдбар в блоге. Метрика: 6 целей настроены. 34 скачивания за последнюю неделю.</div>
-        </div>
-      </div>
-      <div class="issue info">
-        <div class="issue-sev info">✅ Тех.</div>
-        <div>
-          <div class="issue-title">llms.txt + автообложки</div>
-          <div class="issue-body">llms.txt задеплоен и обновляется при каждой публикации (фактор-продаж.ру/llms.txt). Обложки автоматизированы через mu-plugin factor-cover-gen.php — генерируются при каждом сохранении blog-поста без ручного запуска.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Органика наши статьи -->
-  <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted2);margin-bottom:10px;">Органический трафик — наши статьи (01.04 – 30.05.2026)</div>
-
-  <div class="metrics-row" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
-    <div class="metric-box green-hl">
-      <div class="mb-label">Визитов на наши статьи</div>
-      <div class="mb-val green">936</div>
-      <div class="mb-sub">23 статьи, 2 месяца</div>
-    </div>
-    <div class="metric-box">
-      <div class="mb-label">Визитов через весь блог</div>
-      <div class="mb-val">12 765</div>
-      <div class="mb-sub">органика, апр–май</div>
-    </div>
-    <div class="metric-box highlight">
-      <div class="mb-label">Конверсия блога</div>
-      <div class="mb-val red">0.22%</div>
-      <div class="mb-sub">28 действий / 12 765 визитов</div>
-    </div>
-  </div>
-
-  <table class="data-table">
+  <table class="compare-table">
     <thead>
       <tr>
-        <th>Статья</th>
-        <th class="right" style="width:80px">Визиты</th>
-        <th class="right" style="width:70px">Просм</th>
-        <th style="width:90px">Статус</th>
+        <th>Метрика</th>
+        <th>Точка А (март)</th>
+        <th>Месяц 1 (апрель)</th>
+        <th>Месяц 2 (май)</th>
+        <th>Δ апр→май</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>5 этапов продаж <span style="color:var(--muted);font-size:11px">(обновлена)</span><br><span class="url">/blog/5-etapov-prodazh-menedzhera-po-prodazham/</span></td><td class="right"><strong>328</strong></td><td class="right">366</td><td><span class="pill pill-ok">🔥 растёт</span></td></tr>
-      <tr><td>Менеджер по продажам <span style="color:var(--muted);font-size:11px">(обновлена)</span><br><span class="url">/blog/menedzher-po-prodazham-vsyo-o-professii/</span></td><td class="right"><strong>213</strong></td><td class="right">237</td><td><span class="pill pill-ok">🔥 растёт</span></td></tr>
-      <tr><td>Работа с возражениями<br><span class="url">/blog/rabota-s-vozrazheniyami-v-prodazhakh/</span></td><td class="right">80</td><td class="right">83</td><td><span class="pill pill-ok">✓</span></td></tr>
-      <tr><td>КЭВ<br><span class="url">/blog/kev-klyuchevoy-etap-voronki/</span></td><td class="right">77</td><td class="right">86</td><td><span class="pill pill-ok">✓</span></td></tr>
-      <tr><td>Построение ОП<br><span class="url">/blog/postroenie-otdela-prodazh/</span></td><td class="right">58</td><td class="right">90</td><td><span class="pill pill-ok">✓</span></td></tr>
-      <tr><td>Техники п��одаж<br><span class="url">/blog/tehniki-prodazh/</span></td><td class="right">39</td><td class="right">44</td><td><span class="pill pill-tech">набор</span></td></tr>
-      <tr><td>Гребенюк советы<br><span class="url">/blog/grebenyuk-sovety-prodazhi/</span></td><td class="right">38</td><td class="right">53</td><td><span class="pill pill-tech">набор</span></td></tr>
-      <tr><td>Воронка продаж / ЦКП / ОКК / РОП / ЛПР<br><span class="url">5 статей</span></td><td class="right">74</td><td class="right">80</td><td><span class="pill pill-tech">набор</span></td></tr>
-      <tr><td>Аудит ОП / Делегирование / Масштабирование / Управление ОП<br><span class="url">4 статьи</span></td><td class="right">18</td><td class="right">20</td><td><span class="pill pill-tech">индекс</span></td></tr>
-      <tr style="background:#fafafa;"><td>Выход из операционки, Стратсессия, УТП, KPI, Показатели ОП, Холодный аутрич, План продаж<br><span class="url">7 свежих статей (≤2 мес)</span></td><td class="right">~0</td><td class="right">—</td><td><span class="pill pill-new">🆕 свежие</span></td></tr>
+      <tr>
+        <td class="metric-name">Визитов всего / мес</td>
+        <td class="was">20 800</td>
+        <td class="was">20 179</td>
+        <td class="now">14 868</td>
+        <td><span class="delta neutral">−5 311 (−26%)</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Органика</td>
+        <td class="was">7 331</td>
+        <td class="was">7 732</td>
+        <td class="now">7 087</td>
+        <td><span class="delta neutral">−645 (−8%)</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Реклама</td>
+        <td class="was">9 830</td>
+        <td class="was">6 748</td>
+        <td class="now">3 265</td>
+        <td><span class="delta up">−3 483 (−52%) ↓ зависимость</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Доля органики</td>
+        <td class="was">35%</td>
+        <td class="was">38%</td>
+        <td class="now">48%</td>
+        <td><span class="delta up">+10 п.п. ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-1 (Keys.so)</td>
+        <td class="was">145</td>
+        <td class="was">155</td>
+        <td class="now">169</td>
+        <td><span class="delta up">+14 (+9%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-3 (Keys.so)</td>
+        <td class="was">440</td>
+        <td class="was">450</td>
+        <td class="now">476</td>
+        <td><span class="delta up">+26 (+6%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-10 (Keys.so)</td>
+        <td class="was">1 322</td>
+        <td class="was">1 595</td>
+        <td class="now">1 691</td>
+        <td><span class="delta up">+96 (+6%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-50 (Keys.so)</td>
+        <td class="was">4 649</td>
+        <td class="was">6 015</td>
+        <td class="now">6 275</td>
+        <td><span class="delta up">+260 (+4%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Страниц в индексе</td>
+        <td class="was">133</td>
+        <td class="was">149</td>
+        <td class="now">155</td>
+        <td><span class="delta up">+6 ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Visibility (Keys.so)</td>
+        <td class="was">215</td>
+        <td class="was">180</td>
+        <td class="now">148</td>
+        <td><span class="delta neutral">−32 (−18%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">AI-ответы Яндекс</td>
+        <td class="was">—</td>
+        <td class="was">1 687</td>
+        <td class="now">1 174</td>
+        <td><span class="delta neutral">−513 (−30%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Квал. лиды / мес (все каналы)</td>
+        <td class="was">4</td>
+        <td class="was">8</td>
+        <td class="now">19</td>
+        <td><span class="delta up">+11 (×2,4) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Квал. лиды с SEO</td>
+        <td class="was">—</td>
+        <td class="was">—</td>
+        <td class="now">7</td>
+        <td><span class="delta neutral">37% всех квалов</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Всего лидов / мес (все каналы)</td>
+        <td class="was">—</td>
+        <td class="was">36</td>
+        <td class="now">339</td>
+        <td><span class="delta up">×9,4 ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Лиды с SEO</td>
+        <td class="was">—</td>
+        <td class="was">—</td>
+        <td class="now">56</td>
+        <td><span class="delta neutral">16% всех лидов</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Трафик блога / нед</td>
+        <td class="was">1 709</td>
+        <td class="was">2 034</td>
+        <td class="now">1 848</td>
+        <td><span class="delta neutral">−186 (−9%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Статьи в блоге</td>
+        <td class="was">143</td>
+        <td class="was">151</td>
+        <td class="now">162</td>
+        <td><span class="delta up">+11 новых ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Черновиков готово</td>
+        <td class="was">0</td>
+        <td class="was">7</td>
+        <td class="now">4</td>
+        <td><span class="delta neutral">7 опубликовано, +4 новых</span></td>
+      </tr>
     </tbody>
   </table>
 
-  <!-- Лиды из органики -->
-  <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted2);margin:20px 0 10px;">Лиды из органики через блог (апр–май)</div>
-  <div class="metrics-row" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
-    <div class="metric-box">
-      <div class="mb-label">blog_form_submit</div>
-      <div class="mb-val">5</div>
-      <div class="mb-sub">форма баннера</div>
-    </div>
-    <div class="metric-box">
-      <div class="mb-label">LM сайдбар + V1</div>
-      <div class="mb-val">4</div>
-      <div class="mb-sub">лид-магнит из блога</div>
-    </div>
-    <div class="metric-box">
-      <div class="mb-label">auto_contact_sent</div>
-      <div class="mb-val">19</div>
-      <div class="mb-sub">заполнил контакты</div>
-    </div>
-    <div class="metric-box highlight">
-      <div class="mb-label">Реформа ОП из органики</div>
-      <div class="mb-val red">0</div>
-      <div class="mb-sub">попап не срабатывает</div>
-    </div>
-  </div>
-
-  <!-- ЛМ Реформа ОП неделя -->
-  <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted2);margin:20px 0 10px;">Лид-магнит «Реформа ОП» — неделя 23–30 мая (все источники)</div>
-  <div class="metrics-row" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px;">
-    <div class="metric-box green-hl">
-      <div class="mb-label">Показы попапа V1</div>
-      <div class="mb-val green">732</div>
-      <div class="mb-sub">конверсия 2.9%</div>
-    </div>
-    <div class="metric-box green-hl">
-      <div class="mb-label">Скачали V1 (модал)</div>
-      <div class="mb-val green">21</div>
-    </div>
-    <div class="metric-box gold-hl">
-      <div class="mb-label">Показы флоата V5</div>
-      <div class="mb-val gold">814</div>
-      <div class="mb-sub">конверсия 1.4%</div>
-    </div>
-    <div class="metric-box gold-hl">
-      <div class="mb-label">Скачали V5 (флоат)</div>
-      <div class="mb-val gold">11</div>
-    </div>
-  </div>
-  <div class="metrics-row" style="grid-template-columns:repeat(3,1fr);margin-bottom:12px;">
-    <div class="metric-box">
-      <div class="mb-label">Сайдбар submit</div>
-      <div class="mb-val">2</div>
-    </div>
-    <div class="metric-box green-hl">
-      <div class="mb-label">Итого скачиваний</div>
-      <div class="mb-val green">34</div>
-      <div class="mb-sub">за неделю, все каналы</div>
-    </div>
-    <div class="metric-box highlight">
-      <div class="mb-label">Реформа ОП email/tg</div>
-      <div class="mb-val red">0</div>
-      <div class="mb-sub">Метрика-цели не сработали</div>
-    </div>
-  </div>
   <div class="insight">
-    <strong>Попап V1 → лучшая конверсия (2.9%).</strong> V5 (флоат) — 1.4%. Сайдбар — 0 показов из органики блога. Реформа ОП email/tg = 0 — вероятно, Метрика-цели на страницу /reforma-op/spasibo/ не настроены или страница не открывается. Нужно проверить.
+    <strong>Главное за месяц:</strong> доля органики выросла с 38% до 48% — это ключевое достижение. Снижение общего трафика объясняется планомерным сокращением рекламы (−52%). Позиции по всем группам растут: топ-1 +9%, топ-10 +6%, топ-50 +4%. Падение Visibility связано с флуктуациями алгоритма Яндекса по высокочастотным ключам старых страниц, а не с новыми публикациями.
+  </div>
+</div>
+
+<!-- 02 ТРАФИК ПО ИСТОЧНИКАМ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Трафик по источникам (апр 20 — май 20, 2026)</div>
+
+  <div class="metrics-row six">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Всего визитов</div>
+      <div class="mb-val green">14 868</div>
+      <div class="mb-sub">пользователей: 12 015</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Органика</div>
+      <div class="mb-val green">7 087</div>
+      <div class="mb-sub">48% трафика ↑</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Реклама</div>
+      <div class="mb-val">3 265</div>
+      <div class="mb-sub">22% — снижение</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прямые</div>
+      <div class="mb-val">2 362</div>
+      <div class="mb-sub">16%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Ссылки</div>
+      <div class="mb-val">1 218</div>
+      <div class="mb-sub">8%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Рекомендации</div>
+      <div class="mb-val">464</div>
+      <div class="mb-sub">3%</div>
+    </div>
   </div>
 
-  <!-- Приоритет: обновление старых страни�� -->
-  <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted2);margin:20px 0 10px;">Приоритет следующего этапа — старые страницы с трафиком без лидов</div>
+  <div class="note">
+    <strong>Сравнение с предыдущим периодом (мар 20 — апр 19):</strong> всего было 20 179 визитов (органика 7 732, реклама 6 748, прямые 3 441, ссылки 1 267). Общий трафик снизился из-за сокращения рекламного бюджета. Органика просела на 8% — что нормально для периода без крупных обновлений контента.
+  </div>
+</div>
+
+<!-- 03 ЯНДЕКС VS GOOGLE -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Органика по поисковикам</div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Яндекс (desktop + mobile)</div>
+      <div class="mb-val green">3 664</div>
+      <div class="mb-sub">52% органики</div>
+    </div>
+    <div class="metric-box gold-hl">
+      <div class="mb-label">Google (desktop + app)</div>
+      <div class="mb-val gold">2 930</div>
+      <div class="mb-sub">41% органики</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прочие (Bing, Mail.ru, др.)</div>
+      <div class="mb-val">493</div>
+      <div class="mb-sub">7% органики</div>
+    </div>
+  </div>
+
   <table class="data-table">
     <thead>
       <tr>
-        <th>Страница</th>
-        <th class="right">Визиты</th>
-        <th class="right">Лид��</th>
-        <th class="right">Отказы</th>
-        <th class="right">Время</th>
-        <th>Диагноз</th>
+        <th>Поисковик</th>
+        <th class="right">Апр 20 — Май 20</th>
+        <th class="right">Мар 20 — Апр 19</th>
+        <th class="right">Δ</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Расчёт стоимости товара</strong><br><span class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara/</span></td>
-        <td class="right"><strong>1 118</strong></td>
-        <td class="right red">0</td>
-        <td class="right">20%</td>
-        <td class="right">75с</td>
-        <td><span class="pill pill-warn">Бухгалтеры</span> не ЦА, нет CTA</td>
+        <td>Яндекс (desktop)</td>
+        <td class="right">3 013</td>
+        <td class="right">3 388</td>
+        <td class="right"><span class="delta neutral">−375</span></td>
       </tr>
       <tr>
-        <td><strong>KPI для менеджеров</strong><br><span class="url">/blog/kpi-dlya-menedzherov-po-prodazham/</span></td>
-        <td class="right"><strong>557</strong></td>
-        <td class="right red">0</td>
-        <td class="right">12.4%</td>
-        <td class="right">130с</td>
-        <td><span class="pill pill-fix">CTA</span> хорошее вовлечение, нет конверсии</td>
+        <td>Яндекс (mobile)</td>
+        <td class="right">651</td>
+        <td class="right">693</td>
+        <td class="right"><span class="delta neutral">−42</span></td>
       </tr>
       <tr>
-        <td><strong>Отчёт менеджера</strong><br><span class="url">/blog/otchyot-menedzhera-o-prodazhakh/</span></td>
-        <td class="right">480</td>
-        <td class="right" style="color:var(--green)"><strong>2</strong></td>
-        <td class="right">19.8%</td>
-        <td class="right">82с</td>
-        <td><span class="pill pill-ok">Лучшая конверсия</span> обновить + усилить CTA</td>
+        <td><strong>Яндекс итого</strong></td>
+        <td class="right"><strong>3 664</strong></td>
+        <td class="right"><strong>~4 081</strong></td>
+        <td class="right"><span class="delta neutral">−417 (−10%)</span></td>
       </tr>
       <tr>
-        <td><strong>План продаж для менеджеров</strong><br><span class="url">/blog/plan-prodazh-dlya-menedzherov/</span></td>
-        <td class="right">413</td>
-        <td class="right" style="color:var(--green)"><strong>2</strong></td>
-        <td class="right">22%</td>
-        <td class="right">133с</td>
-        <td><span class="pill pill-ok">Конвертирует</span> обновить + внутренние ссылки</td>
+        <td>Google (desktop)</td>
+        <td class="right">2 923</td>
+        <td class="right">3 243</td>
+        <td class="right"><span class="delta neutral">−320</span></td>
+      </tr>
+      <tr>
+        <td>Google mobile app</td>
+        <td class="right">7</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Google итого</strong></td>
+        <td class="right"><strong>2 930</strong></td>
+        <td class="right"><strong>~3 243</strong></td>
+        <td class="right"><span class="delta neutral">−313 (−10%)</span></td>
+      </tr>
+      <tr>
+        <td>Bing</td>
+        <td class="right">342</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td>Яндекс.Картинки</td>
+        <td class="right">80</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
+      </tr>
+      <tr>
+        <td>Mail.ru</td>
+        <td class="right">44</td>
+        <td class="right">—</td>
+        <td class="right"><span class="delta neutral">—</span></td>
       </tr>
     </tbody>
   </table>
-  <div class="note">
-    <strong>Вывод:</strong> Страница KPI для менеджеров (557 визитов, 130с на странице, 12% отказов) — идеальный кандидат для апдейта. Высокое вовлечение, но 0 лидов. Достаточно добавить блок-баннер с оффером и переработать CTA в конце статьи.
+
+  <div class="insight">
+    <strong>Яндекс vs Google:</strong> соотношение стабильное — 52% на 41%. Снижение трафика из обоих поисковиков примерно одинаковое (−10%). Это подтверждает, что падение связано с уменьшением общей аудитории (сезон, меньше рекламного трафика перекрёстно влияет на брендовые запросы), а не с санкциями алгоритма.
   </div>
 </div>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- 04 ПОЗИЦИИ KEYS.SO -->
+<div class="section">
+  <div class="section-label">04</div>
+  <div class="section-title">Позиции Keys.so — динамика</div>
+
+  <div class="metrics-row">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-1</div>
+      <div class="mb-val green">169</div>
+      <div class="mb-sub">было 155 (+14, +9%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-3</div>
+      <div class="mb-val green">476</div>
+      <div class="mb-sub">было 450 (+26, +6%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-5</div>
+      <div class="mb-val green">813</div>
+      <div class="mb-sub">было 795 (+18, +2%) ↑</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-10</div>
+      <div class="mb-val green">1 691</div>
+      <div class="mb-sub">было 1 595 (+96, +6%) ↑</div>
+    </div>
+  </div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-50</div>
+      <div class="mb-val green">6 275</div>
+      <div class="mb-sub">было 6 015 (+260, +4%) ↑</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Страниц в индексе</div>
+      <div class="mb-val">155</div>
+      <div class="mb-sub">было 149 (+6) ↑</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Visibility</div>
+      <div class="mb-val red">148</div>
+      <div class="mb-sub">было 180 (−32, −18%) ↓</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:16px; margin-top:24px; margin-bottom:12px;">Топ страниц по видимости (топ-50 ключей)</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Страница</th>
+        <th class="right">Ключей в топ-50</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos top3">1</td>
+        <td class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</td>
+        <td class="right">654</td>
+      </tr>
+      <tr>
+        <td class="pos top3">2</td>
+        <td class="url">/blog/menedzher-po-prodazham-vsyo-o-professii/</td>
+        <td class="right">324</td>
+      </tr>
+      <tr>
+        <td class="pos top3">3</td>
+        <td class="url">/blog/5-etapov-prodazh.../</td>
+        <td class="right">290</td>
+      </tr>
+      <tr>
+        <td class="pos top10">4</td>
+        <td class="url">/blog/kak-rasschitat-skidku-na-tovar/</td>
+        <td class="right">286</td>
+      </tr>
+      <tr>
+        <td class="pos top10">5</td>
+        <td class="url">/blog/kak-rasschitat-prirost-prodazh-v-biznese/</td>
+        <td class="right">257</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Visibility vs позиции:</strong> Visibility — метрика Keys.so, взвешенная по частотности ключей. Её снижение при росте числа ключей в топах означает, что упали несколько высокочастотных ключей старых страниц. Новые статьи постепенно индексируются и добавляют ключи в топ-50 — это отражается в росте Топ-50 (+260).
+  </div>
+</div>
+
+<!-- 05 ТОП СТРАНИЦ ПО ОРГАНИКЕ -->
+<div class="section">
+  <div class="section-label">05</div>
+  <div class="section-title">Топ страниц по органическому трафику (апр 20 — май 20)</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Страница</th>
+        <th class="right">Визитов из органики</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos top3">1</td>
+        <td class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</td>
+        <td class="right">561</td>
+      </tr>
+      <tr>
+        <td class="pos top3">2</td>
+        <td class="url">/ (главная)</td>
+        <td class="right">282</td>
+      </tr>
+      <tr>
+        <td class="pos top3">3</td>
+        <td class="url">/blog/kpi-dlya-menedzherov-po-prodazham/</td>
+        <td class="right">273</td>
+      </tr>
+      <tr>
+        <td class="pos top10">4</td>
+        <td class="url">/blog/kak-otrabotat-vozrazhenie-dorogo...</td>
+        <td class="right">239</td>
+      </tr>
+      <tr>
+        <td class="pos top10">5</td>
+        <td class="url">/blog/otchyot-menedzhera-o-prodazhakh...</td>
+        <td class="right">224</td>
+      </tr>
+      <tr>
+        <td class="pos top10">6</td>
+        <td class="url">/blog/plan-prodazh-dlya-menedzherov/</td>
+        <td class="right">215</td>
+      </tr>
+      <tr>
+        <td class="pos top10">7</td>
+        <td class="url">/blog/5-etapov-prodazh...</td>
+        <td class="right">186</td>
+      </tr>
+      <tr>
+        <td class="pos top10">8</td>
+        <td class="url">/blog/sistema-motivacii-menedzhera...</td>
+        <td class="right">170</td>
+      </tr>
+      <tr>
+        <td class="pos top50">9</td>
+        <td class="url">/blog/skripty-prodazh...</td>
+        <td class="right">169</td>
+      </tr>
+      <tr>
+        <td class="pos top50">10</td>
+        <td class="url">/blog/chto-takoye-sebestoimost...</td>
+        <td class="right">162</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Инсайт по топ-страницам:</strong> статья про расчёт стоимости товара стабильно лидирует (561 визит). Новые статьи (воронка, техники продаж, работа с возражениями, ЦКП) пока не попали в топ-10 — они ещё набирают позиции. Ожидаем их появление в топ-10 органики в месяце 3.
+  </div>
+</div>
+
+</div><!-- /tab-m2 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══  ТАБ: ВЫПОЛНЕННЫЕ РАБОТЫ  ════════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="tab-done" class="tab-panel">
+
+<!-- 01 КОНТЕНТ -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">Контент — 13 статей опубликовано (апр 20 — май 20)</div>
+
+  <ul class="done-list border">
+    <li>
+      Воронка продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/voronka-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/voronka-prodazh/</a> — ID 3662</span>
+    </li>
+    <li>
+      ЦКП: ценный конечный продукт
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/ckp-tsennyj-konechnyj-produkt/" style="color:var(--blue)">factor-prodazh.ru/blog/ckp-tsennyj-konechnyj-produkt/</a> — ID 3663</span>
+    </li>
+    <li>
+      Работа с возражениями в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/rabota-s-vozrazheniyami-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/rabota-s-vozrazheniyami-v-prodazhakh/</a> — ID 3664</span>
+    </li>
+    <li>
+      ОКК — отдел контроля качества
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/okk-otdel-kontrolya-kachestva-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/okk-otdel-kontrolya-kachestva-prodazh/</a> — ID 3665</span>
+    </li>
+    <li>
+      Техники продаж для менеджеров
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/tehniki-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/tehniki-prodazh/</a> — ID 3666</span>
+    </li>
+    <li>
+      KPI простыми словами
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/kpi-prostymi-slovami/" style="color:var(--blue)">factor-prodazh.ru/blog/kpi-prostymi-slovami/</a> — ID 3625</span>
+    </li>
+    <li>
+      УТП: что это такое, как составить
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/utp-chto-eto-takoe/" style="color:var(--blue)">factor-prodazh.ru/blog/utp-chto-eto-takoe/</a> — ID 3628</span>
+    </li>
+    <li>
+      РОП: обязанности и задачи руководителя отдела продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/rop-obiazannosti-rukovoditelia-otdela-prodazh/</a> — ID 3631</span>
+    </li>
+    <li>
+      ЛПР в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/lpr-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/lpr-v-prodazhakh/</a> — ID 3566</span>
+    </li>
+    <li>
+      Аудит отдела продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/audit-otdela-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/audit-otdela-prodazh/</a> — ID 3567</span>
+    </li>
+    <li>
+      Делегирование в продажах
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/delegirovanie-v-prodazhakh/" style="color:var(--blue)">factor-prodazh.ru/blog/delegirovanie-v-prodazhakh/</a> — ID 3772</span>
+    </li>
+    <li>
+      Управление командой продаж
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/upravlenie-komandoy-prodazh/" style="color:var(--blue)">factor-prodazh.ru/blog/upravlenie-komandoy-prodazh/</a> — ID 3773</span>
+    </li>
+    <li>
+      Масштабирование бизнеса
+      <span class="sub"><a href="https://factor-prodazh.ru/blog/masshtabirovanie-biznesa/" style="color:var(--blue)">factor-prodazh.ru/blog/masshtabirovanie-biznesa/</a> — ID 3774</span>
+    </li>
+  </ul>
+
+  <div class="note" style="margin-top:16px">
+    <strong>В процессе публикации (написаны, проходят подготовку):</strong> Выход из операционки продаж, Стратегия развития отдела продаж, Стратегическая сессия для отдела продаж.
+  </div>
+</div>
+
+<!-- 02 ТЕХНИЧЕСКИЕ УЛУЧШЕНИЯ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Технические улучшения</div>
+
+  <ul class="done-list border">
+    <li>
+      Автогенерация SVG-обложек v5 встроена в WordPress
+      <span class="sub">mu-plugin <code>factor-cover-gen.php</code> — обложки создаются автоматически при сохранении поста, ручной SSH больше не нужен</span>
+    </li>
+    <li>
+      Яндекс Вебмастер: настроена более частая переобходка страниц
+      <span class="sub">Новые статьи индексируются быстрее</span>
+    </li>
+    <li>
+      llms.txt задеплоен на factor-prodazh.ru
+      <span class="sub">51 строка — протокол для LLM-поиска (llmstxt.org). Обновлять при каждой публикации.</span>
+    </li>
+    <li>
+      100 запросов позиций 10–50 собраны и загружены в борд задач
+      <span class="sub">Семантика для приоритизации следующего контент-спринта</span>
+    </li>
+    <li>
+      Починены формы захвата: «Связаться с автором», подписка в подвале
+      <span class="sub">Добавлены метки Bitrix — заявки корректно попадают в CRM</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 03 ЛИД-МАГНИТ -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Лид-магнит «Реформа ОП 2026»</div>
+
+  <ul class="done-list border">
+    <li>
+      Создан HTML-гайд: 4 раздела, чеклист 16 пунктов, 3 кейса
+      <span class="sub">Размещён на /reforma-op/ с подключённой Яндекс.Метрикой</span>
+    </li>
+    <li>
+      Попап V1 (модальное окно) — триггер: блог 70% скролл, остальные страницы 50% или 60 сек
+      <span class="sub">Cookie: 30 дней. Метка: ЛМ_РеформаОП_v1</span>
+    </li>
+    <li>
+      Попап V5 (флоат bottom-right) — триггер: 40% скролл или 30 сек (не в блоге)
+      <span class="sub">Cookie: 7 дней. Метка: ЛМ_РеформаОП_v5</span>
+    </li>
+    <li>
+      Сайдбар-карточка в статьях блога — всегда видна
+      <span class="sub">Метка: LM_ReformaOP_sidebar</span>
+    </li>
+    <li>
+      Все формы подключены к Google Sheets + Bitrix CRM
+      <span class="sub">Spreadsheet: 1m9XIe7...</span>
+    </li>
+    <li>
+      Яндекс.Метрика: 6 целей настроены
+      <span class="sub">lm_v1_view, lm_v1_submit, lm_v5_view, lm_v5_submit, lm_sidebar_view, lm_sidebar_submit</span>
+    </li>
+  </ul>
+</div>
+
+</div><!-- /tab-done -->
+
+<div id="tab-m3plan" class="tab-panel">
+
+<!-- ЦЕЛЬ МЕСЯЦА -->
+<div class="section">
+  <div class="section-label">00</div>
+  <div class="section-title">Цель месяца 3 (май 20 — июнь 20)</div>
+  <div class="metrics-row" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+    <div class="metric-box green-hl" style="flex:1;min-width:160px">
+      <div class="mb-label">Квал. лиды с SEO</div>
+      <div class="mb-val green">10–12</div>
+      <div class="mb-sub">сейчас: 7</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:160px">
+      <div class="mb-label">Новых статей</div>
+      <div class="mb-val">27</div>
+      <div class="mb-sub">20 MOFU + 7 TOFU</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:160px">
+      <div class="mb-label">Органика / мес</div>
+      <div class="mb-val">7 500+</div>
+      <div class="mb-sub">сейчас: 7 087</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:160px">
+      <div class="mb-label">Топ-3 (Keys.so)</div>
+      <div class="mb-val">500+</div>
+      <div class="mb-sub">сейчас: 476</div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top:16px">
+    <strong>Ключевой вывод из месяца 2:</strong> SEO даёт 16% лидов, но 37% квалифицированных — SEO-аудитория качественнее. Запросов в топ-10 стало больше (+96), но трафик не растёт: большинство позиций 4–10 с CTR 3–7%. Приоритет месяца 3 — не только количество статей, но перевод существующих позиций в топ-3 + рост кликабельности.
+  </div>
+</div>
+
+<!-- КОНТЕНТ -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">Контент — 27 статей</div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Кол-во</th>
+        <th>Аудитория</th>
+        <th>Примеры тем</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="metric-name">MOFU</td>
+        <td class="now">20 шт</td>
+        <td>Собственник, РОП — есть боль, ищет решение</td>
+        <td>«почему менеджеры не выполняют план», «как оценить эффективность ОП», «ошибки РОПа», «показатели которые надо контролировать», «как выйти из операционки продаж»</td>
+      </tr>
+      <tr>
+        <td class="metric-name">TOFU</td>
+        <td class="now">7 шт</td>
+        <td>Широкая аудитория, длинный хвост</td>
+        <td>Термины, «что такое», определения — объём без глубокой проработки</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note" style="margin-top:12px">
+    <strong>Принцип:</strong> MOFU-статьи — полный пайплайн с кейсом Фактора и ревью. TOFU — ускоренный цикл. Оба типа проходят quality-gate перед публикацией. Цель — не попасть под поведенческий фильтр Яндекса при высоком темпе публикаций.
+  </div>
+</div>
+
+<!-- CTR ОПТИМИЗАЦИЯ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">CTR-оптимизация — быстрый рост трафика без новых статей</div>
+
+  <div class="insight">
+    Запросов в топ-10 стало 1 691, но органика не выросла. Причина: позиции 4–10 дают CTR 3–7% против 25–30% на первой позиции. Яндекс Вебмастер покажет конкретные страницы с высокими показами и низкими кликами.
+  </div>
+
+  <ul class="done-list border" style="margin-top:12px">
+    <li>
+      Выгрузить из Яндекс Вебмастера страницы с показами &gt;500/мес и CTR &lt;5%
+      <span class="sub">Цель: найти 15–20 страниц с потенциалом роста кликов</span>
+    </li>
+    <li>
+      Переписать title и description для этих страниц
+      <span class="sub">Добавить цифры, конкретику, «боль» в заголовок — CTR растёт на 30–50% при правильном title</span>
+    </li>
+    <li>
+      Проверить и обновить FAQ-разметку (Schema FAQPage)
+      <span class="sub">Расширенный сниппет в выдаче → выше CTR без изменения позиции</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ВНУТРЕННИЕ ССЫЛКИ -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Внутренняя перелинковка — системно</div>
+
+  <div class="insight">
+    При 162 статьях новые публикации «висят в воздухе»: ссылочный вес от авторитетных старых страниц до них не доходит. Это замедляет индексацию и рост позиций.
+  </div>
+
+  <ul class="done-list border" style="margin-top:12px">
+    <li>
+      Каждая новая статья получает 3–5 ссылок из тематически близких старых
+      <span class="sub">Делается в момент публикации — встраивается в workflow пайплайна</span>
+    </li>
+    <li>
+      Топ-10 старых статей по трафику — добавить ссылки на новые MOFU-материалы
+      <span class="sub">Передаём вес с трафиковых страниц на коммерчески важные</span>
+    </li>
+    <li>
+      Проверить «осиротевшие» страницы (0 входящих ссылок) — проставить ссылки
+      <span class="sub">Яндекс плохо индексирует страницы без внутренних ссылок</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ОБНОВЛЕНИЕ СТАРЫХ СТАТЕЙ -->
+<div class="section">
+  <div class="section-label">04</div>
+  <div class="section-title">Обновление статей — дожать топ-4–8 до топ-3</div>
+
+  <ul class="done-list border">
+    <li>
+      Отобрать 5 статей на позициях 4–8 по высокочастотным запросам
+      <span class="sub">Из Keys.so — запросы с WS &gt;1000 где стоим на 4–8</span>
+    </li>
+    <li>
+      Добавить новый раздел или обновить данные (год, цифры, кейс)
+      <span class="sub">Яндекс даёт буст обновлённому контенту — переобход в течение 1–2 недель</span>
+    </li>
+    <li>
+      Улучшить структуру и FAQ
+      <span class="sub">Проверить: есть ли прямой ответ на запрос в первых 100 словах</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ПОВЕДЕНЧЕСКИЕ МЕТРИКИ -->
+<div class="section">
+  <div class="section-label">05</div>
+  <div class="section-title">Поведенческие метрики — не потерять при росте объёма</div>
+
+  <div class="insight">
+    При публикации 27 статей за месяц риск: часть статей будет «пустой» и даст bounce rate 85%+. Яндекс это видит и не продвигает вверх.
+  </div>
+
+  <ul class="done-list border" style="margin-top:12px">
+    <li>
+      Проверить топ-20 статей по трафику: время на странице и глубина просмотра
+      <span class="sub">Норма: время на странице &gt;2 мин, bounce &lt;75% для MOFU</span>
+    </li>
+    <li>
+      Добавить CTA и внутренние ссылки в статьи с высоким bounce
+      <span class="sub">«Читайте также», ссылка на лид-магнит, форма диагностики</span>
+    </li>
+    <li>
+      Quality-gate обязателен для каждой MOFU-статьи перед публикацией
+      <span class="sub">Проверка: есть ли кейс, конкретные цифры, позиция Фактора</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ЛИД-МАГНИТ -->
+<div class="section">
+  <div class="section-label">06</div>
+  <div class="section-title">Лид-магнит — первый анализ и решения</div>
+
+  <ul class="done-list border">
+    <li>
+      Замер конверсии попапов (конец месяца)
+      <span class="sub">Метрика: lm_v1_view → lm_v1_submit, lm_v5_view → lm_v5_submit, sidebar</span>
+    </li>
+    <li>
+      Решение по exit-intent попапу (popup-beforeunload)
+      <span class="sub">Оставить старый текст или переключить на «Реформу ОП»</span>
+    </li>
+    <li>
+      Решение по inline-формам в статьях
+      <span class="sub">После получения данных по конверсии — запускать или нет</span>
+    </li>
+  </ul>
+</div>
+
+</div><!-- /tab-m3plan -->
+
 </div>
 </div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 
 <footer>
   <div class="wrap">
