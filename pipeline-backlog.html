@@ -160,7 +160,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <h1>Pipeline Backlog — AI Content System</h1>
     <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>33</b> задачи</div>
+      <div class="hero-chip"><b>37</b> задач</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
@@ -170,9 +170,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">33</span></button>
-    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">22</span></button>
-    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">27</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">37</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">16</span></button>
+    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">21</span></button>
   </div>
 </div>
 
@@ -184,10 +184,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <div class="summary-row">
     <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
-    <div class="summary-card"><div class="num num-gold">15</div><div class="lbl">P2 — средние</div></div>
-    <div class="summary-card"><div class="num num-blue">10</div><div class="lbl">P3 — будущее</div></div>
+    <div class="summary-card"><div class="num num-gold">17</div><div class="lbl">P2 — средние</div></div>
+    <div class="summary-card"><div class="num num-blue">12</div><div class="lbl">P3 — будущее</div></div>
     <div class="summary-card"><div class="num num-muted">1</div><div class="lbl">Техдолг</div></div>
-    <div class="summary-card"><div class="num num-teal">33</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-teal">37</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
@@ -592,6 +592,64 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
+    <div class="item p2">
+      <div class="item-num">36</div>
+      <div class="item-body">
+        <div class="item-title">DataForSEO near-miss scoring в PLAN (/researcher)</div>
+        <div class="item-desc">Mokka PLAN stage: Planner скорит темы из GSC + DataForSEO — search volume, near-miss ranks, competitor gaps — и рефиллит бэклог. Near-miss ranks = статьи на позициях 8–20 которые можно поднять с минимальными усилиями. Это самый высокий ROI контент: работа уже сделана (страница есть), нужен точечный апдейт. Сейчас темы в /researcher выбираются вручную по контент-плану — без алгоритмической приоритизации.</div>
+        <div class="item-detail">
+          Добавить в /researcher: шаг 0 — topic scoring перед выбором темы.<br><br>
+          <b>Scoring formula:</b><br>
+          Score = (search_volume × near_miss_mult) + competitor_gap_bonus<br>
+          • near_miss_mult: поз. 8–10 = 3×, 11–15 = 2×, 16–20 = 1.5×<br>
+          • competitor_gap_bonus: +50% если конкурент в топ-3, а мы нет по этому ключу<br><br>
+          <b>Данные:</b><br>
+          • Global: DataForSEO Keywords API + GSC clicks/impressions<br>
+          • RU: keys.so API (уже подключён) + Яндекс Вебмастер API<br><br>
+          <b>Выдача:</b> топ-5 тем с обоснованием: «[тема] — near-miss rank 11, WS 1 200/мес, конкурент в топ-3 → score 89». Выдавать до того как /researcher начинает ресёрч — тема выбрана алгоритмически, не интуитивно.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-research">Планирование</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">39</div>
+      <div class="item-body">
+        <div class="item-title">Исследование моделей для /writer — что пишет хорошо через API</div>
+        <div class="item-desc">Mokka: z.ai GLM-4 для WRITE, Kimi как fallback. Явно не GPT-4 и не Claude — при темпе 3+ статей/нед и 10+ проектах стоимость модели становится критичным фактором. Сейчас пайплайн завязан на Claude Sonnet — не оптимально по cost/quality при масштабе.</div>
+        <div class="item-detail">
+          <b>Кандидаты для тестирования:</b><br>
+          • <code>z.ai GLM-4</code> — выбор Mokka. Сильный на EN, дешёвый, API стабильный<br>
+          • <code>Kimi (Moonshot AI)</code> — длинный context window (128k), хорош для длинных статей<br>
+          • <code>DeepSeek-V3</code> — очень дешёвый ($0.27/M input), сильный бенчмарк EN, плохо на RU<br>
+          • <code>Gemini 2.0 Flash</code> — дёшево, быстро, 1M context, хорошо на обоих языках<br>
+          • <code>Mistral Large</code> — EN-focused, хорош для thought leadership стиля<br>
+          • <code>Claude Haiku 4.5</code> — speed/cost баланс внутри Anthropic<br><br>
+          <b>Метрики теста:</b><br>
+          1. Качество RU (AI-штампы, голос, ритм) — прогнать через /quality-gate<br>
+          2. Качество EN — то же<br>
+          3. Cost per 1 000 слов выходного текста<br>
+          4. Latency (p50, p95) для статьи 3 000 слов<br>
+          5. Context window (важно для длинных статей с ресёрчем внутри промпта)<br><br>
+          <b>Результат:</b> матрица model × метрика + рекомендация: какую модель использовать для RU SEO / EN TL / EN SEO. Добавить в /writer аргумент <code>model=</code> для выбора на уровне проекта.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-research">Исследование</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
   <!-- P3 -->
   <div class="section-gap">
     <div class="section-title">P3 — Стратегические · 1 неделя и более</div>
@@ -758,6 +816,64 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
+    <div class="item p3">
+      <div class="item-num">37</div>
+      <div class="item-body">
+        <div class="item-title">Orion judge — meta-AI агент для MEASURE (/tracker)</div>
+        <div class="item-desc">Mokka MEASURE: GSC + 4 AI engines (ChatGPT, Gemini, Perplexity, AI Overview) + GA4, <b>gated by the Orion judge</b> — отдельный AI-агент который решает достаточно ли данных и достаточно ли изменений чтобы передавать сигнал в LEARN. Без judge /tracker выдаёт action items даже если статье 3 дня и 12 показов — то есть шум, не сигнал. Неверные action items → page-optimizer делает бесполезные изменения.</div>
+        <div class="item-detail">
+          <b>Логика Orion judge (gate перед генерацией action items):</b><br><br>
+          <code>PASS если:</code><br>
+          • days_since_publish ≥ 30 (данных накоплено)<br>
+          • impressions ≥ 100 (статистически значимо)<br>
+          • |position_delta| > noise_threshold (изменение вне шума, обычно ±3)<br>
+          • Или: AI citation статус изменился (было — не цитирует, стало — цитирует)<br><br>
+          <code>WAIT если:</code><br>
+          • Недостаточно данных → записать: «Insufficient data: 14d/38 impressions. Recheck in 16d.»<br>
+          • Позиции в пределах шума → «Position noise: Δ±2. No action.»<br><br>
+          <b>Добавить в /tracker:</b> блок confidence scoring до генерации action items. Если confidence LOW → не генерировать, записать причину в pipeline.md. Если HIGH → генерировать action items как сейчас.<br><br>
+          Дополнительно: Orion judge проверяет не только числа но и контекст — если позиция упала но кликов стало больше (SERP изменился) → это не деградация.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">Автоматизация</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~3 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p3">
+      <div class="item-num">38</div>
+      <div class="item-body">
+        <div class="item-title">LEARN → PLAN feedback loop — замкнуть петлю (/tracker → /researcher)</div>
+        <div class="item-desc">Mokka LEARN: weekly retrospective re-weights which topics earned [results] → PLAN получает обновлённые веса для следующего цикла. Петля замкнута автоматически. У нас /tracker пишет action items в pipeline.md, /page-optimizer их читает — но сигнал не передаётся обратно в /researcher. Какие темы дали рост AI citations? Какие форматы работали? Эта информация теряется.</div>
+        <div class="item-detail">
+          <b>Как замкнуть петлю:</b><br><br>
+          <b>Шаг 1 — LEARN в /tracker:</b> после каждой 90d проверки агрегировать по всем статьям проекта:<br>
+          • Top-performing topics: кластеры тем с наилучшим AI citation rate<br>
+          • Top-performing formats: TL vs SEO vs FAQ-heavy — что цитируется чаще<br>
+          • Bottom performers: темы с нулевыми AI citations через 90d → исключить из плана<br>
+          • Записать в <code>project/learning-log.md</code>: дата, метрики, выводы<br><br>
+          <b>Шаг 2 — re-weight в /researcher:</b> при старте нового ресёрча читать learning-log.md:<br>
+          • «Темы из кластера [X] дают AI citations в 2× чаще → +20% к score»<br>
+          • «Thought leadership формат (#35) даёт в 3× больше AI citations чем SEO → приоритизировать»<br>
+          • «Темы про [Y] не цитируются → снизить приоритет»<br><br>
+          <b>Minimum viable:</b> ручная ретроспектива раз в квартал. Запустить /tracker по всем статьям → вручную записать выводы в learning-log.md → передать файл в следующий /researcher как контекст. Автоматизация — второй этап.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-aeo">Автоматизация</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
   <!-- Technical Debt -->
   <div class="section-gap">
     <div class="section-title">Технический долг</div>
@@ -881,6 +997,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">32</div>
       <div class="item-body"><div class="item-title">AI Visibility Score — composite KPI в AI-выдаче</div><div class="item-desc">% промптов, на которые AI упоминает бренд (Нейро + Perplexity). Единое число с трендом month-over-month. Хранится в pipeline.md.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
     </div>
+    <div class="item p2">
+      <div class="item-num">36</div>
+      <div class="item-body"><div class="item-title">DataForSEO near-miss scoring в PLAN</div><div class="item-desc">Алгоритмическая приоритизация тем: позиции 8–20 + объём + конкурентный gap. Near-miss rank = уже ранжируемая страница, которую можно поднять апдейтом. Score = search_volume × near_miss_mult + competitor_gap_bonus.</div><div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-research">Планирование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">39</div>
+      <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для RU и EN. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
+    </div>
   </div>
 
   <div class="section-gap">
@@ -892,6 +1016,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="item p3">
       <div class="item-num">34</div>
       <div class="item-body"><div class="item-title">AI question drift detection — смена фрейма ответов</div><div class="item-desc">Если AI сменил угол ответа на целевой запрос — контент устарел. Ежемесячное сравнение топ-3 ответов → при drift → action item в /page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">37</div>
+      <div class="item-body"><div class="item-title">Orion judge — meta-AI агент для MEASURE</div><div class="item-desc">Gate перед генерацией action items: days ≥ 30, impressions ≥ 100, |position_delta| > noise. Без judge /tracker выдаёт action items на шуме — 3 дня/12 показов → бесполезные изменения в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">38</div>
+      <div class="item-body"><div class="item-title">LEARN → PLAN feedback loop</div><div class="item-desc">Агрегировать топ-темы и форматы по AI citation rate → записать в learning-log.md → /researcher читает при следующем цикле и re-weights scoring. Сейчас петля незамкнута: /tracker пишет, /researcher не читает.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
     </div>
   </div>
 
@@ -1049,6 +1181,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
       </div>
     </div>
+    <div class="item p2">
+      <div class="item-num">36</div>
+      <div class="item-body"><div class="item-title">DataForSEO near-miss scoring в PLAN</div><div class="item-desc">Алгоритмическая приоритизация тем: позиции 8–20 (near-miss) + объём + конкурентный gap. Score = search_volume × near_miss_mult + competitor_gap_bonus. Global: DataForSEO Keywords API + GSC.</div><div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-research">Планирование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">39</div>
+      <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для EN контента. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
+    </div>
   </div>
 
   <div class="section-gap">
@@ -1107,6 +1247,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-desc">HonestWriter «on autopilot»: когда AI меняет как отвечает на вашу тему — контент обновляется. Ежемесячное сравнение топ-3 ответов ChatGPT/Perplexity → drift &gt;30% → action item в /page-optimizer.</div>
         <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div>
       </div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">37</div>
+      <div class="item-body"><div class="item-title">Orion judge — meta-AI агент для MEASURE</div><div class="item-desc">Gate перед генерацией action items: days ≥ 30, impressions ≥ 100, |position_delta| > noise. Без judge /tracker выдаёт action items на шуме — бесполезные изменения в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
+    </div>
+    <div class="item p3">
+      <div class="item-num">38</div>
+      <div class="item-body"><div class="item-title">LEARN → PLAN feedback loop</div><div class="item-desc">Агрегировать топ-темы и форматы по AI citation rate → записать в learning-log.md → /researcher читает при следующем цикле. Сейчас петля незамкнута: /tracker пишет, /researcher не читает.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
     </div>
   </div>
 
