@@ -160,7 +160,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <h1>Pipeline Backlog — AI Content System</h1>
     <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>35</b> задач</div>
+      <div class="hero-chip"><b>33</b> задачи</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
@@ -170,8 +170,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">35</span></button>
-    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">25</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">33</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">22</span></button>
     <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">27</span></button>
   </div>
 </div>
@@ -186,8 +186,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
     <div class="summary-card"><div class="num num-gold">15</div><div class="lbl">P2 — средние</div></div>
     <div class="summary-card"><div class="num num-blue">10</div><div class="lbl">P3 — будущее</div></div>
-    <div class="summary-card"><div class="num num-muted">3</div><div class="lbl">Техдолг</div></div>
-    <div class="summary-card"><div class="num num-teal">35</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-muted">1</div><div class="lbl">Техдолг</div></div>
+    <div class="summary-card"><div class="num num-teal">33</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
@@ -777,32 +777,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item td">
-      <div class="item-num">29</div>
-      <div class="item-body">
-        <div class="item-title">19 черновиков — прогнать через /editor → /publisher партиями</div>
-        <div class="item-desc">19 статей написаны, черновики в WP, ждут редактуры и публикации. Google Doc ID у каждой. Прогонять партиями по 3-5 статей.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/editor</span><span class="tag tag-skill">/publisher</span>
-          <span class="tag tag-ru">RU</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
-    </div>
-
-    <div class="item td">
-      <div class="item-num">30</div>
-      <div class="item-body">
-        <div class="item-title">Inline формы на старых страницах без конверсий</div>
-        <div class="item-desc">28 конверсий = все со старых страниц. 0 конверсий с новых 19 статей (419 визитов). Добавить inline формы ЛМ «Реформа ОП» в топ-5 по трафику новых статей.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/publisher</span>
-          <span class="tag tag-ru">RU</span>
-          <span class="status-blocked">срочно</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
   </div>
 
   <!-- Sequence -->
@@ -879,10 +853,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">7</div>
       <div class="item-body"><div class="item-title">robots.txt — YandexAdditional разрешён</div><div class="item-desc">Без YandexAdditional в allow → нет в Нейро. Без Нейро → теряем 63% потенциальных цитирований. Проверять в /publisher.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
     </div>
-    <div class="item p1">
-      <div class="item-num">30</div>
-      <div class="item-body"><div class="item-title">Inline формы на статьях без конверсий</div><div class="item-desc"><b>Срочно:</b> 0 конверсий с 19 новых статей при 419 визитах. Добавить форму ЛМ «Реформа ОП» в топ-5 по трафику.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="status-blocked">срочно</span></div></div>
-    </div>
   </div>
 
   <div class="section-gap">
@@ -898,10 +868,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="item p2">
       <div class="item-num">28</div>
       <div class="item-body"><div class="item-title">Yandex Webmaster OAuth token</div><div class="item-desc">Без токена /tracker не получает данные по позициям Яндекс. Три переменные в .env.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-ru">RU</span><span class="status-blocked">blocked</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">29</div>
-      <div class="item-body"><div class="item-title">19 черновиков — прогнать через /editor → /publisher</div><div class="item-desc">Партиями по 3-5. Google Doc ID у каждой статьи. Следующий шаг: редактура → публикация.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span></div></div>
     </div>
     <div class="item p2">
       <div class="item-num">35</div>
