@@ -160,7 +160,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <h1>Pipeline Backlog — AI Content System</h1>
     <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>37</b> задач</div>
+      <div class="hero-chip"><b>38</b> задач</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
@@ -170,9 +170,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">37</span></button>
-    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">16</span></button>
-    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">21</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">38</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">17</span></button>
+    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">22</span></button>
   </div>
 </div>
 
@@ -184,10 +184,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <div class="summary-row">
     <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
-    <div class="summary-card"><div class="num num-gold">17</div><div class="lbl">P2 — средние</div></div>
+    <div class="summary-card"><div class="num num-gold">18</div><div class="lbl">P2 — средние</div></div>
     <div class="summary-card"><div class="num num-blue">12</div><div class="lbl">P3 — будущее</div></div>
     <div class="summary-card"><div class="num num-muted">1</div><div class="lbl">Техдолг</div></div>
-    <div class="summary-card"><div class="num num-teal">37</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-teal">38</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
@@ -648,6 +648,32 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       </div>
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
     </div>
+
+    <div class="item p2">
+      <div class="item-num">40</div>
+      <div class="item-body">
+        <div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div>
+        <div class="item-desc">Текущий /editor и /quality-gate банят AI-фразы по паттерну. Проблема: «следует отметить» + пустое следствие = слоп. «Следует отметить: 7 из 10 РОПов...» — это не слоп, это лишний фрейм перед сильным содержанием. Паттерн-матчинг даёт ложные срабатывания и не учит различию.</div>
+        <div class="item-detail">
+          <b>Определение слопа:</b> форма без функции. Форма с функцией — не слоп, просто лишний фрейм.<br><br>
+          <b>Алгоритм для /editor:</b><br>
+          1. Найти AI-паттерн («следует отметить», «важно понимать», «таким образом» и др.)<br>
+          2. Проверить что за ним: есть ли число / кейс / причинно-следственная связь?<br>
+          3. <b>Есть содержание</b> → убрать фрейм, оставить содержание: «Следует отметить: 7 из 10...» → «7 из 10...»<br>
+          4. <b>Нет содержания</b> → убрать вместе с содержанием: «Следует отметить, что данный подход является эффективным.» → удалить абзац целиком<br><br>
+          <b>Для /quality-gate:</b> метрика не «найден AI-паттерн» → FAIL, а «найден AI-паттерн + пустое следствие» → FAIL. Это точнее и не штрафует за нормальные конструкции.<br><br>
+          <b>Обновить в /editor:</b> раздел «Убить AI-обороты» — добавить шаг 2 (проверить следствие) перед удалением. Текущее правило слишком механическое.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/editor</span>
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
   </div>
 
   <!-- P3 -->
@@ -1005,6 +1031,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">39</div>
       <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для RU и EN. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
     </div>
+    <div class="item p2">
+      <div class="item-num">40</div>
+      <div class="item-body"><div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div><div class="item-desc">Слоп = форма без функции. «Следует отметить» + пустота → удалить. «Следует отметить: 7 из 10...» → убрать фрейм, оставить содержание. /editor и /quality-gate сейчас банят по паттерну, не по смыслу.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/quality-gate</span><span class="tag tag-type-quality">Качество</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
+    </div>
   </div>
 
   <div class="section-gap">
@@ -1188,6 +1218,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="item p2">
       <div class="item-num">39</div>
       <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для EN контента. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
+    </div>
+    <div class="item p2">
+      <div class="item-num">40</div>
+      <div class="item-body"><div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div><div class="item-desc">Слоп = форма без функции. «Следует отметить» + пустота → удалить. «Следует отметить: 7 из 10...» → убрать фрейм, оставить содержание. /editor и /quality-gate сейчас банят по паттерну, не по смыслу.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/quality-gate</span><span class="tag tag-type-quality">Качество</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
     </div>
   </div>
 
