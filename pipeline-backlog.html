@@ -160,7 +160,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <h1>Pipeline Backlog — AI Content System</h1>
     <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-05-31</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>38</b> задач</div>
+      <div class="hero-chip"><b>41</b> задач</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
     </div>
@@ -170,7 +170,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">38</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">41</span></button>
     <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">17</span></button>
     <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">22</span></button>
   </div>
@@ -184,10 +184,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <div class="summary-row">
     <div class="summary-card"><div class="num num-red">7</div><div class="lbl">P1 — быстро</div></div>
-    <div class="summary-card"><div class="num num-gold">18</div><div class="lbl">P2 — средние</div></div>
+    <div class="summary-card"><div class="num num-gold">21</div><div class="lbl">P2 — средние</div></div>
     <div class="summary-card"><div class="num num-blue">12</div><div class="lbl">P3 — будущее</div></div>
     <div class="summary-card"><div class="num num-muted">1</div><div class="lbl">Техдолг</div></div>
-    <div class="summary-card"><div class="num num-teal">38</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-teal">41</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <!-- P1 -->
@@ -215,8 +215,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">2</div>
       <div class="item-body">
         <div class="item-title">Schema stack expansion — Review / ItemList / BreadcrumbList / Person</div>
-        <div class="item-desc">Кейс Previsible: SoftwareApplication schema → +150% AI трафика за 90 дней. FAQPage schema + citations = +40% к вероятности попасть в AI-ответ (Authoritas 2025). +3x к ChatGPT цитированию. Сейчас у нас только Article + FAQPage.</div>
-        <div class="item-detail">Добавить в /publisher: <code>BreadcrumbList</code> на каждой странице, <code>Person</code> с <code>worksFor</code> и <code>sameAs</code> для автора, <code>ItemList</code> для подборок/списков статей. Для глобала дополнительно: <code>Review</code> + <code>AggregateRating</code> (звёзды в SERP).</div>
+        <div class="item-desc">⚠️ <b>Осторожно с generic schema:</b> Ahrefs май 2026 (1885 страниц) — добавление JSON-LD на существующие страницы даёт −4,6% в Google AI Overviews. Исключение: <b>FAQPage schema = +2,7x</b> (41% vs 15%, Relixir 2025). Приоритет: FAQPage везде. Person/BreadcrumbList — добавлять только как часть entity-стратегии, не как AIO-буст.</div>
+        <div class="item-detail">Порядок внедрения: (1) FAQPage на каждой статье — единственная schema с измеримым +эффектом; (2) <code>Person</code> с полным <code>sameAs</code> (LinkedIn, X, Wikidata, ORCID) — для author credentialing chain; (3) <code>BreadcrumbList</code> + <code>@id consistency</code> — для entity-графа, не для AIO; (4) <code>Review</code> + <code>AggregateRating</code> — только если есть реальный rating.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/publisher</span>
           <span class="tag tag-type-schema">Schema.org</span>
@@ -674,9 +674,75 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       </div>
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
+
+    <div class="item p2">
+      <div class="item-num">41</div>
+      <div class="item-body">
+        <div class="item-title">Earned media / Digital PR pipeline</div>
+        <div class="item-desc">64% всех AI-цитирований идут из third-party источников, а не с сайта бренда напрямую. Stacker + Scrunch (март 2026, 2400 кампаний): дистрибуция в 3+ паблишеров = +239% медианный лифт AI-упоминаний. Wire-релизы: рост AI-цитирований с 0.2% до 1% за 6 месяцев (5x). Earned media = 25-27% всех LLM-цитирований.</div>
+        <div class="item-detail">
+          <b>Принцип:</b> LLM-модели обучены на интернете, где ссылки на бренд — это сигнал авторитета. Публикация на vc.ru, Habr, РБК, Forbes RU = training signal для следующих версий модели.<br><br>
+          <b>Добавить в /publisher:</b> Шаг 8b «Earned media дистрибуция» — после публикации статьи предлагать шаблон для: (а) поста на vc.ru с ссылкой, (б) Telegram-анонса с цитатой, (в) комментария в профильных чатах где релевантно.<br><br>
+          <b>Минимальный протокол:</b> каждая публикуемая статья → 1 пост на vc.ru (синдикация краткого содержания) + 1 Telegram-пост в 2-3 профильных чата. Для Global: LinkedIn article + 1 Medium cross-post.<br><br>
+          <b>Метрика:</b> кол-во внешних упоминаний новой статьи за 30 дней. Отслеживать через /tracker (Шаг 3 AI Citations).
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">42</div>
+      <div class="item-body">
+        <div class="item-title">Platform-specific citation strategy</div>
+        <div class="item-desc">89% несовпадение источников между ChatGPT и Perplexity — нельзя оптимизировать «под AI вообще». Каждая платформа = отдельный алгоритм отбора. Claude: bullet-points +30% к цитированию, ниши SaaS/docs/niche = 63% его цитирований. Perplexity: свежесть (30 дней = 3.2x), Reddit/forums 46.7%. ChatGPT: Wikipedia + LinkedIn, DR>60 порог.</div>
+        <div class="item-detail">
+          <b>Профили платформ:</b><br>
+          • <b>ChatGPT:</b> Wikipedia, LinkedIn, DR>60 домены, авторитетные издания. Свежесть менее важна. Reddit-цитирования упали до ~10% (сентябрь 2025).<br>
+          • <b>Perplexity:</b> freshness critical (30-day sweet spot), Reddit/forums стабильно 46.7%, Q&A-форматы.<br>
+          • <b>Claude:</b> bullet-points и структурированный контент, технические ниши, официальная документация.<br>
+          • <b>Яндекс Нейро:</b> factor-prodazh.ru + vc.ru + контент на русском. Локальный приоритет.<br><br>
+          <b>Добавить в /researcher:</b> Шаг «Target platform analysis» — при создании промптов указывать целевую платформу (Perplexity/ChatGPT/Нейро). Разные форматы контента под разные цели.<br><br>
+          <b>Добавить в /tracker:</b> Шаг 3 разбить на platform-specific check: Perplexity отдельно, ChatGPT отдельно, Нейро отдельно. Разные success metrics для каждой платформы.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-geo">GEO</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">43</div>
+      <div class="item-body">
+        <div class="item-title">Burstiness check в /quality-gate</div>
+        <div class="item-desc">Burstiness = вариативность длины предложений = главный человеческий сигнал. AI пишет равномерно: предложения 18-22 слова, одинаковый ритм. Human varies: 4-слова → 25-слова → 8-слова. Human-written контент: 5.44x больше органического трафика, позиция #1 в 8 раз чаще занята human-written страницей (BrightEdge 2025, 10M URLs).</div>
+        <div class="item-detail">
+          <b>Метрика для /quality-gate:</b> не «найден AI-паттерн» → FAIL, а «burstiness score ниже порога» → предупреждение. Алгоритм: (1) разбить текст на предложения, (2) подсчитать длину каждого в словах, (3) вычислить σ (std deviation). Норма для human: σ ≥ 6. AI-текст: σ ≤ 3. Вывести top-5 «monotone spans» (5+ предложений с σ&lt;3) для ручного review.<br><br>
+          <b>Добавить в /editor:</b> Шаг «Буртинесс-правка» — найти 3+ предложения подряд одной длины → вставить одно ультракороткое (3-5 слов) или развернуть одно в 25+ слов. Проверка: «короткое предложение добавляет новую информацию?» — если нет, это ритмический костыль, не настоящий ритм (кейс из /editor Gotchas уже есть).<br><br>
+          <b>Связь с human-content данными:</b> 5.44x — human vs pure AI. AI + human editing ≈ human performance. Значит задача не «убрать AI», а «добавить редакторский ритм поверх AI-черновика». Burstiness — главный proxy этого сигнала.
+        </div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-skill">/editor</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
   </div>
 
-  <!-- P3 -->
   <div class="section-gap">
     <div class="section-title">P3 — Стратегические · 1 неделя и более</div>
 
@@ -716,8 +782,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">22</div>
       <div class="item-body">
         <div class="item-title">Content freshness calendar в /page-optimizer</div>
-        <div class="item-desc">December 2025 Core Update: косметические обновления дат без изменения контента детектируются и наказываются. AI-цитируемый контент в среднем на 25.7% свежее органически ранжированного. 70% цитируемых страниц меняются за 2-3 месяца.</div>
-        <div class="item-detail">/page-optimizer должен работать не только по action items от /tracker, но и по calendar: каждые 60-90 дней статья проходит content refresh с РЕАЛЬНЫМИ изменениями: новая статистика, обновлённые скриншоты/примеры, новые кейсы. Добавить в pipeline.md: <code>freshness_due: YYYY-MM-DD</code>.</div>
+        <div class="item-desc">13-недельное окно: <b>50% AI-цитат — контент младше 13 недель</b>. Контент младше 30 дней = 3,2x больше AI-цитирований. AI-цитируемый контент на 25,7% свежее органически ранжированного. Декабрь 2025: косметические обновления дат без изменения контента детектируются и наказываются.</div>
+        <div class="item-detail">/page-optimizer работает по двум триггерам: (а) action items от /tracker, (б) freshness calendar — каждые <b>60 дней</b> статья проходит real refresh (новая статистика, скриншоты, кейсы, цены). Добавить в pipeline.md: <code>freshness_due: YYYY-MM-DD</code>. Проверять: изменился ли контент реально или только дата? Ahrefs детектирует косметику.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/page-optimizer</span>
           <span class="tag tag-type-aeo">GEO</span>
@@ -748,8 +814,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-num">24</div>
       <div class="item-body">
         <div class="item-title">Reddit/community agent</div>
-        <div class="item-desc">Reddit — #2 домен в Google US, 44% social-media citations в AI Overviews, 46.7% Perplexity community-запросов. 90/10 rule: 90% helpful ответов в профильных сабреддитах, 10% — упоминания материалов где релевантно. Reddit volatile (Lily Ray: падение 350 SISTRIX points за день в январе 2025).</div>
-        <div class="item-detail">Этапный подход: Crawl phase (нед.1-4): 90% helpful ответы в r/sales, r/B2B, профильных форумах, без ссылок. Walk phase (мес.2-3): упоминать материалы где уместно. Run phase (мес.4-6): собственные треды «I tested X for 30 days». Для RU: vc.ru комменты + профильные Telegram-чаты вместо Reddit.</div>
+        <div class="item-desc">⚠️ Стратегия для Perplexity, не ChatGPT: сентябрь 2025 — ChatGPT Reddit-цитирования упали с 60% до 10% после апдейта. Perplexity стабильно: 46.7% community-запросов. Reddit — #2 домен в Google US, 44% social-media citations в AI Overviews суммарно. 90/10 rule: 90% helpful ответов без ссылок, 10% — упоминания где релевантно.</div>
+        <div class="item-detail">Этапный подход (только для Perplexity-аудитории): Crawl phase (нед.1-4): 90% helpful ответы в r/sales, r/B2B, профильных форумах, без ссылок. Walk phase (мес.2-3): упоминать материалы где уместно. Run phase (мес.4-6): собственные треды «I tested X for 30 days». Для RU: vc.ru комменты + профильные Telegram-чаты вместо Reddit. ChatGPT-аудитория — фокус на Wikipedia/LinkedIn (см. #42).</div>
         <div class="item-meta">
           <span class="tag tag-skill">new /community</span>
           <span class="tag tag-type-distrib">Дистрибуция</span>
