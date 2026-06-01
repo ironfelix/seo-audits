@@ -977,85 +977,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
-  <div class="section-gap">
-    <div class="section-title">P1 — Срочные для RU рынка</div>
-    <div class="item p1">
-      <div class="item-num">1</div>
-      <div class="item-body"><div class="item-title">SpeakableSpecification в /publisher</div><div class="item-desc">Нужен для Алисы и Яндекс AI. Минимальный импакт в RU — но Яндекс Нейро расширяет structured data. 30 минут.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-schema">Schema.org</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">3</div>
-      <div class="item-body"><div class="item-title">AEO precheck — первый абзац = прямой ответ</div><div class="item-desc">Алиса использует источники из топ-5 Яндекса. Нейро: параметрическое знание не используется — только переданные источники. Значит первый абзац ДОЛЖЕН быть прямым ответом.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 час</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">4</div>
-      <div class="item-body"><div class="item-title">Тире-лимит gate как hard block</div><div class="item-desc">RU-специфика редактуры. Текущее правило ≤8 тире не блокирует публикацию автоматически.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">7</div>
-      <div class="item-body"><div class="item-title">robots.txt — YandexAdditional разрешён</div><div class="item-desc">Без YandexAdditional в allow → нет в Нейро. Без Нейро → теряем 63% потенциальных цитирований. Проверять в /publisher.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~30 мин</span></div></div>
-    </div>
-  </div>
+  <div id="filtered-ru"></div>
 
-  <div class="section-gap">
-    <div class="section-title">P2 — Важные для RU рынка</div>
-    <div class="item p2">
-      <div class="item-num">14</div>
-      <div class="item-body"><div class="item-title">vc.ru / Habr — дистрибуция как шаг пайплайна</div><div class="item-desc">ChatGPT цитирует vc.ru как авторитетный RU-источник. Perplexity — активно. Нужен автоматический шаг кросс-поста после публикации в WP.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">19</div>
-      <div class="item-body"><div class="item-title">ПФ мониторинг через Метрику</div><div class="item-desc">Bounce rate + время на сайте + глубина просмотра из Метрики в /tracker. Если ПФ плохие → action item в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-ru">RU</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">28</div>
-      <div class="item-body"><div class="item-title">Yandex Webmaster OAuth token</div><div class="item-desc">Без токена /tracker не получает данные по позициям Яндекс. Три переменные в .env.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-ru">RU</span><span class="status-blocked">blocked</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">35</div>
-      <div class="item-body"><div class="item-title">Thought Leadership формат: cross-disciplinary lens + coined concepts</div><div class="item-desc">Mokka-паттерн: берём теорию из смежной науки (экономика, антропология, behavioral science) + придумываем термин для явления. AI не может перефразировать coined concept без потери смысла → обязан цитировать источник. Для RU: Яндекс Нейро так же цитирует концептуально уникальный контент.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-quality">Контент-стратегия</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">31</div>
-      <div class="item-body"><div class="item-title">Brand Persona — персонаж вместо списка правил</div><div class="item-desc">Персона = живой образ: возраст, опыт, фразы, антипатии, стиль. AI воспроизводит характер точнее, чем 30 запретов. Файл <code>persona.md</code> читается перед каждым /writer и /editor.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/editor</span><span class="tag tag-type-quality">Голос бренда</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">32</div>
-      <div class="item-body"><div class="item-title">AI Visibility Score — composite KPI в AI-выдаче</div><div class="item-desc">% промптов, на которые AI упоминает бренд (Нейро + Perplexity). Единое число с трендом month-over-month. Хранится в pipeline.md.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">36</div>
-      <div class="item-body"><div class="item-title">DataForSEO near-miss scoring в PLAN</div><div class="item-desc">Алгоритмическая приоритизация тем: позиции 8–20 + объём + конкурентный gap. Near-miss rank = уже ранжируемая страница, которую можно поднять апдейтом. Score = search_volume × near_miss_mult + competitor_gap_bonus.</div><div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-research">Планирование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">39</div>
-      <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для RU и EN. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">40</div>
-      <div class="item-body"><div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div><div class="item-desc">Слоп = форма без функции. «Следует отметить» + пустота → удалить. «Следует отметить: 7 из 10...» → убрать фрейм, оставить содержание. /editor и /quality-gate сейчас банят по паттерну, не по смыслу.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/quality-gate</span><span class="tag tag-type-quality">Качество</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-  </div>
-
-  <div class="section-gap">
-    <div class="section-title">P3 — Стратегические (Both рынка)</div>
-    <div class="item p3">
-      <div class="item-num">33</div>
-      <div class="item-body"><div class="item-title">Per-platform mention counts</div><div class="item-desc">Нейро: X/50, Perplexity: Y/50 — абсолютные числа по платформам помимо %. Выявляет где отстаём → целевой контент туда.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">34</div>
-      <div class="item-body"><div class="item-title">AI question drift detection — смена фрейма ответов</div><div class="item-desc">Если AI сменил угол ответа на целевой запрос — контент устарел. Ежемесячное сравнение топ-3 ответов → при drift → action item в /page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">37</div>
-      <div class="item-body"><div class="item-title">Orion judge — meta-AI агент для MEASURE</div><div class="item-desc">Gate перед генерацией action items: days ≥ 30, impressions ≥ 100, |position_delta| > noise. Без judge /tracker выдаёт action items на шуме — 3 дня/12 показов → бесполезные изменения в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">38</div>
-      <div class="item-body"><div class="item-title">LEARN → PLAN feedback loop</div><div class="item-desc">Агрегировать топ-темы и форматы по AI citation rate → записать в learning-log.md → /researcher читает при следующем цикле и re-weights scoring. Сейчас петля незамкнута: /tracker пишет, /researcher не читает.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
-    </div>
-  </div>
 
 </div><!-- /tab-ru -->
 
@@ -1125,172 +1048,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </table>
   </div>
 
-  <div class="section-gap">
-    <div class="section-title">P1 — Первые шаги для Global пайплайна</div>
+  <div id="filtered-global"></div>
 
-    <div class="item p1">
-      <div class="item-num">1</div>
-      <div class="item-body"><div class="item-title">SpeakableSpecification + расширенный Schema stack</div><div class="item-desc">Для Global: добавить Review + AggregateRating (звёзды в SERP Google), ItemList для «Best of» страниц, BreadcrumbList. Кейс Previsible: SoftwareApplication schema → +150% AI трафика за 90 дней.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-schema">Schema.org</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 часа</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">6</div>
-      <div class="item-body"><div class="item-title">JS-SEO валидация — особо критично для Global</div><div class="item-desc">Google + ChatGPT + Perplexity не рендерят JS. Gemini 3 (с января 2026 дефолтный в Google AI Mode) расширил пул источников — но только для статически доступного контента.</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 час</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">5</div>
-      <div class="item-body"><div class="item-title">Information Gain check — ключевой сигнал Google 2026</div><div class="item-desc">После March 2026 core update — доминирующий сигнал (Digital Applied). AI-парафраз = низкий score. Собственные данные = +15-25%. Критично для Google.</div><div class="item-meta"><span class="tag tag-skill">/quality-gate</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 час</span></div></div>
-    </div>
-    <div class="item p1">
-      <div class="item-num">7</div>
-      <div class="item-body"><div class="item-title">robots.txt — OAI-SearchBot, PerplexityBot, Claude-SearchBot</div><div class="item-desc">Без OAI-SearchBot = нет в ChatGPT Search. PerplexityBot crawl-to-referral ~110:1 (лучший ROI). ClaudeBot 23951:1 (нагрузка без отдачи — можно rate-limit).</div><div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~30 мин</span></div></div>
-    </div>
-  </div>
-
-  <div class="section-gap">
-    <div class="section-title">P2 — Ключевые доработки для Global</div>
-
-    <div class="item p2">
-      <div class="item-num">15</div>
-      <div class="item-body">
-        <div class="item-title">Brand mentions monitoring — приоритет для Global</div>
-        <div class="item-desc">Brand mentions = №1 фактор для Google AIO (корреляция 0.664). Backlinks = 0.218. Топ-25% брендов по упоминаниям → 10x больше AIO-цитат. Для RU это тоже важно, но для Global — критично.</div>
-        <div class="item-detail">Инструменты: Ahrefs Brand Radar 2.0 (243M+ organic prompts), Semrush Brand Monitoring, Google Alerts. В /tracker: monthly unlinked mentions count → если меньше цели → action item: «5 упоминаний на [Reddit/LinkedIn/G2/Medium]».</div>
-        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">17</div>
-      <div class="item-body">
-        <div class="item-title">VS/Comparison pages — шаблон в /writer</div>
-        <div class="item-desc">51% B2B buyers начинают research в AI chatbot. VS-страницы = самый цитируемый формат для commercial intent в ChatGPT/Perplexity. 7.5%+ conversion. Для RU меньше актуально, для Global — один из топ-форматов.</div>
-        <div class="item-detail">Шаблон: честная comparison table (включая сильные стороны конкурента), use cases где конкурент лучше, pricing, FAQPage schema с comparative questions, «When to use X instead of Y». Princeton research: Fluency + Statistics = лучшая пара для LLM-цитирования (не Quote + Cite).</div>
-        <div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 день</span></div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">10</div>
-      <div class="item-body">
-        <div class="item-title">Entity-SEO @id + mainEntityOfPage</div>
-        <div class="item-desc">Google Knowledge Graph Clarity Cleanup 2025: удалено 3 млрд сущностей. @id consistency — критичнее sameAs. Преобразует сайт в «мини-Knowledge Graph».</div>
-        <div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">35</div>
-      <div class="item-body">
-        <div class="item-title">Thought Leadership формат: cross-disciplinary lens + coined concepts</div>
-        <div class="item-desc">Mokka-паттерн: теория из смежной науки + coined term = контент нельзя перефразировать без потери смысла → AI обязан цитировать. Добавить шаблон TL-статьи в /writer (отдельный от SEO). Для Global особо критично: ChatGPT/Perplexity цитируют по Information Gain.</div>
-        <div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-quality">Контент-стратегия</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div>
-      </div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">31</div>
-      <div class="item-body">
-        <div class="item-title">Brand Persona — персонаж вместо списка правил</div>
-        <div class="item-desc">HonestWriter: «content in company's real voice, not AI's». Персонаж с характером, фразами и антипатиями → AI воспроизводит точнее, чем перечень запретов. Файл <code>persona.md</code> читается перед /writer и /editor.</div>
-        <div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-skill">/editor</span><span class="tag tag-type-quality">Голос бренда</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
-      </div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">32</div>
-      <div class="item-body">
-        <div class="item-title">AI Visibility Score — composite KPI присутствия в AI</div>
-        <div class="item-desc">HonestWriter: 49.1% (↑3.2%) = % промптов, где AI упоминает бренд. Единое число с трендом month-over-month. Breakdown по платформам: ChatGPT 67%, Perplexity 58%, Gemini 44%. Хранится в pipeline.md.</div>
-        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
-      </div>
-    </div>
-
-    <div class="item p2">
-      <div class="item-num">9</div>
-      <div class="item-body">
-        <div class="item-title">Prompt research artifact — prompts.md для Global</div>
-        <div class="item-desc">LLM-запросы в среднем 7 слов (vs 2-3 для Google). LLM делает 3 поиска на 1 промпт. Для Global: AlsoAsked + AnswerThePublic + прямой опрос ChatGPT/Claude + Brand Radar 2.0.</div>
-        <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~3 часа</span></div>
-      </div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">36</div>
-      <div class="item-body"><div class="item-title">DataForSEO near-miss scoring в PLAN</div><div class="item-desc">Алгоритмическая приоритизация тем: позиции 8–20 (near-miss) + объём + конкурентный gap. Score = search_volume × near_miss_mult + competitor_gap_bonus. Global: DataForSEO Keywords API + GSC.</div><div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-research">Планирование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~2 дня</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">39</div>
-      <div class="item-body"><div class="item-title">Модели для /writer — что пишет хорошо через API</div><div class="item-desc">Сравнение GLM-4, Kimi, DeepSeek-V3, Gemini 2.0 Flash, Mistral Large, Claude Haiku по cost/quality/latency для EN контента. Добавить аргумент <code>model=</code> в /writer для выбора на уровне проекта.</div><div class="item-meta"><span class="tag tag-skill">/writer</span><span class="tag tag-type-research">Исследование</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
-    </div>
-    <div class="item p2">
-      <div class="item-num">40</div>
-      <div class="item-body"><div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div><div class="item-desc">Слоп = форма без функции. «Следует отметить» + пустота → удалить. «Следует отметить: 7 из 10...» → убрать фрейм, оставить содержание. /editor и /quality-gate сейчас банят по паттерну, не по смыслу.</div><div class="item-meta"><span class="tag tag-skill">/editor</span><span class="tag tag-skill">/quality-gate</span><span class="tag tag-type-quality">Качество</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div></div>
-    </div>
-  </div>
-
-  <div class="section-gap">
-    <div class="section-title">P3 — Стратегические для Global (строить параллельно с контентом)</div>
-
-    <div class="item p3">
-      <div class="item-num">20</div>
-      <div class="item-body">
-        <div class="item-title">YouTube sub-pipeline — самый недооценённый AI-канал</div>
-        <div class="item-desc">YouTube = 29-30% Google AIO citations (в 200x больше любой другой платформы). Long-form 10-20 мин = 94% citations vs 5.7% Shorts. Views НЕ коррелируют с citations — структура (chapters, transcripts) коррелирует. Можно конкурировать с крупными брендами быстро через structured content.</div>
-        <div class="item-detail">Sub-pipeline: статья → /video-writer (скрипт по статье, 10-20 мин) → запись → загрузка с timestamped chapters, 500+ слов описания, VideoObject schema + transcript на статье. Citation не зависит от подписчиков — зависит от структуры.</div>
-        <div class="item-meta"><span class="tag tag-skill">new /video</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 нед</span></div>
-      </div>
-    </div>
-
-    <div class="item p3">
-      <div class="item-num">21</div>
-      <div class="item-body">
-        <div class="item-title">Organization + Person sameAs с Wikidata Q-ID</div>
-        <div class="item-desc">После Clarity Cleanup — Wikidata реалистичнее Wikipedia для входа в Knowledge Graph. Google Agent Rank оценивает автора на entity-level: кто опубликовал, где цитируется, консистентный bio.</div>
-        <div class="item-detail">Создать Wikidata-запись (Q-ID) → добавить в Organization schema: sameAs [LinkedIn, GitHub, YouTube, Crunchbase, Wikidata Q-ID]. MuckRack профиль для author authority. Единый Person @id через все публикации (гостевые посты, vc.ru, Medium).</div>
-        <div class="item-meta"><span class="tag tag-skill">/publisher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 дня</span></div>
-      </div>
-    </div>
-
-    <div class="item p3">
-      <div class="item-num">24</div>
-      <div class="item-body">
-        <div class="item-title">Reddit/community agent для Global</div>
-        <div class="item-desc">Reddit = 44% social-media citations в AIO, 46.7% Perplexity community-запросов. Volatile (падение 350 SISTRIX points за день), но мощный. Для RU аналог — vc.ru комменты + Telegram-чаты.</div>
-        <div class="item-detail">90/10 rule. Crawl phase: профильные сабреддиты (r/sales, r/b2b), 0 ссылок. Walk phase: ссылки где уместно. Run phase: собственные треды с исследованиями. Отслеживать суммарный upvote score и количество ссылок в ответах.</div>
-        <div class="item-meta"><span class="tag tag-skill">new /community</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~1 нед</span></div>
-      </div>
-    </div>
-
-    <div class="item p3">
-      <div class="item-num">25</div>
-      <div class="item-body">
-        <div class="item-title">Topical authority map + semantic clustering</div>
-        <div class="item-desc">siteFocusScore + siteRadius (из утечки): Google векторизует страницы относительно ядра темы сайта. Для Global: кластеризация через sentence-BERT embeddings (не только SERP), entity-grouping вокруг топик-кластеров.</div>
-        <div class="item-meta"><span class="tag tag-skill">/researcher</span><span class="tag tag-type-entity">Entity</span><span class="tag tag-global">Global</span><span class="tag tag-effort">~2 дня</span></div>
-      </div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">33</div>
-      <div class="item-body">
-        <div class="item-title">Per-platform mention counts — ChatGPT: 142, Claude: 96…</div>
-        <div class="item-desc">Абсолютные числа по платформам (ChatGPT, Perplexity, Gemini, Claude) помимо %. Платформы растут по-разному — абсолюты + % вместе точнее показывают где работать.</div>
-        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">GEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 день</span></div>
-      </div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">34</div>
-      <div class="item-body">
-        <div class="item-title">AI question drift — автообновление при смене фрейма ответов</div>
-        <div class="item-desc">HonestWriter «on autopilot»: когда AI меняет как отвечает на вашу тему — контент обновляется. Ежемесячное сравнение топ-3 ответов ChatGPT/Perplexity → drift &gt;30% → action item в /page-optimizer.</div>
-        <div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/page-optimizer</span><span class="tag tag-type-aeo">AEO</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div>
-      </div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">37</div>
-      <div class="item-body"><div class="item-title">Orion judge — meta-AI агент для MEASURE</div><div class="item-desc">Gate перед генерацией action items: days ≥ 30, impressions ≥ 100, |position_delta| > noise. Без judge /tracker выдаёт action items на шуме — бесполезные изменения в page-optimizer.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~3 дня</span></div></div>
-    </div>
-    <div class="item p3">
-      <div class="item-num">38</div>
-      <div class="item-body"><div class="item-title">LEARN → PLAN feedback loop</div><div class="item-desc">Агрегировать топ-темы и форматы по AI citation rate → записать в learning-log.md → /researcher читает при следующем цикле. Сейчас петля незамкнута: /tracker пишет, /researcher не читает.</div><div class="item-meta"><span class="tag tag-skill">/tracker</span><span class="tag tag-skill">/researcher</span><span class="tag tag-type-aeo">Автоматизация</span><span class="tag tag-both">Both</span><span class="tag tag-effort">~1 нед</span></div></div>
-    </div>
-  </div>
 
   <!-- Key insight for global -->
   <div class="ctx" style="margin-bottom:0;">
@@ -1318,12 +1077,62 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 </div><!-- /main -->
 
 <script>
+function renderFilteredTab(market) {
+  var container = document.getElementById('filtered-' + market);
+  if (!container) return;
+  container.innerHTML = '';
+
+  var allItems = Array.from(document.querySelectorAll('#tab-all .item'));
+  var matched = allItems.filter(function(item) {
+    return item.querySelector('.tag-' + market) || item.querySelector('.tag-both');
+  });
+
+  var groups = { p1: [], p2: [], p3: [], td: [] };
+  matched.forEach(function(item) {
+    if (item.classList.contains('p1')) groups.p1.push(item);
+    else if (item.classList.contains('p2')) groups.p2.push(item);
+    else if (item.classList.contains('p3')) groups.p3.push(item);
+    else if (item.classList.contains('td')) groups.td.push(item);
+  });
+
+  var labels = {
+    p1: 'P1 — Быстрые победы',
+    p2: 'P2 — Средние',
+    p3: 'P3 — Стратегические',
+    td: 'Технический долг'
+  };
+
+  ['p1','p2','p3','td'].forEach(function(priority) {
+    if (groups[priority].length === 0) return;
+    var section = document.createElement('div');
+    section.className = 'section-gap';
+    var title = document.createElement('div');
+    title.className = 'section-title';
+    title.textContent = labels[priority];
+    section.appendChild(title);
+    groups[priority].forEach(function(item) {
+      section.appendChild(item.cloneNode(true));
+    });
+    container.appendChild(section);
+  });
+
+  // update tab count badge
+  var btn = document.querySelector('[onclick="switchTab(\'' + market + '\')"]');
+  if (btn) { var cnt = btn.querySelector('.cnt'); if (cnt) cnt.textContent = matched.length; }
+}
+
 function switchTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById('tab-' + name).classList.add('active');
   event.currentTarget.classList.add('active');
+  if (name === 'ru' || name === 'global') renderFilteredTab(name);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderFilteredTab('ru');
+  renderFilteredTab('global');
+});
 </script>
 </body>
 </html>
