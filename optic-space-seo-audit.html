@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — optic-space.com</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0d0e0c;
+  --surface: #161917;
+  --surface2: #1e2220;
+  --surface3: #242724;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0ec;
+  --text-soft: #b8bdb6;
+  --muted: #6b7068;
+  --accent: #d4a843;
+  --accent-dim: rgba(212,168,67,0.15);
+  --accent-hover: #e8bc5a;
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --orange: #d4813a;
+  --orange-dim: rgba(212,129,58,0.12);
+  --green: #5fa85a;
+  --green-dim: rgba(95,168,90,0.12);
+  --blue: #5a94d4;
+  --blue-dim: rgba(90,148,212,0.12);
+  --radius: 10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-hover)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,14,12,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:4px;height:52px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-logo{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;margin-right:12px;flex-shrink:0}
+.nav a{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.3px;padding:6px 11px;border-radius:6px;white-space:nowrap;transition:color .15s,background .15s}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.hero{background:linear-gradient(135deg,#0c100e 0%,#0d0e0c 60%,#0c0f10 100%);border-bottom:1px solid var(--border);padding:64px 32px 52px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.hero .wrap{padding:0}
+.hero-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(212,168,67,.3);padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:12px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--text-soft);max-width:640px;margin-bottom:36px}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:960px}
+.hstat{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:18px 20px}
+.hstat-val{font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-.5px;line-height:1}
+.hstat-val.red{color:var(--red)}
+.hstat-val.green{color:var(--green)}
+.hstat-val.blue{color:var(--blue)}
+.hstat-val.orange{color:var(--orange)}
+.hstat-label{font-size:12px;color:var(--muted);margin-top:4px}
+.section{padding:52px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.section-title{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.section-desc{font-size:14px;color:var(--text-soft);max-width:720px;margin-bottom:28px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.card-title{font-size:13px;font-weight:700;color:var(--text-soft);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.chart-label{font-size:12px;color:var(--muted);margin-bottom:14px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.chart-canvas-wrap{position:relative;height:200px}
+.issue-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--radius);padding:18px 20px;display:flex;gap:16px;align-items:flex-start;margin-bottom:10px}
+.issue-card.orange{border-left-color:var(--orange)}
+.issue-card.yellow{border-left-color:var(--accent)}
+.issue-card.green{border-left-color:var(--green)}
+.issue-num{font-size:20px;font-weight:900;color:var(--red);min-width:28px;line-height:1.2}
+.issue-card.orange .issue-num{color:var(--orange)}
+.issue-card.yellow .issue-num{color:var(--accent)}
+.issue-card.green .issue-num{color:var(--green)}
+.issue-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.issue-desc{font-size:13px;color:var(--text-soft);line-height:1.5}
+.issue-meta{font-size:11px;color:var(--muted);margin-top:6px}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.badge-red{background:var(--red-dim);color:var(--red)}
+.badge-orange{background:var(--orange-dim);color:var(--orange)}
+.badge-green{background:var(--green-dim);color:var(--green)}
+.badge-blue{background:var(--blue-dim);color:var(--blue)}
+.badge-muted{background:rgba(107,112,104,.15);color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border2);background:var(--surface2)}
+td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+.kw{color:var(--text);font-weight:500}
+.pos-good{color:var(--green);font-weight:700}
+.pos-mid{color:var(--accent);font-weight:700}
+.pos-bad{color:var(--red);font-weight:700}
+.ws-num{font-variant-numeric:tabular-nums;color:var(--blue)}
+.comp-row{display:grid;grid-template-columns:1fr 80px 80px 80px 80px;gap:0}
+.comp-row.header{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:10px 14px;background:var(--surface2);border-radius:8px 8px 0 0}
+.comp-row.data{padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px}
+.comp-row.data:last-child{border-bottom:none}
+.comp-row.data:hover{background:rgba(255,255,255,.02)}
+.comp-name{font-weight:600;color:var(--text)}
+.qw-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.qw-phrase{font-size:14px;font-weight:600}
+.qw-meta{display:flex;gap:10px;flex-wrap:wrap}
+.qw-stat{font-size:12px;color:var(--muted)}
+.qw-stat strong{color:var(--text-soft)}
+.qw-arrow{font-size:12px;color:var(--green);font-weight:700}
+.roadmap-phase{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px}
+.phase-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.phase-badge{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
+.phase-now{background:var(--red-dim);color:var(--red)}
+.phase-1{background:var(--accent-dim);color:var(--accent)}
+.phase-2{background:var(--blue-dim);color:var(--blue)}
+.phase-3{background:var(--green-dim);color:var(--green)}
+.phase-title{font-weight:700;font-size:15px}
+.phase-list{list-style:none;padding:0}
+.phase-list li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-soft);align-items:flex-start}
+.phase-list li:last-child{border-bottom:none}
+.phase-list li::before{content:'→';color:var(--accent);flex-shrink:0;margin-top:1px}
+.forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.forecast-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;text-align:center}
+.forecast-period{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.forecast-val{font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-.5px}
+.forecast-metric{font-size:11px;color:var(--text-soft);margin-top:4px}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.swot{grid-template-columns:1fr}}
+.swot-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.swot-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.swot-card.s .swot-label{color:var(--green)}.swot-card.s .dot{background:var(--green)}
+.swot-card.w .swot-label{color:var(--red)}.swot-card.w .dot{background:var(--red)}
+.swot-card.o .swot-label{color:var(--blue)}.swot-card.o .dot{background:var(--blue)}
+.swot-card.t .swot-label{color:var(--orange)}.swot-card.t .dot{background:var(--orange)}
+.swot-card ul{list-style:none;padding:0}
+.swot-card li{font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.45}
+.swot-card li:last-child{border-bottom:none}
+.gap-cluster{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px}
+.gap-cluster-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.gap-cluster-name{font-weight:700;font-size:14px}
+.gap-cluster-ws{font-size:13px;color:var(--blue);font-weight:600}
+.gap-kw-list{display:flex;flex-wrap:wrap;gap:6px}
+.gap-kw{font-size:12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;color:var(--text-soft)}
+.gap-kw span{color:var(--muted);margin-left:4px}
+.insight-box{background:var(--accent-dim);border:1px solid rgba(212,168,67,.25);border-radius:var(--radius);padding:16px 20px;font-size:13px;color:var(--text);line-height:1.6;margin-bottom:20px}
+.insight-box strong{color:var(--accent)}
+.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.star{color:var(--accent)}
+footer{text-align:center;padding:28px;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">optic-space.com</div>
+    <a href="#exec">Выводы</a>
+    <a href="#dynamics">Динамика</a>
+    <a href="#tech">Техника</a>
+    <a href="#content">Контент</a>
+    <a href="#competitors">Конкуренты</a>
+    <a href="#gap">Gap-анализ</a>
+    <a href="#quickwins">Quick Wins</a>
+    <a href="#roadmap">Роадмап</a>
+    <a href="#forecast">Прогноз</a>
+    <a href="#swot">SWOT</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">SEO-аудит · Июнь 2026</div>
+    <h1>optic-space.com — <span>аудит органического трафика</span></h1>
+    <p class="hero-sub">Данные Keys.so (база ru) + технический краулинг. Салон оптики в Новосибирске: 914 ключей в топ-50, блог тащит трафик, коммерческий локальный кластер застрял на 10–16 позиции.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">914</div><div class="hstat-label">ключей в топ-50</div></div>
+      <div class="hstat"><div class="hstat-val orange">10</div><div class="hstat-label">видимость (vis)</div></div>
+      <div class="hstat"><div class="hstat-val">5</div><div class="hstat-label">ключей в топ-1</div></div>
+      <div class="hstat"><div class="hstat-val">43</div><div class="hstat-label">ключей в топ-10</div></div>
+      <div class="hstat"><div class="hstat-val">30</div><div class="hstat-label">страниц в индексе</div></div>
+      <div class="hstat"><div class="hstat-val">14</div><div class="hstat-label">Domain Rating</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<section class="section" id="exec">
+  <div class="wrap">
+    <div class="section-label">01 · Executive Summary</div>
+    <h2 class="section-title">Ключевые выводы</h2>
+    <p class="section-desc">Optic Space — салон оптики в Новосибирске (WordPress + WooCommerce). Сайт присутствует в поиске, но потенциал реализован на 15–20%. Две точки роста: локальный коммерческий трафик и информационный блог.</p>
+
+    <div class="insight-box">
+      <strong>Главный инсайт:</strong> Сайт уже ранжируется по 914 запросам, но коммерческие деньги лежат на pos:10–16 — «новосибирск оптика» (ws:3685, pos:10), «купить очки новосибирск» (ws:1721, pos:16). Блог тащит сайт: одна статья про выбор очков по форме лица = 450 ключей в топ-50 с суммарным потенциалом 40K+/мес. Основная задача — не создавать с нуля, а дожать то, что уже в топ-20.
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">Блог — SEO-машина ✅</div>
+        <p style="font-size:13px;color:var(--text-soft);">Статья «Очки-хамелеоны» = 450 ключей в топ-50. Кластер «форма лица + очки» (40K+ WS/мес) на pos:19-24. Вывод в топ-10 даст +1500 визитов/мес.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Локальный трафик: рядом с топом ⚠️</div>
+        <p style="font-size:13px;color:var(--text-soft);">«Новосибирск оптика» (3685 WS) на pos:10. «Купить очки новосибирск» (1721 WS) на pos:16. Нет H1 на главной — главная причина торможения.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Пробелы: линзы и диагностика 📋</div>
+        <p style="font-size:13px;color:var(--text-soft);">Страницы /linzi и /diagnostika-zreniya/ существуют, но практически не видны. 0 позиций по запросам «линзы купить новосибирск», «диагностика зрения новосибирск».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMICS -->
+<section class="section" id="dynamics">
+  <div class="wrap">
+    <div class="section-label">02 · История роста</div>
+    <h2 class="section-title">Динамика позиций (18 месяцев)</h2>
+    <p class="section-desc">Стабильный рост с конца 2025. Пик апрель 2026: vis=14, it10=61. Небольшая просадка в мае–июне 2026.</p>
+
+    <div class="grid2" style="margin-bottom:16px;">
+      <div class="chart-wrap">
+        <div class="chart-label">Видимость (vis) и ключи топ-10</div>
+        <div class="chart-canvas-wrap"><canvas id="chartVis"></canvas></div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-label">Ключи топ-50 и страниц в индексе</div>
+        <div class="chart-canvas-wrap"><canvas id="chartKeys"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Просадка лето 2025 (июль–октябрь)</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">↘ it10: 64 (янв 2025) → 17 (ноябрь 2025) — потеря 73% топ-10 позиций</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">it1 упал с 7 → 2 в августе 2025</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">Вероятная причина: алгоритмическое обновление Яндекса, без изменений на сайте</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Восстановление 2025–2026</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">↗ it10: 17 (нояб 2025) → 61 (апрель 2026) — рост ×3,6</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">it50: 540 → 914 — блог наращивает семантику</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">AI-цитирования появились: 0 (июль 2025) → 13-27 (2026). Алиса стала отвечать ссылками на блог.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH AUDIT -->
+<section class="section" id="tech">
+  <div class="wrap">
+    <div class="section-label">03 · Технический SEO</div>
+    <h2 class="section-title">Технические проблемы</h2>
+    <p class="section-desc">WordPress + WooCommerce, PHP 7.4 (EOL). Основные технические файлы в порядке, но есть критические on-page пробелы.</p>
+
+    <div class="issue-card">
+      <div class="issue-num">P0</div>
+      <div>
+        <div class="issue-title">Нет H1 на главной странице <span class="badge badge-red">блокирующее</span></div>
+        <div class="issue-desc">На главной странице отсутствует тег <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">&lt;h1&gt;</code>. Первый heading — H2: «Optic Space — сеть салонов оптики в Новосибирске, которой доверяют». Это прямая причина, почему «новосибирск оптика» (WS 3685) застрял на позиции 10, а «купить очки новосибирск» (WS 1721) на позиции 16.</div>
+        <div class="issue-meta">Проверено: grep &lt;h1&gt; homepage → 0 совпадений</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">P0</div>
+      <div>
+        <div class="issue-title">PHP 7.4.33 — End of Life с декабря 2022 <span class="badge badge-red">безопасность</span></div>
+        <div class="issue-desc">Сервер отдаёт <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">x-powered-by: PHP/7.4.33</code>. Версия без security-патчей уже 3,5 года. Риски: уязвимости в WP-плагинах, возможные проблемы с хостингом при принудительном обновлении, потеря производительности vs PHP 8.x.</div>
+        <div class="issue-meta">Источник: HTTP response headers</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">Cyrillic URL-encoded слаги у большинства товаров <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">~70% товарных страниц имеют URL вида <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">/product/%d0%be%d0%bf%d1%80%d0%b0%d0%b2%d0%b0-baroncelli-23103-c6/</code> вместо транслита. Яндекс предпочитает латиницу в slug. Ссылки некликабельны при копировании, шаринг сломан.</div>
+        <div class="issue-meta">Хороший пример: /product/oprava-opticheskaja-1769/ · Плохой: /product/%d0%be%d0%bf%d1%80%d0%b0...</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">OG-изображение по HTTP, не HTTPS <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">В мета-теге: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">og:image: http://optic-space.com/wp-content/uploads/2025/12/Frame-35.png</code>. Mixed content: браузеры и соцсети блокируют HTTP-изображения. Превью при шаринге ВКонтакте/Telegram может не отображаться.</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">Только 30 страниц в индексе <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">Видимо, большинство карточек товаров не индексируется. В топ-50 только 1 товарная страница (/product/oprava-opticheskaja-1663 с WS:109). У happylook.ru — 2214 страниц в индексе, у Optic Space — 30. Проверить sitemap и настройки WooCommerce SEO.</div>
+        <div class="issue-meta">Данные: keys.so pagesinindex=30</div>
+      </div>
+    </div>
+
+    <div class="issue-card yellow">
+      <div class="issue-num">P2</div>
+      <div>
+        <div class="issue-title">Schema.org: нужно расширить <span class="badge-muted badge">среднее</span></div>
+        <div class="issue-desc">Присутствует базовый блок WebSite/Organization. Нет: Product на карточках товаров (цена, наличие, бренд), LocalBusiness с адресом и OpeningHours, BreadcrumbList на категориях. Без Product schema — нет цен в сниппете.</div>
+      </div>
+    </div>
+
+    <div class="issue-card green">
+      <div class="issue-num">✅</div>
+      <div>
+        <div class="issue-title">Хорошее: robots.txt, sitemap, canonical, meta robots</div>
+        <div class="issue-desc">robots.txt корректный с Yandex Sitemap-директивой. sitemap_index.xml существует. Canonical на главной правильный. Meta robots: index, follow, max-image-preview:large — всё верно. Это нетипично хорошо для небольшого WP-сайта.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT AUDIT -->
+<section class="section" id="content">
+  <div class="wrap">
+    <div class="section-label">04 · Контент и семантика</div>
+    <h2 class="section-title">Текущие позиции и контентные возможности</h2>
+    <p class="section-desc">914 ключей в топ-50. Трафик приносит блог (647 из 914 ключей), а не магазин.</p>
+
+    <div class="insight-box">
+      <strong>Аномалия:</strong> Одна статья «/blog/ochki-hameleony-v-chem-zhe-ih-preimushhestvo» даёт 450 ключей в топ-50 — это 49% всей семантики сайта. Кластер «как выбрать оправу по типу лица» суммарно тянет 40К+ запросов/мес. Сейчас позиции 19–24 — до топ-10 небольшой шаг.
+    </div>
+
+    <div class="grid2" style="margin-bottom:20px;">
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;">Топ-10 коммерческих запросов</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Запрос</th><th>Поз.</th><th>WS/мес</th></tr></thead>
+            <tbody>
+              <tr><td class="kw">оптика с проверкой зрения нск</td><td class="pos-good">3</td><td class="ws-num">159</td></tr>
+              <tr><td class="kw">оптики в новосибирске</td><td class="pos-good">6</td><td class="ws-num">681</td></tr>
+              <tr><td class="kw">очки на заказ новосибирск</td><td class="pos-good">7</td><td class="ws-num">39</td></tr>
+              <tr><td class="kw">новосибирск оптика</td><td class="pos-mid">10</td><td class="ws-num" style="color:var(--accent);font-weight:700;">3 685</td></tr>
+              <tr><td class="kw">магазин оптики новосибирск</td><td class="pos-mid">13</td><td class="ws-num">104</td></tr>
+              <tr><td class="kw">купить очки новосибирск</td><td class="pos-bad">16</td><td class="ws-num" style="color:var(--accent);font-weight:700;">1 721</td></tr>
+              <tr><td class="kw">проверка зрения в новосибирске</td><td class="pos-bad">20</td><td class="ws-num">229</td></tr>
+              <tr><td class="kw">оправа для очков новосибирск</td><td class="pos-bad">24</td><td class="ws-num">253</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;">Топ страниц по it50</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Страница</th><th>Ключей</th></tr></thead>
+            <tbody>
+              <tr><td class="kw">/blog/ochki-hameleony...</td><td><strong style="color:var(--green);">450</strong></td></tr>
+              <tr><td class="kw">/blog/ochki-s-poljarizaciej...</td><td><strong style="color:var(--green);">197</strong></td></tr>
+              <tr><td class="kw">/ (главная)</td><td>90</td></tr>
+              <tr><td class="kw">/blog/kak-uhazhivat-za-ochkami</td><td>38</td></tr>
+              <tr><td class="kw">/blog/adaptacija-k-progressivnym</td><td>36</td></tr>
+              <tr><td class="kw">/kontakti</td><td>26</td></tr>
+              <tr><td class="kw">/linzi</td><td>6</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;">Контентные пробелы</h3>
+
+    <div class="issue-card">
+      <div class="issue-num">❌</div>
+      <div>
+        <div class="issue-title">Контактные линзы — страница есть, SEO нет</div>
+        <div class="issue-desc">/linzi — только 6 ключей в топ-50. Ни одного запроса «купить линзы новосибирск» (WS ~500), «контактные линзы новосибирск» (~300), «однодневные линзы купить» (~2000). Нужна полноценная категорийная страница с ассортиментом и SEO-текстом.</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">⚠️</div>
+      <div>
+        <div class="issue-title">Диагностика зрения — не продвигается как самостоятельная услуга</div>
+        <div class="issue-desc">/diagnostika-zreniya/ существует, но трафик по «диагностика зрения новосибирск» (WS ~300) идёт только через главную (pos:20). Нужна оптимизированная страница-лендинг услуги — это ключевой лид-генератор (клиент пришёл на диагностику → купил очки).</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">⚠️</div>
+      <div>
+        <div class="issue-title">Блог-статья «форма лица» застряла на pos:19-24 — нужен апдейт</div>
+        <div class="issue-desc">Статья на /blog/ochki-hameleony тянет 40К+/мес по суммарному WS, но ни один запрос не в топ-10. «Какая форма очков подходит» (WS 7393) на pos:21, «какие очки подойдут для лица» (WS 8889) на pos:24. Обновление и расширение статьи — самый дешёвый способ получить +1500-2000 визитов/мес.</div>
+      </div>
+    </div>
+
+    <div class="issue-card yellow">
+      <div class="issue-num">💡</div>
+      <div>
+        <div class="issue-title">Нет контента под подарочный спрос</div>
+        <div class="issue-desc">«Подарочные сертификаты» — страница в навигации. Но нет оптимизации под «очки в подарок», «сертификат оптика новосибирск». Есть страница /podarochnye-sertifikaty/ — нужно SEO-наполнение.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="section" id="competitors">
+  <div class="wrap">
+    <div class="section-label">05 · Конкуренты</div>
+    <h2 class="section-title">Конкурентный ландшафт</h2>
+    <p class="section-desc">Федеральные сети (happylook, ochkarik) вне досягаемости по масштабу — у них DR 25-35, 2K+ страниц. Реальные конкуренты — локальные Новосибирские оптики с DR &lt; 15.</p>
+
+    <div class="tbl-wrap" style="margin-bottom:20px;">
+      <div class="comp-row header">
+        <div>Домен</div><div>DR</div><div>Vis</div><div>Топ-50</div><div>Сегмент</div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">happylook.ru</div>
+        <div style="color:var(--green);font-weight:700;">35</div>
+        <div style="color:var(--green);font-weight:700;">14 609</div>
+        <div style="color:var(--green);">105K</div>
+        <div><span class="badge badge-red">Федерал</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">ochkarik.ru</div>
+        <div style="color:var(--green);">~25</div>
+        <div style="color:var(--green);">3 364</div>
+        <div style="color:var(--green);">96K</div>
+        <div><span class="badge badge-red">Федерал</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">optic-city.ru</div>
+        <div style="color:var(--accent);">~22</div>
+        <div style="color:var(--accent);">4 082</div>
+        <div style="color:var(--accent);">58K</div>
+        <div><span class="badge badge-orange">Крупный</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">stockoptika.ru</div>
+        <div style="color:var(--accent);">~10</div>
+        <div style="color:var(--accent);">534</div>
+        <div style="color:var(--accent);">19K</div>
+        <div><span class="badge badge-blue">Доступный</span></div>
+      </div>
+      <div class="comp-row data" style="background:rgba(212,168,67,.05);">
+        <div class="comp-name" style="color:var(--accent);">optic-space.com</div>
+        <div style="color:var(--orange);font-weight:700;">14</div>
+        <div style="color:var(--orange);font-weight:700;">10</div>
+        <div style="color:var(--orange);">914</div>
+        <div><span class="badge badge-green">Локальный НСК</span></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Стратегия vs федеральных конкурентов</div>
+        <p style="font-size:13px;color:var(--text-soft);">Биться с happylook.ru за «купить очки» бессмысленно — DR 35 vs 14. Стратегия: глубокая гео-локализация («оптика [район Новосибирска]», «оптика рядом») и информационная ниша (подбор очков, типы линз), где крупные сети слабее.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Возможность: Новосибирск — локальный вакуум</div>
+        <p style="font-size:13px;color:var(--text-soft);">Локальных новосибирских оптик с сильным SEO практически нет (stockoptika — vis 534, optic-lab — vis 61). У Optic Space DR=14 и страницы блога — это уже лучше большинства местных конкурентов. Нужно использовать это окно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP ANALYSIS -->
+<section class="section" id="gap">
+  <div class="wrap">
+    <div class="section-label">06 · Gap-анализ</div>
+    <h2 class="section-title">Ключевые кластеры для роста</h2>
+    <p class="section-desc">Запросы, которые уже «рядом» (pos:10–25) или совсем не охвачены, с реальным потенциалом.</p>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">📍 Локальный коммерческий (Новосибирск) — дожать с 10–16 до топ-5</div>
+        <div class="gap-cluster-ws">~8 000 WS/мес <span class="badge badge-red">HIGH priority</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">новосибирск оптика <span>3 685 · pos:10</span></div>
+        <div class="gap-kw">купить очки новосибирск <span>1 721 · pos:16</span></div>
+        <div class="gap-kw">оптики в новосибирске <span>681 · pos:6</span></div>
+        <div class="gap-kw">проверка зрения новосибирск <span>229 · pos:20</span></div>
+        <div class="gap-kw">магазин оптики новосибирск <span>104 · pos:13</span></div>
+        <div class="gap-kw">оправа для очков новосибирск <span>253 · pos:24</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">👁 Форма лица + очки — блог с pos:19–24 в топ-10</div>
+        <div class="gap-cluster-ws">~40 000 WS/мес <span class="badge badge-red">HIGH priority</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">какая форма очков подходит <span>7 393 · pos:21</span></div>
+        <div class="gap-kw">какие очки подойдут для лица <span>8 889 · pos:24</span></div>
+        <div class="gap-kw">какому лицу подойдут круглые очки <span>6 065 · pos:22</span></div>
+        <div class="gap-kw">очки для типов лица <span>963 · pos:19</span></div>
+        <div class="gap-kw">как выбрать очки по форме лица <span>1 599 · pos:24</span></div>
+        <div class="gap-kw">форма очков по типу лица <span>944 · pos:20</span></div>
+        <div class="gap-kw">подобрать очки по форме лица <span>520 · pos:23</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🥽 Контактные линзы — полный пробел</div>
+        <div class="gap-cluster-ws">~3 500 WS/мес <span class="badge badge-orange">MED priority</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">купить линзы новосибирск <span>~500</span></div>
+        <div class="gap-kw">контактные линзы новосибирск <span>~300</span></div>
+        <div class="gap-kw">однодневные линзы купить <span>~2 000</span></div>
+        <div class="gap-kw">цветные линзы купить новосибирск <span>~200</span></div>
+        <div class="gap-kw">линзы для глаз новосибирск <span>~200</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🔬 Диагностика зрения — лид-генератор</div>
+        <div class="gap-cluster-ws">~800 WS/мес <span class="badge badge-orange">MED priority</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">диагностика зрения новосибирск <span>~300</span></div>
+        <div class="gap-kw">проверить зрение новосибирск <span>~200</span></div>
+        <div class="gap-kw">проверка зрения цена новосибирск <span>~150</span></div>
+        <div class="gap-kw">офтальмолог новосибирск очки <span>~100</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🕶 Солнцезащитные очки (сезон)</div>
+        <div class="gap-cluster-ws">~1 000 WS/мес (сезонный пик) <span class="badge badge-blue">LOW-MED</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">купить солнцезащитные очки новосибирск <span>~200</span></div>
+        <div class="gap-kw">солнцезащитные очки новосибирск <span>~300</span></div>
+        <div class="gap-kw">поляризационные очки купить <span>~500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section" id="quickwins">
+  <div class="wrap">
+    <div class="section-label">07 · Quick Wins</div>
+    <h2 class="section-title">Быстрые победы (первые 2–4 недели)</h2>
+    <p class="section-desc">Изменения с максимальным ROI и минимальными усилиями.</p>
+
+    <div class="qw-card">
+      <div class="qw-phrase">1. Добавить H1 на главную страницу</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>30 минут</strong></div>
+        <div class="qw-stat">Impact: <strong>«Новосибирск оптика» (WS 3685) с pos:10 → топ-3</strong></div>
+        <div class="qw-arrow">→ H1: «Оптика в Новосибирске — очки для зрения и солнцезащитные» или «Optic Space — салон оптики в Новосибирске: очки, линзы, диагностика зрения»</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">2. Обновить и расширить статью «Очки-хамелеоны» под форму лица</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>3–4 часа (копирайтер)</strong></div>
+        <div class="qw-stat">Impact: <strong>40K WS/мес кластера, pos:19-24 → топ-10</strong></div>
+        <div class="qw-arrow">→ Добавить секции по каждому типу лица с фото, таблицу, FAQ. Текущая статья недогружена контентом.</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">3. Исправить OG image: HTTP → HTTPS</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>15 минут (WP настройки)</strong></div>
+        <div class="qw-stat">Impact: <strong>Шаринг в соцсетях заработает корректно</strong></div>
+        <div class="qw-arrow">→ В WordPress: Настройки → Общие → URL сайта сменить на https:// Или в SEO-плагине вручную поправить og:image.</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">4. SEO-оптимизация страницы /diagnostika-zreniya/</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>2–3 часа</strong></div>
+        <div class="qw-stat">Impact: <strong>Лид-генератор: диагностика → продажа</strong></div>
+        <div class="qw-arrow">→ H1: «Диагностика зрения в Новосибирске», текст 400–600 слов, цена, время, FAQ. Добавить MedicalProcedure schema.</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">5. Полноценная страница /linzi с SEO-текстом</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>4–6 часов</strong></div>
+        <div class="qw-stat">Impact: <strong>Закрыть пробел 3500+ WS/мес по линзам</strong></div>
+        <div class="qw-arrow">→ H1 «Контактные линзы в Новосибирске», категории: однодневные, цветные, для астигматизма. WooCommerce категория с товарами.</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">6. Обновить PHP 7.4 → 8.2+</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>Хостинг-провайдер, 1–2 часа + тест</strong></div>
+        <div class="qw-stat">Impact: <strong>Безопасность, производительность, поддержка плагинов</strong></div>
+        <div class="qw-arrow">→ Сначала протестировать на staging. PHP 8.2 даёт прирост скорости 20-30% для WP.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-label">08 · Роадмап</div>
+    <h2 class="section-title">План работ на 3 месяца</h2>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-now">Неделя 1</span>
+        <span class="phase-title">On-page критика — быстро и дёшево</span>
+      </div>
+      <ul class="phase-list">
+        <li>Добавить H1 на главную: «Оптика в Новосибирске — очки для зрения, солнцезащитные, диагностика»</li>
+        <li>Исправить og:image с HTTP на HTTPS в WordPress/SEO-плагине</li>
+        <li>Переписать Title главной: «Optic Space — оптика Новосибирск: очки, линзы, диагностика зрения»</li>
+        <li>Проверить sitemap_index.xml: все товарные страницы включены? Добавить недостающие.</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-1">Неделя 2–4</span>
+        <span class="phase-title">Контент и on-page страниц услуг</span>
+      </div>
+      <ul class="phase-list">
+        <li>Обновить статью «Очки-хамелеоны»: +1000 слов, секции по типам лица, FAQ из Wordstat, фото</li>
+        <li>SEO-оптимизация /diagnostika-zreniya/: H1, 400 слов, schema MedicalProcedure, цены, FAQ</li>
+        <li>Написать SEO-текст для категорий: /product-category/opravy/ (200 слов), /solncezashitnye-ochki/ (200 слов)</li>
+        <li>Создать/расширить страницу /linzi: ассортимент + SEO-текст 500 слов + H1 «Контактные линзы Новосибирск»</li>
+        <li>Обновить PHP 7.4 → 8.2 (совместно с разработчиком/хостингом)</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-2">Месяц 2</span>
+        <span class="phase-title">Новые блог-статьи под высокочастотники</span>
+      </div>
+      <ul class="phase-list">
+        <li>Статья: «Как выбрать контактные линзы: виды, материалы, уход» — кластер WS ~5000/мес</li>
+        <li>Статья: «Солнцезащитные очки с диоптриями: как заказать» — кластер WS ~800/мес</li>
+        <li>Статья: «Прогрессивные линзы: плюсы, минусы, цена» (усилить существующую)</li>
+        <li>Исправить slug-ы кириллических товаров: приоритет топ-50 SKU → транслит</li>
+        <li>Добавить Product schema на карточки товаров через WooCommerce SEO-плагин</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-3">Месяц 3</span>
+        <span class="phase-title">Ссылочное и локальное SEO</span>
+      </div>
+      <ul class="phase-list">
+        <li>Разместить карточку в Яндекс.Бизнес и 2ГИС (если ещё нет) — это прямой сигнал для «ближайший оптика» (WS 1513, pos:17)</li>
+        <li>Получить 5–10 ссылок: местные бизнес-каталоги Новосибирска, медиа</li>
+        <li>Добавить LocalBusiness schema с адресом, телефоном, OpeningHours</li>
+        <li>Геосекция на главной: «Наш адрес», карта, ссылка на 2ГИС/Я.Карты</li>
+        <li>Мониторинг: раз в месяц проверять позиции по локальным запросам</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORECAST -->
+<section class="section" id="forecast">
+  <div class="wrap">
+    <div class="section-label">09 · Прогноз</div>
+    <h2 class="section-title">Ожидаемый рост органики</h2>
+    <p class="section-desc">Базовый уровень: vis=10, it10=43. Прогноз при реализации роадмапа.</p>
+
+    <div class="forecast-grid" style="margin-bottom:20px;">
+      <div class="forecast-card">
+        <div class="forecast-period">Сейчас</div>
+        <div class="forecast-val orange">10</div>
+        <div class="forecast-metric">vis / 43 топ-10</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Мес. 1 (H1 + контент)</div>
+        <div class="forecast-val" style="color:var(--accent);">15–20</div>
+        <div class="forecast-metric">vis / 60–80 топ-10</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Мес. 2 (блог + услуги)</div>
+        <div class="forecast-val" style="color:var(--green);">25–35</div>
+        <div class="forecast-metric">vis / 90–120 топ-10</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Мес. 3 (ссылки + локал)</div>
+        <div class="forecast-val" style="color:var(--green);">40–60</div>
+        <div class="forecast-metric">vis / 130–180 топ-10</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap" style="margin-bottom:16px;">
+      <div class="chart-label">Прогноз видимости (vis): 10 → 40-60 за 3 месяца</div>
+      <div class="chart-canvas-wrap"><canvas id="chartForecast"></canvas></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Ключевые допущения</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">H1 добавлен на главную в нед. 1</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">2–3 новых блог-статьи в месяц (как существующие)</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Индексация товарных страниц улучшится после sitemap-аудита</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">Яндекс.Бизнес активен (нет 2ГИС/ЯК — нет позиций по «ближайший»)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Ключевые риски</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Алгоритмическое обновление Яндекса (был откат летом 2025)</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Happylook.ru усиливает локализацию по Новосибирску</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">PHP 7.4 может быть принудительно отключён хостингом</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">DR=14 ограничивает выход в топ-3 по WS 3000+</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section class="section" id="swot">
+  <div class="wrap">
+    <div class="section-label">10 · SWOT</div>
+    <h2 class="section-title">SWOT-анализ</h2>
+
+    <div class="swot">
+      <div class="swot-card s">
+        <div class="swot-label"><span class="dot"></span>Сильные стороны</div>
+        <ul>
+          <li>914 ключей в топ-50 — сайт уже в поиске, есть база для роста</li>
+          <li>Блог-статья «форма лица + очки» = 450 ключей, AI-цитирования (13) растут</li>
+          <li>Локальное присутствие в Новосибирске — диагностика зрения как USP</li>
+          <li>robots.txt, sitemap, canonical, meta robots — в порядке</li>
+          <li>Schema.org базовая присутствует</li>
+          <li>Нишевые конкуренты (local) слабее: stockoptika vis=534, optic-lab vis=61</li>
+        </ul>
+      </div>
+      <div class="swot-card w">
+        <div class="swot-label"><span class="dot"></span>Слабые стороны</div>
+        <ul>
+          <li>Нет H1 на главной — главная причина торможения коммерческих запросов</li>
+          <li>PHP 7.4 EOL — безопасность и производительность</li>
+          <li>30 страниц в индексе — большинство товаров не видны</li>
+          <li>Cyrillic URL-encoded slugs у большинства товаров</li>
+          <li>Линзы, диагностика — страницы есть, но SEO не сделано</li>
+          <li>DR=14 — ограничивает конкуренцию по высокочастотникам</li>
+        </ul>
+      </div>
+      <div class="swot-card o">
+        <div class="swot-label"><span class="dot"></span>Возможности</div>
+        <ul>
+          <li>«Новосибирск оптика» (WS 3685) на pos:10 — одно H1 может вывести в топ-3</li>
+          <li>Блог-кластер 40K+/мес застрял на pos:19-24 — апдейт статьи даёт +1500 визитов</li>
+          <li>Контактные линзы — полный пробел при наличии страницы /linzi</li>
+          <li>«Ближайший оптика» (WS 1513, pos:17) — Яндекс.Бизнес закрывает это быстро</li>
+          <li>AI-цитирования растут (Алиса уже отвечает) — EEAT-контент блога приносит результат</li>
+          <li>Лето = солнцезащитные очки сезонный пик</li>
+        </ul>
+      </div>
+      <div class="swot-card t">
+        <div class="swot-label"><span class="dot"></span>Угрозы</div>
+        <ul>
+          <li>happylook.ru (DR 35, vis 14609) может зайти глубже в локальный НСК</li>
+          <li>Алгоритмические обновления: летний откат 2025 повторился — нет гарантий</li>
+          <li>PHP 7.4 → уязвимость к взлому, штраф Яндекса за заражённый сайт</li>
+          <li>Маркетплейсы (Wildberries) всё активнее в оптике</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>SEO-аудит optic-space.com · Июнь 2026 · Данные: Keys.so + технический краулинг</p>
+  <p style="margin-top:6px;font-size:11px;">Подготовлено: AI SEO Pipeline · Для внутреннего использования</p>
+</footer>
+
+<script>
+const months = ['янв.25','фев.25','мар.25','апр.25','май.25','июн.25','июл.25','авг.25','сен.25','окт.25','ноя.25','дек.25','янв.26','фев.26','мар.26','апр.26','май.26','июн.26'];
+const visData = [3,4,4,4,6,6,4,5,5,5,4,3,6,9,9,14,10,10];
+const it10Data = [64,61,48,47,44,42,20,21,19,18,17,20,27,34,45,61,46,43];
+const it50Data = [610,620,544,538,536,516,540,715,679,674,715,813,761,791,792,865,915,914];
+const pagesData = [21,21,22,22,21,22,26,27,24,26,26,31,33,28,25,31,30,30];
+
+new Chart(document.getElementById('chartVis').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Видимость (vis)', data: visData, borderColor: '#d4a843', backgroundColor: 'rgba(212,168,67,.1)', tension: 0.3, fill: true, pointRadius: 3 },
+      { label: 'Ключей топ-10', data: it10Data, borderColor: '#5a94d4', backgroundColor: 'rgba(90,148,212,.08)', tension: 0.3, fill: false, pointRadius: 3, yAxisID: 'y2' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#b8bdb6', font: { size: 11 } } } },
+    scales: {
+      x: { ticks: { color: '#6b7068', font: { size: 10 }, maxRotation: 45 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#d4a843', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      y2: { position: 'right', ticks: { color: '#5a94d4', font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartKeys').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Ключей топ-50', data: it50Data, borderColor: '#5fa85a', backgroundColor: 'rgba(95,168,90,.1)', tension: 0.3, fill: true, pointRadius: 3 },
+      { label: 'Страниц в индексе', data: pagesData, borderColor: '#d4813a', backgroundColor: 'transparent', tension: 0.3, fill: false, pointRadius: 3, borderDash: [4,3], yAxisID: 'y2' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#b8bdb6', font: { size: 11 } } } },
+    scales: {
+      x: { ticks: { color: '#6b7068', font: { size: 10 }, maxRotation: 45 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#5fa85a', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      y2: { position: 'right', ticks: { color: '#d4813a', font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartForecast').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Сейчас', 'Мес. 1', 'Мес. 2', 'Мес. 3'],
+    datasets: [
+      { label: 'Мин. прогноз vis', data: [10, 15, 25, 40], backgroundColor: 'rgba(90,148,212,.4)', borderColor: 'rgba(90,148,212,.8)', borderWidth: 1, borderRadius: 4 },
+      { label: 'Макс. прогноз vis', data: [10, 20, 35, 60], backgroundColor: 'rgba(95,168,90,.3)', borderColor: 'rgba(95,168,90,.7)', borderWidth: 1, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#b8bdb6', font: { size: 11 } } } },
+    scales: {
+      x: { ticks: { color: '#6b7068', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#6b7068', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
