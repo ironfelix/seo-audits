@@ -317,6 +317,80 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--muted);border-t
         <div class="issue-desc">robots.txt корректный с Yandex Sitemap-директивой. sitemap_index.xml существует. Canonical на главной правильный. Meta robots: index, follow, max-image-preview:large — всё верно. Это нетипично хорошо для небольшого WP-сайта.</div>
       </div>
     </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:28px 0 14px;">Технический чеклист</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Категория</th><th>Статус</th><th>Детали</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="kw">H1 на главной</td>
+            <td><span class="badge badge-red">❌ Отсутствует</span></td>
+            <td style="color:var(--text-soft);">Первый heading — H2, не H1</td>
+          </tr>
+          <tr>
+            <td class="kw">PHP версия</td>
+            <td><span class="badge badge-red">❌ 7.4 EOL</span></td>
+            <td style="color:var(--text-soft);">7.4.33, без поддержки с дек. 2022</td>
+          </tr>
+          <tr>
+            <td class="kw">HTTPS</td>
+            <td><span class="badge badge-green">✅ Работает</span></td>
+            <td style="color:var(--text-soft);">Сертификат активный</td>
+          </tr>
+          <tr>
+            <td class="kw">robots.txt</td>
+            <td><span class="badge badge-green">✅ Корректный</span></td>
+            <td style="color:var(--text-soft);">User-agent Yandex, Clean-param, Sitemap-директива</td>
+          </tr>
+          <tr>
+            <td class="kw">sitemap.xml</td>
+            <td><span class="badge badge-green">✅ Существует</span></td>
+            <td style="color:var(--text-soft);">sitemap_index.xml подключён</td>
+          </tr>
+          <tr>
+            <td class="kw">Canonical</td>
+            <td><span class="badge badge-green">✅ Присутствует</span></td>
+            <td style="color:var(--text-soft);">На главной корректный</td>
+          </tr>
+          <tr>
+            <td class="kw">Meta robots</td>
+            <td><span class="badge badge-green">✅ index, follow</span></td>
+            <td style="color:var(--text-soft);">max-image-preview:large — правильно</td>
+          </tr>
+          <tr>
+            <td class="kw">OG-теги</td>
+            <td><span class="badge badge-orange">⚠️ HTTP-изображение</span></td>
+            <td style="color:var(--text-soft);">og:image по http://, нужен https://</td>
+          </tr>
+          <tr>
+            <td class="kw">URL-структура товаров</td>
+            <td><span class="badge badge-orange">⚠️ Кириллица</span></td>
+            <td style="color:var(--text-soft);">~70% слагов URL-encoded кириллицей</td>
+          </tr>
+          <tr>
+            <td class="kw">Schema.org</td>
+            <td><span class="badge badge-orange">⚠️ Базовый</span></td>
+            <td style="color:var(--text-soft);">Нет Product, LocalBusiness, BreadcrumbList</td>
+          </tr>
+          <tr>
+            <td class="kw">Индексация</td>
+            <td><span class="badge badge-orange">⚠️ 30 страниц</span></td>
+            <td style="color:var(--text-soft);">Большинство товарных карточек вне индекса</td>
+          </tr>
+          <tr>
+            <td class="kw">/shop и /shop/ (trailing slash)</td>
+            <td><span class="badge badge-muted badge">P2</span></td>
+            <td style="color:var(--text-soft);">Оба URL во внутренних ссылках, canonical не задан явно</td>
+          </tr>
+          <tr>
+            <td class="kw">Render-blocking JS/CSS</td>
+            <td><span class="badge badge-muted badge">P3</span></td>
+            <td style="color:var(--text-soft);">6+ плагинов грузятся глобально (wpcf7, woo-discount и др.)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
