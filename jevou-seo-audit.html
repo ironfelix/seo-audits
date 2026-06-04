@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — shop.jevou.ru</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0d0e0c;
+  --surface: #161917;
+  --surface2: #1e2220;
+  --surface3: #242724;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0ec;
+  --text-soft: #b8bdb6;
+  --muted: #6b7068;
+  --accent: #d4a843;
+  --accent-dim: rgba(212,168,67,0.15);
+  --accent-hover: #e8bc5a;
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --orange: #d4813a;
+  --orange-dim: rgba(212,129,58,0.12);
+  --green: #5fa85a;
+  --green-dim: rgba(95,168,90,0.12);
+  --blue: #5a94d4;
+  --blue-dim: rgba(90,148,212,0.12);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,14,12,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; gap: 4px; height: 52px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-logo {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap; margin-right: 12px; flex-shrink: 0;
+}
+.nav a {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.3px; padding: 6px 11px; border-radius: 6px;
+  white-space: nowrap; transition: color 0.15s, background 0.15s;
+}
+.nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+.hero {
+  background: linear-gradient(135deg, #110e0a 0%, #0d0e0c 60%, #10100a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 64px 32px 52px;
+}
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+.hero .wrap { padding: 0; }
+.hero-badge {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-dim);
+  border: 1px solid rgba(212,168,67,0.3);
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 42px; font-weight: 800; line-height: 1.15;
+  letter-spacing: -1px; margin-bottom: 12px;
+}
+.hero h1 span { color: var(--accent); }
+.hero-sub { font-size: 16px; color: var(--text-soft); max-width: 640px; margin-bottom: 36px; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; max-width: 960px;
+}
+.hstat {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 18px 20px;
+}
+.hstat-val {
+  font-size: 28px; font-weight: 800; color: var(--accent);
+  letter-spacing: -0.5px; line-height: 1;
+}
+.hstat-val.red { color: var(--red); }
+.hstat-val.green { color: var(--green); }
+.hstat-val.blue { color: var(--blue); }
+.hstat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+.section-desc { font-size: 14px; color: var(--text-soft); max-width: 720px; margin-bottom: 28px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:900px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.card-title { font-size: 13px; font-weight: 700; color: var(--text-soft); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+.chart-label { font-size: 12px; color: var(--muted); margin-bottom: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.chart-canvas-wrap { position: relative; height: 200px; }
+
+.issue-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--red); border-radius: var(--radius);
+  padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start;
+  margin-bottom: 10px;
+}
+.issue-card.orange { border-left-color: var(--orange); }
+.issue-card.yellow { border-left-color: var(--accent); }
+.issue-card.green { border-left-color: var(--green); }
+.issue-num {
+  font-size: 20px; font-weight: 900; color: var(--red);
+  min-width: 28px; line-height: 1.2;
+}
+.issue-card.orange .issue-num { color: var(--orange); }
+.issue-card.yellow .issue-num { color: var(--accent); }
+.issue-card.green .issue-num { color: var(--green); }
+.issue-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.issue-desc { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+.issue-meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: var(--red-dim); color: var(--red); }
+.badge-orange { background: var(--orange-dim); color: var(--orange); }
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-blue { background: var(--blue-dim); color: var(--blue); }
+.badge-muted { background: rgba(107,112,104,0.15); color: var(--muted); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left; padding: 10px 14px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--muted);
+  border-bottom: 1px solid var(--border2); background: var(--surface2);
+}
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-soft); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+.kw { color: var(--text); font-weight: 500; }
+.pos-good { color: var(--green); font-weight: 700; }
+.pos-mid { color: var(--accent); font-weight: 700; }
+.pos-bad { color: var(--red); font-weight: 700; }
+.ws-num { font-variant-numeric: tabular-nums; color: var(--blue); }
+
+.comp-row { display: grid; grid-template-columns: 1fr 80px 80px 80px 80px; gap: 0; }
+.comp-row.header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 10px 14px; background: var(--surface2); border-radius: 8px 8px 0 0; }
+.comp-row.data { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.comp-row.data:last-child { border-bottom: none; }
+.comp-row.data:hover { background: rgba(255,255,255,0.02); }
+.comp-name { font-weight: 600; color: var(--text); }
+
+.qw-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 10px;
+}
+.qw-phrase { font-size: 14px; font-weight: 600; }
+.qw-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.qw-stat { font-size: 12px; color: var(--muted); }
+.qw-stat strong { color: var(--text-soft); }
+.qw-arrow { font-size: 12px; color: var(--green); font-weight: 700; }
+
+.roadmap-phase {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 14px;
+}
+.phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.phase-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+}
+.phase-now { background: var(--red-dim); color: var(--red); }
+.phase-1 { background: var(--accent-dim); color: var(--accent); }
+.phase-2 { background: var(--blue-dim); color: var(--blue); }
+.phase-3 { background: var(--green-dim); color: var(--green); }
+.phase-title { font-weight: 700; font-size: 15px; }
+.phase-list { list-style: none; padding: 0; }
+.phase-list li {
+  display: flex; gap: 10px; padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-soft);
+  align-items: flex-start;
+}
+.phase-list li:last-child { border-bottom: none; }
+.phase-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+.forecast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.forecast-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 16px; text-align: center;
+}
+.forecast-period { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.forecast-val { font-size: 26px; font-weight: 900; color: var(--accent); letter-spacing: -0.5px; }
+.forecast-metric { font-size: 11px; color: var(--text-soft); margin-top: 4px; }
+
+.swot { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:700px) { .swot { grid-template-columns: 1fr; } }
+.swot-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.swot-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.swot-card.s .swot-label { color: var(--green); }
+.swot-card.s .dot { background: var(--green); }
+.swot-card.w .swot-label { color: var(--red); }
+.swot-card.w .dot { background: var(--red); }
+.swot-card.o .swot-label { color: var(--blue); }
+.swot-card.o .dot { background: var(--blue); }
+.swot-card.t .swot-label { color: var(--orange); }
+.swot-card.t .dot { background: var(--orange); }
+.swot-card ul { list-style: none; padding: 0; }
+.swot-card li { font-size: 13px; color: var(--text-soft); padding: 5px 0; border-bottom: 1px solid var(--border); line-height: 1.45; }
+.swot-card li:last-child { border-bottom: none; }
+
+.gap-cluster {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px;
+}
+.gap-cluster-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.gap-cluster-name { font-weight: 700; font-size: 14px; }
+.gap-cluster-ws { font-size: 13px; color: var(--blue); font-weight: 600; }
+.gap-kw-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.gap-kw {
+  font-size: 12px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 3px 10px; color: var(--text-soft);
+}
+.gap-kw span { color: var(--muted); margin-left: 4px; }
+
+.insight-box {
+  background: var(--accent-dim); border: 1px solid rgba(212,168,67,0.25);
+  border-radius: var(--radius); padding: 16px 20px;
+  font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 20px;
+}
+.insight-box strong { color: var(--accent); }
+
+.alert-box {
+  background: var(--red-dim); border: 1px solid rgba(224,82,82,0.3);
+  border-radius: var(--radius); padding: 16px 20px;
+  font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 20px;
+}
+.alert-box strong { color: var(--red); }
+
+footer {
+  text-align: center; padding: 28px;
+  font-size: 12px; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.tbl-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+.check-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-soft); }
+.check-row:last-child { border-bottom: none; }
+.check-icon { font-size: 15px; flex-shrink: 0; }
+.check-label { flex: 1; }
+.check-status { font-size: 11px; font-weight: 700; }
+.check-ok { color: var(--green); }
+.check-fail { color: var(--red); }
+.check-warn { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">jevou.ru</div>
+    <a href="#exec">Выводы</a>
+    <a href="#tech">Техника</a>
+    <a href="#content">Контент</a>
+    <a href="#competitors">Конкуренты</a>
+    <a href="#gap">Gap-анализ</a>
+    <a href="#quickwins">Quick Wins</a>
+    <a href="#roadmap">Роадмап</a>
+    <a href="#forecast">Прогноз</a>
+    <a href="#swot">SWOT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">SEO-аудит · Июнь 2026</div>
+    <h1>shop.jevou.ru — <span>аудит органического трафика</span></h1>
+    <p class="hero-sub">Данные Keys.so (база ru) + технический краулинг. Сайт — молодой интернет-магазин бижутерии на Next.js с критическими SEO-блокировками. Сейчас в поиске не существует.</p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-val red">2</div>
+        <div class="hstat-label">ключей в топ-50</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val red">0</div>
+        <div class="hstat-label">видимость (vis)</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val red">0</div>
+        <div class="hstat-label">ключей в топ-10</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val red">1</div>
+        <div class="hstat-label">страниц в индексе</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">553+</div>
+        <div class="hstat-label">SKU в каталоге</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val red">6</div>
+        <div class="hstat-label">Domain Rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<section class="section" id="exec">
+  <div class="wrap">
+    <div class="section-label">01 · Executive Summary</div>
+    <h2 class="section-title">Ключевые выводы</h2>
+    <p class="section-desc">JEVǑU — трендовый бренд молодёжной бижутерии (16–30 лет), 553+ SKU, офлайн точки в Уфе, Екатеринбурге, Воронеже. Сайт технически исправен на вид, но органически — невидим.</p>
+
+    <div class="alert-box">
+      <strong>🚨 Критический диагноз:</strong> В индексе Яндекса находится только 1 страница из 553+ продуктов. Причина — отсутствие robots.txt и sitemap.xml, принудительный Cache-Control: no-store на всех страницах, и redirect-loop на главной. Весь каталог для поисковиков не существует. Это не SEO-оптимизация — это базовое техническое восстановление.
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">Каталог невидим ❌</div>
+        <p style="font-size:13px;color:var(--text-soft);">553+ SKU в 5 категориях не попадают в поиск. Страницы серёг, колец, колье, браслетов недоступны для сканирования. 0 транзакционного трафика.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Техника сломана ❌</div>
+        <p style="font-size:13px;color:var(--text-soft);">robots.txt нет, sitemap нет, OG-изображения ведут на внутренний IP (111.88.147.179), нет schema.org. Cache-Control: no-store на всех страницах.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Потенциал высокий 🚀</div>
+        <p style="font-size:13px;color:var(--text-soft);">Нишевые конкуренты (небольшие бижутерные магазины) тоже слабы по SEO. Занять позиции «трендовая бижутерия» реалистично за 3–4 месяца после фикса техники.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH AUDIT -->
+<section class="section" id="tech">
+  <div class="wrap">
+    <div class="section-label">02 · Технический SEO</div>
+    <h2 class="section-title">Критические технические проблемы</h2>
+    <p class="section-desc">Анализ HTTP-заголовков, HTML структуры, robots.txt, sitemap, meta-тегов. Платформа: Next.js App Router, поддомен shop.jevou.ru.</p>
+
+    <div class="issue-card">
+      <div class="issue-num">P0</div>
+      <div>
+        <div class="issue-title">Только 1 страница в индексе из 553+ <span class="badge badge-red">блокирующее</span></div>
+        <div class="issue-desc">Keys.so показывает pagesinindex=1 — только главная jevou.ru/. Весь каталог, категории, карточки товаров — невидимы поисковикам с июля 2025 (судя по истории). Потенциальные тысячи визитов в месяц не реализуются.</div>
+        <div class="issue-meta">Источник: keys.so domain_dashboard · История: стабильно =1 с 2025.07</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">P0</div>
+      <div>
+        <div class="issue-title">Нет robots.txt — возвращает HTML страницы <span class="badge badge-red">блокирующее</span></div>
+        <div class="issue-desc">Запрос shop.jevou.ru/robots.txt → HTTP 200 с content-type: text/html. Реального файла robots.txt нет. Next.js рендерит страницу приложения вместо текстового файла. Поисковые боты не получают инструкций по обходу.</div>
+        <div class="issue-meta">Проверено: curl -I shop.jevou.ru/robots.txt → 200 text/html</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">P0</div>
+      <div>
+        <div class="issue-title">Нет sitemap.xml — возвращает HTML страницы <span class="badge badge-red">блокирующее</span></div>
+        <div class="issue-desc">shop.jevou.ru/sitemap.xml возвращает HTTP 200 с полным HTML приложения вместо XML-карты сайта. Поисковики не знают о существовании 500+ страниц каталога.</div>
+        <div class="issue-meta">Проверено: curl shop.jevou.ru/sitemap.xml → Content-Type: text/html</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">Cache-Control: no-store на всех страницах <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">Все ответы сервера содержат: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">cache-control: private, no-cache, no-store, max-age=0, must-revalidate</code>. Страницы не кешируются CDN, каждый визит — запрос к серверу. Для SEO: боты видят нестабильный контент, нет cache-hit.</div>
+        <div class="issue-meta">Затронуты: все страницы включая /robots.txt, /sitemap.xml</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">OG-изображения ведут на внутренний IP <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">В meta-тегах: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;">og:image: http://111.88.147.179:8000/opengraph-image.jpg</code>. При шаринге ВКонтакте, Telegram, WhatsApp — изображение не загружается. Социальный трафик теряет превью.</div>
+        <div class="issue-meta">Влияет: все соцсети с OG-парсингом</div>
+      </div>
+    </div>
+
+    <div class="issue-card orange">
+      <div class="issue-num">P1</div>
+      <div>
+        <div class="issue-title">Redirect loop: / → /ru → / <span class="badge badge-orange">высокий</span></div>
+        <div class="issue-desc">Корень сайта shop.jevou.ru/ возвращает 307 → /ru, который возвращает 3 байта (снова редирект). Curl с флагом --max-redirs завершает запрос с ошибкой "too many redirects". Ряд поисковых ботов не проходит эту цепочку.</div>
+        <div class="issue-meta">Проверено: curl -v shop.jevou.ru/ → 307 /ru → 3 bytes</div>
+      </div>
+    </div>
+
+    <div class="issue-card yellow">
+      <div class="issue-num">P2</div>
+      <div>
+        <div class="issue-title">Нет schema.org разметки <span class="badge-muted badge">среднее</span></div>
+        <div class="issue-desc">На главной и во всём доступном HTML — ни одного блока application/ld+json. Отсутствуют: Organization, Product, BreadcrumbList, ItemList. Нет расширенных сниппетов, нет цен в поиске, нет хлебных крошек.</div>
+      </div>
+    </div>
+
+    <div class="issue-card yellow">
+      <div class="issue-num">P2</div>
+      <div>
+        <div class="issue-title">Нет canonical и hreflang тегов <span class="badge-muted badge">среднее</span></div>
+        <div class="issue-desc">Несмотря на country-code routing (/ru/), нет ни canonical, ни hreflang. При наличии /ru/, /en/ и других локалей — поисковик не понимает, какая страница приоритетна. Канонизация фильтрации (/ru/catalog?sort=price) также отсутствует.</div>
+      </div>
+    </div>
+
+    <div class="issue-card yellow">
+      <div class="issue-num">P2</div>
+      <div>
+        <div class="issue-title">Магазин на поддомене shop.jevou.ru <span class="badge-muted badge">среднее</span></div>
+        <div class="issue-desc">Link equity и DR (6) накапливаются на поддомен, а не на корневой домен. При любых обратных ссылках на jevou.ru (без shop.) авторитет не передаётся магазину. Рекомендуется: jevou.ru/shop/ или перенос всего на jevou.ru.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text-soft);">Чеклист технического состояния</h3>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;">
+        <div class="check-row"><div class="check-icon">❌</div><div class="check-label">robots.txt</div><div class="check-status check-fail">Отсутствует (HTML 200)</div></div>
+        <div class="check-row"><div class="check-icon">❌</div><div class="check-label">sitemap.xml</div><div class="check-status check-fail">Отсутствует (HTML 200)</div></div>
+        <div class="check-row"><div class="check-icon">❌</div><div class="check-label">schema.org</div><div class="check-status check-fail">Не найдено</div></div>
+        <div class="check-row"><div class="check-icon">❌</div><div class="check-label">canonical</div><div class="check-status check-fail">Не найден</div></div>
+        <div class="check-row"><div class="check-icon">❌</div><div class="check-label">hreflang</div><div class="check-status check-fail">Отсутствует</div></div>
+        <div class="check-row"><div class="check-icon">⚠️</div><div class="check-label">Cache-Control</div><div class="check-status check-warn">no-store (все страницы)</div></div>
+        <div class="check-row"><div class="check-icon">⚠️</div><div class="check-label">OG image</div><div class="check-status check-warn">Внутренний IP</div></div>
+        <div class="check-row"><div class="check-icon">⚠️</div><div class="check-label">Redirect chain</div><div class="check-status check-warn">Loop при / → /ru</div></div>
+        <div class="check-row"><div class="check-icon">✅</div><div class="check-label">HTTPS / SSL</div><div class="check-status check-ok">Корректный (Let's Encrypt)</div></div>
+        <div class="check-row"><div class="check-icon">✅</div><div class="check-label">Mobile / Viewport</div><div class="check-status check-ok">Адаптивный</div></div>
+        <div class="check-row"><div class="check-icon">✅</div><div class="check-label">SSR (Next.js)</div><div class="check-status check-ok">Работает</div></div>
+        <div class="check-row"><div class="check-icon">✅</div><div class="check-label">Title / Meta Description</div><div class="check-status check-ok">Присутствуют (не оптимальны)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT AUDIT -->
+<section class="section" id="content">
+  <div class="wrap">
+    <div class="section-label">03 · Контент и семантика</div>
+    <h2 class="section-title">Текущая семантика и контентные пробелы</h2>
+    <p class="section-desc">Сайт не присутствует ни по одному коммерческому запросу. Потенциальный трафик по 553 SKU — полностью недополучается.</p>
+
+    <div class="insight-box" style="margin-bottom:20px;">
+      <strong>Главный инсайт по контенту:</strong> Две позиции в топ-50 — брендовый запрос с опечаткой («jevi ru», pos.26) и навигационный («бижутерия гринвич», pos.27, ws 39). Коммерческих запросов типа «серьги купить», «купить бижутерию онлайн» — ноль. Это не семантическая проблема, это следствие технической блокировки.
+    </div>
+
+    <div class="grid2" style="margin-bottom:20px;">
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Текущие позиции (всего 2)</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Запрос</th><th>Позиция</th><th>WS/мес</th><th>Тип</th></tr></thead>
+            <tbody>
+              <tr><td class="kw">jevi ru интернет магазин бижутерии</td><td class="pos-bad">26</td><td class="ws-num">2</td><td><span class="badge badge-muted">Бренд</span></td></tr>
+              <tr><td class="kw">бижутерия гринвич</td><td class="pos-bad">27</td><td class="ws-num">39</td><td><span class="badge badge-muted">Навиг.</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Каталог (не индексируется)</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Категория</th><th>SKU</th><th>Потенциал</th></tr></thead>
+            <tbody>
+              <tr><td class="kw">Серьги</td><td>162</td><td class="ws-num">~8 000/мес</td></tr>
+              <tr><td class="kw">Колье</td><td>166</td><td class="ws-num">~5 000/мес</td></tr>
+              <tr><td class="kw">Браслеты</td><td>117</td><td class="ws-num">~3 000/мес</td></tr>
+              <tr><td class="kw">Кольца</td><td>86</td><td class="ws-num">~4 000/мес</td></tr>
+              <tr><td class="kw">Аксессуары</td><td>22</td><td class="ws-num">~1 000/мес</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;">Контентные пробелы</h3>
+    <div class="issue-card">
+      <div class="issue-num">❌</div>
+      <div>
+        <div class="issue-title">Нет SEO-текстов на категорийных страницах</div>
+        <div class="issue-desc">Страницы /ru/catalog/earrings, /rings, /necklaces — пустые листинги без H1, описания, внутренних ссылок. По стандартам Яндекса категорийная страница должна иметь ~200–500 слов текста с ключевыми запросами кластера.</div>
+      </div>
+    </div>
+    <div class="issue-card orange">
+      <div class="issue-num">⚠️</div>
+      <div>
+        <div class="issue-title">Title главной не оптимизирован под ключевые запросы</div>
+        <div class="issue-desc">Текущий title: «JEVǑU — трендовая бижутерия · JEVǑU» — бренд повторяется дважды, нет целевого запроса. Рекомендуется: «Бижутерия JEVǑU — серьги, кольца, колье купить с доставкой по России».</div>
+      </div>
+    </div>
+    <div class="issue-card orange">
+      <div class="issue-num">⚠️</div>
+      <div>
+        <div class="issue-title">Отсутствует контент под подарочный спрос (10K+ WS/мес)</div>
+        <div class="issue-desc">Запросы «украшения в подарок девушке», «украшения подарок на день рождения» — суммарно 10 000+ запросов в месяц. Нет лендинга, нет категории «Подарки», нет фильтрации по бюджету.</div>
+      </div>
+    </div>
+    <div class="issue-card yellow">
+      <div class="issue-num">💡</div>
+      <div>
+        <div class="issue-title">Блог существует, но контент неизвестен</div>
+        <div class="issue-desc">В навигации есть ссылка «Блог». Информационный трафик (how-to, тренды сезона, гиды по подбору украшений) — важный канал для ЦА 16-30. Необходима проверка и наполнение.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="section" id="competitors">
+  <div class="wrap">
+    <div class="section-label">04 · Конкуренты</div>
+    <h2 class="section-title">Конкурентный ландшафт</h2>
+    <p class="section-desc">Прямых нишевых конкурентов с сильным SEO практически нет. Рынок «трендовой молодёжной бижутерии» в органике пуст — это окно возможностей.</p>
+
+    <div class="insight-box">
+      <strong>Стратегический вывод:</strong> Крупные ювелирные магазины (Sunlight, Sokolov) не конкурируют с JEVOU по позиционированию — это другой сегмент. Маркетплейсы (Wildberries, Ozon) занимают топ по категорийным запросам, но их страницы категорий хуже специализированных магазинов по конверсии. У JEVOU есть реальный шанс занять нишу.
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:20px;">
+      <div class="comp-row header">
+        <div>Домен</div>
+        <div>DR</div>
+        <div>Vis</div>
+        <div>Топ-50</div>
+        <div>Сегмент</div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">sunlight.net</div>
+        <div style="color:var(--green);font-weight:700;">38</div>
+        <div style="color:var(--green);font-weight:700;">79 377</div>
+        <div style="color:var(--green);">360K</div>
+        <div><span class="badge badge-orange">Ювелирка</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">sokolov.ru</div>
+        <div style="color:var(--green);font-weight:700;">36</div>
+        <div style="color:var(--green);font-weight:700;">40 806</div>
+        <div style="color:var(--green);">219K</div>
+        <div><span class="badge badge-orange">Ювелирка</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">wildberries.ru</div>
+        <div style="color:var(--accent);font-weight:700;">70+</div>
+        <div>–</div>
+        <div>1M+</div>
+        <div><span class="badge badge-muted">Маркетплейс</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">evabijou.ru</div>
+        <div style="color:var(--red);font-weight:700;">&lt;5</div>
+        <div style="color:var(--red);">~1</div>
+        <div>115</div>
+        <div><span class="badge badge-green">Бижутерия</span></div>
+      </div>
+      <div class="comp-row data">
+        <div class="comp-name">evarits.ru</div>
+        <div style="color:var(--red);">&lt;5</div>
+        <div style="color:var(--red);">2</div>
+        <div>66</div>
+        <div><span class="badge badge-green">Бижутерия</span></div>
+      </div>
+      <div class="comp-row data" style="background:rgba(212,168,67,0.05);">
+        <div class="comp-name" style="color:var(--accent);">shop.jevou.ru</div>
+        <div style="color:var(--red);font-weight:700;">6</div>
+        <div style="color:var(--red);font-weight:700;">0</div>
+        <div style="color:var(--red);">2</div>
+        <div><span class="badge badge-green">Бижутерия</span></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Угроза от маркетплейсов</div>
+        <p style="font-size:13px;color:var(--text-soft);">Wildberries и Ozon занимают топ-3 почти по всем транзакционным запросам «купить X». Бороться с ними напрямую сложно, но возможно — через узко-нишевые запросы («трендовые серьги 2026», «гипоаллергенные украшения») и бренд-позиционирование.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Возможность первопроходца</div>
+        <p style="font-size:13px;color:var(--text-soft);">Ни один нишевый бижутерный магазин с фокусом «тренды + молодёжь» не имеет сильных SEO-позиций (evabijou, evarits — vis&lt;5). Первый, кто исправит технику и создаст контент, займёт эту нишу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP ANALYSIS -->
+<section class="section" id="gap">
+  <div class="wrap">
+    <div class="section-label">05 · Gap-анализ</div>
+    <h2 class="section-title">Ключевые кластеры без покрытия</h2>
+    <p class="section-desc">Запросы с суммарным потенциалом 40 000+ визитов/мес, которые конкуренты ранжируют, а JEVOU — нет.</p>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🛒 Транзакционные по категориям</div>
+        <div class="gap-cluster-ws">~35 000 WS/мес <span class="badge badge-red">HIGH impact</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">серьги купить <span>15 000</span></div>
+        <div class="gap-kw">колье купить <span>8 000</span></div>
+        <div class="gap-kw">купить кольца женские <span>12 000</span></div>
+        <div class="gap-kw">серьги бижутерия <span>6 000</span></div>
+        <div class="gap-kw">браслет женский купить <span>5 000</span></div>
+        <div class="gap-kw">украшения из бижутерии купить <span>3 000</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🎁 Подарочный спрос</div>
+        <div class="gap-cluster-ws">~18 000 WS/мес <span class="badge badge-red">HIGH impact</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">украшения в подарок девушке <span>5 000</span></div>
+        <div class="gap-kw">подарок девушке до 3000 рублей <span>3 000</span></div>
+        <div class="gap-kw">набор украшений подарок <span>1 500</span></div>
+        <div class="gap-kw">украшения на 8 марта <span>8 000 (сезон)</span></div>
+        <div class="gap-kw">украшения на день рождения <span>2 000</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">✨ Трендовые / молодёжные</div>
+        <div class="gap-cluster-ws">~5 000 WS/мес <span class="badge badge-orange">MED impact</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">трендовые серьги <span>1 200</span></div>
+        <div class="gap-kw">модные украшения 2026 <span>800</span></div>
+        <div class="gap-kw">украшения в стиле y2k <span>600</span></div>
+        <div class="gap-kw">серьги в стиле бохо <span>400</span></div>
+        <div class="gap-kw">минималистичные украшения <span>900</span></div>
+        <div class="gap-kw">украшения мода лето 2026 <span>300</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🌿 Гипоаллергенные / характеристики</div>
+        <div class="gap-cluster-ws">~8 000 WS/мес <span class="badge badge-orange">MED impact</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">гипоаллергенные серьги <span>2 000</span></div>
+        <div class="gap-kw">позолоченные серьги купить <span>3 500</span></div>
+        <div class="gap-kw">серьги без никеля <span>800</span></div>
+        <div class="gap-kw">украшения хирургическая сталь <span>1 200</span></div>
+        <div class="gap-kw">украшения не чернеют <span>600</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">📍 Гео-запросы (офлайн точки)</div>
+        <div class="gap-cluster-ws">~1 500 WS/мес <span class="badge badge-blue">LOW-MED</span></div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">бижутерия екатеринбург <span>500</span></div>
+        <div class="gap-kw">украшения гринвич екб <span>150</span></div>
+        <div class="gap-kw">бижутерия уфа купить <span>300</span></div>
+        <div class="gap-kw">украшения тц планета уфа <span>100</span></div>
+        <div class="gap-kw">бижутерия воронеж <span>200</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section" id="quickwins">
+  <div class="wrap">
+    <div class="section-label">06 · Quick Wins</div>
+    <h2 class="section-title">Быстрые победы (первые 4 недели)</h2>
+    <p class="section-desc">Действия, которые дают результат без масштабного рефакторинга. Фокус — разблокировать индексацию как можно скорее.</p>
+
+    <div class="qw-card">
+      <div class="qw-phrase">1. Создать robots.txt с явными директивами</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>1 час</strong></div>
+        <div class="qw-stat">Impact: <strong>Разблокирует краулинг</strong></div>
+        <div class="qw-arrow">→ Размещение статического robots.txt в Next.js через app/robots.ts или public/robots.txt</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">2. Создать sitemap.xml со всеми категориями и товарами</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>4–8 часов (разработка)</strong></div>
+        <div class="qw-stat">Impact: <strong>553+ страниц попадают в очередь индексации</strong></div>
+        <div class="qw-arrow">→ Next.js: app/sitemap.ts или статический XML, отправить в Яндекс.Вебмастер и GSC</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">3. Исправить OG-изображение: убрать внутренний IP</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>30 минут</strong></div>
+        <div class="qw-stat">Impact: <strong>Соцсети начнут показывать превью</strong></div>
+        <div class="qw-arrow">→ В opengraph-image.tsx или next.config.js заменить baseUrl на https://shop.jevou.ru</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">4. Убрать Cache-Control: no-store с публичных страниц</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>1–2 часа</strong></div>
+        <div class="qw-stat">Impact: <strong>CDN-кеш, LCP улучшится, ботам легче краулить</strong></div>
+        <div class="qw-arrow">→ В Next.js: export const revalidate = 3600 или через next.config headers</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">5. Оптимизировать Title и H1 главной страницы</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>1 час</strong></div>
+        <div class="qw-stat">Impact: <strong>CTR из поиска +20–40%</strong></div>
+        <div class="qw-arrow">→ Title: «Бижутерия JEVǑU — серьги, кольца, колье с доставкой по России» · H1: «Трендовая бижутерия — украшения для тех, кто знает тренды»</div>
+      </div>
+    </div>
+
+    <div class="qw-card">
+      <div class="qw-phrase">6. Добавить LocalBusiness schema для офлайн точек</div>
+      <div class="qw-meta">
+        <div class="qw-stat">Усилие: <strong>2 часа</strong></div>
+        <div class="qw-stat">Impact: <strong>Геолокальные запросы (Уфа, Екб, Воронеж)</strong></div>
+        <div class="qw-arrow">→ JSON-LD с адресами, телефонами, часами работы на страницах магазинов</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-label">07 · Роадмап</div>
+    <h2 class="section-title">План работ на 4 месяца</h2>
+    <p class="section-desc">Приоритет: сначала разблокировать индексацию, потом масштабировать контент.</p>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-now">Неделя 1–2</span>
+        <span class="phase-title">Техническое восстановление</span>
+      </div>
+      <ul class="phase-list">
+        <li>Создать robots.txt через Next.js app/robots.ts (Allow: /, Disallow: /api/)</li>
+        <li>Создать sitemap.xml: главная + 5 категорий + все ~553 карточки товаров</li>
+        <li>Исправить OG-изображение: убрать IP 111.88.147.179, использовать https://shop.jevou.ru/og.jpg</li>
+        <li>Убрать Cache-Control: no-store с каталогных и продуктовых страниц</li>
+        <li>Исправить redirect loop: /ru должен отдавать 200, а не redirect</li>
+        <li>Отправить сайт на переобход в Яндекс.Вебмастер и Google Search Console</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-1">Неделя 3–4</span>
+        <span class="phase-title">Базовая on-page оптимизация</span>
+      </div>
+      <ul class="phase-list">
+        <li>Добавить canonical теги на все страницы (включая фильтрацию ?sort=)</li>
+        <li>Добавить hreflang: ru-RU → /ru/, и x-default</li>
+        <li>Добавить schema.org: Organization (главная), Product (карточки), BreadcrumbList, ItemList (категории)</li>
+        <li>Оптимизировать Title/H1 для 5 категорийных страниц под ключевые кластеры</li>
+        <li>Добавить 150–300 слов описания на каждую категорийную страницу</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-2">Месяц 2</span>
+        <span class="phase-title">Контент-стратегия и подарочный кластер</span>
+      </div>
+      <ul class="phase-list">
+        <li>Запустить подарочный лендинг: «Украшения в подарок» с фильтрацией по бюджету (до 2000₽, до 3000₽, до 5000₽)</li>
+        <li>Написать 4–6 статей в блог под информационный спрос ЦА: «Трендовые серьги сезона», «Как выбрать украшения под тип лица», «Гипоаллергенные украшения — что это»</li>
+        <li>SEO-оптимизировать Title/Description для топ-100 SKU по частотности запросов</li>
+        <li>Добавить страницы офлайн магазинов с LocalBusiness schema</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-3">Месяц 3–4</span>
+        <span class="phase-title">Рост ссылочного профиля и масштабирование</span>
+      </div>
+      <ul class="phase-list">
+        <li>Получить 10–15 качественных обратных ссылок: lifestyle-блоги, обзоры, коллаборации с инфлюенсерами</li>
+        <li>Расширить контент-план до 2–3 статей/мес: тренды, гиды, сезонные подборки</li>
+        <li>Проработать фильтрацию: «серьги позолоченные», «серьги с жемчугом», «серьги-кольца» как отдельные SEO-страницы</li>
+        <li>Настроить аналитику: Яндекс.Метрика цели, GSC, отслеживание конверсий по категориям</li>
+        <li>Обновлять sitemap автоматически при добавлении новых товаров</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORECAST -->
+<section class="section" id="forecast">
+  <div class="wrap">
+    <div class="section-label">08 · Прогноз</div>
+    <h2 class="section-title">Ожидаемый органический трафик</h2>
+    <p class="section-desc">Консервативная оценка при условии выполнения роадмапа. Базовый уровень сейчас — 0 органических визитов/мес.</p>
+
+    <div class="forecast-grid" style="margin-bottom:20px;">
+      <div class="forecast-card">
+        <div class="forecast-period">Сейчас</div>
+        <div class="forecast-val red">0</div>
+        <div class="forecast-metric">органических визитов/мес</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Месяц 1</div>
+        <div class="forecast-val" style="color:var(--orange);">200–500</div>
+        <div class="forecast-metric">после фикса индексации</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Месяц 2</div>
+        <div class="forecast-val" style="color:var(--accent);">1 000–2 500</div>
+        <div class="forecast-metric">категории + on-page</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Месяц 3</div>
+        <div class="forecast-val" style="color:var(--green);">4 000–7 000</div>
+        <div class="forecast-metric">контент + ссылки</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Месяц 4</div>
+        <div class="forecast-val" style="color:var(--green);">8 000–15 000</div>
+        <div class="forecast-metric">масштабирование</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Допущения прогноза</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Техническое восстановление завершено в нед. 1–2</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">CTR с позиций 10–20 составляет 1–3%</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Ядро конкурентов по нишевым запросам слабое (DR&lt;10)</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">Публикация 1–2 статей/мес в блог с мес. 2</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Ключевые риски</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Технические фиксы затянутся (зависит от разработчика)</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Wildberries усилит позиции по категорийным запросам</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Яндекс медленно переиндексирует новые страницы (2–4 нед.)</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">DR=6 — нужны ссылки для выхода в топ-5</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chart-wrap" style="margin-top:16px;">
+      <div class="chart-label">Прогноз трафика: 0 → 15 000 визитов/мес за 4 месяца</div>
+      <div class="chart-canvas-wrap"><canvas id="chartForecast"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section class="section" id="swot">
+  <div class="wrap">
+    <div class="section-label">09 · SWOT</div>
+    <h2 class="section-title">SWOT-анализ</h2>
+    <p class="section-desc">Позиция JEVOU относительно SEO-среды и рынка бижутерии.</p>
+
+    <div class="swot">
+      <div class="swot-card s">
+        <div class="swot-label"><span class="dot"></span>Сильные стороны</div>
+        <ul>
+          <li>Чёткое позиционирование «тренды + молодёжь 16-30» — дифференциатор от конкурентов</li>
+          <li>Широкий каталог: 553+ SKU в 5 категориях — много страниц под long-tail</li>
+          <li>Офлайн точки в 3 городах — возможность локального SEO</li>
+          <li>Next.js с SSR — техническая база для быстрого рендеринга</li>
+          <li>Гипоаллергенные сплавы — USP под отдельный поисковый кластер</li>
+          <li>Активный Instagram и социальное присутствие</li>
+        </ul>
+      </div>
+      <div class="swot-card w">
+        <div class="swot-label"><span class="dot"></span>Слабые стороны</div>
+        <ul>
+          <li>1 страница в индексе из 553+ — сайт органически не существует</li>
+          <li>DR=6 — минимальный авторитет домена, трудно конкурировать</li>
+          <li>Поддомен shop.jevou.ru — раздробленный link equity</li>
+          <li>Нет robots.txt, sitemap, schema.org — базовые пробелы</li>
+          <li>OG-изображения сломаны (внутренний IP)</li>
+          <li>Cache-Control: no-store — производительность и кеш</li>
+        </ul>
+      </div>
+      <div class="swot-card o">
+        <div class="swot-label"><span class="dot"></span>Возможности</div>
+        <ul>
+          <li>Ниша «трендовая молодёжная бижутерия» — пустая в органике</li>
+          <li>Конкуренты-магазины (evabijou, evarits) — DR&lt;5, можно обогнать быстро</li>
+          <li>Подарочный кластер 18K+ WS/мес — без конкурентов из нишевых магазинов</li>
+          <li>Информационный трафик (тренды, гиды) — не занят, высокий спрос у ЦА</li>
+          <li>Локальное SEO по 3 городам — Уфа, Екб, Воронеж практически пустые</li>
+          <li>Рост AI-трафика (Яндекс Нейро, ГигаЧат) — для молодёжных брендов</li>
+        </ul>
+      </div>
+      <div class="swot-card t">
+        <div class="swot-label"><span class="dot"></span>Угрозы</div>
+        <ul>
+          <li>Wildberries и Ozon занимают топ-3 по категорийным транзакционным запросам</li>
+          <li>Медленный цикл индексации Яндексом новых страниц (2–8 недель)</li>
+          <li>Конкуренты могут также оптимизироваться и занять нишу первыми</li>
+          <li>Сезонность: бижутерия имеет пики (8 марта, НГ, Valentine's) — нужно успеть</li>
+          <li>Pinterest, Instagram — конкуренты за внимание ЦА в поисковике</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>SEO-аудит shop.jevou.ru · Июнь 2026 · Данные: Keys.so + технический краулинг</p>
+  <p style="margin-top:6px;font-size:11px;">Подготовлено: AI SEO Pipeline · Для внутреннего использования</p>
+</footer>
+
+<script>
+// Forecast chart
+const fCtx = document.getElementById('chartForecast').getContext('2d');
+new Chart(fCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Сейчас', 'Мес. 1', 'Мес. 2', 'Мес. 3', 'Мес. 4'],
+    datasets: [{
+      label: 'Мин. прогноз',
+      data: [0, 200, 1000, 4000, 8000],
+      backgroundColor: 'rgba(90,148,212,0.4)',
+      borderColor: 'rgba(90,148,212,0.8)',
+      borderWidth: 1,
+      borderRadius: 4,
+    },{
+      label: 'Макс. прогноз',
+      data: [0, 500, 2500, 7000, 15000],
+      backgroundColor: 'rgba(95,168,90,0.3)',
+      borderColor: 'rgba(95,168,90,0.7)',
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#b8bdb6', font: { size: 11 } } }
+    },
+    scales: {
+      x: { ticks: { color: '#6b7068', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#6b7068', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
