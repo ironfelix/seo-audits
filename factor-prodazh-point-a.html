@@ -339,6 +339,7 @@
     <button class="tab-btn" onclick="showTab('tab-m3plan', this)">Месяц 3 — план</button>
     <button class="tab-btn" onclick="showTab('tab-live', this)">🔴 Живая аналитика</button>
     <button class="tab-btn" onclick="showTab('tab-lm', this)">💰 Лид-магнит</button>
+    <button class="tab-btn" onclick="showTab('tab-w14', this)">📅 Неделя 14</button>
   </nav>
 
 <div id="tab-a" class="tab-panel active">
@@ -2186,8 +2187,180 @@
 
 </div><!-- /tab-live -->
 
+<div id="tab-w14" class="tab-panel">
+
+<!-- ШАПКА НЕДЕЛИ -->
+<div class="section">
+  <div class="section-label">Неделя 14 · 9–13 июня 2026</div>
+  <div class="section-title">Спринт: восстановление трафика + gap-статьи</div>
+  <div class="insight" style="margin-top:12px">
+    <strong>Контекст:</strong> трафик просел с 7 854 (март) до 6 515 (май) = −17%. 3 страницы ушли в 0.
+    Стратегия недели: <strong>/page-optimizer</strong> для 5 упавших страниц + 3 новые статьи из gap-анализа + системные задачи.
+    <br>Источник gap-данных: keys.so, база Яндекс Россия, 5 конкурентов, фильтр WS≥50 + pos≤20.
+  </div>
+
+  <div class="metrics-row" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
+    <div class="metric-box" style="flex:1;min-width:140px">
+      <div class="mb-label">Страниц под оптимизацию</div>
+      <div class="mb-val red">5</div>
+      <div class="mb-sub">потеряли 40–100% трафика</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:140px">
+      <div class="mb-label">Новых статей</div>
+      <div class="mb-val gold">3</div>
+      <div class="mb-sub">gap-приоритеты</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:140px">
+      <div class="mb-label">Суммарный WS gap</div>
+      <div class="mb-val green">24 770</div>
+      <div class="mb-sub">запросов без нашего контента</div>
+    </div>
+    <div class="metric-box" style="flex:1;min-width:140px">
+      <div class="mb-label">Системных задач</div>
+      <div class="mb-val">3</div>
+      <div class="mb-sub">CTR + перелинковка + AI</div>
+    </div>
+  </div>
 </div>
+
+<!-- БЛОК 1: /page-optimizer -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">/page-optimizer — 5 упавших страниц</div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Страница</th>
+        <th>Статус</th>
+        <th>Проблема</th>
+        <th>Действие</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="metric-name">/blog/kpi-dlya-menedzherov-po-prodazham/</td>
+        <td><span class="pill pill-warn">−40–50%</span></td>
+        <td>Нет прямого ответа в первом абзаце, слабый CTR</td>
+        <td>Обновить лид + title + добавить FAQ</td>
+      </tr>
+      <tr>
+        <td class="metric-name">/blog/vozrazhenie-dorogo/</td>
+        <td><span class="pill pill-warn">−40–50%</span></td>
+        <td>Конкурент обновил и обошёл по релевантности</td>
+        <td>Добавить кейс ФП + обновить примеры скриптов</td>
+      </tr>
+      <tr>
+        <td class="metric-name">/blog/stoimost-tovara/</td>
+        <td><span class="pill pill-warn">−40–50%</span></td>
+        <td>Тонкий контент, нет структуры E-E-A-T</td>
+        <td>Расширить на 30–40% + добавить таблицу бенчмарков</td>
+      </tr>
+      <tr>
+        <td class="metric-name">/blog/sebestoimost-tovara/</td>
+        <td><span class="pill pill-warn">−40–50%</span></td>
+        <td>Тонкий контент</td>
+        <td>Расширить + добавить формулы + кейс</td>
+      </tr>
+      <tr>
+        <td class="metric-name">/blog/skripty-prodazh/</td>
+        <td><span class="pill pill-warn">−40–50%</span></td>
+        <td>Высокая конкуренция, нет уникального угла</td>
+        <td>Добавить живые примеры скриптов из проектов ФП</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note" style="margin-top:12px">
+    <strong>Ещё 3 страницы ушли в 0</strong> — kpi-rukovoditelya, dolzhnosti-v-otdele-prodazh, vozrazhenie-net-vremeni.
+    Проверить индексацию в Яндекс Вебмастер. Если выпали — переиндексировать + обновить контент.
+  </div>
 </div>
+
+<!-- БЛОК 2: Новые статьи -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Новые статьи — gap-приоритеты 🔴</div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Тема статьи</th>
+        <th>WS</th>
+        <th>Конкурент</th>
+        <th>Поз. конк.</th>
+        <th>Приоритет</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="metric-name">Выявление потребностей клиента</td>
+        <td class="now">12 224</td>
+        <td>in-scale.ru</td>
+        <td>14</td>
+        <td><span class="pill pill-crit">🔴 HIGH</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Тест: подходит ли человек в менеджеры продаж</td>
+        <td class="now">4 700</td>
+        <td>salers.ru</td>
+        <td>#1</td>
+        <td><span class="pill pill-crit">🔴 HIGH</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Технология продаж: этапы и принципы</td>
+        <td class="now">7 846</td>
+        <td>in-scale.ru</td>
+        <td>5</td>
+        <td><span class="pill pill-warn">🟡 MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight" style="margin-top:12px">
+    <strong>Фокус #1 — «Выявление потребностей»:</strong> 12к WS, конкурент на 14-й позиции — легко выбить.
+    Нас нет ни по одному ключу кластера (~21 000 WS суммарно).
+    <br><strong>Фокус #2 — «Тест менеджера» (quiz-формат):</strong> тест → результат → форма захвата = высокий CTR в лиды.
+    Salers занял #1, у нас нет quiz-контента вообще — конверсионная находка.
+  </div>
+</div>
+
+<!-- БЛОК 3: Системные задачи -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Системные задачи</div>
+
+  <ul class="done-list border">
+    <li>
+      <strong>CTR-оптимизация — 11 приоритетных страниц</strong>
+      <span class="sub">Из Яндекс Вебмастер: показы &gt;100/нед, CTR &lt;5%, позиции 4–10. Переписать title + description, добавить цифры и «боль».</span>
+    </li>
+    <li>
+      <strong>Внутренние ссылки — batch-19 (19 статей)</strong>
+      <span class="sub">Статьи WP 3910–3966 опубликованы, но «висят без ссылок». Добавить 3–5 ссылок из тематически близких старых статей на каждую.</span>
+    </li>
+    <li>
+      <strong>AI-цитирование — definition-блоки для Perplexity</strong>
+      <span class="sub">Perplexity не цитирует ни один запрос (baseline 04.06.2026). Добавить definition-блок в первый абзац: прямой ответ на запрос без предисловий. Начать с: «кэв в продажах», «холодный аутрич b2b», «kpi для менеджеров».</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ИТОГ -->
+<div class="section">
+  <div class="section-label">04</div>
+  <div class="section-title">Ожидаемый результат</div>
+  <div class="insight">
+    <strong>/page-optimizer × 5:</strong> возврат 30–40% потерянного трафика (≈450–600 визитов/мес) при успешном переобходе Яндексом за 1–2 недели.
+    <br><strong>Gap-статьи × 3:</strong> суммарный addressable WS ≈ 24 770. При попадании в топ-10: +500–800 визитов/мес через 2–3 месяца.
+    <br><strong>CTR × 11:</strong> рост кликов на 20–40% без изменения позиций = +250–400 визитов/мес.
+  </div>
+  <div class="note" style="margin-top:8px">
+    Gap-анализ полный: <a href="/Users/ivanilin/Documents/ivanilin/ai-seo/factor/research/gap-analysis-2026-06.md" style="color:var(--blue)">gap-analysis-2026-06.md</a> · Данные: keys.so 05.06.2026
+  </div>
+</div>
+
+</div><!-- /tab-w14 -->
 
 <script>
 function showTab(id, btn) {
