@@ -793,6 +793,151 @@ h2 {
 
   .doc-footer { padding: 20px 0; font-size: 13px; }
 }
+
+/* ── TABS ── */
+.tab-nav {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.tab-nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  gap: 0;
+}
+.tab-btn {
+  font-family: var(--fb);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sec);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -2px;
+  letter-spacing: 0;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── STATS TAB ── */
+.stats-site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.stats-site-dot {
+  width: 10px; height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.stats-site-header h2 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 26px;
+}
+.stats-site-header .stats-site-url {
+  font-size: 14px;
+  color: var(--text-sec);
+  font-weight: 400;
+}
+.stats-block-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sec);
+  flex-shrink: 0;
+}
+.stats-block-title {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.stats-block-subtitle {
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: 400;
+  font-family: var(--fb);
+  margin-left: 4px;
+}
+.stat-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:900px){ .stat-row { grid-template-columns: repeat(3, 1fr); } }
+@media(max-width:560px){ .stat-row { grid-template-columns: repeat(2, 1fr); } }
+.stat-row-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:700px){ .stat-row-2 { grid-template-columns: repeat(2, 1fr); } }
+.stat-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:600px){ .stat-row-3 { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 18px;
+}
+.stat-card.accent-green { background: #f0faf4; border-color: #b7e4c7; }
+.stat-card.accent-red   { background: #fdf2f3; border-color: rgba(192,16,32,0.2); }
+.stat-card.accent-yellow { background: #fffbf0; border-color: #f0d080; }
+.stat-card-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.stat-card-value {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-card-value.red { color: var(--red); }
+.stat-card-value.green { color: #1a7f3c; }
+.stat-card-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+.stats-sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
 </style>
 </head>
 <body>
@@ -834,6 +979,16 @@ h2 {
     </a>
   </div>
 </div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('strategy', this)">Стратегия</button>
+    <button class="tab-btn" onclick="switchTab('stats', this)">Статистика · Точка А</button>
+  </div>
+</div>
+
+<div id="tab-strategy" class="tab-panel active">
 
 <!-- ПРОБЛЕМА -->
 <section class="section">
@@ -1705,6 +1860,324 @@ h2 {
     </div>
   </div>
 </section>
+
+</div><!-- /tab-strategy -->
+
+<!-- TAB: СТАТИСТИКА -->
+<div id="tab-stats" class="tab-panel">
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Точка А · июнь 2026</div>
+    <h2 style="margin-bottom:8px;">Статистика по обоим сайтам</h2>
+    <p class="section-lead" style="margin-bottom:48px;">Данные Яндекс.Метрики (1 мая — 7 июня 2026, 38 дней) и Keys.so (июнь 2026). Зафиксировано как точка отсчёта.</p>
+
+    <!-- crmgroup.ru -->
+    <div class="stats-site-header">
+      <div class="stats-site-dot"></div>
+      <h2 style="font-size:22px;">crmgroup.ru</h2>
+    </div>
+
+    <!-- 01 Трафик crmgroup -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">01</span>
+      Трафик
+      <span class="stats-block-subtitle">Яндекс.Метрика · 1 мая — 7 июня 2026</span>
+    </div>
+    <div class="stat-row" style="margin-bottom:12px;">
+      <div class="stat-card">
+        <div class="stat-card-label">Всего визитов</div>
+        <div class="stat-card-value">4 963</div>
+        <div class="stat-card-note">за 38 дней</div>
+      </div>
+      <div class="stat-card accent-yellow">
+        <div class="stat-card-label">Органика</div>
+        <div class="stat-card-value">2 515</div>
+        <div class="stat-card-note">51% трафика</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Прямые</div>
+        <div class="stat-card-value">1 494</div>
+        <div class="stat-card-note">30%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Ссылки</div>
+        <div class="stat-card-value">745</div>
+        <div class="stat-card-note">15%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Рассылки</div>
+        <div class="stat-card-value">33</div>
+        <div class="stat-card-note">0.7%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Реклама</div>
+        <div class="stat-card-value">3</div>
+        <div class="stat-card-note">Директ на паузе</div>
+      </div>
+    </div>
+    <div class="stat-row-3" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-card-label">Отказы</div>
+        <div class="stat-card-value">24.9%</div>
+        <div class="stat-card-note">с поиска: 15.9% — хорошо</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Глубина просмотра</div>
+        <div class="stat-card-value">2.1</div>
+        <div class="stat-card-note">страниц за визит</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Время на сайте</div>
+        <div class="stat-card-value">66 с</div>
+        <div class="stat-card-note">~1 мин 6 сек</div>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-bottom:40px;">
+      <strong>Ключевое наблюдение:</strong> Органика — 51% (2 515 визитов). Трафик релевантный (отказы с поиска 15.9%), но не конвертируется: <strong style="color:var(--red);">0 заявок</strong> за 38 дней при 5k визитов. Проблема не в трафике — в формах и страницах услуг.
+    </div>
+
+    <!-- 02 Конверсии crmgroup -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">02</span>
+      Конверсии
+      <span class="stats-block-subtitle">Яндекс.Метрика · цели</span>
+    </div>
+    <div class="stat-row-2" style="margin-bottom:20px;">
+      <div class="stat-card accent-red">
+        <div class="stat-card-label">Заявки (все формы)</div>
+        <div class="stat-card-value red">0</div>
+        <div class="stat-card-note">⚠️ 50 целей настроено, ни одна не фиксирует</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Подписки на блог</div>
+        <div class="stat-card-value">32</div>
+        <div class="stat-card-note">единственная работающая цель</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Скачивания файлов</div>
+        <div class="stat-card-value">7</div>
+        <div class="stat-card-note">автоцель</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Конверсия в лид</div>
+        <div class="stat-card-value red">~0%</div>
+        <div class="stat-card-note">цель: 0.5%+ после починки форм</div>
+      </div>
+    </div>
+    <div class="insight-box" style="background:#fdf2f3;border-color:var(--red);margin-bottom:40px;">
+      <strong>⚠️ Критический баг:</strong> Все заявочные формы на crmgroup.ru дают 0 конверсий. Формы либо шлют события с неправильными именами, либо счётчик не получает события. Нужна диагностика через Вебвизор до запуска лид-магнитов.
+    </div>
+
+    <!-- 03 SEO crmgroup -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">03</span>
+      Позиции в Яндексе
+      <span class="stats-block-subtitle">Keys.so · июнь 2026</span>
+    </div>
+    <div class="stat-row-2" style="margin-bottom:12px;">
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Топ-1</div>
+        <div class="stat-card-value green">68</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Топ-3</div>
+        <div class="stat-card-value green">145</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card accent-yellow">
+        <div class="stat-card-label">Топ-10</div>
+        <div class="stat-card-value">410</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Топ-50</div>
+        <div class="stat-card-value">2 327</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+    </div>
+    <div class="stat-row-3" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-card-label">DR (Keys.so)</div>
+        <div class="stat-card-value">12</div>
+        <div class="stat-card-note">низкий — нужны ссылки</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Visibility</div>
+        <div class="stat-card-value">49</div>
+        <div class="stat-card-note">было 25 в марте 2026 (×2 за 3 мес)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Страниц в индексе</div>
+        <div class="stat-card-value">133</div>
+        <div class="stat-card-note"></div>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-bottom:0;">
+      <strong>Рост × 2 за 3 месяца:</strong> Visibility вырос с 25 (март 2026) до 49 (июнь 2026). Топ-1: 68 ключей. Контентная стратегия работает. Главный затык — трафик не конвертируется: формы не отслеживаются, страниц услуг нет.
+    </div>
+
+    <hr class="stats-sep">
+
+    <!-- emailsoldiers.ru -->
+    <div class="stats-site-header">
+      <div class="stats-site-dot"></div>
+      <h2 style="font-size:22px;">emailsoldiers.ru</h2>
+    </div>
+
+    <!-- 01 Трафик emailsoldiers -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">01</span>
+      Трафик
+      <span class="stats-block-subtitle">Яндекс.Метрика · 1 мая — 7 июня 2026</span>
+    </div>
+    <div class="stat-row" style="margin-bottom:12px;">
+      <div class="stat-card">
+        <div class="stat-card-label">Всего визитов</div>
+        <div class="stat-card-value">7 942</div>
+        <div class="stat-card-note">за 38 дней</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Органика</div>
+        <div class="stat-card-value green">5 770</div>
+        <div class="stat-card-note">73% трафика</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Прямые</div>
+        <div class="stat-card-value">920</div>
+        <div class="stat-card-note">12%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Ссылки</div>
+        <div class="stat-card-value">545</div>
+        <div class="stat-card-note">7%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Рекомендации</div>
+        <div class="stat-card-value">374</div>
+        <div class="stat-card-note">5%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Реклама</div>
+        <div class="stat-card-value">94</div>
+        <div class="stat-card-note">1.2%</div>
+      </div>
+    </div>
+    <div class="stat-row-3" style="margin-bottom:20px;">
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Отказы</div>
+        <div class="stat-card-value green">18.3%</div>
+        <div class="stat-card-note">хорошо для контентного сайта</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Глубина просмотра</div>
+        <div class="stat-card-value">1.26</div>
+        <div class="stat-card-note">страниц за визит — низко</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Время на сайте</div>
+        <div class="stat-card-value">58 с</div>
+        <div class="stat-card-note">~58 сек</div>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-bottom:40px;">
+      <strong>Ключевое наблюдение:</strong> 73% органики при 7 942 визитах — сильный SEO-актив. Глубина 1.26 страниц: люди читают статью и уходят. Нет перелинковки к crmgroup.ru и нет явных CTA с переходом на услуги.
+    </div>
+
+    <!-- 02 Конверсии emailsoldiers -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">02</span>
+      Конверсии
+      <span class="stats-block-subtitle">Яндекс.Метрика · цели</span>
+    </div>
+    <div class="stat-row-2" style="margin-bottom:20px;">
+      <div class="stat-card accent-yellow">
+        <div class="stat-card-label">Заявки (все формы)</div>
+        <div class="stat-card-value">9</div>
+        <div class="stat-card-note">CRM 2 + Маркетинг 4 + Нанять нас 3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Скачивания раздатки</div>
+        <div class="stat-card-value">5</div>
+        <div class="stat-card-note">лид-магнит работает</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Автоцель: контакты</div>
+        <div class="stat-card-value">11</div>
+        <div class="stat-card-note">заполнение форм (реальные)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Конверсия в лид</div>
+        <div class="stat-card-value">0.11%</div>
+        <div class="stat-card-note">9 заявок / 7 942 визита</div>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-bottom:40px;">
+      <strong>Ключевое наблюдение:</strong> 9 заявок с 7.9k визитов = конверсия 0.11%. Потенциал есть — органика огромная, но воронка текёт. Задача: довести до 0.3–0.5% за счёт попапов с лид-магнитом и CTA на crmgroup.ru.
+    </div>
+
+    <!-- 03 SEO emailsoldiers -->
+    <div class="stats-block-title">
+      <span class="stats-block-num">03</span>
+      Позиции в Яндексе
+      <span class="stats-block-subtitle">Keys.so · июнь 2026</span>
+    </div>
+    <div class="stat-row-2" style="margin-bottom:12px;">
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Топ-1</div>
+        <div class="stat-card-value green">70</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Топ-3</div>
+        <div class="stat-card-value green">231</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Топ-10</div>
+        <div class="stat-card-value green">1 001</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Топ-50</div>
+        <div class="stat-card-value">8 010</div>
+        <div class="stat-card-note">ключей</div>
+      </div>
+    </div>
+    <div class="stat-row-3" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-card-label">DR (Keys.so)</div>
+        <div class="stat-card-value">18</div>
+        <div class="stat-card-note">выше crmgroup.ru (12)</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-card-label">Visibility</div>
+        <div class="stat-card-value green">139</div>
+        <div class="stat-card-note">в 2.8× выше crmgroup.ru (49)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Страниц в индексе</div>
+        <div class="stat-card-value">277</div>
+        <div class="stat-card-note">vs 133 у crmgroup.ru</div>
+      </div>
+    </div>
+    <div class="insight-box">
+      <strong>Главный вывод по двум сайтам:</strong> emailsoldiers.ru — сильный SEO-актив (vis 139, 8k ключей в топ-50, DR 18). crmgroup.ru растёт (vis удвоился до 49 за 3 месяца), но ещё слабее и конверсии не отслеживаются. Стратегия: emailsoldiers.ru генерирует трафик и тёплую аудиторию → crmgroup.ru конвертирует в заявки.
+    </div>
+
+  </div>
+</section>
+</div><!-- /tab-stats -->
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
 
 <!-- FOOTER -->
 <div class="doc-footer">
