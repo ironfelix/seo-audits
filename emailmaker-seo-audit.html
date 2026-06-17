@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг-аудит — EmailMaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #333;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+  --accent: #453FDF;
+  --accent-soft: #eef0ff;
+  --border: #e5e5e5;
+  --border-soft: #f0f0f0;
+  --crit: #c01020;
+  --warn: #e89020;
+  --ok: #16a34a;
+  --hero-bg: #1a1a1a;
+  --font-h: 'Inter', 'Inter', system-ui, sans-serif;
+  --font-b: 'Inter', 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'tnum', 'lnum';
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+
+/* Hero */
+.hero {
+  background: var(--hero-bg);
+  color: #fff;
+  padding: 48px 0 38px;
+}
+.hero-label {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.hero-meta > div { min-width: 120px; }
+.hero-meta .label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 3px;
+}
+.hero-meta .value {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+.hero-meta .value a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,0.4);
+}
+
+/* TOC strip */
+.toc-strip {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+}
+.toc-strip ul {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.toc-strip a {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.toc-strip a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Content */
+.content { padding: 40px 0 48px; }
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 34px 38px;
+  margin-bottom: 22px;
+  scroll-margin-top: 80px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.section-num {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.section h2.section-title {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 4px 0 18px;
+}
+
+/* Markdown content inside sections */
+.md { font-size: 14.5px; line-height: 1.7; color: var(--text-soft); }
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+
+.md h1 { display: none; }
+.md h2 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 32px 0 10px;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.md h3 {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+  letter-spacing: -0.1px;
+}
+.md h4 {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 6px;
+}
+.md p { margin: 0 0 12px; }
+.md strong { font-weight: 700; color: var(--text); }
+.md em { font-style: italic; color: var(--muted); }
+
+.md ul, .md ol { margin: 0 0 14px; padding-left: 22px; }
+.md li { margin-bottom: 4px; }
+.md li::marker { color: var(--accent); }
+
+.md a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid;
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.md a:hover { border-color: var(--accent); }
+
+.md code {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.87em;
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text);
+}
+.md pre {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 14px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; color: inherit; }
+
+.md blockquote {
+  margin: 14px 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  border-radius: 0 6px 6px 0;
+}
+.md blockquote p:last-child { margin-bottom: 0; }
+
+.md hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 28px 0;
+}
+
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.md table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f8f8f8;
+  font-family: var(--font-h);
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.md table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+.md table tr:last-child td { border-bottom: none; }
+.md table tr:hover td { background: #fafbfc; }
+
+.md input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--accent);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 20px;
+}
+footer code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: #f0f0f0;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: var(--muted);
+}
+footer .files {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .hero h1 { font-size: 24px; }
+  .section { padding: 24px 20px; }
+  .section h2.section-title { font-size: 20px; }
+  .md table { font-size: 11.5px; }
+  .md table th, .md table td { padding: 7px 8px; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .hero {
+    background: var(--hero-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 24px 0;
+  }
+  .hero h1 { font-size: 22pt; }
+  .toc-strip { display: none; }
+  .section {
+    break-inside: avoid-page;
+    border: none;
+    padding: 16px 0;
+    margin-bottom: 8px;
+    box-shadow: none;
+  }
+  .section h2.section-title { font-size: 16pt; }
+  .md h2 { font-size: 13pt; break-after: avoid; }
+  .md h3 { break-after: avoid; }
+  .md table, .md pre, .md blockquote { break-inside: avoid; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-label">Маркетинг-аудит</div>
+    <h1>EmailMaker</h1>
+    <p class="hero-sub">Маркетинг-аудит и SEO-стратегия · https://emailmaker.ru/</p>
+    <div class="hero-meta">
+      <div><div class="label">URL</div><div class="value"><a href="https://emailmaker.ru/" target="_blank">https://emailmaker.ru/</a></div></div>
+      <div><div class="label">Ниша</div><div class="value">SaaS — облачный блочный AI-конструктор email-шаблонов (письма/рассылки без HTML)</div></div>
+      <div><div class="label">Регион</div><div class="value">Россия (внесён в Единый реестр российского ПО)</div></div>
+      <div><div class="label">Дата</div><div class="value">2026-06-17</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-strip">
+  <div class="wrap"><ul><li><a href="#section-audit-summary">Сводный отчёт</a></li><li><a href="#section-gap-analysis">Gap-анализ конкурентов</a></li><li><a href="#section-content-audit">Контент и семантика</a></li><li><a href="#section-tech-seo-audit">Технический SEO</a></li></ul></div>
+</nav>
+
+<main class="content">
+  <div class="wrap">
+    
+<section class="section" id="section-audit-summary">
+  <div class="section-head">
+    <span class="section-num">01 · SUMMARY</span>
+  </div>
+  <h2 class="section-title">Сводный отчёт</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-06-17
+<strong>Скоуп:</strong> технический SEO + контент/семантика (фокус — рассылки и вёрстка/дизайн писем) + конкуренты и gap-анализ
+<strong>Сервис:</strong> EmailMaker — блочный AI-конструктор email-шаблонов (SaaS, B2B, Россия)
+<strong>Профиль keys.so:</strong> vis=5 · топ-10: 54 ключа · топ-50: 223 ключа (конкуренты vis 49–177)</p>
+<hr>
+<h2>Главный вывод</h2>
+<p>Технических блокировок индексации почти нет — сайт открыт, docs ранжируются. Потолок роста <strong>не технический, а контентный</strong>: EmailMaker как продукт даёт лучший ответ на запросы «как сверстать письмо / дизайн рассылки / шаблон письма», но <strong>не имеет блога и публичной галереи шаблонов</strong> — поэтому весь этот трафик (спрос в сотни тысяч показов) забирают блоги конкурентов-ESP (Mindbox, Sendsay, Unisender) и прямые конструкторы (Stripo, Letteros).</p>
+<hr>
+<h2>Топ-5 критичных проблем</h2>
+<ol>
+<li>🔴 <strong>robots.txt от чужого движка (OpenCart).</strong> Сайт на WordPress, но robots.txt блокирует <code>route=checkout</code>, <code>/catalog</code>, <code>/cart/</code>, <code>/vouchers/</code> — таких URL нет, а <code>/wp-admin/</code>, <code>/wp-json/</code> не закрыты. Файл скопирован с другого проекта. → <code>tech-seo-audit.md §1</code></li>
+<li>🔴 <strong>www → 403</strong> вместо 301-редиректа на non-www. Раздвоение хоста. → <code>tech-seo-audit.md §7</code></li>
+<li>🔴 <strong>Нет блога.</strong> Вся верхняя воронка (вёрстка, дизайн, подпись письма) недостижима. SERP по этим темам = 100% блоги конкурентов. → <code>content-audit.md §1, §6</code></li>
+<li>🔴 <strong>Шаблоны спрятаны в личном кабинете.</strong> Кластер «шаблон писем» — спрос &gt;160 000, мы на 5–18 позициях без индексируемой галереи <code>/templates/</code>. → <code>content-audit.md §3 (кластер 2), gap §5</code></li>
+<li>🔴 <strong>Слабая SEO-упаковка коммерческих лендингов + нет Schema для SaaS.</strong> /pricing/ без H2, /cases/ с description «Кейсы», 109/114 картинок на тарифах без alt; нет <code>SoftwareApplication</code>/<code>Organization</code>/<code>FAQPage</code>. → <code>tech-seo-audit.md §5, §9</code></li>
+</ol>
+<hr>
+<h2>Топ-10 точек роста</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Точка роста</th>
+<th>Observation (источник)</th>
+<th>Impact</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Публичная галерея шаблонов <code>/templates/</code> с категориями</td>
+<td>спрос &gt;160k, ранжируемся 5–18 без галереи · content §3, gap §5</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Завести блог (CPT + sitemap + рубрики)</td>
+<td>SERP вёрстки/дизайна = блоги конкурентов · content §4</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Статья «Как сверстать письмо для рассылки: HTML-гайд»</td>
+<td>топ занят гайдами Mindbox/Sendsay/Unisender · content §4.2</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Статья «Дизайн email-рассылки: правила + примеры»</td>
+<td>SERP = блоговые гайды, у нас лучший продуктовый ответ · content §4.3</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Кластер «подпись/футер письма» (статья + готовый блок)</td>
+<td>Stripo доит ~30k спроса, низкая конкуренция · gap §4.1</td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Консолидировать AI-генератор в один лендинг</td>
+<td>«генератор писем» WS 2024, p17, размазан по 3 URL · content §5.2</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Дооптимизировать /pricing/ и /cases/ (мета, H2, alt)</td>
+<td>pricing без H2, cases desc «Кейсы», alt 109/114 · tech §5</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Добавить Schema: SoftwareApplication, Organization, FAQPage</td>
+<td>только Yoast-дефолт · tech §9</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Починить robots.txt (WP-версия) + www→301</td>
+<td>OpenCart-мусор, www 403 · tech §1, §7</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Убрать из индекса test2/main2/просроченные промо + создать /llms.txt</td>
+<td>мусор в sitemap, llms.txt 404 · tech §2, §9</td>
+<td>low</td>
+<td>low</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Что НЕ вошло в аудит (и почему)</h2>
+<ul>
+<li><strong>Core Web Vitals</strong> — нет <code>GOOGLE_PSI_API_KEY</code> в <code>.env</code>. Косвенно: главная 314 КБ + 68 картинок + no-cache заголовки → вероятен слабый LCP. Добавить ключ → замерю.</li>
+<li><strong>ESP-семантика</strong> (сервисы/массовая рассылка, доставляемость) — сознательно исключена: EmailMaker не отправляет письма, там не выиграть у Unisender/Sendsay и трафик нецелевой. · gap §6</li>
+<li><strong>Точные частоты фокус-кластеров «вёрстка»/«дизайн»</strong> — keys.so не отдал по точным фразам; спрос подтверждён насыщенным SERP. Уточнить через Wordstat при планировании.</li>
+<li><strong>Анализ конверсии и аналитики (Метрика/цели)</strong> — нет доступа к счётчику клиента.</li>
+</ul>
+<hr>
+<h2>Следующие шаги</h2>
+<ol>
+<li><strong>Контент-план на блог</strong> — оформить топ точек роста 2–5 в <code>emailmaker/plans/content-plan.md</code> (10–15 статей с H1 и брифами; черновой список — в <code>content-audit.md §5</code>).</li>
+<li><strong>ТЗ на галерею <code>/templates/</code></strong> — структура категорий + индексация (точка роста №1).</li>
+<li><strong>Тех-фиксы</strong> (robots, www-redirect, schema, alt) — требуют доступа к серверу/WP клиента. Запросить доступы.</li>
+<li><strong>Добавить <code>GOOGLE_PSI_API_KEY</code></strong> → дозамерить CWV.</li>
+</ol></div>
+</section>
+
+
+<section class="section" id="section-gap-analysis">
+  <div class="section-head">
+    <span class="section-num">02 · GAP</span>
+  </div>
+  <h2 class="section-title">Gap-анализ конкурентов</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-06-17
+<strong>База:</strong> keys.so (Яндекс, Россия)
+<strong>Метод:</strong> профиль домена → конкуренты по пересечению → gap (ключи конкурентов, которых нет у нас) → кластеризация → фильтр по бизнес-релевантности</p>
+<hr>
+<h2>1. Профиль emailmaker.ru</h2>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Видимость (vis)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Ключей топ-1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Ключей топ-3</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Ключей топ-5</td>
+<td>29</td>
+</tr>
+<tr>
+<td>Ключей топ-10</td>
+<td>54</td>
+</tr>
+<tr>
+<td>Ключей топ-50</td>
+<td>223</td>
+</tr>
+</tbody>
+</table>
+<p>Низкая видимость (vis=5) при том, что по ядру продукта («конструктор писем», «email конструктор», «онлайн редактор писем») мы уже в топ-1–4. Потолок роста — у конкурентов vis 49–177.</p>
+<hr>
+<h2>2. Конкуренты</h2>
+<h3>2.1. Полный список (топ-10 по пересечению, keys.so)</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Пересечение</th>
+<th>Их vis</th>
+<th>Тип</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stripo.email</td>
+<td>119</td>
+<td>49</td>
+<td>Конструктор писем (прямой) + блог</td>
+</tr>
+<tr>
+<td>rusender.ru</td>
+<td>105</td>
+<td>74</td>
+<td>ESP (отправка)</td>
+</tr>
+<tr>
+<td>dashamail.ru</td>
+<td>98</td>
+<td>151</td>
+<td>ESP</td>
+</tr>
+<tr>
+<td>makemail.ru</td>
+<td>98</td>
+<td>3</td>
+<td>Конструктор писем (прямой)</td>
+</tr>
+<tr>
+<td>letteros.com</td>
+<td>85</td>
+<td>92</td>
+<td>Конструктор/вёрстка + блог (прямой)</td>
+</tr>
+<tr>
+<td>sendsay.ru</td>
+<td>83</td>
+<td>123</td>
+<td>ESP + сильный блог</td>
+</tr>
+<tr>
+<td>altcraft.com</td>
+<td>82</td>
+<td>60</td>
+<td>CDP/enterprise</td>
+</tr>
+<tr>
+<td>emailmatrix.ru</td>
+<td>77</td>
+<td>177</td>
+<td>Агентство email</td>
+</tr>
+<tr>
+<td>notisend.ru</td>
+<td>74</td>
+<td>31</td>
+<td>ESP</td>
+</tr>
+<tr>
+<td>emailsoldiers.ru</td>
+<td>65</td>
+<td>127</td>
+<td>Агентство</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2. Отобраны для gap-анализа</h3>
+<p><strong>Прямые конструкторы/редакторы:</strong> <code>stripo.email</code>, <code>letteros.com</code>, <code>makemail.ru</code>
+<strong>Владелец информационного контента:</strong> <code>sendsay.ru</code> (12 784 ключа, сильный блог по вёрстке/дизайну)</p>
+<p><strong>Обоснование:</strong> EmailMaker — конструктор писем, а не сервис отправки. Прямые конкуренты по продукту — Stripo, Letteros, MakeMail. ESP (rusender, dashamail, notisend, altcraft) и агентства (emailmatrix, emailsoldiers) исключены из gap по продукту, но sendsay добавлен как эталон контент-стратегии (у кого «нашу» информационку забирает блог).</p>
+<hr>
+<h2>3. Сводка gap-анализа</h2>
+<ul>
+<li><strong>Всего gap-ключей:</strong> 225 (есть у конкурентов в топе, у нас нет или ниже топ-50).</li>
+<li>Показан <strong>топ-50 по оценочному трафику</strong> (est) — остальные 175 длиннее по хвосту и ниже по трафику.</li>
+<li>После фильтра на релевантность продукту (конструктор/вёрстка/дизайн/шаблоны/подпись) → <strong>~27 релевантных</strong>, остальное — ESP-семантика и общеблоговый шум.</li>
+</ul>
+<p><strong>Что отсечено как нерелевантное (примеры):</strong> swot, охват, прямые продажи, валет карта, амбассадором, вложение, cpo это, кликер яндекс, добавить в календарь, ссылка на тг канал — это общемаркетинговые блоговые темы, которыми ESP набирают трафик, но они не ведут к продукту-конструктору.</p>
+<hr>
+<h2>4. Кластеры gap-ключей (релевантные)</h2>
+<h3>4.1. Подпись и футер письма — 🟢 брать</h3>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>WS</th>
+<th>Конкурент (поз.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>подписи в почте</td>
+<td>15 428</td>
+<td>stripo (18)</td>
+</tr>
+<tr>
+<td>подпись в письмах</td>
+<td>12 932</td>
+<td>sendsay (9)</td>
+</tr>
+<tr>
+<td>деловая подпись</td>
+<td>1 315</td>
+<td>stripo (5)</td>
+</tr>
+<tr>
+<td>примеры подписи письма</td>
+<td>649</td>
+<td>stripo (6)</td>
+</tr>
+<tr>
+<td>подпись в почте красивая</td>
+<td>326</td>
+<td>stripo (1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Комментарий:</strong> Stripo системно собирает подписи. EmailMaker имеет блоки подписи → статья + готовый блок дают трафик и конверсию. Низкая конкуренция.</p>
+<h3>4.2. Создание/шаблон письма — 🟢 брать (коммерческий)</h3>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>WS</th>
+<th>Конкурент (поз.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>текст в письмо</td>
+<td>45 508</td>
+<td>makemail (13)</td>
+</tr>
+<tr>
+<td>шаблон по письму</td>
+<td>17 495</td>
+<td>makemail (20)</td>
+</tr>
+<tr>
+<td>создать шаблон письма</td>
+<td>1 208</td>
+<td>stripo (1)</td>
+</tr>
+<tr>
+<td>сайт для письма</td>
+<td>3 324</td>
+<td>letteros (6)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Комментарий:</strong> Прямо продуктовый спрос. makemail и stripo ранжируются, мы — нет или ниже. Подтягивается лендингом + галереей шаблонов.</p>
+<h3>4.3. Дизайн/оформление письма — 🟢 брать (FOCUS)</h3>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>WS</th>
+<th>Конкурент (поз.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>красивая почта</td>
+<td>4 517</td>
+<td>makemail (9)</td>
+</tr>
+<tr>
+<td>фон для письма</td>
+<td>4 019</td>
+<td>sendsay (13)</td>
+</tr>
+<tr>
+<td>оформить email</td>
+<td>607</td>
+<td>letteros (15)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Комментарий:</strong> Информационно-коммерческий стык. Закрывается статьёй-гайдом по дизайну + примерами шаблонов.</p>
+<h3>4.4. GIF в письмах — 🟡 частично</h3>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>WS</th>
+<th>Конкурент (поз.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gif тип файла</td>
+<td>25 872</td>
+<td>letteros (18)</td>
+</tr>
+<tr>
+<td>гиф что</td>
+<td>17 862</td>
+<td>letteros (13)</td>
+</tr>
+<tr>
+<td>виды гифов</td>
+<td>6 954</td>
+<td>letteros (1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Комментарий:</strong> Letteros набирает большой трафик через гайды о GIF (анимация в письмах). Тема смежная, но часть запросов («гифки тг») off-topic. Брать узко — «как добавить gif в письмо».</p>
+<h3>4.5. Сервисы рассылки / ESP — 🔴 НЕ брать</h3>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>WS</th>
+<th>Конкурент</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>сервис email рассылки</td>
+<td>810</td>
+<td>sendsay</td>
+</tr>
+<tr>
+<td>массовая рассылка сообщений</td>
+<td>983</td>
+<td>sendsay</td>
+</tr>
+<tr>
+<td>рассылка писем сервис</td>
+<td>640</td>
+<td>sendsay</td>
+</tr>
+<tr>
+<td>программа по рассылке</td>
+<td>364</td>
+<td>sendsay</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Комментарий:</strong> Это семантика отправки (ESP). EmailMaker не отправляет письма — здесь не выиграть у Sendsay/Unisender и трафик нецелевой.</p>
+<h3>4.6. Email confirmation / служебное — 🔴 НЕ брать</h3>
+<p>confirm email (2963), email confirmation, confirm your email — это конечные пользователи, гуглящие текст системного письма. Нулевая бизнес-ценность.</p>
+<hr>
+<h2>5. Приоритетные направления (топ-3)</h2>
+<ol>
+<li><strong>Подпись/футер письма</strong> (кластер 4.1) — низкая конкуренция, стабильный спрос (~30k суммарно), прямая связка с продуктом (готовый блок подписи). Stripo это уже доит — отъесть долю.</li>
+<li><strong>Дизайн + вёрстка письма</strong> (кластеры 4.3 + content-audit §4.2–4.3) — высокий информационный спрос, SERP = блоги конкурентов, у EmailMaker лучший продуктовый ответ (шаблоны + AI). Требует блога.</li>
+<li><strong>Галерея шаблонов <code>/templates/</code></strong> (кластер 4.2 + content-audit кластер 2) — коммерческий спрос &gt;160k, уже ранжируемся на 5–20 без выделенной галереи. Самый быстрый коммерческий выигрыш.</li>
+</ol>
+<h2>6. Что НЕ брать и почему</h2>
+<ul>
+<li><strong>ESP-семантика</strong> (сервисы/массовые рассылки, SMTP, доставляемость) — не продукт EmailMaker, проигрыш ESP-гигантам, нецелевой трафик.</li>
+<li><strong>Служебные пользовательские запросы</strong> (confirm email, «прочитано ли сообщение») — нулевая конверсия.</li>
+<li><strong>Общемаркетинговый блоговый хвост</strong> (swot, охват, амбассадор, прямые продажи) — Sendsay набирает им объём, но к конструктору писем это не ведёт.</li>
+</ul>
+<blockquote>
+<p>SERP-разбор по фокус-кластерам «вёрстка» и «дизайн» — в <code>content-audit.md §4.2–4.3</code> (топ-5 Яндекса: Mindbox, Sendsay, Unisender, SendPulse, Letteros, eSputnik — все блоговые гайды).</p>
+</blockquote></div>
+</section>
+
+
+<section class="section" id="section-content-audit">
+  <div class="section-head">
+    <span class="section-num">03 · CONTENT</span>
+  </div>
+  <h2 class="section-title">Контент и семантика</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-06-17
+<strong>Ниша:</strong> SaaS — блочный AI-конструктор email-шаблонов (создание/вёрстка/дизайн писем)
+<strong>Регион:</strong> Россия
+<strong>Источник:</strong> keys.so (ключи emailmaker + stripo), WebSearch (SERP + автосаджест), краулинг сайта</p>
+<blockquote>
+<p>Ключевое позиционирование для семантики: EmailMaker — <strong>конструктор/редактор писем</strong>, НЕ сервис отправки (ESP). Семантика про <em>создание, вёрстку, дизайн, шаблоны</em> — «наша». Семантика про <em>отправку, доставляемость, базы подписчиков</em> — чужая (Unisender/Sendsay/DashaMail). Не размывать фокус в сторону ESP.</p>
+</blockquote>
+<hr>
+<h2>1. Текущий контент сайта</h2>
+<table>
+<thead>
+<tr>
+<th>Тип</th>
+<th>Страницы</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Главная</td>
+<td>/ («Блочный конструктор писем»)</td>
+<td>оптимизирована под «конструктор писем»</td>
+</tr>
+<tr>
+<td>Продукт-лендинги</td>
+<td>/plugin/, /custom-template/, /chain-generator/, /ai-subject/</td>
+<td>частично</td>
+</tr>
+<tr>
+<td>Коммерческие</td>
+<td>/pricing/, /cases/ (+vk_music, gulliver, foxford)</td>
+<td>слабая SEO-упаковка (см. tech-audit §5)</td>
+</tr>
+<tr>
+<td>Демо/инфо</td>
+<td>/video-demo/, /about-us/, /contacts/, /migration/, /demo-unisender/</td>
+<td>—</td>
+</tr>
+<tr>
+<td>База знаний</td>
+<td>/docs/help/ — <strong>87 страниц</strong></td>
+<td>аккуратная, индексируется, хороший TL;DR</td>
+</tr>
+<tr>
+<td>Промо-лендинги</td>
+<td>blackfriday2024/2025, ny2026, welcomevk<em>, promo-start</em></td>
+<td>устаревшие, в индексе</td>
+</tr>
+<tr>
+<td><strong>Блог</strong></td>
+<td><strong>отсутствует</strong></td>
+<td>🔴 главная контентная дыра</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> есть продуктовые лендинги + большая техническая база знаний (docs), но <strong>нет SEO-блога</strong> — слоя информационных статей, который захватывает верхнюю воронку («как сверстать», «дизайн рассылки», «шаблон письма»).</p>
+<hr>
+<h2>2. Семантическое ядро (по keys.so + SERP)</h2>
+<h3>Коммерческие (продукт) — где мы уже ранжируемся</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>Позиция</th>
+<th>Интент</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>шаблон писем / шаблон письмо</td>
+<td>121 039</td>
+<td>5–6</td>
+<td>C</td>
+</tr>
+<tr>
+<td>шаблоны для письма</td>
+<td>28 679</td>
+<td>18</td>
+<td>C</td>
+</tr>
+<tr>
+<td>электронные шаблоны</td>
+<td>7 796</td>
+<td>19</td>
+<td>C</td>
+</tr>
+<tr>
+<td>конструктор рассылок</td>
+<td>3 659</td>
+<td>4</td>
+<td>C</td>
+</tr>
+<tr>
+<td>письмо макет</td>
+<td>2 584</td>
+<td>5</td>
+<td>C</td>
+</tr>
+<tr>
+<td>генератор писем</td>
+<td>2 024</td>
+<td>17</td>
+<td>C</td>
+</tr>
+<tr>
+<td>шаблон электронного письма</td>
+<td>1 308</td>
+<td>3</td>
+<td>C</td>
+</tr>
+<tr>
+<td>шаблон email</td>
+<td>1 124</td>
+<td>9</td>
+<td>C</td>
+</tr>
+<tr>
+<td>конструктор письма</td>
+<td>876</td>
+<td>5</td>
+<td>C</td>
+</tr>
+<tr>
+<td>конструктор писем</td>
+<td>864</td>
+<td>4</td>
+<td>C</td>
+</tr>
+<tr>
+<td>шаблон красивого письма</td>
+<td>960</td>
+<td>22</td>
+<td>C</td>
+</tr>
+<tr>
+<td>онлайн редактор писем</td>
+<td>271</td>
+<td>2</td>
+<td>C</td>
+</tr>
+<tr>
+<td>email конструктор</td>
+<td>125</td>
+<td>1</td>
+<td>C</td>
+</tr>
+<tr>
+<td>шаблоны email рассылок</td>
+<td>121</td>
+<td>9</td>
+<td>C</td>
+</tr>
+<tr>
+<td>email maker (бренд)</td>
+<td>70</td>
+<td>1</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<h3>Транзакционные / создание</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>WS</th>
+<th>Позиция</th>
+<th>Интент</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>создать рассылку</td>
+<td>3 794</td>
+<td>22</td>
+<td>T</td>
+</tr>
+<tr>
+<td>написать письмо онлайн</td>
+<td>2 656</td>
+<td>25</td>
+<td>T</td>
+</tr>
+<tr>
+<td>генератор писем онлайн бесплатно</td>
+<td>232</td>
+<td>25</td>
+<td>T</td>
+</tr>
+<tr>
+<td>создать html письмо</td>
+<td>80</td>
+<td>24</td>
+<td>T</td>
+</tr>
+<tr>
+<td>создать красивую почту</td>
+<td>188</td>
+<td>28</td>
+<td>T</td>
+</tr>
+<tr>
+<td>сайт для создания писем</td>
+<td>96</td>
+<td>4</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<h3>Информационные (FOCUS — где нас НЕТ, а конкуренты в топе)</h3>
+<table>
+<thead>
+<tr>
+<th>Кластер фраз</th>
+<th>Источник спроса</th>
+<th>Интент</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>как сверстать письмо / html-вёрстка письма / адаптивная вёрстка email</td>
+<td>SERP: Mindbox, Sendsay, Unisender, Timeweb</td>
+<td>I</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>дизайн email-рассылки / оформление письма / красивое письмо</td>
+<td>SERP: SendPulse, Mindbox, Letteros, Unisender, eSputnik</td>
+<td>I</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>подпись в письме / футер письма / примеры подписей</td>
+<td>keys.so: stripo ранжируется</td>
+<td>I</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>прехедер письма / тема письма / merge-tags / AMP-письма</td>
+<td>docs есть, SEO-статьи нет</td>
+<td>I</td>
+<td>🟡 docs</td>
+</tr>
+<tr>
+<td>шаблоны писем (примеры по типам: новогодние, B2B, приветственные)</td>
+<td>высокий спрос, галереи</td>
+<td>C/I</td>
+<td>🟡</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>3. Кластеры и покрытие</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Кластер</th>
+<th>Ключ-якорь</th>
+<th>~Σ WS</th>
+<th>Интент</th>
+<th>Целевая страница</th>
+<th>Покрытие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Конструктор/редактор писем</td>
+<td>конструктор писем</td>
+<td>~6 000</td>
+<td>C</td>
+<td>/</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Шаблоны писем</strong></td>
+<td>шаблон писем</td>
+<td><strong>~160 000</strong></td>
+<td>C</td>
+<td>нужна <code>/templates/</code> (галерея)</td>
+<td>🟡 нет индексируемой галереи</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Создание письма онлайн</td>
+<td>написать письмо онлайн</td>
+<td>~7 000</td>
+<td>T</td>
+<td>/ или лендинг</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AI-генератор писем</td>
+<td>генератор писем</td>
+<td>~3 000</td>
+<td>C</td>
+<td>/ai-subject/, /chain-generator/</td>
+<td>🟡 разрознено</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Вёрстка писем</strong> (FOCUS)</td>
+<td>как сверстать письмо</td>
+<td>спрос высокий*</td>
+<td>I</td>
+<td>блог (нет)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Дизайн/оформление рассылки</strong> (FOCUS)</td>
+<td>дизайн email-рассылки</td>
+<td>спрос высокий*</td>
+<td>I</td>
+<td>блог (нет)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Подпись/футер письма</td>
+<td>подпись в письме</td>
+<td>~5 000</td>
+<td>I</td>
+<td>блог (нет)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>8</td>
+<td>HTML/AMP/прехедер (тех.)</td>
+<td>html письмо</td>
+<td>средний</td>
+<td>I</td>
+<td>docs частично</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Конкретные шаблоны (типы)</td>
+<td>новогодний шаблон письма</td>
+<td>сезонный</td>
+<td>C/I</td>
+<td>галерея + блог</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Бренд</td>
+<td>emailmaker</td>
+<td>~150</td>
+<td>N</td>
+<td>/</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>* частоту точных фраз кластеров 5–6 keys.so не отдал в этом срезе — спрос подтверждён насыщенным SERP (6–8 развёрнутых гайдов от Mindbox/Sendsay/Unisender/SendPulse в топе).</p>
+<p><strong>Главные выводы покрытия:</strong>
+- Кластер 2 «шаблоны писем» — <strong>спрос &gt;160k</strong>, мы на 5–18 позициях, но <strong>нет индексируемой галереи шаблонов</strong> (шаблоны живут в приложении). Это упущенный коммерческий трафик №1.
+- Кластеры 5–7 (вёрстка, дизайн, подпись) — <strong>полностью у конкурентов</strong>, потому что у нас нет блога.</p>
+<hr>
+<h2>4. SERP-анализ приоритетных кластеров</h2>
+<h3>4.1. «Шаблоны писем» (кластер 2, WS-якорь 121 039) — топ Яндекса</h3>
+<p>Смешанный SERP: галереи шаблонов сервисов (Stripo, Unisender) + конструкторы. Формат победителя — <strong>индексируемая галерея шаблонов с фильтрами по типам</strong> (приветственные, акции, B2B, праздничные), каждая категория = отдельный URL.
+<strong>Что нужно:</strong> публичный раздел <code>/templates/</code> с категориями, а не шаблоны, спрятанные в личном кабинете.</p>
+<h3>4.2. «Вёрстка писем» (кластер 5) — топ Яндекса</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Тип</th>
+<th>Формат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeweb.com/community</td>
+<td>статья</td>
+<td>гайд «основы HTML-вёрстки писем»</td>
+</tr>
+<tr>
+<td>mindbox.ru/journal</td>
+<td>статья</td>
+<td>«8 правил HTML-вёрстки»</td>
+</tr>
+<tr>
+<td>sendsay.ru/blog</td>
+<td>статья</td>
+<td>подробный гайд + адаптив</td>
+</tr>
+<tr>
+<td>unisender.com/ru/blog</td>
+<td>статья</td>
+<td>«инструкция для чайников»</td>
+</tr>
+<tr>
+<td>digital-academy.ru/blog</td>
+<td>статья</td>
+<td>обучающий гайд</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> топ = <strong>длинные обучающие статьи блогов конкурентов</strong> (2000–4000 слов, скриншоты, примеры кода). Лендинг тут не ранжируется — нужен формат «статья-гайд».</p>
+<h3>4.3. «Дизайн email-рассылки» (кластер 6) — топ Яндекса</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Формат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sendpulse.com/ru/blog</td>
+<td>гайд «что хорошо/плохо»</td>
+</tr>
+<tr>
+<td>mindbox.ru/journal</td>
+<td>«как создать эффективный дизайн»</td>
+</tr>
+<tr>
+<td>letteros.com/blog</td>
+<td>гайд по дизайну</td>
+</tr>
+<tr>
+<td>unisender.com/ru/blog</td>
+<td>«красивая вёрстка»</td>
+</tr>
+<tr>
+<td>sendsay.ru/blog</td>
+<td>полный гайд по оформлению</td>
+</tr>
+<tr>
+<td>esputnik.com/blog</td>
+<td>рекомендации по дизайну</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> тот же — блоговые гайды. <strong>Все конкуренты-ESP ведут блог, EmailMaker — нет.</strong> При этом EmailMaker как продукт даёт прямой ответ на эти запросы (готовые шаблоны + AI-дизайн) → у статей будет органичная конверсия в продукт.</p>
+<hr>
+<h2>5. Контент-план (рекомендации)</h2>
+<h3>5.1. High priority</h3>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1 (целевой)</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/templates/</code></td>
+<td>новый раздел-галерея</td>
+<td>2</td>
+<td>Шаблоны писем для email-рассылок</td>
+<td>Публичная индексируемая галерея 250+ шаблонов с категориями (приветственные, акции, B2B, праздничные, брошенная корзина). Каждая категория = URL. Закрывает спрос &gt;160k и кормит регистрации</td>
+</tr>
+<tr>
+<td>Блог: статья</td>
+<td>новая</td>
+<td>5</td>
+<td>Как сверстать письмо для рассылки: HTML-гайд 2026</td>
+<td>Длинный гайд (2500+ слов) с примерами кода, адаптив, типичные ошибки. Угол: «или сверстайте за 5 минут в конструкторе без кода» → CTA</td>
+</tr>
+<tr>
+<td>Блог: статья</td>
+<td>новая</td>
+<td>6</td>
+<td>Дизайн email-рассылки: правила оформления + примеры</td>
+<td>Гайд по дизайну (соотношение текст/картинки, сетка, шрифты) + галерея примеров из шаблонов EmailMaker</td>
+</tr>
+<tr>
+<td>Создание блога</td>
+<td>инфраструктура</td>
+<td>5–9</td>
+<td>—</td>
+<td>Завести раздел <code>/blog/</code> в WP (CPT post + sitemap + рубрики). Без него кластеры 5–9 недостижимы</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2. Medium priority</h3>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>H1</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Блог</td>
+<td>новая</td>
+<td>7</td>
+<td>Подпись в email: примеры и как оформить</td>
+<td>Спрос стабильный (stripo ранжируется), низкая конкуренция. Примеры + готовый блок в конструкторе</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>новая</td>
+<td>8</td>
+<td>Прехедер письма: что это и как настроить</td>
+<td>Перенести/расширить docs-материал в SEO-формат</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>новая</td>
+<td>8</td>
+<td>AMP-письма: что это и как создать</td>
+<td>Уникальный угол — мало кто пишет, EmailMaker поддерживает</td>
+</tr>
+<tr>
+<td>Лендинг</td>
+<td>переработка</td>
+<td>4</td>
+<td>AI-генератор писем онлайн</td>
+<td>Объединить /ai-subject/ + /chain-generator/ + email-generator в сильный лендинг под «генератор писем» (WS 2024, сейчас p17)</td>
+</tr>
+<tr>
+<td>/pricing/, /cases/</td>
+<td>переработка</td>
+<td>1</td>
+<td>—</td>
+<td>Дооптимизировать мета, H2, alt (см. tech-audit §5)</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3. Low priority</h3>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Блог</td>
+<td>сезонные</td>
+<td>9</td>
+<td>Новогодние/8 марта/Black Friday шаблоны писем — сезонные подборки под спрос</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>новая</td>
+<td>5</td>
+<td>Адаптивная вёрстка письма: резиновая vs гибридная — узкий тех-запрос</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>новая</td>
+<td>8</td>
+<td>Merge-tags / персонализация письма — из docs в SEO-формат</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>6. Выводы</h2>
+<p><strong>Топ-3 точки роста по контенту:</strong>
+1. <strong>Завести блог.</strong> Без него вся верхняя воронка (вёрстка, дизайн, подпись — кластеры 5–7) недостижима. SERP по этим темам = 100% блоги конкурентов-ESP, а EmailMaker как продукт отвечает на них лучше всех (готовые шаблоны + AI). Это и трафик, и естественная конверсия в free trial.
+2. <strong>Публичная галерея шаблонов <code>/templates/</code>.</strong> Кластер «шаблоны писем» — спрос &gt;160k, мы уже на 5–18 позициях без выделенной галереи. Вытащить 250+ шаблонов из личного кабинета в индексируемые категории = самый быстрый коммерческий выигрыш.
+3. <strong>Консолидировать AI-семантику.</strong> Генератор писем (WS 2024, p17) размазан по 3 страницам — собрать в один лендинг.</p>
+<p><strong>Риски и ограничения:</strong>
+- <strong>Не уходить в ESP-семантику</strong> (отправка, доставляемость, базы) — это не продукт EmailMaker, там не выиграть у Unisender/Sendsay.
+- Блог требует ресурса на регулярный контент — без плана публикаций он не даст эффекта.
+- Точные частоты фокус-кластеров 5–6 не извлеклись из keys.so — подтверждены косвенно (насыщенный SERP). Уточнить через Wordstat при планировании.</p></div>
+</section>
+
+
+<section class="section" id="section-tech-seo-audit">
+  <div class="section-head">
+    <span class="section-num">04 · TECH</span>
+  </div>
+  <h2 class="section-title">Технический SEO</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-06-17
+<strong>Статус:</strong> анализ (фиксы не применялись — нет доступа к серверу клиента)
+<strong>CMS:</strong> WordPress + Yoast SEO + W3 Total Cache, nginx 1.18.0
+<strong>Источник:</strong> crawl.py (5 страниц), curl (robots/sitemap/headers/redirects), WebSearch (индексация)</p>
+<hr>
+<h2>1. robots.txt</h2>
+<p><strong>Файл:</strong> генерируется (Yoast-блок), отдаётся по <code>/robots.txt</code>.</p>
+<h3>Проблемы найдены</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Что видим</th>
+<th>Делаем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>🔴 <strong>Чужой OpenCart-мусор</strong></td>
+<td><code>Disallow: /*route=account/</code>, <code>/*route=checkout/</code>, <code>/*route=product/search</code>, <code>/index.php?route=...</code>, <code>/admin</code>, <code>/catalog</code>, <code>/system</code>, <code>/cart/</code>, <code>/vouchers/</code>, <code>/compare-products/</code>, <code>/add-return/</code></td>
+<td>Это правила для движка OpenCart. Сайт на WordPress — таких URL не существует. robots.txt скопирован с другого сайта. Переписать под WP-структуру</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🟡 <strong>Нет защиты WP-служебки</strong></td>
+<td>Нет <code>Disallow: /wp-admin/</code> (кроме admin-ajax), нет <code>/wp-json/</code></td>
+<td>Добавить стандартный WP-блок</td>
+</tr>
+<tr>
+<td>3</td>
+<td>🟡 <strong>Агрессивные параметрические правила</strong></td>
+<td><code>Disallow: *page=*</code>, <code>*search=*</code>, <code>/*?sort=</code> и т.п.</td>
+<td>Часть полезна (фильтры), но <code>*page=*</code> без слеша может задеть пагинацию. Проверить, что не блокирует нужное</td>
+</tr>
+<tr>
+<td>4</td>
+<td>🟢 <strong>Sitemap-директива есть</strong></td>
+<td><code>Sitemap: https://emailmaker.ru/sitemap_index.xml</code></td>
+<td>ОК, работает</td>
+</tr>
+<tr>
+<td>5</td>
+<td>🟢 <strong>AI-боты не заблокированы</strong></td>
+<td><code>User-agent: *</code> без <code>Disallow: /</code> для GPTBot/ClaudeBot/PerplexityBot</td>
+<td>ОК для LLM-индексации. Можно явно добавить <code>Allow</code> (опционально)</td>
+</tr>
+</tbody>
+</table>
+<h3>Рекомендуемый robots.txt (WP-версия)</h3>
+<pre><code>User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-json/
+Disallow: /*?s=
+Disallow: /*?p=
+Disallow: /cart/
+Disallow: /*?add-to-cart=
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.webp$
+
+Sitemap: https://emailmaker.ru/sitemap_index.xml
+</code></pre>
+<hr>
+<h2>2. sitemap.xml</h2>
+<p><strong>Индекс:</strong> <code>/sitemap_index.xml</code> (Yoast). Два поддерева:</p>
+<table>
+<thead>
+<tr>
+<th>Sitemap</th>
+<th>URL</th>
+<th>Кол-во</th>
+<th>lastmod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page-sitemap.xml</td>
+<td>страницы</td>
+<td>~33</td>
+<td>2026-06-05</td>
+</tr>
+<tr>
+<td>docs-sitemap.xml</td>
+<td>база знаний</td>
+<td><strong>87</strong></td>
+<td>2026-06-16</td>
+</tr>
+</tbody>
+</table>
+<h3>Проблемы</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Делаем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>🟡 <strong>Технический/тестовый мусор в индексе страниц</strong></td>
+<td>В sitemap есть <code>/test2/</code>, <code>/main2/</code>, <code>/main2/</code> дубль главной. Эти страницы не должны быть в выдаче — закрыть <code>noindex</code> или удалить</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🟡 <strong>Промо-лендинги-однодневки в sitemap</strong></td>
+<td><code>/blackfriday2024/</code>, <code>/blackfriday2025/</code>, <code>/ny2026/</code>, <code>/welcomevk2025/</code>, <code>/welcomevk50/</code>, <code>/promo-start*</code> — устаревшие акции продолжают индексироваться. Просроченные → <code>noindex</code> или 410</td>
+</tr>
+<tr>
+<td>3</td>
+<td>🟢 <strong>Нет блога — нет post-sitemap</strong></td>
+<td>Контентная дыра (см. content-audit). docs покрывают информационку частично</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>3. Индексация</h2>
+<table>
+<thead>
+<tr>
+<th>Где</th>
+<th>Оценка</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keys.so топ-50</td>
+<td>223 ключа</td>
+<td>vis=5 (низко для ниши)</td>
+</tr>
+<tr>
+<td>keys.so топ-10</td>
+<td>54 ключа</td>
+<td></td>
+</tr>
+<tr>
+<td>По sitemap</td>
+<td>~120 URL (33 page + 87 docs)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>site:emailmaker.ru</code> (Google, оценка)</td>
+<td>docs индексируются</td>
+<td>в выдаче замечены <code>/docs/help/.../kak-sozdat-pismo</code>, <code>/email-generator/</code>, <code>/custom-template/</code> — база знаний ранжируется</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> индексация работает, docs приносят информационный трафик. Главный резерв — не технический (страницы открыты), а <strong>контентный</strong> (нет блога) и <strong>ранжирующий</strong> (vis=5 против 49–177 у конкурентов).</p>
+<hr>
+<h2>4. Главная страница</h2>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>200, 260ms</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>title</td>
+<td>«Emailmaker - блочный AI-конструктор шаблонов email» (50)</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>description</td>
+<td>182 симв.</td>
+<td>🟡 длинновата (&gt;160, обрежется)</td>
+</tr>
+<tr>
+<td>h1</td>
+<td>1 шт «Блочный конструктор писем»</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>h2</td>
+<td>9 шт</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>canonical</td>
+<td>на себя</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>OG</td>
+<td>полный + image</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>images без alt</strong></td>
+<td><strong>55 из 68</strong></td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>вес HTML</td>
+<td>314 КБ, 68 картинок</td>
+<td>🟡 тяжёлая</td>
+</tr>
+<tr>
+<td><strong>битые пробелы в заголовках</strong></td>
+<td>«Результат готовк отправке», «Голосуйтеза новые функции»</td>
+<td>🟡 spans без пробелов — краулер читает «готовк», «Голосуйтеза» как один токен</td>
+</tr>
+<tr>
+<td>cache-control</td>
+<td><code>no-store, no-cache</code> + PHPSESSID на каждой странице</td>
+<td>🟡 мешает кэшу/CWV на лендингах</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>5. Ключевые страницы</h2>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>title</th>
+<th>description</th>
+<th>h1</th>
+<th>h2</th>
+<th>images без alt</th>
+<th>Проблема</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/pricing/</td>
+<td>«Тарифы - EmailMaker» (19)</td>
+<td>110</td>
+<td>1</td>
+<td><strong>0</strong></td>
+<td><strong>109/114</strong></td>
+<td>🔴 нет H2-структуры, мета слабая, почти все картинки без alt</td>
+</tr>
+<tr>
+<td>/plugin/</td>
+<td>58 симв</td>
+<td>45 (коротко)</td>
+<td>1</td>
+<td>6 + 4 h3 (FAQ)</td>
+<td>8/42</td>
+<td>🟡 есть FAQ-вопросы, но без FAQPage-схемы</td>
+</tr>
+<tr>
+<td>/cases/</td>
+<td>«Кейсы - EmailMaker» (18)</td>
+<td><strong>«Кейсы» (5)</strong></td>
+<td>1</td>
+<td>5</td>
+<td>10/13</td>
+<td>🔴 description = одно слово; H2 кейсов хорошие (с цифрами)</td>
+</tr>
+<tr>
+<td>/docs/help/</td>
+<td>«Справка - EmailMaker»</td>
+<td>157</td>
+<td>1</td>
+<td>1</td>
+<td>5/28</td>
+<td>🟢 нормально, 123 внутр. ссылки</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Закономерность:</strong> коммерческие лендинги (pricing, cases) оформлены небрежно — тонкие мета, нет H2, картинки без alt. docs/help сделаны заметно аккуратнее.</p>
+<hr>
+<h2>6. Core Web Vitals</h2>
+<p>⚠️ <strong>Не проверены — требуется <code>GOOGLE_PSI_API_KEY</code> в <code>.env</code>.</strong> Добавь ключ PageSpeed Insights, и прогоню <code>pagespeed.sh</code> по главной + pricing.</p>
+<p>Косвенные сигналы: главная 314 КБ + 68 изображений + <code>no-cache</code> заголовки → вероятен невысокий LCP. pricing отвечает 902ms (TTFB высоковат против 260ms у главной).</p>
+<hr>
+<h2>7. HTTPS и редиректы</h2>
+<table>
+<thead>
+<tr>
+<th>Проверка</th>
+<th>Результат</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http → https</td>
+<td>200 → https</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>www → non-www</strong></td>
+<td><code>www.emailmaker.ru</code> отдаёт <strong>403</strong></td>
+<td>🔴 не редиректит, отдаёт ошибку. Нужен 301 www → non-www</td>
+</tr>
+<tr>
+<td>trailing slash</td>
+<td><code>/pricing</code> → 301 → <code>/pricing/</code></td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>цепочки редиректов</td>
+<td>не обнаружены</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>8. Структура URL</h2>
+<table>
+<thead>
+<tr>
+<th>Аспект</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Латиница, читаемость</td>
+<td>🟢 <code>/pricing/</code>, <code>/plugin/</code>, <code>/cases/vk_music/</code></td>
+</tr>
+<tr>
+<td>docs — глубокая вложенность</td>
+<td>🟡 <code>/docs/help/rabota-s-pismami/kak-sozdat-pismo-v-emailmaker/bloki/</code> — 5 уровней, длинно</td>
+</tr>
+<tr>
+<td>технические дубли</td>
+<td>🔴 <code>/test2/</code>, <code>/main2/</code> (дубль главной) в индексе</td>
+</tr>
+<tr>
+<td>промо-параметры</td>
+<td>🟢 в выдаче не замечены utm/sid</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>9. GEO-готовность (LLM-видимость)</h2>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th>Статус</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/llms.txt</td>
+<td>🔴 <strong>404</strong></td>
+<td>рекомендуется создать: описание сервиса + ключевые разделы + кейсы</td>
+</tr>
+<tr>
+<td>AI-боты в robots</td>
+<td>🟢 не заблокированы</td>
+<td>GPTBot/ClaudeBot/PerplexityBot проходят по <code>User-agent: *</code></td>
+</tr>
+<tr>
+<td>Schema.org</td>
+<td>🟡 только Yoast-дефолт: <code>WebSite</code>, <code>BreadcrumbList</code>, <code>SearchAction</code></td>
+<td><strong>Нет <code>Organization</code> (sameAs соцсети), <code>SoftwareApplication</code>/<code>Product</code> (для SaaS!), <code>FAQPage</code> (хотя FAQ-блоки есть на /plugin/)</strong></td>
+</tr>
+<tr>
+<td>SSR/контент в HTML</td>
+<td>🟢 WordPress — контент в HTML без JS</td>
+<td>LLM видят текст</td>
+</tr>
+<tr>
+<td>EEAT на docs</td>
+<td>🟡 нет автора и даты публикации</td>
+<td>для docs некритично, но снижает доверие</td>
+</tr>
+<tr>
+<td>TL;DR в первом абзаце</td>
+<td>🟢 docs начинаются с прямого ответа</td>
+<td>напр. «Создать первый шаблон письма можно тремя способами:»</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Критичные проблемы (топ-5)</h2>
+<ol>
+<li>🔴 <strong>robots.txt от чужого движка (OpenCart)</strong> — мусорные правила, нет защиты WP-служебки. См. раздел 1.</li>
+<li>🔴 <strong>www → 403</strong> вместо 301 на non-www — раздвоение хоста, плохой сигнал. См. раздел 7.</li>
+<li>🔴 <strong>Нет блога + слабые коммерческие лендинги</strong> (pricing без H2, cases с description «Кейсы», pricing 109/114 картинок без alt) — основной органический потенциал не реализован. Разделы 4–5.</li>
+<li>🔴 <strong>Schema для SaaS отсутствует</strong> — нет <code>SoftwareApplication</code>/<code>Product</code>/<code>Organization</code>/<code>FAQPage</code>. Теряем rich-результаты и LLM-цитируемость. Раздел 9.</li>
+<li>🟡 <strong>Технические дубли и просроченные промо в индексе</strong> (<code>test2</code>, <code>main2</code>, blackfriday2024…) — размывают краулинговый бюджет. Разделы 2, 8.</li>
+</ol>
+<h2>Средние проблемы</h2>
+<ul>
+<li>Массовое отсутствие alt у изображений (главная 55/68, pricing 109/114).</li>
+<li>llms.txt отсутствует.</li>
+<li><code>no-cache</code> заголовки на лендингах (вредит CWV/кэшу).</li>
+<li>Битые пробелы в заголовках главной (spans без пробела).</li>
+</ul>
+<h2>Мелочи</h2>
+<ul>
+<li>Description главной длинновата (182).</li>
+<li>docs без автора/даты.</li>
+<li>Глубокая вложенность URL в docs.</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>CWV — пробел:</strong> добавить <code>GOOGLE_PSI_API_KEY</code> в <code>.env</code> для замера LCP/INP/CLS.
+<strong>Фиксы (robots, www-redirect, schema) требуют доступа к серверу/WP клиента</strong> — не применялись, только задокументированы.</p>
+</blockquote></div>
+</section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Сгенерировано автоматически из research/*.md · 2026-06-17</div>
+    <div class="files"><code>audit-summary.md</code> <code>gap-analysis.md</code> <code>content-audit.md</code> <code>tech-seo-audit.md</code></div>
+  </div>
+</footer>
+
+</body>
+</html>
