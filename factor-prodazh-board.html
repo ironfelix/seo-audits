@@ -358,7 +358,7 @@ footer {
     </div>
     <div class="sb">
       <div class="sb-label">Обновлено</div>
-      <div class="sb-val">15.06</div>
+      <div class="sb-val">18.06</div>
       <div class="sb-sub">2026</div>
     </div>
   </div>
@@ -384,16 +384,67 @@ footer {
       <div class="ws-progress">
         <div class="ws-col-label">⏳ План нед. 13 (16–20 июня)</div>
         <ul class="ws-list">
-          <li><strong>Авто-публикация:</strong> Бизнес-модель ОП (3915) → Чт 19.06, Систематизация (3916) → Пт 20.06. Проверить, что вышли корректно (обложки, инфографика, типографика)</li>
-          <li><strong>Разобрать каннибализацию</strong> — выбрать каноничные страницы по KPI (7+ дублей) и плану продаж (3+). Без этого нельзя правильно перелинковывать</li>
-          <li><strong>Перелинковка batch-19</strong> по новым правилам (после выбора канонов) — добавить входящие/исходящие ссылки, убрать сирот</li>
-          <li><strong>Дожать оставшиеся черновики — 20 шт</strong> в работе. Довести до публикации: финальная проверка, обложки, перелинковка, выпуск. Заодно вычистить мусорные записи в WP (TEST, тестовая запись, [DS v2], дубли B2G/РОП)</li>
+          <li>🟡 <strong>Авто-публикация:</strong> 6/13 вышли по расписанию 16–18.06 корректно (обложки/инфографика/FAQ). Бизнес-модель (3915) и Систематизация (3916) → 20.06, контент проверен в превью (выйдут чисто)</li>
+          <li>✅ <strong>Каннибализация разобрана</strong> (18.06, linking-first): KPI = 5 интентов (не 1 дубль на 9), план = 2. Реестр канонов заполнен. 301 только на идентичные: 2642→3625, 2818→3909</li>
+          <li>🟡 <strong>Перелинковка batch-19:</strong> анти-сироты для 6 опубликованных (9 входящих) + KPI-споки. 7 ещё <code>future</code> — линкуем после выхода (≈24.06)</li>
+          <li>🟡 <strong>Чистка WP сделана</strong> (TEST, [DS v2], черновики-дубли B2G/РОП/невербал → корзина). Дожать 20 черновиков — не начато</li>
           <li>✅ <strong>Новый батч из 10 статей</strong> на ревью (Google Docs) — следующая порция из черновиков</li>
           <li><strong>Фоном:</strong> мониторинг CTR переписанных 10 страниц — re-check ~12.07 (сравнить CTR при той же позиции)</li>
         </ul>
       </div>
     </div>
   </div>
+
+  <!-- ===================== SPRINT WEEK 13 (CURRENT) ===================== -->
+  <details class="section-toggle" open>
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Текущий спринт ⏳</span><span class="section-title" style="margin-bottom:0;font-size:18px">Неделя 13 · 16–20 июня · каннибализация, перелинковка, чистка WP</span></summary>
+  <div class="section">
+    <div class="section-label">Текущий спринт ⏳</div>
+    <div class="section-title">Неделя 13 · 16–20 июня</div>
+    <p style="color:var(--muted); margin-bottom:16px; font-size:13px;">
+      <strong>Итог на 18.06:</strong> выкатка batch-19 идёт по расписанию (6/13 опубликованы); каннибализация разобрана по подходу linking-first (не удалять, а правильно линковать); WP вычищен от мусора; начата перелинковка (анти-сироты для опубликованных).
+    </p>
+    <div class="task-grid">
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div class="task-body">
+          <div class="task-title">Каннибализация разобрана (linking-first)</div>
+          <div class="task-desc"><strong>Ключевой вывод: «дубли» — это часто разные интенты.</strong> KPI разложен на <strong>5 кластеров</strong> (что такое / для менеджеров / расчёт / для РОПа / структура зарплаты), а не один дубль на 9 страниц → 5 канонов, не схлопывание. План продаж — 2 интента. Данные: органик-трафик Метрика 90д по каждому URL. Реестр канонов заполнен в <code>internal-linking-rules.md</code>. <strong>301 поставлены только на реально идентичные дубли:</strong> 2642→3625 (KPI «что такое», старую заменили новой), 2818→3909 (план «на месяц/год»: 3909 свежее и вдвое полнее). Преждевременный 2931→521 откатил — страница различима (как построить систему KPI). Споки расчёта KPI слинкованы вверх на хаб (2634/2625→2662).</div>
+          <div class="task-meta"><div class="task-date">18.06</div><div class="task-pill pill-done">Готово</div></div>
+        </div>
+      </div>
+
+      <div class="task done">
+        <div class="task-check">&#10003;</div>
+        <div class="task-body">
+          <div class="task-title">Чистка WP от мусора и дублей</div>
+          <div class="task-desc">В корзину: <strong>TEST</strong> (3563), <strong>[DS v2]</strong> ×2 (3538/3534), и черновики-дубли <strong>B2G/РОП/невербалика</strong> (3914/3917/3924) — они занимали чистые слаги, из-за чего опубликованные статьи получили уродливые <code>-2</code>. После чистки 3929 «Как стать РОПом» вернул чистый слаг <code>kak-stat-ropom</code> (ещё не опубликован, без редиректа).</div>
+          <div class="task-meta"><div class="task-date">18.06</div><div class="task-pill pill-done">Готово</div></div>
+        </div>
+      </div>
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-title">Перелинковка batch-19 — анти-сироты</div>
+          <div class="task-desc">Проверка показала: <strong>все 13 новых статей — круглые сироты (0 входящих ссылок).</strong> Добавлены входящие на <strong>6 уже опубликованных</strong> из релевантных живых статей (естественный анкор по теме, не внутри существующих ссылок): Управление (2), Активные (2), Невербалика (2), Мотивация (2), B2G (1) = <strong>9 ссылок</strong>. 7 статей ещё <code>future</code> (выходят 19–23.06) — линковать на них нельзя до публикации (404), сделаем ≈24.06. Спец по сбыту — нужна ручная вставка (нет дословного анкора в текстах).</div>
+          <div class="task-meta"><div class="task-date">18.06</div><div class="task-pill pill-done">Частично</div></div>
+        </div>
+      </div>
+
+      <div class="task active">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-title">Авто-публикация batch-19 + финализация</div>
+          <div class="task-desc"><strong>6/13 опубликованы по расписанию 16–18.06</strong> (Управление, Спец по сбыту, Активные, B2G, Невербалика, Мотивация) — проверено: HTTP 200, обложки, инфографика, FAQ-schema на месте, системный cron отрабатывает. Бизнес-модель (3915) и Систематизация (3916) → 20.06, контент проверен в превью. Облачный routine на 24.06 08:00 допишет llms.txt (+13 строк) и переведёт план в «Опубликовано» (идемпотентно).</div>
+          <div class="task-meta"><div class="task-date">18.06</div><div class="task-pill pill-done">В процессе</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </details>
 
   <!-- ===================== SPRINT WEEK 12 (CURRENT) ===================== -->
   <details class="section-toggle" open>
