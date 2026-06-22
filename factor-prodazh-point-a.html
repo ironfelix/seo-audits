@@ -335,6 +335,7 @@
     <button class="tab-btn active" onclick="showTab('tab-a', this)">Точка А — март 2026</button>
     <button class="tab-btn" onclick="showTab('tab-m1', this)">Месяц 1 — апрель 2026</button>
     <button class="tab-btn" onclick="showTab('tab-m2', this)">Месяц 2 — май 2026</button>
+    <button class="tab-btn" onclick="showTab('tab-m3', this)">Месяц 3 — июнь 2026</button>
     <button class="tab-btn" onclick="showTab('tab-done', this)">Выполненные работы</button>
     <button class="tab-btn" onclick="showTab('tab-m3plan', this)">Месяц 3 — план</button>
     <button class="tab-btn" onclick="showTab('tab-live', this)">🔴 Живая аналитика</button>
@@ -1738,6 +1739,449 @@
 </div>
 
 </div><!-- /tab-m2 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══  ТАБ: МЕСЯЦ 3 — ИЮНЬ 2026  ═══════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="tab-m3" class="tab-panel">
+
+<!-- 01 СРАВНЕНИЕ КЛЮЧЕВЫХ МЕТРИК -->
+<div class="section">
+  <div class="section-label">01</div>
+  <div class="section-title">Ключевые метрики: Точка А → М1 → М2 → М3</div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th>Точка А (март)</th>
+        <th>Месяц 1 (апр)</th>
+        <th>Месяц 2 (май)</th>
+        <th>Месяц 3 (июнь)</th>
+        <th>Δ май→июнь</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="metric-name">Визитов всего / мес</td>
+        <td class="was">20 800</td>
+        <td class="was">20 179</td>
+        <td class="was">14 868</td>
+        <td class="now">13 911</td>
+        <td><span class="delta neutral">−957 (−6%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Органика</td>
+        <td class="was">7 331</td>
+        <td class="was">7 732</td>
+        <td class="was">7 087</td>
+        <td class="now">6 650</td>
+        <td><span class="delta neutral">−437 (−6%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Реклама</td>
+        <td class="was">9 830</td>
+        <td class="was">6 748</td>
+        <td class="was">3 265</td>
+        <td class="now">3 822</td>
+        <td><span class="delta neutral">+557 (+17%) — бюджет вернули</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Доля органики</td>
+        <td class="was">35%</td>
+        <td class="was">38%</td>
+        <td class="was">48%</td>
+        <td class="now">48%</td>
+        <td><span class="delta neutral">≈ стабильно</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-1 (Keys.so)</td>
+        <td class="was">145</td>
+        <td class="was">155</td>
+        <td class="was">169</td>
+        <td class="now">154</td>
+        <td><span class="delta neutral">−15 (−9%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-3 (Keys.so)</td>
+        <td class="was">440</td>
+        <td class="was">450</td>
+        <td class="was">476</td>
+        <td class="now">426</td>
+        <td><span class="delta neutral">−50 (−11%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-5 (Keys.so)</td>
+        <td class="was">—</td>
+        <td class="was">795</td>
+        <td class="was">813</td>
+        <td class="now">760</td>
+        <td><span class="delta neutral">−53 (−7%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-10 (Keys.so)</td>
+        <td class="was">1 322</td>
+        <td class="was">1 595</td>
+        <td class="was">1 691</td>
+        <td class="now">1 615</td>
+        <td><span class="delta neutral">−76 (−4%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Топ-50 (Keys.so)</td>
+        <td class="was">4 649</td>
+        <td class="was">6 015</td>
+        <td class="was">6 275</td>
+        <td class="now">6 340</td>
+        <td><span class="delta up">+65 (+1%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Visibility (Keys.so)</td>
+        <td class="was">215</td>
+        <td class="was">180</td>
+        <td class="was">148</td>
+        <td class="now">125</td>
+        <td><span class="delta neutral">−23 (−16%) ↓</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Статьи в блоге</td>
+        <td class="was">143</td>
+        <td class="was">151</td>
+        <td class="was">162</td>
+        <td class="now">180</td>
+        <td><span class="delta up">+18 новых ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Лиды с SEO / блога</td>
+        <td class="was">—</td>
+        <td class="was">—</td>
+        <td class="was">56</td>
+        <td class="now">72</td>
+        <td><span class="delta up">+16 (+29%) ↑</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Квал. лиды с SEO</td>
+        <td class="was">—</td>
+        <td class="was">—</td>
+        <td class="was">7</td>
+        <td class="now">3</td>
+        <td><span class="delta neutral">−4 ↓ конверсия лид→квал 12,5%→4,2%</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Квал. лиды / мес (все каналы)</td>
+        <td class="was">4</td>
+        <td class="was">8</td>
+        <td class="was">19</td>
+        <td class="now">⏳ CRM</td>
+        <td><span class="delta neutral">уточнить в Bitrix</span></td>
+      </tr>
+      <tr>
+        <td class="metric-name">Загрузки ЛМ «Реформа ОП»</td>
+        <td class="was">—</td>
+        <td class="was">—</td>
+        <td class="was">~47</td>
+        <td class="now">56</td>
+        <td><span class="delta up">V1 36 / V5 14 / сайдбар 6 ↑</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Главное за июнь — месяц коррекции по Яндексу.</strong> Высокочастотные позиции просели: топ-1 −9%, топ-3 −11%, visibility −16%. Это перетряска выдачи Яндекса по старым высокочастотным страницам (продолжение тренда из «Недели 14»). При этом длинный хвост растёт: топ-50 +65 за счёт 18 новых статей (всего в блоге 180). Лид-магнит «Реформа ОП» дозрел в главный канал заявок: 56 загрузок за период, лиды с SEO/блога выросли на 29% (56→72). Тревожный сигнал: квалификация просела (7→3 квала с SEO) — лид-магнит нагоняет объём, но аудитория холоднее точечных блоговых форм. Приоритет июля — вернуть высокочастотные позиции (/page-optimizer) и поднять качество лидов с ЛМ.
+  </div>
+  <div class="note" style="margin-top:8px">
+    Данные: Яндекс.Метрика (счётчик 87146068) и Keys.so, выгрузка 22.06.2026, период 20 мая — 20 июня. Позиции Keys.so — снимок на дату выгрузки. Лиды с SEO и квалы — из CRM Bitrix (данные отдела продаж). Цифры Метрики уточняются ретроспективно.
+  </div>
+</div>
+
+<!-- 02 ТРАФИК ПО ИСТОЧНИКАМ -->
+<div class="section">
+  <div class="section-label">02</div>
+  <div class="section-title">Трафик по источникам (май 20 — июнь 20, 2026)</div>
+
+  <div class="metrics-row six">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Всего визитов</div>
+      <div class="mb-val green">13 911</div>
+      <div class="mb-sub">пользователей: 11 386</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Органика</div>
+      <div class="mb-val green">6 650</div>
+      <div class="mb-sub">48% трафика</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Реклама</div>
+      <div class="mb-val">3 822</div>
+      <div class="mb-sub">27% — бюджет вернули</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прямые</div>
+      <div class="mb-val">1 523</div>
+      <div class="mb-sub">11%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Ссылки</div>
+      <div class="mb-val">1 360</div>
+      <div class="mb-sub">10%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Рекомендации</div>
+      <div class="mb-val">430</div>
+      <div class="mb-sub">3%</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Сравнение с предыдущим периодом (апр 20 — май 20, единая выгрузка 22.06):</strong> было 15 057 визитов (органика 7 681, реклама 3 459, прямые 1 758, ссылки 1 497). Общий трафик −8%: органика просела на 13% из-за коррекции позиций в Яндексе, реклама выросла на 10% (вернули часть бюджета). Падение органики — не санкция, а перераспределение выдачи по высокочастотным запросам.
+  </div>
+</div>
+
+<!-- 03 ЯНДЕКС VS GOOGLE -->
+<div class="section">
+  <div class="section-label">03</div>
+  <div class="section-title">Органика по поисковикам</div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Яндекс (desktop + mobile + картинки)</div>
+      <div class="mb-val green">3 588</div>
+      <div class="mb-sub">54% органики</div>
+    </div>
+    <div class="metric-box gold-hl">
+      <div class="mb-label">Google (desktop + app)</div>
+      <div class="mb-val gold">2 812</div>
+      <div class="mb-sub">42% органики</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Прочие (Bing, Mail.ru, DuckDuckGo)</div>
+      <div class="mb-val">250</div>
+      <div class="mb-sub">4% органики</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Поисковик</th>
+        <th class="right">Май 20 — Июнь 20</th>
+        <th class="right">Апр 20 — Май 20</th>
+        <th class="right">Δ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Яндекс (desktop)</td>
+        <td class="right">2 868</td>
+        <td class="right">3 221</td>
+        <td class="right"><span class="delta neutral">−353</span></td>
+      </tr>
+      <tr>
+        <td>Яндекс (mobile)</td>
+        <td class="right">643</td>
+        <td class="right">661</td>
+        <td class="right"><span class="delta neutral">−18</span></td>
+      </tr>
+      <tr>
+        <td>Яндекс.Картинки</td>
+        <td class="right">77</td>
+        <td class="right">86</td>
+        <td class="right"><span class="delta neutral">−9</span></td>
+      </tr>
+      <tr>
+        <td><strong>Яндекс итого</strong></td>
+        <td class="right"><strong>3 588</strong></td>
+        <td class="right"><strong>3 968</strong></td>
+        <td class="right"><span class="delta neutral">−380 (−10%)</span></td>
+      </tr>
+      <tr>
+        <td>Google (desktop + app)</td>
+        <td class="right">2 812</td>
+        <td class="right">3 285</td>
+        <td class="right"><span class="delta neutral">−473 (−14%)</span></td>
+      </tr>
+      <tr>
+        <td>Bing</td>
+        <td class="right">190</td>
+        <td class="right">356</td>
+        <td class="right"><span class="delta neutral">−166</span></td>
+      </tr>
+      <tr>
+        <td>Mail.ru</td>
+        <td class="right">29</td>
+        <td class="right">44</td>
+        <td class="right"><span class="delta neutral">−15</span></td>
+      </tr>
+      <tr>
+        <td>DuckDuckGo</td>
+        <td class="right">16</td>
+        <td class="right">18</td>
+        <td class="right"><span class="delta neutral">−2</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Яндекс vs Google:</strong> Яндекс стабильно держит долю (54%), но просел на 10% — это и есть основная причина падения органики (коррекция высокочастотных позиций). Google просел сильнее в процентах (−14%), но он более волатилен сезонно. Соотношение каналов не изменилось — падение равномерное, без признаков санкций.
+  </div>
+</div>
+
+<!-- 04 ПОЗИЦИИ KEYS.SO -->
+<div class="section">
+  <div class="section-label">04</div>
+  <div class="section-title">Позиции Keys.so — динамика</div>
+
+  <div class="metrics-row">
+    <div class="metric-box highlight">
+      <div class="mb-label">Топ-1</div>
+      <div class="mb-val red">154</div>
+      <div class="mb-sub">было 169 (−15, −9%) ↓</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Топ-3</div>
+      <div class="mb-val red">426</div>
+      <div class="mb-sub">было 476 (−50, −11%) ↓</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Топ-5</div>
+      <div class="mb-val red">760</div>
+      <div class="mb-sub">было 813 (−53, −7%) ↓</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Топ-10</div>
+      <div class="mb-val red">1 615</div>
+      <div class="mb-sub">было 1 691 (−76, −4%) ↓</div>
+    </div>
+  </div>
+
+  <div class="metrics-row three">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Топ-50</div>
+      <div class="mb-val green">6 340</div>
+      <div class="mb-sub">было 6 275 (+65, +1%) ↑</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Страниц в индексе Яндекса</div>
+      <div class="mb-val">197</div>
+      <div class="mb-sub">searchable (Вебмастер), SQI 130</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Visibility</div>
+      <div class="mb-val red">125</div>
+      <div class="mb-sub">было 148 (−23, −16%) ↓</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Расхождение трендов:</strong> топ-1/3/5/10 и visibility вниз, а топ-50 вверх. Это значит: несколько высокочастотных ключей старых страниц вылетели из топов (тянут visibility и трафик вниз), но 18 новых статей добавили ключи в широкий топ-50. Рост охвата при просадке ядра. Задача июля — вернуть просевшие высокочастотники в топ-3 через /page-optimizer и перелинковку.
+  </div>
+</div>
+
+<!-- 05 ТОП СТРАНИЦ ПО ОРГАНИКЕ -->
+<div class="section">
+  <div class="section-label">05</div>
+  <div class="section-title">Топ страниц по органическому трафику (май 20 — июнь 20)</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Страница</th>
+        <th class="right">Визитов из органики</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="pos top3">1</td><td class="url">/blog/kak-pravilno-rasschitat-stoimost-tovara...</td><td class="right">429</td></tr>
+      <tr><td class="pos top3">2</td><td class="url">/ (главная)</td><td class="right">313</td></tr>
+      <tr><td class="pos top3">3</td><td class="url">/blog/otchyot-menedzhera-o-prodazhakh...</td><td class="right">235</td></tr>
+      <tr><td class="pos top10">4</td><td class="url">/blog/kak-otrabotat-vozrazhenie-dorogo...</td><td class="right">198</td></tr>
+      <tr><td class="pos top10">5</td><td class="url">/blog/plan-prodazh-dlya-menedzherov/</td><td class="right">189</td></tr>
+      <tr><td class="pos top10">6</td><td class="url">/blog/5-etapov-prodazh...</td><td class="right">182</td></tr>
+      <tr><td class="pos top10">7</td><td class="url">/blog/kpi-dlya-menedzherov-po-prodazham/</td><td class="right">180</td></tr>
+      <tr><td class="pos top10">8</td><td class="url">/blog/chto-takoye-sebestoimost-prodazh...</td><td class="right">166</td></tr>
+      <tr><td class="pos top50">9</td><td class="url">/blog/sistema-motivacii-menedzhera...</td><td class="right">151</td></tr>
+      <tr><td class="pos top50">10</td><td class="url">/blog/skripty-prodazh...</td><td class="right">137</td></tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Инсайт по топ-страницам:</strong> расчёт стоимости товара всё ещё лидирует, но просел с 561 до 429 визитов (−24%) — это одна из главных просевших страниц, в работе у /page-optimizer. «Отчёт менеджера» и «возражение дорого» поднялись в топ. Новые статьи из батча-19 пока не пробились в топ-10 органики — набирают позиции в топ-50. Главная выросла до 313 визитов из органики (брендовый + информационный спрос).
+  </div>
+</div>
+
+<!-- 06 КОНВЕРСИЯ И ЛИДЫ -->
+<div class="section">
+  <div class="section-label">06</div>
+  <div class="section-title">Конверсия и лиды (Метрика + CRM, май 20 — июнь 20)</div>
+
+  <div class="metrics-row">
+    <div class="metric-box green-hl">
+      <div class="mb-label">Лиды с SEO / блога</div>
+      <div class="mb-val green">72</div>
+      <div class="mb-sub">было 56 (+29%) ↑ · CRM</div>
+    </div>
+    <div class="metric-box highlight">
+      <div class="mb-label">Квал. лиды с SEO</div>
+      <div class="mb-val red">3</div>
+      <div class="mb-sub">было 7 ↓ конв. 4,2%</div>
+    </div>
+    <div class="metric-box">
+      <div class="mb-label">Контакты отправлены (Автоцель)</div>
+      <div class="mb-val">710</div>
+      <div class="mb-sub">было 635 (+12%) · из органики 37</div>
+    </div>
+    <div class="metric-box green-hl">
+      <div class="mb-label">Загрузки ЛМ «Реформа ОП»</div>
+      <div class="mb-val green">56</div>
+      <div class="mb-sub">V1 36 · V5 14 · сайдбар 6</div>
+    </div>
+  </div>
+
+  <table class="data-table" style="margin-top:16px">
+    <thead>
+      <tr>
+        <th>Канал</th>
+        <th class="right">Показы</th>
+        <th class="right">Сабмиты</th>
+        <th class="right">Конверсия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Попап V1 (основной)</td>
+        <td class="right">2 617</td>
+        <td class="right">36</td>
+        <td class="right"><span class="delta up">1,4%</span></td>
+      </tr>
+      <tr>
+        <td>Флоат V5</td>
+        <td class="right">3 745</td>
+        <td class="right">14</td>
+        <td class="right"><span class="delta neutral">0,4%</span></td>
+      </tr>
+      <tr>
+        <td>Сайдбар</td>
+        <td class="right">цель показа не настроена</td>
+        <td class="right">6</td>
+        <td class="right">—</td>
+      </tr>
+      <tr>
+        <td>blog_form_submit (баннер в статьях)</td>
+        <td class="right">—</td>
+        <td class="right">3</td>
+        <td class="right">из органики 2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>Лид-магнит работает на объём, но не на качество.</strong> 56 загрузок за месяц (главный драйвер — попап V1, конверсия 1,4%; флоат V5 нагоняет показы, но конвертит в 3 раза хуже). Лиды с SEO выросли до 72, но из них квалифицировано только 3 (было 7 из 56). Конверсия лид→квал упала с 12,5% до 4,2% — ЛМ приводит более холодную аудиторию, чем точечные формы в статьях. Задачи: (1) усилить квалификацию на странице «Реформы ОП», (2) отключить или переработать флоат V5, (3) настроить цель показа сайдбара.
+  </div>
+  <div class="note" style="margin-top:8px">
+    Лиды и квалы с SEO — из CRM Bitrix (данные отдела продаж). Метрика-цели (контакты, ЛМ, blog_form) — счётчик 87146068. Квал. лиды по всем каналам за июнь — ⏳ уточняется в CRM.
+  </div>
+</div>
+
+</div><!-- /tab-m3 -->
 
 <!-- ═══════════════════════════════════════════════ -->
 <!-- ═══  ТАБ: ВЫПОЛНЕННЫЕ РАБОТЫ  ════════════════ -->
