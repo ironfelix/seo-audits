@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Marketing 360 — CRM Group</title>
+<style>
+@font-face {
+  font-family: 'TTRuns';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Runs/TT_Runs_Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'TTRuns';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Runs/TT_Runs_DemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'TTSmalls';
+  src: url('https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/TT_Smalls_DemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+
+:root {
+  --red:        #c01020;
+  --red-dk:     #a00d1a;
+  --red-light:  rgba(192,16,32,0.07);
+  --red-mid:    rgba(192,16,32,0.15);
+  --text:       #1a1a1a;
+  --text-sec:   #595959;
+  --text-light: #888;
+  --bg:         #ffffff;
+  --bg-alt:     #f5f5f5;
+  --bg-dark:    #111111;
+  --border:     #e8e8e8;
+  --fh:         'TTRuns', sans-serif;
+  --fb:         'TTSmalls', sans-serif;
+  --radius:     16px;
+  --radius-sm:  8px;
+  --shadow:     0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10);
+  --max-w:      1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--fb);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--bg-dark);
+  padding: 80px 0 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(192,16,32,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fb);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid rgba(192,16,32,0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+.hero-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.hero h1 span { color: var(--red); }
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  max-width: 600px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-stat-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 36px;
+  color: #fff;
+  line-height: 1;
+}
+.hero-stat-num span { color: var(--red); }
+.hero-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+}
+.hero-divider {
+  width: 1px; height: 48px;
+  background: rgba(255,255,255,0.1);
+  align-self: center;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 72px 0;
+}
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+.section-alt {
+  background: var(--bg-alt);
+}
+.section-dark {
+  background: var(--bg-dark);
+  color: #fff;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.section-dark .section-tag { color: var(--red); }
+
+h2 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.section-dark h2 { color: #fff; }
+
+.section-lead {
+  font-size: 17px;
+  color: var(--text-sec);
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.65;
+}
+.section-dark .section-lead { color: rgba(255,255,255,0.55); }
+
+/* ── PROBLEM BLOCK ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+@media(max-width:680px){ .problem-grid { grid-template-columns: 1fr; } }
+
+.metric-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.metric-card-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-card-num.red { color: var(--red); }
+.metric-card-label {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 4px;
+}
+.metric-card-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.insight-box {
+  background: var(--red-light);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 20px 24px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.insight-box strong { color: var(--red); }
+
+/* ── ICP ── */
+.icp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media(max-width:780px){ .icp-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .icp-grid { grid-template-columns: 1fr; } }
+
+.icp-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--bg);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.icp-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.icp-icon {
+  width: 40px; height: 40px;
+  background: var(--red-light);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+.icp-card h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.icp-card p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.55;
+}
+
+/* ── FUNNEL ── */
+.funnel {
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 48px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+.funnel::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(192,16,32,0.12) 0%, transparent 70%);
+}
+.funnel-title {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.funnel-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+.funnel-step {
+  display: grid;
+  grid-template-columns: 200px 1fr 120px;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.funnel-step:last-child { border-bottom: none; }
+.funnel-step-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.funnel-step-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+}
+.funnel-step-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 26px;
+  color: #fff;
+  text-align: right;
+}
+.funnel-step-num.highlight { color: var(--red); }
+.funnel-arrow {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 18px;
+  padding: 4px 0;
+}
+
+/* ── CHANNEL CARDS ── */
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+@media(max-width:680px){ .channels-grid { grid-template-columns: 1fr; } }
+
+.channel-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.channel-card:hover { box-shadow: var(--shadow-lg); }
+.channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+}
+.channel-num {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--red-light);
+  line-height: 1;
+  margin-bottom: 8px;
+  /* using border trick for outlined number */
+  -webkit-text-stroke: 1.5px var(--red);
+  color: transparent;
+}
+.channel-card h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.channel-card .leads-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--red-light);
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.channel-card p {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* ── LISTS ── */
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+.check-list li::before {
+  content: '';
+  width: 18px; height: 18px;
+  background: var(--red-light);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23c01020' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 24px 0;
+}
+.data-table th {
+  background: var(--bg-dark);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--fb);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+}
+.data-table th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.data-table th:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-alt); }
+.data-table .red { color: var(--red); font-weight: 600; }
+.data-table .total td {
+  background: var(--red-light);
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: none;
+}
+/* Tables inside dark sections */
+.section-dark .data-table td {
+  color: rgba(255,255,255,0.85);
+  border-bottom-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+}
+.section-dark .data-table tr:hover td {
+  background: rgba(255,255,255,0.07);
+}
+.section-dark .data-table .total td {
+  background: rgba(192,16,32,0.2);
+  color: #fff;
+}
+.section-dark .data-table .red {
+  color: #ff6b6b;
+}
+
+/* ── TAGS ── */
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg-alt);
+  color: var(--text-sec);
+  border: 1px solid var(--border);
+}
+.tag.red {
+  background: var(--red-light);
+  color: var(--red);
+  border-color: rgba(192,16,32,0.2);
+}
+
+/* ── PARTNER GRID ── */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media(max-width:680px){ .partner-grid { grid-template-columns: 1fr 1fr; } }
+
+.partner-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  background: var(--bg);
+}
+.partner-card h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.partner-card .partner-type {
+  font-size: 11px;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.partner-card p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+
+/* ── ROADMAP ── */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+@media(max-width:780px){ .roadmap { grid-template-columns: 1fr 1fr; gap: 16px; } }
+@media(max-width:480px){ .roadmap { grid-template-columns: 1fr; } }
+
+.roadmap-item {
+  padding: 28px 24px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.roadmap-item:last-child { border-right: none; }
+.roadmap-month {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--red);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.roadmap-item h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.roadmap-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.roadmap-action {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.roadmap-action::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+}
+.roadmap-result {
+  margin-top: 20px;
+  padding: 10px 14px;
+  background: rgba(192,16,32,0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--fh);
+  font-size: 14px;
+  color: #fff;
+}
+.roadmap-result span { color: var(--red); font-weight: 700; }
+
+/* ── PRINCIPLE ── */
+.principle {
+  background: var(--red);
+  border-radius: var(--radius);
+  padding: 48px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.principle::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+.principle h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.principle p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── CHANNEL DEEP ── */
+.channel-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+.channel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.channel-index {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  -webkit-text-stroke: 2px var(--red);
+  color: transparent;
+  flex-shrink: 0;
+}
+.channel-header-text h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.channel-header-text .horizon {
+  font-size: 13px;
+  color: var(--text-light);
+}
+.channel-header-text .horizon strong { color: var(--red); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media(max-width:680px){ .two-col { grid-template-columns: 1fr; } }
+
+.mini-title {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ── OUTBOUND SEQUENCE ── */
+.sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.seq-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  transition: background 0.15s;
+}
+.seq-step:last-child { border-bottom: none; }
+.seq-step:hover { background: var(--bg-alt); }
+.seq-day {
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 56px;
+  padding-top: 2px;
+}
+.seq-content h5 {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.seq-content p {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+.doc-footer {
+  background: var(--bg-dark);
+  padding: 40px 0;
+  text-align: center;
+}
+.doc-footer p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+}
+.doc-footer strong { color: rgba(255,255,255,0.6); }
+
+/* ── PRINT ── */
+@media print {
+  .hero { background: #111 !important; }
+  .section-dark { background: #111 !important; }
+  body { font-size: 13px; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 28px; letter-spacing: -0.01em; margin-bottom: 16px; }
+  .hero-sub { font-size: 15px; margin-bottom: 32px; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-num { font-size: 28px; }
+  .hero-divider { display: none; }
+
+  .section { padding: 32px 0; }
+  .section-alt { padding: 32px 0; }
+  .section-dark { padding: 32px 0; }
+
+  h2 { font-size: 22px !important; }
+  h3 { font-size: 18px !important; }
+
+  .channel-header { flex-direction: column; gap: 12px; }
+  .channel-index { width: 36px; height: 36px; font-size: 16px; }
+
+  .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 13px; }
+  .data-table thead { display: none; }
+  .data-table tbody { display: block; }
+  .data-table tr { display: block; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; padding: 12px; }
+  .data-table td { display: block; padding: 4px 0; border: none; font-size: 13px; }
+  .data-table td:first-child { font-weight: 600; font-size: 14px; color: var(--text); }
+
+  .funnel-steps { flex-direction: column; }
+  .funnel-step { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 8px; }
+  .funnel-step:last-child { border-bottom: none; }
+  .funnel-arrow { transform: rotate(90deg); }
+
+  .math-formula { font-size: 22px !important; }
+  .whitepaper-steps { grid-template-columns: 1fr !important; }
+  .nurture-steps { grid-template-columns: 1fr !important; }
+  .cadence-grid { grid-template-columns: 1fr !important; }
+  .dir-campaigns { grid-template-columns: 1fr !important; }
+  .partner-grid { grid-template-columns: 1fr !important; }
+  .cases-grid { grid-template-columns: 1fr !important; }
+
+  .principle { padding: 24px 20px; }
+  .principle h3 { font-size: 18px; }
+
+  .roadmap { grid-template-columns: 1fr !important; }
+  .roadmap-item { padding: 20px; }
+
+  .doc-footer { padding: 20px 0; font-size: 13px; }
+}
+
+/* ── TABS ── */
+.tab-nav {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.tab-nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  gap: 0;
+}
+.tab-btn {
+  font-family: var(--fb);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sec);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -2px;
+  letter-spacing: 0;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── STATS TAB ── */
+.stats-site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.stats-site-dot {
+  width: 10px; height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.stats-site-header h2 {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 26px;
+}
+.stats-site-header .stats-site-url {
+  font-size: 14px;
+  color: var(--text-sec);
+  font-weight: 400;
+}
+.stats-block-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sec);
+  flex-shrink: 0;
+}
+.stats-block-title {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.stats-block-subtitle {
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: 400;
+  font-family: var(--fb);
+  margin-left: 4px;
+}
+.stat-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:900px){ .stat-row { grid-template-columns: repeat(3, 1fr); } }
+@media(max-width:560px){ .stat-row { grid-template-columns: repeat(2, 1fr); } }
+.stat-row-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:700px){ .stat-row-2 { grid-template-columns: repeat(2, 1fr); } }
+.stat-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width:600px){ .stat-row-3 { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 18px;
+}
+.stat-card.accent-green { background: #f0faf4; border-color: #b7e4c7; }
+.stat-card.accent-red   { background: #fdf2f3; border-color: rgba(192,16,32,0.2); }
+.stat-card.accent-yellow { background: #fffbf0; border-color: #f0d080; }
+.stat-card-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.stat-card-value {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-card-value.red { color: var(--red); }
+.stat-card-value.green { color: #1a7f3c; }
+.stat-card-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+.stats-sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+</style>
+<style>
+/* --- доп. компоненты для гайда --- */
+.cmd{font-family:'SF Mono',ui-monospace,Menlo,monospace;background:var(--red-light);color:var(--red-dk);
+  font-weight:600;padding:2px 9px;border-radius:6px;font-size:.92em;white-space:nowrap;}
+.lead{font-size:18px;line-height:1.7;color:var(--text-sec);max-width:760px;margin:0 0 8px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0;}
+@media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+.vs-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);}
+.vs-card.bad{border-top:3px solid #aaa;}
+.vs-card.good{border-top:3px solid var(--red);}
+.vs-card h4{margin:0 0 10px;font-family:var(--fh);font-size:17px;}
+.vs-card ul{margin:0;padding-left:18px;color:var(--text-sec);font-size:14px;line-height:1.7;}
+.io{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:12px 0 4px;font-size:13.5px;}
+.io b{color:var(--red-dk);font-family:var(--fh);white-space:nowrap;}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+@media(max-width:760px){.skill-grid{grid-template-columns:1fr;}}
+.skill-mini{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;}
+.skill-mini .nm{font-family:var(--fh);font-size:15px;margin-bottom:4px;}
+.skill-mini .ds{font-size:13.5px;color:var(--text-sec);line-height:1.6;}
+.conn{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow);}
+.conn h4{font-family:var(--fh);font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:8px;}
+.conn ol{margin:0;padding-left:20px;font-size:14px;line-height:1.85;color:var(--text-sec);}
+.conn ol b{color:var(--text);}
+.warn{background:#fff7e6;border:1px solid #f0d090;border-left:4px solid #e0a020;border-radius:8px;
+  padding:12px 16px;font-size:13.5px;color:#7a5a10;margin-top:14px;line-height:1.6;}
+.cheat{background:var(--bg-dark);color:#eee;border-radius:var(--radius);padding:28px 30px;font-size:14px;line-height:2;}
+.cheat .step{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid #2a2a2a;padding:7px 0;}
+.cheat .step:last-child{border-bottom:none;}
+.cheat .n{color:var(--red);font-family:var(--fh);font-weight:700;width:26px;flex:none;}
+.cheat .c{font-family:'SF Mono',monospace;color:#ff6b78;font-weight:600;width:170px;flex:none;}
+.cheat .t{color:#bbb;}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0;font-family:var(--fh);font-size:13px;}
+.flow span{background:var(--red-light);color:var(--red-dk);padding:6px 12px;border-radius:20px;font-weight:600;}
+.flow i{color:var(--text-light);font-style:normal;}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">Обучение · AI SEO Pipeline</div>
+    <h1>Как мы делаем контент<br>через Claude</h1>
+    <p class="hero-sub">Конвейер из 10 агентов-скиллов: от ресёрча темы до публикации и мониторинга позиций. Человек управляет — агенты делают рутину.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">10</div><div class="hero-stat-label">скиллов-агентов</div></div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">конвейер</div></div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">ручной рутины</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАЧЕМ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Зачем это</div>
+    <h2>Контент — это конвейер, а не один большой текст</h2>
+    <p class="lead">Раньше одна статья = один человек делает всё подряд: ищет, пишет, проверяет, оформляет, публикует. Медленно и нестабильно по качеству.</p>
+    <p class="lead">Мы разбили процесс на этапы, и за каждый отвечает свой агент с чёткой инструкцией. Ты как редактор-постановщик: запускаешь нужный шаг, проверяешь результат, идёшь дальше.</p>
+    <div class="insight-box">
+      <strong>Главная идея:</strong> каждый шаг оставляет артефакт (research-файл, черновик, Google Doc, WP-черновик). Ничего не теряется, любой этап можно перезапустить отдельно.
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ТАКОЕ СКИЛЛ = АГЕНТ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-tag">Основа</div>
+    <h2>Скилл = агент внутри Claude</h2>
+    <p class="lead"><strong>Claude Code</strong> — это Claude, запущенный в папке проекта (в терминале или IDE). Он видит файлы и умеет выполнять команды.</p>
+    <p class="lead">Обычный чат просто отвечает на вопрос. А <strong>скилл — это заранее обученный агент</strong> под конкретную задачу: у него прописана инструкция, наш бриф, источники, формат и правила. Вызываешь <span class="cmd">/researcher</span> — и Claude переключается в роль ресёрчера, а не «универсального помощника».</p>
+    <div class="grid2">
+      <div class="vs-card bad">
+        <h4>Обычный чат</h4>
+        <ul>
+          <li>Отвечает «вообще», без нашего контекста</li>
+          <li>Не знает голос бренда и правила</li>
+          <li>Каждый раз объясняешь заново</li>
+          <li>Результат непредсказуем</li>
+        </ul>
+      </div>
+      <div class="vs-card good">
+        <h4>Скилл-агент <span class="cmd">/имя</span></h4>
+        <ul>
+          <li>Узкая роль с должностной инструкцией</li>
+          <li>Знает бриф, источники, формат, тон</li>
+          <li>Делает шаг по нашему стандарту</li>
+          <li>Оставляет файл-артефакт для следующего</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead">Проще говоря: <strong>скилл — это сотрудник с должностной инструкцией.</strong> Конвейер — это отдел из таких сотрудников, которые передают работу по цепочке.</p>
+  </div>
+</section>
+
+<!-- КАК РАБОТАТЬ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">С чего начать</div>
+    <h2>Как запускать через Claude</h2>
+    <div class="io">
+      <b>1. Открыть</b><div>Claude Code в папке проекта (напр. <span class="cmd">ai-seo</span>). Он сразу видит брифы, research, данные клиента.</div>
+      <b>2. Вызвать</b><div>Пишешь команду со слешем: <span class="cmd">/researcher</span>, <span class="cmd">/writer</span> и т.д. Можно с уточнением — «<span class="cmd">/writer</span> тема X, тон строгий».</div>
+      <b>3. Проверить</b><div>Агент отрабатывает и оставляет файл/черновик. Смотришь результат — правишь или идёшь на следующий шаг.</div>
+      <b>4. Передать</b><div>Следующий скилл берёт артефакт предыдущего. Порядок — ниже.</div>
+    </div>
+    <div class="flow">
+      <span>/researcher</span><i>→</i><span>/writer</span><i>→</i><span>/editor</span><i>→</i><span>/fact-checker</span><i>→</i><span>/quality-gate</span><i>→</i><span>/seo-optimizer</span><i>→</i><span>[/designer]</span><i>→</i><span>/publisher</span><i>→</i><span>/tracker</span><i>→</i><span>/page-optimizer</span>
+    </div>
+  </div>
+</section>
+
+<!-- ПАЙПЛАЙН ПО ШАГАМ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-tag">Пайплайн</div>
+    <h2>10 шагов: что делает каждый скилл</h2>
+    <p class="lead">Каждая карточка — один агент: что подаёшь на вход, что он делает, что отдаёт.</p>
+    
+    <div class="seq-step">
+      <div class="seq-day">01</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/researcher</span> &nbsp;Глубокий ресёрч темы</div>
+        <div class="io"><b>Вход</b><div>Бриф / тема</div><b>Делает</b><div>4 субагента-разведчика (аналитик, контрарианец, практик, живая боль) собирают 30+ источников, верифицируют цифры, проверяют каннибализацию.</div><b>Выход</b><div>Research Report + зафиксированный план H2</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">02</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/writer</span> &nbsp;Сильный копирайтер</div>
+        <div class="io"><b>Вход</b><div>Research-файл + бриф</div><b>Делает</b><div>Пишет живой черновик: голос компании, ритм русского текста, семантика. Не ИИ-«вода».</div><b>Выход</b><div>Черновик статьи + черновой SEO-блок</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">03</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/editor</span> &nbsp;Редактура</div>
+        <div class="io"><b>Вход</b><div>Черновик (или Google Doc ID)</div><b>Делает</b><div>Убирает ИИ-шность, добавляет голос бренда и конкретику вместо расплывчатости. По Google Doc — правит и оставляет комментарии.</div><b>Выход</b><div>Отредактированный текст</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">04</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/fact-checker</span> &nbsp;Проверка фактов</div>
+        <div class="io"><b>Вход</b><div>Текст / Google Doc</div><b>Делает</b><div>Верифицирует факты и цифры по уровням T1/T2/T3. Сомнительное помечает, источники — только реальные.</div><b>Выход</b><div>Текст без выдуманных данных</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">05</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/quality-gate</span> &nbsp;Авто-чеклист качества</div>
+        <div class="io"><b>Вход</b><div>Готовый текст</div><b>Делает</b><div>19 метрик PASS/FAIL: язык, структура, E-E-A-T, наличие кейса и позиции бренда. Гейт перед публикацией.</div><b>Выход</b><div>Вердикт PASS / список правок</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">06</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/seo-optimizer</span> &nbsp;SEO-упаковка</div>
+        <div class="io"><b>Вход</b><div>Финальный текст</div><b>Делает</b><div>H1 в 3 вариантах, SEO title, description, обложка, проверка H2 как запросов, FAQ из Wordstat, внутренние ссылки.</div><b>Выход</b><div>SEO-пакет статьи</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">07</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">[/designer]</span> &nbsp;Инфографика (опц.)</div>
+        <div class="io"><b>Вход</b><div>Статья</div><b>Делает</b><div>Находит 2–3 места под схемы, генерит в стиле клиента (Pencil или HTML→Playwright), грузит PNG в WP и вставляет.</div><b>Выход</b><div>Статья с инфографикой</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">08</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/publisher</span> &nbsp;Публикация</div>
+        <div class="io"><b>Вход</b><div>Готовая статья</div><b>Делает</b><div>Создаёт Google Doc на ревью + черновик в WP одновременно. Ждёт «публикуем» → ACF, обложка, типографика, publish.</div><b>Выход</b><div>Опубликованная статья</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">09</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/tracker</span> &nbsp;Мониторинг</div>
+        <div class="io"><b>Вход</b><div>Опубликованный URL</div><b>Делает</b><div>Снимает позиции (Вебмастер) и AI-упоминания (keys.so, Алиса/GPT). Даёт action items, обновляет llms.txt.</div><b>Выход</b><div>Отчёт + задачи на доработку</div></div>
+      </div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">10</div>
+      <div class="seq-content">
+        <div class="mini-title"><span class="cmd">/page-optimizer</span> &nbsp;Дожим страниц</div>
+        <div class="io"><b>Вход</b><div>URL + action items</div><b>Делает</b><div>Точечно усиливает живую страницу: новый H2, FAQ+Schema, внутренние ссылки, переобход. Без переписывания.</div><b>Выход</b><div>Улучшенная страница + переобход</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОРКЕСТРАТОРЫ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Вне основного конвейера</div>
+    <h2>Оркестраторы и вспомогательные</h2>
+    <p class="lead">Нужны не для каждой статьи, а на старте проекта или для аудитов.</p>
+    <div class="skill-grid">
+      <div class="skill-mini"><div class="nm">/marketing-audit</div><div class="ds">Оркестратор аудита сайта: запускает по очереди тех-SEO → контент/семантику → конкурентов и gap. Для нового клиента или диагностики.</div></div>
+      <div class="skill-mini"><div class="nm">/knowledge-session</div><div class="ds">Структурированное интервью с клиентом (~60 мин, ~20 вопросов). Выдаёт <span class="cmd">company-context.md</span> и <span class="cmd">voice.md</span> — на них работают writer/editor.</div></div>
+      <div class="skill-mini"><div class="nm">/seo-tech-audit</div><div class="ds">Тех. аудит: robots, sitemap, индексация, мета, canonical, скорость, структура URL.</div></div>
+      <div class="skill-mini"><div class="nm">/seo-content-audit</div><div class="ds">Семантическое ядро, кластеризация по интентам, покрытие страницами, дыры в контент-плане.</div></div>
+      <div class="skill-mini"><div class="nm">/seo-competitors-gap</div><div class="ds">Находит органических конкурентов через keys.so и gap-анализ — какие ключи есть у них и нет у нас.</div></div>
+      <div class="skill-mini"><div class="nm">/audit-report-builder</div><div class="ds">Собирает из research-файлов единый HTML-отчёт для клиента — с навигацией и summary.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОДКЛЮЧЕНИЯ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-tag">Доступы</div>
+    <h2>Подключение: Google Docs + WordPress</h2>
+    <p class="lead">Чтобы <span class="cmd">/publisher</span> создавал Google Doc на ревью и черновик в WP, нужны два подключения.</p>
+    <div class="grid2">
+      <div class="conn">
+        <h4>📝 WordPress</h4>
+        <ol>
+          <li><b>URL сайта</b> — адрес WordPress</li>
+          <li><b>Логин + Application Password</b> — спец-пароль для REST API (Пользователи → профиль → Application Passwords)</li>
+          <li><b>Тип записи</b> — куда публикуем (напр. <span class="cmd">blog</span>)</li>
+          <li><b>ACF author ID</b> — id автора для поля статьи</li>
+        </ol>
+        <div class="warn">Даёт права публиковать через <span class="cmd">/wp/v2/</span>. Application Password, не основной пароль.</div>
+      </div>
+      <div class="conn">
+        <h4>📄 Google Docs</h4>
+        <ol>
+          <li><b>Google Cloud проект</b> с включёнными Google Docs + Drive API</li>
+          <li><b>OAuth-клиент</b> со scopes <span class="cmd">documents</span> + <span class="cmd">drive</span></li>
+          <li><b>token.json</b> — авторизация для MCP-сервера google-docs</li>
+        </ol>
+        <div class="warn">⚠️ Перевести OAuth consent screen в <b>Production</b>, иначе refresh-токен умирает раз в 7 дней (постоянный <span class="cmd">invalid_grant</span>).</div>
+      </div>
+    </div>
+    <div class="insight-box"><strong>Безопасность:</strong> сами пароли и токены — в приватной заметке, не в этой презентации. Здесь только перечень, какие данные нужны и где их взять.</div>
+  </div>
+</section>
+
+<!-- ШПАРГАЛКА -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Для печати</div>
+    <h2>Шпаргалка: порядок команд</h2>
+    <div class="cheat">
+      <div class="step"><span class="n">1</span><span class="c">/researcher</span><span class="t">ресёрч темы → research-файл + план H2</span></div>
+      <div class="step"><span class="n">2</span><span class="c">/writer</span><span class="t">черновик по research + брифу</span></div>
+      <div class="step"><span class="n">3</span><span class="c">/editor</span><span class="t">редактура: голос, конкретика, анти-ИИ</span></div>
+      <div class="step"><span class="n">4</span><span class="c">/fact-checker</span><span class="t">проверка фактов и цифр (T1/T2/T3)</span></div>
+      <div class="step"><span class="n">5</span><span class="c">/quality-gate</span><span class="t">авто-чеклист PASS/FAIL перед публикацией</span></div>
+      <div class="step"><span class="n">6</span><span class="c">/seo-optimizer</span><span class="t">H1, title, description, FAQ, ссылки</span></div>
+      <div class="step"><span class="n">7</span><span class="c">[/designer]</span><span class="t">инфографика (по необходимости)</span></div>
+      <div class="step"><span class="n">8</span><span class="c">/publisher</span><span class="t">Google Doc + WP-черновик → «публикуем»</span></div>
+      <div class="step"><span class="n">9</span><span class="c">/tracker</span><span class="t">мониторинг позиций + AI-упоминаний</span></div>
+      <div class="step"><span class="n">10</span><span class="c">/page-optimizer</span><span class="t">дожим опубликованных страниц</span></div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--bg-dark);color:#888;text-align:center;padding:40px 20px;font-size:13px;">
+  AI SEO Pipeline · гайд по обучению · ironfelix
+</footer>
+
+</body>
+</html>
