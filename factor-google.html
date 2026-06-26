@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google — factor-prodazh.ru · аналитика и выводы</title>
+<style>
+:root{--ink:#16181d;--sec:#5b616e;--bd:#e7e8ec;--bg:#fff;--alt:#f7f8fa;--blue:#1a73e8;--red:#d33;--green:#188038;--amber:#e8a01c;}
+*{box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:#eceef1;margin:0;line-height:1.55}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px}
+.hero{background:#16181d;color:#fff;padding:40px 0 34px}
+.hero .lbl{color:#8ab4f8;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px}
+.hero h1{margin:8px 0 6px;font-size:30px}
+.hero p{margin:0;color:#aeb4bf;font-size:14px;max-width:640px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#21242b;border-radius:12px;padding:16px 18px}
+.kpi .v{font-size:25px;font-weight:800}
+.kpi .l{color:#9aa0ab;font-size:12.5px;margin-top:3px}
+.sec{background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:24px 26px;margin:20px 0;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.tag{display:inline-block;background:#eaf1fd;color:var(--blue);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.sec h2{font-size:20px;margin:0 0 6px}
+.sec .lead{color:var(--sec);font-size:14px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;color:var(--sec);font-weight:600;border-bottom:2px solid var(--bd);padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+td{padding:8px 10px;border-bottom:1px solid var(--bd)}
+td.r,th.r{text-align:right}
+tr:last-child td{border-bottom:none}
+.insight{background:var(--alt);border-left:3px solid var(--blue);border-radius:8px;padding:13px 16px;font-size:14px;margin:14px 0 0}
+.insight.warn{border-left-color:var(--amber);background:#fff8ec}
+.insight.bad{border-left-color:var(--red);background:#fdf0f0}
+.insight.good{border-left-color:var(--green);background:#eef7f0}
+.bars{margin:6px 0}
+.bar{display:flex;align-items:center;gap:12px;margin:7px 0;font-size:13.5px}
+.bar .nm{width:80px;flex:none;color:var(--sec)}
+.bar .tr{flex:1;background:var(--alt);border-radius:6px;height:24px;overflow:hidden}
+.bar .fl{height:100%;background:var(--blue);border-radius:6px}
+.bar .vv{width:70px;flex:none;text-align:right;font-weight:700}
+.todo li{margin:7px 0;font-size:14px}
+footer{text-align:center;color:#8b909b;font-size:12.5px;padding:30px 0}
+</style></head><body>
+
+<div class="hero"><div class="wrap">
+  <div class="lbl">Google Search Console · впервые подключено</div>
+  <h1>Что у нас с Google</h1>
+  <p>factor-prodazh.ru. Раньше отчёты были только по Яндексу — Google не отслеживался вообще. Теперь подключён GSC: запросы, позиции, клики. Данные за 30 дней (26.05–24.06.2026).</p>
+  <div class="kpis">
+    <div class="kpi"><div class="v">1 703</div><div class="l">клика / мес</div></div>
+    <div class="kpi"><div class="v">283 168</div><div class="l">показов / мес</div></div>
+    <div class="kpi"><div class="v">0,6%</div><div class="l">CTR</div></div>
+    <div class="kpi"><div class="v">9,6</div><div class="l">ср. позиция</div></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<div class="sec">
+  <div class="tag">Динамика</div>
+  <h2>Позиции деградировали, клики упали с пика</h2>
+  <p class="lead">Помесячно из GSC (история сохранилась). Апрель — пробел в данных GSC, не реальный ноль.</p>
+  <table><thead><tr><th>Месяц</th><th class="r">Клики</th><th class="r">Показы</th><th class="r">CTR</th><th class="r">Ср. позиция</th></tr></thead>
+  <tbody><tr><td>Янв</td><td class='r'>2 323</td><td class='r'>279 704</td><td class='r'>0.8%</td><td class='r'>8.0</td></tr><tr><td>Фев</td><td class='r'>2 565</td><td class='r'>315 258</td><td class='r'>0.8%</td><td class='r'>7.6</td></tr><tr><td>Мар</td><td class='r'>950</td><td class='r'>132 083</td><td class='r'>0.7%</td><td class='r'>7.2</td></tr><tr><td>Апр</td><td class='r'>—</td><td class='r'>нет данных</td><td class='r'>—</td><td class='r'>—</td></tr><tr><td>Май</td><td class='r'>1 088</td><td class='r'>161 515</td><td class='r'>0.7%</td><td class='r'>9.9</td></tr><tr><td>Июн*</td><td class='r'>1 313</td><td class='r'>229 816</td><td class='r'>0.6%</td><td class='r'>9.6</td></tr></tbody></table>
+  <div class="insight bad"><strong>Просад в Google реальный.</strong> Пик был Янв–Фев: ~2 300–2 565 кликов при ср. позиции 7,6–8,0. К июню клики ~1 300, позиция ушла на 9,6. Это совпадает с июньской коррекцией в Яндексе — высокочастотка просела в обоих поисковиках.</div>
+</div>
+
+<div class="sec">
+  <div class="tag">Где мы стоим</div>
+  <h2>Большинство запросов — на 2-й странице</h2>
+  <p class="lead">Распределение 5,000 запросов по позициям в Google.</p>
+  <div class="bars">
+    <div class="bar"><span class="nm">топ-3</span><span class="tr"><span class="fl" style="width:24%;background:#188038"></span></span><span class="vv">455</span></div>
+    <div class="bar"><span class="nm">4–10</span><span class="tr"><span class="fl" style="width:65%"></span></span><span class="vv">1,225</span></div>
+    <div class="bar"><span class="nm">11–20</span><span class="tr"><span class="fl" style="width:100%;background:#e8a01c"></span></span><span class="vv">1,872</span></div>
+    <div class="bar"><span class="nm">21–50</span><span class="tr"><span class="fl" style="width:71%;background:#aab"></span></span><span class="vv">1,325</span></div>
+  </div>
+  <div class="insight warn"><strong>1 872 запроса застряли на 2-й странице (11–20)</strong> — это деньги в одном шаге от топ-10. Плюс 1 325 на 21–50. Низкий CTR 0,6% — прямое следствие позиций: в топ-3 всего 455 запросов. Главный рычаг роста Google — дожать 2-ю страницу в топ-10.</div>
+</div>
+
+<div class="sec">
+  <div class="tag">Возможности</div>
+  <h2>Дожать в топ-10: 2-я страница с большими показами</h2>
+  <p class="lead">Запросы на позициях 11–20 с наибольшими показами — один шаг до трафика.</p>
+  <table><thead><tr><th>Запрос</th><th class="r">Показы</th><th class="r">Клики</th><th class="r">Поз.</th></tr></thead>
+  <tbody><tr><td class=''>в2в это</td><td class='r'>531</td><td class='r'>0</td><td class='r'>11.2</td></tr><tr><td class=''>алгоритм работы с возражениями</td><td class='r'>314</td><td class='r'>0</td><td class='r'>12.4</td></tr><tr><td class=''>работа с возражениями</td><td class='r'>291</td><td class='r'>1</td><td class='r'>13.1</td></tr><tr><td class=''>построение отдела продаж под ключ</td><td class='r'>257</td><td class='r'>4</td><td class='r'>15.6</td></tr><tr><td class=''>отдел продаж под ключ</td><td class='r'>250</td><td class='r'>3</td><td class='r'>13.6</td></tr><tr><td class=''>управленческие компетенции</td><td class='r'>228</td><td class='r'>2</td><td class='r'>14.5</td></tr><tr><td class=''>руководитель отдела продаж обязанности</td><td class='r'>201</td><td class='r'>1</td><td class='r'>11.4</td></tr><tr><td class=''>в2в продажи это</td><td class='r'>167</td><td class='r'>1</td><td class='r'>11</td></tr><tr><td class=''>аудит отдела продаж стоимость</td><td class='r'>158</td><td class='r'>2</td><td class='r'>17.6</td></tr><tr><td class=''>возражения в продажах</td><td class='r'>139</td><td class='r'>1</td><td class='r'>16.7</td></tr><tr><td class=''>построить отдел продаж</td><td class='r'>135</td><td class='r'>1</td><td class='r'>13.3</td></tr><tr><td class=''>отдел продаж с нуля</td><td class='r'>128</td><td class='r'>2</td><td class='r'>13.1</td></tr><tr><td class=''>что такое в2в</td><td class='r'>126</td><td class='r'>1</td><td class='r'>11.9</td></tr><tr><td class=''>как создать отдел продаж</td><td class='r'>123</td><td class='r'>1</td><td class='r'>15.8</td></tr><tr><td class=''>как составить план продаж</td><td class='r'>121</td><td class='r'>0</td><td class='r'>19.4</td></tr></tbody></table>
+</div>
+
+<div class="sec">
+  <div class="tag">Коммерция</div>
+  <h2>Денежные запросы — на 2–3 странице</h2>
+  <p class="lead">Коммерческие запросы (отдел продаж, под ключ, консалтинг, KPI, РОП) и их позиции в Google.</p>
+  <table><thead><tr><th>Запрос</th><th class="r">Показы</th><th class="r">Клики</th><th class="r">Поз.</th></tr></thead>
+  <tbody><tr><td class=''>kpi</td><td class='r'>478</td><td class='r'>0</td><td class='r'>2.2</td></tr><tr><td class=''>отдел продаж</td><td class='r'>377</td><td class='r'>1</td><td class='r'>8.4</td></tr><tr><td class=''>построение отдела продаж</td><td class='r'>375</td><td class='r'>3</td><td class='r'>9.1</td></tr><tr><td class=''>построение отдела продаж под ключ</td><td class='r'>257</td><td class='r'>4</td><td class='r'>15.6</td></tr><tr><td class=''>отдел продаж под ключ</td><td class='r'>250</td><td class='r'>3</td><td class='r'>13.6</td></tr><tr><td class=''>роп</td><td class='r'>236</td><td class='r'>1</td><td class='r'>8.3</td></tr><tr><td class=''>как правильно внедрить crm в отдел продаж: пошаговый план россия российский рынок русскоязычные источники</td><td class='r'>232</td><td class='r'>0</td><td class='r'>9.3</td></tr><tr><td class=''>руководитель отдела продаж обязанности</td><td class='r'>201</td><td class='r'>1</td><td class='r'>11.4</td></tr><tr><td class=''>аудит отдела продаж</td><td class='r'>200</td><td class='r'>2</td><td class='r'>8.2</td></tr><tr><td class=''>создание отдела продаж</td><td class='r'>198</td><td class='r'>2</td><td class='r'>8.2</td></tr><tr><td class=''>кто такой роп</td><td class='r'>192</td><td class='r'>0</td><td class='r'>5.4</td></tr><tr><td class=''>аудит отдела продаж стоимость</td><td class='r'>158</td><td class='r'>2</td><td class='r'>17.6</td></tr><tr><td class=''>структура отдела продаж</td><td class='r'>151</td><td class='r'>6</td><td class='r'>6.3</td></tr><tr><td class=''>kpi для отдела продаж</td><td class='r'>141</td><td class='r'>0</td><td class='r'>10.8</td></tr><tr><td class=''>построить отдел продаж</td><td class='r'>135</td><td class='r'>1</td><td class='r'>13.3</td></tr></tbody></table>
+  <div class="insight bad"><strong>По коммерции в Google тоже просад.</strong> «построение отдела продаж под ключ» — поз. 15,6, «отдел продаж под ключ» — 13,6, «kpi ропа» — 27. Все денежные запросы за пределами топ-10. Это подтверждает жалобу клиента — и теперь видно в цифрах Google.</div>
+</div>
+
+<div class="sec">
+  <div class="tag">Топ по трафику</div>
+  <h2>Что реально приводит клики из Google</h2>
+  <table><thead><tr><th>Запрос</th><th class="r">Клики</th><th class="r">Показы</th><th class="r">Поз.</th></tr></thead>
+  <tbody><tr><td class=''>фактор продаж</td><td class='r'>73</td><td class='r'>118</td><td class='r'>2.4</td></tr><tr><td class=''>готовые скрипты продаж бесплатно</td><td class='r'>8</td><td class='r'>85</td><td class='r'>4.8</td></tr><tr><td class=''>общение с клиентами в сфере продаж</td><td class='r'>6</td><td class='r'>20</td><td class='r'>1.9</td></tr><tr><td class=''>структура отдела продаж</td><td class='r'>6</td><td class='r'>151</td><td class='r'>6.3</td></tr><tr><td class=''>как увеличить продажи менеджеру по продажам</td><td class='r'>5</td><td class='r'>89</td><td class='r'>2.6</td></tr><tr><td class=''>техника продаж</td><td class='r'>5</td><td class='r'>634</td><td class='r'>5.5</td></tr><tr><td class=''>отдел продаж обучение</td><td class='r'>4</td><td class='r'>5</td><td class='r'>2</td></tr><tr><td class=''>построение отдела продаж под ключ</td><td class='r'>4</td><td class='r'>257</td><td class='r'>15.6</td></tr><tr><td class=''>техники продаж</td><td class='r'>4</td><td class='r'>1 135</td><td class='r'>6.2</td></tr><tr><td class=''>kpi для руководителя отдела продаж</td><td class='r'>3</td><td class='r'>33</td><td class='r'>16.4</td></tr><tr><td class=''>в2в продажи</td><td class='r'>3</td><td class='r'>234</td><td class='r'>7.9</td></tr><tr><td class=''>как рассчитать стоимость товара для продажи калькулятор</td><td class='r'>3</td><td class='r'>24</td><td class='r'>6.8</td></tr><tr><td class=''>компетенции руководителя</td><td class='r'>3</td><td class='r'>276</td><td class='r'>6.5</td></tr><tr><td class=''>мотивация менеджера по продажам пример</td><td class='r'>3</td><td class='r'>23</td><td class='r'>2.5</td></tr><tr><td class=''>обязанности отдела продаж</td><td class='r'>3</td><td class='r'>23</td><td class='r'>26.2</td></tr></tbody></table>
+</div>
+
+<div class="sec">
+  <div class="tag">Топ-страницы</div>
+  <h2>Какие страницы получают Google</h2>
+  <table><thead><tr><th>Страница</th><th class="r">Клики</th><th class="r">Показы</th><th class="r">Поз.</th></tr></thead>
+  <tbody><tr><td class=''>/</td><td class='r'>98</td><td class='r'>2 212</td><td class='r'>13.7</td></tr><tr><td class=''>/blog/plan-prodazh-dlya-menedzherov/</td><td class='r'>91</td><td class='r'>6 225</td><td class='r'>10.0</td></tr><tr><td class=''>/blog/kak-pravilno-rasschitat-stoimost-tovara-dlya-prodazhi-i-sebestoimost/</td><td class='r'>84</td><td class='r'>12 195</td><td class='r'>6.7</td></tr><tr><td class=''>/blog/struktura-otdela-prodazh/</td><td class='r'>62</td><td class='r'>3 605</td><td class='r'>8.6</td></tr><tr><td class=''>/blog/otchyot-menedzhera-o-prodazhakh-kak-sostavit-obrazets/</td><td class='r'>55</td><td class='r'>1 286</td><td class='r'>7.7</td></tr><tr><td class=''>/blog/skripty-prodazh-dlya-menedzherov-po-prodazham/</td><td class='r'>55</td><td class='r'>5 116</td><td class='r'>14.8</td></tr><tr><td class=''>/blog/kak-rasschitat-prirost-prodazh-v-biznese/</td><td class='r'>53</td><td class='r'>11 764</td><td class='r'>5.6</td></tr><tr><td class=''>/blog/kpi-rukovoditelya-otdela-prodazh/</td><td class='r'>51</td><td class='r'>5 250</td><td class='r'>9.9</td></tr><tr><td class=''>/blog/5-etapov-prodazh-menedzhera-po-prodazham/</td><td class='r'>45</td><td class='r'>20 575</td><td class='r'>7.4</td></tr><tr><td class=''>/blog/motivatsiya-otdela-prodazh-b2b-primer-kak-motivirovat-menedzherov-po-prodazham/</td><td class='r'>45</td><td class='r'>2 945</td><td class='r'>7.6</td></tr><tr><td class=''>/blog/vyyavleniye-potrebnostey-kliyenta/</td><td class='r'>42</td><td class='r'>5 940</td><td class='r'>8.4</td></tr><tr><td class=''>/blog/kak-nachat-razgovor-s-klientom/</td><td class='r'>41</td><td class='r'>6 478</td><td class='r'>8.5</td></tr></tbody></table>
+</div>
+
+<div class="sec">
+  <div class="tag">Выводы</div>
+  <h2>Что делать с Google</h2>
+  <ul class="todo">
+    <li><strong>Google — не мелочь:</strong> 283к показов/мес, ~42% органики. Мы его не видели — теперь видим (GSC подключён, мониторинг в отчёте).</li>
+    <li><strong>Главный рычаг — 2-я страница.</strong> 1 872 запроса на поз. 11–20. Дожать их в топ-10 = кратный рост Google-кликов без новых статей (оптимизация + перелинковка + CTR-заголовки).</li>
+    <li><strong>Приоритет — коммерция.</strong> Денежные запросы («под ключ», «kpi ропа», «отдел продаж») на 2–3 странице. Их в топ-10 первыми.</li>
+    <li><strong>Остановить просад.</strong> Позиция ушла 7,6 → 9,6 за полгода. Защитить просевшие ВЧ-страницы (та же работа, что по Яндексу).</li>
+    <li><strong>Поднять CTR.</strong> 0,6% — низко даже для текущих позиций. Переписать title/description под Google-сниппет.</li>
+  </ul>
+</div>
+
+</div>
+<footer>Источник: Google Search Console (sc-domain:factor-prodazh.ru). Собрано 2026-06-26. Обновляется по запросу.</footer>
+</body></html>
