@@ -343,8 +343,8 @@ footer {
   <div class="status-bar">
     <div class="sb">
       <div class="sb-label">Фаза проекта</div>
-      <div class="sb-val gold">Неделя 13</div>
-      <div class="sb-sub">нед. 12 закрыта ✅</div>
+      <div class="sb-val gold">Неделя 14</div>
+      <div class="sb-sub">нед. 13 закрыта ✅</div>
     </div>
     <div class="sb">
       <div class="sb-label">Опубликовано статей</div>
@@ -358,7 +358,7 @@ footer {
     </div>
     <div class="sb">
       <div class="sb-label">Обновлено</div>
-      <div class="sb-val">23.06</div>
+      <div class="sb-val">26.06</div>
       <div class="sb-sub">2026</div>
     </div>
   </div>
@@ -472,11 +472,68 @@ footer {
     <p style="font-size:12px;color:#777;margin:8px 0 0;line-height:1.5;">НЕ берём: найм/собеседование (аудитория = кандидат), SMM/Instagram, SMART-цели — не конвертят в лиды ФП. Приоритеты проставлены в контент-плане (Google Sheet, колонка «Действие»).</p>
   </div>
 
-  <!-- ===================== SPRINT WEEK 13 (CURRENT) ===================== -->
+  <!-- ===================== SPRINT WEEK 14 (CURRENT) ===================== -->
   <details class="section-toggle" open>
-  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Текущий спринт ⏳</span><span class="section-title" style="margin-bottom:0;font-size:18px">Неделя 13 · 16–20 июня · каннибализация, перелинковка, чистка WP</span></summary>
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Текущий спринт ⏳</span><span class="section-title" style="margin-bottom:0;font-size:18px">Неделя 14 · 23–27 июня · Google/GSC, конверсия, обучение команды</span></summary>
   <div class="section">
     <div class="section-label">Текущий спринт ⏳</div>
+    <div class="section-title">Неделя 14 · 23–27 июня</div>
+    <p style="color:var(--muted); margin-bottom:16px; font-size:13px;">
+      <strong>Итог:</strong> впервые подключён Google (GSC) — раньше всё было только по Яндексу; собран отдельный Google-борд с выводами. Запущен пилот конверсии (самодиагностика на KPI-странице) + скролл-трекер прочитываемости. Проведено обучение команды по скиллам и пайплайну.
+    </p>
+    <div class="task-grid">
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Google Search Console подключён + Google-борд</div>
+        <div class="task-desc"><strong>Раньше отчёты были только по Яндексу — Google не отслеживался вообще.</strong> Подключил GSC (sc-domain, владелец, история до 16 мес). Google = 283к показов/мес, ~42% органики, ср.поз 9,6. Просад реальный: поз 7,6(фев)→9,6(июнь). Собран борд с выводами: <a href="https://ironfelix.github.io/seo-audits/factor-google.html" target="_blank">factor-google.html</a>.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Анализ дожима Google: 456 страниц на 2-й странице</div>
+        <div class="task-desc">1 872 запроса застряли на поз. 11–20 — деньги в одном шаге от топ-10. Список всех страниц на дожим (с кластером ≥3) + плейбук «как вывести в топ-10» (оптимизировать существующие, не писать новые). Полный список — <code>google-pages-to-push.csv</code>.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Пилот самодиагностики (конверсия) + цели Метрики</div>
+        <div class="task-desc">Вместо холодного PDF — интерактивная самодиагностика KPI на странице kpi-dlya-menedzherov (пошаговый квиз → CTA на диагностику). Внешний JS (WP не ломает), цель <code>kpi_diag_cta</code>. Виджет поднят на 18% длины (большинство читают ~20%). Замер через 2–4 нед.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Скролл-трекер прочитываемости (весь блог)</div>
+        <div class="task-desc">mu-plugin шлёт цели <code>scroll_25/50/75/100</code> на всех статьях блога. Впервые меряем, докуда дочитывают — фундамент для решений, где ставить CTA. Карта через 3–5 дней.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Обучение команды по скиллам и пайплайну</div>
+        <div class="task-desc">Презентация (crmgroup-стиль) «как делаем контент через Claude», демо-сценарий ведущего, слайд «скилл=агент» + подключения GDocs/WP. Скиллы (16) актуализированы на GitHub (<code>ai-content-pipeline</code>, креды санитайзены). Бакет под Фактор собран.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task done"><div class="task-check">&#10003;</div><div class="task-body">
+        <div class="task-title">Месяц-3 сведён + гипотезы просада · 100 коммерческих</div>
+        <div class="task-desc">Борд point-a: вкладка «Месяц 3 — июнь» (7 секций), разбор просадки (H1–H6: устаревание ВЧ-страниц + невыполненный фикс, не санкция), тренд спроса (насыщения нет, ×3 YoY). Дубль-блок на kpi вычищен, /page-optimizer по 5 просевшим. Собран список 100 коммерческих запросов.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-done">Готово</div></div>
+      </div></div>
+
+      <div class="task active"><div class="task-check"></div><div class="task-body">
+        <div class="task-title">Перелинковка batch-19 — добить 7 статей</div>
+        <div class="task-desc">7 новых статей были <code>future</code> (выходили 19–23.06) — линковать нельзя было до публикации. Сейчас опубликованы → проставить входящие анти-сироты из релевантных живых статей.</div>
+        <div class="task-meta"><div class="task-date">26.06</div><div class="task-pill pill-warn">В работе</div></div>
+      </div></div>
+
+    </div>
+  </div>
+  </details>
+
+  <!-- ===================== SPRINT WEEK 13 ===================== -->
+  <details class="section-toggle">
+  <summary class="section-toggle-summary"><span class="section-label" style="margin-bottom:0">Прошлый спринт ✅</span><span class="section-title" style="margin-bottom:0;font-size:18px">Неделя 13 · 16–20 июня · каннибализация, перелинковка, чистка WP</span></summary>
+  <div class="section">
+    <div class="section-label">Прошлый спринт ✅</div>
     <div class="section-title">Неделя 13 · 16–20 июня</div>
     <p style="color:var(--muted); margin-bottom:16px; font-size:13px;">
       <strong>Итог на 18.06:</strong> выкатка batch-19 идёт по расписанию (6/13 опубликованы); каннибализация разобрана по подходу linking-first (не удалять, а правильно линковать); WP вычищен от мусора; начата перелинковка (анти-сироты для опубликованных).
