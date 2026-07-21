@@ -67,7 +67,8 @@ header{position:static}
 .hero-grid img.team{width:100%;border-radius:18px;display:block}
 .feats{display:flex;flex-direction:column;gap:14px;margin:26px 0 6px}
 .feat{display:flex;gap:14px;align-items:flex-start}
-.feat .ic{width:40px;height:40px;border-radius:10px;background:rgba(204,149,91,.13);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:17px;flex-shrink:0}
+.feat .ic{width:40px;height:40px;border-radius:10px;background:rgba(204,149,91,.13);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.feat .ic svg{width:22px;height:22px}
 .feat .ft{font-size:16px;padding-top:7px} .feat b{font-weight:800}
 @media(max-width:900px){
   .topbar .wrap{flex-wrap:wrap}.brand .tag{display:none}.promo span{font-size:12px}
@@ -100,8 +101,8 @@ header{position:static}
 .panel h3{font-size:18px;margin-bottom:16px}
 .panel ul{list-style:none} .panel li{padding:9px 0 9px 28px;position:relative;border-bottom:1px solid rgba(0,0,0,.06);font-size:15.5px}
 .panel li:last-child{border:none}
-.panel.on li:before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:800}
-.panel.off li:before{content:'•';position:absolute;left:4px;color:var(--muted)}
+.panel.on li:before{content:'';position:absolute;left:0;top:12px;width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CC955B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat}
+.panel.off li:before{content:'';position:absolute;left:5px;top:17px;width:6px;height:6px;border-radius:50%;background:var(--muted)}
 
 /* ритм table */
 .rhythm{width:100%;border-collapse:collapse;margin-top:24px;background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--line)}
@@ -146,8 +147,8 @@ header{position:static}
 .faq details{background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
 .faq summary{cursor:pointer;padding:20px 24px;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary:after{content:'+';color:var(--gold);font-size:24px;font-weight:800}
-.faq details[open] summary:after{content:'–'}
+.faq summary:after{content:'';width:20px;height:20px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CC955B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .2s}
+.faq details[open] summary:after{transform:rotate(180deg)}
 .faq .a{padding:0 24px 22px;color:var(--muted);font-size:15.5px}
 
 /* final cta form */
@@ -217,13 +218,12 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="label">РОП на аутсорсе для действующего отдела продаж</span>
         <h1>Готовый РОП для вашего отдела продаж, без найма и риска ошибиться</h1>
         <p class="lead">Подключаем аттестованного руководителя, который каждый день ведёт вашу команду: ставит план, контролирует CRM и операционный отчёт, разбирает звонки, обучает менеджеров и показывает, где отдел теряет деньги.</p>
         <div class="feats">
-          <div class="feat"><div class="ic">↗</div><div class="ft"><b>200+ клиентов</b> получили рост продаж</div></div>
-          <div class="feat"><div class="ic">×4</div><div class="ft"><b>×4 средний рост</b> конверсии в сделку</div></div>
-          <div class="feat"><div class="ic">◆</div><div class="ft">Работаем по собственной <b>запатентованной системе</b></div></div>
+          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></div><div class="ft"><b>200+ клиентов</b> получили рост продаж</div></div>
+          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="21" x2="5" y2="13"/><line x1="12" y1="21" x2="12" y2="8"/><line x1="19" y1="21" x2="19" y2="4"/></svg></div><div class="ft"><b>×4 средний рост</b> конверсии в сделку</div></div>
+          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 1.8 4-4.2"/></svg></div><div class="ft">Работаем по собственной <b>запатентованной системе</b></div></div>
         </div>
         <div class="hero-cta">
           <a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a>
@@ -238,7 +238,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- БОЛЬ -->
 <section class="alt">
   <div class="wrap">
-    <span class="label">Знакомо?</span>
     <h2>Когда РОПа нет, собственник платит своим временем</h2>
     <p class="lead" style="max-width:70ch">Сначала собственник просто помогает отделу. Потом смотрит CRM, слушает звонки, проводит планёрки и разбирает сделки. В какой-то момент это становится второй работой, но отдел всё равно не становится прозрачнее.</p>
     <div class="grid g3" style="margin-top:30px">
@@ -255,7 +254,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- ЧТО ЭТО -->
 <section id="chto">
   <div class="wrap">
-    <span class="label">Что это и чем не является</span>
     <h2>Это руководитель вашего отдела продаж, только не в штате</h2>
     <p class="lead" style="max-width:74ch">Эксперт Фактора Продаж приходит в отдел как РОП. Он не продаёт вместо вашей команды и не собирает клиентскую базу. Он руководит менеджерами: ставит задачи, проверяет работу, обучает и держит в фокусе план. Перед проектом эксперт проходит аттестацию по функциям руководителя, а за ним закреплён руководитель группы, поэтому работа не зависит от одного человека.</p>
     <div class="panels">
@@ -277,7 +275,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- ОФФЕР 5 функций -->
 <section class="warm">
   <div class="wrap">
-    <span class="label">Что входит</span>
     <h2>Пять функций РОПа, которые перестают лежать на собственнике</h2>
     <div class="grid g3" style="margin-top:30px">
       <div class="card"><div class="num">01</div><h3>Планирование</h3><p>РОП раскладывает план отдела на показатели менеджеров, ведёт план-факт и показывает, почему отдел отстаёт.</p></div>
@@ -293,7 +290,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- КОНТРОЛЬ -->
 <section id="kontrol">
   <div class="wrap">
-    <span class="label">Прозрачность</span>
     <h2>РОП видит отдел не по ощущениям, а по работе менеджеров</h2>
     <p class="lead" style="max-width:74ch">Удалённый формат не означает дистанцию от отдела. Руководитель видит CRM, операционный отчёт, записи звонков и регулярно разговаривает с командой.</p>
     <table class="rhythm">
@@ -311,7 +307,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- ЭТАПЫ -->
 <section class="alt" id="etapy">
   <div class="wrap">
-    <span class="label">Как работаем</span>
     <h2>Путь от первого разговора до управления отделом</h2>
     <div class="steps">
       <div class="step"><div class="wm">1</div><h3>Бесплатная диагностика</h3><p>Разберём, кто сейчас управляет отделом, как устроена воронка, где теряются деньги и готова ли команда к внешнему РОПу.</p><div class="res">Результат: понимаете, подойдёт ли формат и какой объём работ нужен.</div></div>
@@ -326,7 +321,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- КТО ВЕДЁТ -->
 <section>
   <div class="wrap">
-    <span class="label">Кто ведёт проект</span>
     <h2>У отдела есть РОП и подстраховка на случай замены</h2>
     <div class="grid g3" style="margin-top:30px">
       <div class="card"><h3>Ваш РОП на аутсорсе</h3><p>Эксперт по развитию отдела продаж исполняет роль руководителя. Аттестован по пяти функциям РОПа и работает по технологии Фактора Продаж.</p></div>
@@ -339,7 +333,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- КЕЙСЫ -->
 <section class="alt" id="keysy">
   <div class="wrap">
-    <span class="label">Кейсы</span>
     <h2>Цифры из отделов, где начали управлять продажами регулярно</h2>
     <div style="margin-top:28px">
       <div class="case">
@@ -368,7 +361,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- ВОЗРАЖЕНИЯ / штат vs аутсорс -->
 <section>
   <div class="wrap">
-    <span class="label">Найм или аутсорс</span>
     <h2>Найм закрывает вакансию. РОП на аутсорсе закрывает функцию управления</h2>
     <div class="diff">
       <div class="diff-row diff-head"><div class="l">Штатный РОП</div><div class="r">РОП на аутсорсе</div></div>
@@ -386,7 +378,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <section class="warm" id="cena">
   <div class="wrap">
     <div class="price">
-      <span class="label" style="color:var(--gold-l)">Форматы и цена</span>
       <h2 style="color:#fff">Полноценный РОП для отдела продаж</h2>
       <div class="big">от 90 000 ₽ / мес</div>
       <p>В стоимость входит аудит отдела, ежедневное управление командой, контроль качества, обучение менеджеров, работа с планом и регулярная отчётность. Точную стоимость определим на бесплатной диагностике: она зависит от масштаба отдела и задач, которые нужно закрыть в первую очередь.</p>
@@ -398,7 +389,6 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap" style="max-width:860px">
-    <span class="label">FAQ</span>
     <h2>Что важно знать до подключения</h2>
     <div class="faq" style="margin-top:26px">
       <details><summary>Вы будете управлять отделом или только давать рекомендации?</summary><div class="a">Будем управлять. РОП ведёт планёрки, ставит задачи, работает с менеджерами, контролирует CRM и сделки, обучает команду. Отчёты и аналитика помогают принимать решения, но не заменяют работу руководителя.</div></details>
