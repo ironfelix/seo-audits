@@ -64,7 +64,10 @@ header{position:static}
 .menubar .btn{white-space:nowrap;flex-shrink:0;padding:10px 18px;font-size:14.5px;margin-left:16px}
 .hero.site{background:#fff;padding:56px 0 60px}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
-.hero-grid img.team{width:100%;border-radius:18px;display:block}
+.hero-photo{position:relative;border-radius:20px;background:radial-gradient(135% 105% at 50% 6%,#F4EFE5,#E6E1D3);overflow:hidden;min-height:470px;display:flex;align-items:flex-end;justify-content:center}
+.hero-photo img{width:94%;max-height:560px;object-fit:contain;object-position:bottom center;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.10))}
+.photo-badge{position:absolute;left:20px;bottom:20px;background:rgba(255,255,255,.94);backdrop-filter:blur(4px);border-radius:12px;padding:11px 16px;font-weight:800;font-size:15px;box-shadow:0 8px 20px rgba(0,0,0,.10)}
+.photo-badge span{display:block;font-weight:600;font-size:12.5px;color:var(--muted);margin-top:2px}
 .feats{display:flex;flex-direction:column;gap:14px;margin:26px 0 6px}
 .feat{display:flex;gap:14px;align-items:flex-start}
 .feat .ic{width:40px;height:40px;border-radius:10px;background:rgba(204,149,91,.13);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
@@ -72,7 +75,7 @@ header{position:static}
 .feat .ft{font-size:16px;padding-top:7px} .feat b{font-weight:800}
 @media(max-width:900px){
   .topbar .wrap{flex-wrap:wrap}.brand .tag{display:none}.promo span{font-size:12px}
-  .menu{display:none}.hero-grid{grid-template-columns:1fr}.hero-grid img.team{max-height:340px;object-fit:cover}
+  .menu{display:none}.hero-grid{grid-template-columns:1fr}.hero-photo{min-height:400px}
 }
 
 /* hero */
@@ -230,7 +233,10 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
         </div>
         <div class="sub-cta">Разберём ситуацию в отделе и покажем, с чего начнётся работа.</div>
       </div>
-      <div><img class="team" src="https://factor-prodazh.ru/wp-content/uploads/2025/02/candeev.webp" alt="Команда Фактор Продаж" loading="eager"></div>
+      <div class="hero-photo">
+        <img src="https://factor-prodazh.ru/wp-content/uploads/2025/02/candeev.webp" alt="Александр Кандеев, основатель «Фактор Продаж»" loading="eager">
+        <div class="photo-badge">Александр Кандеев<span>основатель «Фактор Продаж»</span></div>
+      </div>
     </div>
   </div>
 </section>
