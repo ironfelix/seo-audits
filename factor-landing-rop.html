@@ -40,6 +40,39 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 .nav-links{display:flex;gap:26px}
 .nav-links a{color:var(--dark);text-decoration:none;font-weight:600;font-size:15px}
 .nav-links a:hover{color:var(--gold)}
+/* two-row header like site */
+header{position:static}
+.promo{background:#1c1c1c;color:#fff;font-size:13.5px}
+.promo .wrap{display:flex;align-items:center;justify-content:center;gap:16px;height:44px}
+.promo b{color:#fff;font-weight:700}.promo span{color:#c9c3b6}
+.promo a.sub{background:#2AABEE;color:#fff;padding:7px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 24px}
+.brand{display:flex;align-items:center;gap:16px}
+.brand .tag{font-size:12.5px;color:var(--muted);max-width:24ch;line-height:1.3;border-left:1px solid var(--line);padding-left:16px}
+.contacts{display:flex;align-items:center;gap:22px}
+.phone .h{font-size:11px;color:var(--muted)}
+.phone .n{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--dark)}
+.phone .call{font-size:12.5px;color:var(--gold);border-bottom:1px dashed var(--gold);cursor:pointer;text-decoration:none}
+.msgr{display:flex;gap:8px}
+.msgr a{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--light)}
+.msgr img{width:22px;height:22px}
+.menubar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.menubar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.menu{display:flex;gap:17px;flex-wrap:nowrap}
+.menu a{color:var(--dark);text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap}
+.menu a:hover{color:var(--gold)}
+.menubar .btn{white-space:nowrap;flex-shrink:0;padding:10px 18px;font-size:14.5px;margin-left:16px}
+.hero.site{background:#fff;padding:56px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+.hero-grid img.team{width:100%;border-radius:18px;display:block}
+.feats{display:flex;flex-direction:column;gap:14px;margin:26px 0 6px}
+.feat{display:flex;gap:14px;align-items:flex-start}
+.feat .ic{width:40px;height:40px;border-radius:10px;background:rgba(204,149,91,.13);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:17px;flex-shrink:0}
+.feat .ft{font-size:16px;padding-top:7px} .feat b{font-weight:800}
+@media(max-width:900px){
+  .topbar .wrap{flex-wrap:wrap}.brand .tag{display:none}.promo span{font-size:12px}
+  .menu{display:none}.hero-grid{grid-template-columns:1fr}.hero-grid img.team{max-height:340px;object-fit:cover}
+}
 
 /* hero */
 .hero{background:radial-gradient(1100px 500px at 78% -10%,rgba(204,149,91,.16),transparent),var(--warm);padding:84px 0 78px}
@@ -140,35 +173,64 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 </head>
 <body>
 
+<div class="promo"><div class="wrap">
+  <span><b>Подписывайтесь на Telegram-канал Александра Кандеева</b>, основателя компании «Фактор Продаж»</span>
+  <a class="sub" href="https://t.me/+HxLjPXijcvg2Mjhi" target="_blank" rel="noopener">Подписаться</a>
+</div></div>
 <header>
-  <div class="wrap nav">
-    <a href="https://factor-prodazh.ru/" class="logo-link"><img class="logo-img" src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logo-dec.svg" alt="Фактор Продаж" width="266" height="30"></a>
-    <nav class="nav-links">
-      <a href="https://factor-prodazh.ru/services/konsalting/">Консалтинг</a>
-      <a href="https://factor-prodazh.ru/">Построение ОП</a>
-      <a href="https://factor-prodazh.ru/services/platniy-audit/">Полный аудит</a>
-      <a href="https://factor-prodazh.ru/services/antikrizisniy-op/">Антикризисный ОП</a>
-      <a href="https://factor-prodazh.ru/services/stratsessiya/">Стратсессия</a>
+  <div class="topbar"><div class="wrap">
+    <div class="brand">
+      <a href="https://factor-prodazh.ru/" class="logo-link"><img class="logo-img" src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logo-dec.svg" alt="Фактор Продаж" width="230" height="30"></a>
+      <div class="tag">Построение отдела продаж и внедрение контроля качества</div>
+    </div>
+    <div class="contacts">
+      <div class="phone">
+        <div class="h">Звоните Пн-Пт: 9:00–18:00</div>
+        <div class="n">+7 (992) 329-88-69</div>
+        <a class="call" href="tel:+79923298869">Заказать звонок</a>
+      </div>
+      <div class="msgr">
+        <a href="https://t.me/postroenie_op2" target="_blank" rel="noopener" aria-label="Telegram"><img src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logos_telegram.svg" alt="Telegram"></a>
+        <a href="https://wa.me/79951163048" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logos_whatsapp-icon.svg" alt="WhatsApp"></a>
+      </div>
+    </div>
+  </div></div>
+  <div class="menubar"><div class="wrap">
+    <nav class="menu">
+      <a href="https://factor-prodazh.ru/">Главная</a>
+      <a href="https://factor-prodazh.ru/services/konsalting/">Консалтинг продаж</a>
+      <a href="https://factor-prodazh.ru/cases/">Кейсы</a>
+      <a href="https://factor-prodazh.ru/courses/">Обучение</a>
+      <a href="https://factor-prodazh.ru/feedback/">Отзывы</a>
+      <a href="https://factor-prodazh.ru/blogs/">Блог</a>
+      <a href="https://factor-prodazh.ru/books/">Книги</a>
+      <a href="https://factor-prodazh.ru/tarify/">Цены</a>
+      <a href="https://factor-prodazh.ru/about-company/">О компании</a>
+      <a href="https://factor-prodazh.ru/contacts/">Контакты</a>
     </nav>
     <a href="#cta" class="btn">Бесплатная диагностика</a>
-  </div>
+  </div></div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero site">
   <div class="wrap">
-    <span class="label">РОП на аутсорсе для действующего отдела продаж</span>
-    <h1>Готовый РОП для вашего отдела продаж, без найма и риска ошибиться</h1>
-    <p class="lead">Подключаем аттестованного руководителя, который каждый день ведёт вашу команду: ставит план, контролирует CRM и операционный отчёт, разбирает звонки, обучает менеджеров и показывает, где отдел теряет деньги.</p>
-    <div class="hero-cta">
-      <a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a>
-      <span class="sub-cta">Разберём ситуацию в отделе и покажем, с чего начнётся работа.</span>
-    </div>
-    <div class="trust">
-      <div><div class="v">200+</div><div class="l">проектов построения продаж</div></div>
-      <div><div class="v">300+</div><div class="l">отделов продаж построено</div></div>
-      <div><div class="v">33</div><div class="l">кейса с цифрами</div></div>
-      <div><div class="v">3 мес</div><div class="l">минимальный срок работы</div></div>
+    <div class="hero-grid">
+      <div>
+        <span class="label">РОП на аутсорсе для действующего отдела продаж</span>
+        <h1>Готовый РОП для вашего отдела продаж, без найма и риска ошибиться</h1>
+        <p class="lead">Подключаем аттестованного руководителя, который каждый день ведёт вашу команду: ставит план, контролирует CRM и операционный отчёт, разбирает звонки, обучает менеджеров и показывает, где отдел теряет деньги.</p>
+        <div class="feats">
+          <div class="feat"><div class="ic">↗</div><div class="ft"><b>200+ клиентов</b> получили рост продаж</div></div>
+          <div class="feat"><div class="ic">×4</div><div class="ft"><b>×4 средний рост</b> конверсии в сделку</div></div>
+          <div class="feat"><div class="ic">◆</div><div class="ft">Работаем по собственной <b>запатентованной системе</b></div></div>
+        </div>
+        <div class="hero-cta">
+          <a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a>
+        </div>
+        <div class="sub-cta">Разберём ситуацию в отделе и покажем, с чего начнётся работа.</div>
+      </div>
+      <div><img class="team" src="https://factor-prodazh.ru/wp-content/uploads/2025/02/candeev.webp" alt="Команда Фактор Продаж" loading="eager"></div>
     </div>
   </div>
 </section>
