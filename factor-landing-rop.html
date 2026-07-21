@@ -162,9 +162,16 @@ header{position:static}
 .form input::placeholder{color:#b7b2a6}
 .finenote{color:#9c988c;font-size:13px;margin-top:16px}
 
-footer{background:var(--dark);color:#b7b2a6;padding:44px 0;font-size:14.5px}
-.footer-row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer{background:var(--dark);color:#b7b2a6;padding:48px 0 28px;font-size:14.5px}
 footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:40px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.10)}
+.foot-brand p{color:#9c988c;font-size:13.5px;margin:16px 0 14px;max-width:34ch}
+.foot-contacts{display:flex;flex-direction:column;gap:5px}
+.foot-contacts a{font-weight:700;font-size:16px;color:#fff}
+.foot-h{color:#fff;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+.foot-col{display:flex;flex-direction:column;gap:9px;font-size:14.5px}
+.foot-legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:12.5px;color:#8a8578}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
 
 @media(max-width:900px){
   .g3,.steps{grid-template-columns:1fr 1fr} .panels{grid-template-columns:1fr}
@@ -424,10 +431,36 @@ footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
 </section>
 
 <footer>
-  <div class="wrap footer-row">
-    <img src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logo-footer.svg" alt="Фактор Продаж" style="height:44px;width:auto">
-    <div>Построение отделов продаж под ключ · РОП на аутсорсе · 200+ проектов</div>
-    <div><a href="https://factor-prodazh.ru/">factor-prodazh.ru</a></div>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="https://factor-prodazh.ru/wp-content/themes/faktor-template/common/image/logo-footer.svg" alt="Фактор Продаж" style="height:46px;width:auto">
+      <p>Построение отдела продаж и внедрение контроля качества</p>
+      <div class="foot-contacts">
+        <a href="tel:+78003027147">+7 800 302-71-47</a>
+        <a href="mailto:info@factor-prodazh.ru">info@factor-prodazh.ru</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-h">Компания</div>
+      <a href="https://factor-prodazh.ru/">Отдел продаж</a>
+      <a href="https://factor-prodazh.ru/courses/">Обучение</a>
+      <a href="https://factor-prodazh.ru/blogs/">Блог</a>
+      <a href="https://factor-prodazh.ru/cases/">Кейсы</a>
+      <a href="https://factor-prodazh.ru/feedback/">Отзывы</a>
+      <a href="https://factor-prodazh.ru/books/">Книги</a>
+      <a href="https://factor-prodazh.ru/about-company/">О компании</a>
+      <a href="https://factor-prodazh.ru/contacts/">Контакты</a>
+    </div>
+    <div class="foot-col">
+      <div class="foot-h">Документы</div>
+      <a href="https://factor-prodazh.ru/privacy-policy/">Политика обработки персональных данных</a>
+      <a href="https://factor-prodazh.ru/soglasie-na-reklamu/">Согласие на рассылку рекламы</a>
+      <a href="https://factor-prodazh.ru/politika-obrabotki-faylov-cookie/">Политика обработки файлов Cookie</a>
+    </div>
+  </div>
+  <div class="wrap foot-legal">
+    <span>ИП Кандеев Александр Рафаэльевич · ОГРН 320554300038952 · ИНН 550144444620</span>
+    <span>© 2026 Фактор Продаж</span>
   </div>
 </footer>
 
