@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>РОП на аутсорсе — Фактор Продаж</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#CC955B; --gold-l:#E3A96C; --dark:#252525; --muted:#676767;
+  --warm:#ECEADF; --light:#F6F5F1; --line:#E7E3D8; --blue:#453FDF; --white:#fff;
+  --cta:linear-gradient(92deg,#E3A96C,#CC955B);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',Arial,sans-serif;color:var(--dark);background:var(--white);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h2{font-size:34px;margin-bottom:14px}
+.lead{color:var(--muted);font-size:19px}
+.label{display:inline-block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:16px}
+section{padding:76px 0}
+.alt{background:var(--light)}
+.warm{background:var(--warm)}
+.dark{background:var(--dark);color:var(--white)}
+.dark h2,.dark h1{color:var(--white)} .dark .lead{color:#cfcabb}
+.btn{display:inline-block;background:var(--cta);color:#fff;font-weight:700;font-size:17px;padding:16px 30px;border-radius:12px;border:none;cursor:pointer;text-decoration:none;box-shadow:0 8px 22px rgba(204,149,91,.32);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(204,149,91,.42)}
+.btn.ghost{background:transparent;color:var(--dark);border:2px solid var(--gold);box-shadow:none}
+.sub-cta{color:var(--muted);font-size:14.5px;margin-top:12px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
+.logo b{color:var(--gold)}
+.nav a.btn{padding:11px 20px;font-size:15px}
+.nav-links{display:flex;gap:26px}
+.nav-links a{color:var(--dark);text-decoration:none;font-weight:600;font-size:15px}
+.nav-links a:hover{color:var(--gold)}
+
+/* hero */
+.hero{background:radial-gradient(1100px 500px at 78% -10%,rgba(204,149,91,.16),transparent),var(--warm);padding:84px 0 78px}
+.hero h1{font-size:52px;margin:0 0 20px;max-width:16ch}
+.hero .lead{max-width:60ch}
+.hero-cta{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.trust{display:flex;gap:38px;margin-top:52px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
+.trust .v{font-size:34px;font-weight:800;color:var(--gold)}
+.trust .l{font-size:14px;color:var(--muted);max-width:20ch}
+
+/* cards grid */
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px}
+.alt .card,.warm .card{background:var(--white)}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15.5px}
+.num{font-size:40px;font-weight:800;font-style:italic;color:var(--gold);line-height:1;margin-bottom:10px}
+
+/* two-panel (граница) */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
+.panel{border-radius:16px;padding:26px 28px}
+.panel.on{background:rgba(204,149,91,.10);border:2px solid var(--gold)}
+.panel.off{background:var(--light);border:1px solid var(--line)}
+.panel h3{font-size:18px;margin-bottom:16px}
+.panel ul{list-style:none} .panel li{padding:9px 0 9px 28px;position:relative;border-bottom:1px solid rgba(0,0,0,.06);font-size:15.5px}
+.panel li:last-child{border:none}
+.panel.on li:before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:800}
+.panel.off li:before{content:'•';position:absolute;left:4px;color:var(--muted)}
+
+/* ритм table */
+.rhythm{width:100%;border-collapse:collapse;margin-top:24px;background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.rhythm th,.rhythm td{text-align:left;padding:18px 20px;vertical-align:top;border-bottom:1px solid var(--line);font-size:15.5px}
+.rhythm th{background:var(--dark);color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.5px}
+.rhythm td:first-child{font-weight:700;color:var(--gold);white-space:nowrap;width:150px}
+.rhythm ul{margin:0;padding-left:18px} .rhythm li{margin:3px 0}
+.callout{margin-top:22px;background:rgba(204,149,91,.10);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:20px 24px;font-weight:600}
+
+/* process steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.step{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 24px 26px;overflow:hidden}
+.step .wm{position:absolute;top:-14px;right:6px;font-size:96px;font-weight:800;color:rgba(204,149,91,.14);line-height:1}
+.step h3{font-size:18px;margin-bottom:8px;position:relative}
+.step p{color:var(--muted);font-size:14.5px;position:relative}
+.step .res{margin-top:12px;font-size:13.5px;color:var(--dark);font-weight:600;position:relative}
+
+/* cases */
+.case{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin-bottom:18px;display:grid;grid-template-columns:1fr 210px;gap:24px;align-items:center}
+.case h3{font-size:19px;margin-bottom:10px}
+.case p{font-size:15px;color:var(--muted);margin:5px 0}
+.case p b{color:var(--dark)}
+.case .big{text-align:center;border-left:1px solid var(--line);padding-left:24px}
+.case .big .n{font-size:38px;font-weight:800;color:var(--gold);line-height:1.1}
+.case .big .c{font-size:13.5px;color:var(--muted);margin-top:6px}
+
+/* diff */
+.diff{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:26px}
+.diff-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.diff-row:last-child{border:none}
+.diff-row div{padding:16px 22px;font-size:15.5px}
+.diff-row .l{color:var(--muted)} .diff-row .r{background:rgba(204,149,91,.07);font-weight:600}
+.diff-head div{font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.5px}
+.diff-head .r{color:var(--gold)}
+
+/* price */
+.price{background:var(--dark);color:#fff;border-radius:20px;padding:48px;text-align:center}
+.price .big{font-size:46px;font-weight:800;color:var(--gold-l);margin:8px 0 14px}
+.price p{color:#cfcabb;max-width:60ch;margin:0 auto 26px}
+
+/* faq */
+.faq details{background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:20px 24px;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:'+';color:var(--gold);font-size:24px;font-weight:800}
+.faq details[open] summary:after{content:'–'}
+.faq .a{padding:0 24px 22px;color:var(--muted);font-size:15.5px}
+
+/* final cta form */
+.cta-box{background:radial-gradient(700px 300px at 80% 0,rgba(204,149,91,.20),transparent),var(--dark);border-radius:22px;padding:52px;color:#fff;text-align:center}
+.cta-box h2{color:#fff} .cta-box p{color:#cfcabb;max-width:60ch;margin:12px auto 28px}
+.form{display:flex;gap:12px;max-width:560px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.form input{flex:1;min-width:180px;padding:16px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:inherit}
+.form input::placeholder{color:#b7b2a6}
+.finenote{color:#9c988c;font-size:13px;margin-top:16px}
+
+footer{background:var(--dark);color:#b7b2a6;padding:44px 0;font-size:14.5px}
+.footer-row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer a{color:#e3d9c8;text-decoration:none} footer a:hover{color:var(--gold-l)}
+
+@media(max-width:900px){
+  .g3,.steps{grid-template-columns:1fr 1fr} .panels{grid-template-columns:1fr}
+  .case{grid-template-columns:1fr} .case .big{border-left:none;border-top:1px solid var(--line);padding:16px 0 0}
+  .nav-links{display:none}
+  h2{font-size:27px} .hero h1{font-size:36px} section{padding:56px 0}
+}
+@media(max-width:560px){ .g3,.g2,.steps{grid-template-columns:1fr} .diff-row{grid-template-columns:1fr} .price,.cta-box{padding:32px 22px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Фактор<b>Продаж</b></div>
+    <nav class="nav-links">
+      <a href="#chto">Что это</a>
+      <a href="#kontrol">Контроль</a>
+      <a href="#etapy">Как работаем</a>
+      <a href="#keysy">Кейсы</a>
+      <a href="#cena">Цена</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#cta" class="btn">Бесплатная диагностика</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="label">РОП на аутсорсе для действующего отдела продаж</span>
+    <h1>Готовый РОП для вашего отдела продаж, без найма и риска ошибиться</h1>
+    <p class="lead">Подключаем аттестованного руководителя, который каждый день ведёт вашу команду: ставит план, контролирует CRM и операционный отчёт, разбирает звонки, обучает менеджеров и показывает, где отдел теряет деньги.</p>
+    <div class="hero-cta">
+      <a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a>
+      <span class="sub-cta">Разберём ситуацию в отделе и покажем, с чего начнётся работа.</span>
+    </div>
+    <div class="trust">
+      <div><div class="v">200+</div><div class="l">проектов построения продаж</div></div>
+      <div><div class="v">300+</div><div class="l">отделов продаж построено</div></div>
+      <div><div class="v">33</div><div class="l">кейса с цифрами</div></div>
+      <div><div class="v">3 мес</div><div class="l">минимальный срок работы</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- БОЛЬ -->
+<section class="alt">
+  <div class="wrap">
+    <span class="label">Знакомо?</span>
+    <h2>Когда РОПа нет, собственник платит своим временем</h2>
+    <p class="lead" style="max-width:70ch">Сначала собственник просто помогает отделу. Потом смотрит CRM, слушает звонки, проводит планёрки и разбирает сделки. В какой-то момент это становится второй работой, но отдел всё равно не становится прозрачнее.</p>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>РОПа нет или он не тянет</h3><p>План есть, но никто не раскладывает его на действия менеджеров и не отвечает за движение к нему.</p></div>
+      <div class="card"><h3>Собственник тушит пожары</h3><p>Менеджеры приходят с вопросами, сделки зависают, а вы вместо развития бизнеса контролируете продажи вручную.</p></div>
+      <div class="card"><h3>CRM не показывает картину</h3><p>Воронка есть формально, но непонятно, где теряются деньги и почему менеджер не сделал следующий шаг.</p></div>
+      <div class="card"><h3>Команда работает вразнобой</h3><p>У сильных продавцов сделки идут, у остальных «клиент думает». Единой технологии и дисциплины нет.</p></div>
+      <div class="card"><h3>Обучение не меняет результат</h3><p>Тренинги проходят, но никто не связывает их с конкретными ошибками в звонках и динамикой показателей.</p></div>
+      <div class="card" style="background:rgba(204,149,91,.09);border:2px solid var(--gold)"><h3>Что нужно на самом деле</h3><p>Руководитель, который каждый день работает с планом, цифрами и людьми, а не разовые советы.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ЭТО -->
+<section id="chto">
+  <div class="wrap">
+    <span class="label">Что это и чем не является</span>
+    <h2>Это руководитель вашего отдела продаж, только не в штате</h2>
+    <p class="lead" style="max-width:74ch">Эксперт Фактора Продаж приходит в отдел как РОП. Он не продаёт вместо вашей команды и не собирает клиентскую базу. Он руководит менеджерами: ставит задачи, проверяет работу, обучает и держит в фокусе план. Перед проектом эксперт проходит аттестацию по функциям руководителя, а за ним закреплён руководитель группы, поэтому работа не зависит от одного человека.</p>
+    <div class="panels">
+      <div class="panel on"><h3>РОП на аутсорсе берёт на себя</h3><ul>
+        <li>План, декомпозицию и план-факт</li>
+        <li>Планёрки, поддержку и постановку задач</li>
+        <li>Контроль CRM, звонков, сделок и отчётов</li>
+        <li>Обучение и индивидуальные разборы</li>
+        <li>Нефинансовую мотивацию и дисциплину</li></ul></div>
+      <div class="panel off"><h3>Вы оставляете за собой</h3><ul>
+        <li>Продукт, цены и решения по бизнесу</li>
+        <li>Финансовую мотивацию менеджеров</li>
+        <li>Продажи силами вашей команды</li>
+        <li>Стратегические решения собственника</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ОФФЕР 5 функций -->
+<section class="warm">
+  <div class="wrap">
+    <span class="label">Что входит</span>
+    <h2>Пять функций РОПа, которые перестают лежать на собственнике</h2>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><div class="num">01</div><h3>Планирование</h3><p>РОП раскладывает план отдела на показатели менеджеров, ведёт план-факт и показывает, почему отдел отстаёт.</p></div>
+      <div class="card"><div class="num">02</div><h3>Организация</h3><p>Каждый день начинается с планёрки. Менеджеры получают поддержку в чате, а CRM остаётся рабочим инструментом, а не обязанностью для отчёта.</p></div>
+      <div class="card"><div class="num">03</div><h3>Контроль</h3><p>РОП проверяет сделки и звонки, сопоставляет их с CRM и операционным отчётом, разбирает отклонения. У менеджера есть конкретное следующее действие.</p></div>
+      <div class="card"><div class="num">04</div><h3>Обучение</h3><p>Групповые занятия и индивидуальные разборы строятся вокруг реальных ошибок команды. РОП проверяет, как менеджер применяет новый подход.</p></div>
+      <div class="card"><div class="num">05</div><h3>Нефинансовая мотивация</h3><p>Планёрки, обратная связь и личные разговоры держат темп и дисциплину. Оклады и проценты остаются в вашей зоне.</p></div>
+      <div class="card" style="display:flex;align-items:center;justify-content:center;background:var(--dark);color:#fff"><a href="#cta" class="btn">Записаться на диагностику</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТРОЛЬ -->
+<section id="kontrol">
+  <div class="wrap">
+    <span class="label">Прозрачность</span>
+    <h2>РОП видит отдел не по ощущениям, а по работе менеджеров</h2>
+    <p class="lead" style="max-width:74ch">Удалённый формат не означает дистанцию от отдела. Руководитель видит CRM, операционный отчёт, записи звонков и регулярно разговаривает с командой.</p>
+    <table class="rhythm">
+      <thead><tr><th>Ритм</th><th>Что делает РОП</th><th>Что получает собственник</th></tr></thead>
+      <tbody>
+        <tr><td>Каждый день</td><td>Планёрка, контроль CRM и операционного отчёта, поддержка менеджеров</td><td>Команда не остаётся без руководителя</td></tr>
+        <tr><td>Каждую неделю</td><td><ul><li>Аудит звонков и сделок, разбор структуры переговоров</li><li>Аналитическая записка: результаты недели и точки роста</li><li>Встреча с разбором цифр, гипотезами и задачами</li><li>Групповое обучение по слабым зонам</li><li>Индивидуальные координации с менеджерами</li></ul></td><td>Понятные причины просадок и план действий</td></tr>
+        <tr><td>Каждый месяц</td><td><ul><li>Отчёт собственнику по итогам месяца</li><li>Встреча по результатам и плану на следующий период</li><li>Декомпозиция и согласование нового плана продаж</li><li>Планирование развития отдела</li></ul></td><td>Картина по отделу и согласованные приоритеты</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">Если менеджер не делает следующий шаг или конверсия проседает, это видно в течение недели. Не после того, как месяц уже потерян.</div>
+  </div>
+</section>
+
+<!-- ЭТАПЫ -->
+<section class="alt" id="etapy">
+  <div class="wrap">
+    <span class="label">Как работаем</span>
+    <h2>Путь от первого разговора до управления отделом</h2>
+    <div class="steps">
+      <div class="step"><div class="wm">1</div><h3>Бесплатная диагностика</h3><p>Разберём, кто сейчас управляет отделом, как устроена воронка, где теряются деньги и готова ли команда к внешнему РОПу.</p><div class="res">Результат: понимаете, подойдёт ли формат и какой объём работ нужен.</div></div>
+      <div class="step"><div class="wm">2</div><h3>Аудит и дорожная карта</h3><p>Изучим продукт, показатели, CRM, звонки и процессы. Соберём дорожную карту с гипотезами роста и приоритетами.</p><div class="res">Результат: есть точка отсчёта и план развития. Аудит входит в стоимость.</div></div>
+      <div class="step"><div class="wm">3</div><h3>Ставим РОПа в отдел</h3><p>Если CRM есть, эксперт подключается после аудита. Если нет, организуем внедрение CRM и телефонии, до двух недель.</p><div class="res">Результат: команда понимает, кто руководит и что считается результатом.</div></div>
+      <div class="step"><div class="wm">4</div><h3>Регулярное управление</h3><p>РОП ведёт отдел каждый день, улучшает работу по итогам недели и обновляет план каждый месяц.</p><div class="res">Минимальный срок работы, 3 месяца.</div></div>
+    </div>
+    <div style="text-align:center;margin-top:34px"><a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a></div>
+  </div>
+</section>
+
+<!-- КТО ВЕДЁТ -->
+<section>
+  <div class="wrap">
+    <span class="label">Кто ведёт проект</span>
+    <h2>У отдела есть РОП и подстраховка на случай замены</h2>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>Ваш РОП на аутсорсе</h3><p>Эксперт по развитию отдела продаж исполняет роль руководителя. Аттестован по пяти функциям РОПа и работает по технологии Фактора Продаж.</p></div>
+      <div class="card"><h3>Руководитель группы</h3><p>Куратор контролирует качество работы и хранит контекст проекта. Если эксперт выбывает, другой специалист подключается без перерыва: есть дорожная карта, отчёты и регламенты.</p></div>
+      <div class="card" style="background:rgba(204,149,91,.09);border:2px solid var(--gold)"><h3>Доказательство</h3><p>Фактор Продаж построил более 300 отделов продаж и использует запатентованную технологию управления продажами.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КЕЙСЫ -->
+<section class="alt" id="keysy">
+  <div class="wrap">
+    <span class="label">Кейсы</span>
+    <h2>Цифры из отделов, где начали управлять продажами регулярно</h2>
+    <div style="margin-top:28px">
+      <div class="case">
+        <div><h3>Поставщик промышленного оборудования</h3>
+          <p><b>Проблема:</b> база в личных чатах, CRM нет, продажи трудно прогнозировать.</p>
+          <p><b>Что сделали:</b> ввели квалификацию лидов, скрипты под возражения «в Китае дешевле» и «нет бюджета», закрепили следующий шаг в CRM после каждого звонка.</p></div>
+        <div class="big"><div class="n">+64%</div><div class="c">средний чек, выручка +8,4% без новых сотрудников</div></div>
+      </div>
+      <div class="case">
+        <div><h3>Производитель промышленных редукторов</h3>
+          <p><b>Проблема:</b> поток заявок вырос, менеджеры упрощали переговоры и закрывали сделки слишком рано.</p>
+          <p><b>Что сделали:</b> контролировали структуру разговоров и квалификацию, возвращали в работу несправедливо закрытые сделки, проверяли попытку продажи в каждом звонке.</p></div>
+        <div class="big"><div class="n">×6</div><div class="c">перевыполнение плана, конверсия 29% → 45%</div></div>
+      </div>
+      <div class="case">
+        <div><h3>Поставщик промышленного оборудования</h3>
+          <p><b>Проблема:</b> обучение РОПа и команды не было связано с цифрами отдела.</p>
+          <p><b>Что сделали:</b> запустили регулярные занятия, разборы конкретных звонков и план обучения, привязанный к результативности менеджеров.</p></div>
+        <div class="big"><div class="n">11% → 19,6%</div><div class="c">конверсия, план перевыполнен</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px"><a href="#cta" class="btn">Записаться на бесплатную диагностику отдела</a></div>
+  </div>
+</section>
+
+<!-- ВОЗРАЖЕНИЯ / штат vs аутсорс -->
+<section>
+  <div class="wrap">
+    <span class="label">Найм или аутсорс</span>
+    <h2>Найм закрывает вакансию. РОП на аутсорсе закрывает функцию управления</h2>
+    <div class="diff">
+      <div class="diff-row diff-head"><div class="l">Штатный РОП</div><div class="r">РОП на аутсорсе</div></div>
+      <div class="diff-row"><div class="l">Поиск занимает от одного до трёх месяцев</div><div class="r">Подключение примерно за неделю, если CRM уже есть</div></div>
+      <div class="diff-row"><div class="l">Качество кандидата видно только в работе</div><div class="r">Эксперт проходит аттестацию по пяти функциям РОПа</div></div>
+      <div class="diff-row"><div class="l">При увольнении знания уходят с человеком</div><div class="r">Контекст остаётся в дорожной карте, отчётах и регламентах</div></div>
+      <div class="diff-row"><div class="l">Замену нужно искать заново</div><div class="r">Руководитель группы организует замену без паузы</div></div>
+      <div class="diff-row"><div class="l">Обычно 160–220 тыс ₽ в месяц</div><div class="r">От 90 000 ₽ в месяц, в зависимости от размера команды</div></div>
+    </div>
+    <p class="lead" style="margin-top:22px;font-weight:600;color:var(--dark)">Мы не подбираем человека в ваш штат. Мы берём на себя работу руководителя отдела продаж.</p>
+  </div>
+</section>
+
+<!-- ЦЕНА -->
+<section class="warm" id="cena">
+  <div class="wrap">
+    <div class="price">
+      <span class="label" style="color:var(--gold-l)">Форматы и цена</span>
+      <h2 style="color:#fff">Полноценный РОП для отдела продаж</h2>
+      <div class="big">от 90 000 ₽ / мес</div>
+      <p>В стоимость входит аудит отдела, ежедневное управление командой, контроль качества, обучение менеджеров, работа с планом и регулярная отчётность. Точную стоимость определим на бесплатной диагностике: она зависит от масштаба отдела и задач, которые нужно закрыть в первую очередь.</p>
+      <a href="#cta" class="btn">Получить расчёт для своего отдела</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:860px">
+    <span class="label">FAQ</span>
+    <h2>Что важно знать до подключения</h2>
+    <div class="faq" style="margin-top:26px">
+      <details><summary>Вы будете управлять отделом или только давать рекомендации?</summary><div class="a">Будем управлять. РОП ведёт планёрки, ставит задачи, работает с менеджерами, контролирует CRM и сделки, обучает команду. Отчёты и аналитика помогают принимать решения, но не заменяют работу руководителя.</div></details>
+      <details><summary>У нас уже есть РОП. Можем подключиться?</summary><div class="a">Да. На диагностике определим, должен ли внешний РОП взять отдел под управление или усилить действующего руководителя контролем, аналитикой и обучением команды.</div></details>
+      <details><summary>Можно начать без CRM?</summary><div class="a">Да, если у вас есть действующий отдел продаж. Внедрим CRM и IP-телефонию, затем подключим эксперта к управлению.</div></details>
+      <details><summary>Что произойдёт, если эксперт уйдёт?</summary><div class="a">Проект не останется без руководителя. За ним закреплён куратор, а рабочий контекст сохранён в документах. Другой эксперт подключится без остановки регулярных работ.</div></details>
+      <details><summary>Вы гарантируете рост продаж?</summary><div class="a">Мы не обещаем рост, который зависит не только от РОПа. Эксперт отвечает за управляемые части процесса: план, действия менеджеров, качество переговоров, конверсию и дисциплину в CRM. Динамику показываем в регулярных отчётах.</div></details>
+      <details><summary>Что входит в постоянную стоимость?</summary><div class="a">Аудит, ежедневное управление, контроль качества, обучение менеджеров, отчётность и работа с планом.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ФИНАЛЬНЫЙ CTA -->
+<section class="alt" id="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Перестаньте закрывать работу РОПа своими силами</h2>
+      <p>На бесплатной диагностике вы поймёте, что происходит с отделом сейчас, какой РОП вам нужен и как начнётся подключение. Если формат не подходит, скажем об этом прямо.</p>
+      <form class="form" onsubmit="return false">
+        <input type="text" placeholder="Ваше имя" aria-label="Имя">
+        <input type="tel" placeholder="Телефон" aria-label="Телефон">
+        <button type="submit" class="btn">Записаться на диагностику</button>
+      </form>
+      <div class="finenote">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных. Без обязательств.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo" style="color:#fff">Фактор<b style="color:var(--gold-l)">Продаж</b></div>
+    <div>Построение отделов продаж под ключ · РОП на аутсорсе · 200+ проектов</div>
+    <div><a href="https://factor-prodazh.ru/">factor-prodazh.ru</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
