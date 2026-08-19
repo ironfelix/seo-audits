@@ -113,6 +113,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 .item.frozen { opacity: .5; background: #fafaf9; }
 .rev-note { margin-top: 9px; padding: 8px 11px; background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; font-size: 12.5px; line-height: 1.55; color: #14504f; }
 .rev-note b { color: var(--teal); }
+.ledger { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-bottom: 18px; }
+.ledger h3 { font-size: 14px; margin-bottom: 14px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.lg-stamp { font-size: 11px; font-weight: 500; color: var(--muted2); }
+.lg-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.lg-col-done { border-right: 1px solid var(--border); padding-right: 20px; }
+.lg-head { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.lg-col-done .lg-head { color: var(--green); }
+.lg-col-left .lg-head { color: var(--red); }
+.lg-sub { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 12px 0 5px; }
+.ledger ul { list-style: none; margin: 0; padding: 0; }
+.ledger li { font-size: 12.5px; line-height: 1.5; padding: 2px 0; color: var(--text2, var(--muted)); }
+.ledger li b { display: inline-block; min-width: 26px; color: var(--text); font-weight: 700; }
+.ledger li i { color: var(--muted2); font-style: normal; font-size: 11.5px; }
+.ledger li.lg-done { color: var(--muted); }
+.ledger li.lg-part { color: var(--text); }
+.lg-frozen li { color: var(--muted2); }
+@media (max-width: 820px) { .lg-cols { grid-template-columns: 1fr; } .lg-col-done { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 14px; } }
 .rev-banner { background: var(--dark); color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
 .rev-banner h3 { font-size: 14px; margin-bottom: 8px; }
 .rev-banner p { font-size: 13px; color: rgba(255,255,255,.62); margin-bottom: 6px; }
@@ -207,6 +224,22 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     <div class="summary-card"><div class="num num-red">22</div><div class="lbl">Открыто</div></div>
     <div class="summary-card"><div class="num num-blue">6</div><div class="lbl">❄️ Заморожено</div></div>
     <div class="summary-card"><div class="num num-teal">52</div><div class="lbl">Всего задач</div></div>
+  </div>
+
+  <div class="ledger">
+    <h3>Сводка: что сделано и что осталось <span class="lg-stamp">сгенерировано из карточек ниже · 19.08 вечер</span></h3>
+    <div class="lg-cols">
+      <div class="lg-col lg-col-done">
+        <div class="lg-head">✅ Сделано — 17</div>
+        <div class="lg-sub">19.08 — эта сессия · 9</div><ul><li class="lg-done"><b>И1</b> ✅ Каннибализация-чек по двум корням и двум доменам</li><li class="lg-done"><b>И2</b> ✅ Дожим как формат — режим reanimation в /page-optimizer</li><li class="lg-done"><b>N3</b> ✅ Google Docs OAuth re-auth</li><li class="lg-done"><b>N4</b> ✅ Синхронизировать опубликованную методологию с реализацией</li><li class="lg-done"><b>8</b> ✅ Locked H2 план в /researcher → pipeline.md</li><li class="lg-done"><b>40</b> ✅ Form-function check: AI-обороты без содержания vs с содержанием</li><li class="lg-done"><b>43</b> ✅ Burstiness check в /quality-gate</li><li class="lg-done"><b>44</b> ✅ R-HLS морфологические маркеры в /quality-gate</li><li class="lg-done"><b>37</b> ✅ Orion judge — meta-AI агент для MEASURE (/tracker)</li></ul><div class="lg-sub">12.06 — спринт quick wins · 6</div><ul><li class="lg-done"><b>N1</b> ✅ Каннибализация-чек в /researcher</li><li class="lg-done"><b>1</b> ✅ SpeakableSpecification в /publisher</li><li class="lg-done"><b>3</b> ✅ AEO precheck в /quality-gate (ручной, без API)</li><li class="lg-done"><b>5</b> ✅ Information Gain check в /quality-gate</li><li class="lg-done"><b>6</b> ✅ JS-SEO валидация в /publisher</li><li class="lg-done"><b>7</b> ✅ robots.txt — AI-краулеры явно разрешены</li></ul><div class="lg-sub">ранее · 2</div><ul><li class="lg-done"><b>4</b> ✅ Тире-лимит gate как hard block в /quality-gate</li><li class="lg-done"><b>39</b> ✅ Исследование моделей для /writer — что пишет хорошо через API</li></ul>
+      </div>
+      <div class="lg-col lg-col-left">
+        <div class="lg-head">Осталось — 22 открытых + 7 частично</div>
+        <div class="lg-sub">🔴 Сейчас — контент · 2</div><ul><li class="lg-part"><b>И4</b> 🟡 Конверсия — заявки и путь инфо → услуга <i>🟡 блокер снят, дожим остался</i></li><li class=""><b>И3</b> ○ Клиентские ИИ-паттерны crmgroup → в блокирующую М1б</li></ul><div class="lg-sub">🔑 Инфраструктура — за Иваном · 1</div><ul><li class=""><b>И7</b> ○ Ротировать FTP-пароли и убрать мёртвый доступ</li></ul><div class="lg-sub">Гигиена, когда дойдут руки · 10</div><ul><li class=""><b>И5</b> ○ Свести два разошедшихся гейта качества</li><li class=""><b>И6</b> ○ М25/М26 — написать скрипт шинглов</li><li class=""><b>И8</b> ○ Разгрести незакоммиченную реструктуризацию 01-crmgroup</li><li class="lg-part"><b>26</b> 🟡 page-optimizer — чтение action items из pipeline.md <i>🟡 частично — есть баг</i></li><li class="lg-part"><b>28</b> 🟡 Yandex Webmaster OAuth token для /tracker <i>🟡 частично — host_id на Фактор</i></li><li class="lg-part"><b>13</b> 🟡 Citation integrity в /fact-checker <i>🟡 частично</i></li><li class="lg-part"><b>36</b> 🟡 DataForSEO near-miss scoring в PLAN (/researcher) <i>🟡 частично — без скоринга</i></li><li class="lg-part"><b>2</b> 🟡 Schema stack expansion — Review / ItemList / BreadcrumbList / Person <i>🟡 частично — только FAQPage</i></li><li class="lg-part"><b>11</b> 🟡 Internal linking — entity-based anchors + bidirectional <i>🟡 частично</i></li><li class=""><b>38</b> ○ LEARN → PLAN feedback loop — замкнуть петлю (/tracker → /researcher)</li></ul><div class="lg-sub">Остальное из старого бэклога · 16</div><ul><li class=""><b>9</b> ○ Prompt research artifact — prompts.md</li><li class=""><b>10</b> ○ Entity-SEO — @id consistency + mainEntityOfPage</li><li class=""><b>14</b> ○ vc.ru / Habr — дистрибуция как отдельный шаг пайплайна</li><li class=""><b>18</b> ○ AEO pre-publication scoring</li><li class=""><b>19</b> ○ Поведенческие факторы (ПФ) мониторинг через Метрику</li><li class=""><b>31</b> ○ Brand Persona (архетип) — персонаж вместо списка правил</li><li class=""><b>32</b> ○ AI Visibility Score — единая метрика присутствия в AI</li><li class=""><b>35</b> ○ Thought Leadership формат в /writer — cross-disciplinary lens + coined concepts</li><li class=""><b>41</b> ○ Earned media / Digital PR pipeline</li><li class=""><b>42</b> ○ Platform-specific citation strategy</li><li class=""><b>22</b> ○ Content freshness calendar в /page-optimizer</li><li class=""><b>23</b> ○ Share of Voice — операционализация 30-50 prompts × платформы</li><li class=""><b>25</b> ○ Topical authority map в /researcher</li><li class=""><b>27</b> ○ Corpus brand voice из парсинга опубликованных статей</li><li class=""><b>33</b> ○ Per-platform mention counts — абсолютные числа по платформам</li><li class=""><b>34</b> ○ AI question drift detection — автообновление при смене фрейма ответов</li></ul>
+        <div class="lg-sub">❄️ Заморожено · 6</div>
+        <ul class="lg-frozen"><li>N2, 15, 17, 20, 21, 24 — Global-трек и продуктизация под клиента</li></ul>
+      </div>
+    </div>
   </div>
 
   <div class="rev-banner">
