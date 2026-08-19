@@ -104,6 +104,19 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 .item.done .item-num { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
 .tag-done { background: var(--green); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
 .tag-new { background: var(--red); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.tag-type-conv { background: rgba(192,16,32,.10); color: var(--red); }
+.tag-type-geo { background: var(--teal-light); color: var(--teal); }
+.tag-part { background: var(--gold); color: #3a2a08; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.tag-frozen { background: #8b8b8b; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.item.part { background: var(--gold-light); border-color: var(--gold-border); }
+.item.part .item-num { background: var(--gold-light); color: #8a6410; border: 1px solid var(--gold-border); }
+.item.frozen { opacity: .5; background: #fafaf9; }
+.rev-note { margin-top: 9px; padding: 8px 11px; background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; font-size: 12.5px; line-height: 1.55; color: #14504f; }
+.rev-note b { color: var(--teal); }
+.rev-banner { background: var(--dark); color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
+.rev-banner h3 { font-size: 14px; margin-bottom: 8px; }
+.rev-banner p { font-size: 13px; color: rgba(255,255,255,.62); margin-bottom: 6px; }
+.rev-banner .crit { color: #ffb3b3; }
 .item-right { flex-shrink: 0; }
 .effort-bar { display: flex; gap: 3px; justify-content: flex-end; }
 .dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -162,12 +175,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <div class="hero">
   <div class="wrap">
     <h1>Pipeline Backlog — AI Content System</h1>
-    <p>Доработки пайплайна · RU рынок + Global · обновлено 2026-06-12 · roadmap: ai-seo/ROADMAP.md</p>
+    <p>Инхаус: crmgroup.ru + emailsoldiers.ru · обновлено 2026-08-19 · roadmap: ai-seo/ROADMAP.md</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>47</b> задач</div>
-      <div class="hero-chip"><b style="color:#7ee2a8">10 ✅</b> сделано</div>
+      <div class="hero-chip"><b>50</b> задач</div>
+      <div class="hero-chip"><b style="color:#7ee2a8">13 ✅</b> сделано</div>
+      <div class="hero-chip"><b style="color:#e8a838">6 🟡</b> частично</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
-      <div class="hero-chip"><b>Global</b> Google · ChatGPT · Perplexity</div>
+      <div class="hero-chip" style="opacity:.5"><b>Global</b> заморожено</div>
     </div>
   </div>
 </div>
@@ -175,9 +189,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">41</span></button>
-    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 RU рынок <span class="cnt">17</span></button>
-    <button class="tab-btn" onclick="switchTab('global')">🌐 Global <span class="cnt">22</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">50</span></button>
+    <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 Инхаус RU <span class="cnt">17</span></button>
+    <button class="tab-btn" onclick="switchTab('global')">🌐 Global (заморожено) <span class="cnt">22</span></button>
   </div>
 </div>
 
@@ -188,12 +202,123 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <div class="tab-panel active" id="tab-all">
 
   <div class="summary-row">
-    <div class="summary-card"><div class="num num-green">10</div><div class="lbl">✅ Сделано</div></div>
-    <div class="summary-card"><div class="num num-red">3</div><div class="lbl">P1 — быстро</div></div>
-    <div class="summary-card"><div class="num num-gold">22</div><div class="lbl">P2 — средние</div></div>
-    <div class="summary-card"><div class="num num-blue">12</div><div class="lbl">P3 — будущее</div></div>
-    <div class="summary-card"><div class="num num-teal">47</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-green">13</div><div class="lbl">✅ Сделано</div></div>
+    <div class="summary-card"><div class="num num-gold">6</div><div class="lbl">🟡 Частично</div></div>
+    <div class="summary-card"><div class="num num-red">25</div><div class="lbl">Открыто</div></div>
+    <div class="summary-card"><div class="num num-blue">6</div><div class="lbl">❄️ Заморожено</div></div>
+    <div class="summary-card"><div class="num num-teal">50</div><div class="lbl">Всего задач</div></div>
   </div>
+
+  <div class="rev-banner">
+    <h3>🔄 Ревизия 19.08.2026 — бэклог сведён с кодом и переставлен под инхаус</h3>
+    <p>Страница не менялась с 12.06. За два месяца скиллы уехали вперёд (quality-gate / editor / writer / publisher правились 21.07), а заказчик пайплайна сменился: не продуктизация под клиента, а <b style="color:#fff">свои два сайта — crmgroup.ru и emailsoldiers.ru</b>.</p>
+    <p><b style="color:#7ee2a8">Закрыто по факту:</b> #8 locked H2, #40 form-function, #43 burstiness, #44 R-HLS, N3 OAuth. <b style="color:#e8a838">Переведено в частично:</b> #2, #11, #13, #26, #28, #36. <b style="color:#ffb3b3">Удалено:</b> #45 (отклонено 12.06), #12 и #16 (противоречат собственному ресёрчу — детекторы врут на русском, «уникальность 90%+» умерла).</p>
+    <p><b style="color:#fff">Главная числовая правка:</b> в quality-gate сейчас <b style="color:#fff">28 проверок</b> (18 блокирующих + 2 мягких + 8 WARN), а не 19.</p>
+    <p class="crit"><b>Чего в бэклоге не было вообще:</b> ни одной задачи про конверсию (0,18%) и ни одной про дожим существующей страницы — а это ровно то, чем мы занимаемся с 13.08. Добавлены секцией «Инхаус» ниже.</p>
+    <p class="crit">⚠️ Инфраструктура: GSC-токен выпущен 13.08, рефреш пока проходит. Если приложение в Cloud Console всё ещё Testing — умрёт ~20–21.08 и утащит <code>seo_daily</code> вместе с замерами к чекпоинту 10.09.</p>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-title">🔴 Инхаус crmgroup + emailsoldiers — добавлено ревизией 19.08</div>
+
+    <div class="item p1">
+      <div class="item-num">И1</div>
+      <div class="item-body">
+        <div class="item-title">Каннибализация-чек по двум корням и двум доменам <span class="tag-new">NEW</span></div>
+        <div class="item-desc">Проект живёт в двух корнях: <code>ai-seo/{crmgroup,emailsoldiers}/</code> (конфиги с Yoast-ключами, author_id, ролями TOFU/MOFU) и <code>01-crmgroup/</code> (вся живая работа с 14.08). Шаг 0.6 гребёт <code>&lt;project&gt;/articles/*/pipeline.md</code> — из 01-crmgroup он <b>не видит</b> <code>ai-seo/crmgroup/articles/lidogeneraciya-dlya-biznesa/</code> (висит с 09.07). Ровно на «лидогенерации» и на ROI мы и напоролись: N1 реализован и проверяет половину.</div>
+        <div class="item-detail">Шаг 0.6 → grep по <b>обоим</b> деревьям + WP REST search по <b>обоим доменам</b>. Зашить правило 18.08: одна тема живёт на одном сайте, второй ставит ссылку. Роли перенести в <code>01-crmgroup/project.md</code>: crmgroup = стратегия и деньги, EMS = каналы и практика. Плюс <code>host_id</code> обоих доменов — иначе /tracker молча опрашивает Фактор. Разобрать зависшую lidogeneraciya (40 дней).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/researcher</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">И2</div>
+      <div class="item-body">
+        <div class="item-title">Дожим как формат — режим <code>reanimation</code> в /page-optimizer <span class="tag-new">NEW</span></div>
+        <div class="item-desc">Вся работа с 13.08 — реанимация существующих страниц (лидогенерация, инкрементальность, CDP, юнит-экономика, омниканальность, 4 страницы AEO на EMS), а пайплайн и бэклог заточены под новую статью. Отработанные грабли живут в памяти, не в скилле.</div>
+        <div class="item-detail"><b>WP-механика:</b> Gutenberg только по <code>content.raw</code> (<code>?context=edit</code>); глоссарии EMS — классический редактор; CPT базы знаний <code>rest_base=academy</code>; тайтлы через Yoast-карты (<code>ems-seo-overrides.php</code> / <code>crm-seo-overrides.php</code>); <code>&lt;details&gt;</code> не внутри <code>wp:heading</code> — WP режет; патч якорными заменами с проверкой «все ли сработали». <b>Контент:</b> лид-определение первым абзацем (первые 30% = зона AI-цитат), H3→H2, FAQ ≥4 + FAQPage JSON-LD, решенческий блок, которого нет у топ-10. <b>Два правила отбора:</b> наша страница уже в топ-50 → дожимаем её, а не поднимаем второй URL; дожимая чужой текст — верифицируем его утверждения, а не только дописываем своё (на CDP поймали «исключает дублирование профилей» и цену REES46 из 2022).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/page-optimizer</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">И3</div>
+      <div class="item-body">
+        <div class="item-title">Клиентские ИИ-паттерны crmgroup → в блокирующую М1б <span class="tag-new">NEW</span></div>
+        <div class="item-desc">М1б (<code>quality-gate/SKILL.md:69-76</code>) перечисляет <b>класс A Фактора</b>. Наш <code>01-crmgroup/data/ai-patterns-client-flagged.md</code> от 18.08 — про другое: рефрен «честный X», приставка «— гайд NNNN», тире в H1, структурные кальки с английского. Их читают writer и editor как «учти», а gate не блокирует — регрессия пройдёт молча.</div>
+        <div class="item-detail">Развести М1б на проектные наборы: читать <code>&lt;project&gt;/data/ai-patterns-client-flagged.md</code> как источник правил, а не хардкодить класс A Фактора. Для калек — тест обратного перевода («если по-английски звучит глаже, это калька»). Заодно поправить <code>editor/SKILL.md:63</code>: там для crmgroup описан третий, уже устаревший набор.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-skill">/editor</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~1 час</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">И4</div>
+      <div class="item-body">
+        <div class="item-title">Конверсия — заявки и путь инфо → услуга <span class="tag-new">NEW</span></div>
+        <div class="item-desc">7 795 посетителей → 14 достижений цели = <b>0,18%</b> за 90 дней при норме 1–2%. Ни одна из 47 задач бэклога не про конверсию: он весь про приток, а узкое место — на выходе. Это дыра в рамке, а не невыполненная задача.</div>
+        <div class="item-detail">⛔ <b>Сначала закрыть блокер:</b> упали ли <b>заявки</b> вместе с трафиком — не измерено (цели Метрики созданы в 2026, Битрикс несопоставим, мапинг <code>SOURCE_ID</code> менялся 14.07). Без этого не с чем сравнивать. Дальше: (1) замерить, сдвинула ли перелинковка 21.07 долю входов на коммерческие (было 4,6%), счётчики 84993793 и 24130336 (EMS — старый API <code>yaCounter24130336</code>); (2) в /seo-optimizer вместо «2–4 внутренние ссылки» — проверка «есть ли у инфо-статьи путь в услугу и какой»; (3) разобрать <code>/email-marketing-pod-klyuch/</code> — 388 польз. за 90 дней → 2 цели (0,5%).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/seo-optimizer</span>
+          <span class="tag tag-type-conv">Конверсия</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">И5</div>
+      <div class="item-body">
+        <div class="item-title">Свести два разошедшихся гейта качества <span class="tag-new">NEW</span></div>
+        <div class="item-desc"><code>/quality-gate</code> — 28 проверок. <code>01-crmgroup/scripts/text_gate.py</code> — 7 механических (запрещённые обороты, иероглифы, тире, длина абзацев, FAQ 2–4 предложения, предложения ≤30 слов). Пересечение неполное в обе стороны: text_gate не знает про burstiness и морфологию, quality-gate не знает про наши обязательные WP-блоки. Статья проходит один гейт и не проходит другой.</div>
+        <div class="item-detail">Решить, кто источник истины. Разумный вариант: <code>text_gate.py</code> остаётся быстрым pre-flight, <code>/quality-gate</code> — полным прогоном, но списки должны быть вложенными, а не пересекающимися. В quality-gate добавить проектный блок обязательных блоков crmgroup: тултипы <code>span.explain</code> ≥5, <code>num-list</code> вместо <code>&lt;ol&gt;</code>, TOC-сайдбар, лид <code>is-lead</code>.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p2">
+      <div class="item-num">И6</div>
+      <div class="item-body">
+        <div class="item-title">М25/М26 — написать скрипт шинглов <span class="tag-new">NEW</span></div>
+        <div class="item-desc"><code>quality-gate/SKILL.md:285</code> описывает мини-скрипт (4-граммы, Жаккар), а кода в <code>ai-seo/scripts/</code> нет. Сквозные повторы и «FAQ пересказывает тело» считаются вручную — при батче проскочат.</div>
+        <div class="item-detail">Реализовать по спеке, без зависимостей: нормализация (lower, убрать пунктуацию), 4-граммы по словам, Жаккар между предложениями из <b>разных</b> секций (порог 0,6) и FAQ↔тело (0,5). Вывести пары ≥ порога с цитатами и §. Положить рядом с <code>text_quality_check.py</code>.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/quality-gate</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-both">Both</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+  </div>
+
 
   <!-- NEW: ревизия 12.06 -->
   <div class="section-gap">
@@ -215,28 +340,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p1">
-      <div class="item-num">N2</div>
-      <div class="item-body">
-        <div class="item-title">Синхронизация company-context.md с live /case/ <span class="tag-new">NEW</span></div>
-        <div class="item-desc">Fact-checker дважды ловил расхождения цифр кейсов с live-страницами (7 Прудов: CV 3→32 vs live 20→50%; редукторы: +139% vs live «план ×6»). Источник данных для /writer гниёт — каждый рассинхрон = риск reader-burn по клику.</div>
-        <div class="item-detail">Пройти по всем кейсам в <code>factor/data/company-context.md</code>, сверить цифры с live factor-prodazh.ru/case/, исправить. Добавить в файл дату последней сверки. Повторять при каждом батче (или перенести цифры кейсов в отдельный файл с автосверкой).</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">data</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-ru">RU</span>
-          <span class="tag tag-effort">~2 часа</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
-    <div class="item p1">
+    <div class="item p1 done">
       <div class="item-num">N3</div>
       <div class="item-body">
-        <div class="item-title">Google Docs OAuth re-auth <span class="tag-new">BLOCKER</span></div>
+        <div class="item-title">Google Docs OAuth re-auth <span class="tag-done">✅ 19.08 · токен живой</span></div>
         <div class="item-desc">Токен <code>invalid_grant</code> — 12 статей батча 11.06 созданы в WP без Google Docs, клиент не может ревьюить. Блокирует шаг ревью пайплайна.</div>
         <div class="item-detail">Известная процедура: OAuth URL из credentials.json → code от пользователя → обмен через urllib. Перед этим <code>pkill -f "google-docs/build/server.js"</code> (старые процессы держат истёкший токен).</div>
+        <div class="rev-note">Ревизия 19.08: закрыто по факту — рефреш токена проходит, ресёрч-репорты с 19.08 уезжают в Google Docs (CDP, юнит-экономика).</div>
         <div class="item-meta">
           <span class="tag tag-skill">инфраструктура</span>
           <span class="tag tag-both">Both</span>
@@ -252,6 +364,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-title">Синхронизировать опубликованную методологию с реализацией <span class="tag-new">NEW</span></div>
         <div class="item-desc">Quality-gate вырос с 15 до 19 метрик (12.06), у publisher появились Speakable, schema-стек и AI-предпроверки. Страница agentiq-reviews/ai-seo-pipeline/ и PIPELINE_ARCHITECTURE.md описывают старую версию (там же /fact-checker и /tracker всё ещё «создать»).</div>
         <div class="item-detail">Обновить: agentiq/pages/ai-seo-pipeline/index.html (17 метрик → 19, новые шаги publisher) + ai-seo/PIPELINE_ARCHITECTURE.md (статусы скиллов ✅). Деплой на github.io.</div>
+        <div class="rev-note">🟡 Ревизия 19.08: выполняется этой правкой. Осталось: <code>ai-seo/PIPELINE_ARCHITECTURE.md</code> (v2.0 от 13.05 пишет «создать» про существующие /fact-checker, /quality-gate, /tracker) и <code>ai-seo/ROADMAP.md</code> (#26 числится невыполненным, хотя закрыт 07.07).</div>
         <div class="item-meta">
           <span class="tag tag-skill">docs</span>
           <span class="tag tag-both">Both</span>
@@ -265,7 +378,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <!-- P1 -->
   <div class="section-gap">
-    <div class="section-title">P1 — Быстрые победы · 30 мин — 3 часа каждая · ✅ закрыто 12.06</div>
+    <div class="section-title">P1 — Быстрые победы · закрыто 12.06 · сверено с кодом 19.08</div>
 
     <div class="item p1 done">
       <div class="item-num">1</div>
@@ -284,12 +397,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p1 done">
+    <div class="item p1 part">
       <div class="item-num">2</div>
       <div class="item-body">
-        <div class="item-title">Schema stack expansion — Review / ItemList / BreadcrumbList / Person <span class="tag-done">✅ 12.06</span></div>
+        <div class="item-title">Schema stack expansion — Review / ItemList / BreadcrumbList / Person <span class="tag-part">🟡 частично — только FAQPage</span></div>
         <div class="item-desc">⚠️ <b>Осторожно с generic schema:</b> Ahrefs май 2026 (1885 страниц) — добавление JSON-LD на существующие страницы даёт −4,6% в Google AI Overviews. Исключение: <b>FAQPage schema = +2,7x</b> (41% vs 15%, Relixir 2025). Приоритет: FAQPage везде. Person/BreadcrumbList — добавлять только как часть entity-стратегии, не как AIO-буст.</div>
         <div class="item-detail">Порядок внедрения: (1) FAQPage на каждой статье — единственная schema с измеримым +эффектом; (2) <code>Person</code> с полным <code>sameAs</code> (LinkedIn, X, Wikidata, ORCID) — для author credentialing chain; (3) <code>BreadcrumbList</code> + <code>@id consistency</code> — для entity-графа, не для AIO; (4) <code>Review</code> + <code>AggregateRating</code> — только если есть реальный rating.</div>
+        <div class="rev-note">Ревизия 19.08: FAQPage — полностью (<code>publisher/SKILL.md:469-474</code>). Person / BreadcrumbList / Review — только <b>политика</b> (<code>:509-511</code>), шаблонов нет. Чеклист прямо запрещает generic schema.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/publisher</span>
           <span class="tag tag-type-schema">Schema.org</span>
@@ -364,7 +478,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p1">
+    <div class="item p1 done">
       <div class="item-num">7</div>
       <div class="item-body">
         <div class="item-title">robots.txt — AI-краулеры явно разрешены <span class="tag-done">✅ 12.06 · чек в Шаге 5b, live: не заблокированы</span></div>
@@ -385,12 +499,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
   <div class="section-gap">
     <div class="section-title">P2 — Средний приоритет · 1–3 дня каждая</div>
 
-    <div class="item p2">
+    <div class="item p2 done">
       <div class="item-num">8</div>
       <div class="item-body">
-        <div class="item-title">Locked H2 план в /researcher → pipeline.md</div>
+        <div class="item-title">Locked H2 план в /researcher → pipeline.md <span class="tag-done">✅ 19.08 · researcher Шаг 6 → pipeline.md</span></div>
         <div class="item-desc">ContentOS: каждый H2 = 3 bullet что писать + источник + кейс. Сейчас /writer получает research-файл, но не детальный план на раздел. Это самый быстрый способ повысить quality на уровне черновика.</div>
         <div class="item-detail">В pipeline.md добавить секцию <code>## H2 Plan</code>. Формат: <code>### H2 заголовок</code> → <code>- Написать: [3 bullet]</code> → <code>- Источник: [url]</code> → <code>- Кейс: [цифра/факт]</code>. /writer следует плану, не отступает.</div>
+        <div class="rev-note">Ревизия 19.08: реализовано в <code>researcher/SKILL.md:523-543</code> и уже работает у нас — <code>01-crmgroup/articles/unit-ekonomika/pipeline.md:47-64</code>.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/researcher</span><span class="tag tag-skill">/writer</span>
           <span class="tag tag-type-research">Research</span>
@@ -433,12 +548,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 part">
       <div class="item-num">11</div>
       <div class="item-body">
-        <div class="item-title">Internal linking — entity-based anchors + bidirectional</div>
+        <div class="item-title">Internal linking — entity-based anchors + bidirectional <span class="tag-part">🟡 частично</span></div>
         <div class="item-desc">Сейчас «3-7 внутренних ссылок» без указания каких. Для topical authority нужно: 8-15 outbound на страницу, anchor texts описывающие сущности, bidirectional pillar↔spoke↔single. Google context2/fullLeftContext из утечки: анкор работает только если окружающий текст семантически близок.</div>
         <div class="item-detail">Добавить в /seo-optimizer: проверку anchor texts — нет ли «здесь», «подробнее», «читайте». Требовать описательные анкоры с именем сущности. Для pillar-страниц: проверять наличие bidirectional ссылок в обоих направлениях (pillar→spoke и spoke→pillar).</div>
+        <div class="rev-note">Ревизия 19.08: в seo-optimizer только количественный канон «2–4 ссылки» (<code>:139</code>). Запрет анкоров «здесь/подробнее» живёт в publisher, bidirectional — только для статических блогов, т.е. <b>для WP не работает</b>.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/seo-optimizer</span>
           <span class="tag tag-type-entity">Entity</span>
@@ -449,28 +565,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
-      <div class="item-num">12</div>
-      <div class="item-body">
-        <div class="item-title">AI-detection gate в /quality-gate</div>
-        <div class="item-desc">ContentOS: явный скор (0.28 → likely_human). Мягкий gate — если probably_ai (&gt;0.7) → вернуть в /editor с пометкой конкретных абзацев. Сейчас только правила редактора, нет автоматического скора.</div>
-        <div class="item-detail">ZeroGPT API (бесплатный tier: 100 req/день) или GPTZero API. Метрика 21: AI-detection. Если &gt;0.7 → WARN + список «AI-абзацев» для переписи. Не блокировать 0.4-0.7 (ambiguous). Выводить в отчёт.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/quality-gate</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-both">Both</span>
-          <span class="tag tag-effort">~3 часа</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
-    <div class="item p2">
+    <div class="item p2 part">
       <div class="item-num">13</div>
       <div class="item-body">
-        <div class="item-title">Citation integrity в /fact-checker</div>
+        <div class="item-title">Citation integrity в /fact-checker <span class="tag-part">🟡 частично</span></div>
         <div class="item-desc">ContentOS: семантическая сверка тезисов с источниками — 14/15 верифицированы (93.3/100). Тезис не просто упомянут, а является логической импликацией источника. Сейчас /fact-checker проверяет уровни T1/T2/T3, но не автоматически.</div>
         <div class="item-detail">Добавить в /fact-checker: для каждой сноски [источник, тезис] → WebFetch → AI-prompt: «Подтверждает ли этот текст тезис: {тезис}? YES/NO/PARTIAL + объяснение». Таблица: тезис | источник | статус | замечание. Блокировать при 2+ FAIL.</div>
+        <div class="rev-note">Ревизия 19.08: механика есть (Шаг 3.5 — HTTP-код + поиск фразы). Нет семантики YES/NO/PARTIAL и нет блока при 2+ FAIL — FAIL обрабатывается поштучно.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/fact-checker</span>
           <span class="tag tag-type-quality">Качество</span>
@@ -497,53 +600,11 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
-      <div class="item-num">15</div>
-      <div class="item-body">
-        <div class="item-title">Brand mentions monitoring в /tracker</div>
-        <div class="item-desc">Brand mentions коррелируют с AIO-цитированием 0.664 vs 0.218 у backlinks — это №1 фактор для GEO (Ahrefs 75k брендов). Топ-25% брендов по упоминаниям получают в 10x больше AIO-цитат. Сейчас /tracker не считает unlinked mentions.</div>
-        <div class="item-detail">Добавить в /tracker: (1) Google Alerts по бренду → считать monthly unlinked mentions; (2) Brand search volume в GSC как лагирующий индикатор; (3) Если mentions &lt; target → action item: «получить 5 упоминаний на [vc.ru/Habr/форумах]».</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/tracker</span>
-          <span class="tag tag-type-aeo">GEO</span>
-          <span class="tag tag-global">Global</span>
-          <span class="tag tag-effort">~3 часа</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
-    <div class="item p2">
-      <div class="item-num">16</div>
-      <div class="item-body">
-        <div class="item-title">Uniqueness check в /quality-gate</div>
-        <div class="item-desc">ContentOS: web-плагиат check (0.0). Важно при batch-публикации 19+ статей подряд — /writer может воспроизводить конкурентные тексты для смежных тем.</div>
-        <div class="item-detail">text.ru API или Яндекс антиплагиат. Метрика 22: Uniqueness. Порог: &lt;85% → WARN, &lt;70% → FAIL. Запускать как часть /quality-gate или отдельно перед batch-публикацией.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/quality-gate</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-both">Both</span>
-          <span class="tag tag-effort">~2 часа</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
-    <div class="item p2">
-      <div class="item-num">17</div>
-      <div class="item-body">
-        <div class="item-title">VS/Comparison страницы — шаблон в /writer</div>
-        <div class="item-desc">B2B SaaS comparison pages: 7.5%+ conversion vs 2-5% baseline. 51% B2B buyers начинают research в AI chatbot. VS-страницы = самый цитируемый формат в ChatGPT/Perplexity для коммерческих запросов. Backstage SEO: 25 comparison pages → 172% ROI за 36 мес.</div>
-        <div class="item-detail">Новый шаблон для /writer: (а) честная таблица сравнения включая сильные стороны конкурента, (б) use cases где конкурент лучше, (в) pricing comparison, (г) FAQPage schema с comparative questions, (д) «When to use X instead of Y»-раздел обязательный.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/writer</span>
-          <span class="tag tag-type-research">Формат</span>
-          <span class="tag tag-global">Global</span>
-          <span class="tag tag-effort">~1 день</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
     <div class="item p2">
       <div class="item-num">18</div>
@@ -567,6 +628,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-title">Поведенческие факторы (ПФ) мониторинг через Метрику</div>
         <div class="item-desc">Яндекс ПФ — приоритетный фактор ранжирования (Метрика + Браузер + клики в SERP). 1-2 недели накопления статистики для влияния. Декрементировать быстрее инкрементирования. Накрутка → потеря 90% трафика + обнуление ИКС на год.</div>
         <div class="item-detail">Добавить в /tracker: для каждой статьи через 30d — время на сайте, глубина просмотра, bounce rate из Метрики API. Сравнивать с медианой по блогу. Если bounce &gt;75% или avg session &lt;90 сек → action item в page-optimizer: «улучшить лид + добавить визуальный элемент в первые 2 экрана».</div>
+        <div class="rev-note">Ревизия 19.08: счётчики заведены и простаивают — 84993793 (crmgroup), 24130336 (EMS, старый API <code>yaCounter24130336</code>). В tracker про Метрику нет ни строчки.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/tracker</span>
           <span class="tag tag-type-aeo">ПФ</span>
@@ -665,10 +727,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
     </div>
   </div>
 
-    <div class="item p2">
+    <div class="item p2 part">
       <div class="item-num">36</div>
       <div class="item-body">
-        <div class="item-title">DataForSEO near-miss scoring в PLAN (/researcher)</div>
+        <div class="item-title">DataForSEO near-miss scoring в PLAN (/researcher) <span class="tag-part">🟡 частично — без скоринга</span></div>
         <div class="item-desc">Mokka PLAN stage: Planner скорит темы из GSC + DataForSEO — search volume, near-miss ranks, competitor gaps — и рефиллит бэклог. Near-miss ranks = статьи на позициях 8–20 которые можно поднять с минимальными усилиями. Это самый высокий ROI контент: работа уже сделана (страница есть), нужен точечный апдейт. Сейчас темы в /researcher выбираются вручную по контент-плану — без алгоритмической приоритизации.</div>
         <div class="item-detail">
           Добавить в /researcher: шаг 0 — topic scoring перед выбором темы.<br><br>
@@ -681,6 +743,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
           • RU: keys.so API (уже подключён) + Яндекс Вебмастер API<br><br>
           <b>Выдача:</b> топ-5 тем с обоснованием: «[тема] — near-miss rank 11, WS 1 200/мес, конкурент в топ-3 → score 89». Выдавать до того как /researcher начинает ресёрч — тема выбрана алгоритмически, не интуитивно.
         </div>
+        <div class="rev-note">Ревизия 19.08: keys.so near-miss (pos 4–15) есть, но это <b>Шаг 4а — после ресёрча</b>, а не Шаг 0 выбора темы. Формулы Score нет. У нас near-miss из GSC пишется в pipeline.md руками.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/researcher</span>
           <span class="tag tag-type-research">Планирование</span>
@@ -691,7 +754,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 done">
       <div class="item-num">39</div>
       <div class="item-body">
         <div class="item-title">Исследование моделей для /writer — что пишет хорошо через API <span class="tag-done">✅ 05.06 · consensus_reference.md, реализация → #45</span></div>
@@ -722,10 +785,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 done">
       <div class="item-num">40</div>
       <div class="item-body">
-        <div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием</div>
+        <div class="item-title">Form-function check: AI-обороты без содержания vs с содержанием <span class="tag-done">✅ 19.08 · editor:198 + quality-gate:67</span></div>
         <div class="item-desc">Текущий /editor и /quality-gate банят AI-фразы по паттерну. Проблема: «следует отметить» + пустое следствие = слоп. «Следует отметить: 7 из 10 РОПов...» — это не слоп, это лишний фрейм перед сильным содержанием. Паттерн-матчинг даёт ложные срабатывания и не учит различию.</div>
         <div class="item-detail">
           <b>Определение слопа:</b> форма без функции. Форма с функцией — не слоп, просто лишний фрейм.<br><br>
@@ -737,6 +800,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
           <b>Для /quality-gate:</b> метрика не «найден AI-паттерн» → FAIL, а «найден AI-паттерн + пустое следствие» → FAIL. Это точнее и не штрафует за нормальные конструкции.<br><br>
           <b>Обновить в /editor:</b> раздел «Убить AI-обороты» — добавить шаг 2 (проверить следствие) перед удалением. Текущее правило слишком механическое.
         </div>
+        <div class="rev-note">Ревизия 19.08: реализовано <b>дважды и согласованно</b> — <code>editor/SKILL.md:198-209</code> правит, <code>quality-gate/SKILL.md:67</code> формулирует замечание «снять фрейм, оставить содержание».</div>
         <div class="item-meta">
           <span class="tag tag-skill">/editor</span>
           <span class="tag tag-skill">/quality-gate</span>
@@ -794,16 +858,17 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 done">
       <div class="item-num">43</div>
       <div class="item-body">
-        <div class="item-title">Burstiness check в /quality-gate</div>
+        <div class="item-title">Burstiness check в /quality-gate <span class="tag-done">✅ 19.08 · М20 + text_quality_check.py</span></div>
         <div class="item-desc">Burstiness = вариативность длины предложений = главный человеческий сигнал. AI пишет равномерно: предложения 18-22 слова, одинаковый ритм. Human varies: 4-слова → 25-слова → 8-слова. Human-written контент: 5.44x больше органического трафика, позиция #1 в 8 раз чаще занята human-written страницей (BrightEdge 2025, 10M URLs).</div>
         <div class="item-detail">
           <b>Метрика для /quality-gate:</b> не «найден AI-паттерн» → FAIL, а «burstiness score ниже порога» → предупреждение. Алгоритм: (1) разбить текст на предложения, (2) подсчитать длину каждого в словах, (3) вычислить σ (std deviation). Норма для human: σ ≥ 6. AI-текст: σ ≤ 3. Вывести top-5 «monotone spans» (5+ предложений с σ&lt;3) для ручного review.<br><br>
           <b>Добавить в /editor:</b> Шаг «Буртинесс-правка» — найти 3+ предложения подряд одной длины → вставить одно ультракороткое (3-5 слов) или развернуть одно в 25+ слов. Проверка: «короткое предложение добавляет новую информацию?» — если нет, это ритмический костыль, не настоящий ритм (кейс из /editor Gotchas уже есть).<br><br>
           <b>Связь с human-content данными:</b> 5.44x — human vs pure AI. AI + human editing ≈ human performance. Значит задача не «убрать AI», а «добавить редакторский ритм поверх AI-черновика». Burstiness — главный proxy этого сигнала.
         </div>
+        <div class="rev-note">Ревизия 19.08: М20 + рабочий код <code>ai-seo/scripts/text_quality_check.py:42-56</code>. Прогон на <code>unit-ekonomika/draft.md</code>: σ=10.8 при норме ≥6.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/quality-gate</span>
           <span class="tag tag-skill">/editor</span>
@@ -815,10 +880,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 done">
       <div class="item-num">44</div>
       <div class="item-body">
-        <div class="item-title">R-HLS морфологические маркеры в /quality-gate</div>
+        <div class="item-title">R-HLS морфологические маркеры в /quality-gate <span class="tag-done">✅ 19.08 · М21/М22 (pymorphy2)</span></div>
         <div class="item-desc">Из ресёрча «LLM Russian quality 2026» (consensus_reference.md): LLM пишут отглагольных существительных в 2× больше людей, причастных оборотов в 2–5×. Это детектируемые автоматически AI-маркеры русского текста — не субъективная оценка, а измеримые лингвистические сигналы (источник: arXiv:2603.27006 + deep_dive_A_humanness_criteria.md).</div>
         <div class="item-detail">
           <b>Что добавить в /quality-gate — два новых WARN-чека:</b><br><br>
@@ -837,83 +902,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
           <b>Источники:</b> arXiv:2603.27006 (deverbal ×2, participial ×2–5 vs human baseline), deep_dive_A_humanness_criteria.md (R-HLS framework, Python pseudocode).<br>
           <b>Консенсус-документ:</b> seo-audits/research/2026_06_llm_russian_quality/consensus_reference.md
         </div>
+        <div class="rev-note">Ревизия 19.08: М21/М22, pymorphy2 0.9.1 стоит. На том же черновике — отглагольные 4,4% (норма &lt;20%), причастных кластеров 0. natasha не подключена, но и не нужна.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/quality-gate</span>
           <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-both">RU</span>
+          <span class="tag tag-ru">RU</span>
           <span class="tag tag-effort">~1 день</span>
         </div>
       </div>
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
-      <div class="item-num">45</div>
-      <div class="item-body">
-        <div class="item-title">Мульти-модельный /writer: аргумент model= с конкретными рекомендациями</div>
-        <div class="item-desc">Ресёрч «LLM Russian quality 2026» закрыл открытый вопрос из #39: Qwen3-235B даёт 91% качества Claude при стоимости в 130× меньше. Сейчас /writer всегда использует Claude Sonnet — это избыточно для bulk SEO-статей. Нужно добавить аргумент <code>model=</code> с тремя пресетами: fast (Qwen3), quality (Claude Sonnet), editorial (Claude Opus).</div>
-        <div class="item-detail">
-          <b>Матрица выбора по данным ресёрча (consensus_reference.md):</b><br><br>
-          <table style="border-collapse:collapse;font-size:13px;width:100%">
-            <tr style="background:#f5f4f1"><td style="padding:4px 8px;border:1px solid #ddd"><b>Тип статьи</b></td><td style="padding:4px 8px;border:1px solid #ddd"><b>/writer</b></td><td style="padding:4px 8px;border:1px solid #ddd"><b>/editor</b></td><td style="padding:4px 8px;border:1px solid #ddd"><b>Экономия</b></td></tr>
-            <tr><td style="padding:4px 8px;border:1px solid #ddd">Важная HF-статья</td><td style="padding:4px 8px;border:1px solid #ddd">Claude Sonnet</td><td style="padding:4px 8px;border:1px solid #ddd">Claude Sonnet</td><td style="padding:4px 8px;border:1px solid #ddd">—</td></tr>
-            <tr><td style="padding:4px 8px;border:1px solid #ddd">SEO bulk / LF</td><td style="padding:4px 8px;border:1px solid #ddd">Qwen3-235B</td><td style="padding:4px 8px;border:1px solid #ddd">Claude (проверка)</td><td style="padding:4px 8px;border:1px solid #ddd">~80%</td></tr>
-            <tr><td style="padding:4px 8px;border:1px solid #ddd">Юрид. / официальный</td><td style="padding:4px 8px;border:1px solid #ddd">GigaChat</td><td style="padding:4px 8px;border:1px solid #ddd">Claude (чистка)</td><td style="padding:4px 8px;border:1px solid #ddd">~60%</td></tr>
-          </table><br>
-          <b>Реализация:</b><br>
-          1. Добавить в /writer аргумент <code>model=fast|quality|editorial</code> (дефолт: quality)<br>
-          2. <code>fast</code> → Qwen3-235B через OpenRouter или прямой API ($0.13/M tokens)<br>
-          3. <code>quality</code> → Claude Sonnet 4.6 (текущий дефолт)<br>
-          4. <code>editorial</code> → Claude Opus 4.6 (для ключевых лонгридов)<br>
-          5. Добавить в pipeline.md поле <code>model:</code> рядом с priority<br><br>
-          <b>Источник:</b> seo-audits/research/2026_06_llm_russian_quality/consensus_reference.md, stream_E_practical.md (Qwen3-235B: 91% качества, 130× дешевле).<br>
-          <b>Связь:</b> Закрывает исследовательскую часть #39 — там был вопрос «что пишет хорошо», теперь ответ есть.
-        </div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/writer</span>
-          <span class="tag tag-type-quality">Качество</span>
-          <span class="tag tag-both">RU</span>
-          <span class="tag tag-effort">~1 день</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
   </div>
 
   <div class="section-gap">
     <div class="section-title">P3 — Стратегические · 1 неделя и более</div>
 
-    <div class="item p3">
-      <div class="item-num">20</div>
-      <div class="item-body">
-        <div class="item-title">YouTube sub-pipeline</div>
-        <div class="item-desc">YouTube — 29-30% всех AI Overview citations (в 200x чаще любой другой видео-платформы). Long-form 10-20 мин = 94% AI-цитат vs 5.7% у Shorts. Views НЕ коррелируют с citations — структура коррелирует (chapters, transcripts, descriptions). Для review-ниши самый недооценённый AI-канал.</div>
-        <div class="item-detail">Новый sub-pipeline: статья → видео-скрипт через /writer-video → запись (HeyGen/Synthesia/ручная) → загрузка с timestamped chapters, 500+ слов описание с topic declaration в первых двух строках → <code>VideoObject</code> schema + <code>transcript</code> на странице обзора. Отдельный шаг в pipeline.md.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">new /video</span>
-          <span class="tag tag-type-distrib">Дистрибуция</span>
-          <span class="tag tag-global">Global</span>
-          <span class="tag tag-effort">~1 нед</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
-    <div class="item p3">
-      <div class="item-num">21</div>
-      <div class="item-body">
-        <div class="item-title">Organization + Person sameAs с Wikidata-записью</div>
-        <div class="item-desc">Google Knowledge Graph Clarity Cleanup 2025: удалено 3 млрд сущностей. Wikidata Q-ID — реалистичный способ попасть в Knowledge Graph без Wikipedia. Person Agent Rank: Google знает кто опубликовал, что они опубликовали, где цитируются — единый @id через все публикации.</div>
-        <div class="item-detail">Создать Wikidata-запись для бренда/автора (Q-ID). Добавить в /publisher: Organization schema с <code>sameAs</code> (LinkedIn, Crunchbase, GitHub, YouTube, Wikidata Q-ID), Person schema автора с тем же набором. MuckRack профиль для author authority. Консистентный bio-блок во всех публикациях.</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">/publisher</span>
-          <span class="tag tag-type-entity">Entity</span>
-          <span class="tag tag-global">Global</span>
-          <span class="tag tag-effort">~2 дня</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
     <div class="item p3">
       <div class="item-num">22</div>
@@ -921,6 +929,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
         <div class="item-title">Content freshness calendar в /page-optimizer</div>
         <div class="item-desc">13-недельное окно: <b>50% AI-цитат — контент младше 13 недель</b>. Контент младше 30 дней = 3,2x больше AI-цитирований. AI-цитируемый контент на 25,7% свежее органически ранжированного. Декабрь 2025: косметические обновления дат без изменения контента детектируются и наказываются.</div>
         <div class="item-detail">/page-optimizer работает по двум триггерам: (а) action items от /tracker, (б) freshness calendar — каждые <b>60 дней</b> статья проходит real refresh (новая статистика, скриншоты, кейсы, цены). Добавить в pipeline.md: <code>freshness_due: YYYY-MM-DD</code>. Проверять: изменился ли контент реально или только дата? Ahrefs детектирует косметику.</div>
+        <div class="rev-note">Ревизия 19.08: закрывается задачей <b>И2 «Дожим как формат»</b> — нам нужен не календарь, а триггер. Косметический детект дат остаётся актуальным.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/page-optimizer</span>
           <span class="tag tag-type-aeo">GEO</span>
@@ -947,21 +956,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p3">
-      <div class="item-num">24</div>
-      <div class="item-body">
-        <div class="item-title">Reddit/community agent</div>
-        <div class="item-desc">⚠️ Стратегия для Perplexity, не ChatGPT: сентябрь 2025 — ChatGPT Reddit-цитирования упали с 60% до 10% после апдейта. Perplexity стабильно: 46.7% community-запросов. Reddit — #2 домен в Google US, 44% social-media citations в AI Overviews суммарно. 90/10 rule: 90% helpful ответов без ссылок, 10% — упоминания где релевантно.</div>
-        <div class="item-detail">Этапный подход (только для Perplexity-аудитории): Crawl phase (нед.1-4): 90% helpful ответы в r/sales, r/B2B, профильных форумах, без ссылок. Walk phase (мес.2-3): упоминать материалы где уместно. Run phase (мес.4-6): собственные треды «I tested X for 30 days». Для RU: vc.ru комменты + профильные Telegram-чаты вместо Reddit. ChatGPT-аудитория — фокус на Wikipedia/LinkedIn (см. #42).</div>
-        <div class="item-meta">
-          <span class="tag tag-skill">new /community</span>
-          <span class="tag tag-type-distrib">Дистрибуция</span>
-          <span class="tag tag-global">Global</span>
-          <span class="tag tag-effort">~1 нед</span>
-        </div>
-      </div>
-      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
-    </div>
+    
 
     <div class="item p3">
       <div class="item-num">25</div>
@@ -979,11 +974,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p3">
+    <div class="item p3 part">
       <div class="item-num">26</div>
       <div class="item-body">
-        <div class="item-title">page-optimizer — чтение action items из pipeline.md</div>
+        <div class="item-title">page-optimizer — чтение action items из pipeline.md <span class="tag-part">🟡 частично — есть баг</span></div>
         <div class="item-desc">/tracker записывает action items в pipeline.md, /page-optimizer должен их читать и вычёркивать выполненные. Сейчас этот цикл не замкнут.</div>
+        <div class="rev-note">Ревизия 19.08: цикл замкнут с обеих сторон, но отметка <code>[x]</code> сохраняется только под <code>if updated:</code> (<code>page-optimizer/SKILL.md:287</code>) — без таблицы шагов в pipeline.md вычеркнутые пункты теряются.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/page-optimizer</span><span class="tag tag-skill">/tracker</span>
           <span class="tag tag-type-aeo">Автоматизация</span>
@@ -1063,6 +1059,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
           <b>Добавить в /tracker:</b> блок confidence scoring до генерации action items. Если confidence LOW → не генерировать, записать причину в pipeline.md. Если HIGH → генерировать action items как сейчас.<br><br>
           Дополнительно: Orion judge проверяет не только числа но и контекст — если позиция упала но кликов стало больше (SERP изменился) → это не деградация.
         </div>
+        <div class="rev-note">🔴 Ревизия 19.08 — приоритет поднят, чекпоинт ~10.09. Дважды приняли решение по шуму: «омниканальность поз.9» оказалась микрофразой wsk 2 (по головному запросу — вне топ-50), а средние позиции по сайту «улучшились» при падении по каждому реальному запросу (парадокс Симпсона). <b>Добавить к гейту два наших правила:</b> позиция считается только по головному запросу (wsk &lt; 10 не считается); средние по сайту не читать. <code>impressions</code> уже достаётся (<code>tracker/SKILL.md:84</code>), просто не сравнивается с порогом.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/tracker</span>
           <span class="tag tag-type-aeo">Автоматизация</span>
@@ -1107,12 +1104,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
   <div class="section-gap">
     <div class="section-title">Технический долг</div>
 
-    <div class="item td done">
+    <div class="item td part">
       <div class="item-num">28</div>
       <div class="item-body">
-        <div class="item-title">Yandex Webmaster OAuth token для /tracker <span class="tag-done">✅ 04.06 · токены в .env, query-analytics работает</span></div>
+        <div class="item-title">Yandex Webmaster OAuth token для /tracker <span class="tag-part">🟡 частично — host_id на Фактор</span></div>
         <div class="item-desc">Без токена /tracker не получает данные по позициям Яндекс. Три переменные в .env: YANDEX_WEBMASTER_TOKEN, USER_ID, HOST_ID.</div>
         <div class="item-detail">Яндекс.OAuth → приложение с правом <code>webmaster:read</code> → авторизация → token в .env. HOST_ID формат: <code>https:factor-prodazh.ru:443</code>.</div>
+        <div class="rev-note">Ревизия 19.08: работает, но <code>host_id</code> захардкожен дефолтом <code>https:factor-prodazh.ru:443</code> (<code>tracker/SKILL.md:58</code>), а у crmgroup/EMS его нет → <code>/tracker</code> молча опросит домен Фактора.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/tracker</span>
           <span class="tag tag-ru">RU</span>
@@ -1123,14 +1121,109 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   </div>
 
+  <div class="section-gap">
+    <div class="section-title">❄️ Заморожено — Global-трек и продуктизация под клиента</div>
+    <div style="font-size:12.5px;color:var(--muted);margin:-4px 0 10px">Работаем инхаус по двум своим сайтам. Global-задачи ждут Global-клиента, клиентский онбординг (<code>_template/</code>, <code>/knowledge-session</code>, «пакет») — продуктизации.</div>
+
+<div class="item p1 frozen">
+      <div class="item-num">N2</div>
+      <div class="item-body">
+        <div class="item-title">Синхронизация company-context.md с live /case/ <span class="tag-frozen">заморожено — клиентский трек</span></div>
+        <div class="item-desc">Fact-checker дважды ловил расхождения цифр кейсов с live-страницами (7 Прудов: CV 3→32 vs live 20→50%; редукторы: +139% vs live «план ×6»). Источник данных для /writer гниёт — каждый рассинхрон = риск reader-burn по клику.</div>
+        <div class="item-detail">Пройти по всем кейсам в <code>factor/data/company-context.md</code>, сверить цифры с live factor-prodazh.ru/case/, исправить. Добавить в файл дату последней сверки. Повторять при каждом батче (или перенести цифры кейсов в отдельный файл с автосверкой).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">data</span>
+          <span class="tag tag-type-quality">Качество</span>
+          <span class="tag tag-ru">RU</span>
+          <span class="tag tag-effort">~2 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+<div class="item p2 frozen">
+      <div class="item-num">15</div>
+      <div class="item-body">
+        <div class="item-title">Brand mentions monitoring в /tracker <span class="tag-frozen">заморожено — Global</span></div>
+        <div class="item-desc">Brand mentions коррелируют с AIO-цитированием 0.664 vs 0.218 у backlinks — это №1 фактор для GEO (Ahrefs 75k брендов). Топ-25% брендов по упоминаниям получают в 10x больше AIO-цитат. Сейчас /tracker не считает unlinked mentions.</div>
+        <div class="item-detail">Добавить в /tracker: (1) Google Alerts по бренду → считать monthly unlinked mentions; (2) Brand search volume в GSC как лагирующий индикатор; (3) Если mentions &lt; target → action item: «получить 5 упоминаний на [vc.ru/Habr/форумах]».</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/tracker</span>
+          <span class="tag tag-type-aeo">GEO</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~3 часа</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+<div class="item p2 frozen">
+      <div class="item-num">17</div>
+      <div class="item-body">
+        <div class="item-title">VS/Comparison страницы — шаблон в /writer <span class="tag-frozen">заморожено — Global</span></div>
+        <div class="item-desc">B2B SaaS comparison pages: 7.5%+ conversion vs 2-5% baseline. 51% B2B buyers начинают research в AI chatbot. VS-страницы = самый цитируемый формат в ChatGPT/Perplexity для коммерческих запросов. Backstage SEO: 25 comparison pages → 172% ROI за 36 мес.</div>
+        <div class="item-detail">Новый шаблон для /writer: (а) честная таблица сравнения включая сильные стороны конкурента, (б) use cases где конкурент лучше, (в) pricing comparison, (г) FAQPage schema с comparative questions, (д) «When to use X instead of Y»-раздел обязательный.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/writer</span>
+          <span class="tag tag-type-research">Формат</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+<div class="item p3 frozen">
+      <div class="item-num">20</div>
+      <div class="item-body">
+        <div class="item-title">YouTube sub-pipeline <span class="tag-frozen">заморожено — Global</span></div>
+        <div class="item-desc">YouTube — 29-30% всех AI Overview citations (в 200x чаще любой другой видео-платформы). Long-form 10-20 мин = 94% AI-цитат vs 5.7% у Shorts. Views НЕ коррелируют с citations — структура коррелирует (chapters, transcripts, descriptions). Для review-ниши самый недооценённый AI-канал.</div>
+        <div class="item-detail">Новый sub-pipeline: статья → видео-скрипт через /writer-video → запись (HeyGen/Synthesia/ручная) → загрузка с timestamped chapters, 500+ слов описание с topic declaration в первых двух строках → <code>VideoObject</code> schema + <code>transcript</code> на странице обзора. Отдельный шаг в pipeline.md.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">new /video</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+<div class="item p3 frozen">
+      <div class="item-num">21</div>
+      <div class="item-body">
+        <div class="item-title">Organization + Person sameAs с Wikidata-записью <span class="tag-frozen">заморожено — Global</span></div>
+        <div class="item-desc">Google Knowledge Graph Clarity Cleanup 2025: удалено 3 млрд сущностей. Wikidata Q-ID — реалистичный способ попасть в Knowledge Graph без Wikipedia. Person Agent Rank: Google знает кто опубликовал, что они опубликовали, где цитируются — единый @id через все публикации.</div>
+        <div class="item-detail">Создать Wikidata-запись для бренда/автора (Q-ID). Добавить в /publisher: Organization schema с <code>sameAs</code> (LinkedIn, Crunchbase, GitHub, YouTube, Wikidata Q-ID), Person schema автора с тем же набором. MuckRack профиль для author authority. Консистентный bio-блок во всех публикациях.</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">/publisher</span>
+          <span class="tag tag-type-entity">Entity</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~2 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+<div class="item p3 frozen">
+      <div class="item-num">24</div>
+      <div class="item-body">
+        <div class="item-title">Reddit/community agent <span class="tag-frozen">заморожено — Global</span></div>
+        <div class="item-desc">⚠️ Стратегия для Perplexity, не ChatGPT: сентябрь 2025 — ChatGPT Reddit-цитирования упали с 60% до 10% после апдейта. Perplexity стабильно: 46.7% community-запросов. Reddit — #2 домен в Google US, 44% social-media citations в AI Overviews суммарно. 90/10 rule: 90% helpful ответов без ссылок, 10% — упоминания где релевантно.</div>
+        <div class="item-detail">Этапный подход (только для Perplexity-аудитории): Crawl phase (нед.1-4): 90% helpful ответы в r/sales, r/B2B, профильных форумах, без ссылок. Walk phase (мес.2-3): упоминать материалы где уместно. Run phase (мес.4-6): собственные треды «I tested X for 30 days». Для RU: vc.ru комменты + профильные Telegram-чаты вместо Reddit. ChatGPT-аудитория — фокус на Wikipedia/LinkedIn (см. #42).</div>
+        <div class="item-meta">
+          <span class="tag tag-skill">new /community</span>
+          <span class="tag tag-type-distrib">Дистрибуция</span>
+          <span class="tag tag-global">Global</span>
+          <span class="tag tag-effort">~1 нед</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>  </div>
+
   <!-- Sequence -->
   <div class="ctx" style="margin-bottom:0">
-    <h3>Очерёдность (roadmap 12.06 · детали: ai-seo/ROADMAP.md)</h3>
+    <h3>Очерёдность (ревизия 19.08 · инхаус crmgroup + EMS)</h3>
     <div class="seq-row">
-      <div class="seq-card"><div class="seq-title">✅ Спринт 1 — quick wins (12.06)</div><div class="seq-items">#1 Speakable · #2 Schema-стек · #3 AEO precheck · #5 Info Gain · #6 JS-SEO · #7 robots.txt · N1 Каннибализация</div><div class="seq-note">Выполнен. Quality-gate: 19 метрик. Остаток: N3 OAuth (нужен code)</div></div>
-      <div class="seq-card"><div class="seq-title">Спринт 2 — качество + продуктизация (~3-4 дня)</div><div class="seq-items">#8 Locked H2 · #44+#43 R-HLS+burstiness · #40 Form-function · #45 model= · N2 кейсы-sync · N4 docs · _template/ + /knowledge-session</div><div class="seq-note">Два параллельных трека: пайплайн + онбординг клиентов</div></div>
-      <div class="seq-card"><div class="seq-title">Спринт 3 — GEO-инфраструктура (~1 нед)</div><div class="seq-items">#9 Prompts.md · #32+#33 AI Visibility Score · #15 Brand mentions · #19 ПФ мониторинг · #26 tracker→page-optimizer · #11 Internal linking · #10 Entity @id · #14 vc.ru</div><div class="seq-note">Стратегические сигналы для долгосрочного роста</div></div>
-      <div class="seq-card"><div class="seq-title">Квартал — стратегия</div><div class="seq-items">#35 Thought Leadership · #36 Near-miss scoring · #41 Earned media · #22 Freshness · #38 LEARN-петля · #31 Persona · #25 Topical map</div><div class="seq-note">Global-задачи (#17, #20, #21, #24) заморожены до Global-клиента</div></div>
+      <div class="seq-card"><div class="seq-title">✅ Закрыто к 19.08</div><div class="seq-items">#1 Speakable · #3 AEO precheck · #4 Тире · #5 Info Gain · #6 JS-SEO · #7 robots.txt · #8 Locked H2 · #39 модели · #40 Form-function · #43 Burstiness · #44 R-HLS · N1 Каннибализация · N3 OAuth</div><div class="seq-note">Quality-gate: 28 проверок. Линг-гейт проверен прогоном на unit-ekonomika.</div></div>
+      <div class="seq-card"><div class="seq-title">🔴 Сейчас — инхаус (~3-4 дня)</div><div class="seq-items">И2 Дожим как формат · И1 Два корня · И3 Паттерны в М1б · #37 Гейт достоверности</div><div class="seq-note">Порядок по решению 19.08. #37 — до чекпоинта ~10.09, иначе решение о масштабировании реанимации примем по шуму.</div></div>
+      <div class="seq-card"><div class="seq-title">Затем — конверсия (~2 дня)</div><div class="seq-items">И4 Заявки + путь инфо→услуга · #11 Перелинковка · #19 ПФ через Метрику</div><div class="seq-note">⛔ Стартует с ответа «упали ли заявки вместе с трафиком» — без него не с чем сравнивать.</div></div>
+      <div class="seq-card"><div class="seq-title">Дальше — гигиена и замеры</div><div class="seq-items">И5 Свести два гейта · И6 Скрипт М25/М26 · #26 баг вычёркивания · #28 host_id · #13 Citation integrity · #22 Freshness · #38 LEARN-петля</div><div class="seq-note">Global-трек (#15, #17, #20, #21, #24) и продуктизация — заморожены.</div></div>
     </div>
   </div>
 
