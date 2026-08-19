@@ -130,6 +130,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 .ledger li.lg-part { color: var(--text); }
 .lg-frozen li { color: var(--muted2); }
 @media (max-width: 820px) { .lg-cols { grid-template-columns: 1fr; } .lg-col-done { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 14px; } }
+.lg-intro { font-size: 12.5px; color: var(--muted); margin: -6px 0 14px; line-height: 1.55; }
+.lg-note { display: block; font-size: 10.5px; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted2); margin-top: 1px; }
+.lg-skill { color: var(--blue); font-size: 11px; }
 .rev-banner { background: var(--dark); color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
 .rev-banner h3 { font-size: 14px; margin-bottom: 8px; }
 .rev-banner p { font-size: 13px; color: rgba(255,255,255,.62); margin-bottom: 6px; }
@@ -192,11 +195,11 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <div class="hero">
   <div class="wrap">
     <h1>Pipeline Backlog — AI Content System</h1>
-    <p>Инхаус: crmgroup.ru + emailsoldiers.ru · обновлено 2026-08-19 (вечер) · roadmap: ai-seo/ROADMAP.md</p>
+    <p>Инструментарий SEO-агентов · crmgroup.ru + emailsoldiers.ru · обновлено 2026-08-19 (вечер) · roadmap: ai-seo/ROADMAP.md</p>
     <div class="hero-meta">
-      <div class="hero-chip"><b>52</b> задачи</div>
-      <div class="hero-chip"><b style="color:#7ee2a8">17 ✅</b> сделано</div>
-      <div class="hero-chip"><b style="color:#e8a838">7 🟡</b> частично</div>
+      <div class="hero-chip"><b>54</b> задачи</div>
+      <div class="hero-chip"><b style="color:#7ee2a8">18 ✅</b> сделано</div>
+      <div class="hero-chip"><b style="color:#e8a838">6 🟡</b> частично</div>
       <div class="hero-chip"><b>RU</b> Яндекс · Нейро · ПФ</div>
       <div class="hero-chip" style="opacity:.5"><b>Global</b> заморожено</div>
     </div>
@@ -206,7 +209,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <!-- Tabs -->
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">52</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">Все задачи <span class="cnt">54</span></button>
     <button class="tab-btn" onclick="switchTab('ru')">🇷🇺 Инхаус RU <span class="cnt">17</span></button>
     <button class="tab-btn" onclick="switchTab('global')">🌐 Global (заморожено) <span class="cnt">22</span></button>
   </div>
@@ -219,23 +222,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 <div class="tab-panel active" id="tab-all">
 
   <div class="summary-row">
-    <div class="summary-card"><div class="num num-green">17</div><div class="lbl">✅ Сделано</div></div>
-    <div class="summary-card"><div class="num num-gold">7</div><div class="lbl">🟡 Частично</div></div>
+    <div class="summary-card"><div class="num num-green">18</div><div class="lbl">✅ Сделано</div></div>
+    <div class="summary-card"><div class="num num-gold">6</div><div class="lbl">🟡 Частично</div></div>
     <div class="summary-card"><div class="num num-red">22</div><div class="lbl">Открыто</div></div>
-    <div class="summary-card"><div class="num num-blue">6</div><div class="lbl">❄️ Заморожено</div></div>
-    <div class="summary-card"><div class="num num-teal">52</div><div class="lbl">Всего задач</div></div>
+    <div class="summary-card"><div class="num num-blue">8</div><div class="lbl">❄️ Вне доски</div></div>
+    <div class="summary-card"><div class="num num-teal">54</div><div class="lbl">Всего задач</div></div>
   </div>
 
   <div class="ledger">
-    <h3>Сводка: что сделано и что осталось <span class="lg-stamp">сгенерировано из карточек ниже · 19.08 вечер</span></h3>
+    <h3>Сводка: инструментарий SEO-агентов <span class="lg-stamp">сгенерировано из карточек ниже · 19.08 вечер</span></h3>
+    <p class="lg-intro">Доска про <b>инструментарий</b>: что доделать, чтобы агенты работали автономно — сначала по SEO, потом по GEO. Исполнение контента и операционка сюда не входят и вынесены отдельно.</p>
     <div class="lg-cols">
       <div class="lg-col lg-col-done">
-        <div class="lg-head">✅ Сделано — 17</div>
-        <div class="lg-sub">19.08 — эта сессия · 9</div><ul><li class="lg-done"><b>И1</b> ✅ Каннибализация-чек по двум корням и двум доменам</li><li class="lg-done"><b>И2</b> ✅ Дожим как формат — режим reanimation в /page-optimizer</li><li class="lg-done"><b>N3</b> ✅ Google Docs OAuth re-auth</li><li class="lg-done"><b>N4</b> ✅ Синхронизировать опубликованную методологию с реализацией</li><li class="lg-done"><b>8</b> ✅ Locked H2 план в /researcher → pipeline.md</li><li class="lg-done"><b>40</b> ✅ Form-function check: AI-обороты без содержания vs с содержанием</li><li class="lg-done"><b>43</b> ✅ Burstiness check в /quality-gate</li><li class="lg-done"><b>44</b> ✅ R-HLS морфологические маркеры в /quality-gate</li><li class="lg-done"><b>37</b> ✅ Orion judge — meta-AI агент для MEASURE (/tracker)</li></ul><div class="lg-sub">12.06 — спринт quick wins · 6</div><ul><li class="lg-done"><b>N1</b> ✅ Каннибализация-чек в /researcher</li><li class="lg-done"><b>1</b> ✅ SpeakableSpecification в /publisher</li><li class="lg-done"><b>3</b> ✅ AEO precheck в /quality-gate (ручной, без API)</li><li class="lg-done"><b>5</b> ✅ Information Gain check в /quality-gate</li><li class="lg-done"><b>6</b> ✅ JS-SEO валидация в /publisher</li><li class="lg-done"><b>7</b> ✅ robots.txt — AI-краулеры явно разрешены</li></ul><div class="lg-sub">ранее · 2</div><ul><li class="lg-done"><b>4</b> ✅ Тире-лимит gate как hard block в /quality-gate</li><li class="lg-done"><b>39</b> ✅ Исследование моделей для /writer — что пишет хорошо через API</li></ul>
+        <div class="lg-head">✅ Сделано — 18</div>
+        <div class="lg-sub">19.08 — эта сессия · 10</div><ul><li class="lg-done"><b>И1</b> ✅ Каннибализация-чек по двум корням и двум доменам</li><li class="lg-done"><b>И2</b> ✅ Дожим как формат — режим reanimation в /page-optimizer</li><li class="lg-done"><b>И4</b> ✅ Конверсия — заявки и путь инфо → услуга</li><li class="lg-done"><b>N3</b> ✅ Google Docs OAuth re-auth</li><li class="lg-done"><b>N4</b> ✅ Синхронизировать опубликованную методологию с реализацией</li><li class="lg-done"><b>8</b> ✅ Locked H2 план в /researcher → pipeline.md</li><li class="lg-done"><b>40</b> ✅ Form-function check: AI-обороты без содержания vs с содержанием</li><li class="lg-done"><b>43</b> ✅ Burstiness check в /quality-gate</li><li class="lg-done"><b>44</b> ✅ R-HLS морфологические маркеры в /quality-gate</li><li class="lg-done"><b>37</b> ✅ Orion judge — meta-AI агент для MEASURE (/tracker)</li></ul><div class="lg-sub">12.06 — спринт quick wins · 6</div><ul><li class="lg-done"><b>N1</b> ✅ Каннибализация-чек в /researcher</li><li class="lg-done"><b>1</b> ✅ SpeakableSpecification в /publisher</li><li class="lg-done"><b>3</b> ✅ AEO precheck в /quality-gate (ручной, без API)</li><li class="lg-done"><b>5</b> ✅ Information Gain check в /quality-gate</li><li class="lg-done"><b>6</b> ✅ JS-SEO валидация в /publisher</li><li class="lg-done"><b>7</b> ✅ robots.txt — AI-краулеры явно разрешены</li></ul><div class="lg-sub">ранее · 2</div><ul><li class="lg-done"><b>4</b> ✅ Тире-лимит gate как hard block в /quality-gate</li><li class="lg-done"><b>39</b> ✅ Исследование моделей для /writer — что пишет хорошо через API</li></ul>
       </div>
       <div class="lg-col lg-col-left">
-        <div class="lg-head">Осталось — 22 открытых + 7 частично</div>
-        <div class="lg-sub">🔴 Сейчас — контент · 2</div><ul><li class="lg-part"><b>И4</b> 🟡 Конверсия — заявки и путь инфо → услуга <i>🟡 блокер снят, дожим остался</i></li><li class=""><b>И3</b> ○ Клиентские ИИ-паттерны crmgroup → в блокирующую М1б</li></ul><div class="lg-sub">🔑 Инфраструктура — за Иваном · 1</div><ul><li class=""><b>И7</b> ○ Ротировать FTP-пароли и убрать мёртвый доступ</li></ul><div class="lg-sub">Гигиена, когда дойдут руки · 10</div><ul><li class=""><b>И5</b> ○ Свести два разошедшихся гейта качества</li><li class=""><b>И6</b> ○ М25/М26 — написать скрипт шинглов</li><li class=""><b>И8</b> ○ Разгрести незакоммиченную реструктуризацию 01-crmgroup</li><li class="lg-part"><b>26</b> 🟡 page-optimizer — чтение action items из pipeline.md <i>🟡 частично — есть баг</i></li><li class="lg-part"><b>28</b> 🟡 Yandex Webmaster OAuth token для /tracker <i>🟡 частично — host_id на Фактор</i></li><li class="lg-part"><b>13</b> 🟡 Citation integrity в /fact-checker <i>🟡 частично</i></li><li class="lg-part"><b>36</b> 🟡 DataForSEO near-miss scoring в PLAN (/researcher) <i>🟡 частично — без скоринга</i></li><li class="lg-part"><b>2</b> 🟡 Schema stack expansion — Review / ItemList / BreadcrumbList / Person <i>🟡 частично — только FAQPage</i></li><li class="lg-part"><b>11</b> 🟡 Internal linking — entity-based anchors + bidirectional <i>🟡 частично</i></li><li class=""><b>38</b> ○ LEARN → PLAN feedback loop — замкнуть петлю (/tracker → /researcher)</li></ul><div class="lg-sub">Остальное из старого бэклога · 16</div><ul><li class=""><b>9</b> ○ Prompt research artifact — prompts.md</li><li class=""><b>10</b> ○ Entity-SEO — @id consistency + mainEntityOfPage</li><li class=""><b>14</b> ○ vc.ru / Habr — дистрибуция как отдельный шаг пайплайна</li><li class=""><b>18</b> ○ AEO pre-publication scoring</li><li class=""><b>19</b> ○ Поведенческие факторы (ПФ) мониторинг через Метрику</li><li class=""><b>31</b> ○ Brand Persona (архетип) — персонаж вместо списка правил</li><li class=""><b>32</b> ○ AI Visibility Score — единая метрика присутствия в AI</li><li class=""><b>35</b> ○ Thought Leadership формат в /writer — cross-disciplinary lens + coined concepts</li><li class=""><b>41</b> ○ Earned media / Digital PR pipeline</li><li class=""><b>42</b> ○ Platform-specific citation strategy</li><li class=""><b>22</b> ○ Content freshness calendar в /page-optimizer</li><li class=""><b>23</b> ○ Share of Voice — операционализация 30-50 prompts × платформы</li><li class=""><b>25</b> ○ Topical authority map в /researcher</li><li class=""><b>27</b> ○ Corpus brand voice из парсинга опубликованных статей</li><li class=""><b>33</b> ○ Per-platform mention counts — абсолютные числа по платформам</li><li class=""><b>34</b> ○ AI question drift detection — автообновление при смене фрейма ответов</li></ul>
+        <div class="lg-head">Осталось — 22 открытых + 6 частично</div>
+        <div class="lg-sub">🤖 Автономность и оркестрация · 4<span class="lg-note">агент ведёт работу сам, человек только апрувит</span></div><ul><li class=""><b>И9</b> ○ /pipeline — оркестратор: агент ведёт статью сам <span class="lg-skill">/pipeline</span></li><li class="lg-part"><b>36</b> 🟡 DataForSEO near-miss scoring в PLAN (/researcher) <span class="lg-skill">/researcher</span> <i>🟡 частично — без скоринга</i></li><li class=""><b>38</b> ○ LEARN → PLAN feedback loop — замкнуть петлю (/tracker → /researcher) <span class="lg-skill">/tracker, /researcher</span></li><li class="lg-part"><b>26</b> 🟡 page-optimizer — чтение action items из pipeline.md <span class="lg-skill">/page-optimizer, /tracker</span> <i>🟡 частично — есть баг</i></li></ul><div class="lg-sub">🔍 SEO-оптимизация · 4<span class="lg-note">базовый слой: позиции, перелинковка, поведение</span></div><ul><li class="lg-part"><b>11</b> 🟡 Internal linking — entity-based anchors + bidirectional <span class="lg-skill">/seo-optimizer</span> <i>🟡 частично</i></li><li class=""><b>19</b> ○ Поведенческие факторы (ПФ) мониторинг через Метрику <span class="lg-skill">/tracker</span></li><li class=""><b>22</b> ○ Content freshness calendar в /page-optimizer <span class="lg-skill">/page-optimizer</span></li><li class="lg-part"><b>28</b> 🟡 Yandex Webmaster OAuth token для /tracker <span class="lg-skill">/tracker</span> <i>🟡 частично — host_id на Фактор</i></li></ul><div class="lg-sub">🌐 GEO-оптимизация · 9<span class="lg-note">цитируемость в AI: разметка, промпты, замеры</span></div><ul><li class="lg-part"><b>2</b> 🟡 Schema stack expansion — Review / ItemList / BreadcrumbList / Person <span class="lg-skill">/publisher</span> <i>🟡 частично — только FAQPage</i></li><li class=""><b>10</b> ○ Entity-SEO — @id consistency + mainEntityOfPage <span class="lg-skill">/publisher</span></li><li class=""><b>18</b> ○ AEO pre-publication scoring <span class="lg-skill">/publisher</span></li><li class=""><b>9</b> ○ Prompt research artifact — prompts.md <span class="lg-skill">/researcher</span></li><li class=""><b>42</b> ○ Platform-specific citation strategy <span class="lg-skill">/researcher, /tracker</span></li><li class=""><b>23</b> ○ Share of Voice — операционализация 30-50 prompts × платформы <span class="lg-skill">/tracker</span></li><li class=""><b>32</b> ○ AI Visibility Score — единая метрика присутствия в AI <span class="lg-skill">/tracker</span></li><li class=""><b>33</b> ○ Per-platform mention counts — абсолютные числа по платформам <span class="lg-skill">/tracker</span></li><li class=""><b>34</b> ○ AI question drift detection — автообновление при смене фрейма ответов <span class="lg-skill">/tracker, /page-optimizer</span></li></ul><div class="lg-sub">🛡 Гейты качества · 5<span class="lg-note">чтобы не звать человека на проверку</span></div><ul><li class=""><b>И3</b> ○ Клиентские ИИ-паттерны crmgroup → в блокирующую М1б <span class="lg-skill">/quality-gate, /editor</span></li><li class=""><b>И5</b> ○ Свести два разошедшихся гейта качества <span class="lg-skill">/quality-gate</span></li><li class=""><b>И6</b> ○ М25/М26 — написать скрипт шинглов <span class="lg-skill">/quality-gate</span></li><li class=""><b>И10</b> ○ Проверка живости упоминаемых сервисов и доменов <span class="lg-skill">/fact-checker</span></li><li class="lg-part"><b>13</b> 🟡 Citation integrity в /fact-checker <span class="lg-skill">/fact-checker</span> <i>🟡 частично</i></li></ul><div class="lg-sub">📐 Форматы и дистрибуция · 6<span class="lg-note">контент-стратегия, отложено до подтверждения гипотез</span></div><ul><li class=""><b>25</b> ○ Topical authority map в /researcher <span class="lg-skill">/researcher</span></li><li class=""><b>27</b> ○ Corpus brand voice из парсинга опубликованных статей <span class="lg-skill">/researcher</span></li><li class=""><b>31</b> ○ Brand Persona (архетип) — персонаж вместо списка правил <span class="lg-skill">/writer, /editor</span></li><li class=""><b>35</b> ○ Thought Leadership формат в /writer — cross-disciplinary lens + coined concepts <span class="lg-skill">/writer, /researcher, /quality-gate</span></li><li class=""><b>14</b> ○ vc.ru / Habr — дистрибуция как отдельный шаг пайплайна <span class="lg-skill">/publisher</span></li><li class=""><b>41</b> ○ Earned media / Digital PR pipeline <span class="lg-skill">/publisher</span></li></ul>
+        <div class="lg-sub">Вынесено — не про пайплайн · 2</div>
+        <ul class="lg-frozen"><li><b>И7</b> Ротировать FTP-пароли и убрать мёртвый доступ</li><li><b>И8</b> Разгрести незакоммиченную реструктуризацию 01-crmgroup</li></ul>
         <div class="lg-sub">❄️ Заморожено · 6</div>
         <ul class="lg-frozen"><li>N2, 15, 17, 20, 21, 24 — Global-трек и продуктизация под клиента</li></ul>
       </div>
@@ -305,13 +311,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p1 part">
+    <div class="item p1 done">
       <div class="item-num">И4</div>
       <div class="item-body">
-        <div class="item-title">Конверсия — заявки и путь инфо → услуга <span class="tag-part">🟡 блокер снят, дожим остался</span></div>
+        <div class="item-title">Конверсия — заявки и путь инфо → услуга <span class="tag-done">✅ 19.08 · инструментарий закрыт</span></div>
         <div class="item-desc">9 677 визитов → 36 достижений автоцели = <b>~0,37%</b> за 90 дней при норме 1–2%. Ни одна из 47 задач бэклога не про конверсию: он весь про приток, а узкое место — на выходе. Это дыра в рамке, а не невыполненная задача. <b>Замер 19.08:</b> инфо-трафик не только не конвертит (глоссарий crmgroup — 0 целей на 3 801 визит), но и физически никуда не ведёт — до коммерческих страниц дошли 0 инфо-визитов из 1 604.</div>
         <div class="item-detail">✅ <b>Блокер закрыт 19.08:</b> сравнение заявок год к году по сайту <b>невозможно</b>, и это доказано — в Bitrix за июнь–18 авг 2025 у <b>107 лидов из 190 (56%) нет <code>SOURCE_ID</code> вообще</b>, в 2026 таких ноль. Сайтовые метки 2025 стоят у 5 лидов из 190: дыра в разметке, а не «сайт не давал заявок». Базой считать 2026 вперёд, с июня. Мастер-логи не помогают — начинаются июнем 2026. Что сказать можно: <b>всего лидов 190 → 137 (−28%) при органике −60%</b>, причём 40 из 53 потерянных — канал <code>CALL</code> (63 → 23), к SEO отношения не имеющий.<br><br>✅ <b>Перелинковка 21.07 долю коммерческих не сдвинула и не могла:</b> до неё до коммерческой доходил 1 инфо-визит из 1 931, после — 0 из 1 604 (фильтр проверен контролем 927/927). Причина в разметке: на страницах, которые держат трафик (<code>/glossary/roi/</code>, <code>/blog/incrementality/</code>, <code>/glossary/cdp/</code>), контекстных ссылок в коммерцию нет — только пункт шапки. Перелинковка велась инфо↔инфо. ✅ <b>/seo-optimizer Шаг 7 переписан</b> — FAIL, если в теле нет контекстной коммерческой ссылки; шапка и подвал не считаются.<br><br>🔑 <b>Но рычаг — не ссылки в услуги, а лид-магниты:</b> за 90 дней лид-магниты crmgroup дали 23 живых лида, а весь глоссарий EMS — 7 на 11 453 визита (и «чемпион» на 71% спам). Считать успех живыми лидами Bitrix по полю <code>TITLE</code>, а не целями Метрики. ✅ <b>/email-marketing-pod-klyuch/ разобран — это не SEO-задача:</b> входы 250 → 31, но развал целиком рекламный («переходы по рекламе» 229 → 8), а органика даже подросла (12 → 16). Google по странице стабилен: поз. 11,9 → 11,5, кликов 0 в обоих периодах. Причина — пустой счёт Директа, не потеря позиций. Прежнее «коммерческая конвертит 0,5%» описывало платный трафик — из конверсионного бэклога убрать. ⏳ Осталось: пройти дожимом по инфо-страницам с трафиком, вставляя <b>лид-магнит</b>, а не ссылку в услугу.</div>
         <div class="rev-note">Сделано 19.08: ✅ блокер снят (сравнение заявок YoY невозможно — 56% лидов 2025 без источника), ✅ перелинковка проверена (0 из 1604 доходят до коммерции), ✅ <code>/seo-optimizer</code> Шаг 7 переписан, ✅ <code>/email-marketing-pod-klyuch/</code> оказался рекламным обвалом, не SEO. ⏳ Осталось: пройти дожимом по инфо-страницам, вставляя <b>лид-магнит</b> (23 живых лида против 7 со всего глоссария EMS).</div>
+        <div class="rev-note">Инструментальная часть закрыта 19.08: блокер по заявкам снят замером, перелинковка проверена, <code>/seo-optimizer</code> Шаг 7 переписан (FAIL без контекстной коммерческой ссылки), <code>/email-marketing-pod-klyuch/</code> оказался рекламным обвалом. <b>Оставшееся — исполнение контента</b> (дожим страниц с лид-магнитом), а это не задача доски инструментария: живёт в recovery-плане проекта.</div>
         <div class="item-meta">
           <span class="tag tag-skill">/seo-optimizer</span>
           <span class="tag tag-type-conv">Конверсия</span>
@@ -356,12 +363,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
   </div>
 
 
-    <div class="item p1">
+    <div class="item p1 frozen">
       <div class="item-num">И7</div>
       <div class="item-body">
-        <div class="item-title">Ротировать FTP-пароли и убрать мёртвый доступ <span class="tag-new">NEW</span></div>
+        <div class="item-title">Ротировать FTP-пароли и убрать мёртвый доступ <span class="tag-frozen">вынесено — не пайплайн</span></div>
         <div class="item-desc">Из публичного репо утекли четыре секрета. WP-пароль <b>ротирован 19.08</b> (старый отдаёт 401, новый в <code>~/.claude/secrets/crmgroup.env</code>), но три FTP-пароля меняются только руками в панели хостинга — API там нет. До смены считать скомпрометированными.</div>
         <div class="item-detail">Сменить в панели: <code>a.knutov@212.233.90.162</code>, <code>ilyin@212.233.90.162</code>, <code>s.sychev@5.188.159.40</code>. После смены — обновить <code>crmgroup.env</code> и прогнать деплойные команды (CSS, mu-plugin, ai-лендинг). Отдельно: приложение-пароль <code>crmgroup</code> (uuid 57c96acc) не использовался с 09.04 и не утекал — решить, сносить ли.</div>
+        <div class="rev-note">Вынесено 19.08: доступы и ротация — операционка. WP-пароль уже ротирован, три FTP остаются за Иваном. Место задачи — в операционке, не на доске инструментария.</div>
         <div class="item-meta">
           
 <span class="tag tag-type-conv">инфраструктура</span>          <span class="tag tag-ru">RU</span>          <span class="tag tag-effort">~30 мин</span>
@@ -370,18 +378,47 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
-    <div class="item p2">
+    <div class="item p2 frozen">
       <div class="item-num">И8</div>
       <div class="item-body">
-        <div class="item-title">Разгрести незакоммиченную реструктуризацию 01-crmgroup <span class="tag-new">NEW</span></div>
+        <div class="item-title">Разгрести незакоммиченную реструктуризацию 01-crmgroup <span class="tag-frozen">вынесено — не пайплайн</span></div>
         <div class="item-desc">В репозитории висит ~120 удалённых отслеживаемых файлов и столько же untracked — переезд в <code>docs/</code>, <code>scripts/</code>, <code>data/</code> сделали, но не закоммитили. Поверх этого лежит чистка секретов от 19.08. Пока не разгребено, любой коммит смешивает переезд с правками.</div>
         <div class="item-detail">Разделить на два коммита: (1) переезд файлов по папкам, (2) чистка секретов (значения → <code>${CRM_WP_APP_PASSWORD}</code> / <code>${CRM_FTP_PASS}</code> + загрузчик <code>_secret()</code> в 8 скриптах). Репозиторий теперь приватный, так что срочности нет, но и тянуть смысла нет.</div>
+        <div class="rev-note">Вынесено 19.08: репо-гигиена, а не инструментарий. Задача жива, но её место — в операционке проекта, не на доске пайплайна.</div>
         <div class="item-meta">
           
 <span class="tag tag-type-conv">инфраструктура</span>          <span class="tag tag-ru">RU</span>          <span class="tag tag-effort">~1 час</span>
         </div>
       </div>
       <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">И9</div>
+      <div class="item-body">
+        <div class="item-title"><code>/pipeline</code> — оркестратор: агент ведёт статью сам <span class="tag-new">NEW</span></div>
+        <div class="item-desc">Главный блокер автономности, и его не было на доске вообще. В <code>PIPELINE_ARCHITECTURE.md</code> оркестратор числится «🆕 фаза 3» с мая, но задачи под него не заведено. Сейчас каждый шаг запускает человек: researcher → writer → editor → fact-checker → quality-gate → seo-optimizer → designer → publisher. Десять ручных вызовов на статью — это не агент, это набор утилит.</div>
+        <div class="item-detail">Цель по формулировке Ивана (18.08): <b>«ты делаешь анализ и предлагаешь, я даю апрувы»</b> — то есть человек решает только «какая тема» и «публикуем ли», остальное агент проходит сам. Реализация: скилл <code>/pipeline</code> читает <code>pipeline.md</code> как состояние, определяет следующий незакрытый шаг, запускает его, пишет результат обратно и останавливается ТОЛЬКО на двух гейтах — выбор темы и HARD GATE перед публикацией. При FAIL любого гейта — возврат на нужный шаг без участия человека. Все состояния уже есть в <code>pipeline.md</code>, нужен диспетчер поверх.</div>
+        <div class="item-meta">
+          
+<span class="tag tag-skill">/pipeline</span>          <span class="tag tag-type-conv">автономность</span>          <span class="tag tag-both">Both</span>          <span class="tag tag-effort">~3 дня</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div><div class="effort-label">усилие</div></div>
+    </div>
+
+    <div class="item p1">
+      <div class="item-num">И10</div>
+      <div class="item-body">
+        <div class="item-title">Проверка живости упоминаемых сервисов и доменов <span class="tag-new">NEW</span></div>
+        <div class="item-desc">Три раза подряд ревьюеры находили в статьях мёртвые сущности: eSputnik ушёл из РФ, у БроБота и Leadtex не резолвится домен, WebMoney и «Яндекс.Деньги» переименованы с 2020, инструкция вела через @ControllerBot (это постинг в канал, а не бот поддержки) — ляп жил 4 года. При дожиме чужого текста мы наследуем это как своё.</div>
+        <div class="item-detail">Добавить в <code>/fact-checker</code> отдельный чек: вытащить все упомянутые сервисы/бренды/домены → HTTP-проверка живости + быстрый поиск «ушёл из России / переименован / закрылся». Мёртвый сервис в подборке = FAIL, переименованный = WARN с правкой. Особенно обязательно в режиме <code>reanimation</code>: старый текст всегда содержит устаревшие сущности.</div>
+        <div class="item-meta">
+          
+<span class="tag tag-skill">/fact-checker</span>          <span class="tag tag-type-quality">Качество</span>          <span class="tag tag-ru">RU</span>          <span class="tag tag-effort">~1 день</span>
+        </div>
+      </div>
+      <div class="item-right"><div class="effort-bar"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div></div><div class="effort-label">усилие</div></div>
     </div>
 
   <!-- NEW: ревизия 12.06 -->
@@ -1284,12 +1321,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', system-u
 
   <!-- Sequence -->
   <div class="ctx" style="margin-bottom:0">
-    <h3>Очерёдность (обновлено вечером 19.08)</h3>
+    <h3>Очерёдность инструментария (19.08, вечер)</h3>
     <div class="seq-row">
-      <div class="seq-card"><div class="seq-title">✅ Закрыто 19.08</div><div class="seq-items">И1 Два корня · И2 Дожим как формат · #37 Гейт достоверности · N4 Docs sync · #8 · #40 · #43 · #44 · N3</div><div class="seq-note">Плюс И4 наполовину: блокер по заявкам снят, перелинковка проверена, /seo-optimizer переписан.</div></div>
-      <div class="seq-card"><div class="seq-title">🔴 Следующее — контент (~1-2 дня)</div><div class="seq-items">И4 остаток: дожим инфо-страниц с ЛИД-МАГНИТОМ · И3 Паттерны клиента в М1б</div><div class="seq-note">Рычаг — лид-магниты (23 живых лида), а не ссылки в услуги. Шаблон мостика — из /glossary/unit-ekonomika/.</div></div>
-      <div class="seq-card"><div class="seq-title">🔑 Инфраструктура — за Иваном</div><div class="seq-items">И7 Ротация трёх FTP-паролей · мёртвый приложение-пароль crmgroup</div><div class="seq-note">WP-пароль уже ротирован 19.08. FTP меняются только руками в панели хостинга.</div></div>
-      <div class="seq-card"><div class="seq-title">Гигиена, когда дойдут руки</div><div class="seq-items">И5 Свести два гейта · И6 Скрипт М25/М26 · И8 Разгрести реструктуризацию · #26 баг вычёркивания · #28 host_id · #13 Citation integrity · #38 LEARN-петля</div><div class="seq-note">Global-трек и продуктизация — заморожены.</div></div>
+      <div class="seq-card"><div class="seq-title">1. Автономность — база (~3-4 дня)</div><div class="seq-items">И9 <code>/pipeline</code> оркестратор · #36 скоринг тем (Шаг 0) · #26 починить вычёркивание</div><div class="seq-note">Без оркестратора агента нет: сейчас 10 ручных вызовов на статью. #36 закрывает вход — агент сам предлагает тему.</div></div>
+      <div class="seq-card"><div class="seq-title">2. Гейты, чтобы не звать человека (~2 дня)</div><div class="seq-items">И3 паттерны клиента в М1б · И10 живость сервисов · И5 свести два гейта · И6 скрипт шинглов</div><div class="seq-note">Пока гейт пропускает регрессию или требует ручной вычитки, автономность не наступит.</div></div>
+      <div class="seq-card"><div class="seq-title">3. SEO-слой (~2 дня)</div><div class="seq-items">#11 перелинковка и путь в услугу · #19 ПФ через Метрику · #28 host_id · #22 freshness-триггер</div><div class="seq-note">Базовые сигналы, на которых агент принимает решения о дожиме.</div></div>
+      <div class="seq-card"><div class="seq-title">4. GEO-слой (~1 нед)</div><div class="seq-items">#2 schema · #10 entity @id · #18 AEO pre-pub · #9 prompts.md · #42 платформы · #23/#32/#33/#34 замеры AI-видимости</div><div class="seq-note">⚠️ Кластер замеров (9, 23, 32, 33, 34, 42) строится на гипотезе, что AI-выдача — наш рычаг. Падение симметрично в Google и Яндексе, так что гипотезу стоит подтвердить до того, как вкладывать неделю.</div></div>
+      <div class="seq-card"><div class="seq-title">5. Замкнуть петлю</div><div class="seq-items">#38 LEARN → PLAN: выводы /tracker возвращаются в /researcher</div><div class="seq-note">Финальный шаг автономности: агент учится на собственных результатах, а не начинает каждый цикл с нуля.</div></div>
+      <div class="seq-card"><div class="seq-title">Вне доски</div><div class="seq-items">И4 дожим страниц (исполнение) · И7 ротация FTP · И8 репо-гигиена · форматы #25/#27/#31/#35 · дистрибуция #14/#41</div><div class="seq-note">Не инструментарий. Форматы и дистрибуция — до подтверждения гипотез.</div></div>
     </div>
   </div>
 
