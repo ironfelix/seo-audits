@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Hub — AgentIQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f1;
+  --white: #fff;
+  --dark: #1a1a1a;
+  --border: #e2e0db;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+  --blue: #4f46e5;
+  --blue-light: rgba(99,102,241,.08);
+  --blue-border: rgba(79,70,229,.2);
+  --green: #2a7a4b;
+  --green-light: #f0faf4;
+  --green-border: rgba(42,122,75,.2);
+  --gold: #e8a838;
+  --gold-light: #fff8ed;
+  --gold-border: rgba(232,168,56,.3);
+  --red: #c01020;
+  --red-light: rgba(192,16,32,.08);
+  --red-border: rgba(192,16,32,.2);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,.07);
+  --purple-border: rgba(124,58,237,.2);
+  --teal: #0d7877;
+  --teal-light: rgba(13,120,119,.08);
+  --teal-border: rgba(13,120,119,.25);
+  --gray: #6b7280;
+  --gray-light: #f3f4f6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+.hero { background: var(--dark); padding: 36px 0 28px; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.wrap { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+.hero-inner { position: relative; }
+.hero h1 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; letter-spacing: -.3px; }
+.hero p { color: rgba(255,255,255,.45); font-size: 13px; }
+.hero-meta { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.hero-chip { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; padding: 3px 11px; font-size: 12px; color: rgba(255,255,255,.65); }
+.hero-chip b { color: #fff; }
+
+.main { padding: 28px 0 60px; }
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 28px; }
+.stat { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-align: center; }
+.stat .num { font-size: 24px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
+.stat .lbl { font-size: 11px; color: var(--muted); }
+.c-blue { color: var(--blue); } .c-green { color: var(--green); } .c-gold { color: #b57d1a; }
+.c-red { color: var(--red); } .c-purple { color: var(--purple); } .c-teal { color: var(--teal); }
+
+/* Section */
+.sec-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.sec-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.sec-gap { margin-bottom: 32px; }
+
+/* Project card */
+.proj { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 10px; display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: flex-start; transition: border-color .15s; }
+.proj:hover { border-color: #ccc; }
+.proj-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.proj-body { min-width: 0; }
+.proj-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.proj-url { font-size: 12px; color: var(--muted2); margin-bottom: 7px; font-family: monospace; }
+.proj-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 9px; }
+.proj-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.proj-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; text-decoration: none; transition: opacity .15s; }
+.proj-link:hover { opacity: .8; }
+.pl-audit    { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
+.pl-strategy { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); }
+.pl-plan     { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+.pl-offer    { background: var(--gold-light); color: #9a6a0a; border: 1px solid var(--gold-border); }
+.pl-board    { background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-border); }
+.pl-tool     { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
+.pl-research { background: var(--gray-light); color: var(--gray); border: 1px solid #d1d5db; }
+.proj-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; }
+.badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+.badge-client  { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
+.badge-demo    { background: var(--gray-light); color: var(--gray); border: 1px solid #d1d5db; }
+.badge-pending { background: var(--gold-light); color: #9a6a0a; border: 1px solid var(--gold-border); }
+.badge-tool    { background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-border); }
+
+/* bg colors for icons */
+.icon-blue   { background: var(--blue-light); }
+.icon-green  { background: var(--green-light); }
+.icon-gold   { background: var(--gold-light); }
+.icon-red    { background: var(--red-light); }
+.icon-purple { background: var(--purple-light); }
+.icon-teal   { background: var(--teal-light); }
+.icon-gray   { background: var(--gray-light); }
+
+.research-note { font-size: 12px; color: var(--muted2); background: #f8f7f4; border-radius: 6px; padding: 7px 10px; margin-top: 8px; display: flex; align-items: center; gap: 5px; }
+
+@media (max-width: 640px) {
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .proj { grid-template-columns: auto 1fr; }
+  .proj-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="wrap">
+<div class="hero-inner">
+  <h1>Research Hub — AgentIQ</h1>
+  <p>Все проекты: аудиты, стратегии, исследования · обновлено 2026-06-03</p>
+  <div class="hero-meta">
+    <div class="hero-chip"><b>3</b> клиента</div>
+    <div class="hero-chip"><b>7</b> демо-аудитов</div>
+    <div class="hero-chip"><b>2</b> ожидают HTML</div>
+    <div class="hero-chip"><b>31</b> документов</div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="main">
+<div class="wrap">
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat"><div class="num c-blue">3</div><div class="lbl">Клиентов</div></div>
+  <div class="stat"><div class="num c-green">31</div><div class="lbl">HTML-файлов</div></div>
+  <div class="stat"><div class="num c-purple">7</div><div class="lbl">Демо-аудитов</div></div>
+  <div class="stat"><div class="num c-gold">2</div><div class="lbl">Research → HTML</div></div>
+  <div class="stat"><div class="num c-teal">10</div><div class="lbl">Скиллов</div></div>
+  <div class="stat"><div class="num c-red">41</div><div class="lbl">Задач бэклог</div></div>
+</div>
+
+<!-- CLIENTS -->
+<div class="sec-gap">
+<div class="sec-title">Клиентские проекты</div>
+
+<!-- CRM Group -->
+<div class="proj">
+  <div class="proj-icon icon-blue">🏢</div>
+  <div class="proj-body">
+    <div class="proj-name">CRM Group</div>
+    <div class="proj-url">crmgroup.ru</div>
+    <div class="proj-desc">CRM-системы и автоматизация продаж. Первый клиент, на котором обкатан полный аудит-пайплайн.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="crmgroup-seo-audit.html">📊 SEO-аудит</a>
+      <a class="proj-link pl-audit" href="crmgroup-audit.html">📋 Аудит v2</a>
+      <a class="proj-link pl-strategy" href="crmgroup-marketing-360.html">🎯 Marketing 360</a>
+    </div>
+    <div class="research-note">✅ research/: tech-seo + content + gap + audit-summary</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-client">Клиент</span>
+  </div>
+</div>
+
+<!-- Фактор Продаж -->
+<div class="proj">
+  <div class="proj-icon icon-green">📈</div>
+  <div class="proj-body">
+    <div class="proj-name">Фактор Продаж</div>
+    <div class="proj-url">factor-prodazh.ru</div>
+    <div class="proj-desc">Построение отделов продаж. 19+ статей через пайплайн, лид-магнит, контент-план. Основной тест-кейс пайплайна.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="factor-prodazh-audit.html">📊 SEO-аудит</div>
+      <a class="proj-link pl-strategy" href="seo-strategy-factor.html">🎯 SEO-стратегия</a>
+      <a class="proj-link pl-plan" href="factor-prodazh-plan-2m.html">📅 План 2 мес</a>
+      <a class="proj-link pl-board" href="factor-prodazh-board.html">📋 Борд задач</a>
+      <a class="proj-link pl-offer" href="factor-prodazh-point-a.html">📍 Точка А</a>
+      <a class="proj-link pl-tool" href="factor-pipeline-guide.html">⚙️ Pipeline Guide</a>
+    </div>
+    <div class="research-note">✅ Полный пайплайн: 19 статей опубликовано, 10 агентов</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-client">Клиент</span>
+  </div>
+</div>
+
+<!-- Ярфинтраст -->
+<div class="proj">
+  <div class="proj-icon icon-purple">🏦</div>
+  <div class="proj-body">
+    <div class="proj-name">Ярфинтраст</div>
+    <div class="proj-url">yarfintrast.ru</div>
+    <div class="proj-desc">Финансовый брокер — кредиты под залог. Полный аудит + контент-стратегия + маркетинговая стратегия + design-токены.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="yarfintrast-seo-audit.html">📊 SEO-аудит</a>
+      <a class="proj-link pl-strategy" href="yarfintrast-seo-strategy.html">🎯 SEO-стратегия</a>
+      <a class="proj-link pl-strategy" href="yarfintrast-content-strategy.html">✍️ Контент</a>
+      <a class="proj-link pl-strategy" href="yarfintrast-marketing-strategy.html">📣 Маркетинг</a>
+    </div>
+    <div class="research-note">✅ research/: tech-seo + content + gap + audit-summary + design-tokens</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-client">Клиент</span>
+  </div>
+</div>
+
+</div>
+
+<!-- RESEARCH PENDING HTML -->
+<div class="sec-gap">
+<div class="sec-title">Research готов — нужен HTML-отчёт</div>
+
+<!-- NeuroGate -->
+<div class="proj">
+  <div class="proj-icon icon-teal">🤖</div>
+  <div class="proj-body">
+    <div class="proj-name">NeuroGate (ng-ai.ru)</div>
+    <div class="proj-url">ng-ai.ru</div>
+    <div class="proj-desc">SaaS-агрегатор 80+ AI-моделей для России без VPN. Рублёвая оплата, от 2 ₽/запрос. Конкурент ProxyAPI, vsegpt.ru.</div>
+    <div class="proj-links">
+      <span class="proj-link pl-research">📁 research/tech-seo-audit.md</span>
+      <span class="proj-link pl-research">📁 content-audit.md</span>
+      <span class="proj-link pl-research">📁 gap-analysis.md</span>
+      <span class="proj-link pl-research">📁 audit-summary.md</span>
+    </div>
+    <div class="research-note">⏳ HTML-отчёт не создан</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-pending">→ HTML</span>
+  </div>
+</div>
+
+<!-- ПолисКарго -->
+<div class="proj">
+  <div class="proj-icon icon-gold">🚛</div>
+  <div class="proj-body">
+    <div class="proj-name">ПолисКарго</div>
+    <div class="proj-url">poliscargo.ru</div>
+    <div class="proj-desc">Страхование грузов и ответственности ТЭК. Узкоспециализированный B2B страховой брокер. Партнёр ATI.su.</div>
+    <div class="proj-links">
+      <span class="proj-link pl-research">📁 research/tech-seo-audit.md</span>
+      <span class="proj-link pl-research">📁 content-audit.md</span>
+      <span class="proj-link pl-research">📁 gap-analysis.md</span>
+      <span class="proj-link pl-research">📁 audit-summary.md</span>
+    </div>
+    <div class="research-note">⏳ HTML-отчёт не создан · ⚠️ SSL истёк на момент аудита</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-pending">→ HTML</span>
+  </div>
+</div>
+
+</div>
+
+<!-- DEMO AUDITS -->
+<div class="sec-gap">
+<div class="sec-title">Демо-аудиты (шоукейсы)</div>
+
+<!-- Домтабака -->
+<div class="proj">
+  <div class="proj-icon icon-red">🏪</div>
+  <div class="proj-body">
+    <div class="proj-name">Домтабака</div>
+    <div class="proj-url">domtabaka.ru</div>
+    <div class="proj-desc">Интернет-магазин табака и аксессуаров. Эталонный формат аудита — по нему сделаны все последующие.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="domtabaka-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+    <div class="research-note">✅ research/: tech-seo + content + gap + audit-summary</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- Pedant -->
+<div class="proj">
+  <div class="proj-icon icon-blue">📱</div>
+  <div class="proj-body">
+    <div class="proj-name">Pedant.ru</div>
+    <div class="proj-url">pedant.ru</div>
+    <div class="proj-desc">Федеральная сеть ремонта гаджетов, 707 точек. 12 467 AI-цитирований — информационный гигант, слабый в коммерческой гео-органике.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="pedant-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+    <div class="research-note">✅ keys.so data + tech-seo-audit.md · ⚠️ content/gap research не проводился</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- Dynamics Orto -->
+<div class="proj">
+  <div class="proj-icon icon-green">🦾</div>
+  <div class="proj-body">
+    <div class="proj-name">Dynamics Orto</div>
+    <div class="proj-url">dynamics-orto.ru</div>
+    <div class="proj-desc">Протезирование и ортопедия. Комплексный набор документов: аудит + план + КП + переговоры.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="seo-audit-dynamics-orto.html">📊 SEO-аудит</a>
+      <a class="proj-link pl-plan" href="dynamics-orto-plan-2m.html">📅 План 2 мес</a>
+      <a class="proj-link pl-offer" href="kp-seo-dynamics-orto.html">💼 КП</a>
+      <a class="proj-link pl-offer" href="compare-dynamics-ortoprotez.html">⚖️ Сравнение</a>
+      <a class="proj-link pl-offer" href="negotiation-ortoprotez.html">🤝 Переговоры</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- Aimclo -->
+<div class="proj">
+  <div class="proj-icon icon-purple">☁️</div>
+  <div class="proj-body">
+    <div class="proj-name">Aimclo</div>
+    <div class="proj-url">aimclo.com</div>
+    <div class="proj-desc">Email-маркетинг SaaS. Аудит + оффер.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="aimclo-seo-audit.html">📊 SEO-аудит</a>
+      <a class="proj-link pl-offer" href="aimclo-offer.html">💼 Оффер</a>
+    </div>
+    <div class="research-note">✅ research/: tech-seo + content + gap + audit-summary</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- EmailSoldiers -->
+<div class="proj">
+  <div class="proj-icon icon-gold">✉️</div>
+  <div class="proj-body">
+    <div class="proj-name">EmailSoldiers</div>
+    <div class="proj-url">emailsoldiers.ru</div>
+    <div class="proj-desc">Email- и мессенджер-маркетинг агентство.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="emailsoldiers-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- Unisender -->
+<div class="proj">
+  <div class="proj-icon icon-teal">📧</div>
+  <div class="proj-body">
+    <div class="proj-name">Unisender</div>
+    <div class="proj-url">unisender.com</div>
+    <div class="proj-desc">Email-маркетинг платформа. Крупный игрок — аудит как benchmark.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="unisender-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+    <div class="research-note">✅ research/: tech-seo + content + gap + audit-summary</div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- YamalMoto -->
+<div class="proj">
+  <div class="proj-icon icon-red">🏍️</div>
+  <div class="proj-body">
+    <div class="proj-name">YamalMoto</div>
+    <div class="proj-url">yamalmoto.ru</div>
+    <div class="proj-desc">Мото-техника ЯНАО. Региональный e-commerce.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="yamalmoto-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+<!-- Promred -->
+<div class="proj">
+  <div class="proj-icon icon-gray">🏭</div>
+  <div class="proj-body">
+    <div class="proj-name">Promred</div>
+    <div class="proj-url">promred.ru</div>
+    <div class="proj-desc">Промышленное оборудование.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-audit" href="promred-seo-audit.html">📊 SEO-аудит</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-demo">Демо</span>
+  </div>
+</div>
+
+</div>
+
+<!-- TOOLS / SYSTEM -->
+<div class="sec-gap">
+<div class="sec-title">Инструменты и система</div>
+
+<div class="proj">
+  <div class="proj-icon icon-teal">⚙️</div>
+  <div class="proj-body">
+    <div class="proj-name">Pipeline Backlog</div>
+    <div class="proj-url">AgentIQ · AI Content System</div>
+    <div class="proj-desc">41 задача по развитию пайплайна. P1: SpeakableSpecification, Schema stack, AEO precheck, AI-боты. P2: Locked H2 план, Entity-SEO, AI-detection gate.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-tool" href="pipeline-backlog.html">📋 Backlog (41 задача)</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-tool">Система</span>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-icon icon-blue">🚀</div>
+  <div class="proj-body">
+    <div class="proj-name">AI Content Pipeline: SEO + GEO</div>
+    <div class="proj-url">ironfelix.github.io/agentiq-reviews/ai-seo-pipeline/</div>
+    <div class="proj-desc">Публичный лендинг продукта. 10 агентов: Researcher → Writer → Editor → Fact-Checker → Quality-Gate → SEO-Optimizer → Designer → Publisher → Tracker → Page-Optimizer.</div>
+    <div class="proj-links">
+      <a class="proj-link pl-tool" href="https://ironfelix.github.io/agentiq-reviews/ai-seo-pipeline/" target="_blank">🌐 Лендинг</a>
+      <a class="proj-link pl-tool" href="factor-pipeline-guide.html">📖 Гайд</a>
+    </div>
+  </div>
+  <div class="proj-right">
+    <span class="badge badge-tool">Продукт</span>
+  </div>
+</div>
+
+</div>
+
+</div><!-- /wrap -->
+</div><!-- /main -->
+
+</body>
+</html>

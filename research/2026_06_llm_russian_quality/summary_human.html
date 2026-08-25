@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM и русский язык: что реально работает — 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f4f0;
+    color: #252525;
+    line-height: 1.7;
+    padding: 40px 20px 80px;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  header {
+    border-bottom: 3px solid #CC955B;
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #888;
+  }
+  header .meta span { margin-right: 16px; }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-contested { background: #FFF3CD; color: #856404; }
+  .badge-high { background: #D4EDDA; color: #155724; }
+  .badge-moderate { background: #D1ECF1; color: #0C5460; }
+  .badge-low { background: #F8D7DA; color: #721C24; }
+
+  .tldr {
+    background: #fff;
+    border-left: 4px solid #CC955B;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .tldr .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #CC955B;
+    margin-bottom: 8px;
+  }
+  .tldr p { font-size: 16px; line-height: 1.65; }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 48px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E8E8E0;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 28px 0 10px;
+    color: #252525;
+  }
+  p { margin-bottom: 14px; }
+
+  .model-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .model-table th {
+    background: #252525;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .model-table td {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #f0ede6;
+    vertical-align: top;
+  }
+  .model-table tr:last-child td { border-bottom: none; }
+  .model-table tr:hover td { background: #faf9f6; }
+  .model-name { font-weight: 700; }
+
+  .callout {
+    background: #FFF9F0;
+    border: 1px solid #F0D9B5;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .callout .callout-title {
+    font-weight: 700;
+    color: #CC955B;
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .myth {
+    background: #fff;
+    border: 1px solid #E8E8E0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .myth .myth-wrong {
+    color: #721C24;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .myth .myth-right {
+    color: #155724;
+    font-size: 14px;
+  }
+
+  .confidence-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #E8E8E0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .confidence-bar .bar-label { flex: 1; }
+  .confidence-bar .bar-conf {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .markers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .marker-card {
+    background: #fff;
+    border: 1px solid #E8E8E0;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .marker-card .marker-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .marker-card .marker-desc { font-size: 13px; color: #666; }
+  .marker-card .marker-signal {
+    font-size: 12px;
+    color: #CC955B;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  .bottom-line {
+    background: #252525;
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 48px;
+  }
+  .bottom-line h2 {
+    color: #CC955B;
+    border-color: #444;
+    margin-top: 0;
+  }
+  .bottom-line p, .bottom-line li { color: #ccc; }
+  .bottom-line ul { padding-left: 20px; }
+  .bottom-line li { margin-bottom: 8px; font-size: 15px; }
+
+  .sources-note {
+    margin-top: 40px;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #E8E8E0;
+  }
+
+  @media (max-width: 580px) {
+    .markers-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>LLM и русский язык: что реально работает <span class="badge badge-contested">2026</span></h1>
+    <div class="meta">
+      <span>Ресёрч: 3 цикла, 5 потоков, 35 источников</span>
+      <span>Уверенность: 0.35 / 1.0</span>
+      <span>Поле: оспаривается</span>
+    </div>
+  </header>
+
+  <div class="tldr">
+    <div class="label">Главный вывод</div>
+    <p>Объективного способа измерить, кто пишет лучший русский, не существует. Ни один бенчмарк не измеряет натуральность текста. Практика говорит: для разных задач нужны разные модели. Единственный универсальный вывод — Claude для редактуры и длинных текстов, Qwen3-235B для дешёвого масштаба.</p>
+  </div>
+
+  <h2>Про бенчмарки — почему им нельзя доверять</h2>
+
+  <p>MERA — главный российский рейтинг LLM — это, грубо говоря, ЕГЭ для нейросетей. Тест из 15 заданий: математика, логика, код, викторина. Кто точнее отвечает — тот выше. Claude Opus сейчас на первом месте (0.862), уже обогнал человеческий базис.</p>
+
+  <p><strong>Проблема:</strong> этот ЕГЭ вообще не проверяет, умеет ли модель писать хороший текст. Из 15 задач — 0 про стиль, натуральность, живость языка. Это как судить о писательском таланте по результатам ЕГЭ по математике.</p>
+
+  <div class="callout">
+    <div class="callout-title">Три дополнительных причины не верить рейтингам</div>
+    Сбер организует MERA и одновременно делает GigaChat. Wildberries заняла три места в топ-10 одной моделью (три разных запуска — три позиции). И тест с высокой вероятностью скоро насытится: в ближайшие 12–18 месяцев все топовые модели соберут около 0.90, и таблица перестанет что-либо показывать.
+  </div>
+
+  <h2>Какая модель что умеет</h2>
+
+  <table class="model-table">
+    <thead>
+      <tr>
+        <th>Модель</th>
+        <th>Сильная сторона</th>
+        <th>Слабая сторона</th>
+        <th>Для чего брать</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="model-name">Claude</span></td>
+        <td>Держит нить в длинном тексте, редактура, бизнес-тон</td>
+        <td>Дорого</td>
+        <td>Статьи, редактура, что-то важное</td>
+      </tr>
+      <tr>
+        <td><span class="model-name">Qwen3-235B</span></td>
+        <td>91% качества Claude за 1/130 цены</td>
+        <td>Менее предсказуем в тонком стиле</td>
+        <td>SEO-контент в объёме, черновики</td>
+      </tr>
+      <tr>
+        <td><span class="model-name">GigaChat</span></td>
+        <td>Официальный, казённый, правильный</td>
+        <td>"ЕГЭ-эссе": канцелярит, шаблонность</td>
+        <td>Юридические документы, госписьма</td>
+      </tr>
+      <tr>
+        <td><span class="model-name">YandexGPT</span></td>
+        <td>Заголовки, short copy, разговорное</td>
+        <td>Длинный текст не держит</td>
+        <td>Заголовки, описания, digital copy</td>
+      </tr>
+      <tr>
+        <td><span class="model-name">DeepSeek V3</span></td>
+        <td>85% дешевле Claude, достаточно хорошо</td>
+        <td>Качество непостоянное</td>
+        <td>Массовые задачи без тонкого стиля</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">Практический консенсус</div>
+    Все опытные пользователи работают с несколькими моделями одновременно. Один инструмент на всё — признак новичка. Задача определяет модель, не рейтинг.
+  </div>
+
+  <h2>Как выглядит AI-русский — и как его поймать</h2>
+
+  <p>Мы знаем точно, чем AI-текст отличается от человеческого. Вот измеримые маркеры:</p>
+
+  <div class="markers-grid">
+    <div class="marker-card">
+      <div class="marker-name">Монотонность ритма</div>
+      <div class="marker-desc">AI пишет предложениями примерно одинаковой длины. Человек чередует короткие и длинные.</div>
+      <div class="marker-signal">Burstiness &lt; 0.30–0.35 → подозрительно</div>
+    </div>
+    <div class="marker-card">
+      <div class="marker-name">Отглагольные существительные</div>
+      <div class="marker-desc">"Осуществление взаимодействия" вместо "взаимодействовать". AI пишет так в 2 раза чаще людей.</div>
+      <div class="marker-signal">В 2× больше нормы → AI-маркер</div>
+    </div>
+    <div class="marker-card">
+      <div class="marker-name">Тире</div>
+      <div class="marker-desc">AI ставит тире в 3.28 раза чаще, чем человек. Часто — там, где нужна запятая или двоеточие.</div>
+      <div class="marker-signal">Более 8 тире в статье → AI-маркер</div>
+    </div>
+    <div class="marker-card">
+      <div class="marker-name">Причастные обороты</div>
+      <div class="marker-desc">AI нанизывает причастные обороты в 2–5 раз чаще. Читается как перевод с немецкого.</div>
+      <div class="marker-signal">Стекание 3+ оборотов → AI-маркер</div>
+    </div>
+  </div>
+
+  <p>Важно: <strong>человек распознаёт AI-русский в 66% случаев</strong> — чуть лучше, чем монета. Опытный редактор чувствует что-то не то, но объяснить точно — не может. Автоматические детекторы ловят только грубые случаи и быстро устаревают.</p>
+
+  <h2>Мифы — что неправда</h2>
+
+  <div class="myth">
+    <div class="myth-wrong">✗ "GigaChat лучший, потому что русский"</div>
+    <div class="myth-right">✓ GigaChat на практике хвалят только за казённый стиль. За живой текст — устойчивая критика. MERA-рейтинг это не отражает.</div>
+  </div>
+
+  <div class="myth">
+    <div class="myth-wrong">✗ "Знакомые с AI люди распознают AI-текст в 90% случаев"</div>
+    <div class="myth-right">✓ Единственное peer-reviewed исследование (RuATD 2022) даёт 66.6%. Цифра 90% — без источника, из Хабра, другая выборка.</div>
+  </div>
+
+  <div class="myth">
+    <div class="myth-wrong">✗ "BerryLM от Wildberries — третья модель в России"</div>
+    <div class="myth-right">✓ BerryLM #3 в рейтинге, но без публичного API и без единого отзыва пользователей. Три версии одной модели заняли три места в топ-10 — это gaming, а не качество.</div>
+  </div>
+
+  <div class="myth">
+    <div class="myth-wrong">✗ "У Claude нет кириллического токенизатора — значит хуже русских моделей"</div>
+    <div class="myth-right">✓ Claude #1 в MERA несмотря на BPE-токенизатор. Масштаб обучения перевешивает токенизационный штраф.</div>
+  </div>
+
+  <h2>Уверенность по ключевым утверждениям</h2>
+
+  <div class="confidence-bar">
+    <span class="bar-label">Нет бенчмарка для naturalness русского текста</span>
+    <span class="badge badge-high">HIGH</span>
+  </div>
+  <div class="confidence-bar">
+    <span class="bar-label">MERA структурно скомпрометирован (COI, MCQ-формат)</span>
+    <span class="badge badge-high">HIGH</span>
+  </div>
+  <div class="confidence-bar">
+    <span class="bar-label">Задача определяет лучшую модель (нет одного победителя)</span>
+    <span class="badge badge-high">HIGH</span>
+  </div>
+  <div class="confidence-bar">
+    <span class="bar-label">Claude лучший для длинных editorial-текстов</span>
+    <span class="badge badge-moderate">MODERATE</span>
+  </div>
+  <div class="confidence-bar">
+    <span class="bar-label">Модели "думают по-английски" (механизм)</span>
+    <span class="badge badge-moderate">MODERATE</span>
+  </div>
+  <div class="confidence-bar">
+    <span class="bar-label">Конкретные пороги R-HLS для русского</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+
+  <div class="bottom-line">
+    <h2>Что с этим делать</h2>
+    <ul>
+      <li>Не ориентируйся на MERA-рейтинги при выборе модели для контента</li>
+      <li>Длинные статьи и редактура → Claude</li>
+      <li>SEO-контент в объёме → Qwen3-235B (в 130 раз дешевле)</li>
+      <li>Юридические и официальные тексты → GigaChat</li>
+      <li>Проверяй тире: больше 8 в статье — признак AI-текста</li>
+      <li>Автодетекторы AI-текста — не фильтр качества. Редактор важнее</li>
+      <li>Мульти-модельный воркфлоу — норма, не роскошь</li>
+    </ul>
+  </div>
+
+  <div class="sources-note">
+    Синтез: 5 Scout-потоков + CRITIC + METHODOLOGIST + 2 Deep Dive · 35 источников · Уверенность 0.35/1.0 · Поле: оспаривается<br>
+    Полный консенсус-документ: <code>consensus_reference.md</code> · Action map: <code>_action_map.md</code>
+  </div>
+
+</div>
+</body>
+</html>

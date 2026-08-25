@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-аудит — pedant.ru</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0d0e0c;
+  --surface: #161917;
+  --surface2: #1e2220;
+  --surface3: #242724;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0ec;
+  --text-soft: #b8bdb6;
+  --muted: #6b7068;
+  --accent: #d4a843;
+  --accent-dim: rgba(212,168,67,0.15);
+  --accent-hover: #e8bc5a;
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --orange: #d4813a;
+  --orange-dim: rgba(212,129,58,0.12);
+  --green: #5fa85a;
+  --green-dim: rgba(95,168,90,0.12);
+  --blue: #5a94d4;
+  --blue-dim: rgba(90,148,212,0.12);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,14,12,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; gap: 4px; height: 52px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-logo {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap; margin-right: 12px; flex-shrink: 0;
+}
+.nav a {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.3px; padding: 6px 11px; border-radius: 6px;
+  white-space: nowrap; transition: color 0.15s, background 0.15s;
+}
+.nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+.hero {
+  background: linear-gradient(135deg, #111410 0%, #0d0e0c 60%, #131510 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 64px 32px 52px;
+}
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+.hero .wrap { padding: 0; }
+.hero-badge {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-dim);
+  border: 1px solid rgba(212,168,67,0.3);
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 42px; font-weight: 800; line-height: 1.15;
+  letter-spacing: -1px; margin-bottom: 12px;
+}
+.hero h1 span { color: var(--accent); }
+.hero-sub { font-size: 16px; color: var(--text-soft); max-width: 600px; margin-bottom: 36px; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; max-width: 900px;
+}
+.hstat {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 18px 20px;
+}
+.hstat-val {
+  font-size: 28px; font-weight: 800; color: var(--accent);
+  letter-spacing: -0.5px; line-height: 1;
+}
+.hstat-val.red { color: var(--red); }
+.hstat-val.green { color: var(--green); }
+.hstat-val.blue { color: var(--blue); }
+.hstat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+.section-desc { font-size: 14px; color: var(--text-soft); max-width: 680px; margin-bottom: 28px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:900px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.card-title { font-size: 13px; font-weight: 700; color: var(--text-soft); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+.chart-label { font-size: 12px; color: var(--muted); margin-bottom: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.chart-canvas-wrap { position: relative; height: 200px; }
+
+.issue-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--red); border-radius: var(--radius);
+  padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start;
+}
+.issue-card.orange { border-left-color: var(--orange); }
+.issue-card.yellow { border-left-color: var(--accent); }
+.issue-num {
+  font-size: 20px; font-weight: 900; color: var(--red);
+  min-width: 28px; line-height: 1.2;
+}
+.issue-card.orange .issue-num { color: var(--orange); }
+.issue-card.yellow .issue-num { color: var(--accent); }
+.issue-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.issue-desc { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+.issue-meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: var(--red-dim); color: var(--red); }
+.badge-orange { background: var(--orange-dim); color: var(--orange); }
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-blue { background: var(--blue-dim); color: var(--blue); }
+.badge-muted { background: rgba(107,112,104,0.15); color: var(--muted); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left; padding: 10px 14px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--muted);
+  border-bottom: 1px solid var(--border2); background: var(--surface2);
+}
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-soft); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+.kw { color: var(--text); font-weight: 500; }
+.pos-good { color: var(--green); font-weight: 700; }
+.pos-mid { color: var(--accent); font-weight: 700; }
+.pos-bad { color: var(--red); font-weight: 700; }
+.ws-num { font-variant-numeric: tabular-nums; color: var(--blue); }
+
+.comp-row { display: grid; grid-template-columns: 1fr 80px 80px 80px 80px; gap: 0; }
+.comp-row.header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 10px 14px; background: var(--surface2); border-radius: 8px 8px 0 0; }
+.comp-row.data { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.comp-row.data:last-child { border-bottom: none; }
+.comp-row.data:hover { background: rgba(255,255,255,0.02); }
+.comp-name { font-weight: 600; color: var(--text); }
+
+.qw-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.qw-phrase { font-size: 14px; font-weight: 600; }
+.qw-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.qw-stat { font-size: 12px; color: var(--muted); }
+.qw-stat strong { color: var(--text-soft); }
+.qw-arrow { font-size: 12px; color: var(--green); font-weight: 700; }
+
+.roadmap-phase {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 14px;
+}
+.phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.phase-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+}
+.phase-now { background: var(--red-dim); color: var(--red); }
+.phase-1 { background: var(--accent-dim); color: var(--accent); }
+.phase-2 { background: var(--blue-dim); color: var(--blue); }
+.phase-3 { background: var(--green-dim); color: var(--green); }
+.phase-title { font-weight: 700; font-size: 15px; }
+.phase-list { list-style: none; padding: 0; }
+.phase-list li {
+  display: flex; gap: 10px; padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-soft);
+  align-items: flex-start;
+}
+.phase-list li:last-child { border-bottom: none; }
+.phase-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+.forecast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.forecast-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 16px; text-align: center;
+}
+.forecast-period { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.forecast-val { font-size: 26px; font-weight: 900; color: var(--accent); letter-spacing: -0.5px; }
+.forecast-metric { font-size: 11px; color: var(--text-soft); margin-top: 4px; }
+
+.swot { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:700px) { .swot { grid-template-columns: 1fr; } }
+.swot-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.swot-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.swot-card.s .swot-label { color: var(--green); }
+.swot-card.s .dot { background: var(--green); }
+.swot-card.w .swot-label { color: var(--red); }
+.swot-card.w .dot { background: var(--red); }
+.swot-card.o .swot-label { color: var(--blue); }
+.swot-card.o .dot { background: var(--blue); }
+.swot-card.t .swot-label { color: var(--orange); }
+.swot-card.t .dot { background: var(--orange); }
+.swot-card ul { list-style: none; padding: 0; }
+.swot-card li { font-size: 13px; color: var(--text-soft); padding: 5px 0; border-bottom: 1px solid var(--border); line-height: 1.45; }
+.swot-card li:last-child { border-bottom: none; }
+
+.gap-cluster {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px;
+}
+.gap-cluster-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.gap-cluster-name { font-weight: 700; font-size: 14px; }
+.gap-cluster-ws { font-size: 13px; color: var(--blue); font-weight: 600; }
+.gap-kw-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.gap-kw {
+  font-size: 12px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 3px 10px; color: var(--text-soft);
+}
+.gap-kw span { color: var(--muted); margin-left: 4px; }
+
+.insight-box {
+  background: var(--accent-dim); border: 1px solid rgba(212,168,67,0.25);
+  border-radius: var(--radius); padding: 16px 20px;
+  font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 20px;
+}
+.insight-box strong { color: var(--accent); }
+
+footer {
+  text-align: center; padding: 28px;
+  font-size: 12px; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.tbl-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">pedant.ru</div>
+    <a href="#exec">Выводы</a>
+    <a href="#growth">Динамика</a>
+    <a href="#issues">Проблемы</a>
+    <a href="#competitors">Конкуренты</a>
+    <a href="#gap">Gap-анализ</a>
+    <a href="#queries">Запросы</a>
+    <a href="#quickwins">Quick Wins</a>
+    <a href="#roadmap">Роадмап</a>
+    <a href="#forecast">Прогноз</a>
+    <a href="#swot">SWOT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">SEO-аудит · Май 2026</div>
+    <h1>pedant.ru — <span>аудит органического трафика</span></h1>
+    <p class="hero-sub">Данные Keys.so (база ru) + технический краулинг. Сайт на подъёме после просадки 2025: рекордные показатели по всем метрикам в мае 2026.</p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-val">99 184</div>
+        <div class="hstat-label">ключей в топ-50</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">5 411</div>
+        <div class="hstat-label">видимость (vis)</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">3 045</div>
+        <div class="hstat-label">ключей в топ-1</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val blue">12 467</div>
+        <div class="hstat-label">AI-цитирований</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">3 056</div>
+        <div class="hstat-label">страниц в индексе</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">37</div>
+        <div class="hstat-label">Domain Rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<section class="section" id="exec">
+  <div class="wrap">
+    <div class="section-label">01 · Executive Summary</div>
+    <h2 class="section-title">Ключевые выводы</h2>
+    <p class="section-desc">pedant.ru — крупнейшая сеть ремонта в РФ с сильной информационной SEO-стратегией через 1 050 FAQ-статей, но коммерческие гео-страницы (500+) не работают органически.</p>
+
+    <div class="insight-box">
+      <strong>Главный инсайт:</strong> сайт охватывает 99K+ ключей, но почти весь органический трафик — информационный (FAQ о проблемах с телефонами). Коммерческие запросы «ремонт айфона [город]», «замена экрана рядом» не захватываются органикой. В платном трафике конкурируют profi.ru и Яндекс Услуги, в органике — Pedant отсутствует по коммерческим запросам. Это главный разрыв.
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">Информационный трафик ✅</div>
+        <p style="font-size:13px;color:var(--text-soft);">1 050 FAQ-статей генерируют основной органический трафик. Toppage: FAQ о «ноутбук выключается», «перезагружается телефон» — по 43-49 ключей на статью.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Коммерческие страницы ❌</div>
+        <p style="font-size:13px;color:var(--text-soft);">500+ гео-страниц (/remont-apple/msk-*) не появляются в топ-50 ключей по базе keys.so. Отсутствует Schema LocalBusiness, нет canonical, нет коммерческого текста.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">AI-трафик 🚀</div>
+        <p style="font-size:13px;color:var(--text-soft);">12 467 AI-цитирований — один из лучших показателей среди сервисных сетей РФ. Рос с 0 (2024) до 25K+ (апрель 2026). EEAT на статьях (автор, фото, дата) — ключевая причина.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH HISTORY -->
+<section class="section" id="growth">
+  <div class="wrap">
+    <div class="section-label">02 · История роста</div>
+    <h2 class="section-title">Динамика позиций и AI-цитирований</h2>
+    <p class="section-desc">Просадка 2025 H2: топ-позиции упали с 2160 до 1392 (топ-1). Полное восстановление к маю 2026 — рекорд 3 045 в топ-1.</p>
+
+    <div class="grid2" style="margin-bottom:16px;">
+      <div class="chart-wrap">
+        <div class="chart-label">Видимость (vis) и ключи топ-1</div>
+        <div class="chart-canvas-wrap"><canvas id="chartVis"></canvas></div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-label">Ключи топ-50 и страницы в индексе</div>
+        <div class="chart-canvas-wrap"><canvas id="chartKeys"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-label">AI-цитирований в месяц (Яндекс Нейро и др.)</div>
+      <div class="chart-canvas-wrap" style="height:140px;"><canvas id="chartAI"></canvas></div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title">Почему была просадка (июль–декабрь 2025)</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">↘ Топ-1: 2 160 (янв 2025) → 1 392 (авг 2025) — потеря 35% топовых позиций</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">Одновременно: it50 вырос с 64K до 99K — сайт рос в длинном хвосте, терял топ</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">Вероятная причина: алгоритмические обновления Яндекса, конкурентное давление в FAQ</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Что вернуло позиции (2026)</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">↗ Топ-1: 1 392 (авг 2025) → 3 045 (май 2026) — рост ×2,2</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">AI-цитирования появились в авг 2025 (538), к апр 2026 достигли 25 248</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">Backlinks: домены с 975 (янв 2025) → 1 222 (май 2026), ссылки 66K → 78K</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRITICAL ISSUES -->
+<section class="section" id="issues">
+  <div class="wrap">
+    <div class="section-label">03 · Критические проблемы</div>
+    <h2 class="section-title">Топ-5 блокеров роста</h2>
+    <p class="section-desc">Технические ошибки, которые мешают коммерческим страницам попасть в органику. Устраняются до контентной работы.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="issue-card">
+        <div class="issue-num">1</div>
+        <div>
+          <div class="issue-title">Нет Schema.org LocalBusiness + AggregateRating на 500+ гео-страницах</div>
+          <div class="issue-desc">Каждая страница /remont-apple/msk-belorusskaya и подобные — без Schema. Рейтинг 4.8 / 3 798 отзывов (Яндекс Карты) не передаётся в сниппет. Это gold-стандарт для локальных сервисов — конкуренты в топ-1 местных запросов используют LocalBusiness + AggregateRating.</div>
+          <div class="issue-meta"><span class="badge badge-red">Критично</span> &nbsp;Impact: Высокий · Effort: Средний (шаблон Nuxt)</div>
+        </div>
+      </div>
+      <div class="issue-card">
+        <div class="issue-num">2</div>
+        <div>
+          <div class="issue-title">Нет canonical на 500+ гео-страницах</div>
+          <div class="issue-desc">Страницы /remont-apple/msk-belorusskaya, /remont-apple/spb-avtovo и сотни аналогичных не имеют canonical тега. При похожем контенте поисковик не определяет мастер-версию — ссылочный вес и поведенческие сигналы размываются между похожими страницами.</div>
+          <div class="issue-meta"><span class="badge badge-red">Критично</span> &nbsp;Impact: Высокий · Effort: Низкий (canonical в Nuxt layout)</div>
+        </div>
+      </div>
+      <div class="issue-card">
+        <div class="issue-num">3</div>
+        <div>
+          <div class="issue-title">Нет FAQPage Schema.org на 1 050 FAQ-статьях</div>
+          <div class="issue-desc">1 050 статей на /faq/* — ни одна не имеет FAQPage или HowTo schema. Сайт уже получает 12 467 AI-цитирований. С разметкой: расширенные сниппеты в Яндексе (Q&A блок), рост AI-цитирований, возможное попадание в Google AI Overview. Это прямая точка роста без изменения контента.</div>
+          <div class="issue-meta"><span class="badge badge-red">Критично</span> &nbsp;Impact: Высокий · Effort: Средний (авто-генерация из структуры статей)</div>
+        </div>
+      </div>
+      <div class="issue-card orange">
+        <div class="issue-num">4</div>
+        <div>
+          <div class="issue-title">http:// возвращает 200 OK — нет принудительного редиректа на HTTPS</div>
+          <div class="issue-desc">curl -I http://pedant.ru → HTTP/1.1 200 OK. HTTP-версия сайта доступна без редиректа, что создаёт потенциальное дублирование контента. QRATOR (DDoS-прокси) должен принудительно редиректить весь HTTP-трафик на HTTPS.</div>
+          <div class="issue-meta"><span class="badge badge-orange">Важно</span> &nbsp;Impact: Средний · Effort: Низкий (настройка QRATOR)</div>
+        </div>
+      </div>
+      <div class="issue-card orange">
+        <div class="issue-num">5</div>
+        <div>
+          <div class="issue-title">99% изображений без alt-текста</div>
+          <div class="issue-desc">Главная страница: 399/405 изображений без alt. Гео-страница: 110/146. FAQ-статья: 326/330. Это потеря SEO-сигналов изображений, плохая доступность, минус в E-E-A-T. При масштабе сайта (3 056 страниц) — тысячи пустых alt-атрибутов.</div>
+          <div class="issue-meta"><span class="badge badge-orange">Важно</span> &nbsp;Impact: Средний · Effort: Средний (шаблонная генерация alt)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;" class="card">
+      <div class="card-title">Также исправить</div>
+      <ul style="list-style:none;padding:0;">
+        <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">Title главной 115 символов → обрезается в выдаче (рекомендуется ≤70 для Яндекса)</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">OG type="article" на главной → должен быть "website"</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">Нет /llms.txt — AI-краулеры (GPTBot, ClaudeBot) не получают структурированный контекст о сайте</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">Нет Sitemap: директивы в robots.txt (sitemap обнаруживается только по Allow: /sitemap*)</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:5px 0;">HTML страниц 1.1–1.35 MB — тяжёлые страницы, вероятно медленный LCP на мобильных</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="section" id="competitors">
+  <div class="wrap">
+    <div class="section-label">04 · Конкурентный анализ</div>
+    <h2 class="section-title">Органические конкуренты из Keys.so</h2>
+    <p class="section-desc">По пересечению ключей pedant.ru конкурирует с информационными медиа — не с другими сервисными сетями. Это значит: FAQ-стратегия работает, но коммерческий сегмент занимается агрегаторами.</p>
+
+    <div class="insight-box" style="margin-bottom:20px;">
+      <strong>Структурный инсайт:</strong> органические конкуренты pedant.ru — hi-tech.mail.ru, appleinsider.ru, lifehacker.ru. Это не ремонтные сервисы — это технические медиа. В коммерческих запросах на ремонт в органике доминируют Яндекс Карты и агрегаторы. Pedant.ru не ранжируется органически по «ремонт iPhone Москва» — только в картах.
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Домен</th>
+            <th>Пересечение ключей</th>
+            <th>Ключей топ-50</th>
+            <th>Видимость</th>
+            <th>Тип</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw">hi-tech.mail.ru</td><td class="ws-num">37 519</td><td class="ws-num">2 361 197</td><td class="ws-num">718 295</td><td><span class="badge badge-muted">Медиа</span></td></tr>
+          <tr><td class="kw">support.apple.com</td><td class="ws-num">35 623</td><td class="ws-num">443 428</td><td class="ws-num">140 595</td><td><span class="badge badge-muted">Офиц. поддержка</span></td></tr>
+          <tr><td class="kw">club.dns-shop.ru</td><td class="ws-num">33 696</td><td class="ws-num">1 944 096</td><td class="ws-num">209 629</td><td><span class="badge badge-muted">Форум/ритейл</span></td></tr>
+          <tr><td class="kw">ichip.ru</td><td class="ws-num">32 327</td><td class="ws-num">1 387 623</td><td class="ws-num">97 439</td><td><span class="badge badge-muted">Медиа</span></td></tr>
+          <tr><td class="kw">lifehacker.ru</td><td class="ws-num">32 247</td><td class="ws-num">5 185 627</td><td class="ws-num">237 371</td><td><span class="badge badge-muted">Медиа</span></td></tr>
+          <tr><td class="kw">appleinsider.ru</td><td class="ws-num">31 730</td><td class="ws-num">574 872</td><td class="ws-num">25 223</td><td><span class="badge badge-muted">Apple-медиа</span></td></tr>
+          <tr><td class="kw">iphones.ru</td><td class="ws-num">29 522</td><td class="ws-num">1 015 494</td><td class="ws-num">82 828</td><td><span class="badge badge-muted">Медиа</span></td></tr>
+          <tr><td class="kw">remontka.pro</td><td class="ws-num">27 475</td><td class="ws-num">647 525</td><td class="ws-num">93 627</td><td><span class="badge badge-blue">FAQ/How-to</span></td></tr>
+          <tr><td class="kw">4pda.to</td><td class="ws-num">26 124</td><td class="ws-num">1 695 011</td><td class="ws-num">293 818</td><td><span class="badge badge-muted">Форум</span></td></tr>
+          <tr style="background:var(--accent-dim);"><td class="kw" style="color:var(--accent);font-weight:700;">pedant.ru (мы)</td><td class="ws-num" style="color:var(--accent);">—</td><td class="ws-num" style="color:var(--accent);">99 184</td><td class="ws-num" style="color:var(--accent);">5 411</td><td><span class="badge badge-orange">Сервисная сеть</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="chart-wrap">
+        <div class="chart-label">Видимость vs пересечение ключей</div>
+        <div class="chart-canvas-wrap"><canvas id="chartCompVis"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Коммерческие конкуренты в платном трафике</div>
+        <p style="font-size:13px;color:var(--text-soft);margin-bottom:12px;">По данным Keys.so adconcs — кто конкурирует с Pedant в Яндекс Директе:</p>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">🔴 <strong style="color:var(--text)">profi.ru</strong> — 90 пересечений, 634K рекл. ключей. Агрегатор мастеров, главная угроза</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">🟡 <strong style="color:var(--text)">uslugi.yandex.ru</strong> — 22 пересечения. Яндекс Услуги конкурирует напрямую</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:5px 0;border-bottom:1px solid var(--border);">🟡 <strong style="color:var(--text)">macsuper.ru</strong> — 31 пересечение, специализированный Apple-сервис Москвы</li>
+          <li style="font-size:13px;color:var(--text-soft);padding:5px 0;">🟢 <strong style="color:var(--text)">mos-phone-express.ru</strong> — 62 пересечения, локальный конкурент в Москве</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP ANALYSIS -->
+<section class="section" id="gap">
+  <div class="wrap">
+    <div class="section-label">05 · Gap-анализ</div>
+    <h2 class="section-title">Коммерческий gap — главная точка роста</h2>
+    <p class="section-desc">Высокочастотные коммерческие запросы, по которым Pedant не ранжируется органически, хотя имеет 500+ гео-страниц под них.</p>
+
+    <div class="insight-box">
+      <strong>Ключевой gap:</strong> запросы «ремонт iPhone [город]», «замена экрана [модель]», «сервис Apple рядом» — Pedant.ru имеет страницы под каждый из них, но не попадает в органику. В топе — Яндекс Карты, 2ГИС, агрегаторы. Стратегия: добавить структурированный контент + Schema на гео-страницы, и они начнут ранжироваться.
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🔴 Ремонт iPhone по городам / метро</div>
+        <div class="gap-cluster-ws">≈ 2М+ зап/мес совокупно</div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">ремонт айфона москва <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт iphone москва <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт apple рядом <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт айфона спб <span>ws≈1 579</span></div>
+        <div class="gap-kw">сервис apple москва <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт телефонов рядом <span>↑высокий</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🔴 Замена экрана по моделям</div>
+        <div class="gap-cluster-ws">≈ 500K+ зап/мес</div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">замена экрана iphone 15 <span>↑высокий</span></div>
+        <div class="gap-kw">замена экрана samsung <span>↑высокий</span></div>
+        <div class="gap-kw">замена стекла айфон <span>↑высокий</span></div>
+        <div class="gap-kw">замена экрана iphone 11 <span>ws≈338</span></div>
+        <div class="gap-kw">ремонт дисплея телефона <span>↑средний</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🟡 Замена аккумулятора</div>
+        <div class="gap-cluster-ws">≈ 200K+ зап/мес</div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">замена аккумулятора iphone <span>↑высокий</span></div>
+        <div class="gap-kw">сколько стоит поменять аккумулятор айфон 15 <span>ws≈1 456 — в топ-1!</span></div>
+        <div class="gap-kw">замена батареи samsung <span>↑средний</span></div>
+        <div class="gap-kw">аккумулятор iphone цена <span>↑средний</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🟡 Ремонт ноутбуков</div>
+        <div class="gap-cluster-ws">≈ 300K+ зап/мес</div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">ремонт macbook <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт ноутбука москва <span>↑высокий</span></div>
+        <div class="gap-kw">не включается macbook <span>ws≈844 — в рекл!</span></div>
+        <div class="gap-kw">ремонт ноутбука рядом <span>↑высокий</span></div>
+        <div class="gap-kw">замена батареи macbook <span>↑средний</span></div>
+      </div>
+    </div>
+
+    <div class="gap-cluster">
+      <div class="gap-cluster-header">
+        <div class="gap-cluster-name">🟢 Ремонт Samsung / Xiaomi / Huawei</div>
+        <div class="gap-cluster-ws">≈ 400K+ зап/мес</div>
+      </div>
+      <div class="gap-kw-list">
+        <div class="gap-kw">ремонт samsung москва <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт xiaomi <span>↑высокий</span></div>
+        <div class="gap-kw">ремонт samsung galaxy <span>↑высокий</span></div>
+        <div class="gap-kw">huawei ремонт <span>↑средний</span></div>
+        <div class="gap-kw">ремонт телефонов samsung <span>↑средний</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;" class="chart-wrap">
+      <div class="chart-label">Оценка потенциала gap-кластеров (WS, тыс. зап/мес)</div>
+      <div class="chart-canvas-wrap" style="height:180px;"><canvas id="chartGap"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP QUERIES -->
+<section class="section" id="queries">
+  <div class="wrap">
+    <div class="section-label">06 · Семантическое ядро</div>
+    <h2 class="section-title">Текущие позиции — топ FAQ-запросы</h2>
+    <p class="section-desc">Данные Keys.so, май 2026. Большинство топ-ключей — информационные FAQ. Коммерческих запросов в органическом топ-50 практически нет.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Запрос</th>
+            <th>Позиция</th>
+            <th>WS</th>
+            <th>Δ</th>
+            <th>Страница</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw">ошибки айфона</td><td class="pos-bad">17</td><td class="ws-num">34 074</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">ноутбук выключается</td><td class="pos-good">9</td><td class="ws-num">30 739</td><td style="color:var(--green)">+6</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">ноутбук выключился</td><td class="pos-bad">15</td><td class="ws-num">30 739</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">перезагружается телефон</td><td class="pos-mid">11</td><td class="ws-num">24 697</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">ошибки на айфон</td><td class="pos-bad">20</td><td class="ws-num">19 289</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">вибрирует телефон</td><td class="pos-good">2</td><td class="ws-num">11 914</td><td style="color:var(--green)">+3</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">вибрирующий телефон</td><td class="pos-good">7</td><td class="ws-num">11 914</td><td style="color:var(--green)">+10</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">купить папиросы</td><td style="color:var(--muted);font-weight:700;">12</td><td class="ws-num">10 728</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/catalog/papirosy (?)</td></tr>
+          <tr><td class="kw">звук в ноутбуке</td><td class="pos-good">7</td><td class="ws-num">9 487</td><td style="color:var(--green)">+5</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">ноутбук нет звука</td><td class="pos-good">8</td><td class="ws-num">9 388</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+          <tr><td class="kw">педант (брендовый)</td><td class="pos-good">1</td><td class="ws-num">70 882</td><td style="color:var(--muted)">0</td><td style="font-size:11px;color:var(--muted);">/</td></tr>
+          <tr><td class="kw">сколько стоит поменять акб айфон 15</td><td class="pos-good">1</td><td class="ws-num">1 456</td><td style="color:var(--green)">+449</td><td style="font-size:11px;color:var(--muted);">/remont-apple/iphone-15/...</td></tr>
+          <tr><td class="kw">скрытый номер как заблокировать</td><td class="pos-good">1</td><td class="ws-num">2 378</td><td style="color:var(--green)">+401</td><td style="font-size:11px;color:var(--muted);">/faq/*</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px;" class="card">
+      <div class="card-title">Структура трафика по страницам (ключей в топ-50)</div>
+      <ul style="list-style:none;padding:0;">
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">/ (главная) — 2 859 ключей (брендовые + смешанные)</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">/faq/...telefon-perezagruzhaetsya... — 49 ключей</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">/faq/...budilnik... — 48 ключей</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">/faq/...zvuk-na-noutbuke... — 46 ключей</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;border-bottom:1px solid var(--border);">/faq/...noutbuk-vyklyuchaetsya... — 43 ключей</li>
+        <li style="font-size:13px;color:var(--text-soft);padding:6px 0;">500+ гео-страниц — практически 0 ключей в базе</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section" id="quickwins">
+  <div class="wrap">
+    <div class="section-label">07 · Quick Wins</div>
+    <h2 class="section-title">Топ FAQ-запросов на грани топ-10</h2>
+    <p class="section-desc">Страницы уже в топ-11–20. Оптимизация заголовка H1, первого абзаца и добавление FAQPage Schema → топ-5 за 4–8 недель.</p>
+
+    <div class="grid3">
+      <div class="qw-card">
+        <div class="qw-phrase">ошибки айфона</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>17</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">34 074</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Написать прямой ответ в первом абзаце + добавить таблицу кодов ошибок</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">ноутбук выключился</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>15</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">30 739</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Статья есть, нужен чёткий TL;DR в первых 3 предложениях</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">перезагружается телефон</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>11</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">24 697</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-3</div>
+        <div style="font-size:11px;color:var(--muted);">Уже на грани! H1 + FAQPage Schema → топ-3</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">ошибки на айфон</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>20</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">19 289</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-10</div>
+        <div style="font-size:11px;color:var(--muted);">Возможно та же страница что «ошибки айфона» — проверить каннибализацию</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">выключается ноутбук что делать</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>19</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">5 354</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Пошаговое руководство + HowTo Schema</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">не сработал будильник</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>12</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">5 318</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-3</div>
+        <div style="font-size:11px;color:var(--muted);">Статья есть, добавить dateModified + FAQPage</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">почему ноутбук выключается</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>11</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">4 494</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Кластер «ноутбук выключается» — проверить каннибализацию с другими статьями</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">телефон сам перезагружается</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>16</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">3 541</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Тот же кластер что «перезагружается телефон» — объединить или выбрать мастер</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-phrase">что делать если вода в динамики</div>
+        <div class="qw-meta">
+          <span class="qw-stat">Позиция: <strong>12</strong></span>
+          <span class="qw-stat">WS: <strong class="ws-num">2 792</strong></span>
+        </div>
+        <div class="qw-arrow">→ цель топ-5</div>
+        <div style="font-size:11px;color:var(--muted);">Добавить видео-инструкцию или анимацию — конкуренты используют</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-label">08 · Роадмап 12 месяцев</div>
+    <h2 class="section-title">План работ по приоритетам</h2>
+    <p class="section-desc">Технический базис → FAQ-оптимизация → коммерческий прорыв → масштабирование.</p>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-now">Немедленно · 1–2 нед.</span>
+        <div class="phase-title">Технические блокеры</div>
+      </div>
+      <ul class="phase-list">
+        <li>Добавить canonical тег на все гео-страницы (/remont-*/msk-* и /remont-*/spb-*) — один шаблон в Nuxt layout</li>
+        <li>Настроить принудительный HTTP→HTTPS редирект на уровне QRATOR</li>
+        <li>Добавить Sitemap: https://pedant.ru/sitemap.xml в robots.txt</li>
+        <li>Исправить OG type="website" на главной странице</li>
+        <li>Сократить title главной с 115 до ≤70 символов</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-1">Месяц 1–2</span>
+        <div class="phase-title">Schema.org — максимальный эффект</div>
+      </div>
+      <ul class="phase-list">
+        <li>Добавить FAQPage Schema.org на все 1 050 FAQ-статей (авто-генерация из H2 + текст ответа) → расширенные сниппеты + рост AI-цитирований</li>
+        <li>Добавить LocalBusiness + AggregateRating Schema на все гео-страницы (адрес, часы, рейтинг 4.8, количество отзывов)</li>
+        <li>Добавить BreadcrumbList Schema на все страницы</li>
+        <li>Создать /llms.txt с описанием сервисов и географии — для AI-краулеров</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-2">Месяц 2–4</span>
+        <div class="phase-title">FAQ Quick Wins + борьба с каннибализацией</div>
+      </div>
+      <ul class="phase-list">
+        <li>Аудит каннибализации: «ошибки айфона» (pos17) vs «ошибки на айфон» (pos20) — возможно одна статья каннибализирует другую</li>
+        <li>Для топ-9 Quick Win статей: переписать первый абзац (прямой ответ на вопрос в 1–2 предложениях)</li>
+        <li>Добавить dateModified в Schema для всех FAQ-статей 2021–2023 годов</li>
+        <li>Массово добавить alt-тексты к изображениям через шаблон (alt = заголовок статьи + модель устройства)</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <span class="phase-badge phase-3">Месяц 4–12</span>
+        <div class="phase-title">Коммерческий прорыв — гео-страницы</div>
+      </div>
+      <ul class="phase-list">
+        <li>Добавить уникальный SEO-текст (200–300 слов) на топ-50 гео-страниц: описание района, ближайшие метро, специализация точки, отзывы</li>
+        <li>Создать целевые страницы по типу услуги: /zamena-ekrana/iphone-15/, /zamena-akkumulyatora/samsung/ — под коммерческие запросы с WS 50K+</li>
+        <li>FAQ-блок на каждой гео-странице (3–5 вопросов специфичных для ремонта) + FAQPage Schema</li>
+        <li>Расширить FAQ: добавить 300+ новых статей по незакрытым запросам (Samsung, Xiaomi, Windows-проблемы)</li>
+        <li>Ссылочный профиль: 1 222 домена → 1 500+ (партнёрские страницы производителей, отраслевые СМИ)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORECAST -->
+<section class="section" id="forecast">
+  <div class="wrap">
+    <div class="section-label">09 · Прогноз</div>
+    <h2 class="section-title">Ожидаемые результаты</h2>
+    <p class="section-desc">При последовательном выполнении роадмапа. Сайт уже на рекордных показателях — потенциал роста в коммерческом сегменте кратный.</p>
+
+    <div class="forecast-grid">
+      <div class="forecast-card">
+        <div class="forecast-period">Сейчас</div>
+        <div class="forecast-val" style="color:var(--accent)">5 411</div>
+        <div class="forecast-metric">видимость</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">+6–8 нед.</div>
+        <div class="forecast-val">6 500+</div>
+        <div class="forecast-metric">после Schema FAQ</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">+2–3 мес.</div>
+        <div class="forecast-val">20K+</div>
+        <div class="forecast-metric">AI-цитирований</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">+4–6 мес.</div>
+        <div class="forecast-val">×2</div>
+        <div class="forecast-metric">коммерч. трафика</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">+12 мес.</div>
+        <div class="forecast-val">130K+</div>
+        <div class="forecast-metric">ключей топ-50</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-period">Цель DR</div>
+        <div class="forecast-val">42–45</div>
+        <div class="forecast-metric">с 37 сейчас</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;" class="card">
+      <div class="card-title">Ключевые допущения</div>
+      <ul style="list-style:none;padding:0;margin-top:8px;">
+        <li style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-soft);">✅ Schema.org внедряется за 4–6 недель (Nuxt компонент, авто-генерация)</li>
+        <li style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-soft);">✅ Canonical и технические фиксы — неделя разработки</li>
+        <li style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-soft);">✅ Контент на гео-страницы — 50 страниц × 250 слов = стандартный проект</li>
+        <li style="padding:5px 0;font-size:13px;color:var(--muted)">⚠️ Коммерческий рост в органике возможен, но Яндекс Карты доминируют в локальных запросах — ожидать 3–6 месяцев</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section class="section" id="swot">
+  <div class="wrap">
+    <div class="section-label">10 · SWOT-анализ</div>
+    <h2 class="section-title">Стратегическая оценка</h2>
+    <p class="section-desc">Позиция pedant.ru на момент аудита — май 2026.</p>
+
+    <div class="swot">
+      <div class="swot-card s">
+        <div class="swot-label"><span class="dot"></span>Сильные стороны</div>
+        <ul>
+          <li>99 184 ключей в топ-50 — рекорд для сервисной сети РФ</li>
+          <li>12 467 AI-цитирований — лидер среди сервисных компаний</li>
+          <li>1 050 FAQ-статей с автором, фото, датой — сильный EEAT</li>
+          <li>DR=37, 1 222 ссылающихся домена — зрелый профиль</li>
+          <li>707 точек в 180 городах — уникальный географический охват</li>
+          <li>Nuxt.js SSR — контент виден AI-краулерам без JS</li>
+          <li>Рейтинг 4.8/5 (тысячи отзывов) — незадействованный актив</li>
+        </ul>
+      </div>
+      <div class="swot-card w">
+        <div class="swot-label"><span class="dot"></span>Слабые стороны</div>
+        <ul>
+          <li>500+ коммерческих гео-страниц не ранжируются органически</li>
+          <li>Нет Schema.org ни на гео-страницах, ни на FAQ</li>
+          <li>Нет canonical на 500+ гео-страницах</li>
+          <li>99% изображений без alt-текста</li>
+          <li>Тонкий контент на гео-страницах — нет уникального текста</li>
+          <li>HTML 1.1–1.35 MB — тяжёлые страницы</li>
+        </ul>
+      </div>
+      <div class="swot-card o">
+        <div class="swot-label"><span class="dot"></span>Возможности</div>
+        <ul>
+          <li>FAQPage Schema → расширенные сниппеты + рост AI-цитирований</li>
+          <li>LocalBusiness + AggregateRating → рейтинг 4.8 в сниппете</li>
+          <li>Коммерческий gap: ремонт [устройство] [город] — миллионы запросов/мес</li>
+          <li>300+ новых FAQ-статей по незакрытым запросам (Samsung, Xiaomi)</li>
+          <li>/llms.txt + AI-боты Allow → рост в AI-ответах Яндекс Нейро</li>
+          <li>Страницы под услуги: /zamena-ekrana/iphone-15/ и подобные</li>
+        </ul>
+      </div>
+      <div class="swot-card t">
+        <div class="swot-label"><span class="dot"></span>Угрозы</div>
+        <ul>
+          <li>Яндекс Карты + 2ГИС доминируют в локальных коммерческих запросах</li>
+          <li>profi.ru и Яндекс Услуги агрессивно растут в коммерческом трафике</li>
+          <li>Информационные конкуренты (hi-tech.mail.ru, lifehacker) — гигантские домены</li>
+          <li>Просадка позиций повторилась бы при новом алгоритмическом обновлении</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;" class="card">
+      <div class="card-title">Стратегический вывод</div>
+      <p style="font-size:14px;color:var(--text-soft);margin-top:4px;line-height:1.7;">
+        pedant.ru построил сильнейший информационный SEO в нише ремонта. Но <strong style="color:var(--accent)">коммерческий органический трафик практически отсутствует</strong> — компания полагается на Яндекс Карты и контекстную рекламу для привлечения клиентов на ремонт.
+        Добавление Schema.org на FAQ и гео-страницы — это <strong style="color:var(--accent)">наименьшее усилие с наибольшим эффектом</strong>: код пишется один раз в шаблоне Nuxt, накрывает 1 550+ страниц сразу.
+        Долгосрочно: создание коммерческих страниц-лендингов под услуги (замена экрана, замена аккумулятора) с правильной архитектурой — это путь к органическому трафику, который сейчас полностью упускается.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>pedant.ru — SEO-аудит · Май 2026</strong> · Данные: Keys.so (база ru) + технический краулинг
+  </div>
+</footer>
+
+<script>
+const C = {
+  accent: '#d4a843',
+  accentDim: 'rgba(212,168,67,',
+  red: '#e05252',
+  redDim: 'rgba(224,82,82,',
+  blue: '#5a94d4',
+  blueDim: 'rgba(90,148,212,',
+  green: '#5fa85a',
+  surface2: '#1e2220',
+  muted: '#6b7068',
+  text: '#b8bdb6',
+};
+const base = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      backgroundColor: C.surface2,
+      titleColor: '#f0f0ec',
+      bodyColor: C.text,
+      borderColor: 'rgba(255,255,255,0.1)',
+      borderWidth: 1,
+    }
+  },
+  scales: {
+    x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: C.muted, font: { size: 11 } } },
+    y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: C.muted, font: { size: 11 } }, beginAtZero: true }
+  }
+};
+
+// VIS + IT1 chart
+new Chart(document.getElementById('chartVis'), {
+  type: 'line',
+  data: {
+    labels: ['2024.12','2025.01','2025.05','2025.07','2025.08','2025.10','2025.12','2026.01','2026.03','2026.04','2026.05'],
+    datasets: [
+      {
+        label: 'Видимость',
+        data: [5195,5915,5551,4515,4836,3955,3526,3886,4154,4523,5411],
+        borderColor: C.accent,
+        backgroundColor: C.accentDim+'0.08)',
+        borderWidth: 2.5,
+        pointBackgroundColor: C.accent,
+        pointRadius: 3,
+        tension: 0.35,
+        fill: true,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Топ-1',
+        data: [1935,2160,2284,1549,1392,1424,1462,1511,1862,2313,3045],
+        borderColor: C.blue,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointBackgroundColor: C.blue,
+        pointRadius: 3,
+        tension: 0.35,
+        borderDash: [4,3],
+        yAxisID: 'y1',
+      }
+    ]
+  },
+  options: {
+    ...base,
+    plugins: { ...base.plugins, legend: { display: true, labels: { color: C.text, boxWidth: 12, font: { size: 11 } } } },
+    scales: {
+      x: base.scales.x,
+      y: { ...base.scales.y, position: 'left' },
+      y1: { ...base.scales.y, position: 'right', grid: { display: false } }
+    }
+  }
+});
+
+// Keys chart
+new Chart(document.getElementById('chartKeys'), {
+  type: 'bar',
+  data: {
+    labels: ['2024.12','2025.01','2025.05','2025.07','2025.08','2025.10','2025.12','2026.01','2026.03','2026.04','2026.05'],
+    datasets: [
+      {
+        label: 'Ключей топ-50',
+        data: [63121,63990,67852,82245,98541,99544,89527,87074,89329,93710,99184],
+        backgroundColor: C.accentDim+'0.3)',
+        borderColor: C.accent,
+        borderWidth: 1.5,
+        borderRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Страниц в индексе',
+        data: [2553,2591,2837,2855,3019,3026,3021,2843,2855,2949,3056],
+        type: 'line',
+        borderColor: C.blue,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: C.blue,
+        tension: 0.3,
+        yAxisID: 'y1',
+      }
+    ]
+  },
+  options: {
+    ...base,
+    plugins: { ...base.plugins, legend: { display: true, labels: { color: C.text, boxWidth: 12, font: { size: 11 } } } },
+    scales: {
+      x: base.scales.x,
+      y: { ...base.scales.y, position: 'left' },
+      y1: { ...base.scales.y, position: 'right', grid: { display: false } }
+    }
+  }
+});
+
+// AI chart
+new Chart(document.getElementById('chartAI'), {
+  type: 'bar',
+  data: {
+    labels: ['2024.12','2025.07','2025.08','2025.09','2025.10','2025.11','2025.12','2026.01','2026.02','2026.03','2026.04','2026.05'],
+    datasets: [{
+      data: [0,0,538,5707,6829,7587,8489,14447,6449,4725,25248,12467],
+      backgroundColor: C.blueDim+'0.45)',
+      borderColor: C.blue,
+      borderWidth: 1.5,
+      borderRadius: 4,
+    }]
+  },
+  options: base
+});
+
+// Comp Vis chart
+new Chart(document.getElementById('chartCompVis'), {
+  type: 'bar',
+  data: {
+    labels: ['hi-tech.mail.ru','club.dns-shop.ru','lifehacker.ru','iphones.ru','remontka.pro','appleinsider.ru','pedant.ru'],
+    datasets: [{
+      data: [718295,209629,237371,82828,93627,25223,5411],
+      backgroundColor: [
+        C.accentDim+'0.25)',C.accentDim+'0.22)',C.accentDim+'0.2)',
+        C.accentDim+'0.18)',C.accentDim+'0.15)',C.accentDim+'0.12)',
+        'rgba(224,82,82,0.45)'
+      ],
+      borderColor: [C.accent,C.accent,C.accent,C.accent,C.accent,C.accent,C.red],
+      borderWidth: 1.5,
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    ...base,
+    indexAxis: 'y',
+    scales: {
+      x: { ...base.scales.x, beginAtZero: true },
+      y: { ticks: { color: C.muted, font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+
+// Gap chart
+new Chart(document.getElementById('chartGap'), {
+  type: 'bar',
+  data: {
+    labels: ['Ремонт iPhone/город','Samsung/Xiaomi/другие','Замена экрана','Ремонт ноутбуков','Замена аккумулятора'],
+    datasets: [{
+      data: [2000,400,500,300,200],
+      backgroundColor: [
+        C.accentDim+'0.55)',C.accentDim+'0.45)',C.accentDim+'0.37)',
+        C.accentDim+'0.29)',C.accentDim+'0.22)'
+      ],
+      borderColor: C.accent,
+      borderWidth: 1,
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    ...base,
+    indexAxis: 'y',
+    plugins: {
+      ...base.plugins,
+      tooltip: {
+        ...base.plugins.tooltip,
+        callbacks: { label: ctx => ' ~' + ctx.parsed.x + 'K+ зап/мес' }
+      }
+    },
+    scales: {
+      x: { ...base.scales.x, beginAtZero: true, ticks: { ...base.scales.x.ticks, callback: v => v+'K' } },
+      y: { ticks: { color: C.muted, font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
