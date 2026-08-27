@@ -79,20 +79,26 @@ def build(rows):
     if rest:
         left += f'<div class="lg-sub">Прочее · {len(rest)}</div><ul>' + ''.join(li(n) for n in rest) + '</ul>'
 
-    done_by = collections.OrderedDict()
+    # Группы по дате берутся ИЗ САМИХ тегов — новую дату добавлять не нужно.
+    LABELS = {'27.08': '27.08 — GEO: лид, граф, вопросы', '25.08': '25.08 — плотность в гейт',
+              '19.08': '19.08 — ревизия доски', '12.06': '12.06 — спринт quick wins'}
+    done_by = collections.defaultdict(list)
     for r in rows:
         if r['status'] != 'done':
             continue
         m = re.search(r'(\d\d\.\d\d)', r['tag'])
-        d = m.group(1) if m and m.group(1) in ('25.08', '19.08', '12.06') else 'ранее'
-        done_by.setdefault(d, []).append(r['num'])
-    labels = {'25.08': '25.08 — плотность в гейт', '19.08': '19.08 — ревизия доски',
-              '12.06': '12.06 — спринт quick wins', 'ранее': 'ранее'}
+        done_by[m.group(1) if m else 'ранее'].append(r['num'])
+
+    def sort_key(d):
+        if d == 'ранее':
+            return (0, 0)
+        dd, mm = d.split('.')
+        return (1, int(mm) * 100 + int(dd))
+
     done_html = ''
-    for d in ('25.08', '19.08', '12.06', 'ранее'):
-        if d not in done_by:
-            continue
-        done_html += f'<div class="lg-sub">{labels[d]} · {len(done_by[d])}</div><ul>' + ''.join(
+    for d in sorted(done_by, key=sort_key, reverse=True):
+        label = LABELS.get(d, d)
+        done_html += f'<div class="lg-sub">{label} · {len(done_by[d])}</div><ul>' + ''.join(
             f'<li class="lg-done"><b>{esc(str(n))}</b> ✅ {esc(by[n]["title"])}</li>' for n in done_by[d]) + '</ul>'
 
     moved = [r for r in rows if r['status'] == 'frozen' and 'вынесено' in r['tag']]
