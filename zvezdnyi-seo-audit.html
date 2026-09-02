@@ -356,7 +356,7 @@ footer .files {
       <div><div class="label">URL</div><div class="value">—</div></div>
       <div><div class="label">Ниша</div><div class="value">—</div></div>
       <div><div class="label">Регион</div><div class="value">—</div></div>
-      <div><div class="label">Дата</div><div class="value">2026-07-21</div></div>
+      <div><div class="label">Дата</div><div class="value">2026-09-02</div></div>
     </div>
   </div>
 </header>
@@ -394,6 +394,7 @@ footer .files {
 </ul>
 <h3>4. Технические блокеры дешёвые, но критичные</h3>
 <p>Страница «Контакты» отдаёт 404 со <strong>всех 152 страниц сайта</strong>. <code>robots.txt</code> и <code>sitemap.xml</code> отсутствуют. <code>meta description</code> нет ни на одной странице из 152. У 69 страниц нет <code>&lt;h1&gt;</code>, включая главную. У 100 страниц дублируются заголовки, часть страниц показывается в выдаче под чужими названиями.</p>
+<p>По коду (доступ по FTP от 21.07) вскрылись ещё два факта: движок — <strong>Yii 1.1.19</strong>, а не Yii2, как значилось в брифе; современный счётчик <strong>GA4 настроен, но закомментирован</strong> в шаблоне и никогда не запускался. Яндекс.Метрика при этом работает полноценно, так что данные о посетителях у комплекса есть.</p>
 <p>Совокупно это 15–25 часов работы и заметный эффект без единой строчки нового дизайна.</p>
 <h3>5. Главный риск проекта — не дизайн, а фронтенд и миграция</h3>
 <p>Два обстоятельства требуют внимания до подписания сметы:</p>
@@ -467,9 +468,9 @@ footer .files {
 </tr>
 <tr>
 <td>9</td>
-<td>Замена мёртвого счётчика аналитики</td>
-<td>появятся данные</td>
-<td>2–3 ч</td>
+<td>Убрать мёртвый ga.js, включить настроенный GA4</td>
+<td>вторая аналитика в дополнение к Метрике</td>
+<td>1–2 ч</td>
 </tr>
 </tbody>
 </table>
@@ -1116,8 +1117,8 @@ footer .files {
   </div>
   <h2 class="section-title">Технический SEO</h2>
   <div class="md"><p>Дата: 21.07.2026
-Метод: полный краул сайта (обход внутренних ссылок с главной), проверка HTTP-статусов страниц, изображений и внешних ссылок, разбор HTML.
-Платформа: PHP, Yii2, nginx.</p>
+Метод: полный краул сайта (обход внутренних ссылок с главной), проверка HTTP-статусов страниц, изображений и внешних ссылок, разбор HTML. С 21.07 добавлен доступ по FTP: часть выводов подтверждена по исходному коду сайта.
+Платформа: PHP, <strong>Yii 1.1.19</strong> (не Yii2, как значилось в брифе, проверено по <code>framework/YiiBase.php</code>), nginx.</p>
 <hr>
 <h2>Структура сайта: 152 живых URL</h2>
 <table>
@@ -1279,44 +1280,67 @@ https://zvezdnyi.com/catalog                          → 500   (ошибка с
 <h3>Мусор в индексе</h3>
 <p>52 URL вида <code>/register?destinationUrl=%2Forder%2Fbooking%2F%3Fsmena%3D…</code> доступны для индексации. Все имеют одинаковый <code>&lt;title&gt;</code> «Регистрация на сайте». При отсутствии <code>robots.txt</code> ничто не мешает их обходу. Расходуют краулинговый бюджет и создают дубли.</p>
 <hr>
-<h2>Фронтенд: две несовместимые версии jQuery</h2>
+<h2>Фронтенд: наслоение библиотек (подтверждено по коду)</h2>
+<p>Доступ к теме показал, что «два jQuery» — это упрощение. Реально в <code>themes/zvezdniy/assets/js/</code> и подключениях шаблона:</p>
 <table>
 <thead>
 <tr>
 <th>Библиотека</th>
-<th>Источник</th>
+<th>Где</th>
 <th>Статус</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>jQuery 3.5.1</td>
-<td><code>code.jquery.com</code> (внешний CDN)</td>
-<td>актуальная ветка</td>
+<td>jQuery ядра Yii (<code>registerCoreScript('jquery')</code>)</td>
+<td><code>framework/web/js/</code></td>
+<td>версия из Yii 1.1.19</td>
 </tr>
 <tr>
 <td>jQuery <strong>1.8.3</strong></td>
-<td><code>/themes/zvezdniy/assets/js/jquery.js</code></td>
+<td><code>themes/zvezdniy/assets/js/jquery.js</code> (93 КБ)</td>
 <td><strong>релиз 2012 года</strong></td>
 </tr>
 <tr>
-<td>Vue 2, <strong>dev-сборка</strong></td>
-<td><code>cdn.jsdelivr.net</code></td>
-<td>снят с поддержки в дек. 2023</td>
+<td>jQuery UI</td>
+<td><code>jquery-ui.js</code> (537 КБ)</td>
+<td>грузится целиком</td>
+</tr>
+<tr>
+<td>jQuery 3.5.1</td>
+<td>внешний CDN <code>code.jquery.com</code></td>
+<td>подтягивается интеграциями</td>
+</tr>
+<tr>
+<td>Vue 2</td>
+<td><code>vue.js</code> (dev, 342 КБ) <strong>и</strong> <code>vue.min.js</code> лежат оба; в шаблон включается dev с CDN</td>
+<td>снят с поддержки дек. 2023</td>
+</tr>
+<tr>
+<td>Swiper 2.1, cusel.js</td>
+<td>тема</td>
+<td>архаичные плагины</td>
 </tr>
 </tbody>
 </table>
-<p>Три проблемы:</p>
+<p>Проблемы:</p>
 <ol>
-<li><strong>Два jQuery в одном документе.</strong> Часть скриптов написана под 1.8.3, часть под 3.5.1. Аудит зависимостей обязателен до фиксации сметы на переработку фронтенда.</li>
-<li><strong>Vue 2 в dev-сборке на проде.</strong> Неминифицированный файл, отладочные предупреждения в консоли у каждого посетителя.</li>
-<li><strong>Внешние CDN в критическом пути.</strong> jQuery, Vue и шрифты Google грузятся с зарубежных CDN. Недоступность CDN ломает часть интерфейса.</li>
+<li><strong>Несколько jQuery в одном документе</strong> (ядро Yii + тема 1.8.3 + внешний 3.5.1). Часть скриптов написана под старую ветку, часть под новую. Аудит зависимостей обязателен до фиксации сметы на переработку фронтенда, и по факту кода он может оказаться дороже, чем при оценке снаружи.</li>
+<li><strong>Vue 2 в dev-сборке на проде.</strong> Неминифицированный файл 342 КБ и отладочные предупреждения в консоли у каждого посетителя. Рядом лежит <code>vue.min.js</code>, но подключается тяжёлый.</li>
+<li><strong>Внешние CDN в критическом пути.</strong> jQuery, Vue и шрифты Google грузятся с зарубежных CDN.</li>
+<li><strong><code>display_errors on</code> в <code>.htaccess</code>.</strong> Ошибки PHP показываются посетителям — и утечка информации, и риск.</li>
 </ol>
-<p>В коде остались заглушки для Internet Explorer 9.</p>
+<p>В коде остались заглушки для Internet Explorer 9. Движок — Yii 1.1, ветка на поддержке, но легаси: активная разработка давно на Yii2/Yii3.</p>
 <hr>
-<h2>Аналитика</h2>
-<p>На сайте установлен <code>ga.js</code> со счётчиком <code>UA-7331598-26</code>. Это Universal Analytics, сбор данных отключён Google в июле 2023. Данных нет два года.</p>
-<p>Яндекс.Метрика и UDS работают.</p>
+<h2>Аналитика (уточнено по коду)</h2>
+<p>Разбор шаблона <code>themes/zvezdniy/views/layouts/main.php</code> показал более сложную картину, чем видно снаружи.</p>
+<p><strong>Работает:</strong>
+- <strong>Яндекс.Метрика</strong> (счётчик <code>72495685</code>) с вебвизором, картой кликов и отслеживанием ссылок. Это полноценная аналитика, клиент не «слепой».
+- Кнопка обратного звонка Битрикс24 и интеграция коллтрекинга.</p>
+<p><strong>Не работает или брошено:</strong>
+- Старый Google Analytics (<code>ga.js</code>, счётчик <code>UA-7331598-26</code>) активен в коде, но Google отключил сбор для Universal Analytics в июле 2023. Висит зря, данных не даёт.
+- Современный <strong>Google Analytics 4</strong> (<code>G-92TELQWNBK</code>) и <strong>Google Tag Manager</strong> (<code>GTM-MC48SQG</code>) прописаны в шаблоне, но <strong>закомментированы</strong> конструкцией <code>&lt;?php /* … */ ?&gt;</code> (строки 40–90). Кто-то настроил новую аналитику и не запустил её. Раскомментировать = минуты.</p>
+<p>Практический вывод: строчку про аналитику в работах можно свести к «убрать мёртвый <code>ga.js</code>, включить уже настроенный GA4». Это не установка с нуля, а расконсервация.</p>
 <hr>
 <h2>Что сделано корректно</h2>
 <p>Снимает часть работ из типовой сметы:</p>
@@ -1393,7 +1417,7 @@ https://zvezdnyi.com/catalog                          → 500   (ошибка с
 
 <footer>
   <div class="wrap">
-    <div>Сгенерировано автоматически из research/*.md · 2026-07-21</div>
+    <div>Сгенерировано автоматически из research/*.md · 2026-09-02</div>
     <div class="files"><code>audit-summary.md</code> <code>gap-analysis.md</code> <code>content-audit.md</code> <code>tech-seo-audit.md</code></div>
   </div>
 </footer>
