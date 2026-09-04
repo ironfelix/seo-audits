@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг-аудит — Blocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #333;
+  --muted: #6b6b6b;
+  --muted2: #9a9a9a;
+  --accent: #453FDF;
+  --accent-soft: #eef0ff;
+  --border: #e5e5e5;
+  --border-soft: #f0f0f0;
+  --crit: #c01020;
+  --warn: #e89020;
+  --ok: #16a34a;
+  --hero-bg: #1a1a1a;
+  --font-h: 'Inter', 'Inter', system-ui, sans-serif;
+  --font-b: 'Inter', 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'tnum', 'lnum';
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+
+/* Hero */
+.hero {
+  background: var(--hero-bg);
+  color: #fff;
+  padding: 48px 0 38px;
+}
+.hero-label {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.hero-meta > div { min-width: 120px; }
+.hero-meta .label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 3px;
+}
+.hero-meta .value {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+.hero-meta .value a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,0.4);
+}
+
+/* TOC strip */
+.toc-strip {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+}
+.toc-strip ul {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.toc-strip a {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.toc-strip a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Content */
+.content { padding: 40px 0 48px; }
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 34px 38px;
+  margin-bottom: 22px;
+  scroll-margin-top: 80px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.section-num {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.section h2.section-title {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 4px 0 18px;
+}
+
+/* Markdown content inside sections */
+.md { font-size: 14.5px; line-height: 1.7; color: var(--text-soft); }
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+
+.md h1 { display: none; }
+.md h2 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 32px 0 10px;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.md h3 {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+  letter-spacing: -0.1px;
+}
+.md h4 {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 6px;
+}
+.md p { margin: 0 0 12px; }
+.md strong { font-weight: 700; color: var(--text); }
+.md em { font-style: italic; color: var(--muted); }
+
+.md ul, .md ol { margin: 0 0 14px; padding-left: 22px; }
+.md li { margin-bottom: 4px; }
+.md li::marker { color: var(--accent); }
+
+.md a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid;
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.md a:hover { border-color: var(--accent); }
+
+.md code {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.87em;
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text);
+}
+.md pre {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 14px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; color: inherit; }
+
+.md blockquote {
+  margin: 14px 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  border-radius: 0 6px 6px 0;
+}
+.md blockquote p:last-child { margin-bottom: 0; }
+
+.md hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 28px 0;
+}
+
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.md table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f8f8f8;
+  font-family: var(--font-h);
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.md table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+.md table tr:last-child td { border-bottom: none; }
+.md table tr:hover td { background: #fafbfc; }
+
+.md input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--accent);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 20px;
+}
+footer code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: #f0f0f0;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: var(--muted);
+}
+footer .files {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .hero h1 { font-size: 24px; }
+  .section { padding: 24px 20px; }
+  .section h2.section-title { font-size: 20px; }
+  .md table { font-size: 11.5px; }
+  .md table th, .md table td { padding: 7px 8px; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .hero {
+    background: var(--hero-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 24px 0;
+  }
+  .hero h1 { font-size: 22pt; }
+  .toc-strip { display: none; }
+  .section {
+    break-inside: avoid-page;
+    border: none;
+    padding: 16px 0;
+    margin-bottom: 8px;
+    box-shadow: none;
+  }
+  .section h2.section-title { font-size: 16pt; }
+  .md h2 { font-size: 13pt; break-after: avoid; }
+  .md h3 { break-after: avoid; }
+  .md table, .md pre, .md blockquote { break-inside: avoid; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-label">Маркетинг-аудит</div>
+    <h1>Blocks</h1>
+    <p class="hero-sub">Маркетинг-аудит и SEO-стратегия · https://useblocks.io/</p>
+    <div class="hero-meta">
+      <div><div class="label">URL</div><div class="value"><a href="https://useblocks.io/" target="_blank">https://useblocks.io/</a></div></div>
+      <div><div class="label">Ниша</div><div class="value">SaaS: AI-powered no-code email builder (конструктор email-шаблонов)</div></div>
+      <div><div class="label">Регион</div><div class="value">США / глобальный англоязычный рынок</div></div>
+      <div><div class="label">Дата</div><div class="value">2026-09-01</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-strip">
+  <div class="wrap"><ul><li><a href="#section-audit-summary">Сводный отчёт</a></li><li><a href="#section-gap-analysis">Gap-анализ конкурентов</a></li><li><a href="#section-content-audit">Контент и семантика</a></li><li><a href="#section-tech-seo-audit">Технический SEO</a></li></ul></div>
+</nav>
+
+<main class="content">
+  <div class="wrap">
+    
+<section class="section" id="section-audit-summary">
+  <div class="section-head">
+    <span class="section-num">01 · SUMMARY</span>
+  </div>
+  <h2 class="section-title">Сводный отчёт</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-09-01
+<strong>Скоуп:</strong> технический SEO + конкуренты/gap + контент/семантика. US-рынок, английский язык.
+<strong>Продукт:</strong> Blocks — AI-powered no-code email builder (206 шаблонов, экспорт под 53 платформы, embeddable-плагин).</p>
+<hr>
+<h2>Топ-5 критичных проблем</h2>
+<ol>
+<li><strong>Заголовочная структура убита билдером</strong> — на главной нет H1, на страницах сравнений нет ни H1, ни H2 (11 тыс. знаков текста вёрстаются дивами). Страницы структурно невидимы для Google и LLM (см. <a href="#section-tech-seo-audit">tech-seo-audit.md</a> §4–5).</li>
+<li><strong>Контентного контура нет вообще:</strong> 0 статей блога (у всех 6 конкурентов — от 63 до 937), <code>/blog/</code> занят лендингом, хаб <code>/comparisons/</code> пуст, глоссария нет (см. <a href="#section-gap-analysis">gap-analysis.md</a> §3–4).</li>
+<li><strong>53 платформенные страницы — мёртвый BOFU-актив:</strong> конкуренты ранжируются идентичными галереями, Blocks в SERP по «free mailchimp email templates» отсутствует — тонкий шаблонный текст без H2 (см. <a href="#section-gap-analysis">gap-analysis.md</a> §4.2, <a href="#section-content-audit">content-audit.md</a> §4.1).</li>
+<li><strong>Тестовый мусор в проде:</strong> <code>/test77/</code>, <code>/test-2/</code> — 200, index,follow, в sitemap; там же просроченный <code>/blackfriday2024/</code> (см. <a href="#section-tech-seo-audit">tech-seo-audit.md</a> §2).</li>
+<li><strong>Аналитическая слепота:</strong> CrUX пустой (трафика мало), доступа к GSC нет — ни позиций, ни показов, ни покрытия индекса; keys.so для US-рынка неприменим (см. <a href="#section-tech-seo-audit">tech-seo-audit.md</a> §3, <a href="#section-gap-analysis">gap-analysis.md</a> §1).</li>
+</ol>
+<h2>Топ-10 точек роста</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Точка роста</th>
+<th>Основание</th>
+<th>Impact</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Дожать 10 главных платформенных страниц (контент, H2, FAQ, экспорт-инструкции)</td>
+<td>конкуренты ранжируются тем же форматом — gap-analysis §4.2, SERP-чек content-audit §4.1</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Лендинг «AI Email Template Generator»</td>
+<td>SERP без гигантов, фича в продукте уже есть — content-audit §4.2</td>
+<td>high</td>
+<td>low-med</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Реанимировать <code>/plugin/</code> (embeddable SDK): title, H1, структура</td>
+<td>продукт есть, title пустой — content-audit §2.11; малые игроки в SDK-SERP ранжируются §4.5</td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Хаб сравнений + 5 страниц «&lt;конкурент&gt; alternatives»</td>
+<td>страницы конкурентов живут в SERP «stripo alternatives» — content-audit §4.3</td>
+<td>high</td>
+<td>med</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Вернуть H1 на главную, починить вёрстку заголовков билдера</td>
+<td>tech-seo-audit §4–5</td>
+<td>high</td>
+<td>low-med</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Удалить тестовые страницы, разрулить <code>/blackfriday2024/</code>, meta для <code>/templates/</code></td>
+<td>tech-seo-audit §2, §5</td>
+<td>med</td>
+<td>low</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Подключить GSC + пересмотр приоритетов по фактическим показам через 2–3 мес</td>
+<td>tech-seo-audit §3</td>
+<td>med (мультипликатор)</td>
+<td>low</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Запустить блог (10 статей how-to с CTA в билдер)</td>
+<td>у всех конкурентов это главный канал органики — gap-analysis §4.1</td>
+<td>med-high</td>
+<td>high</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Дозаполнить дыры библиотеки (Follow Up 0, Free Trial 1) + сезонные страницы к пикам</td>
+<td>content-audit §5.2</td>
+<td>med</td>
+<td>med</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Глоссарий на 30 терминов + llms.txt + FAQPage/SoftwareApplication-разметка</td>
+<td>LLM-видимость: tech-seo-audit §9, модель topol/stripo — gap-analysis §4.4</td>
+<td>med</td>
+<td>med</td>
+</tr>
+</tbody>
+</table>
+<h2>Что НЕ вошло в аудит (и почему)</h2>
+<ul>
+<li><strong>Классический gap-анализ по keys.so</strong> — API покрывает только Яндекс/Рунет, для US-сайта данные нерелевантны (профиль снят для справки: 1 ключ в топ-10 Яндекса). Заменён структурным анализом sitemap 6 конкурентов + SERP-чеками.</li>
+<li><strong>Частотности US-запросов</strong> — нет доступа к Ahrefs/Semrush; семантика размечена качественными сигналами (SERP-конкуренция, саджесты). После подключения GSC — уточнить фактическими показами.</li>
+<li><strong>Позиции и трафик</strong> — нет GSC-доступа, CrUX пустой.</li>
+<li><strong>UX/конверсионный аудит и аудит самого приложения</strong> — за скоупом SEO-аудита.</li>
+<li><strong>Бэклинки</strong> — инструментов под US-профиль нет в наборе.</li>
+</ul>
+<h2>Следующие шаги</h2>
+<ol>
+<li>Быстрые победы недели: <code>/plugin/</code> title+структура, H1 главной, удалить test-страницы, meta для <code>/templates/</code> (пп. 3, 5, 6).</li>
+<li>Подключить GSC и выдать доступ (п. 7) — предусловие трекинга.</li>
+<li>Спринт на платформенные страницы: топ-10 ESP по шаблону из content-audit §5.1 (п. 1).</li>
+<li>Параллельно: лендинг AI-генератора и первые 3 страницы alternatives (пп. 2, 4).</li>
+<li>Через 2–3 месяца — пересбор приоритетов по данным GSC, решение по блогу и глоссарию (пп. 8, 10).</li>
+<li>Оформить план работ: <code>useblocks/plans/growth-plan.md</code> (по договорённости).</li>
+</ol></div>
+</section>
+
+
+<section class="section" id="section-gap-analysis">
+  <div class="section-head">
+    <span class="section-num">02 · GAP</span>
+  </div>
+  <h2 class="section-title">Gap-анализ конкурентов</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-09-01
+<strong>База:</strong> keys.so недоступен для US-рынка (только Яндекс/Рунет — параметр базы игнорируется API). Метод заменён: структурный анализ sitemap конкурентов + спот-чеки живой US-выдачи (WebSearch).
+<strong>Ограничение честно:</strong> частотности (volume) по US-ключам не собраны — нет доступа к Ahrefs/Semrush. Кластеры оценены по факту «у скольких конкурентов есть раздел и ранжируется ли он в SERP», без точных ws.</p>
+<hr>
+<h2>1. Профиль useblocks.io</h2>
+<h3>1.1. keys.so (Яндекс Россия — для справки)</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ключей в топ-10</td>
+<td>1 («block use», поз. 7)</td>
+</tr>
+<tr>
+<td>Ключей в топ-50</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Видимость</td>
+<td>~0</td>
+</tr>
+<tr>
+<td>DR (keys.so)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>AI-цитирований</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>В Рунете сайт невидим — и это нормально: продукт на англоязычный рынок. Ценность keys.so-данных здесь одна: в пересечениях уже виден stripo.email (7 общих ключей).</p>
+<h3>1.2. US-рынок (косвенные сигналы)</h3>
+<ul>
+<li>CrUX пустой (см. <a href="#section-tech-seo-audit">tech-seo-audit.md</a> §6) → органика минимальна и в Google.</li>
+<li>Спот-чек «free mailchimp email templates»: в топе unlayer.com, designmodo.com, beefree.io, tabular.email — useblocks.io отсутствует, хотя <code>/templates/platform/mailchimp/</code> существует с 2025 года.</li>
+</ul>
+<h2>2. Конкуренты</h2>
+<h3>2.1. Как отбирали</h3>
+<p>SERP-разведка по трём коммерческим запросам ниши («best drag and drop email template builder», «free html email templates», «ai email template generator») + пересечения keys.so. Исключены: ESP-платформы (Mailchimp, MailerSend — конкуренты по отдельным страницам, не по модели), генераторы-однодневки, агрегаторы подборок.</p>
+<h3>2.2. Топ-6 для анализа (подтверждено пользователем)</h3>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th>Модель</th>
+<th>Масштаб (URL в sitemap)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stripo.email</td>
+<td>билдер + шаблоны + экспорт в 60+ ESP — полный аналог Blocks</td>
+<td>~3 400</td>
+</tr>
+<tr>
+<td>beefree.io</td>
+<td>билдер + шаблоны</td>
+<td>1 882</td>
+</tr>
+<tr>
+<td>unlayer.com</td>
+<td>билдер + шаблоны + embeddable SDK</td>
+<td>2 485</td>
+</tr>
+<tr>
+<td>designmodo.com</td>
+<td>Postcards-билдер + бесплатные шаблоны (мульти-продукт)</td>
+<td>1 113</td>
+</tr>
+<tr>
+<td>chamaileon.io</td>
+<td>коллаборативный билдер</td>
+<td>537</td>
+</tr>
+<tr>
+<td>topol.io</td>
+<td>билдер + шаблоны (малый игрок)</td>
+<td>583</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Сводка: структуры сайтов (из sitemap, 2026-09-01)</h2>
+<table>
+<thead>
+<tr>
+<th>Раздел</th>
+<th>useblocks</th>
+<th>stripo</th>
+<th>beefree</th>
+<th>unlayer</th>
+<th>designmodo</th>
+<th>chamaileon</th>
+<th>topol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Всего URL</strong></td>
+<td><strong>376</strong></td>
+<td>~3 400</td>
+<td>1 882</td>
+<td>2 485</td>
+<td>1 113</td>
+<td>537</td>
+<td>583</td>
+</tr>
+<tr>
+<td>Шаблоны (карточки)</td>
+<td>206</td>
+<td>1 689</td>
+<td>1 287</td>
+<td>1 956</td>
+<td>324</td>
+<td>—</td>
+<td>276</td>
+</tr>
+<tr>
+<td>Категории шаблонов</td>
+<td>153</td>
+<td>356</td>
+<td>161</td>
+<td>173</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Блог / статьи</td>
+<td><strong>0</strong></td>
+<td>937</td>
+<td>310</td>
+<td>313</td>
+<td>~250</td>
+<td>272</td>
+<td>63</td>
+</tr>
+<tr>
+<td>Глоссарий</td>
+<td><strong>0</strong></td>
+<td>149</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>194</td>
+</tr>
+<tr>
+<td>Интеграции</td>
+<td>0 (частично = platform-страницы)</td>
+<td>95</td>
+<td>15</td>
+<td>—</td>
+<td>—</td>
+<td>16</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Сравнения / compare</td>
+<td>1 (сирота)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Use-cases / кейсы клиентов</td>
+<td>0</td>
+<td>—</td>
+<td>11</td>
+<td>12 интервью</td>
+<td>—</td>
+<td>12</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Вебинары / видео</td>
+<td>0</td>
+<td>79</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Вывод одним предложением: <strong>даже самый маленький конкурент (topol.io, 583 URL) несёт контентную машину, которой у useblocks нет вовсе; отставание не в качестве билдера, а в контентном контуре.</strong></p>
+<h2>4. Кластеры gap</h2>
+<h3>4.1. 🔴 Блог / контент-хаб — «how to», гайды по email-маркетингу</h3>
+<ul>
+<li>Есть у <strong>6 из 6</strong> конкурентов (63–937 статей).</li>
+<li>Интент: информационный (TOFU) → прогрев на билдер.</li>
+<li>У useblocks <code>/blog/</code> занят лендингом, статей 0.</li>
+<li><strong>Вердикт: брать</strong> — это основной канал органики всей ниши.</li>
+</ul>
+<h3>4.2. 🔴 Платформенные страницы «email templates for <ESP>» — уже есть, но не работают</h3>
+<ul>
+<li>У useblocks 53 страницы, у конкурентов аналог ранжируется (unlayer/beefree/designmodo в топе по «free mailchimp email templates»).</li>
+<li>Причина отставания видна из техаудита: тонкий шаблонный текст, 0 H2, одинаковая структура на всех 53.</li>
+<li>Интент: коммерческий (BOFU) — человек уже выбрал ESP и ищет шаблоны.</li>
+<li><strong>Вердикт: брать в первую очередь</strong> — актив создан, его надо дожать, не строить с нуля.</li>
+</ul>
+<h3>4.3. 🟠 Сравнения и альтернативы («stripo alternatives», «beefree vs unlayer», «X vs Y»)</h3>
+<ul>
+<li>Есть у chamaileon (9) и topol (7); классический BOFU-перехват чужого брендового спроса.</li>
+<li>У useblocks одна страница-сирота без H1/H2 и пустой хаб.</li>
+<li><strong>Вердикт: брать</strong> — дешёвый BOFU, малые конкуренты доказали достижимость.</li>
+</ul>
+<h3>4.4. 🟠 Глоссарий email-маркетинга (programmatic)</h3>
+<ul>
+<li>stripo — 149 терминов, topol — 194. Дёшев в производстве, собирает длинный хвост определений, кормит LLM-цитируемость.</li>
+<li><strong>Вердикт: брать вторым эшелоном</strong> — трафик информационный, но термины ниши конвертируются в знание бренда.</li>
+</ul>
+<h3>4.5. 🟠 Масштаб библиотеки шаблонов</h3>
+<ul>
+<li>206 карточек против 1 300–2 000. Каждая карточка у конкурентов — посадочная под «&lt;занятие/повод&gt; email template».</li>
+<li><strong>Вердикт: брать выборочно</strong> — не гнаться за 1 500, а закрыть высокочастотные типы, которых нет (по type-таксономии видно дыры: Follow Up — 0 шаблонов при существующей категории).</li>
+</ul>
+<h3>4.6. 🟡 Интеграционные лендинги («<ESP> integration»)</h3>
+<ul>
+<li>stripo 95, topol 26, beefree 15. Отличаются от шаблонных страниц интентом «как подключить».</li>
+<li><strong>Вердикт: возможно позже</strong> — сначала дожать шаблонные страницы тех же платформ.</li>
+</ul>
+<h3>4.7. 🟡 AI-угол: «ai email template generator» и родственные</h3>
+<ul>
+<li>SERP слабый: Venngage, GMass и мелкие тулзы — гигантов нет. Blocks позиционируется как AI-билдер, но под AI-запросы нет ни одной выделенной страницы.</li>
+<li><strong>Вердикт: брать</strong> — редкий случай свободной поляны под собственное позиционирование.</li>
+</ul>
+<h3>4.8. ⚪ Use-cases, вебинары, web stories</h3>
+<ul>
+<li>Есть у части конкурентов. Требуют продакшена, эффект косвенный.</li>
+<li><strong>Вердикт: не брать сейчас.</strong></li>
+</ul>
+<h2>5. Приоритетные направления (топ-3)</h2>
+<ol>
+<li><strong>Дожать 53 платформенные страницы</strong> (кластер 4.2): уникальный контент на топ-10 платформ (Mailchimp, Klaviyo, HubSpot, Shopify, SendGrid…), H2-структура, FAQ, счётчики шаблонов, взаимные ссылки с карточками. Impact: high (BOFU, актив готов), Effort: med.</li>
+<li><strong>Кластер сравнений/альтернатив</strong> (4.3): починить хаб <code>/comparisons/</code>, 10–15 страниц «&lt;конкурент&gt; alternatives» и «X vs Y» с нормальной структурой заголовков. Impact: high (перехват брендового спроса, низкая конкуренция), Effort: med.</li>
+<li><strong>Запустить блог + AI-страницы</strong> (4.1 + 4.7): вернуть <code>/blog/</code> под контент-хаб, первые 10–15 статей вокруг шаблонных тем и AI-генерации писем; отдельная посадочная под «AI email template generator». Impact: med-high (долгий, но обязательный канал), Effort: high.</li>
+</ol>
+<h2>6. Что НЕ брать и почему</h2>
+<ul>
+<li><strong>Гонка объёма шаблонов до уровня unlayer (2 000)</strong> — производственная задача без гарантии SEO-отдачи; сначала выжать существующие 206.</li>
+<li><strong>Вебинары/видео/web stories (stripo)</strong> — контентный продакшен другого порядка, у stripo это работает на удержание, не на органику.</li>
+<li><strong>Embeddable SDK-направление (unlayer, chamaileon)</strong> — отдельная продуктовая стратегия, не SEO-решение.</li>
+<li><strong>Рунет/Яндекс</strong> — продукт не локализован под RU, keys.so-видимость 0 закономерна, вкладываться нет смысла.</li>
+</ul></div>
+</section>
+
+
+<section class="section" id="section-content-audit">
+  <div class="section-head">
+    <span class="section-num">03 · CONTENT</span>
+  </div>
+  <h2 class="section-title">Контент и семантика</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-09-01
+<strong>Ниша:</strong> SaaS, AI-powered no-code email builder + библиотека шаблонов
+<strong>Целевой регион:</strong> США / глобальный англоязычный рынок
+<strong>Ограничение:</strong> частотности US-запросов недоступны (нет Ahrefs/Semrush; keys.so — только Рунет). Оценка спроса — качественная: по SERP, автосаджестам и структурам конкурентов. Не выдумываем цифры.</p>
+<hr>
+<h2>1. Текущий контент сайта</h2>
+<p>376 URL в sitemap. Раскладка:</p>
+<table>
+<thead>
+<tr>
+<th>Тип</th>
+<th>Кол-во</th>
+<th>Состояние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Карточки шаблонов <code>/templates/&lt;slug&gt;/</code></td>
+<td>206</td>
+<td>✅ база: title/desc на месте, ~4–5 тыс. знаков; перекос: Promo 160, Discount 65 против Follow Up 0, Free Trial 1</td>
+</tr>
+<tr>
+<td>Таксономия Platform <code>/templates/platform/&lt;esp&gt;/</code></td>
+<td>53</td>
+<td>🟡 H1 есть, H2 нет, шаблонный текст — не ранжируются (спот-чек Mailchimp: в топе Unlayer/Beefree/Designmodo/Tabular, нас нет)</td>
+</tr>
+<tr>
+<td>Таксономия Type</td>
+<td>46</td>
+<td>🟡 аналогично</td>
+</tr>
+<tr>
+<td>Таксономия Event</td>
+<td>27</td>
+<td>🟡 аналогично</td>
+</tr>
+<tr>
+<td>Таксономия Industry</td>
+<td>27</td>
+<td>🟡 аналогично</td>
+</tr>
+<tr>
+<td>Статические страницы</td>
+<td>15</td>
+<td>🟡 среди них: <code>/test77/</code>, <code>/test-2/</code> (мусор), <code>/blackfriday2024/</code> (просрочен), <code>/plugin/</code> (embeddable-продукт с ПУСТЫМ title «- Blocks»)</td>
+</tr>
+<tr>
+<td>Блог</td>
+<td>0</td>
+<td>🔴 <code>/blog/</code> занят лендингом «Boost your productivity…»</td>
+</tr>
+<tr>
+<td>Сравнения</td>
+<td>1</td>
+<td>🔴 <code>/comparisons/brevo-vs-mailgun/</code> — сирота без H1/H2; хаб <code>/comparisons/</code> пуст</td>
+</tr>
+<tr>
+<td>Глоссарий, use-cases, кейсы</td>
+<td>0</td>
+<td>🔴 отсутствуют как классы</td>
+</tr>
+<tr>
+<td>Поддомен help.useblocks.io</td>
+<td>свой sitemap</td>
+<td>база знаний, подключена через externals-sitemap ✅</td>
+</tr>
+</tbody>
+</table>
+<p>Детали по качеству страниц — <a href="#section-tech-seo-audit">tech-seo-audit.md</a> §5.</p>
+<h2>2. Семантическое ядро (~78 фраз)</h2>
+<p>Частота: н/д = неизвестна (US-инструмента нет); сигнал спроса указан источником (SERP-конкуренция, саджест, структура конкурентов).</p>
+<h3>2.1. Билдер (ядро продукта)</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>Интент</th>
+<th>Сигнал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email template builder</td>
+<td>C</td>
+<td>конкурентный SERP, все 6 конкурентов таргетируют</td>
+</tr>
+<tr>
+<td>html email builder</td>
+<td>C</td>
+<td>то же</td>
+</tr>
+<tr>
+<td>drag and drop email builder</td>
+<td>C</td>
+<td>листиклы 2026 в топе</td>
+</tr>
+<tr>
+<td>free email template builder</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>no code email builder</td>
+<td>C</td>
+<td>позиционирование Blocks дословно</td>
+</tr>
+<tr>
+<td>responsive email builder</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>online email editor</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>email design tool</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>best email builder 2026</td>
+<td>C</td>
+<td>листиклы в топе</td>
+</tr>
+<tr>
+<td>email builder for agencies</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2. AI-генерация</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>Интент</th>
+<th>Сигнал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ai email template generator</td>
+<td>C</td>
+<td>SERP слабый: Venngage, GMass, мелкие тулзы — гигантов нет</td>
+</tr>
+<tr>
+<td>ai email builder</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>ai email designer</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>generate html email with ai</td>
+<td>I/C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>ai newsletter generator</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>chatgpt email template</td>
+<td>I</td>
+<td>саджест; у Blocks есть ChatGPT-фича на главной</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3. Шаблоны generic</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>Интент</th>
+<th>Сигнал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>free html email templates</td>
+<td>C</td>
+<td>высококонкурентный SERP: stripo (1650+), beefree (1280+), unlayer</td>
+</tr>
+<tr>
+<td>email templates free download</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>responsive email templates</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>newsletter templates free</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>html email template code</td>
+<td>I/C</td>
+<td>github/колекции в топе</td>
+</tr>
+<tr>
+<td>email newsletter templates</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4. Платформенные шаблоны («email templates for <ESP>») — 53 готовые страницы</h3>
+<p>mailchimp / klaviyo / hubspot / shopify / sendgrid / activecampaign / campaign monitor / constant contact / getresponse / brevo(sendinblue) / salesforce / marketo / braze / iterable / omnisend / outlook / gmail email templates — интент C, SERP-чек по Mailchimp: в топе конкуренты с точно такими же страницами → кластер рабочий, наши страницы тонкие.</p>
+<h3>2.5. Шаблоны по типам (46 таксономий + карточки)</h3>
+<p>order confirmation / abandoned cart / welcome / password reset / invoice / product launch / re-engagement / win-back / promo / discount / coupon / thank you / survey-feedback email template — интент C.</p>
+<h3>2.6. Сезонные и событийные (27 таксономий)</h3>
+<p>black friday / cyber monday / christmas / valentine&rsquo;s day / mother&rsquo;s day / halloween / thanksgiving / summer sale email templates — интент C, спрос пиковый по календарю.</p>
+<h3>2.7. Индустрии (27 таксономий)</h3>
+<p>ecommerce / real estate / restaurant / travel / saas / healthcare / fashion / education email templates — интент C.</p>
+<h3>2.8. Сравнения и альтернативы</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>Интент</th>
+<th>Сигнал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stripo alternatives</td>
+<td>C</td>
+<td>SERP: G2/OMR + страницы конкурентов (designmodo, mailmodo, maileditor) — конкурентные страницы ранжируются</td>
+</tr>
+<tr>
+<td>beefree alternatives</td>
+<td>C</td>
+<td>аналогично</td>
+</tr>
+<tr>
+<td>unlayer alternatives</td>
+<td>C</td>
+<td>аналогично</td>
+</tr>
+<tr>
+<td>stripo vs beefree</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>unlayer vs stripo</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>mailchimp email builder alternative</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+</tbody>
+</table>
+<h3>2.9. How-to / блог (I)</h3>
+<p>how to create html email · how to make email template in gmail / outlook · email design best practices · email width best practices · dark mode email design · email accessibility guidelines · amp for email · interactive emails · email image best practices · transactional vs marketing email.</p>
+<h3>2.10. Глоссарий (I, programmatic)</h3>
+<p>what is amp email · email preheader · esp meaning · dkim/spf/dmarc simple explanation · email deliverability · above the fold email — по образцу stripo (149) и topol (194 термина).</p>
+<h3>2.11. Embed/SDK-ветка (добавлена по решению пользователя)</h3>
+<table>
+<thead>
+<tr>
+<th>Фраза</th>
+<th>Интент</th>
+<th>Сигнал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>embeddable email editor</td>
+<td>C</td>
+<td>SERP: Beefree SDK, Unlayer, Chamaileon + малые (maillayers, dragble, easyemail) — малые ранжируются, ниша доступна</td>
+</tr>
+<tr>
+<td>email builder sdk</td>
+<td>C</td>
+<td>то же</td>
+</tr>
+<tr>
+<td>white label email builder</td>
+<td>C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>email editor for saas</td>
+<td>C</td>
+<td>то же</td>
+</tr>
+<tr>
+<td>embed email editor in app</td>
+<td>I/C</td>
+<td>саджест</td>
+</tr>
+<tr>
+<td>react email editor component</td>
+<td>I/C</td>
+<td>easyemail.pro в топе — dev-интент</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Важно:</strong> продукт под этот кластер у Blocks УЖЕ существует — <code>/plugin/</code> («How to embed our plugin into your product», 100+ blocks, white-label адаптация). Страница с пустым title, вне конкуренции.</p>
+<h2>3. Кластеры и покрытие</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Кластер</th>
+<th>Фраз</th>
+<th>Интент</th>
+<th>Страница</th>
+<th>Покрытие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Билдер</td>
+<td>10</td>
+<td>C</td>
+<td>главная, /pricing/</td>
+<td>🟡 главная без H1, нет отдельных фиче-лендингов</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AI-генерация</td>
+<td>6</td>
+<td>C</td>
+<td>—</td>
+<td>❌ фича есть в продукте, страницы нет</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Шаблоны generic</td>
+<td>6</td>
+<td>C</td>
+<td>/templates/</td>
+<td>🟡 нет meta desc, слабый title</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Платформы</td>
+<td>17+</td>
+<td>C</td>
+<td>53 стр.</td>
+<td>🟡 тонкие, не ранжируются</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Типы писем</td>
+<td>13+</td>
+<td>C</td>
+<td>46 таксономий + карточки</td>
+<td>🟡 тонкие; дыры в библиотеке (Follow Up 0)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Сезонные</td>
+<td>8+</td>
+<td>C</td>
+<td>27 таксономий</td>
+<td>🟡 тонкие</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Индустрии</td>
+<td>8+</td>
+<td>C</td>
+<td>27 таксономий</td>
+<td>🟡 тонкие</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Alternatives / vs</td>
+<td>6</td>
+<td>C</td>
+<td>1 сирота + пустой хаб</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>9</td>
+<td>How-to блог</td>
+<td>10</td>
+<td>I</td>
+<td>—</td>
+<td>❌ /blog/ занят лендингом</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Глоссарий</td>
+<td>6+ (расширяемо до 150+)</td>
+<td>I</td>
+<td>—</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Интеграции ESP («how to connect»)</td>
+<td>—</td>
+<td>T</td>
+<td>—</td>
+<td>❌ частично закрыто help-поддоменом</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Embed/SDK</td>
+<td>6</td>
+<td>C</td>
+<td>/plugin/</td>
+<td>🟡 продукт есть, страница невидима (пустой title, нет структуры)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Брендовые (blocks email builder)</td>
+<td>—</td>
+<td>N</td>
+<td>главная</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h2>4. SERP-анализ приоритетных кластеров</h2>
+<p>Пользователь: «всё вместе» → разобраны все 5 кластеров, по которым были живые чеки.</p>
+<h3>4.1. Платформы: «free mailchimp email templates»</h3>
+<table>
+<thead>
+<tr>
+<th>Место</th>
+<th>Домен</th>
+<th>Формат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>топ</td>
+<td>unlayer.com/email-templates/mailchimp</td>
+<td>таксономия-галерея + текст</td>
+</tr>
+<tr>
+<td>топ</td>
+<td>designmodo.com/email-templates/mailchimp/</td>
+<td>галерея + текст</td>
+</tr>
+<tr>
+<td>топ</td>
+<td>beefree.io/templates/mailchimp</td>
+<td>галерея, «1700+ templates»</td>
+</tr>
+<tr>
+<td>топ</td>
+<td>tabular.email/templates/mailchimp-email-templates</td>
+<td>галерея</td>
+</tr>
+<tr>
+<td>топ</td>
+<td>блоги-подборки (mailbakery, colorlib, emailvendorselection)</td>
+<td>листиклы</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Паттерн:</strong> ранжируются точно такие же таксономии-галереи, как у Blocks, но с содержательным текстом, цифрами библиотеки и структурой. Формат менять не надо — надо наполнить.</p>
+<h3>4.2. AI: «ai email template generator»</h3>
+<p><strong>Паттерн:</strong> SERP слабый — Venngage (генератор-тулза), GMass (блог-пост), attherate/dfirst/emailcanvas (микро-тулзы). Ни один из 6 прямых конкурентов не занял. Формат победителя: интерактивная страница-генератор + пояснительный текст. У Blocks фича в продукте есть — нужна публичная страница-витрина.</p>
+<h3>4.3. Alternatives: «stripo alternatives»</h3>
+<p><strong>Паттерн:</strong> микс — G2/OMR (агрегаторы, их не подвинуть) + собственные страницы конкурентов (designmodo/postcards/stripo/, mailmodo/comparison/, maileditor блог). Свои страницы в этом SERP живут → страница «Stripo alternatives: Blocks + ещё 5» достижима.</p>
+<h3>4.4. Шаблоны generic: «free html email templates»</h3>
+<p><strong>Паттерн:</strong> в топе галереи гигантов с числом в title («1650+ free…», «1280+…») + подборки. С 206 шаблонами соревноваться числом нельзя — заходить через хвосты (типы/сезоны/индустрии) и качество превью.</p>
+<h3>4.5. Embed/SDK: «embeddable email editor sdk»</h3>
+<p><strong>Паттерн:</strong> Beefree SDK (developers.beefree.io), Unlayer, Chamaileon SDK + ранжирующиеся малые (maillayers.com, dragble.com, easyemail.pro). Формат: продуктовый лендинг для разработчиков с demo, доками и pricing. Ниша сложная, но малые игроки в топе доказывают достижимость.</p>
+<h2>5. Контент-план (рекомендации)</h2>
+<h3>5.1. High priority</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>Целевой H1</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10 платформенных страниц (Mailchimp, Klaviyo, HubSpot, Shopify, SendGrid, ActiveCampaign, Constant Contact, GetResponse, Brevo, Campaign Monitor)</td>
+<td>переработка</td>
+<td>4</td>
+<td>«Free Mailchimp Email Templates — Ready to Export» (по аналогии для каждой)</td>
+<td>Уникальный текст 400–700 слов на платформу: как экспортировать именно в этот ESP, ограничения платформы, 3–5 H2, FAQ, число шаблонов, ссылки на релевантные карточки. Формат из SERP 4.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/ai-email-generator/</td>
+<td>новый лендинг</td>
+<td>2</td>
+<td>«AI Email Template Generator»</td>
+<td>Витрина существующей AI-фичи: интерактив/видео, 3 шага, примеры промптов, FAQ. SERP свободен (4.2) — занять до прихода больших</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/comparisons/ хаб + 5 страниц alternatives (Stripo, Beefree, Unlayer, Chamaileon, Topol)</td>
+<td>новые + починка</td>
+<td>8</td>
+<td>«Best Stripo Alternatives in 2026» и т.п.</td>
+<td>Честная таблица функций, цены, миграция на Blocks; H1/H2 обычными тегами (не дивами билдера!). Существующую brevo-vs-mailgun переверстать</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/templates/ галерея</td>
+<td>переработка</td>
+<td>3</td>
+<td>«Free HTML Email Templates»</td>
+<td>Meta description, title с числом шаблонов, вводный текст, ссылки на топ-таксономии</td>
+</tr>
+<tr>
+<td>5</td>
+<td>/plugin/ → /email-builder-sdk/ (или доработка на месте)</td>
+<td>переработка</td>
+<td>12</td>
+<td>«Embeddable Email Builder for SaaS»</td>
+<td>Заполнить title/meta, H1, секции: демо, white-label, интеграция, кейс. Сейчас страница с продуктом и пустым title — быстрейший из всех фиксов</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2. Medium priority</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>Целевой H1</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>Запуск блога: 10 статей</td>
+<td>новый раздел</td>
+<td>9</td>
+<td>«How to Create an HTML Email (Without Coding)» и др.</td>
+<td>Темы 2.9; каждая статья заканчивается CTA в билдер/шаблоны; <code>/blog/</code>-лендинг переносится на другой URL</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Тип-таксономии: топ-10 (welcome, abandoned cart, order confirmation…)</td>
+<td>переработка</td>
+<td>5</td>
+<td>«Welcome Email Templates That Convert»</td>
+<td>По схеме платформенных: текст, H2, FAQ, примеры</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Сезонный контур: 5 страниц к пикам (BF, Christmas, Valentine…)</td>
+<td>переработка</td>
+<td>6</td>
+<td>«Black Friday Email Templates 2026»</td>
+<td>Готовить за 6–8 недель до пика; <code>/blackfriday2024/</code> — 301 на новую вечнозелёную</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Дозаполнить дыры библиотеки</td>
+<td>шаблоны</td>
+<td>5</td>
+<td>—</td>
+<td>Follow Up (0 шаблонов!), Free Trial (1), Cold Email (1) — категории существуют, контента нет</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Главная: H1 + AI-акцент</td>
+<td>переработка</td>
+<td>1</td>
+<td>«AI-Powered No-Code Email Builder»</td>
+<td>Вернуть H1 (сейчас его нет), убрать дубль «Blocks» в title</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3. Low priority</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Страница</th>
+<th>Тип</th>
+<th>Кластер</th>
+<th>Бриф</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>Глоссарий: 30 стартовых терминов</td>
+<td>новый раздел</td>
+<td>10</td>
+<td>По модели topol (194) — коротко, с definition-первым-абзацем, для длинного хвоста и LLM-цитируемости</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Интеграционные лендинги</td>
+<td>новые</td>
+<td>11</td>
+<td>Только после дожатия платформенных страниц; частично закрыто help-поддоменом</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Индустрии: топ-5</td>
+<td>переработка</td>
+<td>7</td>
+<td>ecommerce, real estate, travel, saas, fashion — по остаточному принципу</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Выводы</h2>
+<p><strong>Топ-3 точки роста:</strong>
+1. <strong>53 платформенные страницы — готовый BOFU-актив, который не работает.</strong> Конкуренты ранжируются идентичным форматом; нужен контент, не новая архитектура.
+2. <strong>Две свободные поляны под собственное позиционирование:</strong> AI-generator SERP без гигантов + embeddable-продукт <code>/plugin/</code>, невидимый из-за пустого title. Оба — быстрые победы.
+3. <strong>Контентная машина с нуля:</strong> блог + сравнения + глоссарий — то, что есть у всех 6 конкурентов и полностью отсутствует у Blocks.</p>
+<p><strong>Риски и ограничения:</strong>
+- Нет данных о частотностях US — приоритеты выставлены по SERP-сигналам; после подключения GSC пересмотреть через 2–3 месяца по фактическим показам.
+- Вёрстка билдера кладёт заголовки дивами (см. техаудит) — без решения этой проблемы новые страницы унаследуют структурную слепоту.
+- Библиотека в 206 шаблонов против 1300–2000 у лидеров — числом в title играть нельзя, только хвостами и качеством.
+- Сезонный кластер требует календарной дисциплины (готовить за 6–8 недель).</p></div>
+</section>
+
+
+<section class="section" id="section-tech-seo-audit">
+  <div class="section-head">
+    <span class="section-num">04 · TECH</span>
+  </div>
+  <h2 class="section-title">Технический SEO</h2>
+  <div class="md"><p><strong>Дата:</strong> 2026-09-01
+<strong>Статус:</strong> анализ (ничего не применялось)
+<strong>Метод:</strong> прямые запросы curl/crawl.py, PSI API (по 1 прогону на страницу), WebSearch. Доступа к GSC/Вебмастеру нет — точные данные индексации недоступны.</p>
+<hr>
+<h2>1. robots.txt</h2>
+<p><strong>Файл:</strong> https://useblocks.io/robots.txt</p>
+<pre><code>User-agent: *
+Sitemap: https://useblocks.io/sitemap.xml
+
+Disallow: /docs/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Наблюдение</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Синтаксис корректный, sitemap объявлен</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Закрыт только <code>/docs/</code> — при этом публичная документация живёт на <code>/documentation/</code> и help.useblocks.io, конфликтов нет</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>/wp-admin/</code>, <code>/wp-json/</code> не закрыты</td>
+<td>⚪ мелочь: мусорные технические URL могут попадать в обход; критики нет — WP сам ставит на них noindex/редиректы</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ИИ-боты не упомянуты → работают по <code>*</code>, доступ открыт</td>
+<td>✅ норма, ничего добавлять не нужно</td>
+</tr>
+</tbody>
+</table>
+<h2>2. sitemap.xml</h2>
+<p>Плагин google-sitemap-generator (Arne Brachhold, v4.1.21), индекс из 8 подкарт, <strong>376 URL</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Подкарта</th>
+<th>URL</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sitemap-misc</td>
+<td>1</td>
+<td>главная</td>
+</tr>
+<tr>
+<td>template-event-sitemap</td>
+<td>27</td>
+<td>таксономия Event</td>
+</tr>
+<tr>
+<td>template-industry-sitemap</td>
+<td>27</td>
+<td>таксономия Industry</td>
+</tr>
+<tr>
+<td>template-platform-sitemap</td>
+<td>53</td>
+<td>таксономия Platform</td>
+</tr>
+<tr>
+<td>template-type-sitemap</td>
+<td>46</td>
+<td>таксономия Type</td>
+</tr>
+<tr>
+<td>templates-sitemap</td>
+<td>206</td>
+<td>карточки шаблонов</td>
+</tr>
+<tr>
+<td>page-sitemap</td>
+<td>15</td>
+<td>статические страницы</td>
+</tr>
+<tr>
+<td>externals-sitemap</td>
+<td>1</td>
+<td>→ sitemap поддомена help.useblocks.io</td>
+</tr>
+</tbody>
+</table>
+<h3>Проблемы</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Было</th>
+<th>Делаем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>🔴 <strong>Тестовые страницы в sitemap и в индексе</strong></td>
+<td><code>/test77/</code> (title «test - Blocks») и <code>/test-2/</code> — отдают 200, index,follow, лежат в page-sitemap</td>
+<td>Удалить страницы (или в draft) — мусор в выдаче и сигнал неухоженности</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🟡 <strong>Просроченный промо-лендинг</strong></td>
+<td><code>/blackfriday2024/</code> в sitemap (сентябрь 2026)</td>
+<td>Решить судьбу: 301 на актуальную акцию / обновить к BF-2026</td>
+</tr>
+<tr>
+<td>3</td>
+<td>🟡 <strong><code>lastmod</code> подкарт — сентябрь 2025, templates — февраль 2025</strong></td>
+<td>Год без обновлений дат</td>
+<td>Проверить, реально ли контент не менялся; если менялся — плагин не обновляет lastmod</td>
+</tr>
+<tr>
+<td>4</td>
+<td>🟡 <strong><code>/blog/</code> и <code>/comparisons/…</code> не в sitemap</strong></td>
+<td>В page-sitemap только 2 comparison-URL; <code>/blog/</code> отдаёт 200, но занят лендингом «Boost your productivity…»</td>
+<td>Разобраться со структурой блога (см. content-audit) и включить живые разделы в sitemap</td>
+</tr>
+<tr>
+<td>5</td>
+<td>⚪ В sitemap нет 404/редиректов (проверены выборочно)</td>
+<td></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Индексация</h2>
+<p>Доступа к Google Search Console нет. <code>site:useblocks.io</code> через WebSearch отдаёт нерелевантную смесь — численную оценку индекса получить нельзя.</p>
+<table>
+<thead>
+<tr>
+<th>Что</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL в sitemap</td>
+<td>376 (+ поддомен help)</td>
+</tr>
+<tr>
+<td>Страниц в индексе Google</td>
+<td><strong>нет данных</strong> — нужен доступ к GSC</td>
+</tr>
+<tr>
+<td>CrUX (полевые данные)</td>
+<td>null для главной и карточки шаблона → органического трафика мало настолько, что Chrome не набирает выборку</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Рекомендация №1 всего аудита:</strong> подключить GSC (если не подключён) и выдать доступ — без него не видно ни покрытия индекса, ни запросов, ни позиций.</p>
+<h2>4. Главная страница</h2>
+<table>
+<thead>
+<tr>
+<th>Что</th>
+<th>Значение</th>
+<th>Оценка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>200, canonical self, index,follow</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>«Blocks: AI-Powered No-Code Email Builder For Everyone - Blocks»</td>
+<td>🟡 «Blocks» дважды; 62 симв.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>есть, адекватный</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>H1</strong></td>
+<td><strong>отсутствует</strong> (9 H2, H1 нет вообще)</td>
+<td>🔴 главный запрос («ai email builder / email template builder») не закреплён заголовком</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>WebPage, ImageObject, BreadcrumbList, WebSite, Organization</td>
+<td>🟡 нет SoftwareApplication/Product с ценами и рейтингом</td>
+</tr>
+<tr>
+<td>Картинки без alt</td>
+<td>20 из 70</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>hreflang</td>
+<td>нет (сайт одноязычный)</td>
+<td>✅ не нужен</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Ключевые страницы</h2>
+<table>
+<thead>
+<tr>
+<th>Страница</th>
+<th>Статус</th>
+<th>Проблемы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/templates/</code> (галерея)</td>
+<td>200</td>
+<td>🟡 <strong>нет meta description</strong>; title «Templates gallery - Blocks» слабый (запрос «free html email templates» не отработан)</td>
+</tr>
+<tr>
+<td><code>/templates/order-confirmation-email-template/</code> (карточка)</td>
+<td>200</td>
+<td>✅ title/desc на месте; текст ~4,7 тыс. знаков</td>
+</tr>
+<tr>
+<td><code>/templates/platform/mailchimp/</code> (таксономия)</td>
+<td>200</td>
+<td>✅ H1 есть; 🟡 0 H2 — тонкая структура; на 53 платформенных страницах один шаблон текста</td>
+</tr>
+<tr>
+<td><code>/pricing/</code></td>
+<td>200</td>
+<td>🟡 51 из 54 картинок без alt</td>
+</tr>
+<tr>
+<td><code>/comparisons/brevo-vs-mailgun/</code></td>
+<td>200</td>
+<td>🔴 <strong>нет H1 и H2</strong> (только 4 H3 — вёрстка билдера дивами); 🔴 description = копия title («Comparisons: Brevo vs Mailgun - Blocks») — автогенерация; текст 11 тыс. знаков пропадает без структуры</td>
+</tr>
+<tr>
+<td><code>/comparisons/</code> (хаб)</td>
+<td>200</td>
+<td>🔴 пустышка: title «comparisons - Blocks», контента нет, ссылок на сравнения нет</td>
+</tr>
+<tr>
+<td><code>/blog/</code></td>
+<td>200</td>
+<td>🟡 занят лендингом «Boost your productivity with Blocks experts&rsquo; help» — блога как раздела нет</td>
+</tr>
+<tr>
+<td><code>/test77/</code>, <code>/test-2/</code></td>
+<td>200</td>
+<td>🔴 тестовый мусор, индексируемый</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Core Web Vitals</h2>
+<p>По 1 прогону PSI (mobile) на страницу — ориентир, не приговор (лаборатория шумит; для «до/после» нужны 3–5 прогонов и медиана).</p>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Главная</th>
+<th>Карточка шаблона</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Performance score</td>
+<td>85</td>
+<td>74</td>
+</tr>
+<tr>
+<td>LCP (lab)</td>
+<td>2,5 с</td>
+<td>4,6 с</td>
+</tr>
+<tr>
+<td>CLS (lab)</td>
+<td>0,164</td>
+<td>0</td>
+</tr>
+<tr>
+<td>TBT</td>
+<td>160 мс</td>
+<td>0 мс</td>
+</tr>
+<tr>
+<td>FCP</td>
+<td>1,7 с</td>
+<td>2,9 с</td>
+</tr>
+<tr>
+<td><strong>CWV field (CrUX)</strong></td>
+<td><strong>null</strong></td>
+<td><strong>null</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Выводы: техбаза приличная (W3 Total Cache + memcached, TTFB 70–90 мс). Точки внимания — LCP карточек шаблонов (4,6 с: тяжёлые превью писем) и CLS главной (0,164 — близко к жёлтой зоне). Полевых данных нет из-за малого трафика — не проблема сайта, а следствие.</p>
+<h2>7. Редиректы</h2>
+<table>
+<thead>
+<tr>
+<th>Проверка</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http → https</td>
+<td>301 ✅</td>
+</tr>
+<tr>
+<td>www → non-www</td>
+<td>301 ✅</td>
+</tr>
+<tr>
+<td><code>/page</code> → <code>/page/</code></td>
+<td>301 ✅</td>
+</tr>
+<tr>
+<td>Цепочки</td>
+<td>не обнаружены на проверенных URL ✅</td>
+</tr>
+</tbody>
+</table>
+<p>Раздел чистый.</p>
+<h2>8. Структура URL</h2>
+<p>Латиница, читаемые слаги, логичная иерархия: <code>/templates/&lt;slug&gt;/</code>, <code>/templates/platform/&lt;platform&gt;/</code> и т.д. Параметров в sitemap нет. ✅</p>
+<p>Единственное: карточки шаблонов лежат в <code>/templates/&lt;slug&gt;/</code>, а таксономии в <code>/templates/{platform|type|…}/&lt;term&gt;/</code> — потенциальный конфликт слагов, но на проверенных URL коллизий нет.</p>
+<h2>9. GEO-готовность (LLM-видимость)</h2>
+<table>
+<thead>
+<tr>
+<th>Проверка</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/llms.txt</td>
+<td>🟡 404 — рекомендуется создать (описание продукта, ссылки на галерею/прайсинг/док-цию)</td>
+</tr>
+<tr>
+<td>ИИ-боты в robots.txt</td>
+<td>✅ не упомянуты, <code>*</code> открыт — доступ есть, ничего делать не нужно</td>
+</tr>
+<tr>
+<td>Schema.org</td>
+<td>🟡 есть WebPage/CollectionPage/BreadcrumbList/WebSite/Organization; <strong>нет</strong> SoftwareApplication (+ offers/aggregateRating), FAQPage (на /faq/ и карточках), Product</td>
+</tr>
+<tr>
+<td>SSR</td>
+<td>✅ WordPress, контент в HTML без JS (visible_text 4–11 тыс. знаков)</td>
+</tr>
+<tr>
+<td>EEAT-блоки</td>
+<td>🔴 авторов, дат, источников нет нигде; редакционного контента (блога) фактически нет</td>
+</tr>
+<tr>
+<td>TL;DR / прямой ответ</td>
+<td>🟡 карточки шаблонов начинаются с описания шаблона — приемлемо; сравнения без заголовочной структуры LLM цитировать не будут</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Критичные проблемы (топ-5)</h2>
+<ol>
+<li><strong>Нет H1 на главной, нет H1/H2 на страницах сравнений</strong> — билдер верстает заголовки дивами. Главная не закрепляет главный запрос, 11 тыс. знаков сравнения Brevo vs Mailgun невидимы структурно ни для Google, ни для LLM. → §4, §5</li>
+<li><strong>Тестовый мусор в проде:</strong> <code>/test77/</code>, <code>/test-2/</code> — 200, index,follow, в sitemap. → §2, §5</li>
+<li><strong>Хаб <code>/comparisons/</code> — пустышка без ссылок, <code>/blog/</code> занят лендингом</strong> — контентного контура нет, сравнение существует одно и без внутренних ссылок на него (сирота). → §5</li>
+<li><strong>Meta description:</strong> отсутствует на <code>/templates/</code> (главной коммерческой галерее), автогенерится копией title на сравнениях. → §5</li>
+<li><strong>Нет доступа к GSC + CrUX пустой</strong> — аудит и дальнейший трекинг слепые по позициям/показам; подключить GSC — предусловие всей работы. → §3</li>
+</ol>
+<h2>Средние проблемы</h2>
+<ul>
+<li>LCP карточек шаблонов 4,6 с (lab), CLS главной 0,164 — оптимизировать превью писем и зарезервировать место под верхние блоки. → §6</li>
+<li>53 платформенные страницы с H1 но без H2 и с шаблонным текстом — тонкий programmatic-контент (детально — в content-audit). → §5</li>
+<li><code>/blackfriday2024/</code> — просроченный лендинг в sitemap. → §2</li>
+<li>Нет SoftwareApplication/FAQPage-разметки — упущенные rich results и сигналы для LLM. → §9</li>
+<li>Alt-тексты: 51/54 картинок без alt на /pricing/, 20/70 на главной. → §4, §5</li>
+<li>/llms.txt отсутствует (рекомендация, не блокер). → §9</li>
+</ul>
+<h2>Мелочи</h2>
+<ul>
+<li>Title главной дублирует «Blocks» в начале и в суффиксе.</li>
+<li><code>lastmod</code> подкарт не обновлялся с сентября 2025 — проверить работу плагина.</li>
+<li><code>/wp-admin/</code>, <code>/wp-json/</code> не закрыты в robots.txt.</li>
+</ul></div>
+</section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Сгенерировано автоматически из research/*.md · 2026-09-01</div>
+    <div class="files"><code>audit-summary.md</code> <code>gap-analysis.md</code> <code>content-audit.md</code> <code>tech-seo-audit.md</code></div>
+  </div>
+</footer>
+
+</body>
+</html>
